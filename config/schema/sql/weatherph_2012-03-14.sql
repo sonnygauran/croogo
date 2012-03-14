@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.5.9)
 # Database: weatherph
-# Generation Time: 2012-03-14 07:10:23 +0000
+# Generation Time: 2012-03-14 14:38:25 +0000
 # ************************************************************
 
 
@@ -41,7 +41,7 @@ LOCK TABLES `acos` WRITE;
 
 INSERT INTO `acos` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `rght`)
 VALUES
-	(1,NULL,'',NULL,'controllers',1,352),
+	(1,NULL,'',NULL,'controllers',1,358),
 	(2,1,'',NULL,'Attachments',2,13),
 	(3,2,'',NULL,'admin_index',3,4),
 	(4,2,'',NULL,'admin_add',5,6),
@@ -216,7 +216,10 @@ VALUES
 	(175,172,'',NULL,'admin_add',343,344),
 	(176,172,'',NULL,'admin_editor',345,346),
 	(177,172,'',NULL,'admin_save',347,348),
-	(178,172,'',NULL,'admin_delete',349,350);
+	(178,172,'',NULL,'admin_delete',349,350),
+	(179,1,NULL,NULL,'Weatherph',352,357),
+	(180,179,NULL,NULL,'admin_index',353,354),
+	(181,179,NULL,NULL,'index',355,356);
 
 /*!40000 ALTER TABLE `acos` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -299,7 +302,9 @@ VALUES
 	(24,3,129,'1','1','1','1'),
 	(25,2,130,'1','1','1','1'),
 	(26,2,131,'1','1','1','1'),
-	(27,3,131,'1','1','1','1');
+	(27,3,131,'1','1','1','1'),
+	(28,2,181,'1','1','1','1'),
+	(29,3,181,'1','1','1','1');
 
 /*!40000 ALTER TABLE `aros_acos` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -519,7 +524,8 @@ VALUES
 	(14,NULL,6,'CakePHP','','','http://www.cakephp.org','','',1,1,2,'','','2009-10-07 03:25:25','2009-09-12 23:38:43'),
 	(15,NULL,3,'Contact','','','/controller:contacts/action:view/contact','','',1,11,12,'','','2009-09-16 07:54:13','2009-09-16 07:53:33'),
 	(16,NULL,5,'Entries (RSS)','','','/nodes/promoted.rss','','',1,3,4,'','','2009-10-27 17:46:22','2009-10-27 17:46:22'),
-	(17,NULL,5,'Comments (RSS)','','','/comments.rss','','',1,5,6,'','','2009-10-27 17:46:54','2009-10-27 17:46:54');
+	(17,NULL,5,'Comments (RSS)','','','/comments.rss','','',1,5,6,'','','2009-10-27 17:46:54','2009-10-27 17:46:54'),
+	(18,NULL,3,'Example','',NULL,'plugin:weatherph/controller:weatherph/action:index',NULL,NULL,1,13,14,NULL,NULL,'2012-03-14 16:00:19','2012-03-14 16:00:19');
 
 /*!40000 ALTER TABLE `links` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -551,7 +557,7 @@ LOCK TABLES `menus` WRITE;
 
 INSERT INTO `menus` (`id`, `title`, `alias`, `class`, `description`, `status`, `weight`, `link_count`, `params`, `updated`, `created`)
 VALUES
-	(3,'Main Menu','main','','',1,NULL,4,'','2009-08-19 12:21:06','2009-07-22 01:49:53'),
+	(3,'Main Menu','main','','',1,NULL,5,'','2009-08-19 12:21:06','2009-07-22 01:49:53'),
 	(4,'Footer','footer','','',1,NULL,2,'','2009-08-19 12:22:42','2009-08-19 12:22:42'),
 	(5,'Meta','meta','','',1,NULL,4,'','2009-09-12 06:33:29','2009-09-12 06:33:29'),
 	(6,'Blogroll','blogroll','','',1,NULL,2,'','2009-09-12 23:30:24','2009-09-12 23:30:24');
@@ -766,9 +772,9 @@ LOCK TABLES `settings` WRITE;
 
 INSERT INTO `settings` (`id`, `key`, `value`, `title`, `description`, `input_type`, `editable`, `weight`, `params`)
 VALUES
-	(6,'Site.title','Croogo','','','',1,1,''),
+	(6,'Site.title','Weather | Philippines','','','',1,1,''),
 	(7,'Site.tagline','A CakePHP powered Content Management System.','','','textarea',1,2,''),
-	(8,'Site.email','you@your-site.com','','','',1,3,''),
+	(8,'Site.email','sgauran@meteomedia.com.ph','','','',1,3,''),
 	(9,'Site.status','1','','','checkbox',1,5,''),
 	(12,'Meta.robots','index, follow','','','',1,6,''),
 	(13,'Meta.keywords','croogo, Croogo','','','textarea',1,7,''),
@@ -778,7 +784,7 @@ VALUES
 	(17,'Service.recaptcha_public_key','your-public-key','','','',1,12,''),
 	(18,'Service.recaptcha_private_key','your-private-key','','','',1,13,''),
 	(19,'Service.akismet_url','http://your-blog.com','','','',1,10,''),
-	(20,'Site.theme','','','','',0,14,''),
+	(20,'Site.theme','weatherph','','','',0,14,''),
 	(21,'Site.feed_url','','','','',0,15,''),
 	(22,'Reading.nodes_per_page','5','','','',1,16,''),
 	(23,'Writing.wysiwyg','1','Enable WYSIWYG editor','','checkbox',1,17,''),
@@ -787,8 +793,8 @@ VALUES
 	(26,'Site.locale','eng','','','text',0,20,''),
 	(27,'Reading.date_time_format','D, M d Y H:i:s','','','',1,21,''),
 	(28,'Comment.date_time_format','M d, Y','','','',1,22,''),
-	(29,'Site.timezone','0','','zero (0) for GMT','',1,4,''),
-	(32,'Hook.bootstraps','tinymce','','','',0,23,'');
+	(29,'Site.timezone','8','','zero (0) for GMT','',1,4,''),
+	(32,'Hook.bootstraps','tinymce,weatherph','','','',0,23,'');
 
 /*!40000 ALTER TABLE `settings` ENABLE KEYS */;
 UNLOCK TABLES;
