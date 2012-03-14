@@ -53,6 +53,10 @@
 		define('CAKE_CORE_INCLUDE_PATH', ROOT);
 	}
 
+    if (!defined('CORE_PATH')) {
+        define('CORE_PATH', ROOT.'/'.APP_DIR.DS.'Vendor'.DS.'cake'.DS);
+    }
+
 /**
  * Editing below this line should NOT be necessary.
  * Change at your own risk.
