@@ -204,12 +204,12 @@
 /**
  * A random string used in security hashing methods.
  */
-	Configure::write('Security.salt', 'DYhG93b0qyJfIxfs2guVoUubWwvniR2G0FgaC9mi19');
+	Configure::write('Security.salt', 'ee5a9951c354dd4f31c220c59b27aec5a4a0fe10');
 
 /**
  * A random numeric string (digits only) used to encrypt/decrypt strings.
  */
-	Configure::write('Security.cipherSeed', '7685930965745354249674968364519');
+	Configure::write('Security.cipherSeed', '2083165454711037584');
 
 /**
  * Compress CSS output by removing comments, whitespace, repeating tags, etc.
