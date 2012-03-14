@@ -1,0 +1,11 @@
+name: Weatherph
+description: Weatherph plugin
+
+author: Sonny Gauran
+authorEmail: sgauran@meteomedia.com.ph
+authorUrl: http://flavors.me/sonnygauran
+
+dependencies:
+  plugins:
+    - acl
+    - extensions
