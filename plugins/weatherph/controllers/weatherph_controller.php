@@ -24,6 +24,10 @@ class WeatherphController extends WeatherphAppController {
  */
     public $uses = array('Setting');
 
+    public function beforeFilter(){
+        parent::beforeFilter();
+    }
+
     public function admin_index() {
         $this->set('title_for_layout', __('Weatherph', true));
     }
