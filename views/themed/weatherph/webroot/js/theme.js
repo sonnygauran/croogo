@@ -3,20 +3,10 @@ var map = $("#map").geomap({
 center: [ 121.019825, 14.557263 ],
 zoom: 6,
 scroll: 'off',
+
 //Find mode
 
 mode: "find",
-click: function(e, geo) {
-	var outputHtml = "";
-result = map.geomap("find", geo, 8);
-$.each(result, function () {
-	outputHtml += ("<p>Found a " + this.type + " at " + this.coordinates + "</p>");
-	$('.details dt').html(this.name); 
-	$('.details dd').html("Some readings here"); 
-});
-
-$('.ad').append(outputHtml);
-},
 /*
 //http://a.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/56590/256/5/15/12.png
 
@@ -47,7 +37,8 @@ tilingScheme: {
 });
 
 //Stations
-console.log($("#map").geomap("option", "bbox"));
+
+
 var $data = {
 stations : [
 	{
@@ -103,18 +94,79 @@ stations : [
 ]
 }
 
+
+
+$stations = new Array();
+$.ajax({
+    type:     'GET',
+    url :     '/weatherph/weatherph/getStations',
+    cache:    false,
+    success: function(data) {
+
+        var $retrievedStations = data; // the complete retrieved stations
+        
+        for (var key in $retrievedStations) {
+        
+            var $currentRetrievedStation = $retrievedStations[key]; // current station on the loop
+            
+            $stations.push({ // create a json object, and then save it to stations array
+            	id: $currentRetrievedStation.id,
+            	name: $currentRetrievedStation.name,
+            	type:'Point',
+            	coordinates: [
+            	   $currentRetrievedStation.coordinates.longitude,
+            	   $currentRetrievedStation.coordinates.latitude
+        	   ]
+            });
+        }
+        console.log($stations); // now the stations are complete
+//        mapStations($stations);
+    }
+});
+
 //Station output
 
-var i = 0;
-for (var key in $data.stations) {
-map.geomap("append", {
-	id: $data.stations[key].id,
-	name: $data.stations[key].name,
-	type:'Point', coordinates: $data.stations[key].coordinates
-}
-, true);
-}
 
+
+// Uncomment this to see stations hard-coded on javascript
+for (var key in $data.stations) {
+    map.geomap("append", {
+    	id: $data.stations[key].id,
+    	name: $data.stations[key].name,
+    	type:'Point', coordinates: $data.stations[key].coordinates
+    }, true);
+}
+$('#map').geomap({
+    click: function(e, geo) {
+    	var outputHtml = "";
+        result = map.geomap("find", geo, 8);
+        $.each(result, function () {
+        	outputHtml += ("<p>Found a " + this.type + " at " + this.coordinates + "</p>");
+        	$('.details dt').html(this.name); 
+        	$('.details dd').html("Some readings here"); 
+        });
+        
+        $('.ad').append(outputHtml);
+    }
+
+});
+
+//mapStations($data.stations);
+
+function mapStations($stationsArray) {
+    // This loop maps the stations from the $stations fetched from getStations
+    for (var key in $stationsArray) {
+        $currentStation = $stationsArray[key];
+        console.log($currentStation);
+        map.geomap("append", {
+        	id: $currentStation.id,
+        	name: $currentStation.name,
+        	type:'Point',
+        	coordinates: $currentStation.coordinates
+        }, true);
+    }
+
+}
 
 //Region selector
 var $centerMap = [
@@ -148,7 +200,7 @@ var $boxMap = [
 	{ id: 'ARMM', box: [117.97119123437608, 3.206332652787861, 125.99121076562393, 9.752369809194555],},
 
 ];
-console.log($boxMap);
+
 	$('select[name=philippine-regions]').change(function(){
 		
 			$("select[name=philippine-regions] option:selected").each(function () {
@@ -168,8 +220,6 @@ console.log($boxMap);
 					}
                 } // END IF
               });
-
-
 	});
 
 			$('#upak').click(function(){
@@ -187,12 +237,12 @@ console.log($boxMap);
 
 
 
-        var $widther = 210;    
+        var $widther = 220;    
         var resizeTimer;
         
         resizeTimer = setTimeout(    function resizeIt(){
             if ($(window).width() <= 1024) {
-                $('#map').css('width', '814px');
+                $('#map').css('width', '810px');
             } else {
                 $('#map').css('width', ($(window).width() - $widther));    
             }

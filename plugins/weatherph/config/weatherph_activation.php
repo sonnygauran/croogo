@@ -30,6 +30,7 @@ class WeatherphActivation {
         $controller->Croogo->addAco('Weatherph'); // WeatherphController
         $controller->Croogo->addAco('Weatherph/admin_index'); // WeatherphController::admin_index()
         $controller->Croogo->addAco('Weatherph/index', array('registered', 'public')); // WeatherphController::index()
+        $controller->Croogo->addAco('Weatherph/getStations', array('registered', 'public')); // WeatherphController::index()
 
         // Main menu: add an Example link
         $mainMenu = $controller->Link->Menu->findByAlias('main');

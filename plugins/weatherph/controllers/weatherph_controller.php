@@ -22,23 +22,31 @@ class WeatherphController extends WeatherphAppController {
  * @var array
  * @access public
  */
-    public $uses = array('Setting','WeatherphStation');
+    public $uses = array('Setting');
 
     public function beforeFilter(){
         parent::beforeFilter();
     }
 
     public function admin_index() {
-        $stations = array(1,2,3);
-        debug(compact('stations'));
         $this->set('title_for_layout', __('Weatherph', true));
-        $this->set(compact('stations'));
     }
 
     public function index() {
         $this->set('title_for_layout', __('Weatherph', true));
         $this->set('weatherphVariable', 'value here');
     }
+    
+    public function getStations(){
+        $this->layout = 'json/ajax';
+
+        $this->set('title_for_layout', __('Weatherph', true));
+        App::import('Model', 'Weatherph.WeatherphStation');
+        
+        $WeatherphStation = new WeatherphStation();
+        $stations = $WeatherphStation->find('all');
+
+        $this->set('stations', json_encode($stations));
+    }
 
 }
-?>
