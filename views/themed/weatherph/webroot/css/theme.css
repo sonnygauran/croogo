@@ -1,0 +1,165 @@
+/*========================================
+	Layout
+========================================*/
+
+html, body {
+	margin: 0;
+	padding: 0;
+}
+
+
+body {
+	background: transparent url(/theme/weatherph/img/bg.png) top left;
+	min-width: 1023px;
+}
+
+#wrapper {
+
+	margin-left: auto;
+	margin-right: auto;
+}
+
+nav li {
+	display: inline;
+	list-style: none;
+	padding-right: 3em;
+}
+
+#search {
+	display: inline;
+}
+
+.content .map {
+	width: 814px;
+}
+
+section.map {
+	float: left;
+}
+#layer {
+	position: absolute;
+}
+
+#map {
+	height: 600px;
+	max-height:600px;
+}
+
+.ad {
+	position: relative;
+	width: 160px;
+	float:right;
+	background: white;
+	height: 560px;
+	padding: 20px;
+	border-left: solid #ccc 1px;
+	margin: 0 .3em;
+}
+
+.sidebar {
+	position: absolute;
+	width: 150px;
+	padding: 0 2em 2em 2em;
+	margin: 1em 1em;
+}
+
+#forecast {
+	margin-top: 40px;
+	text-align: center;
+	background: transparent url(/theme/weatherph/img/forecastbg.png) top left;
+	clear: both;
+	border-top: solid 3px #000;
+	border-bottom: solid 3px #000;
+}
+
+#forecast .daily {
+	width: 924px;
+	margin: 0 auto;
+}
+
+#forecast .daily ul{
+	list-style: none;
+	clear: both;
+	height: 250px;
+	margin: 0 auto;
+	padding: 0;
+}
+
+
+#forecast .daily li {
+	float: left;
+	clear: none;
+	border-right: solid 5px black;
+	border-left: solid 2px #888;
+	padding-left: 4px;
+	height: 250px;
+	background: #555;
+}
+
+#forecast .daily li:first-child {
+	border-left: solid 2px #888;
+}
+
+#forecast .daily li:last-child {
+	
+}
+#forecast .daily li h4 {
+	display: block;
+	width: 120px;
+	clear: both;
+	text-align: center;
+	color: #bbb;
+	text-shadow: 0px 2px 3px #000; 
+}
+
+#forecast .daily li img {
+	width: 80px;
+}
+
+#forecast .daily .major { background: #777; }
+#forecast .daily .major h4 { color: #eee; }
+#forecast .daily .minor { background: #333; }
+#forecast .daily .minor h4 { color: #666; }
+
+
+footer small {
+	padding-top: 5%;
+}
+
+/*========================================
+	Typography
+========================================*/
+
+html {
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 1rem;
+}
+
+#logo {
+	padding-left: .3em;
+	font-weight: 700;
+	font-size: 4em;
+	letter-spacing: -3px;
+}
+
+footer {
+	text-align: center;
+}
+
+/*========================================
+	Color scheme
+========================================*/
+
+.sidebar {
+	background-color: rgba(255, 255, 255, 0.7);
+	border: #fafafa 1px solid;
+	border-radius: 5px;
+}
+
+/*========================================
+	States
+========================================*/
+
+nav li :hover {
+	background-color: rgba(218, 238, 238, 0.3);
+}

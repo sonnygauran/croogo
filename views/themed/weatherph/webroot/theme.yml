@@ -1,0 +1,19 @@
+name: weatherph
+description: Weatherph Theme for Croogo
+screenshot: sunny.png
+
+author: Sonny Gauran
+authorEmail: sgauran@meteomedia.com.ph
+authorUrl: http://flavors.me/sonnygauran
+
+menus:
+  - main
+  - footer
+
+regions:
+  - left
+  - right
+
+vocabularies:
+  - categories
+  - tags

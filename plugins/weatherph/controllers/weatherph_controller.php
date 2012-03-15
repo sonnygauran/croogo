@@ -22,14 +22,17 @@ class WeatherphController extends WeatherphAppController {
  * @var array
  * @access public
  */
-    public $uses = array('Setting');
+    public $uses = array('Setting','WeatherphStation');
 
     public function beforeFilter(){
         parent::beforeFilter();
     }
 
     public function admin_index() {
+        $stations = array(1,2,3);
+        debug(compact('stations'));
         $this->set('title_for_layout', __('Weatherph', true));
+        $this->set(compact('stations'));
     }
 
     public function index() {
