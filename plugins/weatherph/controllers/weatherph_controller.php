@@ -23,6 +23,7 @@ class WeatherphController extends WeatherphAppController {
  * @access public
  */
     public $uses = array('Setting');
+    
 
     public function beforeFilter(){
         parent::beforeFilter();
@@ -45,8 +46,7 @@ class WeatherphController extends WeatherphAppController {
         
         $WeatherphStation = new WeatherphStation();
         $stations = $WeatherphStation->find('all');
-
+        Configure::write('debug', 0);
         $this->set('stations', json_encode($stations));
     }
-
 }

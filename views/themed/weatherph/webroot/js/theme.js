@@ -1,12 +1,12 @@
 $(document).ready(function(){
 var map = $("#map").geomap({
 center: [ 121.019825, 14.557263 ],
-zoom: 6,
-scroll: 'off',
+zoom: 6
+//scroll: 'off',
 
 //Find mode
 
-mode: "find",
+//mode: "find"
 /*
 //http://a.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/56590/256/5/15/12.png
 
@@ -108,7 +108,7 @@ $.ajax({
         for (var key in $retrievedStations) {
         
             var $currentRetrievedStation = $retrievedStations[key]; // current station on the loop
-            
+            console.log($currentRetrievedStation.id);
             $stations.push({ // create a json object, and then save it to stations array
             	id: $currentRetrievedStation.id,
             	name: $currentRetrievedStation.name,
@@ -120,7 +120,7 @@ $.ajax({
             });
         }
         console.log($stations); // now the stations are complete
-//        mapStations($stations);
+        mapStations($stations);
     }
 });
 
@@ -129,27 +129,27 @@ $.ajax({
 
 
 // Uncomment this to see stations hard-coded on javascript
-for (var key in $data.stations) {
-    map.geomap("append", {
-    	id: $data.stations[key].id,
-    	name: $data.stations[key].name,
-    	type:'Point', coordinates: $data.stations[key].coordinates
-    }, true);
-}
-$('#map').geomap({
-    click: function(e, geo) {
-    	var outputHtml = "";
-        result = map.geomap("find", geo, 8);
-        $.each(result, function () {
-        	outputHtml += ("<p>Found a " + this.type + " at " + this.coordinates + "</p>");
-        	$('.details dt').html(this.name); 
-        	$('.details dd').html("Some readings here"); 
-        });
-        
-        $('.ad').append(outputHtml);
-    }
-
-});
+//for (var key in $data.stations) {
+//    map.geomap("append", {
+//    	id: $data.stations[key].id,
+//    	name: $data.stations[key].name,
+//    	type:'Point', coordinates: $data.stations[key].coordinates
+//    }, true);
+//}
+//$('#map').geomap({
+//    click: function(e, geo) {
+//    	var outputHtml = "";
+//        result = map.geomap("find", geo, 8);
+//        $.each(result, function () {
+//        	outputHtml += ("<p>Found a " + this.type + " at " + this.coordinates + "</p>");
+//        	$('.details dt').html(this.name); 
+//        	$('.details dd').html("Some readings here"); 
+//        });
+//        
+//        $('.ad').append(outputHtml);
+//    }
+//
+//});
 
 //mapStations($data.stations);
 
