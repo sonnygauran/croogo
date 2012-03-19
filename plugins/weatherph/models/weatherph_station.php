@@ -30,28 +30,47 @@ class WeatherphStation extends WeatherphAppModel {
             $rows = explode("\n", $result);
             //$numrow=count($rows);
             
+           $headers = explode(';',$rows[0]);
+           //print_r($headers);
+            
             unset($rows[0]);
-            //echo print_r($rows, true);
- 
-            // go through all the rows starting at the second row
-            // remember that the first row contains the headings
+            
+            $station_map = array();
             foreach ($rows as $row)
             {
-                    $temp = explode(";", $row);
+                $row = explode(';', $row);
+                //print_r($row);
+                
+                $current = array();
+                foreach ($row as $key => $field)
+                {
+                    $current[$headers[$key]] = $row[$key];
+                }
+                $station_map[] = $current;
+            }
+            
+            // go through all the rows starting at the second row
+            // remember that the first row contains the headings
+            foreach ($station_map as $row)
+            {
+                
+//                    $temp = explode(";", $row);
                     
                     $cleanData = true;
-                    foreach (array(0, 1, 17, 16) as $validIndex) {
-                        if (!key_exists($validIndex, $temp)) {
+                    foreach (array('id', 'name', 'lon', 'lat') as $validIndex) {
+                        if (!key_exists($validIndex, $row)) {
                             $cleanData = false;
                             break;
                         }
                     }
                     
+                    // if active
+                    
                     if ($cleanData) {
-                        $id = $temp['0'];
-                        $name= $temp['1'];
-                        $long = $temp['17'];
-                        $lati = $temp['16'];
+                        $id = $row['id'];
+                        $name= $row['name'];
+                        $long = $row['lon'];
+                        $lati = $row['lat'];
                         //echo print_r(compact('id','name','long','lati'), true).'<br />';
                         
                         
@@ -75,7 +94,6 @@ class WeatherphStation extends WeatherphAppModel {
                     
             }
             curl_close($ch);
-            
             
         //$stations = array();
 
