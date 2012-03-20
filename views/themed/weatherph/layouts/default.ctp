@@ -26,7 +26,7 @@
             'jquery/superfish',
             'jquery/supersubs',
             'theme',
-            'libs/jquery.geo-1.0a4.min',
+            'libs/jquery.geo-1.0a4',
         ));
         echo $scripts_for_layout;
     ?>

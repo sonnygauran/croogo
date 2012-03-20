@@ -38,14 +38,16 @@ class WeatherphController extends WeatherphAppController {
         $this->set('weatherphVariable', 'value here');
     }
     
-    public function getStations(){
+    public function getStations($provider = 'pagasa'){
         $this->layout = 'json/ajax';
 
         $this->set('title_for_layout', __('Weatherph', true));
         App::import('Model', 'Weatherph.WeatherphStation');
         
         $WeatherphStation = new WeatherphStation();
-        $stations = $WeatherphStation->find('all');
+        $stations = $WeatherphStation->find('all', array('conditions' => array(
+            'provider' => $provider,
+        )));
         Configure::write('debug', 0);
         $this->set('stations', json_encode($stations));
     }
