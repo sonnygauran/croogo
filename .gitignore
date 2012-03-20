@@ -4,7 +4,6 @@ config/settings.yml
 plugins/debug_kit/
 plugins/migrations/
 vendors/simpletest/
-views/themed/
 webroot/uploads/
 
 # Cake cache

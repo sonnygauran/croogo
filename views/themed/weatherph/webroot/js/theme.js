@@ -161,9 +161,9 @@ function mapStations($stationsArray) {
         map.geomap("append", {
         	id: $currentStation.id,
         	name: $currentStation.name,
-        	type:'Point',
+        	type:'Point',                
         	coordinates: $currentStation.coordinates
-        }, true);
+        }, {height: "3px", width: "3px", radius: "2px", color: "#2222ff"},true);
     }
 
 }
@@ -177,7 +177,7 @@ var $centerMap = [
 
 var $boxMap = [
 	//LUZON
-	{ id: 'NCR', box: [120.78025838964851, 14.340234924288968, 121.28150961035149, 14.739027102167846],},
+	{ id: 'NCR', box: [120.78025838964851, 14.340234924288968, 121.28150961035149, 14.739027102167846]},
 	{ id: 'CAR', box: [119.07531711718802, 15.860957319356404, 123.08532688281198, 19.004996360800135],},
 	{ id: 'I', box: [118.44909711718802, 15.347761824788998, 122.45910688281198, 18.500447360569783],},
 	{ id: 'II', box: [119.61914111718802, 15.538376429558836, 123.62915088281197, 18.687879180851954],},
