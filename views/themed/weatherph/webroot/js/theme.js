@@ -114,7 +114,29 @@ stations : [
 ]
 }
 
-
+$stationsPagasa = new Array();
+$.ajax({
+    type:     'GET',
+    url :     '/weatherph/weatherph/getStations/pagasa',
+    cache:    false,
+    success: function(data) {
+        var $retrievedStations = data; // the complete retrieved stations
+        for (var key in $retrievedStations) {
+            var $currentRetrievedStation = $retrievedStations[key]; // current station on the loop
+            $stationsPagasa.push({ // create a json object, and then save it to stations array
+            	id: $currentRetrievedStation.id,
+            	name: $currentRetrievedStation.name,
+            	type:'Point',
+            	coordinates: [
+            	   $currentRetrievedStation.coordinates.longitude,
+            	   $currentRetrievedStation.coordinates.latitude
+        	   ]
+            });
+        }
+        
+        mapStationsPagasa($stationsPagasa); // now the stations are complete
+    }
+});
 
 $stations = new Array();
 $.ajax({
@@ -168,6 +190,19 @@ $.ajax({
 //});
 
 //mapStations($data.stations);
+
+function mapStationsPagasa($stationsArray) {
+    // This loop maps the stations from the $stations fetched from getStations
+    for (var key in $stationsArray) {
+        $currentStation = $stationsArray[key];
+        $('#map').geomap("append", {
+        	id: $currentStation.id,
+        	name: $currentStation.name,
+        	type:'Point',                
+        	coordinates: $currentStation.coordinates
+        }, {height: "3px", width: "3px", radius: "2px", color: "RED"},true);
+    }
+}
 
 function mapStations($stationsArray) {
     // This loop maps the stations from the $stations fetched from getStations
