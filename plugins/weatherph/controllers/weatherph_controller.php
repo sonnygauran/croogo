@@ -58,10 +58,10 @@ class WeatherphController extends WeatherphAppController {
         App::import('Model', 'Weatherph.WeatherphStationReading');
         
         $WeatherphStationReading = new WeatherphStationReading();
-        $readings = $WeatherphStationReading->find('all', array('conditions' => array(
+        $currentReading = $WeatherphStationReading->find('all', array('conditions' => array(
             'id' => $stationID,
         )));
-        Configure::write('debug', 0);
-        $this->set('readings', json_encode($readings));
+ //       Configure::write('debug', 0);
+        $this->set('readings', json_encode($currentReading));
     }
 }
