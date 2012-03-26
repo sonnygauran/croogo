@@ -1,0 +1,271 @@
+/*========================================
+	Reset
+========================================*/
+
+html, body, div, span, object, iframe, h1, h2, h3, dl dt, h4, h5, h6, p, blockquote, figure figcaption, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video {
+	background: none repeat scroll 0 0 transparent;
+	border: 0 none;
+	font-size: 100%;
+	margin: 0;
+	outline: 0 none;
+	padding: 0;
+	vertical-align: baseline;
+	list-style: none;
+}
+
+/*========================================
+	Layout
+========================================*/
+
+/*CONTAINERS*/
+
+html {
+	margin-top: 5px;
+	padding-bottom: 80px;
+}
+
+.banner, nav, .main, .secondary {
+	width: 1000px;
+	margin: 0 auto;
+}
+
+	.banner {
+		-webkit-border-top-left-radius: 5px;
+		-webkit-border-top-right-radius: 5px;
+		-moz-border-radius-topleft: 5px;
+		-moz-border-radius-topright: 5px;
+		border-top-left-radius: 5px;
+		border-top-right-radius: 5px;
+	}
+
+		.logo {
+			padding: 35px 15px;
+			margin: 0 10px;
+		}
+
+.content {
+	float: left;
+	padding: 20px 15px;
+	margin: 0 10px;
+}
+
+/*NAVIGATION*/
+nav{
+	-webkit-border-bottom-right-radius: 5px;
+	-webkit-border-bottom-left-radius: 5px;
+	-moz-border-radius-bottomright: 5px;
+	-moz-border-radius-bottomleft: 5px;
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+}
+
+	nav ul {
+		padding: 10px 15px;
+	}
+
+	nav li {
+		display: inline;
+		padding: 2em;
+	}
+
+/*MAIN*/
+.map {
+	float: left;
+	position: relative;
+	width: 720px;
+	height: 600px;
+	margin: 0 10px;
+	padding: 5px 4px;
+}
+
+	.infoPane {
+		width: 160px;
+		position: absolute;
+		top: 10px;
+		right: 10px;
+		padding: 10px;
+		border-radius: 5px;
+	}
+
+		.readings{
+			padding: 3px;
+		}
+
+		table {
+			margin: 0 auto;
+		}
+
+		table td {
+			padding: 1px 5px;
+		}
+
+.sponsored {
+	float: left;
+	width: 200px;
+	padding: 10px 19px;
+	margin-right: 10px;
+}
+
+/*SECONDARY*/
+
+.secondary h1 {
+	padding: 20px 15px;
+}
+
+.posts {
+	width: 450px;
+	border-radius: 8px;
+}
+
+.twitter, .ads {
+	width: 198px;
+	border-radius: 8px;
+}
+
+	.twitter ul {
+		margin: 10px 0;
+	}
+
+	.twitter li {
+		padding: 1em;
+	}
+
+	.twitter li + li {
+		border-top: 1px dashed #d3d3d3;
+	}
+
+.promo {
+	padding-bottom: 20px;
+}
+
+/*========================================
+	Typography
+========================================*/
+
+html {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: .875rem;
+	line-height: 1.5;
+}
+
+h1 {
+	font-size: 3em;
+}
+
+h2 {
+	font-size: 1.875em;
+}
+
+h3, h4 {
+	font-size: 1.143em;
+}
+
+h5, h6 {
+	font-size: 1em;
+}
+
+.logo {
+	font-size: 3.5rem;
+	font-weight: 200;
+	text-shadow: #fafafa 0px 0px 20px
+}
+
+.twitter h4, .twitter h6 {
+	text-shadow: 0px 2px 3px #3d3d3d;
+}
+
+/*========================================
+	Color Scheme
+========================================*/
+
+html {
+	color: #2D4070;
+	background-color: #fafafa;
+}
+
+.banner {
+	background: #364979 url(/img/clouds.png) top left no-repeat;
+}
+
+nav {
+	color: #fafafa;
+	background-color: rgba(45,64,112,.9)
+}
+
+.map, .sponsored, .posts, .twitter ul, .ads {
+	background: white;
+}
+
+	.infoPane {
+		background: rgba(200,200,200,.7);
+		border-radius: 5px;
+	}
+
+		.readings {
+			background: rgba(255,255,255,.7);
+		}
+
+.twitter {
+	background: #52689f;
+	color: #fafafa;
+}
+
+	.twitter li {
+		color: #2D4070;
+	}
+
+		.twitter li:nth-child(odd) {
+			background: rgba(171,185,221,.1);
+		}
+
+/*========================================
+	States
+========================================*/
+
+.banner, .readings, .twitter ul {
+	-moz-box-shadow: inset 0 0 5px #000000;
+	-webkit-box-shadow: inset 0 0 5px #000000;
+	box-shadow: inset 0 0 5px #000000;
+}
+
+.floating {
+	margin-top: -1px;
+	border-left: 1px solid #e6e6e6;
+	border-right: 1px solid #e6e6e6;
+	border-bottom: 1px solid #e6e6e6;
+	-webkit-box-shadow: 0 8px 6px -6px black;
+	-moz-box-shadow: 0 8px 6px -6px black;
+	box-shadow: 0 8px 6px -6px black;
+}
+
+.weatherIcon {
+	background-color: rgba(255,255,255,.5);
+	border-radius: 8px;
+}
+
+.center {
+	text-align: center;
+}
+
+.clear {
+	clear: both;
+}
+
+.small {
+	width: 24px;
+	height: 24px;
+}
+
+.param {
+	text-align: left;
+}
+
+.output {
+	text-align: left;
+	font-size: 1em;
+	font-weight: bold;
+}
+
+nav li:hover {
+	text-shadow: #ffffff 0px 0px 20px;
+}
