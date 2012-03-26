@@ -115,8 +115,20 @@
 				<span id="upak">UPAK!</span>
 				<span id="reupak">REUPAK!</span>
 				<div class="details">
-					<dl>
-						<dt>&nbsp;</dt>
+					<dl class="ort1">
+						<dt>Place</dt>
+						<dd>&nbsp;</dd>
+					</dl>
+                                        <dl class="temperature">
+						<dt>Temperature (C)</dt>
+						<dd>&nbsp;</dd>
+					</dl>
+                                        <dl class="wind_speed">
+						<dt>Wind Speed (Kph)</dt>
+						<dd>&nbsp;</dd>
+					</dl>
+                                        <dl class="rain_precipitation">
+						<dt>Rain Precipitation (mm)</dt>
 						<dd>&nbsp;</dd>
 					</dl>
 				</div>
