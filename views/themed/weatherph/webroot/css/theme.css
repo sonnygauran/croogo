@@ -1,129 +1,141 @@
 /*========================================
+	Reset
+========================================*/
+
+html, body, div, span, object, iframe, h1, h2, h3, dl dt, h4, h5, h6, p, blockquote, figure figcaption, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video {
+	background: none repeat scroll 0 0 transparent;
+	border: 0 none;
+	font-size: 100%;
+	margin: 0;
+	outline: 0 none;
+	padding: 0;
+	vertical-align: baseline;
+	list-style: none;
+}
+
+/*========================================
 	Layout
 ========================================*/
 
-html, body {
-	margin: 0;
-	padding: 0;
+/*CONTAINERS*/
+
+html {
+	margin-top: 5px;
+	padding-bottom: 80px;
 }
 
-
-body {
-	background: transparent url(/theme/weatherph/img/bg.png) top left;
-	min-width: 1023px;
+.banner, nav, .main, .secondary {
+	width: 1000px;
+	margin: 0 auto;
 }
 
-#wrapper {
+	.banner {
+		-webkit-border-top-left-radius: 5px;
+		-webkit-border-top-right-radius: 5px;
+		-moz-border-radius-topleft: 5px;
+		-moz-border-radius-topright: 5px;
+		border-top-left-radius: 5px;
+		border-top-right-radius: 5px;
+	}
 
-	margin-left: auto;
-	margin-right: auto;
-}
+		.logo {
+			padding: 35px 15px;
+			margin: 0 10px;
+		}
 
-nav li {
-	display: inline;
-	list-style: none;
-	padding-right: 3em;
-}
-
-#search {
-	display: inline;
-}
-
-.content .map {
-	width: 800px;
-}
-
-section.map {
+.content {
 	float: left;
-}
-#layer {
-	position: absolute;
-}
-
-#map {
-	height: 600px;
-	max-height:600px;
+	padding: 20px 15px;
+	margin: 0 10px;
 }
 
-.ad {
+/*NAVIGATION*/
+nav{
+	-webkit-border-bottom-right-radius: 5px;
+	-webkit-border-bottom-left-radius: 5px;
+	-moz-border-radius-bottomright: 5px;
+	-moz-border-radius-bottomleft: 5px;
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+}
+
+	nav ul {
+		padding: 10px 15px;
+	}
+
+	nav li {
+		display: inline;
+		padding: 2em;
+	}
+
+/*MAIN*/
+.map {
+	float: left;
 	position: relative;
-	width: 160px;
-	float:right;
-	background: white;
-	height: 560px;
-	padding: 20px;
-	border-left: solid #ccc 1px;
-	margin: 0 .3em;
+	width: 720px;
+	height: 600px;
+	margin: 0 10px;
+	padding: 5px 4px;
 }
 
-.sidebar {
-	position: absolute;
-	width: 150px;
-	padding: 0 2em 2em 2em;
-	margin: 1em 1em;
-}
+	.infoPane {
+		width: 160px;
+		position: absolute;
+		top: 10px;
+		right: 10px;
+		padding: 10px;
+		border-radius: 5px;
+	}
 
-#forecast {
-	margin-top: 40px;
-	text-align: center;
-	background: transparent url(/theme/weatherph/img/forecastbg.png) top left;
-	clear: both;
-	border-top: solid 3px #000;
-	border-bottom: solid 3px #000;
-}
+		.readings{
+			padding: 3px;
+		}
 
-#forecast .daily {
-	width: 924px;
-	margin: 0 auto;
-}
+		table {
+			margin: 0 auto;
+		}
 
-#forecast .daily ul{
-	list-style: none;
-	clear: both;
-	height: 250px;
-	margin: 0 auto;
-	padding: 0;
-}
+		table td {
+			padding: 1px 5px;
+		}
 
-
-#forecast .daily li {
+.sponsored {
 	float: left;
-	clear: none;
-	border-right: solid 5px black;
-	border-left: solid 2px #888;
-	padding-left: 4px;
-	height: 250px;
-	background: #555;
+	width: 200px;
+	padding: 10px 19px;
+	margin-right: 10px;
 }
 
-#forecast .daily li:first-child {
-	border-left: solid 2px #888;
+/*SECONDARY*/
+
+.secondary h1 {
+	padding: 20px 15px;
 }
 
-#forecast .daily li:last-child {
-	
-}
-#forecast .daily li h4 {
-	display: block;
-	width: 120px;
-	clear: both;
-	text-align: center;
-	color: #bbb;
-	text-shadow: 0px 2px 3px #000; 
+.posts {
+	width: 450px;
+	border-radius: 8px;
 }
 
-#forecast .daily li img {
-	width: 80px;
+.twitter, .ads {
+	width: 198px;
+	border-radius: 8px;
 }
 
-#forecast .daily .major { background: #777; }
-#forecast .daily .major h4 { color: #eee; }
-#forecast .daily .minor { background: #333; }
-#forecast .daily .minor h4 { color: #666; }
+	.twitter ul {
+		margin: 10px 0;
+	}
 
+	.twitter li {
+		padding: 1em;
+	}
 
-footer small {
-	padding-top: 5%;
+	.twitter li + li {
+		border-top: 1px dashed #d3d3d3;
+	}
+
+.promo {
+	padding-bottom: 20px;
 }
 
 /*========================================
@@ -131,35 +143,129 @@ footer small {
 ========================================*/
 
 html {
-	font-family: Helvetica, Arial, sans-serif;
-	font-size: 1rem;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: .875rem;
+	line-height: 1.5;
 }
 
-#logo {
-	padding-left: .3em;
-	font-weight: 700;
-	font-size: 4em;
-	letter-spacing: -3px;
+h1 {
+	font-size: 3em;
 }
 
-footer {
-	text-align: center;
+h2 {
+	font-size: 1.875em;
+}
+
+h3, h4 {
+	font-size: 1.143em;
+}
+
+h5, h6 {
+	font-size: 1em;
+}
+
+.logo {
+	font-size: 3.5rem;
+	font-weight: 200;
+	text-shadow: #fafafa 0px 0px 20px
+}
+
+.twitter h4, .twitter h6 {
+	text-shadow: 0px 2px 3px #3d3d3d;
 }
 
 /*========================================
-	Color scheme
+	Color Scheme
 ========================================*/
 
-.sidebar {
-	background-color: rgba(255, 255, 255, 0.7);
-	border: #fafafa 1px solid;
-	border-radius: 5px;
+html {
+	color: #2D4070;
+	background-color: #fafafa;
 }
+
+.banner {
+	background: #364979 url(/img/clouds.png) top left no-repeat;
+}
+
+nav {
+	color: #fafafa;
+	background-color: rgba(45,64,112,.9)
+}
+
+.map, .sponsored, .posts, .twitter ul, .ads {
+	background: white;
+}
+
+	.infoPane {
+		background: rgba(200,200,200,.7);
+		border-radius: 5px;
+	}
+
+		.readings {
+			background: rgba(255,255,255,.7);
+		}
+
+.twitter {
+	background: #52689f;
+	color: #fafafa;
+}
+
+	.twitter li {
+		color: #2D4070;
+	}
+
+		.twitter li:nth-child(odd) {
+			background: rgba(171,185,221,.1);
+		}
 
 /*========================================
 	States
 ========================================*/
 
-nav li :hover {
-	background-color: rgba(218, 238, 238, 0.3);
+.banner, .readings, .twitter ul {
+	-moz-box-shadow: inset 0 0 5px #000000;
+	-webkit-box-shadow: inset 0 0 5px #000000;
+	box-shadow: inset 0 0 5px #000000;
+}
+
+.floating {
+	margin-top: -1px;
+	border-left: 1px solid #e6e6e6;
+	border-right: 1px solid #e6e6e6;
+	border-bottom: 1px solid #e6e6e6;
+	-webkit-box-shadow: 0 8px 6px -6px black;
+	-moz-box-shadow: 0 8px 6px -6px black;
+	box-shadow: 0 8px 6px -6px black;
+}
+
+.weatherIcon {
+	background-color: rgba(255,255,255,.5);
+	border-radius: 8px;
+}
+
+.center {
+	text-align: center;
+}
+
+.clear {
+	clear: both;
+}
+
+.small {
+	width: 24px;
+	height: 24px;
+}
+
+.param {
+	text-align: left;
+}
+
+.output {
+	text-align: left;
+	font-size: 1em;
+	font-weight: bold;
+}
+
+nav li:hover {
+	text-shadow: #ffffff 0px 0px 20px;
 }
