@@ -8,3 +8,5 @@ webroot/uploads/
 
 # Cake cache
 tmp/
+
+.DS_Store
