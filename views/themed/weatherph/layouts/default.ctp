@@ -42,6 +42,37 @@
        <li>Weather movies</li>
        <li>Legal</li>
        <li>Contact</li>
+       <li>Select by region:
+        <select name="philippine-regions">
+                <option>Choose one...</option>
+
+                <optgroup label="Luzon">
+                        <option data-region-id="NCR">NCR</option>
+                        <option data-region-id="CAR">CAR</option>
+                        <option data-region-id="I">Ilocos</option>
+                        <option data-region-id="II">Cagayan Valley</option>
+                        <option data-region-id="III">Central Luzon</option>
+                        <option data-region-id="IVa">CALABARZON</option>
+                        <option data-region-id="IVb">MIMAROPA</option>
+                        <option data-region-id="V">Bicol</option>
+                </optgroup>
+
+                <optgroup label="Visayas">
+                        <option data-region-id="VI">Western Visayas</option>
+                        <option data-region-id="VII">Central Visayas</option>
+                        <option data-region-id="VIII">Eastern Visayas</option>
+                </optgroup>
+
+                <optgroup label="Mindanao">
+                        <option data-region-id="IX">Zamboanga Peninsula</option>
+                        <option data-region-id="X">Northern Mindanao</option>
+                        <option data-region-id="XI">Davao</option>
+                        <option data-region-id="XII">SOCCSKSARGEN</option>
+                        <option data-region-id="XIII">CARAGA</option>
+                        <option data-region-id="ARMM">ARMM</option>
+                </optgroup>
+        </select>
+       </li>
    </ul>
 </nav>
 
@@ -49,10 +80,11 @@
    <div class="map floating" id="map">
        <div class="infoPane">
            
-           <dl class="ort1">
+           <dl class="ort1 center">
                 <dt>Place</dt>
                 <dd>&nbsp;</dd>
            </dl>
+           
            <div class="readings">
                <h6>Current Readings</h6>
                <h6>as of 2:24PM</h6>
