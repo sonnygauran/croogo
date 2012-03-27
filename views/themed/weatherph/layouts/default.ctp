@@ -77,10 +77,10 @@
 </nav>
 
 <section class="main clear">
-   <div class="map floating" id="map">
+   <div class="map" id="map">
        <div class="infoPane">
            
-           <dl class="ort1">
+           <dl class="ort1 center">
                 <dt>Place</dt>
                 <dd>&nbsp;</dd>
            </dl>
@@ -99,7 +99,7 @@
                             <dd>&nbsp;</dd>
                     </dl>
                     <dl class="rain_precipitation">
-                            <dt>Rain Precipitation (mm)</dt>
+                            <dt>Precipitation (mm)</dt>
                             <dd>&nbsp;</dd>
                     </dl>
                 </div>
@@ -111,34 +111,34 @@
                         <tr>
                             <td>3PM</td>
                             <td class="weatherIcon">
-                                <img class="small" src="theme/weatherph/img/sunny.png" />
+                                <img class="small" src="theme/weatherph/img/sunny.png" alt="sunny" />
                             </td>
                             <td class="output">31&deg;</td>
                         </tr>
                         <tr>
                             <td>6PM</td>
                             <td class="weatherIcon">
-                                <img class="small" src="theme/weatherph/img/overcast.png" />
+                                <img class="small" src="theme/weatherph/img/overcast.png" alt="overcast"/>
                             </td>
                             <td class="output">29&deg;</td>
                         </tr>
                         <tr>
                             <td>9PM</td>
                             <td class="weatherIcon">
-                                <img class="small" src="theme/weatherph/img/cloudy2_night.png" />
+                                <img class="small" src="theme/weatherph/img/cloudy2_night.png" alt="cloudy"/>
                             </td>
                             <td class="output">30&deg;</td>
                         </tr>
                         <tr>
                             <td>12AM</td>
                             <td class="weatherIcon">
-                                <img class="small" src="theme/weatherph/img/cloudy3_night.png" />
+                                <img class="small" src="theme/weatherph/img/cloudy3_night.png" alt="cloudy"/>
                             <td class="output">28&deg;</td>
                         </tr>
                         <tr>
                             <td>3AM</td>
                             <td class="weatherIcon">
-                                <img class="small" src="theme/weatherph/img/cloudy2_night.png" />
+                                <img class="small" src="theme/weatherph/img/cloudy2_night.png" alt="cloudy"/>
                             <td class="output">26&deg;</td>
                         </tr>
                     </tbody>
@@ -149,11 +149,11 @@
        </div> <!--INFOPANE-->
    </div> <!--MAP-->
    
-   <div class="sponsored floating center">
-       <h4>Powered by:</h4>
+   <div class="sponsored">
+       <h6>Powered by:</h6>
        <?php echo $this->Html->image('aboitiz.jpg'); ?>
-       <h4>Platinum sponsors:</h4>
-       <ul>
+       <h6>Platinum sponsors:</h6>
+       <ul class="center">
            <li><?php echo $this->Html->image('ICTS.jpg'); ?></li>
            <li><?php echo $this->Html->image('NAC.jpg'); ?></li>
            <li><?php echo $this->Html->image('SGS.jpg'); ?></li>
@@ -162,19 +162,20 @@
 </section> <!--MAIN CONTENT-->
 
 <section class="secondary clear">
-   <h1>Latest reports</h1>
    <div class="posts content">
+       <h4>The weather in words</h4>
        <p>
            The climate in Switzerland is strongly influenced by the Alps extending across the country and representing the most important meteorological divide in Central Europe. Thanks to the Alps, large climatic differences in Switzerland are to be found within a small geographic area. The largest contrasts exist between the northern side of the Alps with its temperatre climate and the southern side of the Alps characterized by mediterranean climate.
        </p>
 
+       <h4>Tomorrow</h4>
        <p>
            In the Swiss Midland, extending between Lake Geneva and Lake Constance as well as between Jura and the Pre-Alps, climatic conditions which are typical for Central Europe are to be found. The average annual temperature is just below 10 °C, with mean values around the freezing point in January and between 16 and 19 °C in July. The average annual precipitation amounts are just above 1000 mm. In winter often a so-called inversion layer results in a large-scale low stratus cloud coverage which partly persists for several days or even weeks. Thereby the cold wind from northeast (named Bise) is pressed between Jura and Pre-Alps and can thus reach gale-force on the western shores of Lake Geneva.
        </p>
    </div>
    
-   <div class="twitter floating content">
-       <h4 class="center">Meteomedia on Twitter</h4>
+   <div class="twitter content">
+       <h4>Breaking News</h4>
        <ul>
            <li>Sunny day today. Please continue donating!</li>
            <li>Cloudy for the rest of the day in Manila. Help flood victims!</li>
@@ -187,14 +188,14 @@
    
    <div class="ads content">
        <div class="promo">
-           <h4 class="center">Visit Boracay!</h4>
+           <h4>Visit Boracay!</h4>
            <p>
                Boracay is an island of the Philippines located approximately 315 km (196 mi) south of Manila and 2 km off the northwest tip of Panay Island in the Western Visayas region of the Philippines. Boracay Island and its beaches have received awards numerous times.
            </p>
        </div>
 
        <div class="promo">
-           <h4 class="center">Discover Pamalican.</h4>
+           <h4>Discover Pamalican.</h4>
            <p>
            Pamalican Island is a small island of the Cuyo Islands in the Sulu Sea, between Palawan and Panay, in the north part of the Palawan Province of the Philippines.
            </p>

@@ -44,12 +44,7 @@ html {
 }
 
 	.banner {
-		-webkit-border-top-left-radius: 5px;
-		-webkit-border-top-right-radius: 5px;
-		-moz-border-radius-topleft: 5px;
-		-moz-border-radius-topright: 5px;
-		border-top-left-radius: 5px;
-		border-top-right-radius: 5px;
+		border-radius: 5px;
 	}
 
 		.logo {
@@ -65,16 +60,12 @@ html {
 
 /*NAVIGATION*/
 nav{
-    -webkit-border-bottom-right-radius: 5px;
-    -webkit-border-bottom-left-radius: 5px;
-    -moz-border-radius-bottomright: 5px;
-    -moz-border-radius-bottomleft: 5px;
-    border-bottom-right-radius: 5px;
-    border-bottom-left-radius: 5px;
+    margin: 10px auto;
+    border-radius: 5px;
 }
 
 	nav ul {
-		padding: 10px 15px;
+		padding: 5px 10px;
 	}
 
 	nav li {
@@ -88,7 +79,7 @@ nav{
 	position: relative;
 	width: 720px;
 	height: 600px;
-	margin: 0 10px;
+	margin: 10px;
 	padding: 5px 4px;
 }
 
@@ -118,15 +109,10 @@ nav{
 	float: left;
 	width: 200px;
 	padding: 10px 19px;
-	margin-right: 10px;
+        margin: 10px 10px 10px 0;
 }
 
 /*SECONDARY*/
-
-.secondary h1 {
-	padding: 20px 15px;
-}
-
 .posts {
 	width: 450px;
 	border-radius: 8px;
@@ -145,12 +131,10 @@ nav{
 		padding: 1em;
 	}
 
-	.twitter li + li {
-		border-top: 1px dashed #d3d3d3;
-	}
-
 .promo {
-	padding-bottom: 20px;
+        padding: 10px;
+	margin-bottom: 10px;
+        border-radius: 8px;
 }
 
 /*========================================
@@ -185,75 +169,50 @@ h5, h6 {
 	text-shadow: #fafafa 0px 0px 20px
 }
 
-.twitter h4, .twitter h6 {
-	text-shadow: 0px 2px 3px #3d3d3d;
-}
-
 /*========================================
 4.	Color Scheme
 ========================================*/
 
 html {
 	color: #2D4070;
-	background-color: #fafafa;
 }
 
 .banner {
-	background: #364979 /*url(../img/clouds.png) */ top left no-repeat;
+	background: #465e9c /*url(../img/clouds.png) */ top left no-repeat;
 }
 
-nav {
+.banner, .readings {
+	-moz-box-shadow: inset 0 0 5px #000000;
+	-webkit-box-shadow: inset 0 0 5px #000000;
+	box-shadow: inset 0 0 10px #000000;
+}
+
+nav, .promo {
 	color: #fafafa;
-	background-color: rgba(45,64,112,.9)
+	background-color: rgba(45,64,112,.9);
 }
 
-.map, .sponsored, .posts, .twitter ul, .ads {
-	background: white;
+.infoPane {
+        background: rgba(255,255,255,.7);
+        border-radius: 5px;
+        position: absolute;
 }
 
-	.infoPane {
-		background: rgba(222,222,222,.7);
-		border-radius: 5px;
-                position: absolute;
-	}
+        .readings {
+                background: rgba(255,255,255,.7);
+        }
 
-		.readings {
-			background: rgba(255,255,255,.7);
-		}
-
-.twitter {
-	background: #52689f;
-	color: #fafafa;
+.twitter li {
+        color: #2D4070;
 }
 
-	.twitter li {
-		color: #2D4070;
-	}
-
-		.twitter li:nth-child(odd) {
-			background: rgba(171,185,221,.1);
-		}
-
+        .twitter li:nth-child(odd) {
+                background: rgba(171,185,221,.1);
+        }
+        
 /*========================================
 5.	States
 ========================================*/
-
-.banner, .readings, .twitter ul {
-	-moz-box-shadow: inset 0 0 5px #000000;
-	-webkit-box-shadow: inset 0 0 5px #000000;
-	box-shadow: inset 0 0 5px #000000;
-}
-
-.floating {
-	margin-top: -1px;
-	border-left: 1px solid #e6e6e6;
-	border-right: 1px solid #e6e6e6;
-	border-bottom: 1px solid #e6e6e6;
-	-webkit-box-shadow: 0 8px 6px -6px black;
-	-moz-box-shadow: 0 8px 6px -6px black;
-	box-shadow: 0 8px 6px -6px black;
-}
-
 .weatherIcon {
 	background-color: rgba(255,255,255,.5);
 	border-radius: 8px;
