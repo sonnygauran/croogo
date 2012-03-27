@@ -50,9 +50,9 @@
        <div class="infoPane">
            
            <dl class="ort1">
-                    <dt>Place</dt>
-                    <dd>&nbsp;</dd>
-                </dl>
+                <dt>Place</dt>
+                <dd>&nbsp;</dd>
+           </dl>
            <div class="readings">
                <h6>Current Readings</h6>
                <h6>as of 2:24PM</h6>
