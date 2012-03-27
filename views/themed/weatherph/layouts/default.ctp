@@ -80,7 +80,7 @@
    <div class="map floating" id="map">
        <div class="infoPane">
            
-           <dl class="ort1 center">
+           <dl class="ort1">
                 <dt>Place</dt>
                 <dd>&nbsp;</dd>
            </dl>
@@ -89,24 +89,20 @@
                <h6>Current Readings</h6>
                <h6>as of 2:24PM</h6>
            <table>
-               <tbody>
-                   <tr>
-                       <td class="temperature">TEMP</td>
-                       <td class="output">31&deg;</td>
-                   </tr>
-                   <tr>
-                       <td class="wind_speed">WIND</td>
-                       <td class="output">12km/h</td>
-                   </tr>
-                   <tr>
-                       <td class="rain_precipitation">RAIN</td>
-                       <td class="output">0.8L/m</td>
-                   </tr>
-                   <tr>
-                       <td class="param">HUMD</td>
-                       <td class="output">86%</td>
-                   </tr>
-               </tbody>
+               <div class="details">
+                    <dl class="temperature">
+                            <dt>Temperature (C)</dt>
+                            <dd>&nbsp;</dd>
+                    </dl>
+                    <dl class="wind_speed">
+                            <dt>Wind Speed (Kph)</dt>
+                            <dd>&nbsp;</dd>
+                    </dl>
+                    <dl class="rain_precipitation">
+                            <dt>Rain Precipitation (mm)</dt>
+                            <dd>&nbsp;</dd>
+                    </dl>
+                </div>
            </table>
 
             <h6>Forecasts</h6>

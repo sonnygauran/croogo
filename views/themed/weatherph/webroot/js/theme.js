@@ -63,9 +63,9 @@ map.geomap({
                 var $stationReadings = readings; // the complete retrieved stations
                 
 //                $('.details .ort1 dd').html($stationReadings.ort1);
-                $('.details .temperature td').html($stationReadings.tl);
-                $('.details .wind_speed td').html($stationReadings.ff);
-                $('.details .rain_precipitation td').html($stationReadings.rr10m);
+                $('.details .temperature dd').html($stationReadings.tl);
+                $('.details .wind_speed dd').html($stationReadings.ff);
+                $('.details .rain_precipitation dd').html($stationReadings.rr10m);
             }
         });
         return;
