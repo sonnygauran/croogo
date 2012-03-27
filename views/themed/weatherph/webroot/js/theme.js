@@ -307,7 +307,7 @@ var $boxMap = [
           });
 
 
-
+/*
         var $widther = 220;    
         var resizeTimer;
         
@@ -338,8 +338,10 @@ var $boxMap = [
             }, 100);
     
         });
-	  
-	});
+//widther has been commented out for the meanwhile as it breaks the layout upon initial load.
+*/	  
+
+});
 
 //$('.geo-content-frame').css('width', ($(window).width() - $widther));
 //$('#map .map').css('width', ($(window).width() - $widther));

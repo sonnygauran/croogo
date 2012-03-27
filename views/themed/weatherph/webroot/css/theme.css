@@ -1,5 +1,19 @@
+/*
+
+WEATHER PHILIPPINES
+
+Table of contents:
+
+1.Reset
+2.Layout
+3.Typography
+4.Color Scheme
+5.States
+
+*/
+
 /*========================================
-	Reset
+1.	Reset
 ========================================*/
 
 html, body, div, span, object, iframe, h1, h2, h3, dl dt, h4, h5, h6, p, blockquote, figure figcaption, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video {
@@ -14,7 +28,7 @@ html, body, div, span, object, iframe, h1, h2, h3, dl dt, h4, h5, h6, p, blockqu
 }
 
 /*========================================
-	Layout
+2.	Layout
 ========================================*/
 
 /*CONTAINERS*/
@@ -140,7 +154,7 @@ nav{
 }
 
 /*========================================
-	Typography
+3.	Typography
 ========================================*/
 
 html {
@@ -176,7 +190,7 @@ h5, h6 {
 }
 
 /*========================================
-	Color Scheme
+4.	Color Scheme
 ========================================*/
 
 html {
@@ -185,7 +199,7 @@ html {
 }
 
 .banner {
-	background: #364979 url(/img/clouds.png) top left no-repeat;
+	background: #364979 url(theme/weatherph/img/clouds.png) top left no-repeat;
 }
 
 nav {
@@ -221,7 +235,7 @@ nav {
 		}
 
 /*========================================
-	States
+5.	States
 ========================================*/
 
 .banner, .readings, .twitter ul {
