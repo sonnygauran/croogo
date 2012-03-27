@@ -24,7 +24,7 @@ class WeatherphStation extends WeatherphAppModel {
         $result = curl_exec($ch);
         $rows = explode("\n", $result);
         //$numrow=count($rows);
-
+        $this->log($rows);
         $headers = explode(';', $rows[0]);
         //print_r($headers);
 
@@ -56,22 +56,27 @@ class WeatherphStation extends WeatherphAppModel {
                     $current[$index] = $field;
                 }
             }
-
-            $cleanData = true;
+            $this->log(print_r($current, true));
+            $dirtyCount = 0;
             foreach (array('id', 'name', 'lon', 'lat') as $validIndex) {
                 if (!key_exists($validIndex, $current)) {
-                    $cleanData = false;
-                    break;
+                    $dirtyCount++;
+                }
+            }
+            
+            if (key_exists('aktiv', $current) AND key_exists('mos_ez_mm', $current)) {
+                if ($current['mos_ez_mm'] == 0) {
+                    $dirtyCount++;
                 }
             }
 
-            // if active
 
-            if ($cleanData) {
+            // if active
+            if ($dirtyCount == 0) {
                 $station_map[] = $current;
             }
         }
-
+        
         $weatherStations = array();
         if (is_string($conditions) AND $conditions == 'all' AND empty($fields)) {
             // default behavior.
@@ -85,7 +90,7 @@ class WeatherphStation extends WeatherphAppModel {
                 $provider = $fields['conditions']['provider'];
             }
             foreach ($station_map as $stationItem) {
-                if ($stationItem['provider'] == $provider) {
+                if (key_exists('provider', $stationItem) AND $stationItem['provider'] == $provider) {
                     $weatherStations[] = $stationItem;
                 }
             }

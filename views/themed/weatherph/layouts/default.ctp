@@ -79,11 +79,12 @@
 <section class="main clear">
    <div class="map" id="map">
        <div class="infoPane">
-           
-           <dl class="ort1 center">
+           <div class="details">
+           <dl class="ort1">
                 <dt>Place</dt>
                 <dd>&nbsp;</dd>
            </dl>
+           </div>
            
            <div class="readings center">
                <h6>Current Readings</h6>
@@ -91,15 +92,15 @@
            <table>
                <div class="details">
                     <dl class="temperature">
-                        <dt>Temperature (&deg;)</dt>
+                        <dt><b>Temperature</b> (&deg;)</dt>
                             <dd>&nbsp;</dd>
                     </dl>
                     <dl class="wind_speed">
-                            <dt>Wind Speed (Kph)</dt>
+                            <dt><b>Wind Speed</b> (Kph)</dt>
                             <dd>&nbsp;</dd>
                     </dl>
                     <dl class="rain_precipitation">
-                            <dt>Precipitation (mm)</dt>
+                            <dt><b>Precipitation</b> (mm)</dt>
                             <dd>&nbsp;</dd>
                     </dl>
                 </div>

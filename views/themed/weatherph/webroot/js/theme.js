@@ -62,7 +62,7 @@ map.geomap({
             success: function(readings) {
                 var $stationReadings = readings; // the complete retrieved stations
                 
-//                $('.details .ort1 dd').html($stationReadings.ort1);
+                $('.details .ort1 dd').html($stationReadings.ort1);
                 $('.details .temperature dd').html($stationReadings.tl);
                 $('.details .wind_speed dd').html($stationReadings.ff);
                 $('.details .rain_precipitation dd').html($stationReadings.rr10m);
