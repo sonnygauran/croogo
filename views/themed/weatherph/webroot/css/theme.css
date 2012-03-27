@@ -85,6 +85,7 @@ nav{
 		right: 10px;
 		padding: 10px;
 		border-radius: 5px;
+                background: red;
 	}
 
 		.readings{
@@ -144,7 +145,7 @@ nav{
 
 html {
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-	font-size: .875rem;
+	font-size: .875em;
 	line-height: 1.5;
 }
 
@@ -165,7 +166,7 @@ h5, h6 {
 }
 
 .logo {
-	font-size: 3.5rem;
+	font-size: 3.5em;
 	font-weight: 200;
 	text-shadow: #fafafa 0px 0px 20px
 }
@@ -199,6 +200,7 @@ nav {
 	.infoPane {
 		background: rgba(200,200,200,.7);
 		border-radius: 5px;
+                position: absolute;
 	}
 
 		.readings {
@@ -241,6 +243,8 @@ nav {
 .weatherIcon {
 	background-color: rgba(255,255,255,.5);
 	border-radius: 8px;
+        height: 10px;
+        width: 10px;
 }
 
 .center {

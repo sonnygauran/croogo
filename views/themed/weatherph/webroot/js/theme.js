@@ -31,27 +31,46 @@ var map = $("#map").geomap({
     }
     */
 });
-map.geomap( "option", "cursors", {
-  static: "crosshair",
-  pan: "crosshair",
-  zoom: "crosshair",
-  drawPoint: "crosshair",
-  drawLineString: "crosshair",
-  drawPolygon: "crosshair",
-  measureLength: "crosshair",
-  measureArea: "crosshair"
-} );
-map .geomap({
+//map.geomap( "option", "cursors", {
+//  static: "crosshair",
+//  pan: "crosshair",
+//  zoom: "crosshair",
+//  drawPoint: "crosshair",
+//  drawLineString: "crosshair",
+//  drawPolygon: "crosshair",
+//  measureLength: "crosshair",
+//  measureArea: "crosshair"
+//} );
+map.geomap({
     //Find mode
     mode: "find",
     click: function(e, geo) {
         var outputHtml = "";
     result = $('#map').geomap("find", geo, 6);
+    console.log(result);
+    
     
     $.each(result, function () {
         outputHtml += ("<p>Found a " + this.type + " at " + this.coordinates + "</p>");
-        $('.details dt').html(this.name); 
-        $('.details dd').html("Some readings here"); 
+        console.log(this.id);
+        
+        $stations = new Array();
+        $.ajax({
+            type:     'GET',
+            url :     '/weatherph/weatherph/getReadings/'+this.id,
+            cache:    false,
+            success: function(readings) {
+                var $stationReadings = readings; // the complete retrieved stations
+                
+//                $('.details .ort1 dd').html($stationReadings.ort1);
+                $('.details .temperature dd').html($stationReadings.tl);
+                $('.details .wind_speed dd').html($stationReadings.ff);
+                $('.details .rain_precipitation dd').html($stationReadings.rr10m);
+            }
+        });
+        return;
+        
+        
     });
     }
 });
@@ -135,32 +154,34 @@ $.ajax({
         }
         
         mapStationsPagasa($stationsPagasa); // now the stations are complete
+        
+        $stations = new Array();
+        $.ajax({
+            type:     'GET',
+            url :     '/weatherph/weatherph/getStations/meteomedia',
+            cache:    false,
+            success: function(data) {
+                var $retrievedStations = data; // the complete retrieved stations
+                for (var key in $retrievedStations) {
+                    var $currentRetrievedStation = $retrievedStations[key]; // current station on the loop
+                    $stations.push({ // create a json object, and then save it to stations array
+                        id: $currentRetrievedStation.id,
+                        name: $currentRetrievedStation.name,
+                        type:'Point',
+                        coordinates: [
+                        $currentRetrievedStation.coordinates.longitude,
+                        $currentRetrievedStation.coordinates.latitude
+                        ]
+                    });
+                }
+
+                mapStations($stations); // now the stations are complete
+            }
+        });
+
     }
 });
 
-$stations = new Array();
-$.ajax({
-    type:     'GET',
-    url :     '/weatherph/weatherph/getStations/meteomedia',
-    cache:    false,
-    success: function(data) {
-        var $retrievedStations = data; // the complete retrieved stations
-        for (var key in $retrievedStations) {
-            var $currentRetrievedStation = $retrievedStations[key]; // current station on the loop
-            $stations.push({ // create a json object, and then save it to stations array
-            	id: $currentRetrievedStation.id,
-            	name: $currentRetrievedStation.name,
-            	type:'Point',
-            	coordinates: [
-            	   $currentRetrievedStation.coordinates.longitude,
-            	   $currentRetrievedStation.coordinates.latitude
-        	   ]
-            });
-        }
-        
-        mapStations($stations); // now the stations are complete
-    }
-});
 
 //Station output
 
@@ -291,10 +312,11 @@ var $boxMap = [
         var resizeTimer;
         
         resizeTimer = setTimeout(    function resizeIt(){
+            console.log($(window).width());
             if ($(window).width() <= 1024) {
                 $('#map').css('width', '810px');
             } else {
-                $('#map').css('width', ($(window).width() - $widther));    
+                $('#map').css('width', '720px');
             }
             
             $('.geo-content-frame').css('width', $('#map').css('width'));        
@@ -304,10 +326,11 @@ var $boxMap = [
         
         $(window).resize(function() {
             resizeTimer = setTimeout(    function resizeIt(){
-                if ($(window).width() <= 1024) {
+                console.log($(window).width());
+                if ($(window).width() <= '1024px') {
                     $('#map').css('width', '814px');
                 } else {
-                    $('#map').css('width', ($(window).width() - $widther));    
+                    $('#map').css('width', '720px');
                 }
                 
                 $('.geo-content-frame').css('width', $('#map').css('width'));        
