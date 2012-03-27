@@ -85,7 +85,7 @@
                 <dd>&nbsp;</dd>
            </dl>
            
-           <div class="readings">
+           <div class="readings center">
                <h6>Current Readings</h6>
                <h6>as of 2:24PM</h6>
            <table>
@@ -109,44 +109,44 @@
                </tbody>
            </table>
 
-               <h6>Forecasts</h6>
-                   <table class="center">
-                       <tbody>
-                           <tr>
-                               <td>3PM</td>
-                               <td class="weatherIcon">
-                                   <img class="small" src="theme/weatherph/img/sunny.png" />
-                               </td>
-                               <td class="output">31&deg;</td>
-                           </tr>
-                           <tr>
-                               <td>6PM</td>
-                               <td class="weatherIcon">
-                                   <img class="small" src="theme/weatherph/img/overcast.png" />
-                               </td>
-                               <td class="output">29&deg;</td>
-                           </tr>
-                           <tr>
-                               <td>9PM</td>
-                               <td class="weatherIcon">
-                                   <img class="small" src="theme/weatherph/img/cloudy2_night.png" />
-                               </td>
-                               <td class="output">30&deg;</td>
-                           </tr>
-                           <tr>
-                               <td>12AM</td>
-                               <td class="weatherIcon">
-                                   <img class="small" src="theme/weatherph/img/cloudy3_night.png" />
-                               <td class="output">28&deg;</td>
-                           </tr>
-                           <tr>
-                               <td>3AM</td>
-                               <td class="weatherIcon">
-                                   <img class="small" src="theme/weatherph/img/cloudy2_night.png" />
-                               <td class="output">26&deg;</td>
-                           </tr>
-                       </tbody>
-                   </table>
+            <h6>Forecasts</h6>
+                <table class="center">
+                    <tbody>
+                        <tr>
+                            <td>3PM</td>
+                            <td class="weatherIcon">
+                                <img class="small" src="theme/weatherph/img/sunny.png" />
+                            </td>
+                            <td class="output">31&deg;</td>
+                        </tr>
+                        <tr>
+                            <td>6PM</td>
+                            <td class="weatherIcon">
+                                <img class="small" src="theme/weatherph/img/overcast.png" />
+                            </td>
+                            <td class="output">29&deg;</td>
+                        </tr>
+                        <tr>
+                            <td>9PM</td>
+                            <td class="weatherIcon">
+                                <img class="small" src="theme/weatherph/img/cloudy2_night.png" />
+                            </td>
+                            <td class="output">30&deg;</td>
+                        </tr>
+                        <tr>
+                            <td>12AM</td>
+                            <td class="weatherIcon">
+                                <img class="small" src="theme/weatherph/img/cloudy3_night.png" />
+                            <td class="output">28&deg;</td>
+                        </tr>
+                        <tr>
+                            <td>3AM</td>
+                            <td class="weatherIcon">
+                                <img class="small" src="theme/weatherph/img/cloudy2_night.png" />
+                            <td class="output">26&deg;</td>
+                        </tr>
+                    </tbody>
+                </table>
            </div> <!--READINGS-->
            <h6 class="center">View more details here.</h6>
 

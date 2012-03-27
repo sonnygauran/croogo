@@ -65,12 +65,12 @@ html {
 
 /*NAVIGATION*/
 nav{
-	-webkit-border-bottom-right-radius: 5px;
-	-webkit-border-bottom-left-radius: 5px;
-	-moz-border-radius-bottomright: 5px;
-	-moz-border-radius-bottomleft: 5px;
-	border-bottom-right-radius: 5px;
-	border-bottom-left-radius: 5px;
+    -webkit-border-bottom-right-radius: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+    -moz-border-radius-bottomright: 5px;
+    -moz-border-radius-bottomleft: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
 
 	nav ul {
@@ -199,7 +199,7 @@ html {
 }
 
 .banner {
-	background: #364979 url(theme/weatherph/img/clouds.png) top left no-repeat;
+	background: #364979 /*url(../img/clouds.png) */ top left no-repeat;
 }
 
 nav {
@@ -212,7 +212,7 @@ nav {
 }
 
 	.infoPane {
-		background: rgba(200,200,200,.7);
+		background: rgba(222,222,222,.7);
 		border-radius: 5px;
                 position: absolute;
 	}
