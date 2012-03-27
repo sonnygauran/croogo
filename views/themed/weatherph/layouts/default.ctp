@@ -91,7 +91,7 @@
            <table>
                <div class="details">
                     <dl class="temperature">
-                            <dt>Temperature (C)</dt>
+                        <dt>Temperature (&deg;)</dt>
                             <dd>&nbsp;</dd>
                     </dl>
                     <dl class="wind_speed">
