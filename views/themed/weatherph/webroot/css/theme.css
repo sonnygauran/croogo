@@ -17,14 +17,14 @@ Table of contents:
 ========================================*/
 
 html, body, div, span, object, iframe, h1, h2, h3, dl dt, h4, h5, h6, p, blockquote, figure figcaption, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video {
-	background: none repeat scroll 0 0 transparent;
-	border: 0 none;
-	font-size: 100%;
-	margin: 0;
-	outline: 0 none;
-	padding: 0;
-	vertical-align: baseline;
-	list-style: none;
+    background: none repeat scroll 0 0 transparent;
+    border: 0 none;
+    font-size: 100%;
+    margin: 0;
+    outline: 0 none;
+    padding: 0;
+    vertical-align: baseline;
+    list-style: none;
 }
 
 /*========================================
@@ -33,134 +33,165 @@ html, body, div, span, object, iframe, h1, h2, h3, dl dt, h4, h5, h6, p, blockqu
 
 /*CONTAINERS*/
 
-html {
-	margin-top: 5px;
-	padding-bottom: 80px;
+#container {
+width: 1000px;
+margin: 0 auto;
 }
 
-.banner, nav, .main, .secondary {
-	width: 1000px;
-	margin: 0 auto;
-}
-
-.content {
-	float: left;
-	padding: 20px 15px;
-	margin: 0 10px;
+body > .content,
+.secondary > .content {
+    padding: 20px 15px;
+    margin: 0 10px;
 }
 
 /*HEADER*/
-body > header { position: relative; border-radius: 5px; }
-body > header .logo { padding: 35px 15px; margin: 0 10px; }
-body > header .search {
+#container > header { position: relative; border-radius: 5px; height:120px; margin-top: 5px;}
+#container > header .logo { padding: 35px 15px; margin: 0 10px; }
+#container > header .search {
     color: white;
     display: inline;
     float: right;
     margin-right: 9px;
-    margin-top: 90px;
+    margin-top: 75px;
     padding: 3px;
-    text-align: right; }
-body > header .language-selection { list-syle: none; float: right;
+    text-align: right;
+}
+
+#container > header .language-selection {
+    list-style: none; float: right;
     margin-right: 9px;
     clear: both; 
     color: white;
     font-size: 12px;
 }
-body > header .language-selection li { display: inline;     margin: 0 3px;}
-body > header .language-selection .selected { font-weight: bold; }
+#container > header .language-selection li { display: inline; margin: 0 3px;}
+#container > header .language-selection .selected { font-weight: bold; }
 
 /*NAVIGATION*/
 nav{
-    margin: 10px auto;
-    border-radius: 5px;
+border-radius: 5px;
 }
 
-	nav ul {
-		padding: 5px 10px;
-	}
+nav ul {
+    padding: 5px 10px;
+}
 
-	nav li {
-		display: inline;
-		padding: 2em;
-	}
+nav li {
+    display: inline;
+    padding: 2em;
+}
 
 /*MAIN*/
-.map {
-	float: left;
-	position: relative;
-	width: 720px;
-	height: 600px;
-	margin: 10px 10px 10px 18px;
-	padding: 0;
-        border-radius: 8px;
+#map {
+    float: left;
+    width: 720px;
+    height: 600px;
+    padding: 0;
+    margin: 10px 10px 0 0;
 }
 
-        .layerSelector {
-            width: 100%;
-            height: 25px;
-            position: absolute;
-            top: 0;
-        }
-        
-            .layerSelector li {
-                display: inline;
-                padding: 2em;
-            }
-
-	.infoPane {
-		width: 160px;
-		position: absolute;
-		top: 50px;
-		right: 10px;
-		padding: 10px;
-		border-radius: 5px;
-                background: red;
-	}
-
-		.readings{
-			padding: 3px;
-		}
-
-		table {
-			margin: 0 auto;
-		}
-
-		table td {
-			padding: 1px 5px;
-		}
-
-.sponsored {
-	float: left;
-	width: 200px;
-	padding: 10px 19px;
-        margin: 10px 10px 10px 0;
-        border: 1px solid black;
-        border-radius: 8px;
+#map .layerSelector {
+    width: 100%;
+    height: 25px;
+    position: absolute;
+    top: 0;
+    text-align: center;
 }
 
+#map .layerSelector li, #legend li {
+    display: inline;
+    padding: 2em;
+    text-align: center;
+}
+
+#overlay {
+    width: 180px;
+    max-height: 475px;
+    position: absolute !important;
+    top: 30px;
+    right: 5px;
+    padding: 10px;
+    border-radius: 5px;
+    background: rgba(255,255,255,.7);
+}
+
+#overlay dl {
+    padding: 10px 5px;
+}
+
+.details {
+    text-align:left;
+}
+
+#overlay .details dt, #overlay .details dd {
+    display: inline;
+    padding: 10px 5px;
+    text-align: left;
+}
+
+#overlay .readings{
+    padding: 3px;
+}
+
+#overlay table {
+    margin: 0 auto;
+}
+
+#overlay table td {
+    padding: 10px 5px;
+}
+
+#legend {
+    position:absolute !important;
+    bottom:0;
+    height: 25px;
+    width: 720px;
+    text-align: center;
+}
+
+#sponsors {
+    float: left;
+    margin-top: 10px;
+    border: 1px solid black;
+    border-radius: 8px;
+    width: 230px;
+    padding: 10px 19px;
+}
 /*SECONDARY*/
-.posts {
-	width: 450px;
-	border-radius: 8px;
+.secondary {
+    display: inline-block;
 }
 
-.twitter, .ads {
-	width: 198px;
-	border-radius: 8px;
+.secondary .posts {
+    width: 446px;
+    border-radius: 8px;
+    float: left;
 }
 
-	.twitter ul {
-		margin: 10px 0;
-	}
+.secondary .twitter {
+    float:left;
+    width: 198px;
+    border-radius: 8px;
+}
 
-	.twitter li {
-		padding: 1em;
-	}
+.secondary .ads {
+    float: right;
+    width: 198px;
+    border-radius: 8px;
+}
+
+.twitter ul {
+    margin: 10px 0;
+}
+
+.twitter li {
+    padding: 1em;
+}
 
 .promo {
-        padding: 10px;
-	margin-bottom: 10px;
-        border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
 }
 
 /*========================================
@@ -168,36 +199,36 @@ nav{
 ========================================*/
 
 html {
-	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-	font-size: .875em;
-        font-weight: 400;
-	line-height: 1.5;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: .875em;
+    font-weight: 400;
+    line-height: 1.5;
 }
 
 h1 {
-	font-size: 3em;
-        font-weight: 600;
+    font-size: 3em;
+    font-weight: 600;
 }
 
 h2 {
-	font-size: 1.875em;
-        font-weight: 600;
+    font-size: 1.875em;
+    font-weight: 600;
 }
 
 h3, h4 {
-	font-size: 1.143em;
-        font-weight: 600;
+    font-size: 1.143em;
+    font-weight: 600;
 }
 
 h5, h6 {
-	font-size: 1em;
-        font-weight: 600;
+    font-size: 1em;
+    font-weight: 600;
 }
 
 .logo {
-	font-size: 2.875em;
-	font-weight: 200;
-	text-shadow: #fafafa 0px 0px 20px
+    font-size: 2.875em;
+    font-weight: 200;
+    text-shadow: #fafafa 0px 0px 20px
 }
 
 /*========================================
@@ -205,67 +236,70 @@ h5, h6 {
 ========================================*/
 
 html {
-	color: #2D4070;
+    color: #2D4070;
 }
 
 .banner {
-	background:#435680 url(../img/banner.png) top left no-repeat;;
-	-moz-box-shadow: inset 0 0 5px #000000;
-	-webkit-box-shadow: inset 0 0 5px #000000;
-	box-shadow: inset 0 0 10px #000000;
+    background:#435680 url(../img/banner.png) top left no-repeat;;
+    -moz-box-shadow: inset 0 0 5px #000000;
+    -webkit-box-shadow: inset 0 0 5px #000000;
+    box-shadow: inset 0 0 10px #000000;
 }
 
-nav, .layerSelector, .promo {
-	color: #fafafa;
-	background-color: #2F4476;
+nav, .layerSelector, #legend, .promo {
+    color: #fafafa;
+    background-color: #2F4476;
 }
 
 .infoPane {
-        background: rgba(255,255,255,.7);
-        border-radius: 5px;
-        position: absolute;
+    background: rgba(255,255,255,.7);
+    border-radius: 5px;
+    position: absolute;
 }
 
-        .readings {
-                background: white;
-                border-radius: 5px;
-        }
-        
-        .output {
-            background-color: #2D4070;
-            color: #fafafa;
-        }
+.readings {
+    background: white;
+    border-radius: 5px;
+}
+
+.output {
+    background-color: #2D4070;
+    color: #fafafa;
+}        
 
 .twitter li {
-        color: #2D4070;
+    color: #2D4070;
 }
 
-        .twitter li:nth-child(odd) {
-                background: rgba(171,185,221,.5);
-        }
-        
+.twitter li:nth-child(odd) {
+    background: rgba(171,185,221,.5);
+}
+
 /*========================================
 5.	States
 ========================================*/
 .center {
-	text-align: center;
+    text-align: center;
 }
 
 .clear {
-	clear: both;
+    clear: both;
 }
 
 .small {
-	width: 24px;
-	height: 24px;
+    width: 24px;
+    height: 24px;
 }
 
 .output {
-	text-align: left;
-	font-size: 1.375em;
-	font-weight: bold;
+    text-align: left;
+    font-size: 1.375em;
+    font-weight: bold;
 }
 
 nav li:hover {
-	text-shadow: #ffffff 0px 0px 20px;
+    text-shadow: #ffffff 0px 0px 20px;
+}
+#footer {
+    padding-bottom: 80px;
 }
