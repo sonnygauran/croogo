@@ -33,7 +33,17 @@
 <body>
 
 <header class="banner clear">    
+    <form class="search">
+        Search: <input type="text" name="city" />
+   </form>
+    <!--
+    <ul class="language-selection">
+        <li>Tagalog</li>
+        <li class="selected">English</li>
+    </ul>
+    -->
    <h1 class="logo">weather | philippines</h1>
+   
 </header> <!--BANNER-->
 
 <nav>
