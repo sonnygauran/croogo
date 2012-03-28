@@ -78,6 +78,15 @@
 
 <section class="main clear">
    <div class="map" id="map">
+       <div class="layerSelector">
+           <ul>
+               <li>Wind</li>
+               <li>Rain</li>
+               <li>Temperature</li>
+               <li>Clouds</li>
+               <li>View more layers</li>
+           </ul>
+       </div> <!--LAYER SELECTOR-->
        <div class="infoPane">
            <div class="details">
            <dl class="ort1">
@@ -153,11 +162,16 @@
    <div class="sponsored">
        <h6>Powered by:</h6>
        <?php echo $this->Html->image('aboitiz.jpg'); ?>
+   </div>
+   
+   <div class="sponsored">
        <h6>Platinum sponsors:</h6>
        <ul class="center">
            <li><?php echo $this->Html->image('ICTS.jpg'); ?></li>
            <li><?php echo $this->Html->image('NAC.jpg'); ?></li>
            <li><?php echo $this->Html->image('SGS.jpg'); ?></li>
+           <li><?php echo $this->Html->image('vistaland.jpg'); ?></li>
+           <li><?php echo $this->Html->image('NGCP.png'); ?></li>
        </ul>
    </div>
 </section> <!--MAIN CONTENT-->
@@ -178,7 +192,7 @@
    <div class="twitter content">
        <h4>Breaking News</h4>
        <ul>
-           <li>Sunny day today. Please continue donating!</li>
+           <li><img src="http://placehold.it/48x48"/>Sunny day today. Please continue donating!</li>
            <li>Cloudy for the rest of the day in Manila. Help flood victims!</li>
            <li>Flooding at Espana.</li>
            <li>Watch out later! It's gonna be stormy tonight.</li>

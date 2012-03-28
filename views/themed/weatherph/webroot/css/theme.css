@@ -81,12 +81,24 @@ nav{
 	height: 600px;
 	margin: 10px;
 	padding: 5px 4px;
+        border-radius: 8px;
 }
+
+        .layerSelector {
+            width: 100%;
+            position: absolute;
+            top: 0;
+        }
+        
+            .layerSelector li {
+                display: inline;
+                padding: 2em;
+            }
 
 	.infoPane {
 		width: 160px;
 		position: absolute;
-		top: 10px;
+		top: 50px;
 		right: 10px;
 		padding: 10px;
 		border-radius: 5px;
@@ -110,6 +122,8 @@ nav{
 	width: 200px;
 	padding: 10px 19px;
         margin: 10px 10px 10px 0;
+        border: 1px solid black;
+        border-radius: 8px;
 }
 
 /*SECONDARY*/
@@ -144,27 +158,32 @@ nav{
 html {
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-size: .875em;
+        font-weight: 400;
 	line-height: 1.5;
 }
 
 h1 {
 	font-size: 3em;
+        font-weight: 600;
 }
 
 h2 {
 	font-size: 1.875em;
+        font-weight: 600;
 }
 
 h3, h4 {
 	font-size: 1.143em;
+        font-weight: 600;
 }
 
 h5, h6 {
 	font-size: 1em;
+        font-weight: 600;
 }
 
 .logo {
-	font-size: 3.5em;
+	font-size: 2.875em;
 	font-weight: 200;
 	text-shadow: #fafafa 0px 0px 20px
 }
@@ -178,18 +197,15 @@ html {
 }
 
 .banner {
-	background: #465e9c /*url(../img/clouds.png) */ top left no-repeat;
-}
-
-.banner, .readings {
+	background:#435680 url(../img/banner.png) top left no-repeat;;
 	-moz-box-shadow: inset 0 0 5px #000000;
 	-webkit-box-shadow: inset 0 0 5px #000000;
 	box-shadow: inset 0 0 10px #000000;
 }
 
-nav, .promo {
+nav, .layerSelector, .promo {
 	color: #fafafa;
-	background-color: rgba(45,64,112,.9);
+	background-color: #2F4476;
 }
 
 .infoPane {
@@ -199,7 +215,13 @@ nav, .promo {
 }
 
         .readings {
-                background: rgba(255,255,255,.7);
+                background: white;
+                border-radius: 5px;
+        }
+        
+        .output {
+            background-color: #2D4070;
+            color: #fafafa;
         }
 
 .twitter li {
@@ -207,19 +229,12 @@ nav, .promo {
 }
 
         .twitter li:nth-child(odd) {
-                background: rgba(171,185,221,.1);
+                background: rgba(171,185,221,.5);
         }
         
 /*========================================
 5.	States
 ========================================*/
-.weatherIcon {
-	background-color: rgba(255,255,255,.5);
-	border-radius: 8px;
-        height: 10px;
-        width: 10px;
-}
-
 .center {
 	text-align: center;
 }
@@ -233,13 +248,9 @@ nav, .promo {
 	height: 24px;
 }
 
-.param {
-	text-align: left;
-}
-
 .output {
 	text-align: left;
-	font-size: 1em;
+	font-size: 1.375em;
 	font-weight: bold;
 }
 
