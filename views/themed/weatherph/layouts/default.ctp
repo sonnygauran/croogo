@@ -100,7 +100,7 @@
                     <div id="overlay">
                         <div class="details">
                             <dl class="ort1 center">
-                                <dt>Place</dt>
+                                <dt>Makati</dt>
                                 <dd>&nbsp;</dd>
                             </dl>
                         </div>
@@ -130,34 +130,35 @@
                                 <tbody>
                                     <tr>
                                         <td>3PM</td>
-                                        <td class="weatherIcon">
+                                        <td>
                                             <img class="small" src="theme/weatherph/img/sunny.png" alt="sunny" />
                                         </td>
                                         <td class="output">31&deg;</td>
                                     </tr>
                                     <tr>
                                         <td>6PM</td>
-                                        <td class="weatherIcon">
+                                        <td>
                                             <img class="small" src="theme/weatherph/img/overcast.png" alt="overcast"/>
                                         </td>
                                         <td class="output">29&deg;</td>
                                     </tr>
                                     <tr>
                                         <td>9PM</td>
-                                        <td class="weatherIcon">
+                                        <td>
                                             <img class="small" src="theme/weatherph/img/cloudy2_night.png" alt="cloudy"/>
                                         </td>
                                         <td class="output">30&deg;</td>
                                     </tr>
                                     <tr>
                                         <td>12AM</td>
-                                        <td class="weatherIcon">
+                                        <td>
                                             <img class="small" src="theme/weatherph/img/cloudy3_night.png" alt="cloudy"/>
+                                        </td>
                                             <td class="output">28&deg;</td>
                                     </tr>
                                     <tr>
                                         <td>3AM</td>
-                                        <td class="weatherIcon">
+                                        <td>
                                             <img class="small" src="theme/weatherph/img/cloudy2_night.png" alt="cloudy"/>
                                             <td class="output">26&deg;</td>
                                     </tr>
@@ -211,11 +212,11 @@
                 <div class="twitter content">
                     <h4>Breaking News</h4>
                     <ul>
-                        <li>Sunny day today. Please continue donating!</li>
-                        <li>Cloudy for the rest of the day in Manila. Help flood victims!</li>
-                        <li>Flooding at Espana.</li>
-                        <li>Watch out later! It's gonna be stormy tonight.</li>
-                        <li>Bembang enters Philippine area of responsibility</li>
+                        <li><img class="small" src="theme/weatherph/img/thumbnail.png"/>Sunny day today. Please continue donating!</li>
+                        <li><img class="small" src="theme/weatherph/img/thumbnail.png"/>Cloudy for the rest of the day in Manila. Help flood victims!</li>
+                        <li><img class="small" src="theme/weatherph/img/thumbnail.png"/>Flooding at Espana.</li>
+                        <li><img class="small" src="theme/weatherph/img/thumbnail.png"/>Watch out later! It's gonna be stormy tonight.</li>
+                        <li><img class="small" src="theme/weatherph/img/thumbnail.png"/>Bembang enters Philippine area of responsibility</li>
                     </ul>
                     <h6 class="center">Follow us on Twitter to get updates right in your timeline</h6>
                 </div>

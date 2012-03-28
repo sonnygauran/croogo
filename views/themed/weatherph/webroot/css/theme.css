@@ -45,7 +45,7 @@ body > .content,
 }
 
 /*HEADER*/
-#container > header { position: relative; border-radius: 5px; height:120px; margin-top: 5px;}
+#container > header { position: relative; height:120px; margin-top: 5px;}
 #container > header .logo { padding: 35px 15px; margin: 0 10px; }
 #container > header .search {
     color: white;
@@ -55,6 +55,15 @@ body > .content,
     margin-top: 75px;
     padding: 3px;
     text-align: right;
+}
+
+.banner {
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 }
 
 #container > header .language-selection {
@@ -68,8 +77,14 @@ body > .content,
 #container > header .language-selection .selected { font-weight: bold; }
 
 /*NAVIGATION*/
-nav{
-border-radius: 5px;
+
+nav {
+    -webkit-border-bottom-right-radius: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+    -moz-border-radius-bottomright: 5px;
+    -moz-border-radius-bottomleft: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
 
 nav ul {
@@ -131,6 +146,7 @@ nav li {
 
 #overlay .readings{
     padding: 3px;
+    border-radius: 5px;
 }
 
 #overlay table {
@@ -168,14 +184,8 @@ nav li {
     float: left;
 }
 
-.secondary .twitter {
+.secondary .twitter, .secondary .ads {
     float:left;
-    width: 198px;
-    border-radius: 8px;
-}
-
-.secondary .ads {
-    float: right;
     width: 198px;
     border-radius: 8px;
 }
@@ -259,7 +269,6 @@ nav, .layerSelector, #legend, .promo {
 
 .readings {
     background: white;
-    border-radius: 5px;
 }
 
 .output {
