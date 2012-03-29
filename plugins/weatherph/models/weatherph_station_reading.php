@@ -120,12 +120,14 @@ class WeatherphStationReading extends WeatherphAppModel
             }
         }
         $this->log(print_r($validRecord, true));
-        if (!empty($validRecord)) {
+        if (!empty($validRecord)) 
+        {
             $this->log('memememe');
-            foreach ($readings as $currentReading) {
+            foreach ($readings as $currentReading)
+            {
                 //if ($currentReading['utc'] == $time) {
                     return $currentReading;
-                //}
+            //}
             }
         } else {
             $result = $this->find('all', array('conditions' => array(
