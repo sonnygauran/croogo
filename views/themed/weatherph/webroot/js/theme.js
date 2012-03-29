@@ -2,8 +2,8 @@ $(document).ready(function(){
 var map = $("#map").geomap({
     center: [ 121.019825, 14.557263 ],
     zoom: 6,
-    scroll: 'off'
-    /*
+    scroll: 'off',
+    
     //http://a.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/56590/256/5/15/12.png
 
     //Tiledrawer Maps
@@ -13,7 +13,8 @@ var map = $("#map").geomap({
         id: "OSM",
         type: "tiled",
         src: function (view) {
-        return "http://a.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/56590/"
+        return "http://tile.stamen.com/watercolor"
+        //return "http://tile.stamen.com/toner/"
         + view.zoom + "/"
         + view.tile.column + "/"
         + view.tile.row
@@ -29,7 +30,7 @@ var map = $("#map").geomap({
     basePixelSize: 156543.03392799936,
     origin: [-20037508.342787, 20037508.342787]
     }
-    */
+    
 });
 //map.geomap( "option", "cursors", {
 //  static: "crosshair",

@@ -24,12 +24,14 @@ class WeatherphStation extends WeatherphAppModel {
         $result = curl_exec($ch);
         $rows = explode("\n", $result);
         //$numrow=count($rows);
-        $this->log($rows);
+        
         $headers = explode(';', $rows[0]);
         //print_r($headers);
-
+        
         unset($rows[0]);
-
+        
+        $this->log(print_r($rows, true));
+        
         $station_map = array();
         foreach ($rows as $row) {
             $row = explode(';', $row);
@@ -64,8 +66,8 @@ class WeatherphStation extends WeatherphAppModel {
                 }
             }
             
-            if (key_exists('aktiv', $current) AND key_exists('mos_ez_mm', $current)) {
-                if ($current['mos_ez_mm'] == 0) {
+            if (key_exists('aktiv', $current) AND key_exists('mos_ez_mm', $current) AND ($current['provider'] != 'meteomedia')) {
+                if ($current['mos_ez_mm'] != 1 OR $current['aktiv'] != 1 /* AND $current['typ'] != 'METAR'*/) {
                     $dirtyCount++;
                 }
             }
@@ -73,8 +75,11 @@ class WeatherphStation extends WeatherphAppModel {
 
             // if active
             if ($dirtyCount == 0) {
-                $station_map[] = $current;
+                if (!key_exists($current['wmo1'], $station_map)) {
+                    $station_map[$current['wmo1']] = $current;
+                }
             }
+            $this->log(print_r($station_map, true));
         }
         
         $weatherStations = array();
@@ -96,11 +101,11 @@ class WeatherphStation extends WeatherphAppModel {
             }
             //$weatherStations = $station_map;
         }
-
+        $this->log($weatherStations);
         // go through all the rows starting at the second row
         // remember that the first row contains the headings
         foreach ($weatherStations as $row) {
-            $id = $row['id'];
+            $id = $row['wmo1'];
             $name = $row['name'];
             $long = $row['lon'];
             $lati = $row['lat'];
