@@ -119,7 +119,7 @@
                                         <dd>14</dd>
                                     </dl>
                                     <dl class="rain_precipitation">
-                                        <dt>Precipitation (mm/h)</dt>
+                                        <dt>Humidity (mm/h)</dt>
                                         <dd>12</dd>
                                     </dl>
                                 </div>
