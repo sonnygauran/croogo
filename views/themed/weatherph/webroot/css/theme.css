@@ -113,21 +113,20 @@ nav li {
     text-align: center;
 }
 
-#map .layerSelector li, #legend li {
-    display: inline;
-    padding: 2em;
-    text-align: center;
-}
-
 #overlay {
     width: 180px;
-    max-height: 475px;
     position: absolute !important;
     top: 30px;
     right: 5px;
     padding: 10px;
     border-radius: 5px;
     background: rgba(255,255,255,.7);
+}
+
+#map .layerSelector li, #legend li {
+    display: inline;
+    padding: 0 2em;
+    text-align: center;
 }
 
 #overlay dl {
@@ -161,7 +160,7 @@ nav li {
     position:absolute !important;
     bottom:0;
     height: 25px;
-    width: 720px;
+    width: 100%;
     text-align: center;
 }
 
@@ -178,10 +177,18 @@ nav li {
     display: inline-block;
 }
 
+.secondary h4, h6 {
+    padding-bottom: 1em;
+}
+
 .secondary .posts {
     width: 446px;
     border-radius: 8px;
     float: left;
+}
+
+.posts p {
+    padding-bottom: 1em;
 }
 
 .secondary .twitter, .secondary .ads {
@@ -190,18 +197,29 @@ nav li {
     border-radius: 8px;
 }
 
-.twitter ul {
-    margin: 10px 0;
-}
-
 .twitter li {
+    float:left;
     padding: 1em;
 }
 
+.twitter img {
+    float:left;
+    padding: 5px;
+}
+
 .promo {
-    padding: 10px;
-    margin-bottom: 10px;
+    padding: 1em;
+    margin-bottom: 1em;
     border-radius: 8px;
+    text-align: center;
+}
+
+.promo p {
+    text-align: left;
+}
+
+.promo img {
+    margin: 5px;
 }
 
 /*========================================
@@ -241,6 +259,10 @@ h5, h6 {
     text-shadow: #fafafa 0px 0px 20px
 }
 
+.layerSelector, #legend {
+    font-size: .875em;
+}
+
 /*========================================
 4.	Color Scheme
 ========================================*/
@@ -258,7 +280,7 @@ html {
 
 nav, .layerSelector, #legend, .promo {
     color: #fafafa;
-    background-color: #2F4476;
+    background-color: #344a82;
 }
 
 .infoPane {
