@@ -119,7 +119,7 @@
                                         <dd>14</dd>
                                     </dl>
                                     <dl class="rain_precipitation">
-                                        <dt>Precipitation (mm/h)</dt>
+                                        <dt>Humidity (%)</dt>
                                         <dd>12</dd>
                                     </dl>
                                 </div>
@@ -198,7 +198,7 @@
 
             <section class="secondary">
                 <div class="posts content">
-                    <h4>The weather in words</h4>
+                    <h4>The Weather in Words</h4>
                     <p>
                         The climate in Switzerland is strongly influenced by the Alps extending across the country and representing the most important meteorological divide in Central Europe. Thanks to the Alps, large climatic differences in Switzerland are to be found within a small geographic area. The largest contrasts exist between the northern side of the Alps with its temperatre climate and the southern side of the Alps characterized by mediterranean climate.
                     </p>
@@ -214,7 +214,7 @@
                     <ul>
                         <li><img class="small" src="theme/weatherph/img/thumbnail.png"/>Sunny day today. Please continue donating!</li>
                         <li><img class="small" src="theme/weatherph/img/thumbnail.png"/>Cloudy for the rest of the day in Manila. Help flood victims!</li>
-                        <li><img class="small" src="theme/weatherph/img/thumbnail.png"/>Flooding at Espana.</li>
+                        <li><img class="small" src="theme/weatherph/img/thumbnail.png"/>Flooding at Espana. Avoid going there.</li>
                         <li><img class="small" src="theme/weatherph/img/thumbnail.png"/>Watch out later! It's gonna be stormy tonight.</li>
                         <li><img class="small" src="theme/weatherph/img/thumbnail.png"/>Bembang enters Philippine area of responsibility</li>
                     </ul>
@@ -224,6 +224,7 @@
                 <div class="ads content">
                     <div class="promo">
                         <h4>Visit Boracay!</h4>
+                        <img src="theme/weatherph/img/boracay.jpg" alt="Boracay!"/>
                         <p>
                             Boracay is an island of the Philippines located approximately 315 km (196 mi) south of Manila and 2 km off the northwest tip of Panay Island in the Western Visayas region of the Philippines. Boracay Island and its beaches have received awards numerous times.
                         </p>
@@ -231,6 +232,7 @@
                     
                     <div class="promo">
                         <h4>Discover Pamalican.</h4>
+                        <img src="theme/weatherph/img/pamalican.jpg" alt="Pamalican!"/>
                         <p>
                             Pamalican Island is a small island of the Cuyo Islands in the Sulu Sea, between Palawan and Panay, in the north part of the Palawan Province of the Philippines.
                         </p>
