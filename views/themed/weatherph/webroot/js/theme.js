@@ -63,9 +63,9 @@ map.geomap({
                 var $stationReadings = readings; // the complete retrieved stations
                 
                 $('.details .ort1 dd').html($stationReadings.ort1);
-                $('.details .temperature dd').html($stationReadings.tl);
-                $('.details .wind_speed dd').html($stationReadings.ff);
-                $('.details .rain_precipitation dd').html($stationReadings.rr10m);
+                $('.details .temperature .output td').html($stationReadings.tl);
+                $('.details .wind_speed .output td').html($stationReadings.ff);
+                $('.details .humidity .output td').html($stationReadings.rr10m);
             }
         });
         return;
@@ -76,7 +76,6 @@ map.geomap({
 });
 
 //Stations
-
 
 var $data = {
 stations : [
@@ -221,7 +220,7 @@ function mapStationsPagasa($stationsArray) {
         	name: $currentStation.name,
         	type:'Point',                
         	coordinates: $currentStation.coordinates
-        }, {height: "3px", width: "3px", radius: "2px", color: "RED"},true);
+        }, {height: "5px", width: "5px", radius: "2px", color: "#dd2222"},true);
     }
 }
 
@@ -234,7 +233,7 @@ function mapStations($stationsArray) {
         	name: $currentStation.name,
         	type:'Point',                
         	coordinates: $currentStation.coordinates
-        }, {height: "3px", width: "3px", radius: "2px", color: "#2222ff"},true);
+        }, {height: "5px", width: "5px", radius: "2px", color: "#2D4070"},true);
     }
 
 }
@@ -306,7 +305,6 @@ var $boxMap = [
 				
           });
 
-
 /*
         var $widther = 220;    
         var resizeTimer;
@@ -345,8 +343,3 @@ var $boxMap = [
 
 //$('.geo-content-frame').css('width', ($(window).width() - $widther));
 //$('#map .map').css('width', ($(window).width() - $widther));
-
-
-
-
-

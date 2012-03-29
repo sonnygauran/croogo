@@ -111,6 +111,12 @@ nav li {
     position: absolute;
     top: 0;
     text-align: center;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 }
 
 #overlay {
@@ -123,14 +129,14 @@ nav li {
     background: rgba(255,255,255,.7);
 }
 
+#map .layerSelector ul, #legend ul {
+    padding-top: 5px;
+}
+
 #map .layerSelector li, #legend li {
     display: inline;
     padding: 0 2em;
     text-align: center;
-}
-
-#overlay dl {
-    padding: 10px 5px;
 }
 
 .details {
@@ -141,6 +147,10 @@ nav li {
     display: inline;
     padding: 10px 5px;
     text-align: left;
+}
+
+.details dd {
+    font-weight: bold;
 }
 
 #overlay .readings{
@@ -162,6 +172,12 @@ nav li {
     height: 25px;
     width: 100%;
     text-align: center;
+    -webkit-border-bottom-right-radius: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+    -moz-border-radius-bottomright: 5px;
+    -moz-border-radius-bottomleft: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
 
 #sponsors {

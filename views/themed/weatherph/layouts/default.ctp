@@ -108,21 +108,21 @@
                         <div class="readings center">
                             <h6>Current Readings</h6>
                             <h6>as of 2:24PM</h6>
-                            <table>
-                                <div class="details">
-                                    <dl class="temperature">
-                                        <dt>Temperature (&deg;C)</dt>
-                                        <dd>32</dd>
-                                    </dl>
-                                    <dl class="wind_speed">
-                                        <dt>Wind Speed (kph)</dt>
-                                        <dd>14</dd>
-                                    </dl>
-                                    <dl class="rain_precipitation">
-                                        <dt>Humidity (%)</dt>
-                                        <dd>12</dd>
-                                    </dl>
-                                </div>
+                            <table class="details">
+                                <tbody>
+                                    <tr class="temperature">
+                                        <td>Temperature (&deg;C)</td>
+                                        <td class="output">&nbsp;</td>
+                                    </tr>
+                                    <tr class="wind_speed">
+                                        <td>Wind Speed (kph)</td>
+                                        <td class="output">&nbsp;</td>
+                                    </tr>
+                                    <tr class="humidity">
+                                        <td>Humidity</td>
+                                        <td class="output">&nbsp;</td>
+                                    </tr>
+                                </tbody>
                             </table>
 
                             <h6>Forecasts</h6>
@@ -170,9 +170,9 @@
                     </div> <!--INFOPANE-->
                     <div id="legend">
                         <ul>
-                            <li>Red = PAGASA stations</li>
-                            <li>Blue = Meteomedia stations</li>
-                            <li>Grey = Inactive stations</li>
+                            <li><img src="http://placehold.it/24x12/dd2222"/> PAGASA stations</li>
+                            <li><img src="http://placehold.it/24x12/0000ff/"> Meteomedia stations</li>
+                            <li><img src="http://placehold.it/24x12/333333"> Inactive stations</li>
                         </ul>
                     </div>
                 </div> <!--MAP-->
@@ -240,12 +240,13 @@
                 </div>
             </section> <!--SECONDARY CONTENT-->
 
-            <!--[if lt IE 9]>
-            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-            <![endif]-->
             <section id="footer">
                 
             </section>
         </section><!-- #container -->
+
+        <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
     </body>
 </html>
