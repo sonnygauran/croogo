@@ -86,7 +86,7 @@
                 </ul>
             </nav>
 
-            <section class="content">
+            <section class="main">
                 <div id="map">
                     <div class="layerSelector">
                         <ul>
@@ -218,10 +218,10 @@
                         <li><img class="small" src="theme/weatherph/img/thumbnail.png"/>Watch out later! It's gonna be stormy tonight.</li>
                         <li><img class="small" src="theme/weatherph/img/thumbnail.png"/>Bembang enters Philippine area of responsibility</li>
                     </ul>
-                    <h6 class="center">Follow us on Twitter to get updates right in your timeline</h6>
+                    <h6 class="center clear">Follow us on Twitter to get updates right in your timeline</h6>
                 </div>
                 
-                <div class="ads content">
+                <div class="ads">
                     <div class="promo">
                         <h4>Visit Boracay!</h4>
                         <img src="theme/weatherph/img/boracay.jpg" alt="Boracay!"/>
@@ -239,10 +239,6 @@
                     </div>
                 </div>
             </section> <!--SECONDARY CONTENT-->
-
-            <section id="footer">
-                
-            </section>
         </section><!-- #container -->
 
         <!--[if lt IE 9]>

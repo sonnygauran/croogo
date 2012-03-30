@@ -31,22 +31,26 @@ html, body, div, span, object, iframe, h1, h2, h3, dl dt, h4, h5, h6, p, blockqu
 2.	Layout
 ========================================*/
 
-/*CONTAINERS*/
+/*====================
+    CONTAINERS
+====================*/
 
 #container {
-width: 1000px;
+width: 980px;
 margin: 0 auto;
 }
 
-body > .content,
-.secondary > .content {
-    padding: 20px 15px;
-    margin: 0 10px;
+.main, .secondary {
+    margin: 10px;
 }
 
-/*HEADER*/
-#container > header { position: relative; height:120px; margin-top: 5px;}
+/*====================
+    HEADER
+====================*/
+#container > header {height:120px; margin-top: 10px;}
+
 #container > header .logo { padding: 35px 15px; margin: 0 10px; }
+
 #container > header .search {
     color: white;
     display: inline;
@@ -76,7 +80,9 @@ body > .content,
 #container > header .language-selection li { display: inline; margin: 0 3px;}
 #container > header .language-selection .selected { font-weight: bold; }
 
-/*NAVIGATION*/
+/*====================
+    NAV
+====================*/
 
 nav {
     -webkit-border-bottom-right-radius: 5px;
@@ -96,13 +102,18 @@ nav li {
     padding: 2em;
 }
 
-/*MAIN*/
+nav li + li, .layerSelector li + li {
+    border-left: 1px solid white;
+}
+
+/*====================
+    MAIN
+====================*/
 #map {
     float: left;
-    width: 720px;
+    width: 748px;
     height: 600px;
-    padding: 0;
-    margin: 10px 10px 0 0;
+    margin: 10px;
 }
 
 #map .layerSelector {
@@ -120,7 +131,7 @@ nav li {
 }
 
 #overlay {
-    width: 180px;
+    width: 172px;
     position: absolute !important;
     top: 30px;
     right: 5px;
@@ -182,40 +193,50 @@ nav li {
 
 #sponsors {
     float: left;
-    margin-top: 10px;
-    border: 1px solid black;
-    border-radius: 8px;
-    width: 230px;
-    padding: 10px 19px;
-}
-/*SECONDARY*/
-.secondary {
-    display: inline-block;
+    width: 172px;
+    margin: 10px;
 }
 
+.sponsored {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid black;
+    border-radius: 8px;
+}
+
+/*====================
+    SECONDARY
+====================*/
 .secondary h4, h6 {
     padding-bottom: 1em;
 }
 
-.secondary .posts {
-    width: 446px;
-    border-radius: 8px;
+.secondary > .content {
+    padding: 20px 10px;
+}
+
+.secondary .posts, .secondary .twitter, .secondary .ads {
     float: left;
+    margin: 10px;
+}
+
+.secondary .posts, .secondary .twitter {
+    width: 344px;
+    border-radius: 8px;
 }
 
 .posts p {
     padding-bottom: 1em;
 }
 
-.secondary .twitter, .secondary .ads {
-    float:left;
-    width: 198px;
-    border-radius: 8px;
-}
-
 .twitter li {
     float:left;
-    padding: 1em;
+    padding: 1em .5em;
+    width: 100%;
+}
+
+.twitter li:last-child{
+    margin-bottom: 1em;
 }
 
 .twitter img {
@@ -223,9 +244,14 @@ nav li {
     padding: 5px;
 }
 
+.ads {
+    width: 172px;
+    float:left;
+}
+
 .promo {
-    padding: 1em;
-    margin-bottom: 1em;
+    padding: 10px;
+    margin-bottom: 10px;
     border-radius: 8px;
     text-align: center;
 }
@@ -346,7 +372,4 @@ nav, .layerSelector, #legend, .promo {
 
 nav li:hover {
     text-shadow: #ffffff 0px 0px 20px;
-}
-#footer {
-    padding-bottom: 80px;
 }
