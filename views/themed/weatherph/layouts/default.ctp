@@ -219,7 +219,7 @@
                         <li><img class="small" src="theme/weatherph/img/thumbnail.png"/>Bembang enters Philippine area of responsibility</li>
                     </ul>
                     <h6 class="center clear">Follow us on Twitter to get updates right in your timeline</h6>
-                </div>
+                </div> 
                 
                 <div class="ads">
                     <div class="promo">

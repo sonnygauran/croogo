@@ -8,28 +8,28 @@ var map = $("#map").geomap({
 
     //Tiledrawer Maps
 
-    services: [
-    {
-        id: "OSM",
-        type: "tiled",
-        src: function (view) {
-        return "http://tile.stamen.com/watercolor"
-        //return "http://tile.stamen.com/toner/"
-        + view.zoom + "/"
-        + view.tile.column + "/"
-        + view.tile.row
-        + ".png";
-        },
-        attr: "© OpenStreetMap & contributors, CC-BY-SA"
-    }
-    ],
-    tilingScheme: {
-    tileWidth: 256,
-    tileHeight: 256,
-    levels: 18,
-    basePixelSize: 156543.03392799936,
-    origin: [-20037508.342787, 20037508.342787]
-    }
+    // services: [
+    // {
+    //     id: "OSM",
+    //     type: "tiled",
+    //     src: function (view) {
+    //     return "http://tile.stamen.com/watercolor"
+    //     //return "http://tile.stamen.com/toner/"
+    //     + view.zoom + "/"
+    //     + view.tile.column + "/"
+    //     + view.tile.row
+    //     + ".png";
+    //     },
+    //     attr: "© OpenStreetMap & contributors, CC-BY-SA"
+    // }
+    // ],
+    // tilingScheme: {
+    // tileWidth: 256,
+    // tileHeight: 256,
+    // levels: 18,
+    // basePixelSize: 156543.03392799936,
+    // origin: [-20037508.342787, 20037508.342787]
+    // }
     
 });
 //map.geomap( "option", "cursors", {
@@ -221,7 +221,7 @@ function mapStationsPagasa($stationsArray) {
         	name: $currentStation.name,
         	type:'Point',                
         	coordinates: $currentStation.coordinates
-        }, {height: "5px", width: "5px", radius: "2px", color: "#dd2222"},true);
+        }, {strokeWidth: "1px", height: "7px", width: "7px", radius: "8px", color: "#dd2222"},true);
     }
 }
 
@@ -234,7 +234,7 @@ function mapStations($stationsArray) {
         	name: $currentStation.name,
         	type:'Point',                
         	coordinates: $currentStation.coordinates
-        }, {height: "5px", width: "5px", radius: "2px", color: "#2D4070"},true);
+        }, {strokeWidth: "2px", height: "8px", width: "8px", radius: "8px", color: "#2D4070"},true);
     }
 
 }
@@ -341,6 +341,3 @@ var $boxMap = [
 */	  
 
 });
-
-//$('.geo-content-frame').css('width', ($(window).width() - $widther));
-//$('#map .map').css('width', ($(window).width() - $widther));
