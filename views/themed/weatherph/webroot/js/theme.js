@@ -54,8 +54,9 @@ map.geomap({
     $.each(result, function () {
         outputHtml += ("<p>Found a " + this.type + " at " + this.coordinates + "</p>");
         console.log(this.id);
-        
+        var name = this.name;
         $stations = new Array();
+        
         $.ajax({
             type:     'GET',
             url :     '/weatherph/weatherph/getReadings/'+this.id,
@@ -63,10 +64,10 @@ map.geomap({
             success: function(readings) {
                 var $stationReadings = readings; // the complete retrieved stations
                 
-                $('.details .ort1 dd').html($stationReadings.ort1);
-                $('.details .temperature .output td').html($stationReadings.tl);
-                $('.details .wind_speed .output td').html($stationReadings.ff);
-                $('.details .humidity .output td').html($stationReadings.rr10m);
+                $('.details .ort1 dt').html(name);
+                $('.details .temperature .output').html($stationReadings.tl);
+                $('.details .wind_speed .output').html($stationReadings.ff);
+                $('.details .humidity .output').html($stationReadings.rr10m);
             }
         });
         return;

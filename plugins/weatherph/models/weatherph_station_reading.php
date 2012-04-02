@@ -18,7 +18,7 @@ class WeatherphStationReading extends WeatherphAppModel
         if (key_exists('date', $fields['conditions'])) {
             $date = $fields['conditions']['date'];
         } else {
-            $date = date('Ymd', strtotime('-8 hours'));
+            $date = date('Ymd', strtotime('-2 day -8 hours'));
         }
         
         $time = date('H', strtotime('-8 hours'));
@@ -26,7 +26,7 @@ class WeatherphStationReading extends WeatherphAppModel
             //exit;
         include dirname(__FILE__) . '/auth.php';
         
-        $url = 'http://abfrage.meteomedia.ch/abfrage.php?stationidstring='.$id.'&datumstart='.$date.'&datumend='.$date.'&tl=on&td=on&tx=on&tn=on&t5=on&dir=on&ff=on&g1h=on&g3h=on&qff=on&qnh=on&qfe=on&ap=on&www=on&vis=on&n=on&l=on&metarwx=on&cov=on&clcmch=on&clg=on&rr10m=on&rr1h=on&rain3=on&rain6=on&rain12=on&sno=on&new=on&s10=on&sh=on&ss24=on&gl10=on&gl1h=on&gl24=on&stationsreihe=on&output=csv2&ortoutput=wmo6,name&aufruf=auto';
+        $url = 'http://abfrage.meteomedia.ch/abfrage.php?stationidstring='.$id.'&datumstart='.$date.'&datumend='.date('Ymd').'&tl=on&td=on&tx=on&tn=on&t5=on&dir=on&ff=on&g1h=on&g3h=on&qff=on&qnh=on&qfe=on&ap=on&www=on&vis=on&n=on&l=on&metarwx=on&cov=on&clcmch=on&clg=on&rr10m=on&rr1h=on&rain3=on&rain6=on&rain12=on&sno=on&new=on&s10=on&sh=on&ss24=on&gl10=on&gl1h=on&gl24=on&stationsreihe=on&output=csv2&ortoutput=wmo6,name&aufruf=auto';
         $this->log($url);
         
         $stations = array();
@@ -109,12 +109,12 @@ class WeatherphStationReading extends WeatherphAppModel
         
         $reversedReadings = $readings;
         rsort($reversedReadings);
-        
+        $this->log($reversedReadings);
         
         $validRecord = array();
         foreach ($reversedReadings as $reading) {
             //$this->log(print_r($reading, true));
-            if (strlen($reading['dir']) > 0) {
+            if (strlen(trim($reading['dir'])) > 0) {
                 $validRecord = $reading;
                 break;
             }
@@ -123,12 +123,13 @@ class WeatherphStationReading extends WeatherphAppModel
         if (!empty($validRecord)) 
         {
             $this->log('memememe');
-            foreach ($readings as $currentReading)
-            {
-                //if ($currentReading['utc'] == $time) {
-                    return $currentReading;
-            //}
-            }
+            return $validRecord;
+//            foreach ($readings as $currentReading)
+//            {
+//                //if ($currentReading['utc'] == $time) {
+//                    return $currentReading;
+//            //}
+//            }
         } else {
             $result = $this->find('all', array('conditions' => array(
                 'id'   => $id,
