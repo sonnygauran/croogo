@@ -1,0 +1,334 @@
+/*
+
+WEATHER PHILIPPINES - COMPACT
+
+Table of contents:
+
+1.Reset
+2.Layout
+3.Typography
+4.Color Scheme
+5.States
+
+*/
+
+/*========================================
+1.	Reset
+========================================*/
+
+html, body, div, span, object, iframe, h1, h2, h3, dl dt, h4, h5, h6, p, blockquote, figure figcaption, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video {
+    background: none repeat scroll 0 0 transparent;
+    border: 0 none;
+    font-size: 100%;
+    margin: 0;
+    outline: 0 none;
+    padding: 0;
+    vertical-align: baseline;
+    list-style: none;
+}
+
+/*========================================
+2.	Layout
+========================================*/
+
+/*====================
+    CONTAINERS
+====================*/
+
+#container {
+width: 980px;
+margin: 0 auto;
+}
+
+.main, .secondary {
+    margin: 10px;
+}
+
+/*====================
+    HEADER
+====================*/
+.logo {
+    float:left;
+    padding: 10px 20px;
+}
+
+.banner {
+    height:50px;
+    -webkit-border-bottom-right-radius: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+    -moz-border-radius-bottomright: 5px;
+    -moz-border-radius-bottomleft: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+nav {
+    float:right;
+    padding: 15px 20px;
+}
+
+nav li {
+    display: inline;
+    padding: 0 1em;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+nav li > form {
+    display: inline;
+}
+
+/*====================
+    MAIN
+====================*/
+#map {
+    float: left;
+    width: 748px;
+    height: 480px;
+    margin: 10px;
+}
+
+#map .layerSelector {
+    width: 100%;
+    height: 25px;
+    position: absolute;
+    top: 0;
+    text-align: center;
+}
+
+#overlay {
+    width: 172px;
+    position: absolute !important;
+    top: 30px;
+    right: 5px;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.details {
+    text-align:left;
+}
+
+#overlay .readings{
+    padding: 3px;
+    border-radius: 5px;
+}
+
+.readings h6 {
+    padding: 3px;
+}
+
+#overlay table {
+    margin: 0 auto;
+}
+
+#overlay table td {
+    padding: 5px 5px;
+}
+
+.output {
+    text-align: left;
+    font-size: 1em;
+    font-weight: bold;
+}
+
+#map .layerSelector ul, #legend ul {
+    padding-top: 5px;
+}
+
+#map .layerSelector li, #legend li {
+    display: inline;
+    padding: 0 2em;
+    text-align: center;
+}
+
+#legend {
+    position:absolute !important;
+    bottom:0;
+    height: 25px;
+    width: 100%;
+    text-align: center;
+}
+
+#sponsors {
+    float: left;
+    width: 172px;
+    margin: 10px;
+}
+
+.sponsored {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid black;
+    border-radius: 8px;
+}
+
+/*====================
+    SECONDARY
+====================*/
+.secondary h4, h6 {
+    padding-bottom: 1em;
+}
+
+.secondary > .content {
+    padding: 20px 10px;
+}
+
+.secondary .posts, .secondary .twitter, .secondary .ads {
+    float: left;
+    margin: 10px;
+}
+
+.secondary .posts, .secondary .twitter {
+    width: 344px;
+    border-radius: 8px;
+}
+
+.posts p {
+    padding-bottom: 1em;
+}
+
+.twitter li {
+    float:left;
+    padding: 1em .5em;
+    width: 100%;
+}
+
+.twitter li:last-child{
+    margin-bottom: 1em;
+}
+
+.twitter img {
+    float:left;
+    padding: 5px;
+}
+
+.ads {
+    width: 172px;
+    float:left;
+}
+
+.promo {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.promo p {
+    text-align: left;
+}
+
+.promo img {
+    margin: 5px;
+}
+
+/*========================================
+3.	Typography
+========================================*/
+
+html {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: .875em;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+h1 {
+    font-size: 3em;
+    font-weight: 600;
+}
+
+h2 {
+    font-size: 1.875em;
+    font-weight: 600;
+}
+
+h3, h4 {
+    font-size: 1.143em;
+    font-weight: 600;
+}
+
+h5, h6 {
+    font-size: 1em;
+    font-weight: 600;
+}
+
+.logo {
+    color:#3E4F76;
+    font-size: 2em;
+    font-weight: 200;
+    text-shadow: #fafafa 0px 0px 20px;
+}
+
+.layerSelector, #legend {
+    font-size: .875em;
+}
+
+/*========================================
+4.	Color Scheme
+========================================*/
+
+html {
+    color: #2D4070;
+}
+
+.banner {
+    color: white;
+    background:#435680 url(../img/narrowclouds.png) top left no-repeat;;
+    -moz-box-shadow: inset 0 0 5px #000000;
+    -webkit-box-shadow: inset 0 0 5px #000000;
+    box-shadow: inset 0 0 10px #000000;
+}
+
+.layerSelector, #legend, .promo {
+    color: #fafafa;
+    background-color: #344a82;
+}
+
+nav li + li, .layerSelector li + li {
+    border-left: 1px solid white;
+}
+
+#overlay {
+    background: rgba(255,255,255,.7);
+}
+
+.readings {
+    background: white;
+}
+
+.output {
+    background-color: #2D4070;
+    color: #fafafa;
+}        
+
+.twitter li {
+    color: #2D4070;
+}
+
+.twitter li:nth-child(odd) {
+    background: rgba(171,185,221,.5);
+}
+
+/*========================================
+5.	States
+========================================*/
+.center {
+    text-align: center;
+}
+
+.clear {
+    clear: both;
+}
+
+.small {
+    width: 24px;
+    height: 24px;
+}
+
+nav li:hover {
+    text-shadow: #ffffff 0px 0px 20px;
+}
