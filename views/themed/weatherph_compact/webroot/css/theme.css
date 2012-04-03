@@ -40,7 +40,7 @@ width: 980px;
 margin: 0 auto;
 }
 
-.main, .secondary {
+.menu, .main, .secondary {
     margin: 10px;
 }
 
@@ -62,12 +62,12 @@ margin: 0 auto;
     border-bottom-left-radius: 5px;
 }
 
-nav {
+header > nav {
     float:right;
     padding: 15px 20px;
 }
 
-nav li {
+header > nav li {
     display: inline;
     padding: 0 1em;
     -webkit-transition: all 0.5s ease;
@@ -76,8 +76,65 @@ nav li {
     transition: all 0.5s ease;
 }
 
-nav li > form {
+header > nav li > form {
     display: inline;
+}
+
+/*====================
+    MENU
+====================*/
+
+.dropdown {
+    margin-bottom: 10px;
+    float:left;
+    width: 100%;
+    position:relative;
+    z-index:5;
+}
+
+.dropdown li {
+    float:left;
+    margin-right:2em;
+    position:relative;
+}
+
+.dropdown a {
+    display:block;
+    padding:5px;
+}
+
+.dropdown ul {
+    background:#fff;
+    background:rgba(255,255,255,0);
+    list-style:none;
+    position:absolute;
+    left:-9999px;
+}
+
+.dropdown ul li{
+    padding-top:1px;
+    float:none;
+}
+
+.dropdown ul a{
+    white-space:nowrap;
+}
+
+.dropdown li:hover ul{
+    left:0;
+}
+
+.dropdown li:hover a{
+    background:white;
+    text-decoration:underline;
+}
+
+.dropdown li:hover ul a{
+    text-decoration:none;
+}
+
+.dropdown li:hover ul li a:hover{
+    background:#333;
 }
 
 /*====================
@@ -329,6 +386,14 @@ nav li + li, .layerSelector li + li {
     height: 24px;
 }
 
-nav li:hover {
+a:hover {
     text-shadow: #ffffff 0px 0px 20px;
+}
+
+a:link, a:visited {
+    color: #2D4070;
+}
+
+.layerSelector a:link, .layerSelector a:visited {
+    color: white;
 }

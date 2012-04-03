@@ -77,16 +77,42 @@
                 </nav>
             </header> <!--BANNER-->
 
+            <nav class="menu">
+                <ul class="dropdown">
+                    <li>
+                        <a href="#">Local Weather</a>
+                        <ul>
+                            <li><a href="#">Travel Advisories</a></li>
+                            <li><a href="#">Severe Weather Warnings</a></li>
+                        </ul>
+                    <li>
+                        <a href="#">Detailed Weather Reports</a>
+                        <ul>
+                            <li><a href="#">Weather Stations</a></li>
+                            <li><a href="#">Weather for Professionals</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">Resources</a>
+                        <ul>
+                            <li><a href="#">Mr. Typhoon's Weather Blog</a></li>
+                            <li><a href="#">FAQ</a></li>
+                            <li><a href="#">Glossary</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+
             <section class="main">
 
                 <div id="map">
                     <div class="layerSelector">
                         <ul>
-                            <li>Wind</li>
-                            <li>Rain</li>
-                            <li>Temperature</li>
-                            <li>Clouds</li>
-                            <li>View more layers</li>
+                            <li><a href="#">Wind</a></li>
+                            <li><a href="#">Rain</a></li>
+                            <li><a href="#">Temperature</a></li>
+                            <li><a href="#">Clouds</a></li>
+                            <li><a href="#">View more layers</a></li>
                         </ul>
                     </div> <!--LAYER SELECTOR-->
                     <div id="overlay">
@@ -157,7 +183,7 @@
                                 </tbody>
                             </table>
                         </div> <!--READINGS-->
-                        <h6 class="center">View more details here.</h6>
+                        <h6 class="center"><a href="#">View more details here.</a></h6>
 
                     </div> <!--INFOPANE-->
                     <div id="legend">
