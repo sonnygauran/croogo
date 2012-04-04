@@ -165,7 +165,10 @@
                                 </tbody>
                             </table>
                         </div> <!--READINGS-->
-                        <h6 class="center">View more details here.</h6>
+                        <section class="details">
+                            <a class="detail">View more details ></a>
+                        </section>
+                        
 
                     </div> <!--INFOPANE-->
                     <div id="legend">
