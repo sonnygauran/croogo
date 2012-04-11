@@ -40,8 +40,8 @@ width: 980px;
 margin: 0 auto;
 }
 
-.menu, .main, .secondary {
-    margin: 10px;
+.menu, #content, #sidebar {
+    float: left;
 }
 
 /*====================
@@ -90,6 +90,7 @@ header > nav li > form {
     width: 100%;
     position:relative;
     z-index:5;
+    background: #ebebeb;
 }
 
 .dropdown li {
@@ -112,8 +113,12 @@ header > nav li > form {
 }
 
 .dropdown ul li{
-    padding-top:1px;
     float:none;
+    border: 1px solid #2D4070;
+}
+
+.dropdown ul li + li {
+    border-top: 0;
 }
 
 .dropdown ul a{
@@ -134,17 +139,17 @@ header > nav li > form {
 }
 
 .dropdown li:hover ul li a:hover{
-    background:#333;
+    background:rgb(171,185,221);
 }
 
 /*====================
-    MAIN
+    MAP
 ====================*/
 #map {
     float: left;
     width: 748px;
     height: 480px;
-    margin: 10px;
+    margin: 0 10px;
 }
 
 #map .layerSelector {
@@ -209,38 +214,19 @@ header > nav li > form {
     text-align: center;
 }
 
-#sponsors {
-    float: left;
-    width: 172px;
-    margin: 10px;
-}
-
-.sponsored {
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid black;
-    border-radius: 8px;
-}
-
 /*====================
-    SECONDARY
+    NEWS, TWITTER
 ====================*/
 .secondary h4, h6 {
     padding-bottom: 1em;
 }
 
-.secondary > .content {
-    padding: 20px 10px;
-}
-
-.secondary .posts, .secondary .twitter, .secondary .ads {
-    float: left;
-    margin: 10px;
-}
-
-.secondary .posts, .secondary .twitter {
+.secondary > .posts, .secondary > .twitter {
     width: 344px;
     border-radius: 8px;
+    padding: 20px 10px;
+    float: left;
+    margin: 10px;
 }
 
 .posts p {
@@ -262,9 +248,21 @@ header > nav li > form {
     padding: 5px;
 }
 
-.ads {
-    width: 172px;
+/*====================
+    SIDEBAR
+====================*/
+
+#sidebar {
+    width: 192px;
     float:left;
+    margin: 0 10px;
+}
+
+.sponsored {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid black;
+    border-radius: 8px;
 }
 
 .promo {
