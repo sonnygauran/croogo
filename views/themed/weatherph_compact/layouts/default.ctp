@@ -73,7 +73,8 @@
                                 <option data-region-id="ARMM">ARMM</option>
                             </optgroup>
                         </select>
-                    </li>
+                        </li>
+                    </ul>
                 </nav>
             </header> <!--BANNER-->
 

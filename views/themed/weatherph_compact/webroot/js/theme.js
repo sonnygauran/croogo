@@ -71,9 +71,9 @@ map.geomap({
                 var $stationReadings = readings; // the complete retrieved stations
                 
                 $('.details .ort1 dd').html($stationReadings.ort1);
-                $('.details .temperature .output td').html($stationReadings.tl);
-                $('.details .wind_speed .output td').html($stationReadings.ff);
-                $('.details .humidity .output td').html($stationReadings.rr10m);
+                $('.details .temperature .output').html($stationReadings.tl);
+                $('.details .wind_speed .output').html($stationReadings.ff);
+                $('.details .humidity .output').html($stationReadings.rr10m);
             }
         });
         return;
