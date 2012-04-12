@@ -160,7 +160,10 @@ header > nav li > form {
     float:left;
 }
 
-.condition-text {float:right;}
+.condition-text {
+    float:right;
+    margin-top: 1em;
+}
 
 #conditionTable {
     float: right;
@@ -169,7 +172,11 @@ header > nav li > form {
 }
 
 #conditionTable td {
-    padding: 1em 2em;
+    padding: 5px 20px;
+}
+
+.week-forecast td {
+    padding: 1em;
 }
 
 /*====================
@@ -314,11 +321,6 @@ html {
 .readings {
     background: white;
 }
-    
-.output {
-    background-color: #2D4070;
-    color: #fafafa;
-}
 
 .twitter li:nth-child(odd) {
     background: rgba(171,185,221,.5);
@@ -343,6 +345,19 @@ html {
 .small {
     width: 24px;
     height: 24px;
+}
+
+.medium {
+    width: 48px;
+    height: 48px;
+}
+
+.output {
+    font-size: 2em;
+    font-weight: bold;
+    background-color: #2D4070;
+    color: #fafafa;
+    text-align: center;
 }
 
 a {

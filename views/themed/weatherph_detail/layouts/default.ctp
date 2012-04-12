@@ -110,6 +110,7 @@
                             <h1>Makati</h1>
                             <h6>Current readings from:</h6>
                             <h6>Salcedo weather station</h6>
+                            <br/>
                             <h6>change station</h6>
                         </div>
                         
@@ -118,6 +119,7 @@
                             <div class="condition-text"> 
                                 <h3>Partly Cloudy</h3>
                                 <h2>31&#8451;</h2>
+                                <br/>
                                 <ul>
                                     <li>Sunrise: 5:38AM</li>
                                     <li>Sunset: 6:53PM</li>
@@ -147,6 +149,62 @@
                     
                     <div id="week">
                         <h4>This week's forecast</h4>
+                        <div id="table-container">
+                        <table class="week-forecast">
+                                <tbody>
+                                    <tr class="time">
+                                        <td class="caption"></td>
+                                        <td>8:00</td>
+                                        <td>11:00</td>
+                                        <td>14:00</td>
+                                        <td>17:00</td>
+                                        <td>20:00</td>
+                                        <td>23:00</td>
+                                        <td>2:00</td>
+                                    </tr>
+                                    <tr class="condition">
+                                    <td class="caption">Condition</td>
+                                        <td><img class="medium" src="theme/weatherph/img/sunny.png" alt="sunny" /></td>
+                                        <td><img class="medium" src="theme/weatherph/img/sunny.png" alt="sunny" /></td>
+                                        <td><img class="medium" src="theme/weatherph/img/sunny.png" alt="sunny" /></td>
+                                        <td><img class="medium" src="theme/weatherph/img/sunny.png" alt="sunny" /></td>
+                                        <td><img class="medium" src="theme/weatherph/img/sunny.png" alt="sunny" /></td>
+                                        <td><img class="medium" src="theme/weatherph/img/sunny.png" alt="sunny" /></td>
+                                        <td><img class="medium" src="theme/weatherph/img/sunny.png" alt="sunny" /></td>
+                                    </tr>
+                                    <tr class="temperature">
+                                    <td class="caption">Temperature</td>
+                                        <td>31&#8451;</td>
+                                        <td>31&#8451;</td>
+                                        <td>31&#8451;</td>
+                                        <td>31&#8451;</td>
+                                        <td>31&#8451;</td>
+                                        <td>31&#8451;</td>
+                                        <td>31&#8451;</td>
+                                    </tr>
+                                    <tr class="precipitation">
+                                        <td class="caption">Precipitation</td>
+                                        <td>63%</td>
+                                        <td>63%</td>
+                                        <td>63%</td>
+                                        <td>63%</td>
+                                        <td>63%</td>
+                                        <td>63%</td>
+                                        <td>63%</td>
+                                    </tr>
+                                    <tr class="wind">
+                                        <td class="caption">Wind speed / direction</td>
+                                        <td>12km/h (NW)</td>
+                                        <td>12km/h (NW)</td>
+                                        <td>12km/h (NW)</td>
+                                        <td>12km/h (NW)</td>
+                                        <td>12km/h (NW)</td>
+                                        <td>12km/h (NW)</td>
+                                        <td>12km/h (NW)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                     
                 </section> <!--MAIN CONTENT-->
