@@ -260,7 +260,40 @@
                         </p>
                     </div>
                 </div>
-            </section>
+            </aside>
+        
+            <footer>
+                <div class="legal">
+                    <small>
+                        &copy; 2012 Meteomedia AG.
+                    </small>
+                    <ul>
+                        <li>About</li>
+                        <li>Legal</li>
+                        <li>Contact</li>
+                    </ul>
+                </div>
+                <div class="countrySelect">
+                    <h6>Our severe weather centers</h6>
+                    <ul>
+                        <li><a href="http://www.wetteralarm.at/">Austria</a></li>
+                        <li><a href="http://www.meteo-info.be/">Belgium</a></li>
+                        <li><a href="http://www.vejrcentral.dk/">Denmark</a></li>
+                        <li><a href="http://www.vigilance-meteo.fr/">France</a></li>
+                        <li><a href="http://www.unwetterzentrale.de/">Germany</a></li>
+                        <li><a href="http://www.meteo-allerta.it/">Italy</a></li>
+                        <li><a href="http://www.meteocentrale.li/">Liechtenstein</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="http://www.meteozentral.lu/">Luxembourg</a></li>
+                        <li><a href="http://www.noodweercentrale.nl/">Netherlands</a></li>
+                        <li><a href="http://www.alertas-tiempo.es/">Spain</a></li>
+                        <li><a href="http://www.vader-alarm.se/">Sweden</a></li>
+                        <li><a href="http://www.meteocentrale.ch/">Switzerland</a></li>
+                        <li><a href="http://www.severe-weather-centre.co.uk/">United Kingdom</a></li>
+                    </ul>
+                </div>
+            </footer>
 
         </section><!-- #container -->
 
