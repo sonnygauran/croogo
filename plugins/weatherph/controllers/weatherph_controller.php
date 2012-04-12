@@ -26,6 +26,7 @@ class WeatherphController extends WeatherphAppController {
     
 
     public function beforeFilter(){
+        date_default_timezone_set('UTC');
         parent::beforeFilter();
     }
 
@@ -63,5 +64,18 @@ class WeatherphController extends WeatherphAppController {
         )));
  //       Configure::write('debug', 0);
         $this->set('readings', json_encode($currentReading));
+    }
+    public function admin_getTwoWeekReadings(){
+        //$this->layout = 'json/ajax';
+        
+        App::import('Model', 'Weatherph.WeatherphStationReading');
+        
+        $WeatherphStationReading = new WeatherphStationReading();
+        $reading = $WeatherphStationReading->get('all', array('conditions' => array(
+            'days_target' => 4,
+        )));
+ //       Configure::write('debug', 0);
+        debug($reading);
+        
     }
 }
