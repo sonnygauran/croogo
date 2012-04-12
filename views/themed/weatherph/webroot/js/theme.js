@@ -2,7 +2,7 @@ $(document).ready(function(){
 var map = $("#map").geomap({
     center: [ 121.019825, 14.557263 ],
     zoom: 6,
-    scroll: 'off',
+    scroll: 'off'
     
     //http://a.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/56590/256/5/15/12.png
 
@@ -47,35 +47,37 @@ map.geomap({
     mode: "find",
     click: function(e, geo) {
         var outputHtml = "";
-    result = $('#map').geomap("find", geo, 6);
-    console.log(result);
-    
-    
-    $.each(result, function () {
-        outputHtml += ("<p>Found a " + this.type + " at " + this.coordinates + "</p>");
-        console.log(this.id);
-        var name = this.name;
-        $stations = new Array();
+        result = $('#map').geomap("find", geo, 6);
+        console.log(result);
         
-        $.ajax({
-            type:     'GET',
-            url :     '/weatherph/weatherph/getReadings/'+this.id,
-            cache:    false,
-            success: function(readings) {
-                var $stationReadings = readings; // the complete retrieved stations
-                
-                $('.details .ort1 dt').html(name);
-                $('.details .temperature .output').html($stationReadings.tl);
-                $('.details .wind_speed .output').html($stationReadings.ff);
-                $('.details .humidity .output').html($stationReadings.rr10m);
-            }
+        
+    
+        $.each(result, function () {
+            $('#overlay .details .detail').attr('href', '/'+this.id);
+            outputHtml += ("<p>Found a " + this.type + " at " + this.coordinates + "</p>");
+            console.log(this.id);
+            var name = this.name;
+            $stations = new Array();
+
+            $.ajax({
+                type:     'GET',
+                url :     '/weatherph/weatherph/getReadings/'+this.id,
+                cache:    false,
+                success: function(readings) {
+                    var $stationReadings = readings; // the complete retrieved stations
+
+                    $('.details .ort1 dt').html(name);
+                    $('.details .temperature .output').html($stationReadings.tl);
+                    $('.details .wind_speed .output').html($stationReadings.ff);
+                    $('.details .humidity .output').html($stationReadings.rr10m);
+                }
+            });
+            return;
         });
-        return;
-        
-        
-    });
     }
 });
+
+
 
 //Stations
 
