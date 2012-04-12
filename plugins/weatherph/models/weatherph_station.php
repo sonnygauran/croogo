@@ -8,7 +8,7 @@ class WeatherphStation extends WeatherphAppModel {
     public function find($conditions = null, $fields = array(), $order = null, $recursive = null) {
         include dirname(__FILE__) . '/auth.php';
 
-        $url = "http://karten.meteomedia.ch/db/abfrage.php?land=PHL&ortsinfo=ja&datumstart=20120313&datumend=20120313&output=csv2&ortoutput=wmo6,name&aufruf=auto";
+        $url = "http://abfrage.meteomedia.ch/abfrage.php?land=PHL&ortsinfo=ja&datumstart=20120313&datumend=20120313&output=csv2&ortoutput=wmo6,name&aufruf=auto";
 
         $stations = array();
         $location = $url;
@@ -30,7 +30,7 @@ class WeatherphStation extends WeatherphAppModel {
         
         unset($rows[0]);
         
-        $this->log(print_r($rows, true));
+        //$this->log(print_r($rows, true));
         
         $station_map = array();
         foreach ($rows as $row) {
@@ -58,7 +58,7 @@ class WeatherphStation extends WeatherphAppModel {
                     $current[$index] = $field;
                 }
             }
-            $this->log(print_r($current, true));
+            //$this->log(print_r($current, true));
             $dirtyCount = 0;
             foreach (array('id', 'name', 'lon', 'lat') as $validIndex) {
                 if (!key_exists($validIndex, $current)) {
@@ -79,7 +79,7 @@ class WeatherphStation extends WeatherphAppModel {
                     $station_map[$current['wmo1']] = $current;
                 }
             }
-            $this->log(print_r($station_map, true));
+            //$this->log(print_r($station_map, true));
         }
         
         $weatherStations = array();
@@ -101,7 +101,7 @@ class WeatherphStation extends WeatherphAppModel {
             }
             //$weatherStations = $station_map;
         }
-        $this->log($weatherStations);
+        //$this->log($weatherStations);
         // go through all the rows starting at the second row
         // remember that the first row contains the headings
         foreach ($weatherStations as $row) {
