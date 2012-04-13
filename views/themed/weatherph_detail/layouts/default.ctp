@@ -112,7 +112,7 @@
                             <h6>Salcedo weather station</h6>
                             <br/>
                             <h6>change station</h6>
-                        </div>
+                        </div> <!--END STATION-->
                         
                         <div id="condition">
                             <img src="theme/weatherph/img/cloudy1.png"/>
@@ -125,32 +125,43 @@
                                     <li>Sunset: 6:53PM</li>
                                     <li>Moon: Waxing</li>
                                 </ul>
-                            </div>
-                        </div>
+                            </div> <!--END CONDITON TEXT-->
+                        </div> <!--END CONDITION-->
                         <div id="conditionTable">
                             <table>
                                 <tbody>
                                     <tr>
-                                        <td>Precipitation</td>
+                                        <td class="caption">Precipitation</td>
                                         <td class="output">.08l/m</td>
                                     </tr>
                                     <tr>
-                                        <td>Avg. Wind Speed</td>
+                                        <td class="caption">Avg. Wind Speed</td>
                                         <td class="output">12km/h</td>
                                     </tr>
                                     <tr>
-                                        <td>Relative Humidity</td>
+                                        <td class="caption">Relative Humidity</td>
                                         <td class="output">63%</td>
                                     </tr>
                                 </tbody>
                             </table>
-                        </div>
-                    </div>
+                        </div> <!--END CONDITON TABLE-->
+                    </div> <!--END CURRENT WEATHER-->
                     
-                    <div id="week">
+                    <div id="weekWeather">
                         <h4>This week's forecast</h4>
+                        
+                        <div class="tabs">
+                            <ul>
+                                <li>Today</li>
+                                <li>Saturday</li>
+                                <li>Sunday</li>
+                                <li>Monday</li>
+                                <li>Tuesday</li>
+                            </ul>
+                        </div> <!--END TABS-->
+                        
                         <div id="table-container">
-                        <table class="week-forecast">
+                        <table class="week-forecast" cellspacing="0">
                                 <tbody>
                                     <tr class="time">
                                         <td class="caption"></td>
@@ -204,20 +215,39 @@
                                     </tr>
                                 </tbody>
                             </table>
-                        </div>
-                    </div>
+                        </div> <!--TABLE CONTAINER-->
+                    </div> <!--END WEEK WEATHER-->
                     
                 </section> <!--MAIN CONTENT-->
 
                 <section class="secondary">
                     <div id="charts">
-                        
-                    </div>
+                        <div class="tabs">
+                            <h4>Detailed Forecasts</h4>
+                            <ul>
+                                <li>Temperature</li>
+                                <li>Precipitation</li>
+                                <li>Wind</li>
+                                <li>Humidity</li>
+                            </ul>
+                        </div> <!--END TABS-->
+                    </div> <!--END CHARTS-->
+                    
+                    <div id="outlook">
+                        <div class="tabs">
+                            <h4>Detailed Forecasts</h4>
+                            <ul>
+                                <li>Temperature</li>
+                                <li>Precipitation</li>
+                                <li>Wind</li>
+                            </ul>
+                        </div> <!--END TABS-->
+                    </div> <!--END OUTLOOK-->
                 </section> <!--SECONDARY-->
+
             </div> <!--CONTENT-->
 
             <aside id="sidebar">
-
                 <div id="sponsors">
                     <div class="sponsored center">
                         <h6>Powered by:</h6>
@@ -252,7 +282,7 @@
                         </p>
                     </div>
                 </div>
-            </aside>
+            </aside> <!--END SIDEBAR-->
         
             <footer>
                 <div class="countrySelect">

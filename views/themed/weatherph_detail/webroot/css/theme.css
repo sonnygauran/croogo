@@ -147,13 +147,22 @@ header > nav li > form {
     DETAIL
 ====================*/
 
+#currentWeather, #weekWeather {
+    margin-bottom: 1em;
+}
+
 #currentWeather {
     overflow: auto;
 }
 
-#station, #condition {
-    float:left;
+#station, #condition, #conditionTable {
+    display: inline-block;
+    vertical-align: top;
     margin: 10px;
+}
+
+#station {
+    padding: 10px;
 }
 
 #condition > img {
@@ -165,18 +174,22 @@ header > nav li > form {
     margin-top: 1em;
 }
 
-#conditionTable {
-    float: right;
-    padding: 5px;
-    margin: 5px;
-}
-
 #conditionTable td {
-    padding: 5px 20px;
+    padding: 5px 10px;
 }
 
 .week-forecast td {
     padding: 1em;
+    text-align: center;
+}
+
+/*===============
+    TABS
+===============*/
+
+.tabs li {
+    display: inline;
+    padding: 10px;
 }
 
 /*====================
@@ -352,12 +365,19 @@ html {
     height: 48px;
 }
 
+.caption {
+    background-color: white;
+    color: #2D4070;
+    vertical-align: middle;
+}
+
 .output {
     font-size: 2em;
     font-weight: bold;
     background-color: #2D4070;
     color: #fafafa;
     text-align: center;
+    vertical-align: middle;
 }
 
 a {
