@@ -37,7 +37,11 @@ class WeatherphStationReading extends WeatherphAppModel
         
         
         
-        $url = 'http://abfrage.meteomedia.ch/abfrage.php?stationidstring='.$id.'&datumstart='.$date.'&datumend='.$datumend.'&tl=on&td=on&tx=on&tn=on&t5=on&dir=on&ff=on&g1h=on&g3h=on&qff=on&qnh=on&qfe=on&ap=on&www=on&vis=on&n=on&l=on&metarwx=on&cov=on&clcmch=on&clg=on&rr10m=on&rr1h=on&rain3=on&rain6=on&rain12=on&sno=on&new=on&s10=on&sh=on&ss24=on&gl10=on&gl1h=on&gl24=on&stationsreihe=on&output=csv2&ortoutput=wmo6,name&aufruf=auto';
+        //$url = 'http://abfrage.meteomedia.ch/abfrage.php?stationidstring='.$id.'&datumstart='.$date.'&datumend='.$datumend.'&tl=on&td=on&tx=on&tn=on&t5=on&dir=on&ff=on&g1h=on&g3h=on&qff=on&qnh=on&qfe=on&ap=on&www=on&vis=on&n=on&l=on&metarwx=on&cov=on&clcmch=on&clg=on&rr10m=on&rr1h=on&rain3=on&rain6=on&rain12=on&sno=on&new=on&s10=on&sh=on&ss24=on&gl10=on&gl1h=on&gl24=on&stationsreihe=on&output=csv2&ortoutput=wmo6,name&aufruf=auto';
+        //$url = 'http://abfrage.meteomedia.ch/manila.php?stationidstring='.$id.'&datumstart='.$date.'&datumend='.$datumend.'&tl=on&td=on&tx=on&tn=on&dir=on&ff=on&g1h=on&g3h=on&qff=on&qnh=on&qfe=on&ap=on&www=on&vis=on&n=on&l=on&metarwx=on&cov=on&clcmch=on&clg=on&rr10m=on&rr1h=on&rain3=on&rain6=on&rain12=on&sno=on&new=on&s10=on&sh=on&ss24=on&gl10=on&gl1h=on&gl24=on&stationsreihe=on&output=csv2&ortoutput=wmo6,name&aufruf=auto';
+        
+        $url = 'http://abfrage.meteomedia.ch/manila.php?stationidstring='.$id.'&datumstart='.$date.'&datumend='.$datumend.'&dir=on&tl=on&ff=on&td=on&tx=on&tn=on&qff=on&ap=on&www=on&metarwx=on&vis=on&cov=on&n=on&l=on&clcmch=on&clg=on&output=csv2&ortoutput=wmo6,name&aufruf=auto';
+        
         $this->log($url);
         
         $stations = array();
@@ -53,10 +57,14 @@ class WeatherphStationReading extends WeatherphAppModel
 
         $result = curl_exec($ch);
         
+        //debug($result);exit;
         
-        $headersSpecimen = 'Datum;utc;min;ort1;dir;ff;ff;g3h;g1h;g1h;tl;tl;td;td;t5;t5;tx;tx;tn;tn;qfe;qff;qff;qnh;ap;www;www;metarwx;vis;cov;n;l;clcmch;clcmch;clg;rr10m;rr1h;rr1h;rr24h;sno;sno;new;new;ss24;ss24;sh;sh;s10;gl24;gl24;gl1h;gl1h;gl10;rain3;rain6;rain12;';
+        //$headersSpecimen = 'Datum;utc;min;ort1;dir;ff;ff;g3h;g1h;g1h;tl;tl;td;td;t5;t5;tx;tx;tn;tn;qfe;qff;qff;qnh;ap;www;www;metarwx;vis;cov;n;l;clcmch;clcmch;clg;rr10m;rr1h;rr1h;rr24h;sno;sno;new;new;ss24;ss24;sh;sh;s10;gl24;gl24;gl1h;gl1h;gl10;rain3;rain6;rain12;';
+        
+        $headersSpecimen = 'Datum;utc;min;ort1;dir;ff;tl;td;tx;tn;qff;ap;www;metarwx;vis;cov;n;l;clcmch;clg;';
         
         $expected = strstr($result, $headersSpecimen);
+        
         if ($expected == '') {
             // The expected string should contain the headerSpecimen
             $error = 'There was an error generating the CSV from '.$url;
@@ -119,6 +127,8 @@ class WeatherphStationReading extends WeatherphAppModel
         //$readings = $station_map;
         }
         
+        //debug($readings);exit;
+        
         $reversedReadings = $readings;
         rsort($reversedReadings);
         //$this->log($reversedReadings);
@@ -128,10 +138,18 @@ class WeatherphStationReading extends WeatherphAppModel
         foreach ($reversedReadings as $reading) {
             //$this->log(print_r($reading, true));
             if (strlen(trim($reading['dir'])) > 0) {
-                $validRecord = $reading;
-                break;
+                if(key_exists('utc', $fields['conditions'])){
+                    $validRecord[] = $reading;
+                }  else {
+                    $validRecord = $reading;
+                    break;
+                }
+                
+                
             }
         }
+        
+        //debug($validRecord);
  
         
         //$this->log(print_r($validRecord, true));
@@ -174,63 +192,91 @@ class WeatherphStationReading extends WeatherphAppModel
     
     public function get($conditions = null, $fields = array(), $order = null, $recursive = null)
     {
+        error_reporting(0);
+        
         App::import('Model', 'Weatherph.WeatherphStation');
         
         $WeatherphStation = new WeatherphStation();
         $stations = $WeatherphStation->find('all', array('conditions' => array(
             'provider' => 'pagasa',
         )));
-        
-        //debug($fields);exit;
+       
         //debug($stations);exit;
 
         $date = 'YYYY-MM-DD';
         
-        
         include dirname(__FILE__) . '/auth.php';
+        
+        ini_set('memory_limit', '256M');
         
         $WeatherphStationReading = new WeatherphStationReading();
         
         $stationsReadings = array();
         
-        ini_set('memory_limit', '256M');
-        
         foreach($stations as $station){
             
-            $days_target = $fields['conditions']['days_target'] - 1;
+            $datumstart = $datumend = date('Ymd',strtotime($fields['conditions']['date']));
+//            
+//            for($days=$days_target; $days>=0; $days--){
+//                
+//                $days_str = ($days>=1)? 'day' : 'days';
+//                
+//                $datumstart = $datumend = ($days==0)? date('Ymd') : date('Ymd', strtotime('-'.$days.$days_str));
+//                
+//                sleep(5);
+//                
+//                $currentReadings = $WeatherphStationReading->find('all', array('conditions' => array(
+//                    'id' => $station['id'],
+//                    'date' => $datumstart,
+//                    'datumend' => $datumend,
+//                    'utc' => 'all',
+//                )));
+//                
+//                //debug($currentReading);exit;
+//                
+//                foreach($currentReadings as $currentReading){
+//                    
+//                    $stationsReadings
+//                        [$currentReading['ort1']]
+//                            [$currentReading['Datum']]
+//                                [$currentReading['utc']]= $currentReading;
+//                    
+//                }
+//                
+////                $stationsReadings
+////                    [$currentReading['ort1']]
+////                        [$currentReading['Datum']]
+////                            [$currentReading['utc']]= $currentReading;
+////                
+//               //break;
+//                
+//            }
             
-            for($days=$days_target; $days>=0; $days--){
-                
-                $days_str = ($days>=1)? 'day' : 'days';
-                
-                $datumstart = $datumend = ($days==0)? date('Ymd') : date('Ymd', strtotime('-'.$days.$days_str));
-                
-                sleep(5);
-                
-                $currentReading = $WeatherphStationReading->find('all', array('conditions' => array(
+            $currentReadings = $WeatherphStationReading->find('all', array('conditions' => array(
                     'id' => $station['id'],
                     'date' => $datumstart,
-                    'datumend' => $datumend
-                )));
-                
+                    'datumend' => $datumend,
+                    'utc' => 'all',
+            )));
+            
+            foreach($currentReadings as $currentReading){
+                   
                 $stationsReadings
-                    [$station['id']]
-                    [$currentReading['Datum']]
-                    [$currentReading['utc']]
-                    [$currentReading['min']]= $currentReading;
-                
-                
+                    [$currentReading['ort1']]
+                        [$currentReading['Datum']]
+                            [$currentReading['utc']]= $currentReading;
+
             }
             
             
+            //debug($stationsReadings);exit;
+            
         }
         
-        echo '<pre>';
-        print_r($stationsReadings);
-        echo '</pre>';
+        //debug($stationsReadings);exit;
+        
+        return $stationsReadings;
 
-        die('meme');
- 
         
     }
 }

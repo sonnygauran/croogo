@@ -310,3 +310,12 @@ div.buttons .cancel { margin: 20px 20px 20px 10px; }
  */
 #debug-kit-toolbar ul li.panel-tab { display: none; }
 #debug-kit-toolbar ul li.icon { display: inline; }
+
+
+/**
+* Two Weeks Readings
+*/
+table#twoweeksreadings { font-size: 10px; }
+table#twoweeksreadings td { padding: 5px; }
+table#twoweeksreadings td.station_names { font-weight: bold; }
+table#twoweeksreadings th { padding: 5px; }
