@@ -73,8 +73,7 @@
                                 <option data-region-id="ARMM">ARMM</option>
                             </optgroup>
                         </select>
-                        </li>
-                    </ul>
+                    </li>
                 </nav>
             </header> <!--BANNER-->
 
@@ -106,127 +105,149 @@
 
             <div id="content">
                 <section class="main">
-
-                    <div id="map">
-                        <div class="layerSelector">
+                    <div id="currentWeather">
+                        <div id="station">
+                            <h1>Makati</h1>
+                            <h6>Current readings from:</h6>
+                            <h6>Salcedo weather station</h6>
+                            <br/>
+                            <h6>change station</h6>
+                        </div> <!--END STATION-->
+                        
+                        <div id="condition">
+                            <img src="theme/weatherph/img/cloudy1.png"/>
+                            <div class="condition-text"> 
+                                <h3>Partly Cloudy</h3>
+                                <h2>31&#8451;</h2>
+                                <br/>
+                                <ul>
+                                    <li>Sunrise: 5:38AM</li>
+                                    <li>Sunset: 6:53PM</li>
+                                    <li>Moon: Waxing</li>
+                                </ul>
+                            </div> <!--END CONDITON TEXT-->
+                        </div> <!--END CONDITION-->
+                        <div id="conditionTable">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td class="caption">Precipitation</td>
+                                        <td class="output">.08l/m</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="caption">Avg. Wind Speed</td>
+                                        <td class="output">12km/h</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="caption">Relative Humidity</td>
+                                        <td class="output">63%</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div> <!--END CONDITON TABLE-->
+                    </div> <!--END CURRENT WEATHER-->
+                    
+                    <div id="weekWeather">
+                        <h4>This week's forecast</h4>
+                        
+                        <div class="tabs">
                             <ul>
-                                <li><a href="#">Wind</a></li>
-                                <li><a href="#">Rain</a></li>
-                                <li><a href="#">Temperature</a></li>
-                                <li><a href="#">Clouds</a></li>
-                                <li><a href="#">View more layers</a></li>
+                                <li>Today</li>
+                                <li>Saturday</li>
+                                <li>Sunday</li>
+                                <li>Monday</li>
+                                <li>Tuesday</li>
                             </ul>
-                        </div> <!--LAYER SELECTOR-->
-                        <div id="overlay">
-                            <div class="details">
-                                <dl class="ort1 center">
-                                    <dt>Makati</dt>
-                                    <dd>&nbsp;</dd>
-                                </dl>
-                            </div>
-
-                            <div class="readings center">
-                                <h6>Current Readings</h6>
-                                <h6>as of 2:24PM</h6>
-                                <table class="details">
-                                    <tbody>
-                                        <tr class="temperature">
-                                            <td>Temperature (&deg;C)</td>
-                                            <td class="output">&nbsp;</td>
-                                        </tr>
-                                        <tr class="wind_speed">
-                                            <td>Wind Speed (kph)</td>
-                                            <td class="output">&nbsp;</td>
-                                        </tr>
-                                        <tr class="humidity">
-                                            <td>Humidity</td>
-                                            <td class="output">&nbsp;</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-
-                                <h6>Forecasts</h6>
-                                <table class="center">
-                                    <tbody>
-                                        <tr>
-                                            <td>3PM</td>
-                                            <td>
-                                                <img class="small" src="theme/weatherph/img/sunny.png" alt="sunny" />
-                                            </td>
-                                            <td class="output">31&deg;</td>
-                                        </tr>
-                                        <tr>
-                                            <td>6PM</td>
-                                            <td>
-                                                <img class="small" src="theme/weatherph/img/overcast.png" alt="overcast"/>
-                                            </td>
-                                            <td class="output">29&deg;</td>
-                                        </tr>
-                                        <tr>
-                                            <td>9PM</td>
-                                            <td>
-                                                <img class="small" src="theme/weatherph/img/cloudy2_night.png" alt="cloudy"/>
-                                            </td>
-                                            <td class="output">30&deg;</td>
-                                        </tr>
-                                        <tr>
-                                            <td>12AM</td>
-                                            <td>
-                                                <img class="small" src="theme/weatherph/img/cloudy3_night.png" alt="cloudy"/>
-                                            </td>
-                                                <td class="output">28&deg;</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3AM</td>
-                                            <td>
-                                                <img class="small" src="theme/weatherph/img/cloudy2_night.png" alt="cloudy"/>
-                                                <td class="output">26&deg;</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div> <!--READINGS-->
-                            <h6 class="center"><a href="#">View more details here.</a></h6>
-
-                        </div> <!--INFOPANE-->
-                        <div id="legend">
-                            <ul>
-                                <li><img src="http://placehold.it/24x12/dd22227"/> PAGASA stations</li>
-                                <li><img src="http://placehold.it/24x12/0000ff" /> Meteomedia stations</li>
-                                <li><img src="http://placehold.it/24x12/333333"> Inactive stations</li>
-                            </ul>
-                        </div>
-                    </div> <!--MAP-->
+                        </div> <!--END TABS-->
+                        
+                        <div id="table-container">
+                        <table class="week-forecast" cellspacing="0">
+                                <tbody>
+                                    <tr class="time">
+                                        <td class="caption"></td>
+                                        <td>8:00</td>
+                                        <td>11:00</td>
+                                        <td>14:00</td>
+                                        <td>17:00</td>
+                                        <td>20:00</td>
+                                        <td>23:00</td>
+                                        <td>2:00</td>
+                                    </tr>
+                                    <tr class="condition">
+                                    <td class="caption">Condition</td>
+                                        <td><img class="medium" src="theme/weatherph/img/sunny.png" alt="sunny" /></td>
+                                        <td><img class="medium" src="theme/weatherph/img/sunny.png" alt="sunny" /></td>
+                                        <td><img class="medium" src="theme/weatherph/img/sunny.png" alt="sunny" /></td>
+                                        <td><img class="medium" src="theme/weatherph/img/sunny.png" alt="sunny" /></td>
+                                        <td><img class="medium" src="theme/weatherph/img/sunny.png" alt="sunny" /></td>
+                                        <td><img class="medium" src="theme/weatherph/img/sunny.png" alt="sunny" /></td>
+                                        <td><img class="medium" src="theme/weatherph/img/sunny.png" alt="sunny" /></td>
+                                    </tr>
+                                    <tr class="temperature">
+                                    <td class="caption">Temperature</td>
+                                        <td>31&#8451;</td>
+                                        <td>31&#8451;</td>
+                                        <td>31&#8451;</td>
+                                        <td>31&#8451;</td>
+                                        <td>31&#8451;</td>
+                                        <td>31&#8451;</td>
+                                        <td>31&#8451;</td>
+                                    </tr>
+                                    <tr class="precipitation">
+                                        <td class="caption">Precipitation</td>
+                                        <td>63%</td>
+                                        <td>63%</td>
+                                        <td>63%</td>
+                                        <td>63%</td>
+                                        <td>63%</td>
+                                        <td>63%</td>
+                                        <td>63%</td>
+                                    </tr>
+                                    <tr class="wind">
+                                        <td class="caption">Wind speed / direction</td>
+                                        <td>12km/h (NW)</td>
+                                        <td>12km/h (NW)</td>
+                                        <td>12km/h (NW)</td>
+                                        <td>12km/h (NW)</td>
+                                        <td>12km/h (NW)</td>
+                                        <td>12km/h (NW)</td>
+                                        <td>12km/h (NW)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div> <!--TABLE CONTAINER-->
+                    </div> <!--END WEEK WEATHER-->
+                    
                 </section> <!--MAIN CONTENT-->
 
                 <section class="secondary">
-                    <div class="posts">
-                        <h4>The Weather in Words</h4>
-                        <p>
-                            The climate in Switzerland is strongly influenced by the Alps extending across the country and representing the most important meteorological divide in Central Europe. Thanks to the Alps, large climatic differences in Switzerland are to be found within a small geographic area. The largest contrasts exist between the northern side of the Alps with its temperatre climate and the southern side of the Alps characterized by mediterranean climate.
-                        </p>
-
-                        <h4>Tomorrow</h4>
-                        <p>
-                            In the Swiss Midland, extending between Lake Geneva and Lake Constance as well as between Jura and the Pre-Alps, climatic conditions which are typical for Central Europe are to be found. The average annual temperature is just below 10 °C, with mean values around the freezing point in January and between 16 and 19 °C in July. The average annual precipitation amounts are just above 1000 mm. In winter often a so-called inversion layer results in a large-scale low stratus cloud coverage which partly persists for several days or even weeks. Thereby the cold wind from northeast (named Bise) is pressed between Jura and Pre-Alps and can thus reach gale-force on the western shores of Lake Geneva.
-                        </p>
-                    </div>
+                    <div id="charts">
+                        <div class="tabs">
+                            <h4>Detailed Forecasts</h4>
+                            <ul>
+                                <li>Temperature</li>
+                                <li>Precipitation</li>
+                                <li>Wind</li>
+                                <li>Humidity</li>
+                            </ul>
+                        </div> <!--END TABS-->
+                    </div> <!--END CHARTS-->
                     
-                    <div class="twitter">
-                        <h4>Breaking News</h4>
-                        <ul>
-                            <li><img class="small" src="theme/weatherph/img/thumbnail.png"/>Sunny day today. Please continue donating!</li>
-                            <li><img class="small" src="theme/weatherph/img/thumbnail.png"/>Cloudy for the rest of the day in Manila. Help flood victims!</li>
-                            <li><img class="small" src="theme/weatherph/img/thumbnail.png"/>Flooding at Espana. Avoid going there.</li>
-                            <li><img class="small" src="theme/weatherph/img/thumbnail.png"/>Watch out later! It's gonna be stormy tonight.</li>
-                            <li><img class="small" src="theme/weatherph/img/thumbnail.png"/>Bembang enters Philippine area of responsibility</li>
-                        </ul>
-                        <h6 class="center clear">Follow us on Twitter to get updates right in your timeline</h6>
-                    </div>
+                    <div id="outlook">
+                        <div class="tabs">
+                            <h4>Detailed Forecasts</h4>
+                            <ul>
+                                <li>Temperature</li>
+                                <li>Precipitation</li>
+                                <li>Wind</li>
+                            </ul>
+                        </div> <!--END TABS-->
+                    </div> <!--END OUTLOOK-->
                 </section> <!--SECONDARY-->
+
             </div> <!--CONTENT-->
 
             <aside id="sidebar">
-
                 <div id="sponsors">
                     <div class="sponsored center">
                         <h6>Powered by:</h6>
@@ -261,7 +282,7 @@
                         </p>
                     </div>
                 </div>
-            </aside>
+            </aside> <!--END SIDEBAR-->
         
             <footer>
                 <div class="countrySelect">

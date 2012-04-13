@@ -1,0 +1,19 @@
+name: Weatherph Detail
+description: Narrow Theme for Weatherph
+screenshot: tstorm3.png
+
+author: Martin de Lima
+authorEmail: mdelima@meteomedia.com.ph
+authorUrl: http://zerp.ly/martindelima
+
+menus:
+  - main
+  - footer
+
+regions:
+  - left
+  - right
+
+vocabularies:
+  - categories
+  - tags
