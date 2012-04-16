@@ -47,33 +47,22 @@ margin: 0 auto;
 /*====================
     HEADER
 ====================*/
+.banner {
+    height: 120px;
+    margin-top: 10px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
 .logo {
     float:left;
-    padding: 10px 20px;
+    padding: 35px 15px;
 }
 
-.banner {
-    height:50px;
-    -webkit-border-bottom-right-radius: 5px;
-    -webkit-border-bottom-left-radius: 5px;
-    -moz-border-radius-bottomright: 5px;
-    -moz-border-radius-bottomleft: 5px;
-    border-bottom-right-radius: 5px;
-    border-bottom-left-radius: 5px;
-}
-
-header > nav {
-    float:right;
-    padding: 15px 20px;
-}
-
-header > nav li {
-    display: inline;
-    padding: 0 1em;
-}
-
-header > nav li > form {
-    display: inline;
+div#options {
+    float: right;
+    margin: 10px;
 }
 
 /*====================
@@ -81,17 +70,19 @@ header > nav li > form {
 ====================*/
 
 .dropdown {
-    margin-bottom: 10px;
+    margin: 10px auto;
     float:left;
     width: 100%;
     position:relative;
     z-index:5;
-    background: #ebebeb;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
 }
 
 .dropdown li {
     float:left;
-    margin-right: 2em;
+    margin: 0 1em;
     position:relative;
 }
 
@@ -101,8 +92,6 @@ header > nav li > form {
 }
 
 .dropdown ul {
-    background:#fff;
-    background:rgba(255,255,255,0);
     list-style:none;
     position:absolute;
     left:-9999px;
@@ -110,7 +99,7 @@ header > nav li > form {
 
 .dropdown ul li{
     float:none;
-    border: 1px solid #2D4070;
+    border: 1px solid #2E4771;
 }
 
 .dropdown ul li + li {
@@ -126,7 +115,7 @@ header > nav li > form {
 }
 
 .dropdown li:hover a{
-    background:white;
+    background:#43597E;
     text-decoration:underline;
 }
 
@@ -135,7 +124,7 @@ header > nav li > form {
 }
 
 .dropdown li:hover ul li a:hover{
-    background:rgb(171,185,221);
+    background:#43597E;
 }
 
 /*====================
@@ -143,9 +132,9 @@ header > nav li > form {
 ====================*/
 #map {
     float: left;
-    width: 748px;
-    height: 480px;
-    margin: 0 10px;
+    width: 554px;
+    height: 554px;
+    margin-right: 10px;
 }
 
 #map .layerSelector {
@@ -156,47 +145,11 @@ header > nav li > form {
     text-align: center;
 }
 
-#overlay {
-    width: 172px;
-    position: absolute !important;
-    top: 30px;
-    right: 5px;
-    padding: 5px;
-    border-radius: 5px;
-}
-
-.details {
-    text-align:left;
-}
-
-#overlay .readings{
-    padding: 3px;
-    border-radius: 5px;
-}
-
-.readings h6 {
-    padding: 3px;
-}
-
-#overlay table {
-    margin: 0 auto;
-}
-
-#overlay table td {
-    padding: 5px 5px;
-}
-
-.output {
-    text-align: left;
-    font-size: 1em;
-    font-weight: bold;
-}
-
-#map .layerSelector ul, #legend ul {
+#map .layerSelector ul {
     padding-top: 5px;
 }
 
-#map .layerSelector li, #legend li {
+#map .layerSelector li {
     display: inline;
     padding: 0 2em;
     text-align: center;
@@ -207,41 +160,99 @@ header > nav li > form {
     bottom:0;
     height: 25px;
     width: 100%;
-    text-align: center;
+}
+
+#legend > h6 {
+    display: inline;
+    padding: 0 10px;
+    vertical-align: bottom;
 }
 
 /*====================
-    NEWS, TWITTER
+    INFO
+====================*/
+
+div#info {
+    width: 220px;
+    float:left;
+    border-radius: 5px;
+    font-size: .75em;
+}
+
+div.readings {
+    clear: both;
+    margin: 10px auto;
+    padding: 0px 10px;
+    overflow: hidden;
+}
+
+#info a {
+    float:right;
+}
+
+#current {
+    padding: 10px;
+}
+
+.readings > h3, .readings > img {
+    float: left;
+    padding: 3px;
+}
+
+.readings > table {
+    float: right;
+    padding: 3px;
+}
+
+.detail-page-link {
+    clear: both;
+    text-align: center;
+}
+
+.day-forecast li:nth-child(odd) {
+    background-color: #fafafa;
+    color: #2E4771;
+}
+
+/*====================
+    POSTS, NEWS
 ====================*/
 .secondary h4, h6 {
     padding-bottom: 1em;
 }
 
-.secondary > .posts, .secondary > .twitter {
-    width: 344px;
-    border-radius: 8px;
-    padding: 20px 10px;
+.secondary > .posts {
+    width: 554px;
     float: left;
-    margin: 10px;
+    margin: 2em 10px 0 0;
+}
+
+.secondary > .news {
+    width: 220px;
+    float: left;
+    margin-top: 2em;
+    overflow: hidden;
 }
 
 .posts p {
     padding-bottom: 1em;
+    line-height: 1.5;
+    max-width: 36em;
 }
 
-.twitter li {
+.news li {
     float:left;
-    padding: 1em .5em;
+    padding: .5em;
     width: 100%;
 }
 
-.twitter li:last-child{
-    margin-bottom: 1em;
+.news img {
+    float:left;
+    padding: .5em;
 }
 
-.twitter img {
-    float:left;
-    padding: 5px;
+.news p {
+    padding-top: 1em;
 }
 
 /*====================
@@ -249,8 +260,8 @@ header > nav li > form {
 ====================*/
 
 #sidebar {
-    width: 192px;
-    margin: 0 10px;
+    width: 186px;
+    margin-left: 10px;
 }
 
 .sponsored {
@@ -345,7 +356,7 @@ h5, h6 {
 
 .logo {
     color:#3E4F76;
-    font-size: 2em;
+    font-size: 2.875em;
     font-weight: 200;
     text-shadow: #fafafa 0px 0px 20px;
 }
@@ -359,45 +370,40 @@ h5, h6 {
 ========================================*/
 
 html {
-    color: #2D4070;
+    color: #2E4771;
 }
 
 .banner {
     color: white;
-    background:#435680 url(../img/narrowclouds.png) top left no-repeat;;
-    -moz-box-shadow: inset 0 0 5px #000000;
-    -webkit-box-shadow: inset 0 0 5px #000000;
-    box-shadow: inset 0 0 10px #000000;
+    background:#43597E url(../img/banner.png) top left no-repeat;
+}
+
+.dropdown {
+    background: #2E4771;
+    color: white;
 }
 
 .layerSelector, #legend, .promo {
     color: #fafafa;
-    background-color: #344a83;
+    background-color: #2E4771;
 }
 
 .layerSelector li + li {
     border-left: 1px solid white;
 }
 
-#overlay {
-    background: rgba(255,255,255,.7);
+#info {
+    background: #43597E;
+    color: white;
 }
 
-.readings {
-    background: white;
-}
-    
-.output {
-    background-color: #2D4070;
-    color: #fafafa;
-}
 
-.twitter li:nth-child(odd) {
+.news li:nth-child(odd) {
     background: rgba(171,185,221,.5);
 }
 
 footer {
-    background: #3c5595;
+    background: #43597E;
     color: #fafafa;
 }
 
@@ -413,8 +419,16 @@ footer {
 }
 
 .small {
-    width: 24px;
-    height: 24px;
+    width: 36px;
+    height: 36px;
+}
+
+.output {
+    text-align: center;
+    font-size: 1em;
+    font-weight: bold;
+    background-color: #2E4771;
+    color: #fafafa;
 }
 
 a {
@@ -429,7 +443,7 @@ a:hover {
 }
 
 a:link, a:visited {
-    color: #2D4070;
+    color: #fafafa;
 }
 
 .layerSelector a:link, .layerSelector a:visited,

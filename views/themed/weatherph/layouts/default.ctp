@@ -97,7 +97,16 @@
                             <li>View more layers</li>
                         </ul>
                     </div> <!--LAYER SELECTOR-->
-                    <div id="overlay">
+                    <div id="legend">
+                        <ul>
+                            <li><img src="http://placehold.it/24x12/dd2222"/> PAGASA stations</li>
+                            <li><img src="http://placehold.it/24x12/0000ff/"> Meteomedia stations</li>
+                            <li><img src="http://placehold.it/24x12/333333"> Inactive stations</li>
+                        </ul>
+                    </div>
+                </div> <!--MAP-->
+
+                <div id="overlay">
                         <div class="details">
                             <dl class="ort1 center">
                                 <dt>Makati</dt>
@@ -168,18 +177,8 @@
                         <section class="details">
                             <a class="detail">View more details ></a>
                         </section>
-                        
-
-                    </div> <!--INFOPANE-->
-                    <div id="legend">
-                        <ul>
-                            <li><img src="http://placehold.it/24x12/dd2222"/> PAGASA stations</li>
-                            <li><img src="http://placehold.it/24x12/0000ff/"> Meteomedia stations</li>
-                            <li><img src="http://placehold.it/24x12/333333"> Inactive stations</li>
-                        </ul>
-                    </div>
-                </div> <!--MAP-->
-
+                    </div> <!--OVERLAY-->
+                
                 <section id="sponsors">
                     <div class="sponsored center">
                         <h6>Powered by:</h6>
@@ -199,7 +198,7 @@
                 
             </section> <!--MAIN CONTENT-->
 
-            <section class="secondary">
+            <section class="secondary clear">
                 <div class="posts content">
                     <h4>The Weather in Words</h4>
                     <p>

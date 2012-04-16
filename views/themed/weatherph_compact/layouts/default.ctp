@@ -35,47 +35,11 @@
             <header class="banner clear">    
                 <h1 class="logo">weather | philippines</h1>
                 
-                <nav>
-                    <ul>
-                        <li>
-                            <form class="search">
-                                Search: <input type="text" name="city" size="15" />
-                            </form>
-                        </li>
-                        <li>
-                        Select by region:
-                        <select name="philippine-regions">
-                            <option>Choose one...</option>
-
-                            <optgroup label="Luzon">
-                                <option data-region-id="NCR">NCR</option>
-                                <option data-region-id="CAR">CAR</option>
-                                <option data-region-id="I">Ilocos</option>
-                                <option data-region-id="II">Cagayan Valley</option>
-                                <option data-region-id="III">Central Luzon</option>
-                                <option data-region-id="IVa">CALABARZON</option>
-                                <option data-region-id="IVb">MIMAROPA</option>
-                                <option data-region-id="V">Bicol</option>
-                            </optgroup>
-
-                            <optgroup label="Visayas">
-                                <option data-region-id="VI">Western Visayas</option>
-                                <option data-region-id="VII">Central Visayas</option>
-                                <option data-region-id="VIII">Eastern Visayas</option>
-                            </optgroup>
-
-                            <optgroup label="Mindanao">
-                                <option data-region-id="IX">Zamboanga Peninsula</option>
-                                <option data-region-id="X">Northern Mindanao</option>
-                                <option data-region-id="XI">Davao</option>
-                                <option data-region-id="XII">SOCCSKSARGEN</option>
-                                <option data-region-id="XIII">CARAGA</option>
-                                <option data-region-id="ARMM">ARMM</option>
-                            </optgroup>
-                        </select>
-                        </li>
-                    </ul>
-                </nav>
+                <div id="options">
+                    <form class="search">
+                        Search: <input type="text" name="city" size="15" />
+                    </form>
+                </div>
             </header> <!--BANNER-->
 
             <nav>
@@ -106,7 +70,6 @@
 
             <div id="content">
                 <section class="main">
-
                     <div id="map">
                         <div class="layerSelector">
                             <ul>
@@ -117,85 +80,229 @@
                                 <li><a href="#">View more layers</a></li>
                             </ul>
                         </div> <!--LAYER SELECTOR-->
-                        <div id="overlay">
-                            <div class="details">
-                                <dl class="ort1 center">
-                                    <dt>Makati</dt>
-                                    <dd>&nbsp;</dd>
-                                </dl>
-                            </div>
-
-                            <div class="readings center">
-                                <h6>Current Readings</h6>
-                                <h6>as of 2:24PM</h6>
-                                <table class="details">
-                                    <tbody>
-                                        <tr class="temperature">
-                                            <td>Temperature (&deg;C)</td>
-                                            <td class="output">&nbsp;</td>
-                                        </tr>
-                                        <tr class="wind_speed">
-                                            <td>Wind Speed (kph)</td>
-                                            <td class="output">&nbsp;</td>
-                                        </tr>
-                                        <tr class="humidity">
-                                            <td>Humidity</td>
-                                            <td class="output">&nbsp;</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-
-                                <h6>Forecasts</h6>
-                                <table class="center">
-                                    <tbody>
-                                        <tr>
-                                            <td>3PM</td>
-                                            <td>
-                                                <img class="small" src="theme/weatherph/img/sunny.png" alt="sunny" />
-                                            </td>
-                                            <td class="output">31&deg;</td>
-                                        </tr>
-                                        <tr>
-                                            <td>6PM</td>
-                                            <td>
-                                                <img class="small" src="theme/weatherph/img/overcast.png" alt="overcast"/>
-                                            </td>
-                                            <td class="output">29&deg;</td>
-                                        </tr>
-                                        <tr>
-                                            <td>9PM</td>
-                                            <td>
-                                                <img class="small" src="theme/weatherph/img/cloudy2_night.png" alt="cloudy"/>
-                                            </td>
-                                            <td class="output">30&deg;</td>
-                                        </tr>
-                                        <tr>
-                                            <td>12AM</td>
-                                            <td>
-                                                <img class="small" src="theme/weatherph/img/cloudy3_night.png" alt="cloudy"/>
-                                            </td>
-                                                <td class="output">28&deg;</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3AM</td>
-                                            <td>
-                                                <img class="small" src="theme/weatherph/img/cloudy2_night.png" alt="cloudy"/>
-                                                <td class="output">26&deg;</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div> <!--READINGS-->
-                            <h6 class="center"><a href="#">View more details here.</a></h6>
-
-                        </div> <!--INFOPANE-->
                         <div id="legend">
-                            <ul>
-                                <li><img src="http://placehold.it/24x12/dd22227"/> PAGASA stations</li>
-                                <li><img src="http://placehold.it/24x12/0000ff" /> Meteomedia stations</li>
-                                <li><img src="http://placehold.it/24x12/333333"> Inactive stations</li>
-                            </ul>
-                        </div>
+                            <h6>Province:</h6>
+                            <select name="philippine-regions">
+                                <option>Choose one...</option>
+                                <optgroup label="Luzon">
+                                    <option data-region-id="NCR">NCR</option>
+                                    <option data-region-id="CAR">CAR</option>
+                                    <option data-region-id="I">Ilocos</option>
+                                    <option data-region-id="II">Cagayan Valley</option>
+                                    <option data-region-id="III">Central Luzon</option>
+                                    <option data-region-id="IVa">CALABARZON</option>
+                                    <option data-region-id="IVb">MIMAROPA</option>
+                                    <option data-region-id="V">Bicol</option>
+                                </optgroup>
+
+                                <optgroup label="Visayas">
+                                    <option data-region-id="VI">Western Visayas</option>
+                                    <option data-region-id="VII">Central Visayas</option>
+                                    <option data-region-id="VIII">Eastern Visayas</option>
+                                </optgroup>
+
+                                <optgroup label="Mindanao">
+                                    <option data-region-id="IX">Zamboanga Peninsula</option>
+                                    <option data-region-id="X">Northern Mindanao</option>
+                                    <option data-region-id="XI">Davao</option>
+                                    <option data-region-id="XII">SOCCSKSARGEN</option>
+                                    <option data-region-id="XIII">CARAGA</option>
+                                    <option data-region-id="ARMM">ARMM</option>
+                                </optgroup>
+                            </select>
+                        </div> <!--END LEGEND-->
                     </div> <!--MAP-->
+                    
+                    <div id="info">
+                        <div id="current">
+                            <h2>Dumaguete City</h2>
+                            <a href="#">change station</a>
+                            <h4>Current Readings:</h4>
+                            <p>last updated: 8:06AM</p>
+                            <div class="readings">
+                                <h3>27.6&#8451;</h3>
+                                <img class="small" src="theme/weatherph/img/sunny.png" alt="sunny" />
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td>Wind</td>
+                                            <td>12km/h</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Precip.</td>
+                                            <td>0.8 l/m</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Hum.</td>
+                                            <td>79%</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                            <div class="detail-page-link">
+                                <h2>More Details<h2>
+                            </div>
+                            <div class="day-forecast">
+                                <ul>
+                                    <li>
+                                        <div class="readings">
+                                            <h3>27.6&#8451;</h3>
+                                            <img class="small" src="theme/weatherph/img/sunny.png" alt="sunny" />
+                                            <table>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Wind</td>
+                                                        <td>12km/h</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Precip.</td>
+                                                        <td>0.8 l/m</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Humidity</td>
+                                                        <td>79%</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="readings">
+                                            <h3>27.6&#8451;</h3>
+                                            <img class="small" src="theme/weatherph/img/sunny.png" alt="sunny" />
+                                            <table>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Wind</td>
+                                                        <td>12km/h</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Precip.</td>
+                                                        <td>0.8 l/m</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Humidity</td>
+                                                        <td>79%</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="readings">
+                                            <h3>27.6&#8451;</h3>
+                                            <img class="small" src="theme/weatherph/img/sunny.png" alt="sunny" />
+                                            <table>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Wind</td>
+                                                        <td>12km/h</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Precip.</td>
+                                                        <td>0.8 l/m</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Humidity</td>
+                                                        <td>79%</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="readings">
+                                            <h3>27.6&#8451;</h3>
+                                            <img class="small" src="theme/weatherph/img/sunny.png" alt="sunny" />
+                                            <table>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Wind</td>
+                                                        <td>12km/h</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Precip.</td>
+                                                        <td>0.8 l/m</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Humidity</td>
+                                                        <td>79%</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="readings">
+                                            <h3>27.6&#8451;</h3>
+                                            <img class="small" src="theme/weatherph/img/sunny.png" alt="sunny" />
+                                            <table>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Wind</td>
+                                                        <td>12km/h</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Precip.</td>
+                                                        <td>0.8 l/m</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Humidity</td>
+                                                        <td>79%</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="readings">
+                                            <h3>27.6&#8451;</h3>
+                                            <img class="small" src="theme/weatherph/img/sunny.png" alt="sunny" />
+                                            <table>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Wind</td>
+                                                        <td>12km/h</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Precip.</td>
+                                                        <td>0.8 l/m</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Humidity</td>
+                                                        <td>79%</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="readings">
+                                            <h3>27.6&#8451;</h3>
+                                            <img class="small" src="theme/weatherph/img/sunny.png" alt="sunny" />
+                                            <table>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Wind</td>
+                                                        <td>12km/h</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Precip.</td>
+                                                        <td>0.8 l/m</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Humidity</td>
+                                                        <td>79%</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                    </div> <!--INFO-->
+                    
                 </section> <!--MAIN CONTENT-->
 
                 <section class="secondary">
@@ -211,16 +318,15 @@
                         </p>
                     </div>
                     
-                    <div class="twitter">
+                    <div class="news">
                         <h4>Breaking News</h4>
                         <ul>
-                            <li><img class="small" src="theme/weatherph/img/thumbnail.png"/>Sunny day today. Please continue donating!</li>
-                            <li><img class="small" src="theme/weatherph/img/thumbnail.png"/>Cloudy for the rest of the day in Manila. Help flood victims!</li>
-                            <li><img class="small" src="theme/weatherph/img/thumbnail.png"/>Flooding at Espana. Avoid going there.</li>
-                            <li><img class="small" src="theme/weatherph/img/thumbnail.png"/>Watch out later! It's gonna be stormy tonight.</li>
-                            <li><img class="small" src="theme/weatherph/img/thumbnail.png"/>Bembang enters Philippine area of responsibility</li>
+                            <li><img class="small" src="theme/weatherph/img/thumbnail.png"/><p>Breaking News</p></li>
+                            <li><img class="small" src="theme/weatherph/img/thumbnail.png"/><p>Weather TV</p></li>
+                            <li><img class="small" src="theme/weatherph/img/thumbnail.png"/><p>Mike Padua: Typhoons, Explained</p></li>
+                            <li><img class="small" src="theme/weatherph/img/thumbnail.png"/><p>Meteomedia Weather Shop</p></li>
+                            <li><img class="small" src="theme/weatherph/img/thumbnail.png"/><p>Webcams</p></li>
                         </ul>
-                        <h6 class="center clear">Follow us on Twitter to get updates right in your timeline</h6>
                     </div>
                 </section> <!--SECONDARY-->
             </div> <!--CONTENT-->

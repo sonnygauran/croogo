@@ -59,19 +59,20 @@ map.geomap({
             var name = this.name;
             $stations = new Array();
 
-            $.ajax({
-                type:     'GET',
-                url :     '/weatherph/weatherph/getReadings/'+this.id,
-                cache:    false,
-                success: function(readings) {
-                    var $stationReadings = readings; // the complete retrieved stations
-
-                    $('.details .ort1 dt').html(name);
-                    $('.details .temperature .output').html($stationReadings.tl);
-                    $('.details .wind_speed .output').html($stationReadings.ff);
-                    $('.details .humidity .output').html($stationReadings.rr10m);
-                }
-            });
+//            $.ajax({
+//                type:     'GET',
+//                url :     '/weatherph/weatherph/getReadings/'+this.id,
+//                cache:    false,
+//                success: function(readings) {
+//                    var $stationReadings = readings; // the complete retrieved stations
+//
+//                    $('.details .ort1 dt').html(name);
+//                    $('.details .temperature .output').html($stationReadings.tl);
+//                    $('.details .wind_speed .output').html($stationReadings.ff);
+//                    $('.details .humidity .output').html($stationReadings.rr10m);
+//                }
+//            });
+//commented out for the meanwhile due to markup changes
             return;
         });
     }

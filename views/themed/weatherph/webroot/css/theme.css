@@ -41,7 +41,7 @@ margin: 0 auto;
 }
 
 .main, .secondary {
-    margin: 10px;
+    margin: 10px 0;
 }
 
 /*====================
@@ -115,7 +115,7 @@ nav li + li, .layerSelector li + li {
 ====================*/
 #map {
     float: left;
-    width: 748px;
+    width: 554px;
     height: 600px;
     margin: 10px;
 }
@@ -136,12 +136,11 @@ nav li + li, .layerSelector li + li {
 
 #overlay {
     width: 172px;
-    position: absolute !important;
-    top: 30px;
-    right: 5px;
+    float: left;
     padding: 10px;
+    margin-top: 10px;
     border-radius: 5px;
-    background: rgba(255,255,255,.7);
+    background: #2D4070;
 }
 
 #map .layerSelector ul, #legend ul {
