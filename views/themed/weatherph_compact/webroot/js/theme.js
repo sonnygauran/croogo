@@ -67,13 +67,13 @@ map.geomap({
             type:     'GET',
             url :     '/weatherph/weatherph/getReadings/'+this.id,
             cache:    false,
-            success: function(readings) {
+            success:  function(readings) {
                 var $stationReadings = readings; // the complete retrieved stations
-                
-                $('.details .ort1 dd').html($stationReadings.ort1);
-                $('.details .temperature .output').html($stationReadings.tl);
-                $('.details .wind_speed .output').html($stationReadings.ff);
-                $('.details .humidity .output').html($stationReadings.rr10m);
+                $('.current.readings-location').html($stationReadings.ort1);
+                $('.current.temperature').html($stationReadings.tl);
+                $('.current.wind').html($stationReadings.ff + "/" +$stationReadings.dd);
+                $('.current.precipitation').html($stationReadings.rrr1);
+                $('.current.humidity').html($stationReadings.rr10m);
             }
         });
         return;

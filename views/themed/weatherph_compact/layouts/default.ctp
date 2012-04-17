@@ -43,34 +43,20 @@
             </header> <!--BANNER-->
 
             <nav>
-                <ul class="dropdown">
-                    <li>
-                        <a href="#">Local Weather &#9662;</a>
-                        <ul>
-                            <li><a href="#">Travel Advisories</a></li>
-                            <li><a href="#">Severe Weather Warnings</a></li>
-                        </ul>
-                    <li>
-                        <a href="#">Detailed Weather Reports &#9662;</a>
-                        <ul>
-                            <li><a href="#">Weather Stations</a></li>
-                            <li><a href="#">Weather for Professionals</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#">Resources &#9662;</a>
-                        <ul>
-                            <li><a href="#">Mr. Typhoon's Weather Blog</a></li>
-                            <li><a href="#">FAQ</a></li>
-                            <li><a href="#">Glossary</a></li>
-                        </ul>
-                    </li>
+                <ul>
+                    <li><a href="#">Travel Advisories</a></li>
+                    <li><a href="#">Severe Weather Warnings</a></li>
+                    <li><a href="#">Weather Stations</a></li>
+                    <li><a href="#">Weather for Professionals</a></li>
+                    <li><a href="#">Mr. Typhoon's Weather Blog</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Glossary</a></li>
                 </ul>
             </nav>
 
             <div id="content">
                 <section class="main">
-                    <div id="map">
+                    <div id="map-container">
                         <div class="layerSelector">
                             <ul>
                                 <li><a href="#">Wind</a></li>
@@ -80,72 +66,76 @@
                                 <li><a href="#">View more layers</a></li>
                             </ul>
                         </div> <!--LAYER SELECTOR-->
+                        <div id="map"></div>
+                        
                         <div id="legend">
-                            <h6>Province:</h6>
-                            <select name="philippine-regions">
-                                <option>Choose one...</option>
-                                <optgroup label="Luzon">
-                                    <option data-region-id="NCR">NCR</option>
-                                    <option data-region-id="CAR">CAR</option>
-                                    <option data-region-id="I">Ilocos</option>
-                                    <option data-region-id="II">Cagayan Valley</option>
-                                    <option data-region-id="III">Central Luzon</option>
-                                    <option data-region-id="IVa">CALABARZON</option>
-                                    <option data-region-id="IVb">MIMAROPA</option>
-                                    <option data-region-id="V">Bicol</option>
-                                </optgroup>
+                            <div id="province-select">
+                                <h6>Province:</h6>
+                                <select name="philippine-regions">
+                                    <option>Choose one...</option>
+                                    <optgroup label="Luzon">
+                                        <option data-region-id="NCR">NCR</option>
+                                        <option data-region-id="CAR">CAR</option>
+                                        <option data-region-id="I">Ilocos</option>
+                                        <option data-region-id="II">Cagayan Valley</option>
+                                        <option data-region-id="III">Central Luzon</option>
+                                        <option data-region-id="IVa">CALABARZON</option>
+                                        <option data-region-id="IVb">MIMAROPA</option>
+                                        <option data-region-id="V">Bicol</option>
+                                    </optgroup>
 
-                                <optgroup label="Visayas">
-                                    <option data-region-id="VI">Western Visayas</option>
-                                    <option data-region-id="VII">Central Visayas</option>
-                                    <option data-region-id="VIII">Eastern Visayas</option>
-                                </optgroup>
+                                    <optgroup label="Visayas">
+                                        <option data-region-id="VI">Western Visayas</option>
+                                        <option data-region-id="VII">Central Visayas</option>
+                                        <option data-region-id="VIII">Eastern Visayas</option>
+                                    </optgroup>
 
-                                <optgroup label="Mindanao">
-                                    <option data-region-id="IX">Zamboanga Peninsula</option>
-                                    <option data-region-id="X">Northern Mindanao</option>
-                                    <option data-region-id="XI">Davao</option>
-                                    <option data-region-id="XII">SOCCSKSARGEN</option>
-                                    <option data-region-id="XIII">CARAGA</option>
-                                    <option data-region-id="ARMM">ARMM</option>
-                                </optgroup>
-                            </select>
+                                    <optgroup label="Mindanao">
+                                        <option data-region-id="IX">Zamboanga Peninsula</option>
+                                        <option data-region-id="X">Northern Mindanao</option>
+                                        <option data-region-id="XI">Davao</option>
+                                        <option data-region-id="XII">SOCCSKSARGEN</option>
+                                        <option data-region-id="XIII">CARAGA</option>
+                                        <option data-region-id="ARMM">ARMM</option>
+                                    </optgroup>
+                                </select>
+                            </div> <!--END PROVINCE SELECT-->
                         </div> <!--END LEGEND-->
-                    </div> <!--MAP-->
-                    
+                    </div>
                     <div id="info">
-                        <div id="current">
-                            <h2>Dumaguete City</h2>
+                        <div id="current-readings-panel">
+                            <h2 class="current readings-location">&nbsp;</h2>
                             <a href="#">change station</a>
                             <h4>Current Readings:</h4>
                             <p>last updated: 8:06AM</p>
+                        </div>
                             <div class="readings">
-                                <h3>27.6&#8451;</h3>
+                                <h3 class="current temperature">&nbsp;</h3>
                                 <img class="small" src="theme/weatherph/img/sunny.png" alt="sunny" />
                                 <table>
                                     <tbody>
                                         <tr>
                                             <td>Wind</td>
-                                            <td>12km/h</td>
+                                            <td class="current wind">&nbsp;</td>
                                         </tr>
                                         <tr>
                                             <td>Precip.</td>
-                                            <td>0.8 l/m</td>
+                                            <td class="current precipitation">&nbsp;</td>
                                         </tr>
                                         <tr>
-                                            <td>Hum.</td>
-                                            <td>79%</td>
+                                            <td>Humidity</td>
+                                            <td class="current humidity">&nbsp;</td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
-                        </div>
                             <div class="detail-page-link">
                                 <h2>More Details<h2>
                             </div>
                             <div class="day-forecast">
                                 <ul>
                                     <li>
+                                        <h6 class="time">8:00AM</h6>
                                         <div class="readings">
                                             <h3>27.6&#8451;</h3>
                                             <img class="small" src="theme/weatherph/img/sunny.png" alt="sunny" />
@@ -168,6 +158,7 @@
                                         </div>
                                     </li>
                                     <li>
+                                        <h6 class="time">8:00AM</h6>
                                         <div class="readings">
                                             <h3>27.6&#8451;</h3>
                                             <img class="small" src="theme/weatherph/img/sunny.png" alt="sunny" />
@@ -190,6 +181,7 @@
                                         </div>
                                     </li>
                                     <li>
+                                        <h6 class="time">8:00AM</h6>
                                         <div class="readings">
                                             <h3>27.6&#8451;</h3>
                                             <img class="small" src="theme/weatherph/img/sunny.png" alt="sunny" />
@@ -212,6 +204,7 @@
                                         </div>
                                     </li>
                                     <li>
+                                        <h6 class="time">8:00AM</h6>
                                         <div class="readings">
                                             <h3>27.6&#8451;</h3>
                                             <img class="small" src="theme/weatherph/img/sunny.png" alt="sunny" />
@@ -234,6 +227,7 @@
                                         </div>
                                     </li>
                                     <li>
+                                        <h6 class="time">8:00AM</h6>
                                         <div class="readings">
                                             <h3>27.6&#8451;</h3>
                                             <img class="small" src="theme/weatherph/img/sunny.png" alt="sunny" />
@@ -256,6 +250,7 @@
                                         </div>
                                     </li>
                                     <li>
+                                        <h6 class="time">8:00AM</h6>
                                         <div class="readings">
                                             <h3>27.6&#8451;</h3>
                                             <img class="small" src="theme/weatherph/img/sunny.png" alt="sunny" />
@@ -278,6 +273,7 @@
                                         </div>
                                     </li>
                                     <li>
+                                        <h6 class="time">8:00AM</h6>
                                         <div class="readings">
                                             <h3>27.6&#8451;</h3>
                                             <img class="small" src="theme/weatherph/img/sunny.png" alt="sunny" />
@@ -346,6 +342,7 @@
                             <li><?php echo $this->Html->image('SGS.jpg'); ?></li>
                             <li><?php echo $this->Html->image('vistaland.jpg'); ?></li>
                             <li><?php echo $this->Html->image('NGCP.png'); ?></li>
+                            <li><?php echo $this->Html->image('sumitomo.png'); ?></li>
                         </ul>
                     </div>
                 </div>
