@@ -131,10 +131,25 @@ div#legend {
     -moz-border-radius-bottomleft: 5px;
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
+    overflow: auto;
+}
+
+div#legend > img {
+    float:left;
+}
+
+div#province-select {
+    float: left;
 }
 
 div#province-select > h6 {
     display: inline;
+    padding: 0 10px;
+}
+
+div#province-select > select {
+    width: 70px;
+    margin-right: 10px;
 }
 
 /*====================

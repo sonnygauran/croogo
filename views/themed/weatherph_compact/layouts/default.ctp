@@ -69,6 +69,7 @@
                         <div id="map"></div>
                         
                         <div id="legend">
+                            <img src ="theme/weatherph_compact/img/timeline.png"/>
                             <div id="province-select">
                                 <h6>Province:</h6>
                                 <select name="philippine-regions">
@@ -100,6 +101,7 @@
                                     </optgroup>
                                 </select>
                             </div> <!--END PROVINCE SELECT-->
+                            <img src ="theme/weatherph_compact/img/legend.png"/>
                         </div> <!--END LEGEND-->
                     </div>
                     <div id="info">

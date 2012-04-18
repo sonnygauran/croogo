@@ -1,6 +1,6 @@
 <?php
 /**
- * Weatherph Compact
+ * Weatherph Detail
  *
  * @author Martin de Lima <mdelima@meteomedia.com.ph>
  * @link http://www.weather.com.ph
@@ -35,71 +35,22 @@
             <header class="banner clear">    
                 <h1 class="logo">weather | philippines</h1>
                 
-                <nav>
-                    <ul>
-                        <li>
-                            <form class="search">
-                                Search: <input type="text" name="city" size="15" />
-                            </form>
-                        </li>
-                        <li>
-                        Select by region:
-                        <select name="philippine-regions">
-                            <option>Choose one...</option>
-
-                            <optgroup label="Luzon">
-                                <option data-region-id="NCR">NCR</option>
-                                <option data-region-id="CAR">CAR</option>
-                                <option data-region-id="I">Ilocos</option>
-                                <option data-region-id="II">Cagayan Valley</option>
-                                <option data-region-id="III">Central Luzon</option>
-                                <option data-region-id="IVa">CALABARZON</option>
-                                <option data-region-id="IVb">MIMAROPA</option>
-                                <option data-region-id="V">Bicol</option>
-                            </optgroup>
-
-                            <optgroup label="Visayas">
-                                <option data-region-id="VI">Western Visayas</option>
-                                <option data-region-id="VII">Central Visayas</option>
-                                <option data-region-id="VIII">Eastern Visayas</option>
-                            </optgroup>
-
-                            <optgroup label="Mindanao">
-                                <option data-region-id="IX">Zamboanga Peninsula</option>
-                                <option data-region-id="X">Northern Mindanao</option>
-                                <option data-region-id="XI">Davao</option>
-                                <option data-region-id="XII">SOCCSKSARGEN</option>
-                                <option data-region-id="XIII">CARAGA</option>
-                                <option data-region-id="ARMM">ARMM</option>
-                            </optgroup>
-                        </select>
-                    </li>
-                </nav>
+                <div id="options">
+                    <form class="search">
+                        Search: <input type="text" name="city" size="15" />
+                    </form>
+                </div>
             </header> <!--BANNER-->
 
             <nav>
-                <ul class="dropdown">
-                    <li>
-                        <a href="#">Local Weather &#9662;</a>
-                        <ul>
-                            <li><a href="#">Travel Advisories</a></li>
-                            <li><a href="#">Severe Weather Warnings</a></li>
-                        </ul>
-                    <li>
-                        <a href="#">Detailed Weather Reports &#9662;</a>
-                        <ul>
-                            <li><a href="#">Weather Stations</a></li>
-                            <li><a href="#">Weather for Professionals</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#">Resources &#9662;</a>
-                        <ul>
-                            <li><a href="#">Mr. Typhoon's Weather Blog</a></li>
-                            <li><a href="#">FAQ</a></li>
-                            <li><a href="#">Glossary</a></li>
-                        </ul>
-                    </li>
+                <ul>
+                    <li><a href="#">Travel Advisories</a></li>
+                    <li><a href="#">Severe Weather Warnings</a></li>
+                    <li><a href="#">Weather Stations</a></li>
+                    <li><a href="#">Weather for Professionals</a></li>
+                    <li><a href="#">Mr. Typhoon's Weather Blog</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Glossary</a></li>
                 </ul>
             </nav>
 
@@ -108,10 +59,10 @@
                     <div id="currentWeather">
                         <div id="station">
                             <h1>Makati</h1>
-                            <h6>Current readings from:</h6>
+                            <br/><br/>
+                            <p>Current readings from:</p>
                             <h6>Salcedo weather station</h6>
-                            <br/>
-                            <h6>change station</h6>
+                            <p>change station</p>
                         </div> <!--END STATION-->
                         
                         <div id="condition">
@@ -152,11 +103,11 @@
                         
                         <div class="tabs">
                             <ul>
-                                <li>Today</li>
-                                <li>Saturday</li>
-                                <li>Sunday</li>
-                                <li>Monday</li>
-                                <li>Tuesday</li>
+                                <li class="currentTab"><a href="#">Today</a></li>
+                                <li><a href="#">Saturday</a></li>
+                                <li><a href="#">Sunday</a></li>
+                                <li><a href="#">Monday</a></li>
+                                <li><a href="#">Tuesday</a></li>
                             </ul>
                         </div> <!--END TABS-->
                         
@@ -222,32 +173,32 @@
 
                 <section class="secondary">
                     <div id="charts">
+                        <h4>Detailed Forecasts</h4>
                         <div class="tabs">
-                            <h4>Detailed Forecasts</h4>
                             <ul>
-                                <li>Temperature</li>
-                                <li>Precipitation</li>
-                                <li>Wind</li>
-                                <li>Humidity</li>
+                                <li class="currentTab"><a href="#">Temperature</a></li>
+                                <li><a href="#">Precipitation</a></li>
+                                <li><a href="#">Wind</a></li>
+                                <li><a href="#">Humidity</a></li>
                             </ul>
                         </div> <!--END TABS-->
                     </div> <!--END CHARTS-->
                     
                     <div id="outlook">
+                        <h4>15-Day Outlook</h4>
                         <div class="tabs">
-                            <h4>Detailed Forecasts</h4>
                             <ul>
-                                <li>Temperature</li>
-                                <li>Precipitation</li>
-                                <li>Wind</li>
+                                <li class="currentTab"><a href="#">Temperature</a></li>
+                                <li><a href="#">Precipitation</a></li>
+                                <li><a href="#">Wind</a></li>
                             </ul>
                         </div> <!--END TABS-->
                     </div> <!--END OUTLOOK-->
                 </section> <!--SECONDARY-->
-
             </div> <!--CONTENT-->
 
             <aside id="sidebar">
+
                 <div id="sponsors">
                     <div class="sponsored center">
                         <h6>Powered by:</h6>
@@ -261,6 +212,7 @@
                             <li><?php echo $this->Html->image('SGS.jpg'); ?></li>
                             <li><?php echo $this->Html->image('vistaland.jpg'); ?></li>
                             <li><?php echo $this->Html->image('NGCP.png'); ?></li>
+                            <li><?php echo $this->Html->image('sumitomo.png'); ?></li>
                         </ul>
                     </div>
                 </div>
@@ -282,7 +234,7 @@
                         </p>
                     </div>
                 </div>
-            </aside> <!--END SIDEBAR-->
+            </aside>
         
             <footer>
                 <div class="countrySelect">
