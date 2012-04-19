@@ -312,39 +312,4 @@ var $boxMap = [
 				//.append();
 				
           });
-
-/*
-        var $widther = 220;    
-        var resizeTimer;
-        
-        resizeTimer = setTimeout(    function resizeIt(){
-            console.log($(window).width());
-            if ($(window).width() <= 1024) {
-                $('#map').css('width', '810px');
-            } else {
-                $('#map').css('width', '720px');
-            }
-            
-            $('.geo-content-frame').css('width', $('#map').css('width'));        
-            clearTimeout(resizeTimer);
-        }, 100);
-    
-        
-        $(window).resize(function() {
-            resizeTimer = setTimeout(    function resizeIt(){
-                console.log($(window).width());
-                if ($(window).width() <= '1024px') {
-                    $('#map').css('width', '814px');
-                } else {
-                    $('#map').css('width', '720px');
-                }
-                
-                $('.geo-content-frame').css('width', $('#map').css('width'));        
-                clearTimeout(resizeTimer);
-            }, 100);
-    
-        });
-//widther has been commented out for the meanwhile as it breaks the layout upon initial load.
-*/	  
-
 });

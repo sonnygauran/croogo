@@ -144,8 +144,8 @@ nav li > a {
     TABS
 ===============*/
 
-.tabs {
-    margin: 10px 0;
+ul.tabs {
+    margin-top: 1em;
     border-bottom: 15px solid #2E4771;
 }
 
@@ -161,10 +161,18 @@ nav li > a {
     text-decoration: none;
 }
 
-.tabs li.currentTab {
+.tabs li.current-tab {
     border-top: 1px solid red;
     background: #2E4771;
     color: #fafafa;
+}
+
+div.tab{
+    display: none;
+}
+
+div.current-tab {
+    display: block;
 }
 
 /*===============
@@ -203,10 +211,9 @@ aside#sidebar {
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 8px;
-    text-align: center;
 }
 
-.promo p {
+.promo > p {
     text-align: left;
 }
 

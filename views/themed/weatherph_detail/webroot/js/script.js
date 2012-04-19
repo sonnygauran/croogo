@@ -1,26 +1,13 @@
-
-$(function(){
-
-//	var map = $(map).geomap( "option", "bbox", [ -122, 42, -118, 46 ] );
-	var map = $('#map').geomap( {
-		zoom: 8,
-		center: [ 121.019825, 14.557263 ],
-	});
+$(document).ready(function(){
+ $('ul.tabs a').click(function() {
+  var curChildIndex = $(this).parent().prevAll().length + 1;
+  $(this).parent().parent().children('.current-tab').removeClass('current-tab');
+  $(this).parent().addClass('current-tab');
+  $(this).parent().parent().next('.tabs').children('.current-tab').slideUp('fast',function() {
+   $(this).removeClass('current-tab');
+   $(this).parent().children('div:nth-child('+curChildIndex+')').slideDown('normal',function() {
+    $(this).addClass('current-tab');
+   });
+  });
+ });
 });
-
-
-
-
-
-
-
-
-
-/*
-(function(){
-	var map = $("#map").geomap({
-	center: [ 121.019825, 14.557263 ],
-	zoom: 6,
-	});
-})
-*/
