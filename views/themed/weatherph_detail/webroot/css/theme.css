@@ -237,12 +237,12 @@ footer > .legal, footer > .countrySelect {
 
 .legal {
     float: right;
-    width: 364px;
+    width: 480px;
 }
 
 .countrySelect {
     float:left;
-    width: 556px;
+    width: 480px;
 }
 
 .legal li {

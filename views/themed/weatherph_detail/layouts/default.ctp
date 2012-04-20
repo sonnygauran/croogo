@@ -26,7 +26,8 @@
             'jquery/supersubs',
             'theme',
             'script',
-            'anychart',
+            'AnyChart',
+            'AnyChartHTML5',
             'libs/jquery.geo-1.0a4',
         ));
         echo $scripts_for_layout;
@@ -409,14 +410,14 @@
                             <div class="current-tab">
                                 <script type="text/javascript" language="javascript"> 
                                 //<![CDATA[
-                                AnyChart.renderingType = anychart.RenderingType.SVG_PREFERRED; 
-                                var chart = new AnyChart(); 
-                                chart.width = 750; 
-                                chart.height = 300; 
-                                chart.setXMLFile('./anychart.xml'); 
-                                chart.write(); 
-                                //]]> 
-                                </script> 
+                                AnyChart.renderingType = anychart.RenderingType.SVG_ONLY; 
+                                var chart = new AnyChart();
+                                chart.width = 800;
+                                chart.height = 300;
+                                chart.setXMLFile('/anychart.xml');
+                                chart.write();
+                                //]]>
+                                </script>
                             </div>
                         </div>
                     </div> <!--END CHARTS-->
