@@ -147,7 +147,7 @@ div#legend {
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
     overflow: auto;
-    border: solid 1px #2E4771;
+    border: solid 1px #2F4771;
 }
 
 div#legend > img {
@@ -174,7 +174,7 @@ div#info {
     width: 238px;
     float:left;
     border-radius: 5px;
-    border: 1px solid #2E4771;
+    border: 1px solid #2F4771;
 }
 
 #info a {
@@ -221,7 +221,7 @@ div.readings {
 
 .day-forecast li:nth-child(odd) {
     background-color: #fafafa;
-    color: #2E4771;
+    color: #2F4771;
 }
 
 /*====================
@@ -391,27 +391,27 @@ div#info {
 ========================================*/
 
 html {
-    color: #2E4771;
+    color: #2F4771;
 }
 
 .banner {
     color: #fafafa;
-    background:#43597E url(../img/banner.png) top left no-repeat;
+    background:#43597C url(../img/banner.png) top left no-repeat;
 }
 
 nav, .layerSelector, .promo, #info {
-    background: #2E4771;
+    background: #2F4771;
     color: #fafafa;
 }
 
 #info > div.readings {
-    background-color: #772b76;
+    background-color: #723A71;
     margin-bottom: 0;
     border-top: 1px solid black;
 }
 
 .detail-page-link {
-    background: #43597E;
+    background: #43597C;
     color: #fafafa;
 }
 
@@ -430,16 +430,11 @@ nav, .layerSelector, .promo, #info {
     clear: both;
 }
 
-.small {
-    width: 36px;
-    height: 36px;
-}
-
 .output {
     text-align: center;
     font-size: 1em;
     font-weight: bold;
-    background-color: #2E4771;
+    background-color: #2F4771;
     color: #fafafa;
 }
 
