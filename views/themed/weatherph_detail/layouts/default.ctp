@@ -39,21 +39,22 @@
                 <h1 class="logo">weather | philippines</h1>
                 
                 <div id="options">
+                    <img src="theme/weatherph_compact/img/flag.png" alt="Philippines" />
                     <form class="search">
-                        Search: <input type="text" name="city" size="15" />
+                        Weather Search: <input type="text" name="city" size="15" />
+                        <img src="theme/weatherph_compact/img/search.png" alt="" />
                     </form>
+                    
                 </div>
             </header> <!--BANNER-->
 
             <nav>
                 <ul>
-                    <li><a href="#">Travel Advisories</a></li>
-                    <li><a href="#">Severe Weather Warnings</a></li>
-                    <li><a href="#">Weather Stations</a></li>
-                    <li><a href="#">Weather for Professionals</a></li>
-                    <li><a href="#">Mr. Typhoon's Weather Blog</a></li>
-                    <li><a href="#">FAQ</a></li>
-                    <li><a href="#">Glossary</a></li>
+                    <li><a href="#">Typhoon Preparedness</a></li>
+                    <li><a href="#">Typhoon Climatology</a></li>
+                    <li><a href="#">Typhoon Glossary</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Impressum</a></li>
                 </ul>
             </nav>
 
@@ -69,7 +70,7 @@
                         </div> <!--END STATION-->
                         
                         <div id="condition">
-                            <img src="theme/weatherph/img/cloudy1.png"/>
+                            <img src="theme/weatherph_detail/img/cloudy1.png"/>
                             <div class="condition-text"> 
                                 <h3>Partly Cloudy</h3>
                                 <h2>31&deg;C</h2>
@@ -116,7 +117,7 @@
                             <table class="week-forecast" cellspacing="0">
                                     <tbody>
                                         <tr class="time">
-                                            <td class="caption"></td>
+                                            <td class="caption">Time</td>
                                             <td>8:00</td>
                                             <td>11:00</td>
                                             <td>14:00</td>
@@ -127,13 +128,13 @@
                                         </tr>
                                         <tr class="condition">
                                         <td class="caption">Condition</td>
-                                            <td><img class="medium" src="theme/weatherph/img/sunny.png" alt="sunny" /></td>
-                                            <td><img class="medium" src="theme/weatherph/img/sunny.png" alt="sunny" /></td>
-                                            <td><img class="medium" src="theme/weatherph/img/sunny.png" alt="sunny" /></td>
-                                            <td><img class="medium" src="theme/weatherph/img/sunny.png" alt="sunny" /></td>
-                                            <td><img class="medium" src="theme/weatherph/img/sunny.png" alt="sunny" /></td>
-                                            <td><img class="medium" src="theme/weatherph/img/sunny.png" alt="sunny" /></td>
-                                            <td><img class="medium" src="theme/weatherph/img/sunny.png" alt="sunny" /></td>
+                                            <td><img class="medium" src="theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
+                                            <td><img class="medium" src="theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
+                                            <td><img class="medium" src="theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
+                                            <td><img class="medium" src="theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
+                                            <td><img class="medium" src="theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
+                                            <td><img class="medium" src="theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
+                                            <td><img class="medium" src="theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
                                         </tr>
                                         <tr class="temperature">
                                         <td class="caption">Temperature</td>
@@ -183,13 +184,13 @@
                                         </tr>
                                         <tr class="condition">
                                         <td class="caption">Condition</td>
-                                            <td><img class="medium" src="theme/weatherph/img/sunny.png" alt="sunny" /></td>
-                                            <td><img class="medium" src="theme/weatherph/img/sunny.png" alt="sunny" /></td>
-                                            <td><img class="medium" src="theme/weatherph/img/sunny.png" alt="sunny" /></td>
-                                            <td><img class="medium" src="theme/weatherph/img/sunny.png" alt="sunny" /></td>
-                                            <td><img class="medium" src="theme/weatherph/img/sunny.png" alt="sunny" /></td>
-                                            <td><img class="medium" src="theme/weatherph/img/sunny.png" alt="sunny" /></td>
-                                            <td><img class="medium" src="theme/weatherph/img/sunny.png" alt="sunny" /></td>
+                                            <td><img class="medium" src="theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
+                                            <td><img class="medium" src="theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
+                                            <td><img class="medium" src="theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
+                                            <td><img class="medium" src="theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
+                                            <td><img class="medium" src="theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
+                                            <td><img class="medium" src="theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
+                                            <td><img class="medium" src="theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
                                         </tr>
                                         <tr class="temperature">
                                         <td class="caption">Temperature</td>
@@ -239,13 +240,13 @@
                                         </tr>
                                         <tr class="condition">
                                         <td class="caption">Condition</td>
-                                            <td><img class="medium" src="theme/weatherph/img/sunny.png" alt="sunny" /></td>
-                                            <td><img class="medium" src="theme/weatherph/img/sunny.png" alt="sunny" /></td>
-                                            <td><img class="medium" src="theme/weatherph/img/sunny.png" alt="sunny" /></td>
-                                            <td><img class="medium" src="theme/weatherph/img/sunny.png" alt="sunny" /></td>
-                                            <td><img class="medium" src="theme/weatherph/img/sunny.png" alt="sunny" /></td>
-                                            <td><img class="medium" src="theme/weatherph/img/sunny.png" alt="sunny" /></td>
-                                            <td><img class="medium" src="theme/weatherph/img/sunny.png" alt="sunny" /></td>
+                                            <td><img class="medium" src="theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
+                                            <td><img class="medium" src="theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
+                                            <td><img class="medium" src="theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
+                                            <td><img class="medium" src="theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
+                                            <td><img class="medium" src="theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
+                                            <td><img class="medium" src="theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
+                                            <td><img class="medium" src="theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
                                         </tr>
                                         <tr class="temperature">
                                         <td class="caption">Temperature</td>
@@ -295,13 +296,13 @@
                                         </tr>
                                         <tr class="condition">
                                         <td class="caption">Condition</td>
-                                            <td><img class="medium" src="theme/weatherph/img/sunny.png" alt="sunny" /></td>
-                                            <td><img class="medium" src="theme/weatherph/img/sunny.png" alt="sunny" /></td>
-                                            <td><img class="medium" src="theme/weatherph/img/sunny.png" alt="sunny" /></td>
-                                            <td><img class="medium" src="theme/weatherph/img/sunny.png" alt="sunny" /></td>
-                                            <td><img class="medium" src="theme/weatherph/img/sunny.png" alt="sunny" /></td>
-                                            <td><img class="medium" src="theme/weatherph/img/sunny.png" alt="sunny" /></td>
-                                            <td><img class="medium" src="theme/weatherph/img/sunny.png" alt="sunny" /></td>
+                                            <td><img class="medium" src="theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
+                                            <td><img class="medium" src="theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
+                                            <td><img class="medium" src="theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
+                                            <td><img class="medium" src="theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
+                                            <td><img class="medium" src="theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
+                                            <td><img class="medium" src="theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
+                                            <td><img class="medium" src="theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
                                         </tr>
                                         <tr class="temperature">
                                         <td class="caption">Temperature</td>
@@ -351,13 +352,13 @@
                                         </tr>
                                         <tr class="condition">
                                         <td class="caption">Condition</td>
-                                            <td><img class="medium" src="theme/weatherph/img/sunny.png" alt="sunny" /></td>
-                                            <td><img class="medium" src="theme/weatherph/img/sunny.png" alt="sunny" /></td>
-                                            <td><img class="medium" src="theme/weatherph/img/sunny.png" alt="sunny" /></td>
-                                            <td><img class="medium" src="theme/weatherph/img/sunny.png" alt="sunny" /></td>
-                                            <td><img class="medium" src="theme/weatherph/img/sunny.png" alt="sunny" /></td>
-                                            <td><img class="medium" src="theme/weatherph/img/sunny.png" alt="sunny" /></td>
-                                            <td><img class="medium" src="theme/weatherph/img/sunny.png" alt="sunny" /></td>
+                                            <td><img class="medium" src="theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
+                                            <td><img class="medium" src="theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
+                                            <td><img class="medium" src="theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
+                                            <td><img class="medium" src="theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
+                                            <td><img class="medium" src="theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
+                                            <td><img class="medium" src="theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
+                                            <td><img class="medium" src="theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
                                         </tr>
                                         <tr class="temperature">
                                         <td class="caption">Temperature</td>
@@ -412,7 +413,7 @@
                                 //<![CDATA[
                                 AnyChart.renderingType = anychart.RenderingType.SVG_ONLY; 
                                 var chart = new AnyChart();
-                                chart.width = 800;
+                                chart.width = 554;
                                 chart.height = 300;
                                 chart.setXMLFile('/anychart.xml');
                                 chart.write();
@@ -429,6 +430,7 @@
                             <li><a href="#">Precipitation</a></li>
                             <li><a href="#">Wind</a></li>
                         </ul>
+                        <?php echo $this->Html->image('chart.png'); ?>
                     </div> <!--END OUTLOOK-->
                 </section> <!--SECONDARY-->
             </div> <!--CONTENT-->
@@ -451,11 +453,23 @@
                         </ul>
                     </div>
                 </div>
+                
+                <!-- AddThis Button BEGIN -->
+                <div class="center addthis_toolbox addthis_default_style addthis_32x32_style">
+                <a class="addthis_button_facebook"></a>
+                <a class="addthis_button_twitter"></a>
+                <a class="addthis_button_linkedin"></a>
+                <a class="addthis_button_email"></a>
+                <a class="addthis_button_print"></a>
+                </div>
+                <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4f94bc453ecffca4"></script>
+                <!-- AddThis Button END -->
 
+<!--
                 <div class="ads">
                     <div class="promo">
                         <h4>Visit Boracay!</h4>
-                        <img src="theme/weatherph/img/boracay.jpg" alt="Boracay!"/>
+                        <img src="theme/weatherph_compact/img/boracay.jpg" alt="Boracay!"/>
                         <p>
                             Boracay is an island of the Philippines located approximately 315 km (196 mi) south of Manila. Boracay Island and its beaches have received awards numerous times.
                         </p>
@@ -463,14 +477,15 @@
 
                     <div class="promo">
                         <h4>Discover Pamalican.</h4>
-                        <img src="theme/weatherph/img/pamalican.jpg" alt="Pamalican!"/>
+                        <img src="theme/weatherph_compact/img/pamalican.jpg" alt="Pamalican!"/>
                         <p>
                             Pamalican Island is a small island of the Cuyo Islands in the Sulu Sea.
                         </p>
                     </div>
                 </div>
+-->
             </aside>
-        
+<!--        
             <footer>
                 <div class="countrySelect">
                     <h6>Our severe weather centers</h6>
@@ -505,7 +520,7 @@
                     </ul>
                 </div>
             </footer>
-
+-->
         </section><!-- #container -->
 
         <!--[if lt IE 9]>

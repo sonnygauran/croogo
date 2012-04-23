@@ -67,8 +67,13 @@ div#options {
 
 div#options > img, div#options > form {
     float: right;
+    display: inline;
     clear:both;
     margin-bottom: 10px;
+}
+
+div#options > form > img {
+    vertical-align: middle;
 }
 
 /*====================
@@ -158,6 +163,7 @@ div#province-select > h6, div#province-select > select,
 div#station-color > h6, div#station-color > img {
     display: inline;
     padding: 0 5px;
+    vertical-align: middle;
 }
 
 /*====================
@@ -274,6 +280,10 @@ aside#sidebar {
     margin-bottom: 10px;
     border: 1px solid black;
     border-radius: 8px;
+}
+
+.ads {
+    margin-top: 10px;
 }
 
 .promo {

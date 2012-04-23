@@ -62,7 +62,18 @@ html, body, div, span, object, iframe, h1, h2, h3, dl dt, h4, h5, h6, p, blockqu
 
 div#options {
     float: right;
-    margin: 10px;
+    margin: 50px 10px 10px 10px;
+}
+
+div#options > img, div#options > form {
+    float: right;
+    display: inline;
+    clear:both;
+    margin-bottom: 10px;
+}
+
+div#options > form > img {
+    vertical-align: middle;
 }
 
 /*====================
@@ -82,6 +93,10 @@ nav li {
     display: inline;
     padding: 1em;
     font-size: .875em;
+}
+
+nav li + li {
+    border-left: 1px solid #fafafa;
 }
 
 nav li > a {
@@ -182,7 +197,7 @@ div.current-tab {
 .week-forecast td {
     padding: 1em;
     text-align: center;
-    border: 1px solid white;
+    border: 1px solid #d6dfeb;
 }
 
 .week-forecast .time {
@@ -205,6 +220,10 @@ aside#sidebar {
     margin-bottom: 10px;
     border: 1px solid black;
     border-radius: 8px;
+}
+
+.ads {
+    margin-top: 10px;
 }
 
 .promo {
@@ -320,12 +339,12 @@ html {
     background: #43597E url(../img/banner.png) top left no-repeat;
 }
 
-nav, .layerSelector, #legend, .promo, #currentWeather {
+nav, .layerSelector, #legend, .promo {
     color: #fafafa;
     background-color: #2E4771;
 }
 
-#info, #station, #conditionTable, footer {
+#info, #currentWeather, footer {
     background: #43597E;
     color: #fafafa;
 }

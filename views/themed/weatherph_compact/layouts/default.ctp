@@ -38,8 +38,10 @@
                 <div id="options">
                     <img src="theme/weatherph_compact/img/flag.png" alt="Philippines" />
                     <form class="search">
-                        Search: <input type="text" name="city" size="15" />
+                        Weather Search: <input type="text" name="city" size="15" />
+                        <img src="theme/weatherph_compact/img/search.png" alt="" />
                     </form>
+                    
                 </div>
             </header> <!--BANNER-->
 
@@ -100,9 +102,9 @@
                                 </select>
                             </div> <!--END PROVINCE SELECT-->
                             <div id="station-color">
-                                <img src="theme/weatherph_compact/img/legend-blue.png" alt="Meteomedia stations" />
+                                <img src="theme/weatherph_compact/img/legend-blue.png" alt="" />
                                 <h6>Meteomedia stations</h6>
-                                <img src="theme/weatherph_compact/img/legend-red.png" alt="PAGASA stations" />
+                                <img src="theme/weatherph_compact/img/legend-red.png" alt="" />
                                 <h6>PAGASA stations</h6>
                             </div>
 <!--                            
@@ -317,10 +319,10 @@
                             A typhoon is a mature tropical cyclone that develops in the northwestern part of the Pacific Oceanbetween 180° and 100°E. This region is referred to as the northwest Pacific basin. For organizational purposes, the northern Pacific Ocean is divided into three regions: the eastern (North America to 140°W), central (140°W to 180°), and western (180° to 100°E). Identical phenomena in the eastern north Pacific are called hurricanes, with tropical cyclones moving into the western Pacific re-designated as typhoons. The Regional Specialized Meteorological Center (RSMC) for tropical cyclone forecasts is in Japan, with other tropical cyclone warning centers for the northwest Pacific in Honolulu (the Joint Typhoon Warning Center), the Philippines, and Hong Kong. While the RSMC names each system, the main name list itself is coordinated amongst 18 countries, including the United States, who have territories threatened by typhoons each year. The Philippines uses their own naming list for systems which approach the country.
                         </p>
 
-                        <h4>How do they name typhoons?</h4>
+<!--                        <h4>How do they name typhoons?</h4>
                         <p>
                             The list of names consists of entries from 17 East Asian nations and the United States who have territories directly affected by typhoons. The submitted names are arranged into five lists; and each list is cycled with each year. Unlike tropical cyclones in other parts of the world, typhoons are not named after people. Instead, they generally refer to animals, flowers, astrological signs, and a few personal names. However, PAGASA retains its own naming list, which does consist of human names. Therefore, a typhoon can possibly have two names. Storms that cross the date line from the central Pacific retain their original name, but the designation of hurricane becomes typhoon. In Japan, typhoons are also given a numerical designation according to the sequence of their occurrence in the calendar year.
-                        </p>
+                        </p>-->
                     </div>
 <!--                    
                     <div class="news">
