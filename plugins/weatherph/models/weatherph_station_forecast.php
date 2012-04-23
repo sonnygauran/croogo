@@ -143,7 +143,7 @@ class WeatherphStationForecast extends WeatherphAppModel
             return NULL;
             
         }else{
-            git 
+             
             include dirname(__FILE__) . '/auth.php';
 
             $url = "http://192.168.20.89/abfrage.php?stationidstring=$stationID&ortsinfo=ja&paramtyp=mos_mix_mm&output=html&aufruf=auto";
