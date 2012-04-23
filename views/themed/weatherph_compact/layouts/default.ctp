@@ -317,7 +317,7 @@
                     <div class="posts">
                         <h4>What is a typhoon?</h4>
                         <p>
-                            A typhoon is a mature tropical cyclone that develops in the northwestern part of the Pacific Oceanbetween 180° and 100°E. This region is referred to as the northwest Pacific basin. For organizational purposes, the northern Pacific Ocean is divided into three regions: the eastern (North America to 140°W), central (140°W to 180°), and western (180° to 100°E). Identical phenomena in the eastern north Pacific are called hurricanes, with tropical cyclones moving into the western Pacific re-designated as typhoons. The Regional Specialized Meteorological Center (RSMC) for tropical cyclone forecasts is in Japan, with other tropical cyclone warning centers for the northwest Pacific in Honolulu (the Joint Typhoon Warning Center), the Philippines, and Hong Kong. While the RSMC names each system, the main name list itself is coordinated amongst 18 countries, including the United States, who have territories threatened by typhoons each year. The Philippines uses their own naming list for systems which approach the country.
+                            A typhoon is a mature tropical cyclone that develops in the northwestern part of the Pacific Ocean between 180° and 100°E. This region is referred to as the northwest Pacific basin. For organizational purposes, the northern Pacific Ocean is divided into three regions: the eastern (North America to 140°W), central (140°W to 180°), and western (180° to 100°E). Identical phenomena in the eastern north Pacific are called hurricanes, with tropical cyclones moving into the western Pacific re-designated as typhoons. The Regional Specialized Meteorological Center (RSMC) for tropical cyclone forecasts is in Japan, with other tropical cyclone warning centers for the northwest Pacific in Honolulu (the Joint Typhoon Warning Center), the Philippines, and Hong Kong. While the RSMC names each system, the main name list itself is coordinated amongst 18 countries, including the United States, who have territories threatened by typhoons each year. The Philippines uses their own naming list for systems which approach the country.
                         </p>
 
 <!--                        <h4>How do they name typhoons?</h4>
@@ -325,29 +325,29 @@
                             The list of names consists of entries from 17 East Asian nations and the United States who have territories directly affected by typhoons. The submitted names are arranged into five lists; and each list is cycled with each year. Unlike tropical cyclones in other parts of the world, typhoons are not named after people. Instead, they generally refer to animals, flowers, astrological signs, and a few personal names. However, PAGASA retains its own naming list, which does consist of human names. Therefore, a typhoon can possibly have two names. Storms that cross the date line from the central Pacific retain their original name, but the designation of hurricane becomes typhoon. In Japan, typhoons are also given a numerical designation according to the sequence of their occurrence in the calendar year.
                         </p>-->
                     </div>
-<!--                    
+                    
                     <div class="news">
                         <h4>Breaking News</h4>
                         <ul>
                             <li><img src="theme/weatherph_compact/img/thumbnail.png"/><p>Breaking News</p></li>
-                            <li><img src="theme/weatherph_compact/img/thumbnail.png"/><p>Weather TV</p></li>
-                            <li><img src="theme/weatherph_compact/img/thumbnail.png"/><p>Mike Padua: Typhoons, Explained</p></li>
+                            <li><img src="theme/weatherph_compact/img/thumbnail2.png"/><p>Weather TV</p></li>
+                            <li><img src="theme/weatherph_compact/img/thumbnail3.png"/><p>Mike Padua: Typhoons, Explained</p></li>
                             <li><img src="theme/weatherph_compact/img/thumbnail.png"/><p>Meteomedia Weather Shop</p></li>
-                            <li><img src="theme/weatherph_compact/img/thumbnail.png"/><p>Webcams</p></li>
+                            <li><img src="theme/weatherph_compact/img/thumbnail2.png"/><p>Webcams</p></li>
                         </ul>
                     </div>
--->
+
                 </section> <!--SECONDARY-->
             </div> <!--CONTENT-->
 
             <aside id="sidebar">
                 <div id="sponsors">
+                    <h6>Powered by:</h6>
                     <div class="sponsored center">
-                        <h6>Powered by:</h6>
                         <?php echo $this->Html->image('aboitiz.jpg'); ?>
                     </div>
+                    <h6>Platinum sponsors:</h6>
                     <div class="sponsored center">
-                        <h6>Platinum sponsors:</h6>
                         <ul>
                             <li><?php echo $this->Html->image('ICTS.jpg'); ?></li>
                             <li><?php echo $this->Html->image('NAC.jpg'); ?></li>
@@ -360,7 +360,7 @@
                 </div>
                 
                 <!-- AddThis Button BEGIN -->
-                <div class="center addthis_toolbox addthis_default_style addthis_32x32_style">
+                <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
                 <a class="addthis_button_facebook"></a>
                 <a class="addthis_button_twitter"></a>
                 <a class="addthis_button_linkedin"></a>
@@ -370,7 +370,7 @@
                 <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4f94bc453ecffca4"></script>
                 <!-- AddThis Button END -->
 
-<!--
+
                 <div class="ads">
                     <div class="promo">
                         <h4>Visit Boracay!</h4>
@@ -388,7 +388,7 @@
                         </p>
                     </div>
                 </div>
--->
+
             </aside>
 <!--        
             <footer>

@@ -151,7 +151,7 @@ div#legend {
 }
 
 div#legend > img {
-    float:left;
+    float:left; 
 }
 
 div#province-select, div#station-color {
@@ -195,6 +195,7 @@ div.readings {
     padding: 0px 10px;
     overflow: hidden;
     position: relative;
+    vertical-align: middle;
 }
 
 .readings > h3, .readings > img, .readings > table {
@@ -208,7 +209,7 @@ div.readings {
 
 .detail-page-link {
     width: 100%;
-    padding: 5px 0;
+    padding: 10px 0;
     clear: both;
     text-align: center;
     border-top: 1px solid black;
@@ -219,7 +220,7 @@ div.readings {
     display: inline;
 }
 
-.day-forecast li:nth-child(odd) {
+.day-forecast li:nth-child(even) {
     background-color: #fafafa;
     color: #2F4771;
 }
@@ -252,18 +253,19 @@ div.readings {
 
 .news li {
     float:left;
-    padding: .5em;
     width: 100%;
-    font-weight: bold;
+    font-weight: 500;
+    padding: 5px;
 }
 
 .news img {
     float:left;
-    padding: .5em;
+    margin-right: 5px;
 }
 
 .news p {
-    padding-top: 1em;
+    padding: 1em;
+    vertical-align: middle;
 }
 
 /*====================
