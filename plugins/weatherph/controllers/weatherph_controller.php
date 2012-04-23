@@ -96,4 +96,22 @@ class WeatherphController extends WeatherphAppController {
         
     }
     
+    public function getForecast($stationID = '984290', $numDays = 10, $utch = '3h'){
+        
+        //$this->layout = 'plain';
+        $this->layout = 'json/ajax';
+        App::import('Model', 'Weatherph.WeatherphStationForecast');
+        
+        $WeatherphStationForecast = new WeatherphStationForecast();
+        $forecasts = $WeatherphStationForecast->get('all', array('conditions' => array(
+            'id' => $stationID,
+            'target_days' => $numDays,
+            'utch' => $utch,
+        )));
+ 
+        $this->set('forecasts', json_encode($forecasts));
+        
+        
+    }
+    
 }

@@ -1,0 +1,61 @@
+body { font-family: Arial; } 
+    
+ul { float: left; padding: 0; margin: 0; }
+ul li { list-style: none; padding: 9px 5px; margin: 0 0 1px 0; font-size: 11px; }
+
+table.forecast-labels { float: left; margin: -2px 0 0 0; }
+table.forecast-labels td { height: 27px; font-size: 11px; padding: 1px 5px 0 5px;}
+
+
+div#wrapper { float: left; width: 2000px; }
+div#wrapper h1 { font-size: 20px; margin: 0 0 10px 0; }    
+
+div#forecast-wrapper { width: 1800px; height: 268px; float: left; overflow-x: scroll; }
+
+div#tables-wrapper { width: 3300px; float: left; } 
+
+div#tables-wrapper table { border: 1px solid #000; float: left; margin: 0; }
+div#tables-wrapper table td { border-top: 1px solid #000; border-right: 1px solid #000; text-align: center; height: 27px; width: 27px; font-size: 11px; padding: 0 5px; }
+div#tables-wrapper table td:last-child { border-right: none; }
+
+td.symbol { background: url(../img/sprite_symbols.png) no-repeat; height: 27px; }
+
+td.day_1 { background-position: 0px 0px; }
+td.day_2 { background-position: 0px -27px; }
+td.day_3 { background-position: 0px -54px; }
+td.day_4 { background-position: 0px -81px; }
+td.day_5 { background-position: 0px -108px; }
+td.day_6 { background-position: 0px -135px; }
+td.day_7 { background-position: 0px -162px; }
+td.day_8 { background-position: 0px -189px }
+td.day_9 { background-position: 0px -216px; }
+td.day_10 { background-position: 0px -243px; }
+td.day_11 { background-position: 0px -270px; }
+td.day_12 { background-position: 0px -297px; }
+td.day_13 { background-position: 0px -324px; }
+td.day_14 { background-position: 0px -351px; }
+td.day_15 { background-position: 0px -378px; }
+td.day_16 { background-position: 0px -405px; }
+td.day_17 { background-position: 0px -432px; } 
+td.day_18 { background-position: 0px -459px; }
+td.day_19 { background-position: 0px -486px; }
+
+td.night_1 { background-position: -37px 0px; }
+td.night_2 { background-position: -37px -27px; }
+td.night_3 { background-position: -37px -54px; }
+td.night_4 { background-position: -37px -81px; }
+td.night_5 { background-position: -37px -108px; }
+td.night_6 { background-position: -37px -135px; }
+td.night_7 { background-position: -37px -162px; }
+td.night_8 { background-position: -37px -189px; }
+td.night_9 { background-position: -37px -216px; }
+td.night_10 { background-position: -37px -243px; }
+td.night_11 { background-position: -37px -270px; }
+td.night_12 { background-position: -37px -297px; }
+td.night_13 { background-position: -37px -324px; }
+td.night_14 { background-position: -37px -351px; }
+td.night_15 { background-position: -37px -378px; }
+td.night_16 { background-position: -37px -405px; }
+td.night_17 { background-position: -37px -432px; }
+td.night_18 { background-position: -37px -459px; }
+td.night_19 { background-position: -37px -486px; }

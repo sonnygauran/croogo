@@ -187,7 +187,7 @@ class WeatherphStationReading extends WeatherphAppModel
 //        }
         curl_close($ch);
 
-        //return $reading;
+        return $reading;
     }
     
     public function get($conditions = null, $fields = array(), $order = null, $recursive = null)
@@ -216,41 +216,6 @@ class WeatherphStationReading extends WeatherphAppModel
         foreach($stations as $station){
             
             $datumstart = $datumend = date('Ymd',strtotime($fields['conditions']['date']));
-//            
-//            for($days=$days_target; $days>=0; $days--){
-//                
-//                $days_str = ($days>=1)? 'day' : 'days';
-//                
-//                $datumstart = $datumend = ($days==0)? date('Ymd') : date('Ymd', strtotime('-'.$days.$days_str));
-//                
-//                sleep(5);
-//                
-//                $currentReadings = $WeatherphStationReading->find('all', array('conditions' => array(
-//                    'id' => $station['id'],
-//                    'date' => $datumstart,
-//                    'datumend' => $datumend,
-//                    'utc' => 'all',
-//                )));
-//                
-//                //debug($currentReading);exit;
-//                
-//                foreach($currentReadings as $currentReading){
-//                    
-//                    $stationsReadings
-//                        [$currentReading['ort1']]
-//                            [$currentReading['Datum']]
-//                                [$currentReading['utc']]= $currentReading;
-//                    
-//                }
-//                
-////                $stationsReadings
-////                    [$currentReading['ort1']]
-////                        [$currentReading['Datum']]
-////                            [$currentReading['utc']]= $currentReading;
-////                
-//               //break;
-//                
-//            }
             
             $currentReadings = $WeatherphStationReading->find('all', array('conditions' => array(
                     'id' => $station['id'],
