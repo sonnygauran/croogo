@@ -96,7 +96,7 @@ class WeatherphController extends WeatherphAppController {
         
     }
     
-    public function getForecast($stationID = '984290', $numDays = 10, $utch = '3h'){
+    public function getForecast($stationID = '984290', $numDays = 1, $utch = '3h', $time = 'current'){
         
         //$this->layout = 'plain';
         $this->layout = 'json/ajax';
@@ -107,6 +107,7 @@ class WeatherphController extends WeatherphAppController {
             'id' => $stationID,
             'target_days' => $numDays,
             'utch' => $utch,
+            'time' => $time,
         )));
  
         $this->set('forecasts', json_encode($forecasts));

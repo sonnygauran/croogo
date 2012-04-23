@@ -56,61 +56,96 @@ map.geomap({
         var outputHtml = "";
     result = $('#map').geomap("find", geo, 6);
     console.log(result);
+    console.log(e);
     
-    
+    console.log(JSON.stringify(result));
     $.each(result, function () {
         outputHtml += ("<p>Found a " + this.type + " at " + this.coordinates + "</p>");
         console.log(this.id);
         
         $stations = new Array();
-        $.ajax({
+        getForecast(this.id);
+        return;
+    });
+    }
+});
+
+function getForecast(id) {
+$.ajax({
             type:     'GET',
-            //url :     '/weatherph/weatherph/getReadings/'+this.id,
-            url:        '/weatherph/weatherph/getForecast/'+this.id+'/1/3h',
+            url:        '/weatherph/weatherph/getForecast/'+id+'/1/3h',
             cache:    false,
             success:  function(readings) {
                 
                 var $stationReadings = readings; // the complete retrieved stations
                 var d = new Date();
                 var hr = d.getHours();
-                var utc;
-                
-                //alert(d.getHours());
+                var utc, cr_temperature, cr_wind, cr_precip, cr_humidity;
                 
                 $('.current.readings-location').html($stationReadings.ort1);
                 
-                //alert($stationReadings.ort1);
-                
                 if(hr >=0 && hr <3){
-                    $('.current.temperature').html($stationReadings.UTC00.tl);
+                    cr_temperature = $stationReadings.utc00.tl;
+                    cr_wind = $stationReadings.utc00.ff;
+                    cr_precip = $stationReadings.utc00.rr;
+                    cr_humidity = $stationReadings.utc00.rh;
+                    utc = 0;
                 }else if(hr >=3 && hr <6){
-                    $('.current.temperature').html($stationReadings.UTC03.tl);
+                    cr_temperature = $stationReadings.utc03.tl;
+                    cr_wind = $stationReadings.utc03.ff;
+                    cr_precip = $stationReadings.utc03.rr;
+                    cr_humidity = $stationReadings.utc03.rh;
+                    utc = 3;
                 }else if(hr >=6 && hr <9){
-                    $('.current.temperature').html($stationReadings.UTC06.tl);
+                    cr_temperature = $stationReadings.utc06.tl;
+                    cr_wind = $stationReadings.utc06.ff;
+                    cr_precip = $stationReadings.utc06.rr;
+                    cr_humidity = $stationReadings.utc06.rh;
+                    utc = 6;
                 }else if(hr >=9 && hr <12){
-                    $('.current.temperature').html($stationReadings.UTC09.tl);
+                    cr_temperature = $stationReadings.utc09.tl;
+                    cr_wind = $stationReadings.utc09.ff;
+                    cr_precip = $stationReadings.utc09.rr;
+                    cr_humidity = $stationReadings.utc09.rh;
+                    utc = 9;
                 }else if(hr >=12 && hr <15){
-                    $('.current.temperature').html($stationReadings.UTC12.tl);
+                    cr_temperature = $stationReadings.utc12.tl;
+                    cr_wind = $stationReadings.utc12.ff;
+                    cr_precip = $stationReadings.utc09.rr;
+                    cr_humidity = $stationReadings.utc09.rh;
+                    utc = 12;
                 }else if(hr >=15 && hr <18){
-                    $('.current.temperature').html($stationReadings.UTC15.tl);
+                    cr_temperature = $stationReadings.utc15.tl;
+                    cr_wind = $stationReadings.utc15.ff;
+                    cr_precip = $stationReadings.utc15.rr;
+                    cr_humidity = $stationReadings.utc15.rh;
+                    utc = 15;
                 }else if(hr >=18 && hr <21){
-                    $('.current.temperature').html($stationReadings.UTC18.tl);
+                    cr_temperature = $stationReadings.utc18.tl;
+                    cr_wind = $stationReadings.utc18.ff;
+                    cr_precip = $stationReadings.utc18.rr;
+                    cr_humidity = $stationReadings.utc18.rh;
+                    utc = 18;
                 }else{
-                    $('.current.temperature').html($stationReadings.UTC21.tl);
+                    cr_temperature = $stationReadings.utc21.tl;
+                    cr_wind = $stationReadings.utc21.ff;
+                    cr_precip = $stationReadings.utc21.rr;
+                    cr_humidity = $stationReadings.utc21.rh;
+                    utc = 21;
                 }
                 
                 
-                //$('.current.temperature').html($stationReadings.utc.tl);
-                //$('.current.wind').html($stationReadings.utc.ff + "/" +$stationReadings.utc.g3h);
-                //$('.current.precipitation').html($stationReadings.utc.rr);
-                //$('.current.humidity').html($stationReadings.utc.rh);
+                $('.current.temperature span').html(cr_temperature);
+                $('.current.wind span').html(cr_wind);
+                $('.current.precipitation span').html(cr_precip);
+                $('.current.humidity span').html(cr_humidity);
+                
+                
+                
+                
             }
         });
-        return;
-    });
-    }
-});
-
+}
 //Stations
 
 var $data = {
@@ -215,6 +250,8 @@ $.ajax({
         });
 
     }
+    
+    
 });
 
 
@@ -374,5 +411,5 @@ var $boxMap = [
         });
 //widther has been commented out for the meanwhile as it breaks the layout upon initial load.
 */	  
-
+getForecast(984250);
 });

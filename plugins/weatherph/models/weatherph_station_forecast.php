@@ -12,6 +12,8 @@ class WeatherphStationForecast extends WeatherphAppModel
         
         include dirname(__FILE__) . '/auth.php';
         
+        date_default_timezone_set('UTC');
+        
         
         $daysStr = ($fields['conditions']['target_days'] > 1)? 'days' : 'day';
         $fields['conditions']['target_days'] = $fields['conditions']['target_days'] - 1;
@@ -26,7 +28,7 @@ class WeatherphStationForecast extends WeatherphAppModel
         $startutc = "00";
         $endutc = "00";
         
-        $url = "http://192.168.20.89/abfrage.php?stationidstring=$stationId&datumstart=$startdatum&datumend=$enddatum&zeiten1=$utch&paramtyp=mos_mix_mm&mosmess=ja&tl=on&dir=on&ff=on&g3h=on&paramliste=rr,rh,sy,sy2&output=csv2&ortoutput=wmo6,name&aufruf=auto";
+        $url = "http://192.168.20.89/abfrage.php?stationidstring=$stationId&datumstart=$startdatum&datumend=$enddatum&&zeiten1=$utch&paramtyp=mos_mix_mm&mosmess=ja&tl=on&dir=on&ff=on&g3h=on&paramliste=rr,rh,sy,sy2&output=csv2&ortoutput=wmo6,name&aufruf=auto";
         
         $this->log($url);
         $ch = curl_init();
@@ -40,8 +42,10 @@ class WeatherphStationForecast extends WeatherphAppModel
         $curlResults = curl_exec($ch);
         curl_close($ch);
         
-        $stationLat = $this->getStationInfo($stationId, "lat");
-        $stationLong = $this->getStationInfo($stationId, "lon");
+        $stationInfo = $this->getStationInfo($stationId, array("lat","lon"));
+        
+        //debug($stationInfo);exit;
+        //$stationLong = $this->getStationInfo($stationId, "lon");
         
              
         $headersSpecimen = "Datum;utc;min;ort1;dir;ff;g3h;tl;rr;sy;rh;sy2;";
@@ -55,8 +59,8 @@ class WeatherphStationForecast extends WeatherphAppModel
             
             if(trim($result['tl'])!=''){
                 
-                $sunrise = date_sunrise(strtotime($result['Datum']), SUNFUNCS_RET_STRING, $stationLat, $stationLong, 90);
-                $sunset = date_sunset(strtotime($result['Datum']), SUNFUNCS_RET_STRING, $stationLat, $stationLong, 90);
+                $sunrise = date_sunrise(strtotime($result['Datum']), SUNFUNCS_RET_STRING, $stationInfo['lat'], $stationInfo['lon'], 90);
+                $sunset = date_sunset(strtotime($result['Datum']), SUNFUNCS_RET_STRING, $stationInfo['lat'], $stationInfo['lon'], 90);
 
                 $abfrageResults['sunrise'] = $sunrise;
                 $abfrageResults['sunset'] = $sunset;
@@ -85,7 +89,7 @@ class WeatherphStationForecast extends WeatherphAppModel
                 
                 unset($result['Datum'],$result['ort1']);
                 
-                $abfrageResults['UTC'.$result['utc']] = $result;
+                $abfrageResults['utc'.$result['utc']] = $result;
                 
                 
             }
@@ -178,7 +182,7 @@ class WeatherphStationForecast extends WeatherphAppModel
                 $new_results = array();
                 
                 foreach($keys as $key){
-                    $new_results[] = $results[$key];
+                    $new_results[$key] = $results[$key];
                 }
                 
                 return $new_results;

@@ -117,24 +117,24 @@
                             <h2 class="current readings-location">&nbsp;</h2>
                             <a href="#">change station</a>
                             <h4>Current Readings:</h4>
-                            <p>last updated: 8:06AM</p>
+                            <p>last updated: <span class="last-update">8:06AM</span></p>
                         </div>
                         <div class="readings">
-                            <h3 class="current temperature">&nbsp;</h3>
+                            <h3 class="current temperature"><span>&nbsp;</span>&deg;C</h3>
                             <img src="theme/weatherph_compact/img/sunny.png" alt="sunny" />
                             <table>
                                 <tbody>
                                     <tr>
                                         <td>Wind</td>
-                                        <td class="current wind">&nbsp;</td>
+                                        <td class="current wind"><span>&nbsp;</span>km/h</td>
                                     </tr>
                                     <tr>
                                         <td>Precip.</td>
-                                        <td class="current precipitation">&nbsp;</td>
+                                        <td class="current precipitation"><span>&nbsp;</span>l/m</td>
                                     </tr>
                                     <tr>
                                         <td>Humidity</td>
-                                        <td class="current humidity">&nbsp;</td>
+                                        <td class="current humidity"><span>&nbsp;</span>%</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -215,8 +215,8 @@
                                     </div>
                                 </li>
                                 <li>
-                                    <h6 class="9-hour time">8:00AM</h6>
-                                    <div class="9-hour readings">
+                                    <h6 class="12-hour time">8:00AM</h6>
+                                    <div class="12-hour readings">
                                         <h3 class="temperature">27.6&deg;C</h3>
                                         <img src="theme/weatherph_compact/img/sunny.png" alt="sunny" />
                                         <table>
