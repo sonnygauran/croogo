@@ -1,6 +1,6 @@
 /*
 
-WEATHER PHILIPPINES - COMPACT
+WEATHER PHILIPPINES - Frontpage
 
 Table of contents:
 
@@ -62,7 +62,13 @@ html, body, div, span, object, iframe, h1, h2, h3, dl dt, h4, h5, h6, p, blockqu
 
 div#options {
     float: right;
-    margin: 10px;
+    margin: 50px 10px 10px 10px;
+}
+
+div#options > img, div#options > form {
+    float: right;
+    clear:both;
+    margin-bottom: 10px;
 }
 
 /*====================
@@ -82,6 +88,10 @@ nav li {
     display: inline;
     padding: 1em;
     font-size: .875em;
+}
+
+nav li + li {
+    border-left: 1px solid #fafafa;
 }
 
 nav li > a {
@@ -132,24 +142,22 @@ div#legend {
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
     overflow: auto;
+    border: solid 1px #2E4771;
 }
 
 div#legend > img {
     float:left;
 }
 
-div#province-select {
+div#province-select, div#station-color {
     float: left;
+    overflow: auto;
 }
 
-div#province-select > h6 {
+div#province-select > h6, div#province-select > select,
+div#station-color > h6, div#station-color > img {
     display: inline;
-    padding: 0 10px;
-}
-
-div#province-select > select {
-    width: 70px;
-    margin-right: 10px;
+    padding: 0 5px;
 }
 
 /*====================
@@ -157,9 +165,10 @@ div#province-select > select {
 ====================*/
 
 div#info {
-    width: 240px;
+    width: 238px;
     float:left;
     border-radius: 5px;
+    border: 1px solid #2E4771;
 }
 
 #info a {
@@ -192,15 +201,16 @@ div.readings {
 }
 
 .detail-page-link {
-    width: 65%;
+    width: 100%;
     padding: 5px 0;
-    margin: 0 auto 3px auto;
-    border: 1px #43597E solid;
     clear: both;
     text-align: center;
-    background-color: white;
-    color: #2E4771;
-    border-radius: 5px;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+.detail-page-link > h2 {
+    display: inline;
 }
 
 .day-forecast li:nth-child(odd) {
@@ -218,7 +228,7 @@ div.readings {
 .secondary > .posts {
     width: 554px;
     float: left;
-    margin: 2em 10px 0 0;
+    margin: 2em 10px 10em 0;
 }
 
 .secondary > .news {
@@ -375,32 +385,28 @@ html {
 }
 
 .banner {
-    color: white;
+    color: #fafafa;
     background:#43597E url(../img/banner.png) top left no-repeat;
 }
 
-nav {
+nav, .layerSelector, .promo, #info {
     background: #2E4771;
-    color: white;
-}
-
-.layerSelector, #legend, .promo {
     color: #fafafa;
-    background-color: #2E4771;
 }
 
-#info {
+#info > div.readings {
+    background-color: #772b76;
+    margin-bottom: 0;
+    border-top: 1px solid black;
+}
+
+.detail-page-link {
     background: #43597E;
-    color: white;
+    color: #fafafa;
 }
 
 .news li:nth-child(odd) {
     background: rgba(171,185,221,.5);
-}
-
-footer {
-    background: #43597E;
-    color: #fafafa;
 }
 
 /*========================================
@@ -444,5 +450,5 @@ a:link, a:visited {
 
 .layerSelector a:link, .layerSelector a:visited,
 footer a:link, footer a:visited {
-    color: white;
+    color: #fafafa;
 }

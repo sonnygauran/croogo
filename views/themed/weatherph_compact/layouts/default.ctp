@@ -1,6 +1,6 @@
 <?php
 /**
- * Weatherph Compact
+ * Weatherph Frontpage
  *
  * @author Martin de Lima <mdelima@meteomedia.com.ph>
  * @link http://www.weather.com.ph
@@ -36,6 +36,7 @@
                 <h1 class="logo">weather | philippines</h1>
                 
                 <div id="options">
+                    <img src="theme/weatherph_compact/img/flag.png" alt="Philippines" />
                     <form class="search">
                         Search: <input type="text" name="city" size="15" />
                     </form>
@@ -44,13 +45,11 @@
 
             <nav>
                 <ul>
-                    <li><a href="#">Travel Advisories</a></li>
-                    <li><a href="#">Severe Weather Warnings</a></li>
-                    <li><a href="#">Weather Stations</a></li>
-                    <li><a href="#">Weather for Professionals</a></li>
-                    <li><a href="#">Mr. Typhoon's Weather Blog</a></li>
-                    <li><a href="#">FAQ</a></li>
-                    <li><a href="#">Glossary</a></li>
+                    <li><a href="#">Typhoon Preparedness</a></li>
+                    <li><a href="#">Typhoon Climatology</a></li>
+                    <li><a href="#">Typhoon Glossary</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Impressum</a></li>
                 </ul>
             </nav>
 
@@ -59,17 +58,16 @@
                     <div id="map-container">
                         <div class="layerSelector">
                             <ul>
-                                <li><a href="#">Wind</a></li>
-                                <li><a href="#">Rain</a></li>
+                                <li><a href="#">Weather Stations</a></li>
                                 <li><a href="#">Temperature</a></li>
-                                <li><a href="#">Clouds</a></li>
-                                <li><a href="#">View more layers</a></li>
                             </ul>
                         </div> <!--LAYER SELECTOR-->
                         <div id="map"></div>
                         
                         <div id="legend">
+<!--                            
                             <img src ="theme/weatherph_compact/img/timeline.png"/>
+-->
                             <div id="province-select">
                                 <h6>Province:</h6>
                                 <select name="philippine-regions">
@@ -101,7 +99,15 @@
                                     </optgroup>
                                 </select>
                             </div> <!--END PROVINCE SELECT-->
+                            <div id="station-color">
+                                <img src="theme/weatherph_compact/img/legend-blue.png" alt="Meteomedia stations" />
+                                <h6>Meteomedia stations</h6>
+                                <img src="theme/weatherph_compact/img/legend-red.png" alt="PAGASA stations" />
+                                <h6>PAGASA stations</h6>
+                            </div>
+<!--                            
                             <img src ="theme/weatherph_compact/img/legend.png"/>
+-->
                         </div> <!--END LEGEND-->
                     </div>
                     <div id="info">
@@ -113,7 +119,7 @@
                         </div>
                             <div class="readings">
                                 <h3 class="current temperature">&nbsp;</h3>
-                                <img class="small" src="theme/weatherph/img/sunny.png" alt="sunny" />
+                                <img class="small" src="theme/weatherph_compact/img/sunny.png" alt="sunny" />
                                 <table>
                                     <tbody>
                                         <tr>
@@ -133,6 +139,7 @@
                             </div>
                             <div class="detail-page-link">
                                 <h2>More Details<h2>
+                                <?php echo $this->Html->image('arrow.png'); ?>
                             </div>
                             <div class="day-forecast">
                                 <ul>
@@ -140,7 +147,7 @@
                                         <h6 class="time">8:00AM</h6>
                                         <div class="readings">
                                             <h3>27.6&#8451;</h3>
-                                            <img class="small" src="theme/weatherph/img/sunny.png" alt="sunny" />
+                                            <img class="small" src="theme/weatherph_compact/img/sunny.png" alt="sunny" />
                                             <table>
                                                 <tbody>
                                                     <tr>
@@ -163,7 +170,7 @@
                                         <h6 class="time">8:00AM</h6>
                                         <div class="readings">
                                             <h3>27.6&#8451;</h3>
-                                            <img class="small" src="theme/weatherph/img/sunny.png" alt="sunny" />
+                                            <img class="small" src="theme/weatherph_compact/img/sunny.png" alt="sunny" />
                                             <table>
                                                 <tbody>
                                                     <tr>
@@ -186,7 +193,7 @@
                                         <h6 class="time">8:00AM</h6>
                                         <div class="readings">
                                             <h3>27.6&#8451;</h3>
-                                            <img class="small" src="theme/weatherph/img/sunny.png" alt="sunny" />
+                                            <img class="small" src="theme/weatherph_compact/img/cloudy.png" alt="cloudy" />
                                             <table>
                                                 <tbody>
                                                     <tr>
@@ -209,7 +216,7 @@
                                         <h6 class="time">8:00AM</h6>
                                         <div class="readings">
                                             <h3>27.6&#8451;</h3>
-                                            <img class="small" src="theme/weatherph/img/sunny.png" alt="sunny" />
+                                            <img class="small" src="theme/weatherph_compact/img/cloudy.png" alt="cloudy" />
                                             <table>
                                                 <tbody>
                                                     <tr>
@@ -232,7 +239,7 @@
                                         <h6 class="time">8:00AM</h6>
                                         <div class="readings">
                                             <h3>27.6&#8451;</h3>
-                                            <img class="small" src="theme/weatherph/img/sunny.png" alt="sunny" />
+                                            <img class="small" src="theme/weatherph_compact/img/night.png" alt="night" />
                                             <table>
                                                 <tbody>
                                                     <tr>
@@ -255,7 +262,7 @@
                                         <h6 class="time">8:00AM</h6>
                                         <div class="readings">
                                             <h3>27.6&#8451;</h3>
-                                            <img class="small" src="theme/weatherph/img/sunny.png" alt="sunny" />
+                                            <img class="small" src="theme/weatherph_compact/img/night.png" alt="night" />
                                             <table>
                                                 <tbody>
                                                     <tr>
@@ -278,7 +285,7 @@
                                         <h6 class="time">8:00AM</h6>
                                         <div class="readings">
                                             <h3>27.6&#8451;</h3>
-                                            <img class="small" src="theme/weatherph/img/sunny.png" alt="sunny" />
+                                            <img class="small" src="theme/weatherph_compact/img/sunny.png" alt="sunny" />
                                             <table>
                                                 <tbody>
                                                     <tr>
@@ -305,32 +312,32 @@
 
                 <section class="secondary">
                     <div class="posts">
-                        <h4>The Weather in Words</h4>
+                        <h4>What is a typhoon?</h4>
                         <p>
-                            The climate in Switzerland is strongly influenced by the Alps extending across the country and representing the most important meteorological divide in Central Europe. Thanks to the Alps, large climatic differences in Switzerland are to be found within a small geographic area. The largest contrasts exist between the northern side of the Alps with its temperatre climate and the southern side of the Alps characterized by mediterranean climate.
+                            A typhoon is a mature tropical cyclone that develops in the northwestern part of the Pacific Oceanbetween 180° and 100°E. This region is referred to as the northwest Pacific basin. For organizational purposes, the northern Pacific Ocean is divided into three regions: the eastern (North America to 140°W), central (140°W to 180°), and western (180° to 100°E). Identical phenomena in the eastern north Pacific are called hurricanes, with tropical cyclones moving into the western Pacific re-designated as typhoons. The Regional Specialized Meteorological Center (RSMC) for tropical cyclone forecasts is in Japan, with other tropical cyclone warning centers for the northwest Pacific in Honolulu (the Joint Typhoon Warning Center), the Philippines, and Hong Kong. While the RSMC names each system, the main name list itself is coordinated amongst 18 countries, including the United States, who have territories threatened by typhoons each year. The Philippines uses their own naming list for systems which approach the country.
                         </p>
 
-                        <h4>Tomorrow</h4>
+                        <h4>How do they name typhoons?</h4>
                         <p>
-                            In the Swiss Midland, extending between Lake Geneva and Lake Constance as well as between Jura and the Pre-Alps, climatic conditions which are typical for Central Europe are to be found. The average annual temperature is just below 10 °C, with mean values around the freezing point in January and between 16 and 19 °C in July. The average annual precipitation amounts are just above 1000 mm. In winter often a so-called inversion layer results in a large-scale low stratus cloud coverage which partly persists for several days or even weeks. Thereby the cold wind from northeast (named Bise) is pressed between Jura and Pre-Alps and can thus reach gale-force on the western shores of Lake Geneva.
+                            The list of names consists of entries from 17 East Asian nations and the United States who have territories directly affected by typhoons. The submitted names are arranged into five lists; and each list is cycled with each year. Unlike tropical cyclones in other parts of the world, typhoons are not named after people. Instead, they generally refer to animals, flowers, astrological signs, and a few personal names. However, PAGASA retains its own naming list, which does consist of human names. Therefore, a typhoon can possibly have two names. Storms that cross the date line from the central Pacific retain their original name, but the designation of hurricane becomes typhoon. In Japan, typhoons are also given a numerical designation according to the sequence of their occurrence in the calendar year.
                         </p>
                     </div>
-                    
+<!--                    
                     <div class="news">
                         <h4>Breaking News</h4>
                         <ul>
-                            <li><img class="small" src="theme/weatherph/img/thumbnail.png"/><p>Breaking News</p></li>
-                            <li><img class="small" src="theme/weatherph/img/thumbnail.png"/><p>Weather TV</p></li>
-                            <li><img class="small" src="theme/weatherph/img/thumbnail.png"/><p>Mike Padua: Typhoons, Explained</p></li>
-                            <li><img class="small" src="theme/weatherph/img/thumbnail.png"/><p>Meteomedia Weather Shop</p></li>
-                            <li><img class="small" src="theme/weatherph/img/thumbnail.png"/><p>Webcams</p></li>
+                            <li><img class="small" src="theme/weatherph_compact/img/thumbnail.png"/><p>Breaking News</p></li>
+                            <li><img class="small" src="theme/weatherph_compact/img/thumbnail.png"/><p>Weather TV</p></li>
+                            <li><img class="small" src="theme/weatherph_compact/img/thumbnail.png"/><p>Mike Padua: Typhoons, Explained</p></li>
+                            <li><img class="small" src="theme/weatherph_compact/img/thumbnail.png"/><p>Meteomedia Weather Shop</p></li>
+                            <li><img class="small" src="theme/weatherph_compact/img/thumbnail.png"/><p>Webcams</p></li>
                         </ul>
                     </div>
+-->
                 </section> <!--SECONDARY-->
             </div> <!--CONTENT-->
 
             <aside id="sidebar">
-
                 <div id="sponsors">
                     <div class="sponsored center">
                         <h6>Powered by:</h6>
@@ -348,11 +355,23 @@
                         </ul>
                     </div>
                 </div>
+                
+                <!-- AddThis Button BEGIN -->
+                <div class="center addthis_toolbox addthis_default_style addthis_32x32_style">
+                <a class="addthis_button_facebook"></a>
+                <a class="addthis_button_twitter"></a>
+                <a class="addthis_button_linkedin"></a>
+                <a class="addthis_button_email"></a>
+                <a class="addthis_button_print"></a>
+                </div>
+                <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4f94bc453ecffca4"></script>
+                <!-- AddThis Button END -->
 
+<!--
                 <div class="ads">
                     <div class="promo">
                         <h4>Visit Boracay!</h4>
-                        <img src="theme/weatherph/img/boracay.jpg" alt="Boracay!"/>
+                        <img src="theme/weatherph_compact/img/boracay.jpg" alt="Boracay!"/>
                         <p>
                             Boracay is an island of the Philippines located approximately 315 km (196 mi) south of Manila. Boracay Island and its beaches have received awards numerous times.
                         </p>
@@ -360,14 +379,15 @@
 
                     <div class="promo">
                         <h4>Discover Pamalican.</h4>
-                        <img src="theme/weatherph/img/pamalican.jpg" alt="Pamalican!"/>
+                        <img src="theme/weatherph_compact/img/pamalican.jpg" alt="Pamalican!"/>
                         <p>
                             Pamalican Island is a small island of the Cuyo Islands in the Sulu Sea.
                         </p>
                     </div>
                 </div>
+-->
             </aside>
-        
+<!--        
             <footer>
                 <div class="countrySelect">
                     <h6>Our severe weather centers</h6>
@@ -402,7 +422,7 @@
                     </ul>
                 </div>
             </footer>
-
+-->
         </section><!-- #container -->
 
         <!--[if lt IE 9]>

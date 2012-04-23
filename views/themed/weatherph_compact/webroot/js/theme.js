@@ -21,13 +21,13 @@ var map = $("#map").geomap({
         },
         attr: "© OpenStreetMap & contributors, CC-BY-SA"
         
-        // return "http://192.168.1.34:8888/convert.php?zoom="
-        // + view.zoom + "&column="
-        // + view.tile.column + "&row="
-        // + view.tile.row
-        // + "&mode=1";
-        // },
-        // attr: "© OpenStreetMap & contributors, CC-BY-SA"
+//          return "http://192.168.1.34:8888/convert.php?zoom="
+//          + view.zoom + "&column="
+//          + view.tile.column + "&row="
+//          + view.tile.row
+//          + "&mode=1";
+//          },
+//          attr: "© OpenStreetMap & contributors, CC-BY-SA"
     }
     ],
     tilingScheme: {
@@ -77,8 +77,6 @@ map.geomap({
             }
         });
         return;
-        
-        
     });
     }
 });
@@ -228,7 +226,7 @@ function mapStationsPagasa($stationsArray) {
         	name: $currentStation.name,
         	type:'Point',                
         	coordinates: $currentStation.coordinates
-        }, {strokeWidth: "1px", height: "7px", width: "7px", radius: "8px", color: "#dd2222", fillOpacity: "1", strokeOpacity: ".3"},true);
+        }, {strokeWidth: "1px", height: "6px", width: "6px", radius: "8px", color: "#dd2222", fillOpacity: "1", strokeOpacity: ".3"},true);
     }
 }
 
@@ -241,7 +239,7 @@ function mapStations($stationsArray) {
         	name: $currentStation.name,
         	type:'Point',                
         	coordinates: $currentStation.coordinates
-        }, {strokeWidth: "2px", height: "8px", width: "8px", radius: "8px", color: "#2D4070", fillOpacity: "1", strokeOpacity: ".3"},true);
+        }, {strokeWidth: "2px", height: "8px", width: "8px", radius: "8px", color: "#2E4771", fillOpacity: "1", strokeOpacity: ".3"},true);
     }
 
 }
