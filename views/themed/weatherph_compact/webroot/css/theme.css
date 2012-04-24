@@ -193,6 +193,7 @@ h6.time {
     padding: 0 5px;
 }
 
+/*READINGS*/
 div.readings {
     clear: both;
     margin: 5px auto;
@@ -202,25 +203,31 @@ div.readings {
     vertical-align: middle;
 }
 
-.readings > h3, .readings > img {
+.readings > h3 {
     float: left;
-    padding: 3px;
+    padding: 3px 10px;
 }
 
 .readings > h3 {
     font-size: 1.875em;
-    width: 65px;
+    min-width: 27px;
 }
 
-.readings > img {
-    width: auto;
+.readings > span {
+    margin: 5px auto 0 auto;
+    float: left;
 }
 
 .readings > table {
-    float: right;
-    padding: 3px;
-    width: 100px;
+    float: left;
+    padding: 3px 10px;
+    min-width: 65px;
 }
+
+.readings > table td {
+    padding: 0 3px;
+}
+/*END READINGS*/
 
 .detail-page-link {
     width: 100%;
