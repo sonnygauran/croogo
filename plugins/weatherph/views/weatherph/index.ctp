@@ -75,11 +75,12 @@
                 <h2 class="current readings-location">&nbsp;</h2>
                 <a href="#">change station</a>
                 <h4>Current Readings:</h4>
-                <p>last updated: <span class="last-update">8:06AM</span></p>
+                
             </div>
             <div class="readings">
+                <p style="margin: 5px 0;">last updated: <span class="last-update">8:06AM</span></p>
                 <h3 class="current temperature"><span>&nbsp;</span>&deg;C</h3>
-                <img src="theme/weatherph_compact/img/sunny.png" alt="sunny" />
+                <span class="symbol"></span>
                 <table>
                     <tbody>
                         <tr>
@@ -104,23 +105,138 @@
             <div class="day-forecast">
                 <ul>
                     <li>
-                        <h6 class="3-hour time">8:00AM</h6>
-                        <div class="3-hour readings">
-                            <h3 class="temperature">27.6&deg;C</h3>
-                            <img src="theme/weatherph_compact/img/sunny.png" alt="sunny" />
+                        <h6 class="0-hour time">8:00AM</h6>
+                        <div class="0-hour readings">
+                            <h3 class="temperature"><span>&nbsp;</span>&deg;C</h3>
+                            <span class="symbol"></span>
                             <table>
                                 <tbody>
                                     <tr>
                                         <td>Wind</td>
-                                        <td class="3-hour wind">12km/h</td>
+                                        <td class="3-hour wind"><span>&nbsp;</span>km/h</td>
                                     </tr>
                                     <tr>
                                         <td>Precip.</td>
-                                        <td class="precipitation">0.8 l/m</td>
+                                        <td class="precipitation">0<span>&nbsp;</span> l/m</td>
                                     </tr>
                                     <tr>
                                         <td>Humidity</td>
-                                        <td class="humidity">79%</td>
+                                        <td class="humidity"><span>&nbsp;</span>%</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </li>
+                    <li>
+                        <h6 class="1-hour time">8:00AM</h6>
+                        <div class="1-hour readings">
+                            <h3 class="temperature"><span>&nbsp;</span>&deg;C</h3>
+                            <span class="symbol"></span>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>Wind</td>
+                                        <td class="wind"><span>&nbsp;</span>km/h</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Precip.</td>
+                                        <td class="precipitation"><span>&nbsp;</span> l/m</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Humidity</td>
+                                        <td class="humidity"><span>&nbsp;</span>%</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </li>
+                    <li>
+                        <h6 class="2-hour time">8:00AM</h6>
+                        <div class="2-hour readings">
+                            <h3 class="temperature"><span>&nbsp;</span>&deg;C</h3>
+                            <span class="symbol"></span>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>Wind</td>
+                                        <td class="wind"><span>&nbsp;</span>km/h</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Precip.</td>
+                                        <td class="precipitation"><span>&nbsp;</span> l/m</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Humidity</td>
+                                        <td class="humidity"><span>&nbsp;</span>%</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </li>
+                    <li>
+                        <h6 class="3-hour time">8:00AM</h6>
+                        <div class="3-hour readings">
+                            <h3 class="temperature"><span>&nbsp;</span>&deg;C</h3>
+                            <span class="symbol"></span>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>Wind</td>
+                                        <td class="wind"><span>&nbsp;</span>km/h</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Precip.</td>
+                                        <td class="precipitation"><span>&nbsp;</span> l/m</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Humidity</td>
+                                        <td class="humidity"><span>&nbsp;</span>%</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </li>
+                    <li>
+                        <h6 class="4-hour time">8:00AM</h6>
+                        <div class="4-hour readings">
+                            <h3 class="temperature"><span>&nbsp;</span>&deg;C</h3>
+                            <span class="symbol"></span>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>Wind</td>
+                                        <td class="wind"><span>&nbsp;</span>km/h</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Precip.</td>
+                                        <td class="precipitation"><span>&nbsp;</span> l/m</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Humidity</td>
+                                        <td class="humidity"><span>&nbsp;</span>%</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </li>
+                    <li>
+                        <h6 class="5-hour time">8:00AM</h6>
+                        <div class="5-hour readings">
+                            <h3 class="temperature"><span>&nbsp;</span>&deg;C</h3>
+                            <span class="symbol"></span>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>Wind</td>
+                                        <td class="wind"><span>&nbsp;</span>km/h</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Precip.</td>
+                                        <td class="precipitation"><span>&nbsp;</span> l/m</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Humidity</td>
+                                        <td class="humidity"><span>&nbsp;</span>%</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -129,136 +245,21 @@
                     <li>
                         <h6 class="6-hour time">8:00AM</h6>
                         <div class="6-hour readings">
-                            <h3 class="temperature">27.6&deg;C</h3>
-                            <img src="theme/weatherph_compact/img/sunny.png" alt="sunny" />
+                            <h3 class="temperature"><span>&nbsp;</span>&deg;C</h3>
+                            <span class="symbol"></span>
                             <table>
                                 <tbody>
                                     <tr>
                                         <td>Wind</td>
-                                        <td class="wind">12km/h</td>
+                                        <td class="wind"><span>&nbsp;</span>km/h</td>
                                     </tr>
                                     <tr>
                                         <td>Precip.</td>
-                                        <td class="precipitation">0.8 l/m</td>
+                                        <td class="precipitation"><span>&nbsp;</span> l/m</td>
                                     </tr>
                                     <tr>
                                         <td>Humidity</td>
-                                        <td class="humidity">79%</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </li>
-                    <li>
-                        <h6 class="9-hour time">8:00AM</h6>
-                        <div class="9-hour readings">
-                            <h3 class="temperature">27.6&deg;C</h3>
-                            <img src="theme/weatherph_compact/img/sunny.png" alt="sunny" />
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td>Wind</td>
-                                        <td class="wind">12km/h</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Precip.</td>
-                                        <td class="precipitation">0.8 l/m</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Humidity</td>
-                                        <td class="humidity">79%</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </li>
-                    <li>
-                        <h6 class="12-hour time">8:00AM</h6>
-                        <div class="12-hour readings">
-                            <h3 class="temperature">27.6&deg;C</h3>
-                            <img src="theme/weatherph_compact/img/sunny.png" alt="sunny" />
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td>Wind</td>
-                                        <td class="wind">12km/h</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Precip.</td>
-                                        <td class="precipitation">0.8 l/m</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Humidity</td>
-                                        <td class="humidity">79%</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </li>
-                    <li>
-                        <h6 class="12-hour time">8:00AM</h6>
-                        <div class="12-hour readings">
-                            <h3 class="temperature">27.6&deg;C</h3>
-                            <img src="theme/weatherph_compact/img/sunny.png" alt="sunny" />
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td>Wind</td>
-                                        <td class="wind">12km/h</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Precip.</td>
-                                        <td class="precipitation">0.8 l/m</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Humidity</td>
-                                        <td class="humidity">79%</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </li>
-                    <li>
-                        <h6 class="15-hour time">8:00AM</h6>
-                        <div class="15-hour readings">
-                            <h3 class="temperature">27.6&deg;C</h3>
-                            <img src="theme/weatherph_compact/img/sunny.png" alt="sunny" />
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td>Wind</td>
-                                        <td class="wind">12km/h</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Precip.</td>
-                                        <td class="precipitation">0.8 l/m</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Humidity</td>
-                                        <td class="humidity">79%</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </li>
-                    <li>
-                        <h6 class="18-hour time">8:00AM</h6>
-                        <div class="18-hour readings">
-                            <h3 class="temperature">27.6&deg;C</h3>
-                            <img src="theme/weatherph_compact/img/sunny.png" alt="sunny" />
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td>Wind</td>
-                                        <td class="wind">12km/h</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Precip.</td>
-                                        <td class="precipitation">0.8 l/m</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Humidity</td>
-                                        <td class="humidity">79%</td>
+                                        <td class="humidity"><span>&nbsp;</span>%</td>
                                     </tr>
                                 </tbody>
                             </table>
