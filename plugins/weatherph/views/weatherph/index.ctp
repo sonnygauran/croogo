@@ -1,11 +1,16 @@
 <style type="text/css">
     .loader {
-        background: white;
+        background: white url(theme/weatherph_compact/img/loader-twirl.gif) no-repeat center center;
+        width: 100%; height: 100%; display: block; visibility: none;
+    }
+    .loader-img {
+        margin-top: 275px;
+        margin-left: 275px;
     }
 </style>
 <script type="text/javascript">
     $(function(){
-        $('.loader').css('opacity', 0.5);
+        $('.loader').css('opacity', 0.8);
     });
 </script>
 <div id="content">
@@ -18,9 +23,8 @@
                 </ul>
             </div> <!--LAYER SELECTOR-->
             <div id="map">
-                <div class="loader" style="width: 100%; height: 100%; display: none;">
-                    <?php echo $this->Html->image('ajax-loader.gif'); ?>
-                    
+                <div class="loader" style="">
+
                 </div>
             </div>
 

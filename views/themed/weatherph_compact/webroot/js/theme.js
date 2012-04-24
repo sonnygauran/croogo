@@ -22,7 +22,7 @@ var map = $("#map").geomap({
         id: "OSM",
         type: "tiled",
         src: function (view) {
-        return "http://tile.stamen.com/toner/"
+        return "http://c.tiles.mapbox.com/v3/mapbox.mapbox-streets/"
         + view.zoom + "/"
         + view.tile.column + "/"
         + view.tile.row
