@@ -18,44 +18,44 @@ div#tables-wrapper table { border: 1px solid #000; float: left; margin: 0; }
 div#tables-wrapper table td { border-top: 1px solid #000; border-right: 1px solid #000; text-align: center; height: 27px; width: 27px; font-size: 11px; padding: 0 5px; }
 div#tables-wrapper table td:last-child { border-right: none; }
 
-td.symbol { background: url(../img/sprite_symbols.png) no-repeat; height: 27px; }
+span.symbol { background: url(theme/weatherph_compact/img/sprite_symbols.png) no-repeat; height: 27px; }
 
-td.day_1 { background-position: 0px 0px; }
-td.day_2 { background-position: 0px -27px; }
-td.day_3 { background-position: 0px -54px; }
-td.day_4 { background-position: 0px -81px; }
-td.day_5 { background-position: 0px -108px; }
-td.day_6 { background-position: 0px -135px; }
-td.day_7 { background-position: 0px -162px; }
-td.day_8 { background-position: 0px -189px }
-td.day_9 { background-position: 0px -216px; }
-td.day_10 { background-position: 0px -243px; }
-td.day_11 { background-position: 0px -270px; }
-td.day_12 { background-position: 0px -297px; }
-td.day_13 { background-position: 0px -324px; }
-td.day_14 { background-position: 0px -351px; }
-td.day_15 { background-position: 0px -378px; }
-td.day_16 { background-position: 0px -405px; }
-td.day_17 { background-position: 0px -432px; } 
-td.day_18 { background-position: 0px -459px; }
-td.day_19 { background-position: 0px -486px; }
+span.day_1 { background-position: 0px 0px; }
+span.day_2 { background-position: 0px -27px; }
+span.day_3 { background-position: 0px -54px; }
+span.day_4 { background-position: 0px -81px; }
+span.day_5 { background-position: 0px -108px; }
+span.day_6 { background-position: 0px -135px; }
+span.day_7 { background-position: 0px -162px; }
+span.day_8 { background-position: 0px -189px }
+span.day_9 { background-position: 0px -216px; }
+span.day_10 { background-position: 0px -243px; }
+span.day_11 { background-position: 0px -270px; }
+span.day_12 { background-position: 0px -297px; }
+span.day_13 { background-position: 0px -324px; }
+span.day_14 { background-position: 0px -351px; }
+span.day_15 { background-position: 0px -378px; }
+span.day_16 { background-position: 0px -405px; }
+span.day_17 { background-position: 0px -432px; } 
+span.day_18 { background-position: 0px -459px; }
+span.day_19 { background-position: 0px -486px; }
 
-td.night_1 { background-position: -37px 0px; }
-td.night_2 { background-position: -37px -27px; }
-td.night_3 { background-position: -37px -54px; }
-td.night_4 { background-position: -37px -81px; }
-td.night_5 { background-position: -37px -108px; }
-td.night_6 { background-position: -37px -135px; }
-td.night_7 { background-position: -37px -162px; }
-td.night_8 { background-position: -37px -189px; }
-td.night_9 { background-position: -37px -216px; }
-td.night_10 { background-position: -37px -243px; }
-td.night_11 { background-position: -37px -270px; }
-td.night_12 { background-position: -37px -297px; }
-td.night_13 { background-position: -37px -324px; }
-td.night_14 { background-position: -37px -351px; }
-td.night_15 { background-position: -37px -378px; }
-td.night_16 { background-position: -37px -405px; }
-td.night_17 { background-position: -37px -432px; }
-td.night_18 { background-position: -37px -459px; }
-td.night_19 { background-position: -37px -486px; }
+span.night_1 { background-position: -37px 0px; }
+span.night_2 { background-position: -37px -27px; }
+span.night_3 { background-position: -37px -54px; }
+span.night_4 { background-position: -37px -81px; }
+span.night_5 { background-position: -37px -108px; }
+span.night_6 { background-position: -37px -135px; }
+span.night_7 { background-position: -37px -162px; }
+span.night_8 { background-position: -37px -189px; }
+span.night_9 { background-position: -37px -216px; }
+span.night_10 { background-position: -37px -243px; }
+span.night_11 { background-position: -37px -270px; }
+span.night_12 { background-position: -37px -297px; }
+span.night_13 { background-position: -37px -324px; }
+span.night_14 { background-position: -37px -351px; }
+span.night_15 { background-position: -37px -378px; }
+span.night_16 { background-position: -37px -405px; }
+span.night_17 { background-position: -37px -432px; }
+span.night_18 { background-position: -37px -459px; }
+span.night_19 { background-position: -37px -486px; }
