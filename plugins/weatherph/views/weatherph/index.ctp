@@ -82,7 +82,7 @@
                 
             </div>
             <div class="readings">
-                <p style="margin: 5px 0;">last updated: <span class="last-update">8:06AM</span></p>
+                <p style="margin: 5px 0;">last updated: <span class="last-update">--:--</span></p>
                 <h3 class="current temperature"><span>&nbsp;</span>&deg;C</h3>
                 <span class="symbol"></span>
                 <table>
@@ -109,7 +109,7 @@
             <div class="day-forecast">
                 <ul>
                     <li>
-                        <h6 class="0-hour time">8:00AM</h6>
+                        <h6 class="0-hour time">--:--</h6>
                         <div class="0-hour readings">
                             <h3 class="temperature"><span>&nbsp;</span>&deg;C</h3>
                             <span class="symbol"></span>
@@ -132,7 +132,7 @@
                         </div>
                     </li>
                     <li>
-                        <h6 class="1-hour time">8:00AM</h6>
+                        <h6 class="1-hour time">--:--</h6>
                         <div class="1-hour readings">
                             <h3 class="temperature"><span>&nbsp;</span>&deg;C</h3>
                             <span class="symbol"></span>
@@ -155,7 +155,7 @@
                         </div>
                     </li>
                     <li>
-                        <h6 class="2-hour time">8:00AM</h6>
+                        <h6 class="2-hour time">--:--</h6>
                         <div class="2-hour readings">
                             <h3 class="temperature"><span>&nbsp;</span>&deg;C</h3>
                             <span class="symbol"></span>
@@ -178,7 +178,7 @@
                         </div>
                     </li>
                     <li>
-                        <h6 class="3-hour time">8:00AM</h6>
+                        <h6 class="3-hour time">--:--</h6>
                         <div class="3-hour readings">
                             <h3 class="temperature"><span>&nbsp;</span>&deg;C</h3>
                             <span class="symbol"></span>
@@ -201,7 +201,7 @@
                         </div>
                     </li>
                     <li>
-                        <h6 class="4-hour time">8:00AM</h6>
+                        <h6 class="4-hour time">--:--</h6>
                         <div class="4-hour readings">
                             <h3 class="temperature"><span>&nbsp;</span>&deg;C</h3>
                             <span class="symbol"></span>
@@ -224,7 +224,7 @@
                         </div>
                     </li>
                     <li>
-                        <h6 class="5-hour time">8:00AM</h6>
+                        <h6 class="5-hour time">--:--</h6>
                         <div class="5-hour readings">
                             <h3 class="temperature"><span>&nbsp;</span>&deg;C</h3>
                             <span class="symbol"></span>
@@ -247,7 +247,7 @@
                         </div>
                     </li>
                     <li>
-                        <h6 class="6-hour time">8:00AM</h6>
+                        <h6 class="6-hour time">--:--</h6>
                         <div class="6-hour readings">
                             <h3 class="temperature"><span>&nbsp;</span>&deg;C</h3>
                             <span class="symbol"></span>

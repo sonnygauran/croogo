@@ -68,7 +68,7 @@ class WeatherphStationForecast extends WeatherphAppModel
                 $result['ort1'] = implode('/', $result['ort1']);
                 
                 $abfrageResults['ort1'] = $result['ort1'];
-                $abfrageResults['update'] = date('H:ia');
+                $abfrageResults['update'] = date('H:iA');
                 
                 // Remove decimal of the raw data for symbol
                 $result['sy'] = $this->dayOrNightSymbol(number_format($result['sy'],0), $result['utc']);
@@ -212,20 +212,9 @@ class WeatherphStationForecast extends WeatherphAppModel
             
             //debug($utc);
             
-//            if($utc <= 12 && $utc >= 0 ){
-//                return 'day_' . $symbol;
-//            }elseif($utc <= 24 && $utc > 12){
-//                return 'night_' . $symbol;
-//            }else{
-//                $error = 'UTC is required'.$url;
-//                $this->log($error);
-//                throw new Exception('UTC is required');
-//                return NULL;
-//            }
-            
-            if($utc >=6 && $utc <= 18 ){
+            if($utc <= 12 && $utc >= 0 ){
                 return 'day_' . $symbol;
-            }elseif($utc < 6 || $utc > 18){
+            }elseif($utc <= 24 && $utc > 12){
                 return 'night_' . $symbol;
             }else{
                 $error = 'UTC is required'.$url;
@@ -233,6 +222,8 @@ class WeatherphStationForecast extends WeatherphAppModel
                 throw new Exception('UTC is required');
                 return NULL;
             }
+            
+
             
         }
         
