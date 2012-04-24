@@ -102,9 +102,12 @@
                     </tbody>
                 </table>
             </div>
-            <div class="detail-page-link">
-                <h2>More Details<h2>
-                <?php echo $this->Html->image('arrow.png'); ?>
+            <div class="detail-page-link" style="text-align: center;">
+                <h2 style="height: 21px; text-align: center; width: 195px;">
+                    <a href="/view" style="background: url(/theme/weatherph_compact/img/arrow.png) no-repeat left center; padding-left: 40px; margin: 0 auto;">
+                        More Details
+                    </a>
+                </h2>
             </div>
             <div class="day-forecast">
                 <ul>
