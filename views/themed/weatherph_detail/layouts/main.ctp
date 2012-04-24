@@ -1,6 +1,6 @@
 <?php
 /**
- * Weatherph Frontpage
+ * Weatherph Detail
  *
  * @author Martin de Lima <mdelima@meteomedia.com.ph>
  * @link http://www.weather.com.ph
@@ -25,6 +25,9 @@
             'jquery/superfish',
             'jquery/supersubs',
             'theme',
+            'script',
+            'AnyChart',
+            'AnyChartHTML5',
             'libs/jquery.geo-1.0a4',
         ));
         echo $scripts_for_layout;
@@ -54,20 +57,22 @@
                     <li><a href="#">Impressum</a></li>
                 </ul>
             </nav>
-<?php
 
-echo $this->Layout->sessionFlash();
-echo $content_for_layout;
+            <div id="content">
+            <?php
+                    echo $this->Layout->sessionFlash();
+                    echo $content_for_layout;
+            ?>
+            </div> <!--CONTENT-->
 
-?>
             <aside id="sidebar">
                 <div id="sponsors">
-                    <h6>Powered by:</h6>
                     <div class="sponsored center">
+                        <h6>Powered by:</h6>
                         <?php echo $this->Html->image('aboitiz.jpg'); ?>
                     </div>
-                    <h6>Platinum sponsors:</h6>
                     <div class="sponsored center">
+                        <h6>Platinum sponsors:</h6>
                         <ul>
                             <li><?php echo $this->Html->image('ICTS.jpg'); ?></li>
                             <li><?php echo $this->Html->image('NAC.jpg'); ?></li>
@@ -80,7 +85,7 @@ echo $content_for_layout;
                 </div>
                 
                 <!-- AddThis Button BEGIN -->
-                <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+                <div class="center addthis_toolbox addthis_default_style addthis_32x32_style">
                 <a class="addthis_button_facebook"></a>
                 <a class="addthis_button_twitter"></a>
                 <a class="addthis_button_linkedin"></a>
@@ -90,7 +95,7 @@ echo $content_for_layout;
                 <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4f94bc453ecffca4"></script>
                 <!-- AddThis Button END -->
 
-
+<!--
                 <div class="ads">
                     <div class="promo">
                         <h4>Visit Boracay!</h4>
@@ -108,7 +113,7 @@ echo $content_for_layout;
                         </p>
                     </div>
                 </div>
-
+-->
             </aside>
 <!--        
             <footer>

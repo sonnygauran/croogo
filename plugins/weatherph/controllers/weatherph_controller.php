@@ -115,4 +115,7 @@ class WeatherphController extends WeatherphAppController {
         
     }
     
+    public function view() {
+        
+    }
 }
