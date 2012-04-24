@@ -64,6 +64,7 @@ class WeatherphStationForecast extends WeatherphAppModel
                 $result['ort1'] = implode('/', $result['ort1']);
                 
                 $abfrageResults['ort1'] = $result['ort1'];
+                $abfrageResults['update'] = date('H:ia');
                 
                 // Remove decimal of the raw data for symbol
                 $result['sy'] = $this->dayOrNightSymbol(number_format($result['sy'],0), $result['utc']);
@@ -76,19 +77,19 @@ class WeatherphStationForecast extends WeatherphAppModel
                 $result['g3h'] = ($result['g3h'] == '')? '0' : round($result['g3h'],0);
                 
                 // Translate raw date to 3 hourly range value
-                $result['utch'] = $result['utc'] . ':' . $result['min'] .'<br />'. sprintf('%02d',$result['utc'] + 3) .':'. $result['min'];
+                $result['utch'] = $result['utc'] . ':' . $result['min'] .' - '. sprintf('%02d',$result['utc'] + 3) .':'. $result['min'];
                 
                 // Translate raw data to wind direction image value
                 $result['dir'] = $this->showWindDirection($result['dir']);
                 
                 unset($result['Datum'],$result['ort1']);
                 
-                $abfrageResults['utc'.$result['utc']] = $result;
-                
-                
+                if (!key_exists('reading', $abfrageResults)) {
+                    $abfrageResults['reading'] = $result;
+                } else {
+                    $abfrageResults['forecast'][] = $result;
+                }
             }
-            
-            
         }
         
         //debug($abfrageResults);exit;
