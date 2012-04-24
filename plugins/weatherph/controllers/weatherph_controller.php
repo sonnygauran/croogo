@@ -109,7 +109,7 @@ class WeatherphController extends WeatherphAppController {
             'utch' => $utch,
             'time' => $time,
         )));
- 
+        $this->log(print_r($forecasts, true));
         $this->set('forecasts', json_encode($forecasts));
         
         
