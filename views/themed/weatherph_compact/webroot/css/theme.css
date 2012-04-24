@@ -40,8 +40,12 @@ html, body, div, span, object, iframe, h1, h2, h3, dl dt, h4, h5, h6, p, blockqu
     margin: 0 auto;
 }
 
-.menu, #content, #sidebar, footer {
+#content {
     float: left;
+}
+
+#sidebar {
+    float:right;
 }
 
 /*====================
@@ -198,13 +202,24 @@ div.readings {
     vertical-align: middle;
 }
 
-.readings > h3, .readings > img, .readings > table {
+.readings > h3, .readings > img {
     float: left;
     padding: 3px;
 }
 
-.readings >h3 {
+.readings > h3 {
     font-size: 1.875em;
+    width: 65px;
+}
+
+.readings > img {
+    width: auto;
+}
+
+.readings > table {
+    float: right;
+    padding: 3px;
+    width: 100px;
 }
 
 .detail-page-link {
@@ -266,6 +281,102 @@ div.readings {
 .news p {
     padding: 1em;
     vertical-align: middle;
+}
+
+/*====================
+    DETAIL
+====================*/
+
+#content {
+    width: 804px;
+}
+
+#weekWeather, #charts, #outlook {
+    margin: 10px auto;
+}
+
+#currentWeather {
+    width: 100%;
+    overflow: auto;
+}
+
+#station, #condition, #conditionTable {
+    float:left;
+    margin: 10px;
+    padding: 10px;
+}
+
+#station {
+    width: 161px;
+}
+
+#station > p {
+    font-size: .875em;
+}
+
+#condition, #conditionTable  {
+    width: 261px;
+}
+
+#condition > img {
+    float:left;
+}
+
+.condition-text {
+    float:left;
+    margin-top: 1em;
+}
+
+#conditionTable > table {
+    width: 100%;
+}
+
+#conditionTable td {
+    padding: 5px 10px;
+}
+
+.output {
+    text-align: center;
+    vertical-align: middle;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+/*===============
+    TABS
+===============*/
+
+ul.tabs {
+    margin-top: 1em;
+    border-bottom: 15px solid #2F4771;
+}
+
+.tabs li {
+    display: inline;
+    padding: 5px 10px 0 10px;
+    border-bottom: 1px solid #2E4471;
+}
+
+.tabs li > a {
+    text-decoration: none;
+}
+
+div.tab{
+    display: none;
+}
+
+div.current-tab {
+    display: block;
+}
+
+/*===============
+    WEEK
+===============*/
+
+.week-forecast td {
+    padding: 1em;
+    text-align: center;
+    border: 1px solid #d6dfeb;
 }
 
 /*====================
@@ -421,6 +532,24 @@ nav, .layerSelector, .promo, #info {
     background: rgba(171,185,221,.5);
 }
 
+#currentWeather, .tabs li {
+    background: #43597E;
+    color: #fafafa;
+}
+
+
+
+.week-forecast .time, .output {
+    background-color: #2F4771;
+    color: #fafafa;
+}
+
+.caption {
+    background-color: #fafafa;
+    color: #2F4771;
+    vertical-align: middle;
+}
+
 /*========================================
 5.	States
 ========================================*/
@@ -430,14 +559,6 @@ nav, .layerSelector, .promo, #info {
 
 .clear {
     clear: both;
-}
-
-.output {
-    text-align: center;
-    font-size: 1em;
-    font-weight: bold;
-    background-color: #2F4771;
-    color: #fafafa;
 }
 
 a {
@@ -460,6 +581,9 @@ footer a:link, footer a:visited {
     color: #fafafa;
 }
 
+.tabs li.current-tab {
+    border-top: 1px solid red;
+}
 span.symbol { background: url(/theme/weatherph_compact/img/sprite_symbols.png) no-repeat; height: 27px; width: 37px; display: block; margin-left: 10px; float: left; }
 
 span.day_1 { background-position: 0px 0px; }
