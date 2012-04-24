@@ -12,7 +12,7 @@ class WeatherphStationForecast extends WeatherphAppModel
         
         include dirname(__FILE__) . '/auth.php';
         
-        date_default_timezone_set('UTC');
+        date_default_timezone_set('Asia/Manila');
         
         
         $daysStr = ($fields['conditions']['target_days'] > 1)? 'days' : 'day';
@@ -43,16 +43,10 @@ class WeatherphStationForecast extends WeatherphAppModel
         curl_close($ch);
         
         $stationInfo = $this->getStationInfo($stationId, array("lat","lon"));
-        
-        //debug($stationInfo);exit;
-        //$stationLong = $this->getStationInfo($stationId, "lon");
-        
              
         $headersSpecimen = "Datum;utc;min;ort1;dir;ff;g3h;tl;rr;sy;rh;sy2;";
         
         $results = $this->csvToArray($curlResults, $headersSpecimen);
-        
-        //debug($results);exit;
         
         $abfrageResults = array();
         foreach($results as $result){
@@ -75,11 +69,11 @@ class WeatherphStationForecast extends WeatherphAppModel
                 $result['sy'] = $this->dayOrNightSymbol(number_format($result['sy'],0), $result['utc']);
                 
                 // Replace the null values with hypen character and round it off to the nearest tenths
-                $result['tl'] = ($result['tl'] == '')? '-' : round($result['tl'],0);
-                $result['rr'] = ($result['rr'] == '')? '-' : round($result['rr'],0);
-                $result['rh'] = ($result['rh'] == '')? '-' : round($result['rh'],0);
-                $result['ff'] = ($result['ff'] == '')? '-' : round($result['ff'],0);
-                $result['g3h'] = ($result['g3h'] == '')? '-' : round($result['g3h'],0);
+                $result['tl'] = ($result['tl'] == '')? '0' : round($result['tl'],0);
+                $result['rr'] = ($result['rr'] == '')? '0' : round($result['rr'],0);
+                $result['rh'] = ($result['rh'] == '')? '0' : round($result['rh'],0);
+                $result['ff'] = ($result['ff'] == '')? '0' : round($result['ff'],0);
+                $result['g3h'] = ($result['g3h'] == '')? '0' : round($result['g3h'],0);
                 
                 // Translate raw date to 3 hourly range value
                 $result['utch'] = $result['utc'] . ':' . $result['min'] .'<br />'. sprintf('%02d',$result['utc'] + 3) .':'. $result['min'];
@@ -211,9 +205,20 @@ class WeatherphStationForecast extends WeatherphAppModel
             
             //debug($utc);
             
-            if($utc <= 12 && $utc >= 0 ){
+//            if($utc <= 12 && $utc >= 0 ){
+//                return 'day_' . $symbol;
+//            }elseif($utc <= 24 && $utc > 12){
+//                return 'night_' . $symbol;
+//            }else{
+//                $error = 'UTC is required'.$url;
+//                $this->log($error);
+//                throw new Exception('UTC is required');
+//                return NULL;
+//            }
+            
+            if($utc >=6 && $utc <= 18 ){
                 return 'day_' . $symbol;
-            }elseif($utc <= 24 && $utc > 12){
+            }elseif($utc < 6 || $utc > 18){
                 return 'night_' . $symbol;
             }else{
                 $error = 'UTC is required'.$url;
