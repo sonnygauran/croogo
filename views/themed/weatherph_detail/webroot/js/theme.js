@@ -3,7 +3,16 @@ var map = $("#map").geomap({
     center: [ 121.019825, 14.557263 ],
     zoom: 6,
     scroll: 'off',
-    
+    cursors: {
+        static: "default",
+        pan: "default",
+        zoom: "default",
+        drawPoint: "default",
+        drawLineString: "default",
+        drawPolygon: "default",
+        measureLength: "default",
+        measureArea: "default"
+    },
     //http://a.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/56590/256/5/15/12.png
 
     //Tiledrawer Maps
