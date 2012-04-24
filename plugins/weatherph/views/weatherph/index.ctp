@@ -63,12 +63,12 @@
                         </optgroup>
                     </select>
                 </div> <!--END PROVINCE SELECT-->
-                <div id="station-color">
+                <!--<div id="station-color">
                     <img src="theme/weatherph_compact/img/legend-blue.png" alt="" />
                     <h6>Meteomedia stations</h6>
                     <img src="theme/weatherph_compact/img/legend-red.png" alt="" />
                     <h6>PAGASA stations</h6>
-                </div>
+                </div>-->
 <!--                            
                 <img src ="theme/weatherph_compact/img/legend.png"/>
 -->

@@ -73,7 +73,7 @@ echo $content_for_layout;
                             <li><?php echo $this->Html->image('NAC.jpg'); ?></li>
                             <li><?php echo $this->Html->image('SGS.jpg'); ?></li>
                             <li><?php echo $this->Html->image('vistaland.jpg'); ?></li>
-                            <li><?php echo $this->Html->image('NGCP.png'); ?></li>
+                            <li><?php echo $this->Html->image('ngcp1.png'); ?></li>
                             <li><?php echo $this->Html->image('sumitomo.png'); ?></li>
                         </ul>
                     </div>
