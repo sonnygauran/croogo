@@ -68,7 +68,7 @@ class WeatherphStationForecast extends WeatherphAppModel
                 $result['ort1'] = implode('/', $result['ort1']);
                 
                 $abfrageResults['ort1'] = $result['ort1'];
-                $abfrageResults['update'] = date('H:ia');
+                $abfrageResults['update'] = date('H:iA');
                 
                 // Remove decimal of the raw data for symbol
                 $result['sy'] = $this->dayOrNightSymbol(number_format($result['sy'],0), $result['utc']);
