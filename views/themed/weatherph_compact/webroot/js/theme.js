@@ -73,14 +73,16 @@ map.geomap({
 function getForecast(id) {
 $.ajax({
             type:     'GET',
-            url:        '/weatherph/weatherph/getForecast/'+id+'/1/3h',
+            url:        '/weatherph/weatherph/getForecast/'+id+'/2/3h',
             cache:    false,
             success:  function(readings) {
                 
                 var $stationReadings = readings; // the complete retrieved stations
                 var d = new Date();
                 var hr = d.getHours();
-                var utc, cr_temperature, cr_wind, cr_precip, cr_humidity;
+                var utc, utch;
+                var cr_temperature, cr_wind, cr_precip, cr_humidity;
+                var sr_temperature, sr_wind, sr_precip, sr_humidity;                
                 
                 $('.current.readings-location').html($stationReadings.ort1);
                 
@@ -89,56 +91,152 @@ $.ajax({
                     cr_wind = $stationReadings.utc00.ff;
                     cr_precip = $stationReadings.utc00.rr;
                     cr_humidity = $stationReadings.utc00.rh;
-                    utc = 0;
+                    utch = 0;
                 }else if(hr >=3 && hr <6){
                     cr_temperature = $stationReadings.utc03.tl;
                     cr_wind = $stationReadings.utc03.ff;
                     cr_precip = $stationReadings.utc03.rr;
                     cr_humidity = $stationReadings.utc03.rh;
-                    utc = 3;
+                    utch = 3;
                 }else if(hr >=6 && hr <9){
                     cr_temperature = $stationReadings.utc06.tl;
+                cr_wind = $stationReadings.utc06.ff;
+                cr_precip = $stationReadings.utc06.rr;
+                cr_humidity = $stationReadings.utc06.rh;
+                    utch = 6;
+                }else if(hr >=9 && hr <12){
+                    cr_temperature = $stationReadings.utc09.tl;
+                cr_wind = $stationReadings.utc09.ff;
+                cr_precip = $stationReadings.utc09.rr;
+                cr_humidity = $stationReadings.utc09.rh;
+                    utch = 9;
+                }else if(hr >=12 && hr <15){
+                    cr_temperature = $stationReadings.utc12.tl;
+                cr_wind = $stationReadings.utc12.ff;
+                cr_precip = $stationReadings.utc12.rr;
+                cr_humidity = $stationReadings.utc12.rh;
+                    utch = 12;
+                }else if(hr >=15 && hr <18){
+                    cr_temperature = $stationReadings.utc15.tl;
+                cr_wind = $stationReadings.utc15.ff;
+                cr_precip = $stationReadings.utc15.rr;
+                cr_humidity = $stationReadings.utc15.rh;
+                    utch = 15;
+                }else if(hr >=18 && hr <21){
+                    cr_temperature = $stationReadings.utc18.tl;
+                cr_wind = $stationReadings.utc18.ff;
+                cr_precip = $stationReadings.utc18.rr;
+                cr_humidity = $stationReadings.utc18.rh;
+                    utch = 18;
+                }else{
+                    cr_temperature = $stationReadings.utc21.tl;
+                cr_wind = $stationReadings.utc21.ff;
+                cr_precip = $stationReadings.utc21.rr;
+                cr_humidity = $stationReadings.utc21.rh;
+                    utch = 21;
+                }
+                
+                
+                for (var key in $stationReadings) {
+                    //var $currentStationReadings = $stationReadings[key];
+                    
+                    if(key == "utc00"){
+                        cr_temperature = $stationReadings.utc00.tl;
+                        cr_wind = $stationReadings.utc00.ff;
+                        cr_precip = $stationReadings.utc00.rr;
+                        cr_humidity = $stationReadings.utc00.rh;
+                        utch = 0;
+                    }else if(key == "utc03"){
+                        cr_temperature = $stationReadings.utc03.tl;
+                        cr_wind = $stationReadings.utc03.ff;
+                        cr_precip = $stationReadings.utc03.rr;
+                        cr_humidity = $stationReadings.utc03.rh;
+                        utch = 3;
+                    }else if(key == "utc06"){
+                        cr_temperature = $stationReadings.utc06.tl;
                     cr_wind = $stationReadings.utc06.ff;
                     cr_precip = $stationReadings.utc06.rr;
                     cr_humidity = $stationReadings.utc06.rh;
-                    utc = 6;
-                }else if(hr >=9 && hr <12){
-                    cr_temperature = $stationReadings.utc09.tl;
+                        utch = 6;
+                    }else if(key == "utc09"){
+                        cr_temperature = $stationReadings.utc09.tl;
                     cr_wind = $stationReadings.utc09.ff;
                     cr_precip = $stationReadings.utc09.rr;
                     cr_humidity = $stationReadings.utc09.rh;
-                    utc = 9;
-                }else if(hr >=12 && hr <15){
-                    cr_temperature = $stationReadings.utc12.tl;
+                        utch = 9;
+                    }else if(key == "utc12"){
+                        cr_temperature = $stationReadings.utc12.tl;
                     cr_wind = $stationReadings.utc12.ff;
-                    cr_precip = $stationReadings.utc09.rr;
-                    cr_humidity = $stationReadings.utc09.rh;
-                    utc = 12;
-                }else if(hr >=15 && hr <18){
-                    cr_temperature = $stationReadings.utc15.tl;
+                    cr_precip = $stationReadings.utc12.rr;
+                    cr_humidity = $stationReadings.utc12.rh;
+                        utch = 12;
+                    }else if(key == "utc15"){
+                        cr_temperature = $stationReadings.utc15.tl;
                     cr_wind = $stationReadings.utc15.ff;
                     cr_precip = $stationReadings.utc15.rr;
                     cr_humidity = $stationReadings.utc15.rh;
-                    utc = 15;
-                }else if(hr >=18 && hr <21){
-                    cr_temperature = $stationReadings.utc18.tl;
+                        utch = 15;
+                    }else if(key == "utc18"){
+                        cr_temperature = $stationReadings.utc18.tl;
                     cr_wind = $stationReadings.utc18.ff;
                     cr_precip = $stationReadings.utc18.rr;
                     cr_humidity = $stationReadings.utc18.rh;
-                    utc = 18;
-                }else{
-                    cr_temperature = $stationReadings.utc21.tl;
+                        utch = 18;
+                    }else{
+                        cr_temperature = $stationReadings.utc21.tl;
                     cr_wind = $stationReadings.utc21.ff;
                     cr_precip = $stationReadings.utc21.rr;
                     cr_humidity = $stationReadings.utc21.rh;
-                    utc = 21;
+                        utch = 21;
+                    }
+                    
+                    //alert(key);
                 }
                 
+                //utch = utch + "";
+                
+                //utch = (utch.length < 2)? "0" + utch : utch;
+                
+                //utch = "utc" + utch;
                 
                 $('.current.temperature span').html(cr_temperature);
                 $('.current.wind span').html(cr_wind);
                 $('.current.precipitation span').html(cr_precip);
                 $('.current.humidity span').html(cr_humidity);
+                
+                /*
+                var utch = 0;
+                var utcsr, utchsr;
+                var increment3 = 3; 
+                var cntr = 0;
+                
+                for(utch = utc; utch<=21; utch=utch + increment3 ){
+                
+//                    cntr = cntr + increment3;
+//                    
+//                    utchsr = utch + "";
+//                
+//                    utchsr = (utchsr.length < 2)? "0" + utchsr : utchsr;
+//                    utchsr = "utc" + utchsr;
+//                    
+//                    utcsr = utchsr;
+                    
+                    alert(utch);
+//                    
+//                    sr_temperature = $stationReadings[utcsr].tl;
+//                    sr_wind = $stationReadings[utcsr].ff;
+//                    sr_precip = $stationReadings[utcsr].rr;
+//                    sr_humidity = $stationReadings[utcsr].rh;
+//                    
+//                    $('.'+ cntr + '-hour .temperature span').html(sr_temperature);
+//                    $('.'+ cntr + '-hour .wind span').html(sr_wind);
+//                    $('.'+ cntr + '-hour .precipitation span').html(sr_precip);
+//                    $('.'+ cntr + '-hour .humidity span').html(sr_humidity);
+                
+                    
+                }
+                */
+                
                 
                 
                 
