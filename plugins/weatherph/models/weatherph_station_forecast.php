@@ -48,6 +48,10 @@ class WeatherphStationForecast extends WeatherphAppModel
         
         $results = $this->csvToArray($curlResults, $headersSpecimen);
         
+        $nowHour = date('H');
+        $nowHourRound = $nowHour - ($nowHour % 3);
+        
+        $hourStart = false;
         $abfrageResults = array();
         foreach($results as $result){
             
@@ -84,8 +88,10 @@ class WeatherphStationForecast extends WeatherphAppModel
                 
                 unset($result['Datum'],$result['ort1']);
                 
-                if (!key_exists('reading', $abfrageResults)) {
-                    $abfrageResults['reading'] = $result;
+                if (!key_exists('reading', $abfrageResults) AND !$hourStart) {
+                    if ($result['utc'] == $nowHourRound) {
+                        $abfrageResults['reading'] = $result;
+                    }
                 } else {
                     $abfrageResults['forecast'][] = $result;
                 }

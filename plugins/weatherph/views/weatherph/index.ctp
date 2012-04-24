@@ -124,7 +124,7 @@
                                     </tr>
                                     <tr>
                                         <td>Precip.</td>
-                                        <td class="precipitation">0<span>&nbsp;</span> l/m</td>
+                                        <td class="precipitation"><span>&nbsp;</span> l/m</td>
                                     </tr>
                                     <tr>
                                         <td>Humidity</td>
