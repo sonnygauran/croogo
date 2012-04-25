@@ -1,3 +1,4 @@
+<script type="text/javascript" src="weatherph/js/weatherph/index.js"></script>
 <style type="text/css">
     .loader {
         background: white url(theme/weatherph_compact/img/loader-twirl.gif) no-repeat center center;
