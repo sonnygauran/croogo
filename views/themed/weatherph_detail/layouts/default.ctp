@@ -37,14 +37,12 @@
         <section id="container">
             <header class="banner clear">    
                 <h1 class="logo">weather | philippines</h1>
-                
                 <div id="options">
                     <img src="theme/weatherph_compact/img/flag.png" alt="Philippines" />
                     <form class="search">
                         Weather Search: <input type="text" name="city" size="15" />
                         <img src="theme/weatherph_compact/img/search.png" alt="" />
-                    </form>
-                    
+                    </form>    
                 </div>
             </header> <!--BANNER-->
 
