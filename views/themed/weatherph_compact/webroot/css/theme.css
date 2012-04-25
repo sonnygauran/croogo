@@ -236,10 +236,6 @@ div.readings {
     border-bottom: 1px solid black;
 }
 
-.detail-page-link > h2 {
-    display: inline;
-}
-
 .day-forecast li:nth-child(even) {
     background-color: #fafafa;
     color: #2F4771;
@@ -499,7 +495,15 @@ h5, h6 {
     font-weight: 200;
     text-shadow: #fafafa 0 0 20px;
 }
-
+.logo a,
+.logo a:link,
+.logo a:visited,
+.logo a:focus,
+.logo a:hover
+{
+    color:#3E4F76;
+    text-decoration: none;
+}
 .layerSelector, #legend {
     font-size: .875em;
 }
