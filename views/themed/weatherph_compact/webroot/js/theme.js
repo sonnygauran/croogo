@@ -88,42 +88,30 @@ $.ajax({
             success:  function(readings) {
                 
                 var $stationReadings = readings; // the complete retrieved stations
-                var d = new Date();
-                var hr = d.getHours();
-                var utc, utch;
+                console.log($stationReadings);
                 var cr_temperature, cr_wind, cr_precip, cr_humidity, cr_symbol;
                 var sr_temperature, sr_wind, sr_precip, sr_humidity, sr_symbol;                
                 
                 $('.current.readings-location').html($stationReadings.ort1);
                 $('.last-update').html($stationReadings.update);
                 
-                //if(hr >=0 && hr <3){
-                    cr_temperature = $stationReadings.reading.tl;
-                    cr_wind = $stationReadings.reading.ff;
-                    cr_precip = $stationReadings.reading.rr;
-                    cr_humidity = $stationReadings.reading.rh;
-                    utch = 0;
-                //}
+                cr_temperature = $stationReadings.reading.tl;
+                cr_wind = $stationReadings.reading.ff;
+                cr_precip = $stationReadings.reading.rr;
+                cr_humidity = $stationReadings.reading.rh;
                 
                 $('.current.temperature span').html(cr_temperature);
                 $('.current.wind span').html(cr_wind);
                 $('.current.precipitation span').html(cr_precip);
                 $('.current.humidity span').html(cr_humidity);
-                $('.current.symbol').addClass($stationReadings.reading.sy);
+                $('#info .readings .symbol:eq(0)').addClass($stationReadings.reading.sy);
                 $('.current.time').html($stationReadings.reading.uthc);
-                
-                var utch2;
-                var increment3 = 3;
-                var cntr = 0;
-                console.log($stationReadings);
                 
                 for (var key in $stationReadings.forecast) {
                     sr_temperature = $stationReadings.forecast[key].tl;
                     sr_wind = $stationReadings.forecast[key].ff;
                     sr_precip = $stationReadings.forecast[key].rr;
                     sr_humidity = $stationReadings.forecast[key].rh;
-                     
-                    utch = 0;
                     
                     $('.' + key + '-hour .symbol').addClass($stationReadings.forecast[key].sy);
                     $('.' + key + '-hour.time').html($stationReadings.forecast[key].utch);
@@ -131,11 +119,8 @@ $.ajax({
                     $('.' + key + '-hour .wind span').html(sr_wind);
                     $('.' + key + '-hour .precipitation span').html(sr_precip);
                     $('.' + key + '-hour .humidity span').html(sr_humidity);
-
                     
-                }
-                   
-                
+                } 
                 
                 $('.loader').fadeOut();
                 

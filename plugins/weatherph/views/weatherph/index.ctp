@@ -93,7 +93,7 @@
                         </tr>
                         <tr>
                             <td>Precip.</td>
-                            <td class="current precipitation"><span>&nbsp;</span>l/m</td>
+                            <td class="current precipitation"><span>&nbsp;</span>mm</td>
                         </tr>
                         <tr>
                             <td>Humidity</td>
@@ -124,7 +124,7 @@
                                     </tr>
                                     <tr>
                                         <td>Precip.</td>
-                                        <td class="precipitation"><span>&nbsp;</span> l/m</td>
+                                        <td class="precipitation"><span>&nbsp;</span>mm</td>
                                     </tr>
                                     <tr>
                                         <td>Humidity</td>
@@ -147,7 +147,7 @@
                                     </tr>
                                     <tr>
                                         <td>Precip.</td>
-                                        <td class="precipitation"><span>&nbsp;</span> l/m</td>
+                                        <td class="precipitation"><span>&nbsp;</span>mm</td>
                                     </tr>
                                     <tr>
                                         <td>Humidity</td>
@@ -170,7 +170,7 @@
                                     </tr>
                                     <tr>
                                         <td>Precip.</td>
-                                        <td class="precipitation"><span>&nbsp;</span> l/m</td>
+                                        <td class="precipitation"><span>&nbsp;</span>mm</td>
                                     </tr>
                                     <tr>
                                         <td>Humidity</td>
@@ -193,7 +193,7 @@
                                     </tr>
                                     <tr>
                                         <td>Precip.</td>
-                                        <td class="precipitation"><span>&nbsp;</span> l/m</td>
+                                        <td class="precipitation"><span>&nbsp;</span>mm</td>
                                     </tr>
                                     <tr>
                                         <td>Humidity</td>
@@ -216,7 +216,7 @@
                                     </tr>
                                     <tr>
                                         <td>Precip.</td>
-                                        <td class="precipitation"><span>&nbsp;</span> l/m</td>
+                                        <td class="precipitation"><span>&nbsp;</span>mm</td>
                                     </tr>
                                     <tr>
                                         <td>Humidity</td>
@@ -239,7 +239,7 @@
                                     </tr>
                                     <tr>
                                         <td>Precip.</td>
-                                        <td class="precipitation"><span>&nbsp;</span> l/m</td>
+                                        <td class="precipitation"><span>&nbsp;</span>mm</td>
                                     </tr>
                                     <tr>
                                         <td>Humidity</td>
@@ -262,7 +262,7 @@
                                     </tr>
                                     <tr>
                                         <td>Precip.</td>
-                                        <td class="precipitation"><span>&nbsp;</span> l/m</td>
+                                        <td class="precipitation"><span>&nbsp;</span>mm</td>
                                     </tr>
                                     <tr>
                                         <td>Humidity</td>

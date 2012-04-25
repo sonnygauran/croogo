@@ -27,7 +27,7 @@
                     <tbody>
                         <tr>
                             <td class="caption">Precipitation</td>
-                            <td class="output">.08l/m</td>
+                            <td class="output">.08mm</td>
                         </tr>
                         <tr>
                             <td class="caption">Avg. Wind Speed</td>
