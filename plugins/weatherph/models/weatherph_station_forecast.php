@@ -89,7 +89,7 @@ class WeatherphStationForecast extends WeatherphAppModel
                 // Translate raw data to wind direction image value
                 $result['dir'] = $this->showWindDirection($result['dir']);
                 
-                unset($result['Datum'],$result['ort1']);
+                unset($result['ort1']);
                 
                 if (!key_exists('reading', $abfrageResults) AND !$hourStart) {
                     if ($result['utc'] == $nowHourRound) {
