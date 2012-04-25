@@ -235,14 +235,11 @@ div.readings {
     border-bottom: 1px solid black;
 }
 
-<<<<<<< HEAD
 .detail-page-link > h2 {
     display: inline-block;
     margin: 0 auto;
 }
 
-=======
->>>>>>> ee789bed47a566758c2e59eda33f87dd66c5576c
 .day-forecast li:nth-child(even) {
     background-color: #fafafa;
     color: #2F4771;
