@@ -103,7 +103,7 @@
                 </table>
             </div>
             <div class="detail-page-link">
-                <h2>More Details<h2>
+                <h2><a href="http://weatherph/view/">More Details</a><h2>
                 <?php echo $this->Html->image('arrow.png'); ?>
             </div>
             <div class="day-forecast">
