@@ -28,6 +28,7 @@ class WeatherphStationForecast extends WeatherphAppModel
         $startutc = "00";
         $endutc = "00";
         
+        //Grab stations readings  
         $url = "http://192.168.20.89/abfrage.php?stationidstring=$stationId&datumstart=$startdatum&datumend=$enddatum&&zeiten1=$utch&paramtyp=mos_mix_mm&mosmess=ja&tl=on&dir=on&ff=on&g3h=on&paramliste=rr,rh,sy,sy2&output=csv2&ortoutput=wmo6,name&aufruf=auto";
         
         $this->log($url);
@@ -57,12 +58,14 @@ class WeatherphStationForecast extends WeatherphAppModel
             
             if(trim($result['tl'])!=''){
                 
+                //Determine sunrise and sunset for every location using latituted and longtitude
                 $sunrise = date_sunrise(strtotime($result['Datum']), SUNFUNCS_RET_STRING, $stationInfo['lat'], $stationInfo['lon'], 90);
                 $sunset = date_sunset(strtotime($result['Datum']), SUNFUNCS_RET_STRING, $stationInfo['lat'], $stationInfo['lon'], 90);
 
-                $abfrageResults['sunrise'] = $sunrise;
-                $abfrageResults['sunset'] = $sunset;
+                $result['sunrise'] = $sunrise;
+                $result['sunset'] = $sunset;
 
+                //explode the ort1 raw data, grab only those needed
                 $result['ort1'] = explode('/', $result['ort1']);
                 unset($result['ort1'][0]);
                 $result['ort1'] = implode('/', $result['ort1']);
@@ -70,8 +73,8 @@ class WeatherphStationForecast extends WeatherphAppModel
                 $abfrageResults['ort1'] = $result['ort1'];
                 $abfrageResults['update'] = date('H:iA');
                 
-                // Remove decimal of the raw data for symbol
-                $result['sy'] = $this->dayOrNightSymbol(number_format($result['sy'],0), $result['utc']);
+                //Determine weather symbol for certain utc time
+                $result['sy'] = $this->dayOrNightSymbol(number_format($result['sy'],0), $result['utc'], array("sunrise"=>$sunrise,"sunset"=>$sunset));
                 
                 // Replace the null values with hypen character and round it off to the nearest tenths
                 $result['tl'] = ($result['tl'] == '')? '0' : round($result['tl'],0);
@@ -86,7 +89,7 @@ class WeatherphStationForecast extends WeatherphAppModel
                 // Translate raw data to wind direction image value
                 $result['dir'] = $this->showWindDirection($result['dir']);
                 
-                unset($result['Datum'],$result['ort1']);
+                unset($result['ort1']);
                 
                 if (!key_exists('reading', $abfrageResults) AND !$hourStart) {
                     if ($result['utc'] == $nowHourRound) {
@@ -97,8 +100,6 @@ class WeatherphStationForecast extends WeatherphAppModel
                 }
             }
         }
-        
-        //debug($abfrageResults);exit;
        
         return $abfrageResults;
         
@@ -106,6 +107,7 @@ class WeatherphStationForecast extends WeatherphAppModel
     
     public function csvToArray($csv, $headersSpecimen){
         
+        //Convert 
         $expected = strstr($csv, $headersSpecimen);
 
         if ($expected == '') {
@@ -196,34 +198,26 @@ class WeatherphStationForecast extends WeatherphAppModel
         
     }
     
-    private function dayOrNightSymbol($symbol = NULL, $utc = NULL){
+    private function dayOrNightSymbol($symbol = NULL, $utc = NULL, $meridiem = array()){
         
         if($symbol == NULL || trim($symbol) == ''){
-//            $error = 'Weather Symbol Code is required'.$url;
-//            $this->log($error);
-//            throw new Exception('Weather Symbol Code is required');
-//            return NULL;
-            
+   
               return NULL;
               
         }else{
             
-            $utc = (int)$utc;
+            $utc = (int)$utc + 3;
             
-            //debug($utc);
+            $sunrise = date('H', strtotime($meridiem['sunrise']));
+            $sunset = date('H', strtotime($meridiem['sunset']));
             
-            if($utc <= 12 && $utc >= 0 ){
-                return 'day_' . $symbol;
-            }elseif($utc <= 24 && $utc > 12){
-                return 'night_' . $symbol;
+            if($utc > $sunrise && $utc < $sunset){
+                $dayOrNight = 'day';
             }else{
-                $error = 'UTC is required'.$url;
-                $this->log($error);
-                throw new Exception('UTC is required');
-                return NULL;
+                $dayOrNight = 'night';
             }
             
-
+            return $dayOrNight . '_' . $symbol;
             
         }
         
@@ -232,11 +226,6 @@ class WeatherphStationForecast extends WeatherphAppModel
     private function showWindDirection($wd = NULL) {
         
         if($wd == NULL || trim($wd) == ''){
-            
-//            $error = 'Wind direction raw data is required'.$url;
-//            $this->log($error);
-//            throw new Exception('Wind direction raw data is required');
-//            return NULL;
             
             return NULL;
             

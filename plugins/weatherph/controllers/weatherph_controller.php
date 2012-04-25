@@ -96,7 +96,7 @@ class WeatherphController extends WeatherphAppController {
         
     }
     
-    public function getForecast($stationID = '984290', $numDays = 1, $utch = '3h', $time = 'current'){
+    public function getForecast($stationID = '984250', $numDays = 1, $utch = '3h'){
         
         //$this->layout = 'plain';
         $this->layout = 'json/ajax';
@@ -107,7 +107,6 @@ class WeatherphController extends WeatherphAppController {
             'id' => $stationID,
             'target_days' => $numDays,
             'utch' => $utch,
-            'time' => $time,
         )));
         $this->log(print_r($forecasts, true));
         $this->set('forecasts', json_encode($forecasts));
@@ -115,7 +114,20 @@ class WeatherphController extends WeatherphAppController {
         
     }
     
-    public function view() {
+    public function view($stationID = '984250') {
+        
+        App::import('Model', 'Weatherph.WeatherphStationForecast');
+        
+        $WeatherphStationForecast = new WeatherphStationForecast();
+        $weeklyForecasts = $WeatherphStationForecast->get('all', array('conditions' => array(
+            'id' => $stationID,
+            'target_days' => 10,
+            'utch' => '3h',
+        )));
+        
+        $this->log(print_r($weeklyForecasts, true));
+        $this->set('weeklyForecasts', $weeklyForecasts);
         
     }
+    
 }

@@ -34,7 +34,7 @@
     <body>
         <section id="container">
             <header class="banner clear">    
-                <h1 class="logo">weather | philippines</h1>
+                <h1 class="logo"><a href="/">weather | philippines</a></h1>
                 
                 <div id="options">
                     <img src="theme/weatherph_compact/img/flag.png" alt="Philippines" />

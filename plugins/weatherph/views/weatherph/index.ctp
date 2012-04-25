@@ -1,3 +1,4 @@
+<script type="text/javascript" src="weatherph/js/weatherph/index.js"></script>
 <style type="text/css">
     .loader {
         background: white url(theme/weatherph_compact/img/loader-twirl.gif) no-repeat center center;
@@ -93,7 +94,7 @@
                         </tr>
                         <tr>
                             <td>Precip.</td>
-                            <td class="current precipitation"><span>&nbsp;</span>mm/m</td>
+                            <td class="current precipitation"><span>&nbsp;</span>mm</td>
                         </tr>
                         <tr>
                             <td>Humidity</td>
@@ -102,9 +103,18 @@
                     </tbody>
                 </table>
             </div>
+<<<<<<< HEAD
             <div class="detail-page-link">
                 <h2><a href="http://weatherph/view/">More Details</a><h2>
                 <?php echo $this->Html->image('arrow.png'); ?>
+=======
+            <div class="detail-page-link" style="text-align: center;">
+                <h2 style="height: 21px; text-align: center; width: 195px;">
+                    <a href="/view" style="background: url(/theme/weatherph_compact/img/arrow.png) no-repeat left center; padding-left: 40px; margin: 0 auto;">
+                        More Details
+                    </a>
+                </h2>
+>>>>>>> ee789bed47a566758c2e59eda33f87dd66c5576c
             </div>
             <div class="day-forecast">
                 <ul>
@@ -121,7 +131,7 @@
                                     </tr>
                                     <tr>
                                         <td>Precip.</td>
-                                        <td class="precipitation"><span>&nbsp;</span> mm/m</td>
+                                        <td class="precipitation"><span>&nbsp;</span>mm</td>
                                     </tr>
                                     <tr>
                                         <td>Humidity</td>
@@ -144,7 +154,7 @@
                                     </tr>
                                     <tr>
                                         <td>Precip.</td>
-                                        <td class="precipitation"><span>&nbsp;</span> mm/m</td>
+                                        <td class="precipitation"><span>&nbsp;</span>mm</td>
                                     </tr>
                                     <tr>
                                         <td>Humidity</td>
@@ -167,7 +177,7 @@
                                     </tr>
                                     <tr>
                                         <td>Precip.</td>
-                                        <td class="precipitation"><span>&nbsp;</span> mm/m</td>
+                                        <td class="precipitation"><span>&nbsp;</span>mm</td>
                                     </tr>
                                     <tr>
                                         <td>Humidity</td>
@@ -190,7 +200,7 @@
                                     </tr>
                                     <tr>
                                         <td>Precip.</td>
-                                        <td class="precipitation"><span>&nbsp;</span> mm/m</td>
+                                        <td class="precipitation"><span>&nbsp;</span>mm</td>
                                     </tr>
                                     <tr>
                                         <td>Humidity</td>
@@ -213,7 +223,7 @@
                                     </tr>
                                     <tr>
                                         <td>Precip.</td>
-                                        <td class="precipitation"><span>&nbsp;</span> mm/m</td>
+                                        <td class="precipitation"><span>&nbsp;</span>mm</td>
                                     </tr>
                                     <tr>
                                         <td>Humidity</td>
@@ -236,7 +246,7 @@
                                     </tr>
                                     <tr>
                                         <td>Precip.</td>
-                                        <td class="precipitation"><span>&nbsp;</span> mm/m</td>
+                                        <td class="precipitation"><span>&nbsp;</span>mm</td>
                                     </tr>
                                     <tr>
                                         <td>Humidity</td>
@@ -259,7 +269,7 @@
                                     </tr>
                                     <tr>
                                         <td>Precip.</td>
-                                        <td class="precipitation"><span>&nbsp;</span> mm/m</td>
+                                        <td class="precipitation"><span>&nbsp;</span>mm</td>
                                     </tr>
                                     <tr>
                                         <td>Humidity</td>

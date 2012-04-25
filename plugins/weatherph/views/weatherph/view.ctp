@@ -1,8 +1,10 @@
+<script type="text/javascript" src="weatherph/js/weatherph/view.js"></script>
+
 <div id="content">
     <section class="main">
         <div id="currentWeather">
             <div id="station">
-                <h1>Makati</h1>
+                <h1><?= $weeklyForecasts['ort1']; ?></h1>
                 <br/><br/>
                 <p>Current readings from:</p>
                 <h6>Salcedo weather station</h6>
@@ -10,14 +12,14 @@
             </div> <!--END STATION-->
 
             <div id="condition">
-                <img src="theme/weatherph_detail/img/cloudy1.png"/>
+                <img src="/theme/weatherph_detail/img/cloudy1.png"/>
                 <div class="condition-text"> 
                     <h3>Partly Cloudy</h3>
-                    <h2>31&deg;C</h2>
+                    <h2><?= $weeklyForecasts['reading']['tl']; ?>&deg;C</h2>
                     <br/>
                     <ul>
-                        <li>Sunrise: 5:38AM</li>
-                        <li>Sunset: 6:53PM</li>
+                        <li>Sunrise: <?= $weeklyForecasts['reading']['sunrise']; ?></li>
+                        <li>Sunset: <?= $weeklyForecasts['reading']['sunset']; ?></li>
                         <li>Moon: Waxing</li>
                     </ul>
                 </div> <!--END CONDITON TEXT-->
@@ -27,15 +29,15 @@
                     <tbody>
                         <tr>
                             <td class="caption">Precipitation</td>
-                            <td class="output">.08mm/m</td>
+                            <td class="output"><?= $weeklyForecasts['reading']['rr']; ?>mm</td>
                         </tr>
                         <tr>
                             <td class="caption">Avg. Wind Speed</td>
-                            <td class="output">12km/h</td>
+                            <td class="output"><?= $weeklyForecasts['reading']['ff']; ?>km/h</td>
                         </tr>
                         <tr>
                             <td class="caption">Relative Humidity</td>
-                            <td class="output">63%</td>
+                            <td class="output"><?= $weeklyForecasts['reading']['rh']; ?>%</td>
                         </tr>
                     </tbody>
                 </table>
@@ -45,12 +47,38 @@
         <div id="weekWeather">
             <h4>This week's forecast</h4>
             <ul class="tabs">
+            <?php 
+            
+            $start_date = date('Y-m-d'); //'2008-03-01'; 
+            $check_date = $start_date; 
+            $end_date = date('Y-m-d', strtotime('+5 days')); 
+
+            $i = 0; 
+            while ($check_date != $end_date) { 
+                
+                $class = ($i == 0)? "current-tab" : "";
+                
+            ?>
+                <li <?= $class; ?> ><a href="#"><?= date(l, strtotime($check_date)); ?></a></li>
+            <?php
+                
+                $check_date = date ("Y-m-d", strtotime ("+1 day", strtotime($check_date))); 
+
+                $i++; 
+                if ($i > 31) { die ('Error!'); } 
+               
+                
+            }  
+            
+            ?>
+            </ul>
+            <!--ul class="tabs">
                 <li class="current-tab"><a href="#">Today</a></li>
                 <li><a href="#">Saturday</a></li>
                 <li><a href="#">Sunday</a></li>
                 <li><a href="#">Monday</a></li>
                 <li><a href="#">Tuesday</a></li>
-            </ul>
+            </ul-->
 
             <div class="tab-container">
                 <div class="current-tab">
@@ -68,13 +96,13 @@
                             </tr>
                             <tr class="condition">
                             <td class="caption">Condition</td>
-                                <td><img class="medium" src="theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
-                                <td><img class="medium" src="theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
-                                <td><img class="medium" src="theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
-                                <td><img class="medium" src="theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
-                                <td><img class="medium" src="theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
-                                <td><img class="medium" src="theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
-                                <td><img class="medium" src="theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
+                                <td><?php echo $this->Html->image('sunny.png', array('alt'=>'sunny', 'class'=>'medium')); ?></td>
+                                <td><img class="medium" src="/theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
+                                <td><img class="medium" src="/theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
+                                <td><img class="medium" src="/theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
+                                <td><img class="medium" src="/theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
+                                <td><img class="medium" src="/theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
+                                <td><img class="medium" src="/theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
                             </tr>
                             <tr class="temperature">
                             <td class="caption">Temperature</td>
