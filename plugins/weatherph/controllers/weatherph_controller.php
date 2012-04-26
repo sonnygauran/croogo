@@ -119,13 +119,11 @@ class WeatherphController extends WeatherphAppController {
         App::import('Model', 'Weatherph.WeatherphStationForecast');
         
         $WeatherphStationForecast = new WeatherphStationForecast();
-        $weeklyForecasts = $WeatherphStationForecast->get('all', array('conditions' => array(
+        $weeklyForecasts = $WeatherphStationForecast->getWeeklyForecast('all', array('conditions' => array(
             'id' => $stationID,
-            'target_days' => 10,
-            'utch' => '3h',
         )));
         
-        $this->log(print_r($weeklyForecasts, true));
+        //$this->log(print_r($weeklyForecasts, true));
         $this->set('weeklyForecasts', $weeklyForecasts);
         
     }
