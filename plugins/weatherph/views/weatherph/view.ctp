@@ -1,4 +1,4 @@
-<script type="text/javascript" src="weatherph/js/weatherph/view.js"></script>
+<script type="text/javascript" src="../weatherph/js/weatherph/view.js"></script>
 
 <div id="content">
     <section class="main">
@@ -18,9 +18,9 @@
                     <h2><?= $weeklyForecasts['reading']['tl']; ?>&deg;C</h2>
                     <br/>
                     <ul>
-                        <li>Sunrise: <?= $weeklyForecasts['reading']['sunrise']; ?></li>
-                        <li>Sunset: <?= $weeklyForecasts['reading']['sunset']; ?></li>
-                        <li>Moon: Waxing</li>
+                        <li>Sunrise: <?= date("h:iA",strtotime($weeklyForecasts['reading']['sunrise'])); ?></li>
+                        <li>Sunset: <?= date("h:iA",strtotime($weeklyForecasts['reading']['sunset'])); ?></li>
+                        <li>Moon: <?= $weeklyForecasts['reading']['moonphase']['phase']; ?></li>
                     </ul>
                 </div> <!--END CONDITON TEXT-->
             </div> <!--END CONDITION-->
@@ -46,322 +46,81 @@
 
         <div id="weekWeather">
             <h4>This week's forecast</h4>
-            <ul class="tabs">
-            <?php 
-            
-            $start_date = date('Y-m-d'); //'2008-03-01'; 
+            <ul id="week-forecast" class="tabs">
+            <?php
+            $start_date = date('Y-m-d');
             $check_date = $start_date; 
             $end_date = date('Y-m-d', strtotime('+5 days')); 
 
             $i = 0; 
-            while ($check_date != $end_date) { 
-                
+            while ($check_date != $end_date) {
                 $class = ($i == 0)? "current-tab" : "";
-                
+                $dayName = ($i == 0)? "Today" : date('l', strtotime($check_date));
             ?>
-                <li <?= $class; ?> ><a href="#"><?= date(l, strtotime($check_date)); ?></a></li>
-            <?php
-                
-                $check_date = date ("Y-m-d", strtotime ("+1 day", strtotime($check_date))); 
-
-                $i++; 
-                if ($i > 31) { die ('Error!'); } 
-               
-                
+                <li id="<?= strtolower($dayName); ?>" class="<?= $class; ?>" ><a href="javascript: void();"><?= $dayName; ?></a></li>
+            <?php $check_date = date ("Y-m-d", strtotime ("+1 day", strtotime($check_date))); $i++; 
+                if ($i > 31) { die ('Error!'); }
             }  
             
             ?>
             </ul>
-            <!--ul class="tabs">
-                <li class="current-tab"><a href="#">Today</a></li>
-                <li><a href="#">Saturday</a></li>
-                <li><a href="#">Sunday</a></li>
-                <li><a href="#">Monday</a></li>
-                <li><a href="#">Tuesday</a></li>
-            </ul-->
-
+            
             <div class="tab-container">
-                <div class="current-tab">
-                <table class="week-forecast" cellspacing="0">
-                        <tbody>
-                            <tr class="time">
-                                <td class="caption">Time</td>
-                                <td>8:00</td>
-                                <td>11:00</td>
-                                <td>14:00</td>
-                                <td>17:00</td>
-                                <td>20:00</td>
-                                <td>23:00</td>
-                                <td>2:00</td>
-                            </tr>
-                            <tr class="condition">
-                            <td class="caption">Condition</td>
-                                <td><?php echo $this->Html->image('sunny.png', array('alt'=>'sunny', 'class'=>'medium')); ?></td>
-                                <td><img class="medium" src="/theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
-                                <td><img class="medium" src="/theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
-                                <td><img class="medium" src="/theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
-                                <td><img class="medium" src="/theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
-                                <td><img class="medium" src="/theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
-                                <td><img class="medium" src="/theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
-                            </tr>
-                            <tr class="temperature">
-                            <td class="caption">Temperature</td>
-                                <td>31&deg;C</td>
-                                <td>31&deg;C</td>
-                                <td>31&deg;C</td>
-                                <td>31&deg;C</td>
-                                <td>31&deg;C</td>
-                                <td>31&deg;C</td>
-                                <td>31&deg;C</td>
-                            </tr>
-                            <tr class="precipitation">
-                                <td class="caption">Precipitation</td>
-                                <td>63%</td>
-                                <td>63%</td>
-                                <td>63%</td>
-                                <td>63%</td>
-                                <td>63%</td>
-                                <td>63%</td>
-                                <td>63%</td>
-                            </tr>
-                            <tr class="wind">
-                                <td class="caption">Wind speed / direction</td>
-                                <td>12km/h (NW)</td>
-                                <td>12km/h (NW)</td>
-                                <td>12km/h (NW)</td>
-                                <td>12km/h (NW)</td>
-                                <td>12km/h (NW)</td>
-                                <td>12km/h (NW)</td>
-                                <td>12km/h (NW)</td>
-                            </tr>
-                        </tbody>
+                
+            <?php foreach ($weeklyForecasts['forecast'] as $key => $dayForecast) {
+                $today = date("Ymd");
+                $tab_class = ($key == $today)? 'current-tab' : 'tab';
+                $div_id = ($key == $today)? "Today" : date('l', strtotime($key));
+                ?>
+                <div id="<?=strtolower($div_id);?>" class="<?= $tab_class; ?>">
+                    <table class="week-forecast" cellspacing="0">
+           
+                    <tr class="time">
+                        <td class="caption">Time</td>   
+                        <?php foreach (Set::extract($dayForecast, '{n}.utch') as $column) { ?>
+                            <td><?= $column; ?></td>
+                        <?php } ?>
+                    </tr>
+                    
+                    <tr class="condition">
+                        <td class="caption">Condition</td>
+                        <?php foreach (Set::extract($dayForecast, '{n}.sy') as $column) { ?>
+                            <td><span class="symbol <?= $column; ?>"></span></td>
+                        <?php } ?>
+                    </tr>
+                    
+                    <tr class="temperature">
+                        <td class="caption">Temperature</td>   
+                        <?php foreach (Set::extract($dayForecast, '{n}.tl') as $column) { ?>
+                            <td><?= $column; ?>&deg;C</td>
+                        <?php } ?>
+                    </tr>
+                    
+                    <tr class="precipitation">
+                        <td class="caption">Precipitation</td>   
+                        <?php foreach (Set::extract($dayForecast, '{n}.rr') as $column) { ?>
+                        <td><?= $column; ?>&percnt;</td>
+                        <?php } ?>
+                    </tr>
+                    
+                    <tr class="wind">
+                        <td class="caption">Wind speed</td>   
+                        <?php foreach (Set::extract($dayForecast, '{n}.ff') as $column) { ?>
+                            <td><?= $column; ?>km/h</td>
+                        <?php } ?>
+                    </tr>
+                    
+                    <tr class="direction">
+                        <td class="caption">Wind Direction</td>   
+                        <?php foreach (Set::extract($dayForecast, '{n}.dir') as $column) { ?>
+                            <td><?php if($column != ''){ echo $this->Html->image('w'.$column.'.png', array("width"=>'27px')); }else{ ?>-<?php } ?></td>
+                        <?php } ?>
+                    </tr>
+           
                     </table>
-                </div> <!--TABLE CONTAINER-->
-                <div class="tab">
-                <table class="week-forecast" cellspacing="0">
-                        <tbody>
-                            <tr class="time">
-                                <td class="caption"></td>
-                                <td>8:00</td>
-                                <td>11:00</td>
-                                <td>14:00</td>
-                                <td>17:00</td>
-                                <td>20:00</td>
-                                <td>23:00</td>
-                                <td>2:00</td>
-                            </tr>
-                            <tr class="condition">
-                            <td class="caption">Condition</td>
-                                <td><img class="medium" src="theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
-                                <td><img class="medium" src="theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
-                                <td><img class="medium" src="theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
-                                <td><img class="medium" src="theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
-                                <td><img class="medium" src="theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
-                                <td><img class="medium" src="theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
-                                <td><img class="medium" src="theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
-                            </tr>
-                            <tr class="temperature">
-                            <td class="caption">Temperature</td>
-                                <td>31&deg;C</td>
-                                <td>31&deg;C</td>
-                                <td>31&deg;C</td>
-                                <td>31&deg;C</td>
-                                <td>31&deg;C</td>
-                                <td>31&deg;C</td>
-                                <td>31&deg;C</td>
-                            </tr>
-                            <tr class="precipitation">
-                                <td class="caption">Precipitation</td>
-                                <td>63%</td>
-                                <td>63%</td>
-                                <td>63%</td>
-                                <td>63%</td>
-                                <td>63%</td>
-                                <td>63%</td>
-                                <td>63%</td>
-                            </tr>
-                            <tr class="wind">
-                                <td class="caption">Wind speed / direction</td>
-                                <td>12km/h (NW)</td>
-                                <td>12km/h (NW)</td>
-                                <td>12km/h (NW)</td>
-                                <td>12km/h (NW)</td>
-                                <td>12km/h (NW)</td>
-                                <td>12km/h (NW)</td>
-                                <td>12km/h (NW)</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div> <!--TABLE CONTAINER-->
-                <div class="tab">
-                <table class="week-forecast" cellspacing="0">
-                        <tbody>
-                            <tr class="time">
-                                <td class="caption"></td>
-                                <td>8:00</td>
-                                <td>11:00</td>
-                                <td>14:00</td>
-                                <td>17:00</td>
-                                <td>20:00</td>
-                                <td>23:00</td>
-                                <td>2:00</td>
-                            </tr>
-                            <tr class="condition">
-                            <td class="caption">Condition</td>
-                                <td><img class="medium" src="theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
-                                <td><img class="medium" src="theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
-                                <td><img class="medium" src="theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
-                                <td><img class="medium" src="theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
-                                <td><img class="medium" src="theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
-                                <td><img class="medium" src="theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
-                                <td><img class="medium" src="theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
-                            </tr>
-                            <tr class="temperature">
-                            <td class="caption">Temperature</td>
-                                <td>31&deg;C</td>
-                                <td>31&deg;C</td>
-                                <td>31&deg;C</td>
-                                <td>31&deg;C</td>
-                                <td>31&deg;C</td>
-                                <td>31&deg;C</td>
-                                <td>31&deg;C</td>
-                            </tr>
-                            <tr class="precipitation">
-                                <td class="caption">Precipitation</td>
-                                <td>63%</td>
-                                <td>63%</td>
-                                <td>63%</td>
-                                <td>63%</td>
-                                <td>63%</td>
-                                <td>63%</td>
-                                <td>63%</td>
-                            </tr>
-                            <tr class="wind">
-                                <td class="caption">Wind speed / direction</td>
-                                <td>12km/h (NW)</td>
-                                <td>12km/h (NW)</td>
-                                <td>12km/h (NW)</td>
-                                <td>12km/h (NW)</td>
-                                <td>12km/h (NW)</td>
-                                <td>12km/h (NW)</td>
-                                <td>12km/h (NW)</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div> <!--TABLE CONTAINER-->
-                <div class="tab">
-                <table class="week-forecast" cellspacing="0">
-                        <tbody>
-                            <tr class="time">
-                                <td class="caption"></td>
-                                <td>8:00</td>
-                                <td>11:00</td>
-                                <td>14:00</td>
-                                <td>17:00</td>
-                                <td>20:00</td>
-                                <td>23:00</td>
-                                <td>2:00</td>
-                            </tr>
-                            <tr class="condition">
-                            <td class="caption">Condition</td>
-                                <td><img class="medium" src="theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
-                                <td><img class="medium" src="theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
-                                <td><img class="medium" src="theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
-                                <td><img class="medium" src="theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
-                                <td><img class="medium" src="theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
-                                <td><img class="medium" src="theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
-                                <td><img class="medium" src="theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
-                            </tr>
-                            <tr class="temperature">
-                            <td class="caption">Temperature</td>
-                                <td>31&deg;C</td>
-                                <td>31&deg;C</td>
-                                <td>31&deg;C</td>
-                                <td>31&deg;C</td>
-                                <td>31&deg;C</td>
-                                <td>31&deg;C</td>
-                                <td>31&deg;C</td>
-                            </tr>
-                            <tr class="precipitation">
-                                <td class="caption">Precipitation</td>
-                                <td>63%</td>
-                                <td>63%</td>
-                                <td>63%</td>
-                                <td>63%</td>
-                                <td>63%</td>
-                                <td>63%</td>
-                                <td>63%</td>
-                            </tr>
-                            <tr class="wind">
-                                <td class="caption">Wind speed / direction</td>
-                                <td>12km/h (NW)</td>
-                                <td>12km/h (NW)</td>
-                                <td>12km/h (NW)</td>
-                                <td>12km/h (NW)</td>
-                                <td>12km/h (NW)</td>
-                                <td>12km/h (NW)</td>
-                                <td>12km/h (NW)</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div> <!--TABLE CONTAINER-->
-                <div class="tab">
-                <table class="week-forecast" cellspacing="0">
-                        <tbody>
-                            <tr class="time">
-                                <td class="caption"></td>
-                                <td>8:00</td>
-                                <td>11:00</td>
-                                <td>14:00</td>
-                                <td>17:00</td>
-                                <td>20:00</td>
-                                <td>23:00</td>
-                                <td>2:00</td>
-                            </tr>
-                            <tr class="condition">
-                            <td class="caption">Condition</td>
-                                <td><img class="medium" src="theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
-                                <td><img class="medium" src="theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
-                                <td><img class="medium" src="theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
-                                <td><img class="medium" src="theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
-                                <td><img class="medium" src="theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
-                                <td><img class="medium" src="theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
-                                <td><img class="medium" src="theme/weatherph_compact/img/sunny.png" alt="sunny" /></td>
-                            </tr>
-                            <tr class="temperature">
-                            <td class="caption">Temperature</td>
-                                <td>31&deg;C</td>
-                                <td>31&deg;C</td>
-                                <td>31&deg;C</td>
-                                <td>31&deg;C</td>
-                                <td>31&deg;C</td>
-                                <td>31&deg;C</td>
-                                <td>31&deg;C</td>
-                            </tr>
-                            <tr class="precipitation">
-                                <td class="caption">Precipitation</td>
-                                <td>63%</td>
-                                <td>63%</td>
-                                <td>63%</td>
-                                <td>63%</td>
-                                <td>63%</td>
-                                <td>63%</td>
-                                <td>63%</td>
-                            </tr>
-                            <tr class="wind">
-                                <td class="caption">Wind speed / direction</td>
-                                <td>12km/h (NW)</td>
-                                <td>12km/h (NW)</td>
-                                <td>12km/h (NW)</td>
-                                <td>12km/h (NW)</td>
-                                <td>12km/h (NW)</td>
-                                <td>12km/h (NW)</td>
-                                <td>12km/h (NW)</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div> <!--TABLE CONTAINER-->
-            </div> <!--TAB CONTAINER-->
+                </div>
+            <?php } ?>
+                
         </div> <!--END WEEK WEATHER-->
 
     </section> <!--MAIN CONTENT-->
