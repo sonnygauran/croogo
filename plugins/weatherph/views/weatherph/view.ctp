@@ -113,7 +113,7 @@
                     <tr class="direction">
                         <td class="caption">Wind Direction</td>   
                         <?php foreach (Set::extract($dayForecast, '{n}.dir') as $column) { ?>
-                            <td><?php if($column != ''){ echo $this->Html->image('w'.$column.'.png', array("width"=>'27px')); }else{ ?>-<?php } ?></td>
+                            <td><span class="symbol <?= $column; ?>"></span></td>
                         <?php } ?>
                     </tr>
            
