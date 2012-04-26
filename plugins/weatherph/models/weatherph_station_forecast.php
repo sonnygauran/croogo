@@ -394,7 +394,7 @@ class WeatherphStationForecast extends WeatherphAppModel
                 }
             }
 
-            return $value;
+            return "wind_" . $value;
         }
     }
     
