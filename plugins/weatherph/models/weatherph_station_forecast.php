@@ -5,6 +5,7 @@
  */
 class WeatherphStationForecast extends WeatherphAppModel
 {
+    
     public $name = 'WeatherphStationForecast';
     public $useTable = false;
     
@@ -98,6 +99,98 @@ class WeatherphStationForecast extends WeatherphAppModel
                 } else {
                     $abfrageResults['forecast'][] = $result;
                 }
+            }
+        }
+       
+        return $abfrageResults;
+        
+    }
+    
+    public function getWeeklyForecast($conditions = null, $fields = array(), $order = null, $recursive = null){
+        
+        include dirname(__FILE__) . '/auth.php';
+        
+        date_default_timezone_set('Asia/Manila');
+        
+        $stationId = $fields['conditions']['id'];
+ 
+        $startdatum = date('Ymd');
+        $enddatum = strtotime("+4 days", strtotime($startdatum));
+        $enddatum = date('Ymd', $enddatum);
+        
+        //Grab stations readings  
+        $url = "http://192.168.20.89/abfrage.php?stationidstring=$stationId&datumstart=$startdatum&datumend=$enddatum&&zeiten1=3h&paramtyp=mos_mix_mm&mosmess=ja&tl=on&dir=on&ff=on&g3h=on&paramliste=rr,rh,sy,sy2&output=csv2&ortoutput=wmo6,name&aufruf=auto";
+        
+        $this->log($url);
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_USERPWD, "{$karten['username']}:{$karten['password']}");
+        curl_setopt($ch, CURLOPT_USERAGENT, "Weather.com.ph Curl Client 1.0");
+        curl_setopt($ch, CURLOPT_TIMEOUT, 10); //times out after 10s 
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+
+        $curlResults = curl_exec($ch);
+        curl_close($ch);
+        
+        $stationInfo = $this->getStationInfo($stationId, array("lat","lon"));
+             
+        $headersSpecimen = "Datum;utc;min;ort1;dir;ff;g3h;tl;rr;sy;rh;sy2;";
+        
+        $results = $this->csvToArray($curlResults, $headersSpecimen);
+        
+        $nowHour = date('H');
+        $nowHourRound = $nowHour - ($nowHour % 3);
+        
+        $hourStart = false;
+        $abfrageResults = array();
+        foreach($results as $result){
+            
+            if(trim($result['tl'])!=''){
+                
+                //Determine sunrise and sunset for every location using latituted and longtitude
+                $sunrise = date_sunrise(strtotime($result['Datum']), SUNFUNCS_RET_STRING, $stationInfo['lat'], $stationInfo['lon'], 90);
+                $sunset = date_sunset(strtotime($result['Datum']), SUNFUNCS_RET_STRING, $stationInfo['lat'], $stationInfo['lon'], 90);
+
+                $result['sunrise'] = $sunrise;
+                $result['sunset'] = $sunset;
+
+                //explode the ort1 raw data, grab only those needed
+                $result['ort1'] = explode('/', $result['ort1']);
+                unset($result['ort1'][0]);
+                $result['ort1'] = implode('/', $result['ort1']);
+                
+                $abfrageResults['ort1'] = $result['ort1'];
+                $abfrageResults['update'] = date('H:iA');
+                
+                //Determine weather symbol for certain utc time
+                $result['sy'] = $this->dayOrNightSymbol(number_format($result['sy'],0), $result['utc'], array("sunrise"=>$sunrise,"sunset"=>$sunset));
+                
+                // Replace the null values with hypen character and round it off to the nearest tenths
+                $result['tl'] = ($result['tl'] == '')? '0' : round($result['tl'],0);
+                $result['rr'] = ($result['rr'] == '')? '0' : round($result['rr'],0);
+                $result['rh'] = ($result['rh'] == '')? '0' : round($result['rh'],0);
+                $result['ff'] = ($result['ff'] == '')? '0' : round($result['ff'],0);
+                $result['g3h'] = ($result['g3h'] == '')? '0' : round($result['g3h'],0);
+                
+                $result['moonphase'] = $this->moon_phase(date('Y', strtotime($result['Datum'])), date('m', strtotime($result['Datum'])), date('d', strtotime($result['Datum'])));
+                
+                // Translate raw date to 3 hourly range value
+                $result['utch'] = $result['utc'] . ':' . $result['min'] .' - '. sprintf('%02d',$result['utc'] + 3) .':'. $result['min'];
+                
+                // Translate raw data to wind direction image value
+                $result['dir'] = $this->showWindDirection($result['dir']);
+                
+                unset($result['ort1']);
+                
+                if (!key_exists('reading', $abfrageResults) AND !$hourStart) {
+                    if ($result['utc'] == $nowHourRound) {
+                        $abfrageResults['reading'] = $result;
+                    }
+                }
+                
+                $abfrageResults['forecast'][$result['Datum']][] = $result;
+                
             }
         }
        
@@ -304,4 +397,63 @@ class WeatherphStationForecast extends WeatherphAppModel
             return $value;
         }
     }
+    
+    private function moon_phase($year, $month, $day){
+
+	$c = $e = $jd = $phase = $b = 0;
+
+	if ($month < 3){
+            $year--;
+            $month += 12;
+        }
+
+	++$month;
+
+	$c = 365.25 * $year;
+        $e = 30.6 * $month;
+        $jd = $c + $e + $day - 694039.09;   //jd is total days elapsed
+        $jd /= 29.5305882;                  //divide by the moon cycle
+        $b = (int) $jd;                     //int(jd) -> b, take integer part of jd
+        $jd -= $b;                          //subtract integer part to leave fractional part of original jd
+        $phase = round($jd * 8);                //scale fraction from 0-8 and round
+
+        if ($phase >= 8 ) $phase = 0;//0 and 8 are the same so turn 8 into 0
+        
+        switch($phase){
+            case 0:
+                $moonphase = array("phase"=>"New"); //New Moon
+                break;
+            case 1:
+                $moonphase = array("phase"=>"Waxing"); //Waxing Cresent Moon
+                break;
+            case 2:
+                $moonphase = array("phase"=>"Quarter"); //Queater Moon
+                break;
+            case 3:
+                $moonphase = array("phase"=>"Waxing"); //Waxing Gibbous Moon
+                break;
+            case 4:
+                $moonphase = array("phase"=>"Full"); //Waxing Gibbous Moon
+                break;
+            case 5:
+                $moonphase = array("phase"=>"Waning"); //Waning Gibbous Moon
+                break;
+            case 6:
+                $moonphase = array("phase"=>"Last"); //Last Quarter Moon
+                break;
+            case 7:
+                $moonphase = array("phase"=>"Waning"); //Waning Cresent Moon
+                break;
+            default:
+                $moonphase = array("phase"=>"Error");
+                break;
+                  
+        }
+        
+        $moonphase['phase_code'] = $phase;
+        
+	return $moonphase;
+
+    }
+    
 }
