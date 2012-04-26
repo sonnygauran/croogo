@@ -597,46 +597,58 @@ footer a:link, footer a:visited {
     border-top: 1px solid red;
 }
 
-span.symbol { background: url(/theme/weatherph_compact/img/sprite_symbols.png) no-repeat; height: 27px; width: 37px; display: block; margin-left: 10px; float: left; }
+span.symbol { background: url(/theme/weatherph_compact/img/warning-sprites.png) -5px -65px no-repeat; height: 30px; width: 40px; display: block; margin-left: 10px; float: left; }
 
-span.day_1 { background-position: 0px 0px; }
-span.day_2 { background-position: 0px -27px; }
-span.day_3 { background-position: 0px -54px; }
-span.day_4 { background-position: 0px -81px; }
-span.day_5 { background-position: 0px -108px; }
-span.day_6 { background-position: 0px -135px; }
-span.day_7 { background-position: 0px -162px; }
-span.day_8 { background-position: 0px -189px }
-span.day_9 { background-position: 0px -216px; }
-span.day_10 { background-position: 0px -243px; }
-span.day_11 { background-position: 0px -270px; }
-span.day_12 { background-position: 0px -297px; }
-span.day_13 { background-position: 0px -324px; }
-span.day_14 { background-position: 0px -351px; }
-span.day_15 { background-position: 0px -378px; }
-span.day_16 { background-position: 0px -405px; }
-span.day_17 { background-position: 0px -432px; } 
-span.day_18 { background-position: 0px -459px; }
-span.day_19 { background-position: 0px -486px; }
+span.day_1 { background-position: -70px -180px; }
+span.day_2 { background-position: -1250px -180px; }
+span.day_3 { background-position: -185px -180px; }
+span.day_4 { background-position: -248px -180px; }
+span.day_5 { background-position: -305px -180px; }
+span.day_6 { background-position: -368px -180px; }
+span.day_7 { background-position: -427px -180px; }
+span.day_8 { background-position: -487px -180px }
+span.day_9 { background-position: -545px -180px; }
+span.day_10 { background-position: -5px -240px; }
+span.day_11 { background-position: -65px -240px; }
+span.day_12 { background-position: -125px -240px; }
+span.day_13 { background-position: -185px -240px; }
+span.day_14 { background-position: -248px -240px; }
+span.day_15 { background-position: -305px -240px; }
+span.day_16 { background-position: -368px -240px; }
+span.day_17 { background-position: -427px -240px; } 
+span.day_18 { background-position: -486px -240px; }
+span.day_19 { background-position: -545px -240px; }
 
-span.night_1 { background-position: -37px 0px; }
-span.night_2 { background-position: -37px -27px; }
-span.night_3 { background-position: -37px -54px; }
-span.night_4 { background-position: -37px -81px; }
-span.night_5 { background-position: -37px -108px; }
-span.night_6 { background-position: -37px -135px; }
-span.night_7 { background-position: -37px -162px; }
-span.night_8 { background-position: -37px -189px; }
-span.night_9 { background-position: -37px -216px; }
-span.night_10 { background-position: -37px -243px; }
-span.night_11 { background-position: -37px -270px; }
-span.night_12 { background-position: -37px -297px; }
-span.night_13 { background-position: -37px -324px; }
-span.night_14 { background-position: -37px -351px; }
-span.night_15 { background-position: -37px -378px; }
-span.night_16 { background-position: -37px -405px; }
-span.night_17 { background-position: -37px -432px; }
-span.night_18 { background-position: -37px -459px; }
-span.night_19 { background-position: -37px -486px; }
+span.night_1 { background-position: -70px -60px; }
+span.night_2 { background-position: -125px -60px; }
+span.night_3 { background-position: -185px -60px; }
+span.night_4 { background-position: -248px -60px; }
+span.night_5 { background-position: -305px -60px; }
+span.night_6 { background-position: -368px -60px; }
+span.night_7 { background-position: -427px -60px; }
+span.night_8 { background-position: -487px -60px; }
+span.night_9 { background-position: -545px -60px; }
+span.night_10 { background-position: -5px -120px; }
+span.night_11 { background-position: -65px -120px; }
+span.night_12 { background-position: -125px -120px; }
+span.night_13 { background-position: -185px -120px; }
+span.night_14 { background-position: -248px -120px; }
+span.night_15 { background-position: -305px -120px; }
+span.night_16 { background-position: -368px -120px; }
+span.night_17 { background-position: -427px -120px; }
+span.night_18 { background-position: -486px -120px; }
+span.night_19 { background-position: -545px -120px; }
+
+span.wind_1 { background-position: 6px -300px; }
+span.wind_2 { background-position: -55px -300px; }
+span.wind_3 { background-position: -119px -300px; }
+span.wind_4 { background-position: -175px -300px; }
+span.wind_5 { background-position: -235px -300px; }
+span.wind_6 { background-position: -295px -300px; }
+span.wind_7 { background-position: -355px -300px; }
+span.wind_8 { background-position: -415px -300px; }
+span.wind_9 { background-position: -480px -300px; }
+
 
 .day-forecast table { float: left; }
+
