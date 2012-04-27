@@ -88,7 +88,7 @@ $.ajax({
             success:  function(readings) {
                 
                 var $stationReadings = readings; // the complete retrieved stations
-                console.log($stationReadings);
+                //console.log($stationReadings);
                 var cr_temperature, cr_wind, cr_precip, cr_humidity, cr_symbol;
                 var sr_temperature, sr_wind, sr_precip, sr_humidity, sr_symbol;                
                 
