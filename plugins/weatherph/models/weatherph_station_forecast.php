@@ -119,7 +119,7 @@ class WeatherphStationForecast extends WeatherphAppModel
         $enddatum = date('Ymd', $enddatum);
         
         //Grab stations readings  
-        $url = "http://192.168.20.89/abfrage.php?stationidstring=$stationId&datumstart=$startdatum&datumend=$enddatum&&zeiten1=3h&paramtyp=mos_mix_mm&mosmess=ja&tl=on&dir=on&ff=on&g3h=on&paramliste=rr,rh,sy,sy2&output=csv2&ortoutput=wmo6,name&aufruf=auto";
+        $url = "http://192.168.20.89/abfrage.php?stationidstring=$stationId&datumstart=$startdatum&datumend=$enddatum&&zeiten1=3h&paramtyp=mos_mix_mm&mosmess=nein&tl=on&dir=on&ff=on&g3h=on&paramliste=rr,rh,sy,sy2&output=csv2&ortoutput=wmo6,name&timefill=nein&verknuepft=nein&aufruf=auto";
         
         $this->log($url);
         $ch = curl_init();
@@ -127,7 +127,7 @@ class WeatherphStationForecast extends WeatherphAppModel
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_USERPWD, "{$karten['username']}:{$karten['password']}");
         curl_setopt($ch, CURLOPT_USERAGENT, "Weather.com.ph Curl Client 1.0");
-        curl_setopt($ch, CURLOPT_TIMEOUT, 10); //times out after 10s 
+        curl_setopt($ch, CURLOPT_TIMEOUT, 10); //times out after 10s ,
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
 
         $curlResults = curl_exec($ch);
@@ -415,7 +415,7 @@ class WeatherphStationForecast extends WeatherphAppModel
         $jd /= 29.5305882;                  //divide by the moon cycle
         $b = (int) $jd;                     //int(jd) -> b, take integer part of jd
         $jd -= $b;                          //subtract integer part to leave fractional part of original jd
-        $phase = round($jd * 8);                //scale fraction from 0-8 and round
+        $phase = round($jd * 8);            //scale fraction from 0-8 and round
 
         if ($phase >= 8 ) $phase = 0;//0 and 8 are the same so turn 8 into 0
         
