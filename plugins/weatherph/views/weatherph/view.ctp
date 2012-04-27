@@ -16,10 +16,6 @@
                     <tbody>
                         <tr>
                             <td><img src="/theme/weatherph_compact/img/cloudy.png"/></td>
-                            <td><?= $weeklyForecasts['reading']['tl']; ?>&deg;C, Partly Cloudy</td>
-                        </tr>
-                        <tr>
-                            <td><img src="/theme/weatherph_compact/img/cloudy.png"/></td>
                             <td>Sunrise: <?= date("h:iA",strtotime($weeklyForecasts['reading']['sunrise'])); ?></td>
                         </tr>
                         <tr>
@@ -36,6 +32,10 @@
             <div id="conditionTable">
                 <table>
                     <tbody>
+                        <tr>
+                            <td class="caption">Temperature</td>
+                            <td class="output"><?= $weeklyForecasts['reading']['tl']; ?>&deg;C</td>
+                        </tr>
                         <tr>
                             <td class="caption">Precipitation</td>
                             <td class="output"><?= $weeklyForecasts['reading']['rr']; ?>mm</td>
