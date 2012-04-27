@@ -12,7 +12,7 @@
             </div> <!--END STATION-->
 
             <div id="condition">
-                <img src="/theme/weatherph_detail/img/cloudy1.png"/>
+                <!--img src="/theme/weatherph_detail/img/cloudy1.png"/-->
                 <div class="condition-text"> 
                     <h3>Partly Cloudy</h3>
                     <h2><?= $weeklyForecasts['reading']['tl']; ?>&deg;C</h2>
@@ -57,7 +57,7 @@
                 $class = ($i == 0)? "current-tab" : "";
                 $dayName = ($i == 0)? "Today" : date('l', strtotime($check_date));
             ?>
-                <li id="<?= strtolower($dayName); ?>" class="<?= $class; ?>" ><a href="javascript: void();"><?= $dayName; ?></a></li>
+                <li id="<?= strtolower($dayName); ?>" class="<?= $class; ?>" ><?= $dayName; ?></li>
             <?php $check_date = date ("Y-m-d", strtotime ("+1 day", strtotime($check_date))); $i++; 
                 if ($i > 31) { die ('Error!'); }
             }  
@@ -77,8 +77,8 @@
            
                     <tr class="time">
                         <td class="caption">Time</td>   
-                        <?php foreach (Set::extract($dayForecast, '{n}.utch') as $column) { ?>
-                            <td><?= $column; ?></td>
+                        <?php foreach (Set::extract($dayForecast, '{n}.utc') as $column) { ?>
+                            <td><?= $column . ":00"; ?></td>
                         <?php } ?>
                     </tr>
                     
@@ -99,7 +99,7 @@
                     <tr class="precipitation">
                         <td class="caption">Precipitation</td>   
                         <?php foreach (Set::extract($dayForecast, '{n}.rr') as $column) { ?>
-                        <td><?= $column; ?>&percnt;</td>
+                        <td><?= $column; ?>mm</td>
                         <?php } ?>
                     </tr>
                     
@@ -120,19 +120,22 @@
                     </table>
                 </div>
             <?php } ?>
+            
+            </div>
                 
         </div> <!--END WEEK WEATHER-->
 
     </section> <!--MAIN CONTENT-->
+    
 
     <section class="secondary">
         <div id="charts">
             <h4>Detailed Forecasts</h4>
             <ul class="tabs">
-                <li class="current-tab"><a href="#">Temperature</a></li>
-                <li><a href="#">Precipitation</a></li>
-                <li><a href="#">Wind</a></li>
-                <li><a href="#">Humidity</a></li>
+                <li class="current-tab"><a href="javascript: void(0);">Temperature</a></li>
+                <li><a href="javascript: void(0);">Precipitation</a></li>
+                <li><a href="javascript: void(0);">Wind</a></li>
+                <li><a href="javascript: void(0);">Humidity</a></li>
             </ul>
             <div class="tab-container">
                 <div class="current-tab">
@@ -153,9 +156,9 @@
         <div id="outlook">
             <h4>15-Day Outlook</h4>
             <ul class="tabs">
-                <li class="current-tab"><a href="#">Temperature</a></li>
-                <li><a href="#">Precipitation</a></li>
-                <li><a href="#">Wind</a></li>
+                <li class="current-tab"><a href="javascript: void(0);">Temperature</a></li>
+                <li><a href="javascript: void(0);">Precipitation</a></li>
+                <li><a href="javascript: void(0);">Wind</a></li>
             </ul>
             <?php echo $this->Html->image('chart.png'); ?>
         </div> <!--END OUTLOOK-->
