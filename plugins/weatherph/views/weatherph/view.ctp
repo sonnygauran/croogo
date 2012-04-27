@@ -7,22 +7,31 @@
                 <h1><?= $weeklyForecasts['ort1']; ?></h1>
                 <br/><br/>
                 <p>Current readings from:</p>
-                <h6>Salcedo weather station</h6>
-                <p>change station</p>
+                <h6>Insert station here</h6>
+                <a href="#">change station</a>
             </div> <!--END STATION-->
 
             <div id="condition">
-                <img src="/theme/weatherph_detail/img/cloudy1.png"/>
-                <div class="condition-text"> 
-                    <h3>Partly Cloudy</h3>
-                    <h2><?= $weeklyForecasts['reading']['tl']; ?>&deg;C</h2>
-                    <br/>
-                    <ul>
-                        <li>Sunrise: <?= date("h:iA",strtotime($weeklyForecasts['reading']['sunrise'])); ?></li>
-                        <li>Sunset: <?= date("h:iA",strtotime($weeklyForecasts['reading']['sunset'])); ?></li>
-                        <li>Moon: <?= $weeklyForecasts['reading']['moonphase']['phase']; ?></li>
-                    </ul>
-                </div> <!--END CONDITON TEXT-->
+                <table>
+                    <tbody>
+                        <tr>
+                            <td><img src="/theme/weatherph_compact/img/cloudy.png"/></td>
+                            <td><?= $weeklyForecasts['reading']['tl']; ?>&deg;C, Partly Cloudy</td>
+                        </tr>
+                        <tr>
+                            <td><img src="/theme/weatherph_compact/img/cloudy.png"/></td>
+                            <td>Sunrise: <?= date("h:iA",strtotime($weeklyForecasts['reading']['sunrise'])); ?></td>
+                        </tr>
+                        <tr>
+                            <td><img src="/theme/weatherph_compact/img/cloudy.png"/></td>
+                            <td>Sunset: <?= date("h:iA",strtotime($weeklyForecasts['reading']['sunset'])); ?></td>
+                        </tr>
+                        <tr>
+                            <td><img src="/theme/weatherph_compact/img/cloudy.png"/></td>
+                            <td>Moon Phase: <?= $weeklyForecasts['reading']['moonphase']['phase']; ?></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div> <!--END CONDITION-->
             <div id="conditionTable">
                 <table>
@@ -135,7 +144,7 @@
                 <li><a href="#">Humidity</a></li>
             </ul>
             <div class="tab-container">
-                <div class="current-tab">
+                <!--<div class="current-tab">
                     <script type="text/javascript" language="javascript"> 
                     //<![CDATA[
                     AnyChart.renderingType = anychart.RenderingType.SVG_ONLY; 
@@ -146,7 +155,7 @@
                     chart.write();
                     //]]>
                     </script>
-                </div>
+                </div>-->
             </div>
         </div> <!--END CHARTS-->
 

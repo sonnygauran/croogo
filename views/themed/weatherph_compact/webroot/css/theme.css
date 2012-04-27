@@ -323,17 +323,13 @@ div.readings {
     width: 261px;
 }
 
-#condition > img {
-    float:left;
-}
-
-.condition-text {
-    float:left;
-    margin-top: 1em;
-}
-
-#conditionTable > table {
+#condition > table, #conditionTable > table {
     width: 100%;
+}
+
+#condition td {
+    vertical-align: middle;
+    padding: 0 10px;
 }
 
 #conditionTable td {
