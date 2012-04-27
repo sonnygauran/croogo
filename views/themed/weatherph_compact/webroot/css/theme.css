@@ -347,6 +347,10 @@ div.readings {
     font-weight: bold;
 }
 
+#week-forecast table {
+    width: 100%;
+}
+
 /*===============
     TABS
 ===============*/
@@ -360,6 +364,7 @@ ul.tabs {
     display: inline;
     padding: 5px 10px 0 10px;
     border-bottom: 1px solid #2E4471;
+    cursor: pointer;
 }
 
 .tabs li > a {
@@ -648,6 +653,7 @@ span.wind_6 { background-position: -295px -300px; }
 span.wind_7 { background-position: -355px -300px; }
 span.wind_8 { background-position: -415px -300px; }
 span.wind_9 { background-position: -480px -300px; }
+
 
 
 .day-forecast table { float: left; }
