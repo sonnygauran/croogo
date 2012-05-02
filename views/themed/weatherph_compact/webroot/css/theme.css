@@ -329,7 +329,7 @@ div.readings {
 
 #condition td {
     vertical-align: middle;
-    padding: 0 10px;
+    padding: 0;
 }
 
 #conditionTable td {
@@ -650,7 +650,17 @@ span.wind_7 { background-position: -355px -300px; }
 span.wind_8 { background-position: -415px -300px; }
 span.wind_9 { background-position: -480px -300px; }
 
+span.moonphase_0 { background-position: -120px 5px; }
+span.moonphase_1 { background-position: -180px 5px; }
+span.moonphase_2 { background-position: -240px 5px; }
+span.moonphase_3 { background-position: -300px 5px; }
+span.moonphase_4 { background-position: -360px 5px; }
+span.moonphase_5 { background-position: -420px 5px; }
+span.moonphase_6 { background-position: -480px 5px; }
+span.moonphase_7 { background-position: -540px 5px; }
 
+span.sunrise { background-position: 0px 5px; }
+span.sunset { background-position: -60px 5px; }
 
 .day-forecast table { float: left; }
 
