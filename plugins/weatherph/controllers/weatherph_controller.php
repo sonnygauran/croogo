@@ -114,6 +114,22 @@ class WeatherphController extends WeatherphAppController {
         
     }
     
+    public function admin_getDetailedForecast($stationID = '984250', $timeRes = '1h', $startDatum = NULL){
+        
+        $this->layout = 'plain';
+        App::import('Model', 'Weatherph.WeatherphStationForecast');
+        
+        $WeatherphStationForecast = new WeatherphStationForecast();
+        $detailedForecast = $WeatherphStationForecast->getDetailedForecast('all', array('conditions' => array(
+            'id' => $stationID,
+            'timeRes' => $timeRes,
+            'startDatum' => $startDatum,
+        )));
+        
+        
+        $this->set('detailedForecast', $detailedForecast);
+    }
+    
     public function view($stationID = '984250') {
         
         App::import('Model', 'Weatherph.WeatherphStationForecast');
@@ -127,5 +143,39 @@ class WeatherphController extends WeatherphAppController {
         $this->set('weeklyForecasts', $weeklyForecasts);
         
     }
+    
+    public function typhoonPreparedness(){
+        
+        $this->layout = 'default';
+        
+    }
+    
+    public function typhoonClimatology(){
+        
+        $this->layout = 'default';
+        
+    }
+    
+    public function typhoonGlossary(){
+        
+        $this->layout = 'default';
+        
+    }
+    
+    public function about(){
+        
+        $this->layout = 'default';
+        
+    }
+    
+    public function impressum(){
+        
+        $this->layout = 'default';
+        
+    }
+    
+    
+    
+    
     
 }
