@@ -48,6 +48,8 @@
 
             <nav>
                 <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/view">Detailed Forecasts</a></li>
                     <li><a href="#">Typhoon Preparedness</a></li>
                     <li><a href="#">Typhoon Climatology</a></li>
                     <li><a href="#">Typhoon Glossary</a></li>
@@ -75,9 +77,9 @@ echo $content_for_layout;
                             <li><?php echo $this->Html->image('SGS.jpg'); ?></li>
                             <li><?php echo $this->Html->image('vistaland.jpg'); ?></li>
                             <li><?php echo $this->Html->image('ngcp1.png'); ?></li>
-                            <li><?php echo $this->Html->image('sm.png'); ?></li>
-                            <li><?php echo $this->Html->image('tyk.png'); ?></li>
                             <li><?php echo $this->Html->image('sumitomo.png'); ?></li>
+                            <li><?php echo $this->Html->image('sm.gif'); ?></li>
+                            <li><?php echo $this->Html->image('tyk.jpg'); ?></li>
                         </ul>
                     </div>
                 </div>
