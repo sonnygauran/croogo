@@ -15,19 +15,19 @@
                 <table>
                     <tbody>
                         <tr>
-                            <td><img src="/theme/weatherph_compact/img/cloudy.png"/></td>
-                            <td><?= $weeklyForecasts['reading']['tl']; ?>&deg;C, Partly Cloudy</td>
+                            <td><!--img src="/theme/weatherph_compact/img/cloudy.png"/--></td>
+                            <td><?= $weeklyForecasts['reading']['tl']; ?>&deg;C</td>
                         </tr>
                         <tr>
-                            <td><img src="/theme/weatherph_compact/img/cloudy.png"/></td>
+                            <td><span class="symbol sunrise"></span></td>
                             <td>Sunrise: <?= date("h:iA",strtotime($weeklyForecasts['reading']['sunrise'])); ?></td>
                         </tr>
                         <tr>
-                            <td><img src="/theme/weatherph_compact/img/cloudy.png"/></td>
+                            <td><span class="symbol sunset"></span></td>
                             <td>Sunset: <?= date("h:iA",strtotime($weeklyForecasts['reading']['sunset'])); ?></td>
                         </tr>
                         <tr>
-                            <td><img src="/theme/weatherph_compact/img/cloudy.png"/></td>
+                            <td><span class="symbol moonphase_<?= $weeklyForecasts['reading']['moonphase']['phase_code']; ?>"></span></td>
                             <td>Moon Phase: <?= $weeklyForecasts['reading']['moonphase']['phase']; ?></td>
                         </tr>
                     </tbody>
