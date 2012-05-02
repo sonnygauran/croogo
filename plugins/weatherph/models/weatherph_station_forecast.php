@@ -198,6 +198,43 @@ class WeatherphStationForecast extends WeatherphAppModel
         
     }
     
+    public function getDetailedForecast($conditions = null, $fields = array(), $order = null, $recursive = null){
+        
+        include dirname(__FILE__) . '/auth.php';
+        
+        date_default_timezone_set('Asia/Manila'); 
+        
+        $stationId = $fields['conditions']['id'];
+        $timeRes = $fields['conditions']['timeRes'];
+        $startdatum = ($fields['conditions']['startDatum'] == NULL)? date('Ymd') : date('Ymd',strtotime($startdatum));
+        $enddatum = strtotime("+4 days", strtotime($startdatum));
+        $enddatum = date('Ymd', $enddatum);
+        
+        //Grab stations readings  
+        $url = "http://192.168.20.89/abfrage.php?stationidstring=$stationId&datumstart=$startdatum&datumend=$enddatum&&zeiten1=$timeRes&paramtyp=mos_mix_mm&mosmess=nein&paramliste=tl,td,rh,ff,g3h,dir,gff,sd1,gl1,rr&output=csv2&ortoutput=wmo6,name&timefill=nein&verknuepft=nein&aufruf=auto";
+        
+        $this->log($url);
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_USERPWD, "{$karten['username']}:{$karten['password']}");
+        curl_setopt($ch, CURLOPT_USERAGENT, "Weather.com.ph Curl Client 1.0");
+        curl_setopt($ch, CURLOPT_TIMEOUT, 10); //times out after 10s ,
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+
+        $curlResults = curl_exec($ch);
+        curl_close($ch);
+        
+        debug($curlResults);exit;
+        
+        
+        
+        
+        
+        
+        
+    }
+    
     public function csvToArray($csv, $headersSpecimen){
         
         //Convert 
