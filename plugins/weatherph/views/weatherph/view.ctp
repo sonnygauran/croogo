@@ -1,6 +1,6 @@
 <script type="text/javascript" src="../weatherph/js/weatherph/view.js"></script>
 
-<div id="content">
+<div class="content">
     <section class="main">
         <div id="currentWeather">
             <div id="station">

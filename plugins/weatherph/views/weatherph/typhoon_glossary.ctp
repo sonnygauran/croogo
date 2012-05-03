@@ -1,14 +1,14 @@
-<div id="content">
-    <section class="main posts">
-        <form>Search</form>
-        <h2>Anticyclonic</h2>
-        <p>
-            An anticyclonic air flow in the Northern Hemisphere is a flow, which circulates clockwise (to the right) around an air pressure system. These are always high pressure systems, so a high is also called an anticyclone.
-        </p>
+<div class="content">
+    <section class="main">
+        <h2>Glossary</h2>
+            <dl>
+                <dt>Air Mass</dt>
+                <dd>a widespread body of air, the properties of which can be identified as  (a) having been established while that air was situated over a particular region, and (b) undergoing specific modifications while in transit away from the source region.</dd>
+            </dl>
     </section> <!--MAIN CONTENT-->
     
     <section class="secondary">
-        <div id="alphabet">
+        <div id="glossary-alphabet">
             <ul>
                 <li>A</li>
                 <li>B</li>

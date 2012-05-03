@@ -14,7 +14,7 @@
         $('.loader').css('opacity', 0.8);
     });
 </script>
-<div id="content">
+<div class="content">
     <section class="main">
         <div id="map-container">
             <div class="layerSelector">
