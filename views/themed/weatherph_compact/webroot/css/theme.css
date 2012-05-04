@@ -53,7 +53,7 @@ html, body, div, span, object, iframe, h1, h2, h3, dl dt, h4, h5, h6, p, blockqu
     HEADER
 ====================*/
 .banner {
-    height: 120px;
+    height: 160px;
     margin-top: 10px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
@@ -62,12 +62,12 @@ html, body, div, span, object, iframe, h1, h2, h3, dl dt, h4, h5, h6, p, blockqu
 
 .logo {
     float:left;
-    padding: 35px 15px;
+    padding: 50px 10px;
 }
 
 #options {
     float: right;
-    margin: 50px 10px 10px 10px;
+    margin: 80px 10px 10px 10px;
 }
 
 #options > img, #options > form {
@@ -81,6 +81,23 @@ html, body, div, span, object, iframe, h1, h2, h3, dl dt, h4, h5, h6, p, blockqu
     vertical-align: middle;
 }
 
+/* SPONSOR SLIDER */
+
+#slides {
+    position:relative;
+    float: left;
+    margin-left: 30px;
+}
+
+#slides .slidesContainer {
+    background:transparent;
+    margin: 0 auto;
+}
+
+#slides, .slidesContainer {
+    width: 240px;
+    height: 150px;
+}
 /*====================
     MENU
 ====================*/
@@ -133,7 +150,7 @@ div.layerSelector {
 }
 
 div.layerSelector ul {
-    width: 100%;
+    width: 534px;
     padding: 10px;
 }
 
@@ -441,44 +458,6 @@ div.current-tab {
     display: inline;
 }
 
-/*====================
-    FOOTER
-====================*/
-
-footer {
-    width: 100%;
-    clear: both;
-    margin: 3em auto 0 auto;
-}
-
-footer > .legal, footer > .countrySelect {
-    margin: 10px;
-}
-
-.legal {
-    float: right;
-    width: 364px;
-}
-
-.countrySelect {
-    float:left;
-    width: 556px;
-}
-
-.legal li {
-    display: inline;
-    padding-right: 2em;
-}
-
-.countrySelect ul {
-    float: left;
-    margin-right: 20px;
-}
-
-footer li {
-    margin: 10px;
-}
-
 /*========================================
 3.	Typography
 ========================================*/
@@ -544,7 +523,7 @@ html {
 
 .banner {
     color: #fafafa;
-    background:#43597C url(../img/banner.png) top left no-repeat;
+    background:#3e5e95 url(../img/banner-plain.png) top left no-repeat;
 }
 
 nav, .layerSelector, .promo, #info {
@@ -684,4 +663,3 @@ span.sunrise { background-position: 0px 5px; }
 span.sunset { background-position: -60px 5px; }
 
 .day-forecast table { float: left; }
-

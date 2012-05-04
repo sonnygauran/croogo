@@ -1,6 +1,6 @@
 $(document).ready(function(){
 var map = $("#map").geomap({
-    center: [ 121.728516, 13.21878 ],
+    center: [ 121.750488, 12.698865 ],
     zoom: 6,
     scroll: 'off',
     cursors: {
