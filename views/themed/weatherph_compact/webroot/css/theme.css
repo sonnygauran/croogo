@@ -604,7 +604,7 @@ footer a:link, footer a:visited {
     border-top: 1px solid red;
 }
 
-span.symbol { background: url(/theme/weatherph_compact/img/warning-sprites.png) -5px -65px no-repeat; height: 30px; width: 40px; display: block; margin-left: 10px; float: left; }
+span.symbol { background: url(../img/warning-sprites.png) -5px -65px no-repeat; height: 30px; width: 40px; display: block; margin-left: 10px; float: left; }
 
 span.day_1 { background-position: -70px -180px; }
 span.day_2 { background-position: -1250px -180px; }

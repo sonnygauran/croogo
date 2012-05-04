@@ -83,7 +83,7 @@ map.geomap({
 function getForecast(id) {
 $.ajax({
             type:     'GET',
-            url:        '/weatherph/weatherph/getForecast/'+id+'/2/3h',
+            url:        '<?= $this->webroot ?>weatherph/weatherph/getForecast/'+id+'/2/3h',
             cache:    false,
             success:  function(readings) {
                 
@@ -121,9 +121,9 @@ $.ajax({
                     $('.' + key + '-hour .humidity span').html(sr_humidity);
                     
                 } 
-                
+
                 $('.loader').fadeOut();
-                $('.detail-page-link a').attr({href: '/view/'+id});
+                $('.detail-page-link a').attr({href: '/weatherph/view/'+id});
                 
             }
         });
@@ -189,7 +189,7 @@ stations : [
 $stationsPagasa = new Array();
 $.ajax({
     type:     'GET',
-    url :     '/weatherph/weatherph/getStations/pagasa',
+    url :     '<?= $this->webroot ?>weatherph/weatherph/getStations/pagasa',
     cache:    false,
     success: function(data) {
         var $retrievedStations = data; // the complete retrieved stations
@@ -211,7 +211,7 @@ $.ajax({
         $stations = new Array();
         $.ajax({
             type:     'GET',
-            url :     '/weatherph/weatherph/getStations/meteomedia',
+            url :     '<?= $this->webroot ?>weatherph/weatherph/getStations/meteomedia',
             cache:    false,
             success: function(data) {
                 var $retrievedStations = data; // the complete retrieved stations

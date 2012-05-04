@@ -37,10 +37,10 @@
                 <h1 class="logo"><a href="/">weather | philippines</a></h1>
                 
                 <div id="options">
-                    <img src="../theme/weatherph_compact/img/flag.png" alt="Philippines" />
+                    <img src="<?= $this->webroot ?>theme/weatherph_compact/img/flag.png" alt="Philippines" />
                     <form class="search">
                         Weather Search: <input type="text" name="city" size="15" />
-                        <img src="../theme/weatherph_compact/img/search.png" alt="" />
+                        <img src="<?= $this->webroot ?>theme/weatherph_compact/img/search.png" alt="" />
                     </form>
                     
                 </div>
@@ -48,8 +48,8 @@
 
             <nav>
                 <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/view">Detailed Forecasts</a></li>
+                    <li><a href="<?= $this->webroot ?>">Home</a></li>
+                    <li><a href="<?= $this->webroot ?>view">Detailed Forecasts</a></li>
                     <li><a href="#">Typhoon Preparedness</a></li>
                     <li><a href="#">Typhoon Climatology</a></li>
                     <li><a href="#">Typhoon Glossary</a></li>
@@ -99,7 +99,7 @@ echo $content_for_layout;
                 <div class="ads">
                     <div class="promo">
                         <h4>Visit Boracay!</h4>
-                        <img src="../theme/weatherph_compact/img/boracay.jpg" alt="Boracay!"/>
+                        <img src="<?= $this->webroot ?>theme/weatherph_compact/img/boracay.jpg" alt="Boracay!"/>
                         <p>
                             Boracay is an island of the Philippines located approximately 315 km (196 mi) south of Manila. Boracay Island and its beaches have received awards numerous times.
                         </p>
@@ -107,7 +107,7 @@ echo $content_for_layout;
 
                     <div class="promo">
                         <h4>Discover Pamalican.</h4>
-                        <img src="../theme/weatherph_compact/img/pamalican.jpg" alt="Pamalican!"/>
+                        <img src="<?= $this->webroot ?>theme/weatherph_compact/img/pamalican.jpg" alt="Pamalican!"/>
                         <p>
                             Pamalican Island is a small island of the Cuyo Islands in the Sulu Sea.
                         </p>
