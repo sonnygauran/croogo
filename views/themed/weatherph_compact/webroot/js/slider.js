@@ -532,11 +532,11 @@
 (function($) {
   $.widget("js.slides", {
 		options: {
-			width: 780, // [Number] Define the slide width
+			width: 240, // [Number] Define the slide width
 			responsive: false, // [Boolean] slideshow will scale to its container
-			height: 300, // [Number] Define the slide height
-			navigation: true, // [Boolean] Auto generate the naviagation, next/previous buttons
-			pagination: true, // [Boolean] Auto generate the pagination
+			height: 150, // [Number] Define the slide height
+			navigation: false, // [Boolean] Auto generate the naviagation, next/previous buttons
+			pagination: false, // [Boolean] Auto generate the pagination
 			effects: {
 				navigation: "slide",  // [String] Can be either "slide" or "fade"
 				pagination: "slide" // [String] Can be either "slide" or "fade"
