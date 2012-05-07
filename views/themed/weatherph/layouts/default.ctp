@@ -122,8 +122,7 @@ echo $content_for_layout;
                 </div>
                 <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4f94bc453ecffca4"></script>
                 <!-- AddThis Button END -->
-
-
+<!--
                 <div class="ads">
                     <div class="promo">
                         <h4>Visit Boracay!</h4>
@@ -140,7 +139,7 @@ echo $content_for_layout;
                             Pamalican Island is a small island of the Cuyo Islands in the Sulu Sea.
                         </p>
                     </div>
-                </div>
+                </div>-->
 
             </aside>
         </section><!-- #container -->

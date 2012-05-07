@@ -53,7 +53,7 @@ html, body, div, span, object, iframe, h1, h2, h3, dl dt, h4, h5, h6, p, blockqu
     HEADER
 ====================*/
 .banner {
-    height: 160px;
+    height: 150px;
     margin-top: 10px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
@@ -92,6 +92,7 @@ html, body, div, span, object, iframe, h1, h2, h3, dl dt, h4, h5, h6, p, blockqu
 #slides .slidesContainer {
     background:transparent;
     margin: 0 auto;
+    height: 150px;
 }
 
 /*====================
@@ -414,7 +415,7 @@ div.current-tab {
     SIDEBAR
 ====================*/
 
-#sidebar, #sponsors, .promo {
+#sidebar{
     width: 186px;
     margin-left: 10px;
 }
@@ -600,7 +601,7 @@ footer a:link, footer a:visited {
 span.symbol { background: url(/theme/weatherph/img/warning-sprites.png) -5px -65px no-repeat; height: 30px; width: 40px; display: block; margin-left: 10px; float: left; }
 
 span.day_1 { background-position: -70px -180px; }
-span.day_2 { background-position: -1250px -180px; }
+span.day_2 { background-position: -125px -180px; }
 span.day_3 { background-position: -185px -180px; }
 span.day_4 { background-position: -248px -180px; }
 span.day_5 { background-position: -305px -180px; }

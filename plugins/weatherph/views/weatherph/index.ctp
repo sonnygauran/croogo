@@ -282,13 +282,13 @@
     </section> <!--MAIN CONTENT-->
 
     <section class="secondary">
-        <div class="posts box">
+        <div class="posts">
             <h4>Intro to Typhoon Climatology</h4>
             <p>Tropical Cyclones have been a part of Filipino culture since time immemorial, since the Philippines is located within the tropics, surrounded by large sea and ocean basins namely the Western Pacific Ocean, The Philippine and South China Seas. These bodies of water are breeding grounds of tropical cyclones.</p>
-            <p>An average of 20 tropical cyclones enter the Philippine Area of Responsibility (PAR), where 10 cross the country (1948-2004 mean avg – based on PAGASA Statistics) – bringing destruction to properties and loss of lives.</p>
+            <p>An average of 20 tropical cyclones enter the Philippine Area of Responsibility (PAR), where 10 cross the country (1948-2004 mean avg ‚Äì based on PAGASA Statistics) ‚Äì bringing destruction to properties and loss of lives.</p>
         </div>
-
-        <div class="news box">
+<!--
+        <div class="news">
             <h4>Breaking News</h4>
             <ul>
                 <li><img src="theme/weatherph/img/thumbnail.png"/><p>Breaking News</p></li>
@@ -297,7 +297,7 @@
                 <li><img src="theme/weatherph/img/thumbnail.png"/><p>Meteomedia Weather Shop</p></li>
                 <li><img src="theme/weatherph/img/thumbnail2.png"/><p>Webcams</p></li>
             </ul>
-        </div>
+        </div>-->
 
     </section> <!--SECONDARY-->
 </div> <!--CONTENT-->
