@@ -1,10 +1,10 @@
-name: weatherph
-description: Weatherph Theme for Croogo
+name: Weather Philippines
+description: Weather Philippines
 screenshot: sunny.png
 
-author: Sonny Gauran
-authorEmail: sgauran@meteomedia.com.ph
-authorUrl: http://flavors.me/sonnygauran
+author: Martin de Lima
+authorEmail: mdelima@meteomedia.com.ph
+authorUrl: http://zerp.ly/martindelima
 
 menus:
   - main

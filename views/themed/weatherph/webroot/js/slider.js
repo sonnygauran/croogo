@@ -538,10 +538,10 @@
 			navigation: false, // [Boolean] Auto generate the naviagation, next/previous buttons
 			pagination: false, // [Boolean] Auto generate the pagination
 			effects: {
-				navigation: "slide",  // [String] Can be either "slide" or "fade"
-				pagination: "slide" // [String] Can be either "slide" or "fade"
+				navigation: "fade",  // [String] Can be either "slide" or "fade"
+				pagination: "fade" // [String] Can be either "slide" or "fade"
 			},
-			direction: "left", // [String] Define the slide direction: "Up", "Right", "Down", "left"
+			direction: "down", // [String] Define the slide direction: "Up", "Right", "Down", "left"
 			fade: {
 				interval: 1000, // [Number] Interval of fade in milliseconds
 				crossfade: false, // [Boolean] TODO: add this feature. Crossfade the slides, great for images, bad for text

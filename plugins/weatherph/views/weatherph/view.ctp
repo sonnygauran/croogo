@@ -15,7 +15,7 @@
                 <table>
                     <tbody>
                         <tr>
-                            <td><!--img src="/theme/weatherph_compact/img/cloudy.png"/--></td>
+                            <td><!--img src="/theme/weatherph/img/cloudy.png"/--></td>
                             <td><?= $weeklyForecasts['reading']['tl']; ?>&deg;C</td>
                         </tr>
                         <tr>

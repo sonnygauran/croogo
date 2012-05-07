@@ -1,8 +1,8 @@
 <?php
 /**
- * Weatherph main layout
+ * Weatherph Frontpage
  *
- * @author Sonny Gauran <sgauran@meteomedia.com.ph>
+ * @author Martin de Lima <mdelima@meteomedia.com.ph>
  * @link http://www.weather.com.ph
  */
 ?>
@@ -10,6 +10,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <title><?php echo $title_for_layout; ?> &raquo; <?php echo Configure::read('Site.title'); ?></title>
         <?php
         echo $this->Layout->meta();
@@ -26,225 +27,122 @@
             'jquery/supersubs',
             'theme',
             'libs/jquery.geo-1.0a4',
+            'slider',
         ));
         echo $scripts_for_layout;
         ?>
+        <script type="text/javascript">
+            function currentSlide( current ) {
+                $(".current_slide").text(current + " of " + $("#slides").slides("status","total") );
+            }
+
+            $(function(){
+                $("#slides").slides({
+                    navigateEnd: function( current ) {
+                            $("#slides").css('width','240px');
+                $(".slidesContainer").css('width','240px');
+                    },
+                    loaded: function(){
+                            //currentSlide( 1 );
+                    }
+                });
+                $("#slides").slides("play");
+                $("#slides").css('width','240px');
+                $(".slidesContainer").css('width','240px');
+            });
+	</script>
+        <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
     </head>
     <body>
         <section id="container">
             <header class="banner clear">    
-                <form class="search">
-                    Search: <input type="text" name="city" />
-                </form>
-                <!--
-                <ul class="language-selection">
-                    <li>Tagalog</li>
-                    <li class="selected">English</li>
-                </ul>
-                -->
-                <h1 class="logo">weather | philippines</h1>
+                <h1 class="logo"><a href="/">weather | philippines</a></h1>
+                
+                <div id="slides">
+                    <img src="<?= $this->webroot ?>theme/weatherph/img/mm.png" alt="Meteomedia">
 
+                    <img src="<?= $this->webroot ?>theme/weatherph/img/az.png" alt="Aboitiz Power">
+
+                    <img src="<?= $this->webroot ?>theme/weatherph/img/ub.png" alt="Union Bank">
+		</div>
+                
+                <div id="options">
+                    <img src="../theme/weatherph/img/flag.png" alt="Philippines" />
+                    <form class="search">
+                        Weather Search: <input type="text" name="city" size="15" />
+                        <img src="../theme/weatherph/img/search.png" alt="" />
+                    </form>
+                    
+                </div>
             </header> <!--BANNER-->
 
             <nav>
                 <ul>
-                    <li>About</li>
-                    <li>Weather movies</li>
-                    <li>Legal</li>
-                    <li>Contact</li>
-                    <li>Select by region:
-                        <select name="philippine-regions">
-                            <option>Choose one...</option>
-
-                            <optgroup label="Luzon">
-                                <option data-region-id="NCR">NCR</option>
-                                <option data-region-id="CAR">CAR</option>
-                                <option data-region-id="I">Ilocos</option>
-                                <option data-region-id="II">Cagayan Valley</option>
-                                <option data-region-id="III">Central Luzon</option>
-                                <option data-region-id="IVa">CALABARZON</option>
-                                <option data-region-id="IVb">MIMAROPA</option>
-                                <option data-region-id="V">Bicol</option>
-                            </optgroup>
-
-                            <optgroup label="Visayas">
-                                <option data-region-id="VI">Western Visayas</option>
-                                <option data-region-id="VII">Central Visayas</option>
-                                <option data-region-id="VIII">Eastern Visayas</option>
-                            </optgroup>
-
-                            <optgroup label="Mindanao">
-                                <option data-region-id="IX">Zamboanga Peninsula</option>
-                                <option data-region-id="X">Northern Mindanao</option>
-                                <option data-region-id="XI">Davao</option>
-                                <option data-region-id="XII">SOCCSKSARGEN</option>
-                                <option data-region-id="XIII">CARAGA</option>
-                                <option data-region-id="ARMM">ARMM</option>
-                            </optgroup>
-                        </select>
-                    </li>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/view">Detailed Forecasts</a></li>
+                    <li><a href="#">Typhoon Preparedness</a></li>
+                    <li><a href="#">Typhoon Climatology</a></li>
+                    <li><a href="#">Typhoon Glossary</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Impressum</a></li>
                 </ul>
             </nav>
+<?php
 
-            <section class="main">
-                <div id="map">
-                    <div class="layerSelector">
-                        <ul>
-                            <li>Wind</li>
-                            <li>Rain</li>
-                            <li>Temperature</li>
-                            <li>Clouds</li>
-                            <li>View more layers</li>
-                        </ul>
-                    </div> <!--LAYER SELECTOR-->
-                    <div id="legend">
-                        <ul>
-                            <li><img src="http://placehold.it/24x12/dd2222"/> PAGASA stations</li>
-                            <li><img src="http://placehold.it/24x12/0000ff/"> Meteomedia stations</li>
-                            <li><img src="http://placehold.it/24x12/333333"> Inactive stations</li>
-                        </ul>
-                    </div>
-                </div> <!--MAP-->
+echo $this->Layout->sessionFlash();
+echo $content_for_layout;
 
-                <div id="overlay">
-                        <div class="details">
-                            <dl class="ort1 center">
-                                <dt>Makati</dt>
-                                <dd>&nbsp;</dd>
-                            </dl>
-                        </div>
-
-                        <div class="readings center">
-                            <h6>Current Readings</h6>
-                            <h6>as of 2:24PM</h6>
-                            <table class="details">
-                                <tbody>
-                                    <tr class="temperature">
-                                        <td>Temperature (&deg;C)</td>
-                                        <td class="output">&nbsp;</td>
-                                    </tr>
-                                    <tr class="wind_speed">
-                                        <td>Wind Speed (kph)</td>
-                                        <td class="output">&nbsp;</td>
-                                    </tr>
-                                    <tr class="humidity">
-                                        <td>Humidity</td>
-                                        <td class="output">&nbsp;</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-
-                            <h6>Forecasts</h6>
-                            <table class="center">
-                                <tbody>
-                                    <tr>
-                                        <td>3PM</td>
-                                        <td>
-                                            <img class="small" src="theme/weatherph/img/sunny.png" alt="sunny" />
-                                        </td>
-                                        <td class="output">31&deg;</td>
-                                    </tr>
-                                    <tr>
-                                        <td>6PM</td>
-                                        <td>
-                                            <img class="small" src="theme/weatherph/img/overcast.png" alt="overcast"/>
-                                        </td>
-                                        <td class="output">29&deg;</td>
-                                    </tr>
-                                    <tr>
-                                        <td>9PM</td>
-                                        <td>
-                                            <img class="small" src="theme/weatherph/img/cloudy2_night.png" alt="cloudy"/>
-                                        </td>
-                                        <td class="output">30&deg;</td>
-                                    </tr>
-                                    <tr>
-                                        <td>12AM</td>
-                                        <td>
-                                            <img class="small" src="theme/weatherph/img/cloudy3_night.png" alt="cloudy"/>
-                                        </td>
-                                            <td class="output">28&deg;</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3AM</td>
-                                        <td>
-                                            <img class="small" src="theme/weatherph/img/cloudy2_night.png" alt="cloudy"/>
-                                            <td class="output">26&deg;</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div> <!--READINGS-->
-                        <section class="details">
-                            <a class="detail">View more details ></a>
-                        </section>
-                    </div> <!--OVERLAY-->
-                
-                <section id="sponsors">
+?>
+            <aside id="sidebar">
+                <div id="sponsors">
+                    <h6>Platinum sponsors:</h6>
                     <div class="sponsored center">
-                        <h6>Powered by:</h6>
-                        <?php echo $this->Html->image('aboitiz.jpg'); ?>
-                    </div>
-                    <div class="sponsored center">
-                        <h6>Platinum sponsors:</h6>
                         <ul>
                             <li><?php echo $this->Html->image('ICTS.jpg'); ?></li>
                             <li><?php echo $this->Html->image('NAC.jpg'); ?></li>
                             <li><?php echo $this->Html->image('SGS.jpg'); ?></li>
                             <li><?php echo $this->Html->image('vistaland.jpg'); ?></li>
-                            <li><?php echo $this->Html->image('NGCP.png'); ?></li>
+                            <li><?php echo $this->Html->image('ngcp1.png'); ?></li>
+                            <li><?php echo $this->Html->image('sumitomo.png'); ?></li>
+                            <li><?php echo $this->Html->image('sm.gif'); ?></li>
+                            <li><?php echo $this->Html->image('tyk.jpg'); ?></li>
                         </ul>
                     </div>
-                </section>
-                
-            </section> <!--MAIN CONTENT-->
-
-            <section class="secondary clear">
-                <div class="posts content">
-                    <h4>The Weather in Words</h4>
-                    <p>
-                        The climate in Switzerland is strongly influenced by the Alps extending across the country and representing the most important meteorological divide in Central Europe. Thanks to the Alps, large climatic differences in Switzerland are to be found within a small geographic area. The largest contrasts exist between the northern side of the Alps with its temperatre climate and the southern side of the Alps characterized by mediterranean climate.
-                    </p>
-
-                    <h4>Tomorrow</h4>
-                    <p>
-                        In the Swiss Midland, extending between Lake Geneva and Lake Constance as well as between Jura and the Pre-Alps, climatic conditions which are typical for Central Europe are to be found. The average annual temperature is just below 10 °C, with mean values around the freezing point in January and between 16 and 19 °C in July. The average annual precipitation amounts are just above 1000 mm. In winter often a so-called inversion layer results in a large-scale low stratus cloud coverage which partly persists for several days or even weeks. Thereby the cold wind from northeast (named Bise) is pressed between Jura and Pre-Alps and can thus reach gale-force on the western shores of Lake Geneva.
-                    </p>
                 </div>
                 
-                <div class="twitter content">
-                    <h4>Breaking News</h4>
-                    <ul>
-                        <li><img class="small" src="theme/weatherph/img/thumbnail.png"/>Sunny day today. Please continue donating!</li>
-                        <li><img class="small" src="theme/weatherph/img/thumbnail.png"/>Cloudy for the rest of the day in Manila. Help flood victims!</li>
-                        <li><img class="small" src="theme/weatherph/img/thumbnail.png"/>Flooding at Espana. Avoid going there.</li>
-                        <li><img class="small" src="theme/weatherph/img/thumbnail.png"/>Watch out later! It's gonna be stormy tonight.</li>
-                        <li><img class="small" src="theme/weatherph/img/thumbnail.png"/>Bembang enters Philippine area of responsibility</li>
-                    </ul>
-                    <h6 class="center clear">Follow us on Twitter to get updates right in your timeline</h6>
-                </div> 
-                
+                <!-- AddThis Button BEGIN -->
+                <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+                <a class="addthis_button_facebook"></a>
+                <a class="addthis_button_twitter"></a>
+                <a class="addthis_button_linkedin"></a>
+                <a class="addthis_button_email"></a>
+                <a class="addthis_button_print"></a>
+                </div>
+                <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4f94bc453ecffca4"></script>
+                <!-- AddThis Button END -->
+
+
                 <div class="ads">
                     <div class="promo">
                         <h4>Visit Boracay!</h4>
-                        <img src="theme/weatherph/img/boracay.jpg" alt="Boracay!"/>
+                        <img src="../theme/weatherph/img/boracay.jpg" alt="Boracay!"/>
                         <p>
-                            Boracay is an island of the Philippines located approximately 315 km (196 mi) south of Manila and 2 km off the northwest tip of Panay Island in the Western Visayas region of the Philippines. Boracay Island and its beaches have received awards numerous times.
+                            Boracay is an island of the Philippines located approximately 315 km (196 mi) south of Manila. Boracay Island and its beaches have received awards numerous times.
                         </p>
                     </div>
-                    
+
                     <div class="promo">
                         <h4>Discover Pamalican.</h4>
-                        <img src="theme/weatherph/img/pamalican.jpg" alt="Pamalican!"/>
+                        <img src="../theme/weatherph/img/pamalican.jpg" alt="Pamalican!"/>
                         <p>
-                            Pamalican Island is a small island of the Cuyo Islands in the Sulu Sea, between Palawan and Panay, in the north part of the Palawan Province of the Philippines.
+                            Pamalican Island is a small island of the Cuyo Islands in the Sulu Sea.
                         </p>
                     </div>
                 </div>
-            </section> <!--SECONDARY CONTENT-->
-        </section><!-- #container -->
 
-        <!--[if lt IE 9]>
-        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
+            </aside>
+        </section><!-- #container -->
     </body>
 </html>
