@@ -119,7 +119,7 @@ class WeatherphStationForecast extends WeatherphAppModel
         $enddatum = date('Ymd', $enddatum);
         
         //Grab stations readings  
-        $url = "http://192.168.20.89/abfrage.php?stationidstring=$stationId&datumstart=$startdatum&datumend=$enddatum&&zeiten1=3h&paramtyp=mos_mix_mm&mosmess=nein&tl=on&dir=on&ff=on&g3h=on&paramliste=rr,rh,sy,sy2&output=csv2&ortoutput=wmo6,name&timefill=nein&verknuepft=nein&aufruf=auto";
+        $url = "http://192.168.20.89/abfrage.php?stationidstring=$stationId&datumstart=$startdatum&datumend=$enddatum&&zeiten1=3h&paramtyp=mos_mix_mm&mosmess=ja&tl=on&dir=on&ff=on&g3h=on&paramliste=rr,rh,sy,sy2&output=csv2&ortoutput=wmo6,name&timefill=nein&verknuepft=nein&aufruf=auto";
         
         $this->log($url);
         $ch = curl_init();
@@ -211,7 +211,7 @@ class WeatherphStationForecast extends WeatherphAppModel
         $enddatum = date('Ymd', $enddatum);
         
         //Grab stations readings  
-        $url = "http://192.168.20.89/abfrage.php?stationidstring=$stationId&datumstart=$startdatum&datumend=$enddatum&&zeiten1=$timeRes&paramtyp=mos_mix_mm&mosmess=nein&paramliste=tl,td,rh,ff,g3h,dir,gff,sd1,gl1,rr&output=csv2&ortoutput=wmo6,name&timefill=nein&verknuepft=nein&aufruf=auto";
+        $url = "http://192.168.20.89/abfrage.php?stationidstring=$stationId&datumstart=$startdatum&datumend=$enddatum&&zeiten1=$timeRes&paramtyp=mos_mix_mm&mosmess=ja&paramliste=tl,td,rh,ff,g3h,dir,gff,sd1,gl1,rr&output=csv2&ortoutput=wmo6,name&timefill=nein&verknuepft=nein&aufruf=auto";
         
         $this->log($url);
         $ch = curl_init();
