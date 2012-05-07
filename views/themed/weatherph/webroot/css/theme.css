@@ -663,3 +663,4 @@ span.sunrise { background-position: 0px 5px; }
 span.sunset { background-position: -60px 5px; }
 
 .day-forecast table { float: left; }
+.week-forecast { width: 100% ;}
