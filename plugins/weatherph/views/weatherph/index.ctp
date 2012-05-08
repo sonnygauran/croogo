@@ -78,8 +78,8 @@
         <div id="info">
             <div id="current-readings-panel">
                 <h2 class="current readings-location">&nbsp;</h2>
-                <a href="#">change station</a>
-                <h4>Current Readings:</h4>
+                <a style="display: none;" href="#">change station</a>
+                <h4 style="display: none;">Current Readings:</h4>
                 
             </div>
             <div class="readings" style="display: none;">
