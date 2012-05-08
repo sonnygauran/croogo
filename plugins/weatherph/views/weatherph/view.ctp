@@ -1,4 +1,4 @@
-<?php echo $this->Html->script('AnyChart.js'); ?>
+<?php //echo $this->Html->script('AnyChart.js'); ?>
 
 <script type="text/javascript" src="../weatherph/js/weatherph/view.js"></script>
 
@@ -149,8 +149,8 @@
                 <li><a href="javascript: void(0);">Humidity</a></li>
             </ul>
             <div class="tab-container">
-                <div class="current-tab" style="display: none;">
-                    <script type="text/javascript" language="javascript">
+                <div class="current-tab">
+<!--                    <script type="text/javascript" language="javascript">
                         //<![CDATA[
                             var chart = new AnyChart('http://weatherph/swf/AnyChart.swf');
                             chart.width = 830;
@@ -158,7 +158,7 @@
                             chart.setXMLFile('http://weatherph/getDetailedForecast/<?= $weeklyForecasts['stationId']; ?>/temperature/3h');
                             chart.write();
                         //]]>
-                    </script>
+                    </script>-->
                 </div>
             </div>
         </div> <!--END CHARTS-->
