@@ -53,7 +53,7 @@ html, body, div, span, object, iframe, h1, h2, h3, dl dt, h4, h5, h6, p, blockqu
     HEADER
 ====================*/
 .banner {
-    height: 150px;
+    height: 155px;
     margin-top: 10px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
@@ -67,7 +67,7 @@ html, body, div, span, object, iframe, h1, h2, h3, dl dt, h4, h5, h6, p, blockqu
 
 #options {
     float: right;
-    margin: 80px 10px 10px 10px;
+    margin: 85px 10px 10px 10px;
 }
 
 #options > img, #options > form {
@@ -84,15 +84,19 @@ html, body, div, span, object, iframe, h1, h2, h3, dl dt, h4, h5, h6, p, blockqu
 /* SPONSOR SLIDER */
 
 #slides {
-    position:relative;
+    width: 240px;
     float: left;
-    margin-left: 30px;
 }
 
-#slides .slidesContainer {
-    background:transparent;
-    margin: 0 auto;
-    height: 150px;
+.slidesContainer {
+    width: 240px;
+    display: none;
+}
+
+.slides_container img {
+    width:240px;
+    height:150px;
+    display:block;
 }
 
 /*====================

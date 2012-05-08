@@ -27,28 +27,20 @@
             'jquery/supersubs',
             'theme',
             'libs/jquery.geo-1.0a4',
-            'slider',
+            'slides.min.jquery',
         ));
         echo $scripts_for_layout;
         ?>
         <script type="text/javascript">
-            function currentSlide( current ) {
-                $(".current_slide").text(current + " of " + $("#slides").slides("status","total") );
-            }
-
             $(function(){
-                $("#slides").slides({
-                    navigateEnd: function( current ) {
-                            $("#slides").css('width','240px');
-                $(".slidesContainer").css('width','240px');
-                    },
-                    loaded: function(){
-                            //currentSlide( 1 );
-                    }
+                $('#slides').slides({
+                    preload: false,
+                    effect: 'fade',
+                    play: 5000,
+                    pagination: false,
+                    generatePagination: false,
+                    generateNextPrev: false
                 });
-                $("#slides").slides("play");
-                $("#slides").css('width','240px');
-                $(".slidesContainer").css('width','240px');
             });
 	</script>
         <!--[if lt IE 9]>
@@ -61,12 +53,12 @@
                 <h1 class="logo"><a href="/">weather | philippines</a></h1>
                 
                 <div id="slides">
-                    <img src="<?= $this->webroot ?>theme/weatherph/img/mm.png" alt="Meteomedia">
-
-                    <img src="<?= $this->webroot ?>theme/weatherph/img/az.png" alt="Aboitiz Power">
-
-                    <img src="<?= $this->webroot ?>theme/weatherph/img/ub.png" alt="Union Bank">
-		</div>
+                    <div class="slides_container">
+                        <img src="<?= $this->webroot ?>theme/weatherph/img/mm.png" alt="Meteomedia">
+                        <img src="<?= $this->webroot ?>theme/weatherph/img/az.png" alt="Aboitiz Power">
+                        <img src="<?= $this->webroot ?>theme/weatherph/img/ub.png" alt="Union Bank">
+                    </div>
+                </div>
                 
                 <div id="options">
                     <img src="../theme/weatherph/img/flag.png" alt="Philippines" />
