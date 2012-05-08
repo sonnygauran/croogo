@@ -1,6 +1,6 @@
 /*
 
-WEATHER PHILIPPINES
+WEATHER PHILIPPINES - Frontpage
 
 Table of contents:
 
@@ -36,95 +36,107 @@ html, body, div, span, object, iframe, h1, h2, h3, dl dt, h4, h5, h6, p, blockqu
 ====================*/
 
 #container {
-width: 980px;
-margin: 0 auto;
+    width: 1000px;
+    margin: 0 auto;
 }
 
-.main, .secondary {
-    margin: 10px 0;
+.content {
+    float: left;
+    width: 804px;
+}
+
+#sidebar {
+    float:right;
 }
 
 /*====================
     HEADER
 ====================*/
-#container > header {height:120px; margin-top: 10px;}
-
-#container > header .logo { padding: 35px 15px; margin: 0 10px; }
-
-#container > header .search {
-    color: white;
-    display: inline;
-    float: right;
-    margin-right: 9px;
-    margin-top: 75px;
-    padding: 3px;
-    text-align: right;
-}
-
 .banner {
-    -webkit-border-top-left-radius: 5px;
-    -webkit-border-top-right-radius: 5px;
-    -moz-border-radius-topleft: 5px;
-    -moz-border-radius-topright: 5px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+    height: 150px;
+    margin-top: 10px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
 }
 
-#container > header .language-selection {
-    list-style: none; float: right;
-    margin-right: 9px;
-    clear: both; 
-    color: white;
-    font-size: 12px;
+.logo {
+    float:left;
+    padding: 50px 10px;
 }
-#container > header .language-selection li { display: inline; margin: 0 3px;}
-#container > header .language-selection .selected { font-weight: bold; }
+
+#options {
+    float: right;
+    margin: 80px 10px 10px 10px;
+}
+
+#options > img, #options > form {
+    float: right;
+    display: inline;
+    clear:both;
+    margin-bottom: 10px;
+}
+
+#options > form > img {
+    vertical-align: middle;
+}
+
+/* SPONSOR SLIDER */
+
+#slides {
+    position:relative;
+    float: left;
+    margin-left: 30px;
+}
+
+#slides .slidesContainer {
+    background:transparent;
+    margin: 0 auto;
+    height: 150px;
+}
 
 /*====================
-    NAV
+    MENU
 ====================*/
 
 nav {
-    -webkit-border-bottom-right-radius: 5px;
-    -webkit-border-bottom-left-radius: 5px;
-    -moz-border-radius-bottomright: 5px;
-    -moz-border-radius-bottomleft: 5px;
-    border-bottom-right-radius: 5px;
-    border-bottom-left-radius: 5px;
-}
-
-nav ul {
-    padding: 5px 10px;
+    width: 1000px;
+    margin: 10px 0;
+    padding: 5px 0;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
 }
 
 nav li {
     display: inline;
-    padding: 0 2em;
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;
+    padding: 1em;
+    font-size: .875em;
 }
 
-nav li + li, .layerSelector li + li {
-    border-left: 1px solid white;
+nav li + li {
+    border-left: 1px solid #fafafa;
+}
+
+nav li > a {
+    text-decoration: none;
 }
 
 /*====================
-    MAIN
+    MAP
 ====================*/
-#map {
-    float: left;
+#map-container {
     width: 554px;
-    height: 600px;
-    margin: 10px;
+    margin-right: 10px;
+    float:left;
 }
 
-#map .layerSelector {
-    width: 100%;
-    height: 25px;
-    position: absolute;
-    top: 0;
+#map {
+    height: 554px;
+}
+
+div.layerSelector {
+    width: 554px;
     text-align: center;
     -webkit-border-top-left-radius: 5px;
     -webkit-border-top-right-radius: 5px;
@@ -134,70 +146,278 @@ nav li + li, .layerSelector li + li {
     border-top-right-radius: 5px;
 }
 
-#overlay {
-    width: 172px;
-    float: left;
+div.layerSelector ul {
+    width: 534px;
     padding: 10px;
-    margin-top: 10px;
-    border-radius: 5px;
-    background: #2D4070;
 }
 
-#map .layerSelector ul, #legend ul {
-    padding-top: 5px;
-}
-
-#map .layerSelector li, #legend li {
+div.layerSelector li {
     display: inline;
-    padding: 0 2em;
-    text-align: center;
-}
-
-.details {
-    text-align:left;
-}
-
-#overlay .details dt, #overlay .details dd {
-    display: inline;
-    padding: 10px 5px;
-    text-align: left;
-}
-
-.details dd {
-    font-weight: bold;
-}
-
-#overlay .readings{
-    padding: 3px;
-    border-radius: 5px;
-}
-
-#overlay table {
-    margin: 0 auto;
-}
-
-#overlay table td {
-    padding: 10px 5px;
+    padding: 0 1em;
+    text-decoration: none;
 }
 
 #legend {
-    position:absolute !important;
-    bottom:0;
-    height: 25px;
-    width: 100%;
-    text-align: center;
+    width: 552px;
     -webkit-border-bottom-right-radius: 5px;
     -webkit-border-bottom-left-radius: 5px;
     -moz-border-radius-bottomright: 5px;
     -moz-border-radius-bottomleft: 5px;
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
+    overflow: auto;
+    border: solid 1px #2F4771;
 }
 
-#sponsors {
+#legend > img {
+    float:left; 
+}
+
+#province-select, #station-color {
     float: left;
-    width: 172px;
+    overflow: auto;
+}
+
+#province-select > h6, #province-select > select,
+#station-color > h6, #station-color > img {
+    display: inline;
+    padding: 0 5px;
+    vertical-align: middle;
+}
+
+/*====================
+    INFO
+====================*/
+
+#info {
+    width: 238px;
+    float:left;
+    border-radius: 5px;
+    border: 1px solid #2F4771;
+}
+
+#info a {
+    float:right;
+}
+
+#current-readings-panel {
+    padding: 10px 10px 0 10px;
+}
+
+h6.time {
+    padding: 0 5px;
+}
+
+/*READINGS*/
+div.readings {
+    clear: both;
+    margin: 3px auto;
+    padding: 0 10px;
+    overflow: hidden;
+    position: relative;
+    vertical-align: middle;
+}
+
+.readings > h3 {
+    float: left;
+    padding: 3px 5px;
+    font-size: 1.875em;
+    min-width: 25px;
+}
+
+.readings > span {
+    margin: 5px auto 0 auto;
+    float: left;
+}
+
+.readings > table {
+    float: left;
+    padding: 3px 5px;
+    min-width: 65px;
+}
+
+.readings >table td {
+    padding-left: 5px;
+}
+
+/*END READINGS*/
+
+.detail-page-link {
+    width: 100%;
+    padding: 10px 0;
+    text-align: center;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+.detail-page-link > h2 {
+    display: inline-block;
+    margin: 0 auto;
+}
+
+.forecast-highlight {
+    background-color: #fafafa;
+    color: #2F4771;
+}
+
+/*====================
+    POSTS, NEWS
+====================*/
+#secondary{
+    width: 794px;
+}
+.secondary h4, h6 {
+    padding-bottom: 1em;
+}
+
+.posts {
+    width: 554px;
+    float: left;
+    margin: 0 10px 100px 0;
+}
+
+.secondary > .posts {
+    padding-top: 2em;
+}
+
+.secondary > .news {
+    width: 240px;
+    float: left;
+    margin-top: 2em;
+    overflow: hidden;
+}
+
+.posts p {
+    padding-bottom: 1em;
+    line-height: 1.5;
+}
+
+.posts ul > li {
+    list-style: square;
+    margin: .5em 0 .5em 1em;
+}
+
+.news li {
+    float:left;
+    width: 100%;
+    font-weight: 500;
+    padding: 5px;
+}
+
+.news img {
+    float:left;
+    margin-right: 5px;
+}
+
+.news p {
+    padding: 1em;
+    vertical-align: middle;
+}
+
+/*====================
+    DETAIL
+====================*/
+
+.content {
+    width: 804px;
+}
+
+#weekWeather, #charts, #outlook {
+    margin: 10px auto;
+}
+
+#currentWeather {
+    width: 100%;
+    overflow: auto;
+}
+
+#station, #condition, #conditionTable {
+    float:left;
     margin: 10px;
+    padding: 10px;
+}
+
+#station {
+    width: 161px;
+}
+
+#station > p {
+    font-size: .875em;
+}
+
+#condition, #conditionTable  {
+    width: 261px;
+}
+
+#condition > table, #conditionTable > table {
+    width: 100%;
+}
+
+#condition td {
+    vertical-align: middle;
+    padding: 0;
+}
+
+#conditionTable td {
+    padding: 5px 10px;
+}
+
+.output {
+    text-align: center;
+    vertical-align: middle;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+#week-forecast table {
+    width: 100%;
+}
+
+/*===============
+    TABS
+===============*/
+
+ul.tabs {
+    margin-top: 1em;
+    border-bottom: 15px solid #2F4771;
+}
+
+.tabs li {
+    display: inline;
+    padding: 5px 10px 0 10px;
+    border-bottom: 1px solid #2E4471;
+    cursor: pointer;
+}
+
+.tabs li > a {
+    text-decoration: none;
+}
+
+div.tab{
+    display: none;
+}
+
+div.current-tab {
+    display: block;
+}
+
+/*===============
+    WEEK
+===============*/
+
+.week-forecast td {
+    padding: 1em;
+    text-align: center;
+    border: 1px solid #d6dfeb;
+}
+
+/*====================
+    SIDEBAR
+====================*/
+
+#sidebar{
+    width: 186px;
+    margin-left: 10px;
 }
 
 .sponsored {
@@ -207,49 +427,8 @@ nav li + li, .layerSelector li + li {
     border-radius: 8px;
 }
 
-/*====================
-    SECONDARY
-====================*/
-.secondary h4, h6 {
-    padding-bottom: 1em;
-}
-
-.secondary > .content {
-    padding: 20px 10px;
-}
-
-.secondary .posts, .secondary .twitter, .secondary .ads {
-    float: left;
-    margin: 10px;
-}
-
-.secondary .posts, .secondary .twitter {
-    width: 344px;
-    border-radius: 8px;
-}
-
-.posts p {
-    padding-bottom: 1em;
-}
-
-.twitter li {
-    float:left;
-    padding: 1em .5em;
-    width: 100%;
-}
-
-.twitter li:last-child{
-    margin-bottom: 1em;
-}
-
-.twitter img {
-    float:left;
-    padding: 5px;
-}
-
 .ads {
-    width: 172px;
-    float:left;
+    margin-top: 10px;
 }
 
 .promo {
@@ -265,6 +444,18 @@ nav li + li, .layerSelector li + li {
 
 .promo img {
     margin: 5px;
+}
+
+.figure {
+    max-width: 554px;
+}
+
+#glossary-alphabet > ul {
+    padding: 1em;
+}
+
+#glossary-alphabet li {
+    display: inline;
 }
 
 /*========================================
@@ -298,12 +489,26 @@ h5, h6 {
     font-weight: 600;
 }
 
-.logo {
-    font-size: 2.875em;
-    font-weight: 200;
-    text-shadow: #fafafa 0px 0px 20px
+#info {
+    font-size: .75em;
+    font-weight: 300;
 }
 
+.logo {
+    color:#3E4F76;
+    font-size: 2.875em;
+    font-weight: 200;
+    text-shadow: #fafafa 0 0 20px;
+}
+.logo a,
+.logo a:link,
+.logo a:visited,
+.logo a:focus,
+.logo a:hover
+{
+    color:#3E4F76;
+    text-decoration: none;
+}
 .layerSelector, #legend {
     font-size: .875em;
 }
@@ -313,42 +518,48 @@ h5, h6 {
 ========================================*/
 
 html {
-    color: #2D4070;
+    color: #2F4771;
 }
 
 .banner {
-    background:#435680 url(../img/banner.png) top left no-repeat;;
-    -moz-box-shadow: inset 0 0 5px #000000;
-    -webkit-box-shadow: inset 0 0 5px #000000;
-    box-shadow: inset 0 0 10px #000000;
-}
-
-nav, .layerSelector, #legend, .promo {
     color: #fafafa;
-    background-color: #344a82;
+    background:#3e5e95 url('../img/banner-plain.png') top left no-repeat;
 }
 
-.infoPane {
-    background: rgba(255,255,255,.7);
-    border-radius: 5px;
-    position: absolute;
-}
-
-.readings {
-    background: white;
-}
-
-.output {
-    background-color: #2D4070;
+nav, .layerSelector, .promo, #info {
+    background: #2F4771;
     color: #fafafa;
-}        
-
-.twitter li {
-    color: #2D4070;
 }
 
-.twitter li:nth-child(odd) {
-    background: rgba(171,185,221,.5);
+#info > div.readings {
+    background-color: #723A71;
+    margin-bottom: 0;
+    border-top: 1px solid black;
+}
+
+.detail-page-link {
+    background: #43597C;
+    color: #fafafa;
+}
+
+.news li:nth-child(odd) {
+    background: #e1e6f3;
+}
+
+#currentWeather, .tabs li {
+    background: #43597E;
+    color: #fafafa;
+}
+
+.week-forecast .time, .output {
+    background-color: #2F4771;
+    color: #fafafa;
+}
+
+.caption {
+    background-color: #fafafa;
+    color: #2F4771;
+    vertical-align: middle;
 }
 
 /*========================================
@@ -362,17 +573,94 @@ nav, .layerSelector, #legend, .promo {
     clear: both;
 }
 
-.small {
-    width: 24px;
-    height: 24px;
+a {
+    -webkit-transition: all .2s ease;
+    -moz-transition: all .2s ease;
+    -o-transition: all .2s ease;
+    -ms-transition: all .2s ease;
+    transition: all .2s ease;
 }
 
-.output {
-    text-align: left;
-    font-size: 1.375em;
-    font-weight: bold;
+a:hover {
+    text-shadow: #ffffff 0 0 20px;
 }
 
-nav li:hover {
-    text-shadow: #ffffff 0px 0px 20px;
+a:link, a:visited {
+    color: #fafafa;
 }
+
+.layerSelector a:link, .layerSelector a:visited,
+footer a:link, footer a:visited {
+    color: #fafafa;
+}
+
+.tabs li.current-tab {
+    border-top: 1px solid red;
+}
+
+span.symbol { background: url(/theme/weatherph/img/warning-sprites.png) -5px -65px no-repeat; height: 30px; width: 40px; display: block; margin-left: 10px; float: left; }
+
+span.day_1 { background-position: -70px -180px; }
+span.day_2 { background-position: -125px -180px; }
+span.day_3 { background-position: -185px -180px; }
+span.day_4 { background-position: -248px -180px; }
+span.day_5 { background-position: -305px -180px; }
+span.day_6 { background-position: -368px -180px; }
+span.day_7 { background-position: -427px -180px; }
+span.day_8 { background-position: -487px -180px }
+span.day_9 { background-position: -545px -180px; }
+span.day_10 { background-position: -5px -240px; }
+span.day_11 { background-position: -65px -240px; }
+span.day_12 { background-position: -125px -240px; }
+span.day_13 { background-position: -185px -240px; }
+span.day_14 { background-position: -248px -240px; }
+span.day_15 { background-position: -305px -240px; }
+span.day_16 { background-position: -368px -240px; }
+span.day_17 { background-position: -427px -240px; } 
+span.day_18 { background-position: -486px -240px; }
+span.day_19 { background-position: -545px -240px; }
+
+span.night_1 { background-position: -70px -60px; }
+span.night_2 { background-position: -125px -60px; }
+span.night_3 { background-position: -185px -60px; }
+span.night_4 { background-position: -248px -60px; }
+span.night_5 { background-position: -305px -60px; }
+span.night_6 { background-position: -368px -60px; }
+span.night_7 { background-position: -427px -60px; }
+span.night_8 { background-position: -487px -60px; }
+span.night_9 { background-position: -545px -60px; }
+span.night_10 { background-position: -5px -120px; }
+span.night_11 { background-position: -65px -120px; }
+span.night_12 { background-position: -125px -120px; }
+span.night_13 { background-position: -185px -120px; }
+span.night_14 { background-position: -248px -120px; }
+span.night_15 { background-position: -305px -120px; }
+span.night_16 { background-position: -368px -120px; }
+span.night_17 { background-position: -427px -120px; }
+span.night_18 { background-position: -486px -120px; }
+span.night_19 { background-position: -545px -120px; }
+
+span.wind_1 { background-position: 6px -300px; }
+span.wind_2 { background-position: -55px -300px; }
+span.wind_3 { background-position: -119px -300px; }
+span.wind_4 { background-position: -175px -300px; }
+span.wind_5 { background-position: -235px -300px; }
+span.wind_6 { background-position: -295px -300px; }
+span.wind_7 { background-position: -355px -300px; }
+span.wind_8 { background-position: -415px -300px; }
+span.wind_9 { background-position: -480px -300px; }
+
+span.moonphase_0 { background-position: -120px 5px; }
+span.moonphase_1 { background-position: -180px 5px; }
+span.moonphase_2 { background-position: -240px 5px; }
+span.moonphase_3 { background-position: -300px 5px; }
+span.moonphase_4 { background-position: -360px 5px; }
+span.moonphase_5 { background-position: -420px 5px; }
+span.moonphase_6 { background-position: -480px 5px; }
+span.moonphase_7 { background-position: -540px 5px; }
+
+span.sunrise { background-position: 0px 5px; }
+span.sunset { background-position: -60px 5px; }
+
+.day-forecast table { float: left; }
+.week-forecast { width: 100% ;}
