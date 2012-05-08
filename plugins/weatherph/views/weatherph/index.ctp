@@ -76,13 +76,13 @@
             </div> <!--END LEGEND-->
         </div>
         <div id="info">
-            <div id="current-readings-panel">
+            <div id="current-readings-panel" style="display: none;">
                 <h2 class="current readings-location">&nbsp;</h2>
                 <a href="#">change station</a>
                 <h4>Current Readings:</h4>
                 
             </div>
-            <div class="readings">
+            <div class="readings" style="display: none;">
                 <p style="margin: 5px 0;">last updated: <span class="last-update">--:--</span></p>
                 <h3 class="current temperature"><span>&nbsp;</span>&deg;C</h3>
                 <span class="symbol"></span>
