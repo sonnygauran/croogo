@@ -227,6 +227,7 @@ class WeatherphStationForecast extends WeatherphAppModel
                 $sunrise = date_sunrise(strtotime($result['Datum']), SUNFUNCS_RET_STRING, $stationInfo['lat'], $stationInfo['lon'], 90);
                 $sunset = date_sunset(strtotime($result['Datum']), SUNFUNCS_RET_STRING, $stationInfo['lat'], $stationInfo['lon'], 90);
 
+                
                 $result['sunrise'] = $sunrise;
                 $result['sunset'] = $sunset;
 
@@ -235,6 +236,7 @@ class WeatherphStationForecast extends WeatherphAppModel
                 unset($result['ort1'][0]);
                 $result['ort1'] = implode('/', $result['ort1']);
                 
+                $abfrageResults['stationId'] = $stationId; 
                 $abfrageResults['ort1'] = $result['ort1'];
                 $abfrageResults['update'] = date('H:iA');
                 
@@ -255,7 +257,7 @@ class WeatherphStationForecast extends WeatherphAppModel
                 $result['moonphase'] = $this->moon_phase(date('Y', strtotime($result['Datum'])), date('m', strtotime($result['Datum'])), date('d', strtotime($result['Datum'])));
                 
                 // Translate raw date to 3 hourly range value
-                $result['utch'] = $result['utc'] . ':' . $result['min'] .' - '. sprintf('%02d',$result['utc'] + 3) .':'. $result['min'];
+                $result['utch'] = date('H:sA', strtotime($result['Datum'] .' '. $result['utc'] . ':' . $result['min']));
                 
                 // Translate raw data to wind direction image value
                 $result['dir'] = $this->showWindDirection($result['dir']);
