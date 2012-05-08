@@ -32,7 +32,7 @@
         echo $scripts_for_layout;
         ?>
         <script type="text/javascript">
-            $(function(){
+            $(document).ready(function(){
                 $('#slides').slides({
                     preload: false,
                     effect: 'fade',
