@@ -1,3 +1,5 @@
+<?php echo $this->Html->script('AnyChart.js'); ?>
+
 <script type="text/javascript" src="../weatherph/js/weatherph/view.js"></script>
 
 <div class="content">
@@ -11,7 +13,7 @@
                 <a href="#">change station</a>
             </div> <!--END STATION-->
 
-            <div id="condition">
+            <div id="condition" style="display: none;">
                 <table>
                     <tbody>
                         <tr>
@@ -33,7 +35,7 @@
                     </tbody>
                 </table>
             </div> <!--END CONDITION-->
-            <div id="conditionTable">
+            <div id="conditionTable" style="display: none;">
                 <table>
                     <tbody>
                         <tr>
@@ -81,13 +83,13 @@
                 $tab_class = ($key == $today)? 'current-tab' : 'tab';
                 $div_id = ($key == $today)? "Today" : date('l', strtotime($key));
                 ?>
-                <div id="<?=strtolower($div_id);?>" class="<?= $tab_class; ?>">
+                <div id="<?= strtolower($div_id); ?>" class="<?= $tab_class; ?>">
                     <table class="week-forecast" cellspacing="0">
            
                     <tr class="time">
                         <td class="caption">Time</td>   
-                        <?php foreach (Set::extract($dayForecast, '{n}.utc') as $column) { ?>
-                            <td><?= $column . ":00"; ?></td>
+                        <?php foreach (Set::extract($dayForecast, '{n}.utch') as $column) { ?>
+                            <td><?= $column; ?></td>
                         <?php } ?>
                     </tr>
                     
@@ -147,18 +149,17 @@
                 <li><a href="javascript: void(0);">Humidity</a></li>
             </ul>
             <div class="tab-container">
-                <!--<div class="current-tab">
-                    <script type="text/javascript" language="javascript"> 
-                    //<![CDATA[
-                    AnyChart.renderingType = anychart.RenderingType.SVG_ONLY; 
-                    var chart = new AnyChart();
-                    chart.width = 554;
-                    chart.height = 300;
-                    chart.setXMLFile('/anychart.xml');
-                    chart.write();
-                    //]]>
+                <div class="current-tab" style="display: none;">
+                    <script type="text/javascript" language="javascript">
+                        //<![CDATA[
+                            var chart = new AnyChart('http://weatherph/swf/AnyChart.swf');
+                            chart.width = 830;
+                            chart.height = 200;
+                            chart.setXMLFile('http://weatherph/getDetailedForecast/<?= $weeklyForecasts['stationId']; ?>/temperature/3h');
+                            chart.write();
+                        //]]>
                     </script>
-                </div>-->
+                </div>
             </div>
         </div> <!--END CHARTS-->
 
