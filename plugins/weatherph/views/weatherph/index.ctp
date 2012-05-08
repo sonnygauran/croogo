@@ -76,7 +76,7 @@
             </div> <!--END LEGEND-->
         </div>
         <div id="info">
-            <div id="current-readings-panel" style="display: none;">
+            <div id="current-readings-panel">
                 <h2 class="current readings-location">&nbsp;</h2>
                 <a href="#">change station</a>
                 <h4>Current Readings:</h4>
