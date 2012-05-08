@@ -4,3 +4,6 @@
 [submodule "Vendor/cake"]
 	path = Vendor/cake
 	url = git@github.com:sonnygauran/cakephp.git
+[submodule "plugins/sherlock"]
+	path = plugins/sherlock
+	url = https://sonnygauran@github.com/sonnygauran/cakephp-sherlock.git
