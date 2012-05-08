@@ -79,9 +79,12 @@ map.geomap({
 });
 
 
-
-//Stations
-
+$('#map').geomap({ // Then set the value from the $centerMap
+    // [120.78025838964851, 14.340234924288968, 121.28150961035149, 14.739027102167846]
+    center: [ 8.25, 51.2  ],
+	bbox: [ 5.8 , 48.1, 10.7, 45.7]
+});
+							
 var $data = {
 stations : [
 	{
