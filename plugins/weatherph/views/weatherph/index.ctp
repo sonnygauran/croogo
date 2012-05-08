@@ -104,12 +104,9 @@
                 </table>
             </div>
 
-            <div class="detail-page-link" style="text-align: center;">
-                <h2 style="height: 21px; text-align: center; width: 195px;">
-                    <a href="/view" style="background: url(/theme/weatherph/img/arrow.png) no-repeat left center; padding-left: 40px; margin: 0 auto;">
-                        More Details
-                    </a>
-                </h2>
+            <div class="detail-page-link">
+                <a href="/view/">More Details</a>
+                <img src="theme/weatherph/img/arrow.png" alt=""/>
             </div>
             <div class="day-forecast">
                 <ul>
@@ -285,7 +282,7 @@
         <div class="posts">
             <h4>Intro to Typhoon Climatology</h4>
             <p>Tropical Cyclones have been a part of Filipino culture since time immemorial, since the Philippines is located within the tropics, surrounded by large sea and ocean basins namely the Western Pacific Ocean, The Philippine and South China Seas. These bodies of water are breeding grounds of tropical cyclones.</p>
-            <p>An average of 20 tropical cyclones enter the Philippine Area of Responsibility (PAR), where 10 cross the country (1948-2004 mean avg ‚Äì based on PAGASA Statistics) ‚Äì bringing destruction to properties and loss of lives.</p>
+            <p>An average of 20 tropical cyclones enter the Philippine Area of Responsibility (PAR), where 10 cross the country (1948-2004 mean average ‚based on PAGASA Statistics)‚ bringing destruction to properties and loss of lives.</p>
         </div>
 <!--
         <div class="news">

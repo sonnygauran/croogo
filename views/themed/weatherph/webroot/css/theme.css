@@ -62,7 +62,7 @@ html, body, div, span, object, iframe, h1, h2, h3, dl dt, h4, h5, h6, p, blockqu
 
 .logo {
     float:left;
-    padding: 50px 10px;
+    margin: 60px 10px;
 }
 
 #options {
@@ -77,6 +77,10 @@ html, body, div, span, object, iframe, h1, h2, h3, dl dt, h4, h5, h6, p, blockqu
     margin-bottom: 10px;
 }
 
+#options > img {
+    margin-right: 20px;
+}
+
 #options > form > img {
     vertical-align: middle;
 }
@@ -86,7 +90,7 @@ html, body, div, span, object, iframe, h1, h2, h3, dl dt, h4, h5, h6, p, blockqu
 #slides {
     width: 240px;
     float: left;
-    margin-left: 10px;
+    margin-left: 30px;
 }
 
 .slidesContainer {
@@ -201,7 +205,7 @@ div.layerSelector li {
     border: 1px solid #2F4771;
 }
 
-#info a {
+#currrent-readings-panel a {
     float:right;
 }
 
@@ -230,20 +234,19 @@ span.temperature {
 }
 
 .readings > span {
-    margin: 5px auto 0 auto;
+    margin: 10px 3px 0 3px;
     float: left;
 }
 
 .readings > table {
-    float: left;
-    padding: 3px 5px;
+    float: right;
+    padding: 3px 0;
     min-width: 65px;
 }
 
 .readings >table td {
     padding-left: 5px;
 }
-
 /*END READINGS*/
 
 .detail-page-link {
@@ -254,9 +257,14 @@ span.temperature {
     border-bottom: 1px solid black;
 }
 
-.detail-page-link > h2 {
-    display: inline-block;
-    margin: 0 auto;
+.detail-page-link > img {
+    display: inline;
+}
+
+.detail-page-link > a {
+    font-size: 2em;
+    font-weight: 600;
+    display: inline;
 }
 
 .forecast-highlight {
@@ -502,8 +510,8 @@ h5, h6 {
 }
 
 #info {
-    font-size: .75em;
-    font-weight: 300;
+    font-size: .80em;
+    font-weight: 400;
 }
 
 .logo {
