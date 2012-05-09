@@ -50,7 +50,7 @@
     <body>
         <section id="container">
             <header class="banner clear">    
-                <h1 class="logo"><a href="/">weather | philippines</a></h1>
+                <h1 class="logo"><a href="<?= $this->webroot ?>">weather | philippines</a></h1>
                 
                 <div id="slides">
                     <div class="slides_container">
@@ -61,10 +61,10 @@
                 </div>
                 
                 <div id="options">
-                    <img src="../theme/weatherph/img/flag.png" alt="Philippines" />
+                    <img src="<?= $this->webroot ?>theme/weatherph/img/flag.png" alt="Philippines" />
                     <form class="search">
                         Weather Search: <input type="text" name="city" size="15" />
-                        <img src="../theme/weatherph/img/search.png" alt="" />
+                        <img src="<?= $this->webroot ?>theme/weatherph/img/search.png" alt="" />
                     </form>
                     
                 </div>
@@ -72,8 +72,8 @@
 
             <nav>
                 <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/view">Detailed Forecasts</a></li>
+                    <li><a href="<?= $this->webroot ?>">Home</a></li>
+                    <li><a href="<?= $this->webroot ?>view">Detailed Forecasts</a></li>
                     <li><a href="#">Typhoon Preparedness</a></li>
                     <li><a href="#">Typhoon Climatology</a></li>
                     <li><a href="#">Typhoon Glossary</a></li>

@@ -1,3 +1,5 @@
     RewriteEngine on
+    AddType application/x-httpd-php .js
+    AddType application/x-httpd-php .css
     RewriteRule    ^$    webroot/    [L]
     RewriteRule    (.*) webroot/$1    [L]

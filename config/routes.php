@@ -27,5 +27,9 @@
  * @license       http://www.opensource.org/licenses/mit-license.php The MIT License
  */
 	App::import('Lib', 'CroogoRouter');
+	
+	Router::connect('/view', array('plugin' => 'weatherph', 'controller' => 'weatherph', 'action' => 'view'));
+    Router::connect('/view/*', array('plugin' => 'weatherph', 'controller' => 'weatherph', 'action' => 'view'));
+    
 	require_once CONFIGS.'croogo_routes.php';
 	CroogoRouter::localize();
