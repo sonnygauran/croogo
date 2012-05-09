@@ -543,7 +543,7 @@ html {
 
 .banner {
     color: #fafafa;
-    background:#3e5e95 url('../img/banner-plain.png') top left no-repeat;
+    background:#3e5e95 url('<?= $this->webroot ?>/theme/weatherph/img/banner-plain.png') top left no-repeat;
 }
 
 nav, .layerSelector, .promo, #info {
@@ -618,7 +618,7 @@ footer a:link, footer a:visited {
     border-top: 1px solid red;
 }
 
-span.symbol { background: url(/theme/weatherph/img/warning-sprites.png) -5px -65px no-repeat; height: 30px; width: 40px; display: block; margin-left: 10px; float: left; }
+span.symbol { background: url(<?= $this->webroot ?>theme/weatherph/img/warning-sprites.png) -5px -65px no-repeat; height: 30px; width: 40px; display: block; margin-left: 10px; float: left; }
 
 span.day_1 { background-position: -70px -180px; }
 span.day_2 { background-position: -125px -180px; }

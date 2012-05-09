@@ -1,7 +1,7 @@
 <script type="text/javascript" src="weatherph/js/weatherph/index.js"></script>
 <style type="text/css">
     .loader {
-        background: white url(theme/weatherph/img/loader-twirl.gif) no-repeat center center;
+        background: white url(<?= $this->webroot ?>theme/weatherph/img/loader-twirl.gif) no-repeat center center;
         width: 100%; height: 100%; display: block; visibility: none;
     }
     .loader-img {
@@ -104,9 +104,12 @@
                 </table>
             </div>
 
-            <div class="detail-page-link">
-                <a href="/view/">More Details</a>
-                <img src="theme/weatherph/img/arrow.png" alt=""/>
+            <div class="detail-page-link" style="text-align: center;">
+                <h2 style="height: 21px; text-align: center; width: 195px;">
+                    <a href="<?= Router::url('/') ?>view" style="background: url(<?= $this->webroot ?>theme/weatherph/img/arrow.png) no-repeat left center; padding-left: 40px; margin: 0 auto;">
+                        More Details
+                    </a>
+                </h2>
             </div>
             <div class="day-forecast">
                 <ul>
@@ -288,11 +291,11 @@
         <div class="news">
             <h4>Breaking News</h4>
             <ul>
-                <li><img src="theme/weatherph/img/thumbnail.png"/><p>Breaking News</p></li>
-                <li><img src="theme/weatherph/img/thumbnail2.png"/><p>Weather TV</p></li>
-                <li><img src="theme/weatherph/img/thumbnail3.png"/><p>Mike Padua: Typhoons, Explained</p></li>
-                <li><img src="theme/weatherph/img/thumbnail.png"/><p>Meteomedia Weather Shop</p></li>
-                <li><img src="theme/weatherph/img/thumbnail2.png"/><p>Webcams</p></li>
+                <li><img src="<?= $this->webroot ?>theme/weatherph_compact/img/thumbnail.png"/><p>Breaking News</p></li>
+                <li><img src="<?= $this->webroot ?>theme/weatherph_compact/img/thumbnail2.png"/><p>Weather TV</p></li>
+                <li><img src="<?= $this->webroot ?>theme/weatherph_compact/img/thumbnail3.png"/><p>Mike Padua: Typhoons, Explained</p></li>
+                <li><img src="<?= $this->webroot ?>theme/weatherph_compact/img/thumbnail.png"/><p>Meteomedia Weather Shop</p></li>
+                <li><img src="<?= $this->webroot ?>theme/weatherph_compact/img/thumbnail2.png"/><p>Webcams</p></li>
             </ul>
         </div>-->
 
