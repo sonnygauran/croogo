@@ -292,7 +292,7 @@ function mapStations($stationsArray) {
         	name: $currentStation.name,
         	type:'Point',                
         	coordinates: $currentStation.coordinates
-        }, {strokeWidth: "1px", height: "8px", width: "8px", radius: "8px", color: "#2E4771", fillOpacity: "0", strokeOpacity: "1"},true);
+        }, {strokeWidth: "1px", height: "7px", width: "7px", radius: "8px", color: "#2E4771", fillOpacity: "0", strokeOpacity: "1"},true);
     }
 
 }

@@ -203,7 +203,7 @@
                 <li><a href="javascript: void(0);">Precipitation</a></li>
                 <li><a href="javascript: void(0);">Wind</a></li>
             </ul>
-            <?php echo $this->Html->image('chart.png'); ?>
+            <!--<?php echo $this->Html->image('chart.png'); ?>-->
         </div> <!--END OUTLOOK-->
     </section> <!--SECONDARY-->
 </div> <!--CONTENT-->

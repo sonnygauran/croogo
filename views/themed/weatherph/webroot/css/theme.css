@@ -245,7 +245,7 @@ span.temperature {
 }
 
 .readings > span {
-    margin: 10px 0 5px 5px;
+    margin: auto 2px;
     float: left;
 }
 
@@ -363,7 +363,7 @@ span.temperature {
 }
 
 #station {
-    width: 275px;
+    width: 250px;
 }
 
 #station > p {
@@ -623,7 +623,7 @@ footer a:link, footer a:visited {
     border-top: 1px solid red;
 }
 
-span.symbol { background: url(<?= $this->webroot ?>theme/weatherph/img/warning-sprites.png) -5px -65px no-repeat; height: 30px; width: 40px; display: block; margin-left: 10px; float: left; }
+span.symbol { background: url('<?= $this->webroot ?>theme/weatherph/img/warning-sprites.png') -5px -65px no-repeat; height: 30px; width: 40px; display: block; margin-left: 10px; float: left; }
 
 span.day_1 { background-position: -70px -180px; }
 span.day_2 { background-position: -125px -180px; }
