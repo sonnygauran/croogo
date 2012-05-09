@@ -6,14 +6,12 @@
     <section class="main">
         <div id="currentWeather">
             <div id="station">
-                <h1><?= $weeklyForecasts['ort1']; ?></h1>
-                <br/><br/>
                 <p>Current readings from:</p>
-                <h6>Insert station here</h6>
+                <h1><?= $weeklyForecasts['ort1']; ?></h1>
                 <a href="#">change station</a>
             </div> <!--END STATION-->
 
-            <div id="condition" style="display: none;">
+            <div id="condition">
                 <table>
                     <tbody>
                         <tr>
@@ -35,7 +33,7 @@
                     </tbody>
                 </table>
             </div> <!--END CONDITION-->
-            <div id="conditionTable" style="display: none;">
+            <div id="conditionTable">
                 <table>
                     <tbody>
                         <tr>

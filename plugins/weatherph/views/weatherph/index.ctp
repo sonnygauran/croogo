@@ -31,8 +31,8 @@
 
             <div id="legend">
 <!--                            
-                <img src ="theme/weatherph/img/timeline.png"/>
--->
+                <img src ="theme/weatherph/img/timeline.png"/>-->
+
                 <div id="province-select">
                     <h6>Province:</h6>
                     <select name="philippine-regions">
@@ -64,24 +64,24 @@
                         </optgroup>
                     </select>
                 </div> <!--END PROVINCE SELECT-->
-                <!--<div id="station-color">
+<!--
+                <div id="station-color">
                     <img src="theme/weatherph/img/legend-blue.png" alt="" />
                     <h6>Meteomedia stations</h6>
                     <img src="theme/weatherph/img/legend-red.png" alt="" />
                     <h6>PAGASA stations</h6>
-                </div>-->
-<!--                            
-                <img src ="theme/weatherph/img/legend.png"/>
--->
+                </div>
+                            
+                <img src ="theme/weatherph/img/legend.png"/>-->
+
             </div> <!--END LEGEND-->
         </div>
         <div id="info">
             <div id="current-readings-panel">
                 <h2 class="current readings-location">&nbsp;</h2>
-                <a href="#" style="display: none;">change station</a>
-                <h4 style="display: none;">Current Readings:</h4>
+                <p>Current Readings:</p>
             </div>
-            <div class="readings" style="display: none;">
+            <div class="readings">
                 <p style="margin: 5px 0;">last updated: <span class="last-update">--:--</span></p>
                 <span class="current temperature"><span>&nbsp;</span>&deg;C</span>
                 <span class="symbol"></span>

@@ -105,7 +105,7 @@ html, body, div, span, object, iframe, h1, h2, h3, dl dt, h4, h5, h6, p, blockqu
 }
 
 /*====================
-    MENU
+    NAV
 ====================*/
 
 nav {
@@ -129,6 +129,17 @@ nav li + li {
 
 nav li > a {
     text-decoration: none;
+}
+
+.severe-warning {
+    padding: 5px 5px;
+    margin: 10px auto;
+    text-align: center;
+    background-color: #aa1111;
+    color: #f1f1f1;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
 }
 
 /*====================
@@ -234,13 +245,12 @@ span.temperature {
 }
 
 .readings > span {
-    margin: 10px 3px 0 3px;
+    margin: 10px 0 5px 5px;
     float: left;
 }
 
 .readings > table {
     float: right;
-    padding: 3px 0;
     min-width: 65px;
 }
 
@@ -337,11 +347,6 @@ span.temperature {
 /*====================
     DETAIL
 ====================*/
-
-.content {
-    width: 804px;
-}
-
 #weekWeather, #charts, #outlook {
     margin: 10px auto;
 }
@@ -358,7 +363,7 @@ span.temperature {
 }
 
 #station {
-    width: 161px;
+    width: 275px;
 }
 
 #station > p {
@@ -366,7 +371,7 @@ span.temperature {
 }
 
 #condition, #conditionTable  {
-    width: 261px;
+    width: 185px;
 }
 
 #condition > table, #conditionTable > table {
@@ -375,7 +380,7 @@ span.temperature {
 
 #condition td {
     vertical-align: middle;
-    padding: 0;
+    padding: 3px;
 }
 
 #conditionTable td {
@@ -426,7 +431,7 @@ div.current-tab {
 ===============*/
 
 .week-forecast td {
-    padding: 1em;
+    padding: 10px;
     text-align: center;
     border: 1px solid #d6dfeb;
 }

@@ -25,7 +25,6 @@
             'jquery/jquery.hoverIntent.minified',
             'jquery/superfish',
             'jquery/supersubs',
-            'theme',
             'libs/jquery.geo-1.0a4',
             'slides.min.jquery',
         ));
@@ -81,6 +80,11 @@
                     <li><a href="#">Impressum</a></li>
                 </ul>
             </nav>
+<!--            
+            <div class="severe-warning">
+                <p><strong>Alert:</strong> Typhoon Dador is approaching the NCR. No classes in all levels. Stay at home!</p>
+            </div>
+-->
 <?php
 
 echo $this->Layout->sessionFlash();
