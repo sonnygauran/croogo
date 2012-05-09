@@ -195,6 +195,7 @@ $.ajax({
         var $retrievedStations = data; // the complete retrieved stations
         for (var key in $retrievedStations) {
             var $currentRetrievedStation = $retrievedStations[key]; // current station on the loop
+            //console.log($currentRetrievedStation);
             $stationsPagasa.push({ // create a json object, and then save it to stations array
             	id: $currentRetrievedStation.id,
             	name: $currentRetrievedStation.name,
@@ -269,6 +270,7 @@ $.ajax({
 
 function mapStationsPagasa($stationsArray) {
     // This loop maps the stations from the $stations fetched from getStations
+    console.log($stationsArray);
     for (var key in $stationsArray) {
         $currentStation = $stationsArray[key];
         $('#map').geomap("append", {
