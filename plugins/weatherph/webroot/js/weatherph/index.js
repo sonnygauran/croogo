@@ -270,7 +270,7 @@ $.ajax({
 
 function mapStationsPagasa($stationsArray) {
     // This loop maps the stations from the $stations fetched from getStations
-    console.log($stationsArray);
+    //console.log($stationsArray);
     for (var key in $stationsArray) {
         $currentStation = $stationsArray[key];
         $('#map').geomap("append", {
@@ -278,12 +278,13 @@ function mapStationsPagasa($stationsArray) {
         	name: $currentStation.name,
         	type:'Point',                
         	coordinates: $currentStation.coordinates
-        }, {strokeWidth: "1px", height: "6px", width: "6px", radius: "8px", color: "#dd2222", fillOpacity: "0", strokeOpacity: ".3"},true);
+        }, {strokeWidth: "1px", height: "6px", width: "6px", radius: "8px", color: "#dd2222", fillOpacity: "0", strokeOpacity: "1"},true);
     }
 }
 
 function mapStations($stationsArray) {
     // This loop maps the stations from the $stations fetched from getStations
+    
     for (var key in $stationsArray) {
         $currentStation = $stationsArray[key];
         $('#map').geomap("append", {
@@ -291,7 +292,7 @@ function mapStations($stationsArray) {
         	name: $currentStation.name,
         	type:'Point',                
         	coordinates: $currentStation.coordinates
-        }, {strokeWidth: "2px", height: "8px", width: "8px", radius: "8px", color: "#2E4771", fillOpacity: "0", strokeOpacity: ".3"},true);
+        }, {strokeWidth: "2px", height: "8px", width: "8px", radius: "8px", color: "#2E4771", fillOpacity: "0", strokeOpacity: "1"},true);
     }
 
 }
