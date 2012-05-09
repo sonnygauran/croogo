@@ -92,8 +92,8 @@ $.ajax({
                 var cr_temperature, cr_wind, cr_precip, cr_humidity, cr_symbol;
                 var sr_temperature, sr_wind, sr_precip, sr_humidity, sr_symbol;                
                 
-                $('.current.readings-location').html($stationReadings.ort1);
-                $('.last-update').html($stationReadings.update);
+                $('.current.readings-location').html($stationReadings.reading.ort1);
+                $('.last-update').html($stationReadings.reading.update);
                 
                 cr_temperature = $stationReadings.reading.tl;
                 cr_wind = $stationReadings.reading.ff;
@@ -195,6 +195,7 @@ $.ajax({
         var $retrievedStations = data; // the complete retrieved stations
         for (var key in $retrievedStations) {
             var $currentRetrievedStation = $retrievedStations[key]; // current station on the loop
+            //console.log($currentRetrievedStation);
             $stationsPagasa.push({ // create a json object, and then save it to stations array
             	id: $currentRetrievedStation.id,
             	name: $currentRetrievedStation.name,
@@ -269,6 +270,7 @@ $.ajax({
 
 function mapStationsPagasa($stationsArray) {
     // This loop maps the stations from the $stations fetched from getStations
+    //console.log($stationsArray);
     for (var key in $stationsArray) {
         $currentStation = $stationsArray[key];
         $('#map').geomap("append", {
@@ -282,6 +284,7 @@ function mapStationsPagasa($stationsArray) {
 
 function mapStations($stationsArray) {
     // This loop maps the stations from the $stations fetched from getStations
+    
     for (var key in $stationsArray) {
         $currentStation = $stationsArray[key];
         $('#map').geomap("append", {

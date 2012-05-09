@@ -55,8 +55,8 @@
                 <div id="slides">
                     <div class="slides_container">
                         <img src="<?= $this->webroot ?>theme/weatherph/img/mm.png" alt="Meteomedia">
-                        <img src="<?= $this->webroot ?>theme/weatherph/img/az.png" alt="Aboitiz Power">
-                        <img src="<?= $this->webroot ?>theme/weatherph/img/ub.png" alt="Union Bank">
+                        <img src="<?= $this->webroot ?>theme/weatherph/img/az.png" alt="Aboitiz Power" style="display: none;">
+                        <img src="<?= $this->webroot ?>theme/weatherph/img/ub.png" alt="Union Bank" style="display: none;">
                     </div>
                 </div>
                 
