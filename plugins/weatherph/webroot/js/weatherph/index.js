@@ -83,7 +83,7 @@ map.geomap({
 function getForecast(id) {
 $.ajax({
             type:     'GET',
-            url:        '/weatherph/weatherph/getForecast/'+id+'/2/3h',
+            url:        '<?= $this->webroot ?>weatherph/weatherph/getForecast/'+id+'/2/3h',
             cache:    false,
             success:  function(readings) {
                 
@@ -121,9 +121,9 @@ $.ajax({
                     $('.' + key + '-hour .humidity span').html(sr_humidity);
                     
                 } 
-                
+
                 $('.loader').fadeOut();
-                $('.detail-page-link a').attr({href: '/view/'+id});
+                $('.detail-page-link a').attr({href: '/weatherph/view/'+id});
                 
             }
         });
@@ -189,7 +189,7 @@ stations : [
 $stationsPagasa = new Array();
 $.ajax({
     type:     'GET',
-    url :     '/weatherph/weatherph/getStations/pagasa',
+    url :     '<?= $this->webroot ?>weatherph/weatherph/getStations/pagasa',
     cache:    false,
     success: function(data) {
         var $retrievedStations = data; // the complete retrieved stations
@@ -212,7 +212,7 @@ $.ajax({
         $stations = new Array();
         $.ajax({
             type:     'GET',
-            url :     '/weatherph/weatherph/getStations/meteomedia',
+            url :     '<?= $this->webroot ?>weatherph/weatherph/getStations/meteomedia',
             cache:    false,
             success: function(data) {
                 var $retrievedStations = data; // the complete retrieved stations
@@ -278,7 +278,7 @@ function mapStationsPagasa($stationsArray) {
         	name: $currentStation.name,
         	type:'Point',                
         	coordinates: $currentStation.coordinates
-        }, {strokeWidth: "1px", height: "6px", width: "6px", radius: "8px", color: "#dd2222", fillOpacity: "1", strokeOpacity: ".3"},true);
+        }, {strokeWidth: "1px", height: "6px", width: "6px", radius: "8px", color: "#dd2222", fillOpacity: "0", strokeOpacity: ".3"},true);
     }
 }
 
@@ -291,7 +291,7 @@ function mapStations($stationsArray) {
         	name: $currentStation.name,
         	type:'Point',                
         	coordinates: $currentStation.coordinates
-        }, {strokeWidth: "2px", height: "8px", width: "8px", radius: "8px", color: "#2E4771", fillOpacity: "1", strokeOpacity: ".3"},true);
+        }, {strokeWidth: "2px", height: "8px", width: "8px", radius: "8px", color: "#2E4771", fillOpacity: "0", strokeOpacity: ".3"},true);
     }
 
 }
