@@ -303,6 +303,7 @@ class WeatherphStationForecast extends WeatherphAppModel
         curl_close($ch);
         
         $headersSpecimen = 'Datum;utc;min;ort1;dir;ff;g3h;tl;td;qff;rr;sh;gl1h;rh;';
+//        $headersSpecimen = 'Datum;utc;min;ort1;dir;ff;g3h;tl;td;rr;rh;';
         
         $results = $this->csvToArray($curlResults, $headersSpecimen);
         
@@ -718,12 +719,12 @@ class WeatherphStationForecast extends WeatherphAppModel
         
         //Convert 
         $expected = strstr($csv, $headersSpecimen);
-
+       
         if ($expected == '') {
-            $error = 'There was an error generating the CSV from '.$url;
-            $this->log($error);
-            throw new Exception('There was an error generating the CSV');
-            return array();
+          $error = 'There was an error generating the CSV from '.$url;
+           $this->log($error);
+           throw new Exception('There was an error generating the CSV');
+           return array();
         }
 
         $rows = explode("\n", $csv);
