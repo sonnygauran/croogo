@@ -106,7 +106,7 @@
 
             <div class="detail-page-link" style="text-align: center;">
                 <h2 style="height: 21px; text-align: center; width: 195px;">
-                    <a href="<?= Router::url('/') ?>view" style="background: url(<?= $this->webroot ?>theme/weatherph/img/arrow.png) no-repeat left center; padding-left: 40px; margin: 0 auto;">
+                    <a href="<?= $this->webroot ?>view" style="background: url(<?= $this->webroot ?>theme/weatherph/img/arrow.png) no-repeat left center; padding-left: 40px; margin: 0 auto;">
                         More Details
                     </a>
                 </h2>

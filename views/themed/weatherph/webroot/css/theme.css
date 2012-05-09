@@ -543,7 +543,7 @@ html {
 
 .banner {
     color: #fafafa;
-    background:#3e5e95 url('<?= $this->webroot ?>/theme/weatherph/img/banner-plain.png') top left no-repeat;
+    background:#3e5e95 url('<?= $this->webroot ?>theme/weatherph/img/banner-plain.png') top left no-repeat;
 }
 
 nav, .layerSelector, .promo, #info {
