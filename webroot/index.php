@@ -63,7 +63,7 @@
  *
  */
 	if (!defined('WEBROOT_DIR')) {
-		define('WEBROOT_DIR', 'weatherph'); 
+		define('WEBROOT_DIR', basename(dirname(__FILE__)));
 	}
 	if (!defined('WWW_ROOT')) {
 		define('WWW_ROOT', dirname(__FILE__) . DS);
