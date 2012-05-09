@@ -92,8 +92,8 @@ $.ajax({
                 var cr_temperature, cr_wind, cr_precip, cr_humidity, cr_symbol;
                 var sr_temperature, sr_wind, sr_precip, sr_humidity, sr_symbol;                
                 
-                $('.current.readings-location').html($stationReadings.ort1);
-                $('.last-update').html($stationReadings.update);
+                $('.current.readings-location').html($stationReadings.reading.ort1);
+                $('.last-update').html($stationReadings.reading.update);
                 
                 cr_temperature = $stationReadings.reading.tl;
                 cr_wind = $stationReadings.reading.ff;
