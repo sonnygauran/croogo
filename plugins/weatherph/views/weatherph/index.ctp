@@ -78,9 +78,8 @@
         <div id="info">
             <div id="current-readings-panel">
                 <h2 class="current readings-location">&nbsp;</h2>
-                <a style="display: none;" href="#">change station</a>
+                <a href="#" style="display: none;">change station</a>
                 <h4 style="display: none;">Current Readings:</h4>
-                
             </div>
             <div class="readings" style="display: none;">
                 <p style="margin: 5px 0;">last updated: <span class="last-update">--:--</span></p>
