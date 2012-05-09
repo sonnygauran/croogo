@@ -276,7 +276,7 @@ function mapStationsPagasa($stationsArray) {
         	name: $currentStation.name,
         	type:'Point',                
         	coordinates: $currentStation.coordinates
-        }, {strokeWidth: "1px", height: "6px", width: "6px", radius: "8px", color: "#dd2222", fillOpacity: "1", strokeOpacity: ".3"},true);
+        }, {strokeWidth: "1px", height: "6px", width: "6px", radius: "8px", color: "#dd2222", fillOpacity: "0", strokeOpacity: ".3"},true);
     }
 }
 
@@ -289,7 +289,7 @@ function mapStations($stationsArray) {
         	name: $currentStation.name,
         	type:'Point',                
         	coordinates: $currentStation.coordinates
-        }, {strokeWidth: "2px", height: "8px", width: "8px", radius: "8px", color: "#2E4771", fillOpacity: "1", strokeOpacity: ".3"},true);
+        }, {strokeWidth: "2px", height: "8px", width: "8px", radius: "8px", color: "#2E4771", fillOpacity: "0", strokeOpacity: ".3"},true);
     }
 
 }
