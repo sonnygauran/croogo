@@ -123,7 +123,7 @@ $.ajax({
                 } 
 
                 $('.loader').fadeOut();
-                $('.detail-page-link a').attr({href: '/weatherph/view/'+id});
+                $('.detail-page-link a').attr({href: '<?= $this->webroot ?>view/'+id});
                 
             }
         });
