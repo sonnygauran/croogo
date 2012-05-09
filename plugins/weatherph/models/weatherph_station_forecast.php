@@ -708,9 +708,9 @@ class WeatherphStationForecast extends WeatherphAppModel
                 </charts>
             </anychart>';
         
-            $xml = simplexml_load_string($xml_string);
-            
-            return $xml;
+        $xml = simplexml_load_string($xml_string);
+
+        return $xml;
         
     }
     
