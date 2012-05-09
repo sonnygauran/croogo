@@ -9,8 +9,10 @@ class WeatherphStation extends WeatherphAppModel {
         include dirname(__FILE__) . '/auth.php';
 
         //$url = "http://abfrage.meteomedia.ch/abfrage.php?land=PHL&ortsinfo=ja&datumstart=20120313&datumend=20120313&output=csv2&ortoutput=wmo6,name&aufruf=auto";
-        $url = "http://abfrage/manila.php?land=PHL&ortsinfo=ja&datumstart=20120313&datumend=20120313&output=csv2&ortoutput=wmo6,name&aufruf=auto";
-
+        $url = "http://abfrage.meteomedia.ch/manila.php?land=PHL&ortsinfo=ja&output=csv2&ortoutput=wmo6,name&aufruf=auto";
+        
+        //$this->log($url);
+        
         $stations = array();
         $location = $url;
 
