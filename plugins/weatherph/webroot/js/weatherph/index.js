@@ -28,7 +28,7 @@ var map = $("#map").geomap({
         + view.tile.row
         + ".png";
         },
-        attr: "© OpenStreetMap & contributors, CC-BY-SA"
+        attr: "¬© OpenStreetMap & contributors, CC-BY-SA"
         
 //          return "http://192.168.1.34:8888/convert.php?zoom="
 //          + view.zoom + "&column="
@@ -36,7 +36,7 @@ var map = $("#map").geomap({
 //          + view.tile.row
 //          + "&mode=1";
 //          },
-//          attr: "© OpenStreetMap & contributors, CC-BY-SA"
+//          attr: "¬© OpenStreetMap & contributors, CC-BY-SA"
     }
     ],
     tilingScheme: {
@@ -292,7 +292,7 @@ function mapStations($stationsArray) {
         	name: $currentStation.name,
         	type:'Point',                
         	coordinates: $currentStation.coordinates
-        }, {strokeWidth: "2px", height: "8px", width: "8px", radius: "8px", color: "#2E4771", fillOpacity: "0", strokeOpacity: "1"},true);
+        }, {strokeWidth: "1px", height: "8px", width: "8px", radius: "8px", color: "#2E4771", fillOpacity: "0", strokeOpacity: "1"},true);
     }
 
 }
