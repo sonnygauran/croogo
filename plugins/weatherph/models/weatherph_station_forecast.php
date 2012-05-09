@@ -145,7 +145,7 @@ class WeatherphStationForecast extends WeatherphAppModel
                 $result['tl'] = ($result['tl'] == '')? '0' : round($result['tl'],0);
                 $result['rr'] = ($result['rr'] == '')? '0' : round($result['rr'],0);
                 $result['rh'] = ($result['rh'] == '')? '0' : round($result['rh'],0);
-                $result['ff'] = ($result['ff'] == '')? '0' : round($result['ff'],0);
+                $result['ff'] = ($result['ff'] == '')? '0' : round($result['ff'],0); 
                 $result['g3h'] = ($result['g3h'] == '')? '0' : round($result['g3h'],0);
                 
                 // Translate raw date to 3 hourly range value
@@ -160,22 +160,18 @@ class WeatherphStationForecast extends WeatherphAppModel
                 
                 unset($result['ort1']);
                 
-//                if (!key_exists('reading', $abfrageResults) AND !$hourStart) {
-//                    if ($result['utc'] == $nowHourRound) {
-//                        $abfrageResults['reading'] = $result;
-//                    }
-//                } else {
-//                    $abfrageResults['forecast'][] = $result;
-//                }
+                $readingTime = strtotime($currentReading['update']);
+                $forecastTime = strtotime($result['Datum'].' '.$result['utc'] . ':' .$result['min']);
                 
-                
-                //if (date('H', strtotime($result['Datum'] .' '. $result['utch'])) >= $nowHourRound) {
+                //if ($forecastTime >= $readingTime) {
                     $abfrageResults['forecast'][] = $result;
                 //}
+                
+                //$abfrageResults['forecast'][] = $result;
             }
         }
         
-        $this->log(print_r($abfrageResults, true));
+        //$this->log(print_r($abfrageResults, true));
        
         return $abfrageResults;
         
@@ -500,8 +496,6 @@ class WeatherphStationForecast extends WeatherphAppModel
                                     </major_grid>
                                 </x_axis>';
         
-        
-        //if($type != 'precipitation' && $type != 'precip'){
         $xml_string .=  '       <y_axis>
                                     <!--scale type="Linear" maximum="auto" minimum="auto" maximum_offset="0.01" minimum_offset="0.01"/-->
                                     <title enabled="false"/>
@@ -510,7 +504,6 @@ class WeatherphStationForecast extends WeatherphAppModel
                                         <font family="Arial" color="#444444" size="11"/>
                                     </labels>
                                 </y_axis>';
-        //}
         
         $xml_string .= '
                                 <extra>
