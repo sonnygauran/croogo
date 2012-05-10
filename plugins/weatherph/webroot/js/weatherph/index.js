@@ -125,6 +125,7 @@ $.ajax({
                 $('.loader').fadeOut();
                 $('.detail-page-link a').attr({href: '/view/'+id});
                 
+                
             }
         });
 }
