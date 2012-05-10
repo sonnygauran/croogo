@@ -29,7 +29,7 @@
                 </div>
             </div>
 
-            <div id="legend">
+            <div id="legend" class="shadow">
 <!--                            
                 <img src ="theme/weatherph/img/timeline.png"/>-->
 
@@ -76,13 +76,12 @@
 
             </div> <!--END LEGEND-->
         </div>
-        <div id="info">
+        <div id="info" class="shadow">
             <div id="current-readings-panel">
                 <h2 class="current readings-location">&nbsp;</h2>
-                <p>Current Readings:</p>
             </div>
             <div class="readings">
-                <p style="margin: 5px 0;">last updated: <span class="last-update">--:--</span></p>
+                <p>last updated: <span class="last-update">--:--</span></p>
                 <span class="current temperature"><span>&nbsp;</span>&deg;C</span>
                 <span class="symbol"></span>
                 <table>
@@ -109,6 +108,9 @@
                         More Details
                     </a>
                 </h2>
+            </div>
+            <div class="no-forecast">
+                <p>Sorry, there's no forecast available for this station right now.</p>
             </div>
             <div class="day-forecast">
                 <ul>

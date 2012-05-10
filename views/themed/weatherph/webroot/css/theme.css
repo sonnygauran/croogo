@@ -57,7 +57,7 @@ html, body, div, span, object, iframe, h1, h2, h3, dl dt, h4, h5, h6, p, blockqu
     margin-top: 10px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
-    border-radius: 5px;
+    border-radius: 8px;
 }
 
 .logo {
@@ -109,9 +109,9 @@ html, body, div, span, object, iframe, h1, h2, h3, dl dt, h4, h5, h6, p, blockqu
 ====================*/
 
 nav {
-    width: 1000px;
-    margin: 10px 0;
-    padding: 5px 0;
+    width: 980px;
+    margin: 15px 0;
+    padding: 10px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
@@ -119,12 +119,12 @@ nav {
 
 nav li {
     display: inline;
-    padding: 1em;
+    padding: 10px 15px;
     font-size: .875em;
 }
 
 nav li + li {
-    border-left: 1px solid #fafafa;
+    border-left: 1px solid #2E4471;
 }
 
 nav li > a {
@@ -178,7 +178,8 @@ div.layerSelector li {
 }
 
 #legend {
-    width: 552px;
+    width: 542px;
+    padding: 5px;
     -webkit-border-bottom-right-radius: 5px;
     -webkit-border-bottom-left-radius: 5px;
     -moz-border-radius-bottomright: 5px;
@@ -186,7 +187,6 @@ div.layerSelector li {
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
     overflow: auto;
-    border: solid 1px #2F4771;
 }
 
 #legend > img {
@@ -213,35 +213,37 @@ div.layerSelector li {
     width: 238px;
     float:left;
     border-radius: 5px;
-    border: 1px solid #2F4771;
-}
-
-#currrent-readings-panel a {
-    float:right;
 }
 
 #current-readings-panel {
-    padding: 10px 10px 0 10px;
+    padding: 15px 10px 5px;
 }
 
 h6.time {
-    padding: 0 5px;
+    padding: 1px 5px;
+}
+
+.no-forecast {
+    margin: 25px 15px;
+    text-align:center;
+    display: none;
 }
 
 /*READINGS*/
-div.readings {
+.readings {
     clear: both;
-    margin: 3px auto;
-    padding: 0 10px;
+    padding: 5px 10px;
     overflow: hidden;
-    position: relative;
     vertical-align: middle;
+}
+
+readings > p {
+    margin: 1px 3px 3px;
 }
 
 span.temperature {
     font-weight: 600;
     font-size: 1.875em;
-    min-width: 25px;
 }
 
 .readings > span {
@@ -250,8 +252,7 @@ span.temperature {
 }
 
 .readings > table {
-    float: right;
-    min-width: 65px;
+    float: left;
 }
 
 .readings >table td {
@@ -260,11 +261,8 @@ span.temperature {
 /*END READINGS*/
 
 .detail-page-link {
-    width: 100%;
-    padding: 10px 0;
+    padding: 10px;
     text-align: center;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
 }
 
 .detail-page-link > img {
@@ -447,8 +445,7 @@ div.current-tab {
 
 .sponsored {
     padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid black;
+    margin-bottom: 15px;
     border-radius: 8px;
 }
 
@@ -515,8 +512,7 @@ h5, h6 {
 }
 
 #info {
-    font-size: .80em;
-    font-weight: 400;
+    font-size: .85em;
 }
 
 .logo {
@@ -543,23 +539,28 @@ h5, h6 {
 ========================================*/
 
 html {
-    color: #2F4771;
+    color: #365283;
+}
+
+body {
+    background: transparent url('<?= $this->webroot ?>theme/weatherph/img/bg.png');
 }
 
 .banner {
     color: #fafafa;
     background:#3e5e95 url('<?= $this->webroot ?>theme/weatherph/img/banner-plain.png') top left no-repeat;
+    -webkit-box-shadow: 0 0 1px 1px #343434;
+    -moz-box-shadow:    0 0 1px 1px #343434;
+    box-shadow:         0 0 1px 1px #343434;
 }
 
 nav, .layerSelector, .promo, #info {
-    background: #2F4771;
+    background: #365283;
     color: #fafafa;
 }
 
-#info > div.readings {
+#info > .readings {
     background-color: #723A71;
-    margin-bottom: 0;
-    border-top: 1px solid black;
 }
 
 .detail-page-link {
@@ -587,6 +588,13 @@ nav, .layerSelector, .promo, #info {
     vertical-align: middle;
 }
 
+.sponsored {
+    background: white;
+    -moz-box-shadow:    inset 0 0 5px #000000;
+    -webkit-box-shadow: inset 0 0 5px #000000;
+    box-shadow:         inset 0 0 5px #000000;
+}
+
 /*========================================
 5.	States
 ========================================*/
@@ -607,7 +615,7 @@ a {
 }
 
 a:hover {
-    text-shadow: #ffffff 0 0 20px;
+    text-shadow: #ffffff 0 0 1px;
 }
 
 a:link, a:visited {
@@ -621,6 +629,12 @@ footer a:link, footer a:visited {
 
 .tabs li.current-tab {
     border-top: 1px solid red;
+}
+
+.shadow {
+    -webkit-box-shadow: 0 4px 3px -3px black;
+    -moz-box-shadow: 0 4px 3px -3px black;
+    box-shadow: 0 4px 3px -3px black;
 }
 
 span.symbol { background: url('<?= $this->webroot ?>theme/weatherph/img/warning-sprites.png') -5px -65px no-repeat; height: 30px; width: 40px; display: block; margin-left: 10px; float: left; }
