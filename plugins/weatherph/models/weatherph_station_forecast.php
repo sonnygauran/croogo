@@ -288,7 +288,7 @@ class WeatherphStationForecast extends WeatherphAppModel
         $enddatum = date('Ymd', $enddatum);
         
         //Grab stations readings  
-        $url = "http://192.168.20.89/abfrage.php?stationidstring=$stationId&datumstart=$startdatum&datumend=$enddatum&&zeiten1=$timeRes&paramtyp=mos_mix_mm&mosmess=ja&paramliste=tl,td,rh,ff,g3h,dir,qff,sh,gl1h,rr&output=csv2&ortoutput=wmo6,name&timefill=nein&verknuepft=nein&aufruf=auto";
+        $url = "http://192.168.20.89/abfrage.php?stationidstring=$stationId&datumstart=$startdatum&datumend=$enddatum&&zeiten1=$timeRes&paramtyp=mos_mix_mm&mosmess=ja&paramliste=tl,td,rh,ff,g3h,dir,qff,sh,gl1h,rr,tx,tn&output=csv2&ortoutput=wmo6,name&timefill=nein&verknuepft=nein&aufruf=auto";
         
         $this->log($url);
         $ch = curl_init();
@@ -302,7 +302,7 @@ class WeatherphStationForecast extends WeatherphAppModel
         $curlResults = curl_exec($ch);
         curl_close($ch);
         
-        $headersSpecimen = 'Datum;utc;min;ort1;dir;ff;g3h;tl;td;qff;rr;sh;gl1h;rh;';
+        $headersSpecimen = 'Datum;utc;min;ort1;dir;ff;g3h;tl;td;tx;tn;qff;rr;sh;gl1h;rh;';
 //        $headersSpecimen = 'Datum;utc;min;ort1;dir;ff;g3h;tl;td;rr;rh;';
         
         $results = $this->csvToArray($curlResults, $headersSpecimen);
@@ -335,6 +335,8 @@ class WeatherphStationForecast extends WeatherphAppModel
                             'utcDate' => strtotime($data['Datum'] . ' ' . $data['utc'] . ':' . $data['min']),
                             'tl' => round($data['tl']),
                             'td' => round($data['td']),
+                            'tn' => $data['tn'],
+                            'tx' => $data['tx'],
                             );
                         
                     }elseif($type == 'wind'){
@@ -631,6 +633,24 @@ class WeatherphStationForecast extends WeatherphAppModel
             $xml_string .= '<point name="'.$data['utcDate'].'" x="'.$data['utcDate'].'" y="'.$data['td'].'"/><!-- '.date('Y-m-d H:i:s', $data['utcDate']).'-->';
         }
         
+        $xml_string .='</series>';
+        
+        $xml_string .='<series name="80d" style="noline" use_hand_cursor="True" hoverable="False">';
+        $xml_string .='<marker enabled="true" style="dotblue"/>';
+        foreach($arrData as $key=>$value){
+            if($key == '2' || $key == '10' || $key == '18' || $key == '26' || $key == '34'){
+                $xml_string .= '<point name="'.$value['utcDate'].'" x="'.$value['utcDate'].'" y="'.$value['tn'].'"/><!-- '.date('Y-m-d H:i:s', $value['utcDate']).'-->';
+            }
+        }
+        $xml_string .='</series>';
+
+        $xml_string .='<series name="80e" style="noline" use_hand_cursor="True" hoverable="False">';
+        $xml_string .='<marker enabled="true" style="dotred"/>';
+        foreach($arrData as $key=>$value){
+            if($key == '6' || $key == '14' || $key == '22' || $key == '30' || $key == '38'){
+                $xml_string .= '<point name="'.$value['utcDate'].'" x="'.$value['utcDate'].'" y="'.$value['tx'].'"/><!-- '.date('Y-m-d H:i:s', $value['utcDate']).'-->';
+            }
+        }
         $xml_string .='</series>';
         
         }elseif($type == 'wind'){
