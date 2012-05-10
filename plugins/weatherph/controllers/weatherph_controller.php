@@ -64,6 +64,7 @@ class WeatherphController extends WeatherphAppController {
         )));
  //       Configure::write('debug', 0);
         $this->set('readings', json_encode($currentReading));
+        
     }
     public function admin_getTwoWeekReadings($date = null){
         //$this->layout = 'json/ajax';
@@ -159,7 +160,37 @@ class WeatherphController extends WeatherphAppController {
         $this->layout = 'default';
         
     }
+   
+    public function getDetailedReading($stationID = '984290', $type = NULL, $timeRes = '3h', $startDatum = NULL, $endDatum = NULL){
+        
+        $this->layout = 'xml';
+        App::import('Model', 'Weatherph.WeatherphStationReading');
+        
+        $WeatherphStationReading = new WeatherphStationReading();
+        $detailedReading = $WeatherphStationReading->getDetailedReading('all', array('conditions' => array(
+            'id' => $stationID,
+            'type' => $type,
+            'timeRes' => $timeRes,
+            'startDatum' => $startDatum,
+            'endDatum' => $endDatum,
+        )));
+        
+        //debug($detailedReading);exit;
+        
+        $WeatherphStationReading = new WeatherphStationReading();
+        $anyChartXML = $WeatherphStationReading->arrayToAnyChartXML('all', array('conditions' => array(
+            'arrData' => $detailedReading,
+            'type' => $type,
+        )));
+        
+        $this->set('anyChartXML', $anyChartXML);
+    }
     
+    public function detailedReading(){
+        
+        $this->layout = 'plain';
+        
+    }
     
     public function view($stationID = '984250') {
         
