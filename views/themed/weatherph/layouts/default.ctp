@@ -48,7 +48,7 @@
     </head>
     <body>
         <section id="container">
-            <header class="banner clear">    
+            <header class="banner clear shadow">    
                 <h1 class="logo"><a href="<?= $this->webroot ?>">weather | philippines</a></h1>
                 
                 <div id="slides">
@@ -80,16 +80,13 @@
                     <li><a href="#">Impressum</a></li>
                 </ul>
             </nav>
-<!--            
-            <div class="severe-warning shadow">
+            
+<!--            <div class="severe-warning shadow">
                 <p><strong>Alert:</strong> Typhoon Dador is approaching the NCR. No classes in all levels. Stay at home!</p>
-            </div>
--->
+            </div>-->
 <?php
-
 echo $this->Layout->sessionFlash();
 echo $content_for_layout;
-
 ?>
             <aside id="sidebar">
                 <div id="sponsors">
@@ -97,8 +94,8 @@ echo $content_for_layout;
                     <div class="sponsored center">
                         <ul>
                             <li><?php echo $this->Html->image('ICTS.jpg'); ?></li>
-                            <li><?php echo $this->Html->image('NAC.jpg'); ?></li>
-                            <li><?php echo $this->Html->image('SGS.jpg'); ?></li>
+                            <li><?php echo $this->Html->image('NAC1.png'); ?></li>
+                            <li><?php echo $this->Html->image('SGS1.png'); ?></li>
                             <li><?php echo $this->Html->image('vistaland.jpg'); ?></li>
                             <li><?php echo $this->Html->image('ngcp1.png'); ?></li>
                             <li><?php echo $this->Html->image('sumitomo.png'); ?></li>
