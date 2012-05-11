@@ -28,7 +28,7 @@ var map = $("#map").geomap({
         + view.tile.row
         + ".png";
         },
-        attr: "© OpenStreetMap & contributors, CC-BY-SA"
+        attr: "¬© OpenStreetMap & contributors, CC-BY-SA"
         
 //          return "http://192.168.1.34:8888/convert.php?zoom="
 //          + view.zoom + "&column="
@@ -36,7 +36,7 @@ var map = $("#map").geomap({
 //          + view.tile.row
 //          + "&mode=1";
 //          },
-//          attr: "© OpenStreetMap & contributors, CC-BY-SA"
+//          attr: "¬© OpenStreetMap & contributors, CC-BY-SA"
     }
     ],
     tilingScheme: {
@@ -83,7 +83,7 @@ map.geomap({
 function getForecast(id) {
 $.ajax({
             type:     'GET',
-            url:        '/weatherph/weatherph/getForecast/'+id+'/2/3h',
+            url:        '<?= $this->webroot ?>weatherph/weatherph/getForecast/'+id+'/2/3h',
             cache:    false,
             success:  function(readings) {
                 
@@ -92,8 +92,8 @@ $.ajax({
                 var cr_temperature, cr_wind, cr_precip, cr_humidity, cr_symbol;
                 var sr_temperature, sr_wind, sr_precip, sr_humidity, sr_symbol;                
                 
-                $('.current.readings-location').html($stationReadings.ort1);
-                $('.last-update').html($stationReadings.update);
+                $('.current.readings-location').html($stationReadings.reading.ort1);
+                $('.last-update').html($stationReadings.reading.update);
                 
                 cr_temperature = $stationReadings.reading.tl;
                 cr_wind = $stationReadings.reading.ff;
@@ -121,9 +121,9 @@ $.ajax({
                     $('.' + key + '-hour .humidity span').html(sr_humidity);
                     
                 } 
-                
+
                 $('.loader').fadeOut();
-                $('.detail-page-link a').attr({href: '/view/'+id});
+                $('.detail-page-link a').attr({href: '<?= $this->webroot ?>view/'+id});
                 
                 
             }
@@ -190,12 +190,13 @@ stations : [
 $stationsPagasa = new Array();
 $.ajax({
     type:     'GET',
-    url :     '/weatherph/weatherph/getStations/pagasa',
+    url :     '<?= $this->webroot ?>weatherph/weatherph/getStations/pagasa',
     cache:    false,
     success: function(data) {
         var $retrievedStations = data; // the complete retrieved stations
         for (var key in $retrievedStations) {
             var $currentRetrievedStation = $retrievedStations[key]; // current station on the loop
+            //console.log($currentRetrievedStation);
             $stationsPagasa.push({ // create a json object, and then save it to stations array
             	id: $currentRetrievedStation.id,
             	name: $currentRetrievedStation.name,
@@ -212,7 +213,7 @@ $.ajax({
         $stations = new Array();
         $.ajax({
             type:     'GET',
-            url :     '/weatherph/weatherph/getStations/meteomedia',
+            url :     '<?= $this->webroot ?>weatherph/weatherph/getStations/meteomedia',
             cache:    false,
             success: function(data) {
                 var $retrievedStations = data; // the complete retrieved stations
@@ -270,6 +271,7 @@ $.ajax({
 
 function mapStationsPagasa($stationsArray) {
     // This loop maps the stations from the $stations fetched from getStations
+    //console.log($stationsArray);
     for (var key in $stationsArray) {
         $currentStation = $stationsArray[key];
         $('#map').geomap("append", {
@@ -277,12 +279,13 @@ function mapStationsPagasa($stationsArray) {
         	name: $currentStation.name,
         	type:'Point',                
         	coordinates: $currentStation.coordinates
-        }, {strokeWidth: "1px", height: "6px", width: "6px", radius: "8px", color: "#dd2222", fillOpacity: "1", strokeOpacity: ".3"},true);
+        }, {strokeWidth: "1px", height: "6px", width: "6px", radius: "8px", color: "#dd2222", fillOpacity: "0", strokeOpacity: "1"},true);
     }
 }
 
 function mapStations($stationsArray) {
     // This loop maps the stations from the $stations fetched from getStations
+    
     for (var key in $stationsArray) {
         $currentStation = $stationsArray[key];
         $('#map').geomap("append", {
@@ -290,7 +293,7 @@ function mapStations($stationsArray) {
         	name: $currentStation.name,
         	type:'Point',                
         	coordinates: $currentStation.coordinates
-        }, {strokeWidth: "2px", height: "8px", width: "8px", radius: "8px", color: "#2E4771", fillOpacity: "1", strokeOpacity: ".3"},true);
+        }, {strokeWidth: "1px", height: "7px", width: "7px", radius: "8px", color: "#2E4771", fillOpacity: "0", strokeOpacity: "1"},true);
     }
 
 }

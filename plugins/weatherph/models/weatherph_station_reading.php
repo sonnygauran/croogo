@@ -51,7 +51,7 @@ class WeatherphStationReading extends WeatherphAppModel
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $location);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_USERPWD, "{$karten['username']}:{$karten['password']}");
+//        curl_setopt($ch, CURLOPT_USERPWD, "{$karten['username']}:{$karten['password']}");
         curl_setopt($ch, CURLOPT_USERAGENT, "Weather.com.ph Curl Client 1.0");
         curl_setopt($ch, CURLOPT_TIMEOUT, 10); //times out after 10s 
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);

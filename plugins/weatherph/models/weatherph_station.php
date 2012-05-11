@@ -9,15 +9,17 @@ class WeatherphStation extends WeatherphAppModel {
         include dirname(__FILE__) . '/auth.php';
 
         //$url = "http://abfrage.meteomedia.ch/abfrage.php?land=PHL&ortsinfo=ja&datumstart=20120313&datumend=20120313&output=csv2&ortoutput=wmo6,name&aufruf=auto";
-        $url = "http://abfrage.meteomedia.ch/manila.php?land=PHL&ortsinfo=ja&datumstart=20120313&datumend=20120313&output=csv2&ortoutput=wmo6,name&aufruf=auto";
-
+        $url = "http://abfrage.meteomedia.ch/manila.php?land=PHL&ortsinfo=ja&output=csv2&ortoutput=wmo6,name&aufruf=auto";
+        
+        //$this->log($url);
+        
         $stations = array();
         $location = $url;
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $location);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_USERPWD, "{$karten['username']}:{$karten['password']}");
+//        curl_setopt($ch, CURLOPT_USERPWD, "{$karten['username']}:{$karten['password']}");
         curl_setopt($ch, CURLOPT_USERAGENT, "Weather.com.ph Client 1.0");
         curl_setopt($ch, CURLOPT_TIMEOUT, 10); //times out after 10s 
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);

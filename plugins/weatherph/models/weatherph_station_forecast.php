@@ -145,7 +145,7 @@ class WeatherphStationForecast extends WeatherphAppModel
                 $result['tl'] = ($result['tl'] == '')? '0' : round($result['tl'],0);
                 $result['rr'] = ($result['rr'] == '')? '0' : round($result['rr'],0);
                 $result['rh'] = ($result['rh'] == '')? '0' : round($result['rh'],0);
-                $result['ff'] = ($result['ff'] == '')? '0' : round($result['ff'],0);
+                $result['ff'] = ($result['ff'] == '')? '0' : round($result['ff'],0); 
                 $result['g3h'] = ($result['g3h'] == '')? '0' : round($result['g3h'],0);
                 
                 // Translate raw date to 3 hourly range value
@@ -160,22 +160,18 @@ class WeatherphStationForecast extends WeatherphAppModel
                 
                 unset($result['ort1']);
                 
-//                if (!key_exists('reading', $abfrageResults) AND !$hourStart) {
-//                    if ($result['utc'] == $nowHourRound) {
-//                        $abfrageResults['reading'] = $result;
-//                    }
-//                } else {
-//                    $abfrageResults['forecast'][] = $result;
-//                }
+                $readingTime = strtotime($currentReading['update']);
+                $forecastTime = strtotime($result['Datum'].' '.$result['utc'] . ':' .$result['min']);
                 
-                
-                //if (date('H', strtotime($result['Datum'] .' '. $result['utch'])) >= $nowHourRound) {
+                //if ($forecastTime >= $readingTime) {
                     $abfrageResults['forecast'][] = $result;
                 //}
+                
+                //$abfrageResults['forecast'][] = $result;
             }
         }
         
-        $this->log(print_r($abfrageResults, true));
+        //$this->log(print_r($abfrageResults, true));
        
         return $abfrageResults;
         
@@ -292,7 +288,7 @@ class WeatherphStationForecast extends WeatherphAppModel
         $enddatum = date('Ymd', $enddatum);
         
         //Grab stations readings  
-        $url = "http://192.168.20.89/abfrage.php?stationidstring=$stationId&datumstart=$startdatum&datumend=$enddatum&&zeiten1=$timeRes&paramtyp=mos_mix_mm&mosmess=ja&paramliste=tl,td,rh,ff,g3h,dir,qff,sh,gl1h,rr&output=csv2&ortoutput=wmo6,name&timefill=nein&verknuepft=nein&aufruf=auto";
+        $url = "http://192.168.20.89/abfrage.php?stationidstring=$stationId&datumstart=$startdatum&datumend=$enddatum&&zeiten1=$timeRes&paramtyp=mos_mix_mm&mosmess=ja&paramliste=tl,td,rh,ff,g3h,dir,qff,sh,gl1h,rr,tx,tn&output=csv2&ortoutput=wmo6,name&timefill=nein&verknuepft=nein&aufruf=auto";
         
         $this->log($url);
         $ch = curl_init();
@@ -306,7 +302,8 @@ class WeatherphStationForecast extends WeatherphAppModel
         $curlResults = curl_exec($ch);
         curl_close($ch);
         
-        $headersSpecimen = 'Datum;utc;min;ort1;dir;ff;g3h;tl;td;qff;rr;sh;gl1h;rh;';
+        $headersSpecimen = 'Datum;utc;min;ort1;dir;ff;g3h;tl;td;tx;tn;qff;rr;sh;gl1h;rh;';
+//        $headersSpecimen = 'Datum;utc;min;ort1;dir;ff;g3h;tl;td;rr;rh;';
         
         $results = $this->csvToArray($curlResults, $headersSpecimen);
         
@@ -338,6 +335,8 @@ class WeatherphStationForecast extends WeatherphAppModel
                             'utcDate' => strtotime($data['Datum'] . ' ' . $data['utc'] . ':' . $data['min']),
                             'tl' => round($data['tl']),
                             'td' => round($data['td']),
+                            'tn' => $data['tn'],
+                            'tx' => $data['tx'],
                             );
                         
                     }elseif($type == 'wind'){
@@ -500,8 +499,6 @@ class WeatherphStationForecast extends WeatherphAppModel
                                     </major_grid>
                                 </x_axis>';
         
-        
-        //if($type != 'precipitation' && $type != 'precip'){
         $xml_string .=  '       <y_axis>
                                     <!--scale type="Linear" maximum="auto" minimum="auto" maximum_offset="0.01" minimum_offset="0.01"/-->
                                     <title enabled="false"/>
@@ -510,7 +507,6 @@ class WeatherphStationForecast extends WeatherphAppModel
                                         <font family="Arial" color="#444444" size="11"/>
                                     </labels>
                                 </y_axis>';
-        //}
         
         $xml_string .= '
                                 <extra>
@@ -639,6 +635,24 @@ class WeatherphStationForecast extends WeatherphAppModel
         
         $xml_string .='</series>';
         
+        $xml_string .='<series name="80d" style="noline" use_hand_cursor="True" hoverable="False">';
+        $xml_string .='<marker enabled="true" style="dotblue"/>';
+        foreach($arrData as $key=>$value){
+            if($key == '2' || $key == '10' || $key == '18' || $key == '26' || $key == '34'){
+                $xml_string .= '<point name="'.$value['utcDate'].'" x="'.$value['utcDate'].'" y="'.$value['tn'].'"/><!-- '.date('Y-m-d H:i:s', $value['utcDate']).'-->';
+            }
+        }
+        $xml_string .='</series>';
+
+        $xml_string .='<series name="80e" style="noline" use_hand_cursor="True" hoverable="False">';
+        $xml_string .='<marker enabled="true" style="dotred"/>';
+        foreach($arrData as $key=>$value){
+            if($key == '6' || $key == '14' || $key == '22' || $key == '30' || $key == '38'){
+                $xml_string .= '<point name="'.$value['utcDate'].'" x="'.$value['utcDate'].'" y="'.$value['tx'].'"/><!-- '.date('Y-m-d H:i:s', $value['utcDate']).'-->';
+            }
+        }
+        $xml_string .='</series>';
+        
         }elseif($type == 'wind'){
             
             $xml_string .= '
@@ -715,9 +729,9 @@ class WeatherphStationForecast extends WeatherphAppModel
                 </charts>
             </anychart>';
         
-            $xml = simplexml_load_string($xml_string);
-            
-            return $xml;
+        $xml = simplexml_load_string($xml_string);
+
+        return $xml;
         
     }
     
@@ -725,12 +739,12 @@ class WeatherphStationForecast extends WeatherphAppModel
         
         //Convert 
         $expected = strstr($csv, $headersSpecimen);
-
+       
         if ($expected == '') {
-            $error = 'There was an error generating the CSV from '.$url;
-            $this->log($error);
-            throw new Exception('There was an error generating the CSV');
-            return array();
+          $error = 'There was an error generating the CSV from '.$url;
+           $this->log($error);
+           throw new Exception('There was an error generating the CSV');
+           return array();
         }
 
         $rows = explode("\n", $csv);

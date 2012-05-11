@@ -1,19 +1,18 @@
 <?php //echo $this->Html->script('AnyChart.js'); ?>
 
 <script type="text/javascript" src="../weatherph/js/weatherph/view.js"></script>
+<script type="text/javascript" src="../weatherph/js/weatherph/AnyChart.js"></script>
 
 <div class="content">
     <section class="main">
         <div id="currentWeather">
             <div id="station">
-                <h1><?= $weeklyForecasts['ort1']; ?></h1>
-                <br/><br/>
                 <p>Current readings from:</p>
-                <h6>Insert station here</h6>
+                <h1><?= $weeklyForecasts['ort1']; ?></h1>
                 <a href="#">change station</a>
             </div> <!--END STATION-->
 
-            <div id="condition" style="display: none;">
+            <div id="condition">
                 <table>
                     <tbody>
                         <tr>
@@ -35,7 +34,7 @@
                     </tbody>
                 </table>
             </div> <!--END CONDITION-->
-            <div id="conditionTable" style="display: none;">
+            <div id="conditionTable">
                 <table>
                     <tbody>
                         <tr>
@@ -143,23 +142,57 @@
         <div id="charts">
             <h4>Detailed Forecasts</h4>
             <ul class="tabs">
-                <li class="current-tab"><a href="javascript: void(0);">Temperature</a></li>
-                <li><a href="javascript: void(0);">Precipitation</a></li>
-                <li><a href="javascript: void(0);">Wind</a></li>
-                <li><a href="javascript: void(0);">Humidity</a></li>
+                <li class="temperature flip current-tab"><a href="#">Temperature</a></li>
+                <li class="precipitation flip"><a href="#">Precipitation</a></li>
+                <li class="wind flip"><a href="#">Wind</a></li>
+                <li class="humidity flip"><a href="#">Humidity</a></li>
             </ul>
             <div class="tab-container">
-                <div class="current-tab">
-<!--                    <script type="text/javascript" language="javascript">
+                <div class="temperature panel current-tab">
+                  <script type="text/javascript" language="javascript">
                         //<![CDATA[
-                            var chart = new AnyChart('http://weatherph/swf/AnyChart.swf');
+                            var chart = new AnyChart('../weatherph/swf/AnyChart.swf');
                             chart.width = 830;
                             chart.height = 200;
                             chart.setXMLFile('http://weatherph/getDetailedForecast/<?= $weeklyForecasts['stationId']; ?>/temperature/3h');
                             chart.write();
                         //]]>
-                    </script>-->
+                    </script>
                 </div>
+                <div class="precipitation panel">
+                  <script type="text/javascript" language="javascript">
+                        //<![CDATA[
+                            var chart = new AnyChart('../weatherph/swf/AnyChart.swf');
+                            chart.width = 830;
+                            chart.height = 200;
+                            chart.setXMLFile('http://weatherph/getDetailedForecast/<?= $weeklyForecasts['stationId']; ?>/precip');
+                            chart.write();
+                        //]]>
+                    </script>
+                </div>
+                <div class="wind panel">
+                  <script type="text/javascript" language="javascript">
+                        //<![CDATA[
+                            var chart = new AnyChart('../weatherph/swf/AnyChart.swf');
+                            chart.width = 830;
+                            chart.height = 200;
+                            chart.setXMLFile('http://weatherph/getDetailedForecast/<?= $weeklyForecasts['stationId']; ?>/wind');
+                            chart.write();
+                        //]]>
+                    </script>
+                </div>
+                <div class="humidity panel">
+                  <script type="text/javascript" language="javascript">
+                        //<![CDATA[
+                            var chart = new AnyChart('../weatherph/swf/AnyChart.swf');
+                            chart.width = 830;
+                            chart.height = 200;
+                            chart.setXMLFile('http://weatherph/getDetailedForecast/<?= $weeklyForecasts['stationId']; ?>/humidity');
+                            chart.write();
+                        //]]>
+                    </script>
+                </div>
+
             </div>
         </div> <!--END CHARTS-->
 
@@ -170,7 +203,7 @@
                 <li><a href="javascript: void(0);">Precipitation</a></li>
                 <li><a href="javascript: void(0);">Wind</a></li>
             </ul>
-            <?php echo $this->Html->image('chart.png'); ?>
+            <!--<?php echo $this->Html->image('chart.png'); ?>-->
         </div> <!--END OUTLOOK-->
     </section> <!--SECONDARY-->
 </div> <!--CONTENT-->
