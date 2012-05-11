@@ -78,10 +78,10 @@
         <div id="info">
             <div id="current-readings-panel">
                 <h2 class="current readings-location">&nbsp;</h2>
-                <a href="#" style="display: none;">change station</a>
-                <h4 style="display: none;">Current Readings:</h4>
+                <a href="#" >change station</a>
+                <h4>Current Readings:</h4>
             </div>
-            <div class="readings" style="display: none;">
+            <div class="readings">
                 <p style="margin: 5px 0;">last updated: <span class="last-update">--:--</span></p>
                 <span class="current temperature"><span>&nbsp;</span>&deg;C</span>
                 <span class="symbol"></span>
@@ -110,7 +110,8 @@
                     </a>
                 </h2>
             </div>
-            <div class="day-forecast">
+            <div id="forecast-details" class="day-forecast">
+                <span id="forecast-not-available" style="display:none; ">Forecast currently not available.</span>
                 <ul>
                     <li class="forecast-highlight">
                         <h6 class="0-hour time">--:--</h6>
