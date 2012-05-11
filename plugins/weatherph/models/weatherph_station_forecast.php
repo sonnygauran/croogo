@@ -9,27 +9,30 @@ class WeatherphStationForecast extends WeatherphAppModel
     public $name = 'WeatherphStationForecast';
     public $useTable = false;
     
+   
+    
     public function get($conditions = null, $fields = array(), $order = null, $recursive = null){
         
         include dirname(__FILE__) . '/auth.php';
         
         date_default_timezone_set('Asia/Manila');
         
-        
         $daysStr = ($fields['conditions']['target_days'] > 1)? 'days' : 'day';
-        $fields['conditions']['target_days'] = $fields['conditions']['target_days'] - 1;
+        $fields['conditions']['target_days'] = $fields['conditions']['target_days'];
         
         $stationId = $fields['conditions']['id'];
- 
-        $startdatum = date('Ymd');
-        
-        $enddatum = strtotime("+" . $fields['conditions']['target_days'] . $daysStr, strtotime($startdatum));
-        $enddatum = date('Ymd', $enddatum);
-        
         $utch = $fields['conditions']['utch'];
+ 
+        $startdatum = date('Ymd H:i:s', strtotime('-8 hours', strtotime(date('Ymd'))));    
+        $enddatum = date('Ymd H:i:s', strtotime("+" . $fields['conditions']['target_days'] . $daysStr, strtotime($startdatum)));
         
-        $startutc = "00";
-        $endutc = "00";
+        $startutc = date('H', strtotime($startdatum));
+        $endutc = '00';
+        
+        $startdatum = date('Ymd', strtotime($startdatum));    
+        $enddatum = date('Ymd', strtotime($enddatum));
+        
+        $this->log($startutc . '-' . $endutc);
         
         $abfrageResults = array();
         
@@ -38,7 +41,7 @@ class WeatherphStationForecast extends WeatherphAppModel
         $stationInfo = $this->getStationInfo($stationId, array("lat","lon"));
         
         //Grab stations readings  
-        $url = "http://192.168.20.89/abfrage.php?stationidstring=$stationId&datumstart=$startdatum&datumend=$enddatum&&zeiten1=10m&tl=on&dir=on&ff=on&g3h=on&paramliste=rr,rh,sy,sy2&output=csv2&ortoutput=wmo6,name&aufruf=auto";
+        $url = "http://192.168.20.89/abfrage.php?stationidstring=$stationId&datumstart=$startdatum&datumend=$enddatum&utcstart=$startutc&utcend=$endutc&zeiten1=10m&tl=on&dir=on&ff=on&g3h=on&paramliste=rr,rh,sy,sy2&output=csv2&ortoutput=wmo6,name&aufruf=auto";
         
         $this->log($url);
         $ch = curl_init();
@@ -87,6 +90,7 @@ class WeatherphStationForecast extends WeatherphAppModel
                 $thierTime = strtotime($readings['Datum'].' '.$readings['utc'].':'.$readings['min']);
                 $ourTime = strtotime('+8 hours', $thierTime);
                 $readings['update'] = date('h:iA', $ourTime);
+                //$readings['update'] = date('h:iA', $thierTime);
                 
                 $currentReadings[] = $readings;
                 
@@ -99,7 +103,7 @@ class WeatherphStationForecast extends WeatherphAppModel
         //$this->log(print_r($currentReadings, true));
         
         //Grab stations forecast  
-        $url = "http://192.168.20.89/abfrage.php?stationidstring=$stationId&datumstart=$startdatum&datumend=$enddatum&zeiten1=$utch&paramtyp=mos_mix_mm&mosmess=ja&tl=on&dir=on&ff=on&g3h=on&paramliste=rr,rh,sy,sy2&output=csv2&ortoutput=wmo6,name&aufruf=auto";
+        $url = "http://192.168.20.89/abfrage.php?stationidstring=$stationId&datumstart=$startdatum&datumend=$enddatum&utcstart=$startutc&utcend=$endutc&zeiten1=$utch&paramtyp=mos_mix_mm&mosmess=ja&tl=on&dir=on&ff=on&g3h=on&paramliste=rr,rh,sy,sy2&output=csv2&ortoutput=wmo6,name&aufruf=auto";
         
         $this->log($url);
         $ch = curl_init();
@@ -155,7 +159,7 @@ class WeatherphStationForecast extends WeatherphAppModel
                 $thierTime = strtotime($result['Datum'].' '.$result['utc'].':'.$result['min']);
                 $ourTime = strtotime('+8 hours', $thierTime);
                 $result['utch'] = date('H:iA', $ourTime);
-                $result['outtime'] = $nowHourRound;
+                $result['ourtime'] = $nowHourRound;
                 
                 // Translate raw data to wind direction image value
                 $result['dir'] = $this->showWindDirection($result['dir']);
@@ -164,7 +168,7 @@ class WeatherphStationForecast extends WeatherphAppModel
                 
                 $readingTime = strtotime($currentReading['update']);
                 
-                if ($ourTime >= $readingTime) {
+                if ($ourTime > $readingTime) {
                     $abfrageResults['forecast']['status'] = 'ok';
                     $abfrageResults['forecast'][] = $result;
                 }else{
@@ -225,7 +229,6 @@ class WeatherphStationForecast extends WeatherphAppModel
                 //Determine sunrise and sunset for every location using latituted and longtitude
                 $sunrise = date_sunrise(strtotime($result['Datum']), SUNFUNCS_RET_STRING, $stationInfo['lat'], $stationInfo['lon'], 90);
                 $sunset = date_sunset(strtotime($result['Datum']), SUNFUNCS_RET_STRING, $stationInfo['lat'], $stationInfo['lon'], 90);
-
                 
                 $result['sunrise'] = $sunrise;
                 $result['sunset'] = $sunset;
@@ -256,7 +259,11 @@ class WeatherphStationForecast extends WeatherphAppModel
                 $result['moonphase'] = $this->moon_phase(date('Y', strtotime($result['Datum'])), date('m', strtotime($result['Datum'])), date('d', strtotime($result['Datum'])));
                 
                 // Translate raw date to 3 hourly range value
-                $result['utch'] = date('H:sA', strtotime($result['Datum'] .' '. $result['utc'] . ':' . $result['min']));
+                //$result['utch'] = date('H:sA', strtotime($result['Datum'] .' '. $result['utc'] . ':' . $result['min']));
+                $thierTime = strtotime($result['Datum'].' '.$result['utc'].':'.$result['min']);
+                $ourTime = strtotime('+8 hours', $thierTime);
+                $result['utch'] = date('H:iA', $ourTime);
+                $result['ourtime'] = $nowHourRound;
                 
                 // Translate raw data to wind direction image value
                 $result['dir'] = $this->showWindDirection($result['dir']);
@@ -287,13 +294,18 @@ class WeatherphStationForecast extends WeatherphAppModel
         $timeRes = ($fields['conditions']['timeRes'] == NULL )? '1h' : $fields['conditions']['timeRes'];
         
         $startdatum = $fields['conditions']['startDatum'];
-        $startdatum = ($startdatum == NULL)? date('Ymd') : date('Ymd',strtotime($startdatum));
         
-        $enddatum = strtotime('+4 days', strtotime($startdatum));
-        $enddatum = date('Ymd', $enddatum);
+        $startdatum = date('Ymd H:i:s', strtotime('-8 hours', strtotime(date('Ymd'))));    
+        $enddatum = date('Ymd H:i:s', strtotime("+5 Days ", strtotime(date('Ymd'))));
+        
+        $startutc = date('H', strtotime($startdatum));
+        $endutc = '00';
+        
+        $startdatum = date('Ymd', strtotime($startdatum));    
+        $enddatum = date('Ymd', strtotime($enddatum));
         
         //Grab stations readings  
-        $url = "http://192.168.20.89/abfrage.php?stationidstring=$stationId&datumstart=$startdatum&datumend=$enddatum&zeiten1=$timeRes&paramtyp=mos_mix_mm&mosmess=ja&rain6=on&paramliste=tl,tx,tn,td,rh,ff,g1h,dir,qff,sh,gl1h&output=csv2&ortoutput=wmo6,name&timefill=nein&verknuepft=nein&aufruf=auto";
+        $url = "http://192.168.20.89/abfrage.php?stationidstring=$stationId&datumstart=$startdatum&datumend=$enddatum&utcstart=$startutc&utcend=$endutc&zeiten1=$timeRes&paramtyp=mos_mix_mm&mosmess=ja&rain6=on&paramliste=tl,tx,tn,td,rh,ff,g1h,dir,qff,sh,gl1h&output=csv2&ortoutput=wmo6,name&timefill=nein&verknuepft=nein&aufruf=auto";
         
         $this->log($url);
         $ch = curl_init();
@@ -315,19 +327,22 @@ class WeatherphStationForecast extends WeatherphAppModel
             
             if(trim($result['tl'])!=''){
          
-               //explode the ort1 raw data, grab only those needed
+                if(strtotime($result['Datum']) >= strtotime(date('Ymd'))){
+                //explode the ort1 raw data, grab only those needed
                 $result['ort1'] = explode('/', $result['ort1']);
                 unset($result['ort1'][0]);
                 $result['ort1'] = implode('/', $result['ort1']);
                 
                 $abfrageResults['ort1'] = $result['ort1']; 
                 $abfrageResults['forecast'][$result['Datum']][] = $result;
-
+                }    
             }
        
         }
         
         //debug($abfrageResults['forecast']);exit;
+        
+            
         
             $resultData = array();
             foreach($abfrageResults['forecast'] as $key=>$forecast){
@@ -335,11 +350,30 @@ class WeatherphStationForecast extends WeatherphAppModel
                     
                     if($type == 'temp' || $type == 'temperature'){
                         
-                        $resultData[] = array(
+                        $resultData['tl'][] = array(
                             'utcDate' => strtotime($data['Datum'] . ' ' . $data['utc'] . ':' . $data['min']),
-                            'tl' => $data['tl'],
-                            'td' => $data['td'],
+                            'data' => $data['tl'],
                             );
+                        
+                        $resultData['td'][] = array(
+                            'utcDate' => strtotime($data['Datum'] . ' ' . $data['utc'] . ':' . $data['min']),
+                            'data' => $data['td'],
+                            );
+                        
+                        if($data['utc'] == '18'){
+                        $resultData['tx'][] = array(
+                            'utcDate' => strtotime($data['Datum'] . ' ' . $data['utc'] . ':' . $data['min']),
+                            'data' => $data['tx'],
+                            );
+                        }
+                        
+                        if($data['utc'] == '06'){
+                        $resultData['tn'][] = array(
+                            'utcDate' => strtotime($data['Datum'] . ' ' . $data['utc'] . ':' . $data['min']),
+                            'data' => $data['tn'],
+                            );
+                        }
+                        
                         
                     }elseif($type == 'wind'){
             
@@ -413,6 +447,8 @@ class WeatherphStationForecast extends WeatherphAppModel
         $arrData = $fields['conditions']['arrData'];
         $type = strtolower($fields['conditions']['type']);
         
+        //$this->log($arrData);
+        
         switch($type){
             
             case 'temperature':
@@ -445,15 +481,15 @@ class WeatherphStationForecast extends WeatherphAppModel
             case 'airpressure':
                 $min_interval = 3;
                 $show_label_cross = 'False';
-                $default_series_type = 'Spline';
+                $default_series_type = 'Bar';
             break;
             case 'globalradiation':
-                $min_interval = 3;
+                $min_interval = 1;
                 $show_label_cross = 'True';
                 $default_series_type = 'Bar';
             break;
             case 'sunshine':
-                $min_interval = 3;
+                $min_interval = 1;
                 $show_label_cross = 'False';
                 $default_series_type = 'Bar';
             break;
@@ -571,24 +607,7 @@ class WeatherphStationForecast extends WeatherphAppModel
                         </line_series>';
         }
         
-        // Sunshine
-        if($type == 'sunshine'){
-        $xml_string .= '<bar_series scatter_point_width="0.4%" group_padding="0" point_padding="0">
-                            <bar_style>
-                                <fill enabled="true" type="Solid" color="#fff000" thickness="1"></fill>
-                                <border enabled="True" type="Gradient">
-                                    <gradient angle="90">
-                                        <key position="0" color="#ffd500"/>
-                                        <key position="0.3" color="#fff000"/>
-                                        <key position="1" color="#fff000"/>
-                                    </gradient>
-                                </border>
-                                <effects enabled="False"/>
-                            </bar_style>
-                        </bar_series>';
-        }
-        
-        // Precipitation
+        // Precipitation (rain6)
         if($type == 'precipitation' || $type == 'precip'){
         $xml_string .= '<bar_series point_padding="0" scatter_point_width="4.7%">
                             <bar_style>
@@ -606,8 +625,26 @@ class WeatherphStationForecast extends WeatherphAppModel
             
         }
         
-        // Humidity, Wind, Air Pressure and Wind Direction
-        if($type == 'humidity' || $type == 'wind' || $type == 'airpressure'){
+        // Air Pressure (qff)
+        if($type == 'airpressure'){
+        $xml_string .= '<bar_series point_padding="0" scatter_point_width="4.7%">
+                            <bar_style>
+                                <fill enabled="true" type="Gradient">
+                                    <gradient type="Radial">
+                                        <key position="0" color="#F5E616"/>
+                                        <!-- innen -->
+                                        <key position="1" color="#E3D50B"/>
+                                    </gradient>
+                                </fill>
+                                <border enabled="False"/>
+                                <effects enabled="False"/>
+                            </bar_style>
+                        </bar_series>';    
+            
+        }
+        
+        // Humidity, Wind and Wind Direction
+        if($type == 'humidity' || $type == 'wind'){
         $xml_string .= '<line_series>
                             <marker_settings enabled="false"/>
                             <line_style>
@@ -621,6 +658,33 @@ class WeatherphStationForecast extends WeatherphAppModel
                                 <line enabled="true" thickness="2" caps="round" joints="round"/>
                             </line_style>
                         </line_series>';
+        }
+        
+        // Sunshine
+        if($type == 'sunshine'){
+        $xml_string .= '<bar_series scatter_point_width="0.4%" group_padding="0" point_padding="0">
+                            <bar_style>
+                                <fill enabled="true" type="Solid" color="#fff000" thickness="1"></fill>
+                                <border enabled="True" type="Gradient">
+                                    <gradient angle="90">
+                                        <key position="0" color="#ffd500"/>
+                                        <key position="0.3" color="#fff000"/>
+                                        <key position="1" color="#fff000"/>
+                                    </gradient>
+                                </border>
+                                <effects enabled="False"/>
+                            </bar_style>
+                        </bar_series>';
+        }
+        
+        if($type == 'globalradiation'){
+        $xml_string .= '<bar_series scatter_point_width="0.4%" group_padding="0" point_padding="0">
+                            <bar_style>
+                                <fill enabled="true" type="Solid" color="#182DCC" thickness="1"></fill>
+                                <effects enabled="False"/>
+                            </bar_style>
+                        </bar_series>';   
+            
         }
         
         $xml_string .= '
@@ -698,21 +762,46 @@ class WeatherphStationForecast extends WeatherphAppModel
         
         if($type == 'temperature' || $type == 'temp'){
         
+            // Temperature
             $xml_string .= '
                     <series name="80b" style="tlline" use_hand_cursor="False" hoverable="False">
                         <tooltip enabled="false"/>';
         
-            foreach($arrData as $data){
-                $xml_string .= '<point name="'.$data['utcDate'].'" x="'.$data['utcDate'].'" y="'.$data['tl'].'"/><!-- '.date('Y-m-d H:i:s', $data['utcDate']).'-->';
+            foreach($arrData['tl'] as $data){
+                $xml_string .= '<point name="'.$data['utcDate'].'" x="'.$data['utcDate'].'" y="'.$data['data'].'"/><!-- '.date('Y-m-d H:i:s', $data['utcDate']).'-->';
             }
         
             $xml_string .='</series>';
-
-            $xml_string .='<series name="80c" style="tdline" use_hand_cursor="False" hoverable="False">
-                    <tooltip enabled="false"/>';
+            
+            // Dew Point
+            $xml_string .='
+                    <series name="80c" style="tdline" use_hand_cursor="False" hoverable="False">
+                        <tooltip enabled="false"/>';
         
-            foreach($arrData as $data){
-                $xml_string .= '<point name="'.$data['utcDate'].'" x="'.$data['utcDate'].'" y="'.$data['td'].'"/><!-- '.date('Y-m-d H:i:s', $data['utcDate']).'-->';
+            foreach($arrData['td'] as $data){
+                $xml_string .= '<point name="'.$data['utcDate'].'" x="'.$data['utcDate'].'" y="'.$data['data'].'"/><!-- '.date('Y-m-d H:i:s', $data['utcDate']).'-->';
+            }
+        
+            $xml_string .='</series>';
+            
+            // Maximum Temperature
+            $xml_string .='
+                    <series name="80d" style="noline" use_hand_cursor="False" hoverable="False">
+                        <marker enabled="true" style="dotblue"/>';
+        
+            foreach($arrData['tn'] as $data){
+                $xml_string .= '<point name="'.$data['utcDate'].'" x="'.$data['utcDate'].'" y="'.$data['data'].'"/><!-- '.date('Y-m-d H:i:s', $data['utcDate']).'-->';
+            }
+        
+            $xml_string .='</series>';
+            
+            // Minimum Temperature
+            $xml_string .='
+                    <series name="80e" style="noline" use_hand_cursor="False" hoverable="False">
+                        <marker enabled="true" style="dotred"/>';
+        
+            foreach($arrData['tx'] as $data){
+                $xml_string .= '<point name="'.$data['utcDate'].'" x="'.$data['utcDate'].'" y="'.$data['data'].'"/><!-- '.date('Y-m-d H:i:s', $data['utcDate']).'-->';
             }
         
             $xml_string .='</series>';
