@@ -1,7 +1,7 @@
 <script type="text/javascript" src="weatherph/js/weatherph/index.js"></script>
 <style type="text/css">
     .loader {
-        background: white url(<?= $this->webroot ?>theme/weatherph/img/loader-twirl.gif) no-repeat center center;
+        background: white url('<?= $this->webroot ?>theme/weatherph/img/loader-twirl.gif') no-repeat center center;
         width: 100%; height: 100%; display: block; visibility: none;
     }
     .loader-img {
@@ -29,10 +29,10 @@
                 </div>
             </div>
 
-            <div id="legend">
+            <div id="legend" class="shadow">
 <!--                            
-                <img src ="theme/weatherph/img/timeline.png"/>
--->
+                <img src ="theme/weatherph/img/timeline.png"/>-->
+
                 <div id="province-select">
                     <h6>Province:</h6>
                     <select name="philippine-regions">
@@ -64,18 +64,19 @@
                         </optgroup>
                     </select>
                 </div> <!--END PROVINCE SELECT-->
-                <!--<div id="station-color">
+<!--
+                <div id="station-color">
                     <img src="theme/weatherph/img/legend-blue.png" alt="" />
                     <h6>Meteomedia stations</h6>
                     <img src="theme/weatherph/img/legend-red.png" alt="" />
                     <h6>PAGASA stations</h6>
-                </div>-->
-<!--                            
-                <img src ="theme/weatherph/img/legend.png"/>
--->
+                </div>
+                            
+                <img src ="theme/weatherph/img/legend.png"/>-->
+
             </div> <!--END LEGEND-->
         </div>
-        <div id="info">
+        <div id="info" class="shadow">
             <div id="current-readings-panel">
                 <h2 class="current readings-location">&nbsp;</h2>
                 <a href="#" >change station</a>
@@ -105,13 +106,15 @@
 
             <div class="detail-page-link" style="text-align: center;">
                 <h2 style="height: 21px; text-align: center; width: 195px;">
-                    <a href="<?= $this->webroot ?>view" style="background: url(<?= $this->webroot ?>theme/weatherph/img/arrow.png) no-repeat left center; padding-left: 40px; margin: 0 auto;">
+                    <a href="<?= $this->webroot ?>view" style="background: url('<?= $this->webroot ?>theme/weatherph/img/arrow.png') no-repeat left center; padding-left: 40px; margin: 0 auto;">
                         More Details
                     </a>
                 </h2>
             </div>
-            <div id="forecast-details" class="day-forecast">
-                <span id="forecast-not-available" style="display:none; ">Forecast currently not available.</span>
+            <div class="no-forecast">
+                <p>Sorry, there's no forecast available for this station right now.</p>
+            </div>
+            <div class="day-forecast">
                 <ul>
                     <li class="forecast-highlight">
                         <h6 class="0-hour time">--:--</h6>
@@ -285,7 +288,7 @@
         <div class="posts">
             <h4>Intro to Typhoon Climatology</h4>
             <p>Tropical Cyclones have been a part of Filipino culture since time immemorial, since the Philippines is located within the tropics, surrounded by large sea and ocean basins namely the Western Pacific Ocean, The Philippine and South China Seas. These bodies of water are breeding grounds of tropical cyclones.</p>
-            <p>An average of 20 tropical cyclones enter the Philippine Area of Responsibility (PAR), where 10 cross the country (1948-2004 mean avg ‚Äì based on PAGASA Statistics) ‚Äì bringing destruction to properties and loss of lives.</p>
+            <p>An average of 20 tropical cyclones enter the Philippine Area of Responsibility (PAR), where 10 cross the country (1948-2004 mean average ‚based on PAGASA Statistics)‚ bringing destruction to properties and loss of lives.</p>
         </div>
 <!--
         <div class="news">

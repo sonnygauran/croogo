@@ -57,12 +57,12 @@ html, body, div, span, object, iframe, h1, h2, h3, dl dt, h4, h5, h6, p, blockqu
     margin-top: 10px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
-    border-radius: 5px;
+    border-radius: 8px;
 }
 
 .logo {
     float:left;
-    padding: 50px 10px;
+    margin: 60px 10px;
 }
 
 #options {
@@ -77,6 +77,10 @@ html, body, div, span, object, iframe, h1, h2, h3, dl dt, h4, h5, h6, p, blockqu
     margin-bottom: 10px;
 }
 
+#options > img {
+    margin-right: 20px;
+}
+
 #options > form > img {
     vertical-align: middle;
 }
@@ -86,7 +90,7 @@ html, body, div, span, object, iframe, h1, h2, h3, dl dt, h4, h5, h6, p, blockqu
 #slides {
     width: 240px;
     float: left;
-    margin-left: 10px;
+    margin-left: 30px;
 }
 
 .slidesContainer {
@@ -101,13 +105,13 @@ html, body, div, span, object, iframe, h1, h2, h3, dl dt, h4, h5, h6, p, blockqu
 }
 
 /*====================
-    MENU
+    NAV
 ====================*/
 
 nav {
-    width: 1000px;
-    margin: 10px 0;
-    padding: 5px 0;
+    width: 980px;
+    margin: 15px 0;
+    padding: 10px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
@@ -115,16 +119,27 @@ nav {
 
 nav li {
     display: inline;
-    padding: 1em;
+    padding: 10px 15px;
     font-size: .875em;
 }
 
 nav li + li {
-    border-left: 1px solid #fafafa;
+    border-left: 1px solid #2E4471;
 }
 
 nav li > a {
     text-decoration: none;
+}
+
+.severe-warning {
+    padding: 5px 5px;
+    margin: 10px auto;
+    text-align: center;
+    background-color: #aa1111;
+    color: #f1f1f1;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
 }
 
 /*====================
@@ -163,7 +178,8 @@ div.layerSelector li {
 }
 
 #legend {
-    width: 552px;
+    width: 542px;
+    padding: 5px;
     -webkit-border-bottom-right-radius: 5px;
     -webkit-border-bottom-left-radius: 5px;
     -moz-border-radius-bottomright: 5px;
@@ -171,7 +187,6 @@ div.layerSelector li {
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
     overflow: auto;
-    border: solid 1px #2F4771;
 }
 
 #legend > img {
@@ -198,65 +213,66 @@ div.layerSelector li {
     width: 238px;
     float:left;
     border-radius: 5px;
-    border: 1px solid #2F4771;
-}
-
-#info a {
-    float:right;
 }
 
 #current-readings-panel {
-    padding: 10px 10px 0 10px;
+    padding: 15px 10px 5px;
 }
 
 h6.time {
-    padding: 0 5px;
+    padding: 1px 5px;
+}
+
+.no-forecast {
+    margin: 25px 15px;
+    text-align:center;
+    display: none;
 }
 
 /*READINGS*/
-div.readings {
+.readings {
     clear: both;
-    margin: 3px auto;
-    padding: 0 10px;
+    padding: 5px 10px;
     overflow: hidden;
-    position: relative;
     vertical-align: middle;
+}
+
+readings > p {
+    margin: 1px 3px 3px;
 }
 
 span.temperature {
     font-weight: 600;
     font-size: 1.875em;
-    min-width: 25px;
 }
 
 .readings > span {
-    margin: 5px auto 0 auto;
+    margin: auto 2px;
     float: left;
 }
 
 .readings > table {
     float: left;
-    padding: 3px 5px;
-    min-width: 65px;
 }
 
 .readings >table td {
     padding-left: 5px;
 }
-
 /*END READINGS*/
 
 .detail-page-link {
-    width: 100%;
-    padding: 10px 0;
+    padding: 10px;
     text-align: center;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
 }
 
-.detail-page-link > h2 {
-    display: inline-block;
-    margin: 0 auto;
+.detail-page-link > img {
+    display: inline;
+}
+
+.detail-page-link > a {
+    font-size: 2em;
+    font-weight: 600;
+    display: inline;
 }
 
 .forecast-highlight {
@@ -329,11 +345,6 @@ span.temperature {
 /*====================
     DETAIL
 ====================*/
-
-.content {
-    width: 804px;
-}
-
 #weekWeather, #charts, #outlook {
     margin: 10px auto;
 }
@@ -350,7 +361,7 @@ span.temperature {
 }
 
 #station {
-    width: 161px;
+    width: 250px;
 }
 
 #station > p {
@@ -358,7 +369,7 @@ span.temperature {
 }
 
 #condition, #conditionTable  {
-    width: 261px;
+    width: 185px;
 }
 
 #condition > table, #conditionTable > table {
@@ -367,7 +378,7 @@ span.temperature {
 
 #condition td {
     vertical-align: middle;
-    padding: 0;
+    padding: 3px;
 }
 
 #conditionTable td {
@@ -418,7 +429,7 @@ div.current-tab {
 ===============*/
 
 .week-forecast td {
-    padding: 1em;
+    padding: 10px;
     text-align: center;
     border: 1px solid #d6dfeb;
 }
@@ -434,8 +445,7 @@ div.current-tab {
 
 .sponsored {
     padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid black;
+    margin-bottom: 15px;
     border-radius: 8px;
 }
 
@@ -502,8 +512,7 @@ h5, h6 {
 }
 
 #info {
-    font-size: .75em;
-    font-weight: 300;
+    font-size: .85em;
 }
 
 .logo {
@@ -530,23 +539,28 @@ h5, h6 {
 ========================================*/
 
 html {
-    color: #2F4771;
+    color: #365283;
+}
+
+body {
+    background: transparent url('<?= $this->webroot ?>theme/weatherph/img/bg.png');
 }
 
 .banner {
     color: #fafafa;
     background:#3e5e95 url('<?= $this->webroot ?>theme/weatherph/img/banner-plain.png') top left no-repeat;
+    -webkit-box-shadow: 0 0 1px 1px #343434;
+    -moz-box-shadow:    0 0 1px 1px #343434;
+    box-shadow:         0 0 1px 1px #343434;
 }
 
 nav, .layerSelector, .promo, #info {
-    background: #2F4771;
+    background: #365283;
     color: #fafafa;
 }
 
-#info > div.readings {
+#info > .readings {
     background-color: #723A71;
-    margin-bottom: 0;
-    border-top: 1px solid black;
 }
 
 .detail-page-link {
@@ -574,6 +588,13 @@ nav, .layerSelector, .promo, #info {
     vertical-align: middle;
 }
 
+.sponsored {
+    background: white;
+    -moz-box-shadow:    inset 0 0 5px #000000;
+    -webkit-box-shadow: inset 0 0 5px #000000;
+    box-shadow:         inset 0 0 5px #000000;
+}
+
 /*========================================
 5.	States
 ========================================*/
@@ -594,7 +615,7 @@ a {
 }
 
 a:hover {
-    text-shadow: #ffffff 0 0 20px;
+    text-shadow: #ffffff 0 0 1px;
 }
 
 a:link, a:visited {
@@ -610,7 +631,13 @@ footer a:link, footer a:visited {
     border-top: 1px solid red;
 }
 
-span.symbol { background: url(<?= $this->webroot ?>theme/weatherph/img/warning-sprites.png) -5px -65px no-repeat; height: 30px; width: 40px; display: block; margin-left: 10px; float: left; }
+.shadow {
+    -webkit-box-shadow: 0 4px 3px -3px black;
+    -moz-box-shadow: 0 4px 3px -3px black;
+    box-shadow: 0 4px 3px -3px black;
+}
+
+span.symbol { background: url('<?= $this->webroot ?>theme/weatherph/img/warning-sprites.png') -5px -65px no-repeat; height: 30px; width: 40px; display: block; margin-left: 10px; float: left; }
 
 span.day_1 { background-position: -70px -180px; }
 span.day_2 { background-position: -125px -180px; }

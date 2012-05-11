@@ -25,7 +25,6 @@
             'jquery/jquery.hoverIntent.minified',
             'jquery/superfish',
             'jquery/supersubs',
-            'theme',
             'libs/jquery.geo-1.0a4',
             'slides.min.jquery',
         ));
@@ -70,7 +69,7 @@
                 </div>
             </header> <!--BANNER-->
 
-            <nav>
+            <nav class="shadow">
                 <ul>
                     <li><a href="<?= $this->webroot ?>">Home</a></li>
                     <li><a href="<?= $this->webroot ?>view">Detailed Forecasts</a></li>
@@ -81,6 +80,11 @@
                     <li><a href="#">Impressum</a></li>
                 </ul>
             </nav>
+<!--            
+            <div class="severe-warning shadow">
+                <p><strong>Alert:</strong> Typhoon Dador is approaching the NCR. No classes in all levels. Stay at home!</p>
+            </div>
+-->
 <?php
 
 echo $this->Layout->sessionFlash();

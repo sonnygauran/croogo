@@ -806,6 +806,24 @@ class WeatherphStationForecast extends WeatherphAppModel
         
             $xml_string .='</series>';
         
+        $xml_string .='<series name="80d" style="noline" use_hand_cursor="True" hoverable="False">';
+        $xml_string .='<marker enabled="true" style="dotblue"/>';
+        foreach($arrData as $key=>$value){
+            if($key == '2' || $key == '10' || $key == '18' || $key == '26' || $key == '34'){
+                $xml_string .= '<point name="'.$value['utcDate'].'" x="'.$value['utcDate'].'" y="'.$value['tn'].'"/><!-- '.date('Y-m-d H:i:s', $value['utcDate']).'-->';
+            }
+        }
+        $xml_string .='</series>';
+
+        $xml_string .='<series name="80e" style="noline" use_hand_cursor="True" hoverable="False">';
+        $xml_string .='<marker enabled="true" style="dotred"/>';
+        foreach($arrData as $key=>$value){
+            if($key == '6' || $key == '14' || $key == '22' || $key == '30' || $key == '38'){
+                $xml_string .= '<point name="'.$value['utcDate'].'" x="'.$value['utcDate'].'" y="'.$value['tx'].'"/><!-- '.date('Y-m-d H:i:s', $value['utcDate']).'-->';
+            }
+        }
+        $xml_string .='</series>';
+        
         }elseif($type == 'wind'){
             
             $xml_string .= '
@@ -916,12 +934,12 @@ class WeatherphStationForecast extends WeatherphAppModel
         
         //Convert 
         $expected = strstr($csv, $headersSpecimen);
-
+       
         if ($expected == '') {
-            $error = 'There was an error generating the CSV from '.$url;
-            $this->log($error);
-            throw new Exception('There was an error generating the CSV');
-            return array();
+          $error = 'There was an error generating the CSV from '.$url;
+           $this->log($error);
+           throw new Exception('There was an error generating the CSV');
+           return array();
         }
 
         $rows = explode("\n", $csv);
