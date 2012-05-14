@@ -151,7 +151,7 @@
                 <div class="temperature panel current-tab">
                   <script type="text/javascript" language="javascript">
                         //<![CDATA[
-                            var chart = new AnyChart('../weatherph/swf/AnyChart.swf');
+                            var chart = new AnyChart('<?= $this->webroot ?>weatherph/swf/AnyChart.swf');
                             chart.width = 830;
                             chart.height = 200;
                             chart.setXMLFile('<?= $this->webroot ?>getDetailedForecast/<?= $weeklyForecasts['stationId']; ?>/temperature/3h');
@@ -162,7 +162,7 @@
                 <div class="precipitation panel">
                   <script type="text/javascript" language="javascript">
                         //<![CDATA[
-                            var chart = new AnyChart('../weatherph/swf/AnyChart.swf');
+                            var chart = new AnyChart('<?= $this->webroot ?>weatherph/swf/AnyChart.swf');
                             chart.width = 830;
                             chart.height = 200;
                             chart.setXMLFile('<?= $this->webroot ?>getDetailedForecast/<?= $weeklyForecasts['stationId']; ?>/precip');
@@ -173,7 +173,7 @@
                 <div class="wind panel">
                   <script type="text/javascript" language="javascript">
                         //<![CDATA[
-                            var chart = new AnyChart('../weatherph/swf/AnyChart.swf');
+                            var chart = new AnyChart('<?= $this->webroot ?>weatherph/swf/AnyChart.swf');
                             chart.width = 830;
                             chart.height = 200;
                             chart.setXMLFile('<?= $this->webroot ?>getDetailedForecast/<?= $weeklyForecasts['stationId']; ?>/wind');
@@ -184,7 +184,7 @@
                 <div class="humidity panel">
                   <script type="text/javascript" language="javascript">
                         //<![CDATA[
-                            var chart = new AnyChart('../weatherph/swf/AnyChart.swf');
+                            var chart = new AnyChart('<?= $this->webroot ?>weatherph/swf/AnyChart.swf');
                             chart.width = 830;
                             chart.height = 200;
                             chart.setXMLFile('<?= $this->webroot ?>getDetailedForecast/<?= $weeklyForecasts['stationId']; ?>/humidity');
