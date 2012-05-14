@@ -5,20 +5,20 @@
 
 <div class="content">
     <section class="main">
-        <div id="currentWeather">
+        <div id="currentWeather" class="shadow">
             <div id="station">
-                <p>Current readings from:</p>
                 <h1><?= $weeklyForecasts['ort1']; ?></h1>
-                <a href="#">change station</a>
+<!--                <a href="#">change station</a>-->
             </div> <!--END STATION-->
 
             <div id="condition">
                 <table>
                     <tbody>
-                        <tr>
-                            <td><!--img src="/theme/weatherph/img/cloudy.png"/--></td>
+<!--                        <tr>
+                            <td>img src="/theme/weatherph/img/cloudy.png"/</td>
                             <td><?= $weeklyForecasts['reading']['tl']; ?>&deg;C</td>
                         </tr>
+-->
                         <tr>
                             <td><span class="symbol sunrise"></span></td>
                             <td>Sunrise: <?= date("h:iA",strtotime($weeklyForecasts['reading']['sunrise'])); ?></td>

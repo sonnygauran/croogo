@@ -25,7 +25,6 @@
             </div> <!--LAYER SELECTOR-->
             <div id="map">
                 <div class="loader" style="">
-
                 </div>
             </div>
 
@@ -82,8 +81,8 @@
                 <a href="#" >change station</a>
                 <h4>Current Readings:</h4>
             </div>
-            <div class="readings">
-                <p style="margin: 5px 0;">last updated: <span class="last-update">--:--</span></p>
+            <div class="readings shadow">
+                <p>last updated: <span class="last-update">--:--</span></p>
                 <span class="current temperature"><span>&nbsp;</span>&deg;C</span>
                 <span class="symbol"></span>
                 <table>
@@ -104,7 +103,7 @@
                 </table>
             </div>
 
-            <div class="detail-page-link" style="text-align: center;">
+            <div class="detail-page-link">
                 <h2 style="height: 21px; text-align: center; width: 195px;">
                     <a href="<?= $this->webroot ?>view" style="background: url('<?= $this->webroot ?>theme/weatherph/img/arrow.png') no-repeat left center; padding-left: 40px; margin: 0 auto;">
                         More Details
