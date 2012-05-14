@@ -96,9 +96,9 @@ echo $content_for_layout;
                             <li><?php echo $this->Html->image('ICTS.jpg'); ?></li>
                             <li><?php echo $this->Html->image('NAC1.png'); ?></li>
                             <li><?php echo $this->Html->image('SGS1.png'); ?></li>
-                            <li><?php echo $this->Html->image('vistaland.jpg'); ?></li>
+                            <li><?php echo $this->Html->image('vistaland1.png'); ?></li>
                             <li><?php echo $this->Html->image('ngcp1.png'); ?></li>
-                            <li><?php echo $this->Html->image('sumitomo.png'); ?></li>
+                            <li><?php echo $this->Html->image('sumitomo1.png'); ?></li>
                             <li><?php echo $this->Html->image('sm.gif'); ?></li>
                             <li><?php echo $this->Html->image('tyk.jpg'); ?></li>
                         </ul>

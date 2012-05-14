@@ -129,6 +129,7 @@ nav li + li {
 
 nav li > a {
     text-decoration: none;
+    border-bottom: 1px solid #f1f1f1;
 }
 
 .severe-warning {
@@ -188,6 +189,7 @@ div.layerSelector li {
 
 #legend {
     width: 542px;
+    position:relative; /* IE 7 Scrollbar fix */
     padding: 5px;
     border-top: 1px solid #ddd;
     -webkit-border-bottom-right-radius: 5px;
@@ -590,7 +592,7 @@ nav, .layerSelector, .promo, #info, .week-forecast .time, .output {
 }
 
 .sponsored {
-    background: #eee;
+    background: #fafafa;
     -moz-box-shadow:    inset 0 0 1px 2px #aaa;
     -webkit-box-shadow: inset 0 0 1px 2px #aaa;
     box-shadow:         inset  0 0 1px 2px #aaa;
