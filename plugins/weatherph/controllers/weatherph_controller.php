@@ -132,7 +132,7 @@ class WeatherphController extends WeatherphAppController {
     
     public function getDetailedForecast($stationID = '984290', $type = NULL, $timeRes = '3h', $startDatum = NULL){
         
-        $this->layout = 'xml';
+        
         App::import('Model', 'Weatherph.WeatherphStationForecast');
         
         $WeatherphStationForecast = new WeatherphStationForecast();
@@ -143,20 +143,29 @@ class WeatherphController extends WeatherphAppController {
             'startDatum' => $startDatum,
         )));
         
-        //debug($detailedForecast);exit;
+        if($type != NULL){
         
-        $WeatherphStationForecast = new WeatherphStationForecast();
-        $anyChartXML = $WeatherphStationForecast->arrayToAnyChartXML('all', array('conditions' => array(
-            'arrData' => $detailedForecast,
-            'type' => $type,
-        )));
+            $WeatherphStationForecast = new WeatherphStationForecast();
+            $anyChartXML = $WeatherphStationForecast->arrayToAnyChartXML('all', array('conditions' => array(
+                'arrData' => $detailedForecast,
+                'type' => $type,
+            )));
+            
+            $this->layout = 'xml';
+            $this->set('outputData', $anyChartXML);
         
-        $this->set('anyChartXML', $anyChartXML);
+        }else{
+            
+            $this->layout = 'plain';
+            $this->set('outputData', $detailedForecast);
+            
+        }
     }
     
-    public function detailedForecast(){
+    public function detailedForecast($stationID = '984290'){
         
-        $this->layout = 'default';
+        $this->layout = 'plain';
+        $this->set('stationID', $stationID);
         
     }
     

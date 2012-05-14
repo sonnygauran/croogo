@@ -1,7 +1,7 @@
 <?php //echo $this->Html->script('AnyChart.js'); ?>
 
-<script type="text/javascript" src="../weatherph/js/weatherph/view.js"></script>
-<script type="text/javascript" src="../weatherph/js/weatherph/AnyChart.js"></script>
+<script type="text/javascript" src="<?= $this->webroot ?>weatherph/js/weatherph/view.js"></script>
+<script type="text/javascript" src="<?= $this->webroot ?>weatherph/js/weatherph/AnyChart.js"></script>
 
 <div class="content">
     <section class="main">
@@ -151,10 +151,10 @@
                 <div class="temperature panel current-tab">
                   <script type="text/javascript" language="javascript">
                         //<![CDATA[
-                            var chart = new AnyChart('../weatherph/swf/AnyChart.swf');
+                            var chart = new AnyChart('<?= $this->webroot ?>swf/AnyChart.swf');
                             chart.width = 830;
                             chart.height = 200;
-                            chart.setXMLFile('http://weatherph/getDetailedForecast/<?= $weeklyForecasts['stationId']; ?>/temperature/3h');
+                            chart.setXMLFile('<?= $this->webroot ?>getDetailedForecast/<?= $weeklyForecasts['stationId']; ?>/temperature/3h');
                             chart.write();
                         //]]>
                     </script>
@@ -162,10 +162,10 @@
                 <div class="precipitation panel">
                   <script type="text/javascript" language="javascript">
                         //<![CDATA[
-                            var chart = new AnyChart('../weatherph/swf/AnyChart.swf');
+                            var chart = new AnyChart('<?= $this->webroot ?>swf/AnyChart.swf');
                             chart.width = 830;
                             chart.height = 200;
-                            chart.setXMLFile('http://weatherph/getDetailedForecast/<?= $weeklyForecasts['stationId']; ?>/precip');
+                            chart.setXMLFile('<?= $this->webroot ?>getDetailedForecast/<?= $weeklyForecasts['stationId']; ?>/precip');
                             chart.write();
                         //]]>
                     </script>
@@ -173,10 +173,10 @@
                 <div class="wind panel">
                   <script type="text/javascript" language="javascript">
                         //<![CDATA[
-                            var chart = new AnyChart('../weatherph/swf/AnyChart.swf');
+                            var chart = new AnyChart('<?= $this->webroot ?>swf/AnyChart.swf');
                             chart.width = 830;
                             chart.height = 200;
-                            chart.setXMLFile('http://weatherph/getDetailedForecast/<?= $weeklyForecasts['stationId']; ?>/wind');
+                            chart.setXMLFile('<?= $this->webroot ?>getDetailedForecast/<?= $weeklyForecasts['stationId']; ?>/wind');
                             chart.write();
                         //]]>
                     </script>
@@ -184,10 +184,10 @@
                 <div class="humidity panel">
                   <script type="text/javascript" language="javascript">
                         //<![CDATA[
-                            var chart = new AnyChart('../weatherph/swf/AnyChart.swf');
+                            var chart = new AnyChart('<?= $this->webroot ?>swf/AnyChart.swf');
                             chart.width = 830;
                             chart.height = 200;
-                            chart.setXMLFile('http://weatherph/getDetailedForecast/<?= $weeklyForecasts['stationId']; ?>/humidity');
+                            chart.setXMLFile('<?= $this->webroot ?>getDetailedForecast/<?= $weeklyForecasts['stationId']; ?>/humidity');
                             chart.write();
                         //]]>
                     </script>

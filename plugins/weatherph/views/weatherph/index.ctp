@@ -78,6 +78,8 @@
         <div id="info" class="shadow">
             <div id="current-readings-panel">
                 <h2 class="current readings-location">&nbsp;</h2>
+                <a href="#" >change station</a>
+                <h4>Current Readings:</h4>
             </div>
             <div class="readings shadow">
                 <p>last updated: <span class="last-update">--:--</span></p>
