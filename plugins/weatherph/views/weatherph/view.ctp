@@ -1,7 +1,7 @@
 <?php //echo $this->Html->script('AnyChart.js'); ?>
 
-<script type="text/javascript" src="../weatherph/js/weatherph/view.js"></script>
-<script type="text/javascript" src="../weatherph/js/weatherph/AnyChart.js"></script>
+<script type="text/javascript" src="<?= $this->webroot ?>weatherph/js/weatherph/view.js"></script>
+<script type="text/javascript" src="<?= $this->webroot ?>weatherph/js/weatherph/AnyChart.js"></script>
 
 <div class="content">
     <section class="main">
