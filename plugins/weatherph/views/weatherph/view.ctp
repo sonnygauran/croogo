@@ -154,7 +154,7 @@
                             var chart = new AnyChart('../weatherph/swf/AnyChart.swf');
                             chart.width = 830;
                             chart.height = 200;
-                            chart.setXMLFile('http://weatherph/getDetailedForecast/<?= $weeklyForecasts['stationId']; ?>/temperature/3h');
+                            chart.setXMLFile('<?= $this->webroot ?>getDetailedForecast/<?= $weeklyForecasts['stationId']; ?>/temperature/3h');
                             chart.write();
                         //]]>
                     </script>
@@ -165,7 +165,7 @@
                             var chart = new AnyChart('../weatherph/swf/AnyChart.swf');
                             chart.width = 830;
                             chart.height = 200;
-                            chart.setXMLFile('http://weatherph/getDetailedForecast/<?= $weeklyForecasts['stationId']; ?>/precip');
+                            chart.setXMLFile('<?= $this->webroot ?>getDetailedForecast/<?= $weeklyForecasts['stationId']; ?>/precip');
                             chart.write();
                         //]]>
                     </script>
@@ -176,7 +176,7 @@
                             var chart = new AnyChart('../weatherph/swf/AnyChart.swf');
                             chart.width = 830;
                             chart.height = 200;
-                            chart.setXMLFile('http://weatherph/getDetailedForecast/<?= $weeklyForecasts['stationId']; ?>/wind');
+                            chart.setXMLFile('<?= $this->webroot ?>getDetailedForecast/<?= $weeklyForecasts['stationId']; ?>/wind');
                             chart.write();
                         //]]>
                     </script>
@@ -187,7 +187,7 @@
                             var chart = new AnyChart('../weatherph/swf/AnyChart.swf');
                             chart.width = 830;
                             chart.height = 200;
-                            chart.setXMLFile('http://weatherph/getDetailedForecast/<?= $weeklyForecasts['stationId']; ?>/humidity');
+                            chart.setXMLFile('<?= $this->webroot ?>getDetailedForecast/<?= $weeklyForecasts['stationId']; ?>/humidity');
                             chart.write();
                         //]]>
                     </script>
