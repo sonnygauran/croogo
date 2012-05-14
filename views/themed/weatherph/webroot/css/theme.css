@@ -132,14 +132,19 @@ nav li > a {
 }
 
 .severe-warning {
-    padding: 5px 5px;
-    margin: 10px auto;
+    width: 75%;
+    padding: 8px;
+    margin: -15px auto 15px;
+    border-top: 1px solid #333;
     text-align: center;
     background-color: #aa1111;
     color: #f1f1f1;
-    -webkit-border-radius: 8px;
-    -moz-border-radius: 8px;
-    border-radius: 8px;
+    -webkit-border-bottom-right-radius: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+    -moz-border-radius-bottomright: 5px;
+    -moz-border-radius-bottomleft: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
 
 /*====================
@@ -155,18 +160,22 @@ nav li > a {
     height: 554px;
 }
 
-div.layerSelector {
+.layerSelector {
     width: 554px;
     text-align: center;
+    border-bottom: 1px solid #555;
     -webkit-border-top-left-radius: 5px;
     -webkit-border-top-right-radius: 5px;
     -moz-border-radius-topleft: 5px;
     -moz-border-radius-topright: 5px;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
+    -moz-box-shadow:    inset 0 2px 1px #333;
+    -webkit-box-shadow: inset 0 2px 1px #333;
+    box-shadow:         inset 0 2px 1px #333;
 }
 
-div.layerSelector ul {
+div.layerSelector ul { 
     width: 534px;
     padding: 10px;
 }
@@ -180,6 +189,7 @@ div.layerSelector li {
 #legend {
     width: 542px;
     padding: 5px;
+    border-top: 1px solid #ddd;
     -webkit-border-bottom-right-radius: 5px;
     -webkit-border-bottom-left-radius: 5px;
     -moz-border-radius-bottomright: 5px;
@@ -212,6 +222,8 @@ div.layerSelector li {
 #info {
     width: 238px;
     float:left;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
     border-radius: 5px;
 }
 
@@ -265,6 +277,10 @@ span.temperature {
     text-align: center;
 }
 
+.detail-page-link > h2 {
+text-shadow: 0px 2px 3px #555;
+}
+
 .detail-page-link > img {
     display: inline;
 }
@@ -276,8 +292,8 @@ span.temperature {
 }
 
 .forecast-highlight {
-    background-color: #fafafa;
-    color: #2F4771;
+    background-color: #f1f1f1;
+    color: #365283;
 }
 
 /*====================
@@ -286,6 +302,7 @@ span.temperature {
 #secondary{
     width: 794px;
 }
+
 .secondary h4, h6 {
     padding-bottom: 1em;
 }
@@ -356,24 +373,16 @@ span.temperature {
 
 #station, #condition, #conditionTable {
     float:left;
-    margin: 10px;
-    padding: 10px;
+    margin: 5px 10px;
+    padding: 5px 10px;
 }
 
 #station {
-    width: 250px;
+    max-width: 240px;
 }
 
-#station > p {
-    font-size: .875em;
-}
-
-#condition, #conditionTable  {
-    width: 185px;
-}
-
-#condition > table, #conditionTable > table {
-    width: 100%;
+#station h1 {
+    text-shadow: 0px 2px 3px #555;
 }
 
 #condition td {
@@ -392,7 +401,7 @@ span.temperature {
     font-weight: bold;
 }
 
-#week-forecast table {
+.week-forecast{
     width: 100%;
 }
 
@@ -402,13 +411,13 @@ span.temperature {
 
 ul.tabs {
     margin-top: 1em;
-    border-bottom: 15px solid #2F4771;
+    border-bottom: 15px solid #365283;
 }
 
 .tabs li {
     display: inline;
     padding: 5px 10px 0 10px;
-    border-bottom: 1px solid #2E4471;
+    border-bottom: 1px solid #365283;
     cursor: pointer;
 }
 
@@ -549,50 +558,42 @@ body {
 .banner {
     color: #fafafa;
     background:#3e5e95 url('<?= $this->webroot ?>theme/weatherph/img/banner-plain.png') top left no-repeat;
-    -webkit-box-shadow: 0 0 1px 1px #343434;
-    -moz-box-shadow:    0 0 1px 1px #343434;
-    box-shadow:         0 0 1px 1px #343434;
+    border: 1px solid #365283;
 }
 
-nav, .layerSelector, .promo, #info {
+nav, .layerSelector, .promo, #info, .week-forecast .time, .output {
     background: #365283;
     color: #fafafa;
 }
 
-#info > .readings {
-    background-color: #723A71;
+#current-readings-panel, #info > .readings, #currentWeather, .tabs li {
+    background-color: #3e5e95;
+    color: #fafafa;
 }
 
-.detail-page-link {
-    background: #43597C;
-    color: #fafafa;
+#legend {
+    background-color: #f1f1f1;
+}
+
+.current.readings-location, nav li {
+    text-shadow: 0px 1px 3px #333;
 }
 
 .news li:nth-child(odd) {
     background: #e1e6f3;
 }
 
-#currentWeather, .tabs li {
-    background: #43597E;
-    color: #fafafa;
-}
-
-.week-forecast .time, .output {
-    background-color: #2F4771;
-    color: #fafafa;
-}
-
 .caption {
     background-color: #fafafa;
-    color: #2F4771;
+    color: #365283;
     vertical-align: middle;
 }
 
 .sponsored {
-    background: white;
-    -moz-box-shadow:    inset 0 0 5px #000000;
-    -webkit-box-shadow: inset 0 0 5px #000000;
-    box-shadow:         inset 0 0 5px #000000;
+    background: #eee;
+    -moz-box-shadow:    inset 0 0 1px 2px #aaa;
+    -webkit-box-shadow: inset 0 0 1px 2px #aaa;
+    box-shadow:         inset  0 0 1px 2px #aaa;
 }
 
 /*========================================
@@ -615,7 +616,7 @@ a {
 }
 
 a:hover {
-    text-shadow: #ffffff 0 0 1px;
+    text-shadow: white 0 0 1px;
 }
 
 a:link, a:visited {
@@ -628,7 +629,8 @@ footer a:link, footer a:visited {
 }
 
 .tabs li.current-tab {
-    border-top: 1px solid red;
+    border-top: 1px solid #aa1111;
+    background-color: #365283;
 }
 
 .shadow {
@@ -700,6 +702,3 @@ span.moonphase_7 { background-position: -540px 5px; }
 
 span.sunrise { background-position: 0px 5px; }
 span.sunset { background-position: -60px 5px; }
-
-.day-forecast table { float: left; }
-.week-forecast { width: 100% ;}

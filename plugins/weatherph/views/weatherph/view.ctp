@@ -5,20 +5,20 @@
 
 <div class="content">
     <section class="main">
-        <div id="currentWeather">
+        <div id="currentWeather" class="shadow">
             <div id="station">
-                <p>Current readings from:</p>
                 <h1><?= $weeklyForecasts['ort1']; ?></h1>
-                <a href="#">change station</a>
+<!--                <a href="#">change station</a>-->
             </div> <!--END STATION-->
 
             <div id="condition">
                 <table>
                     <tbody>
-                        <tr>
-                            <td><!--img src="/theme/weatherph/img/cloudy.png"/--></td>
+<!--                        <tr>
+                            <td>img src="/theme/weatherph/img/cloudy.png"/</td>
                             <td><?= $weeklyForecasts['reading']['tl']; ?>&deg;C</td>
                         </tr>
+-->
                         <tr>
                             <td><span class="symbol sunrise"></span></td>
                             <td>Sunrise: <?= date("h:iA",strtotime($weeklyForecasts['reading']['sunrise'])); ?></td>
@@ -154,7 +154,7 @@
                             var chart = new AnyChart('../weatherph/swf/AnyChart.swf');
                             chart.width = 830;
                             chart.height = 200;
-                            chart.setXMLFile('http://weatherph/getDetailedForecast/<?= $weeklyForecasts['stationId']; ?>/temperature/3h');
+                            chart.setXMLFile('<?= $this->webroot ?>getDetailedForecast/<?= $weeklyForecasts['stationId']; ?>/temperature/3h');
                             chart.write();
                         //]]>
                     </script>
@@ -165,7 +165,7 @@
                             var chart = new AnyChart('../weatherph/swf/AnyChart.swf');
                             chart.width = 830;
                             chart.height = 200;
-                            chart.setXMLFile('http://weatherph/getDetailedForecast/<?= $weeklyForecasts['stationId']; ?>/precip');
+                            chart.setXMLFile('<?= $this->webroot ?>getDetailedForecast/<?= $weeklyForecasts['stationId']; ?>/precip');
                             chart.write();
                         //]]>
                     </script>
@@ -176,7 +176,7 @@
                             var chart = new AnyChart('../weatherph/swf/AnyChart.swf');
                             chart.width = 830;
                             chart.height = 200;
-                            chart.setXMLFile('http://weatherph/getDetailedForecast/<?= $weeklyForecasts['stationId']; ?>/wind');
+                            chart.setXMLFile('<?= $this->webroot ?>getDetailedForecast/<?= $weeklyForecasts['stationId']; ?>/wind');
                             chart.write();
                         //]]>
                     </script>
@@ -187,7 +187,7 @@
                             var chart = new AnyChart('../weatherph/swf/AnyChart.swf');
                             chart.width = 830;
                             chart.height = 200;
-                            chart.setXMLFile('http://weatherph/getDetailedForecast/<?= $weeklyForecasts['stationId']; ?>/humidity');
+                            chart.setXMLFile('<?= $this->webroot ?>getDetailedForecast/<?= $weeklyForecasts['stationId']; ?>/humidity');
                             chart.write();
                         //]]>
                     </script>

@@ -107,21 +107,31 @@ $.ajax({
                 $('#info .readings .symbol:eq(0)').addClass($stationReadings.reading.sy);
                 $('.current.time').html($stationReadings.reading.uthc);
                 
-                for (var key in $stationReadings.forecast) {
-                    sr_temperature = $stationReadings.forecast[key].tl;
-                    sr_wind = $stationReadings.forecast[key].ff;
-                    sr_precip = $stationReadings.forecast[key].rr;
-                    sr_humidity = $stationReadings.forecast[key].rh;
+                if($stationReadings.forecast.status == 'ok'){
                     
-                    $('.' + key + '-hour .symbol').addClass($stationReadings.forecast[key].sy);
-                    $('.' + key + '-hour.time').html($stationReadings.forecast[key].utch);
-                    $('.' + key + '-hour .temperature span').html(sr_temperature);
-                    $('.' + key + '-hour .wind span').html(sr_wind);
-                    $('.' + key + '-hour .precipitation span').html(sr_precip);
-                    $('.' + key + '-hour .humidity span').html(sr_humidity);
-                    
-                } 
+                    showForecast();
+                
+                    for (var key in $stationReadings.forecast) {
+                        sr_temperature = $stationReadings.forecast[key].tl;
+                        sr_wind = $stationReadings.forecast[key].ff;
+                        sr_precip = $stationReadings.forecast[key].rr;
+                        sr_humidity = $stationReadings.forecast[key].rh;
 
+                        $('.' + key + '-hour .symbol').addClass($stationReadings.forecast[key].sy);
+                        $('.' + key + '-hour.time').html($stationReadings.forecast[key].utch);
+                        $('.' + key + '-hour .temperature span').html(sr_temperature);
+                        $('.' + key + '-hour .wind span').html(sr_wind);
+                        $('.' + key + '-hour .precipitation span').html(sr_precip);
+                        $('.' + key + '-hour .humidity span').html(sr_humidity);
+
+                    } 
+                    
+                    
+
+                }else{
+                    hideForecast();
+                }
+                
                 $('.loader').fadeOut();
                 $('.detail-page-link a').attr({href: '<?= $this->webroot ?>view/'+id});
                 
@@ -130,6 +140,18 @@ $.ajax({
         });
 }
 
+function hideForecast(){
+    $('#forecast-details ul').fadeOut(function(){
+        $('#forecast-not-available').fadeIn();
+    });
+    
+}
+
+function showForecast(){
+    $('#forecast-details ul').fadeIn(function(){
+        $('#forecast-not-available').fadeOut();
+    });
+}
 
 //Stations
 var $data = {
