@@ -29,8 +29,8 @@
             </div>
 
             <div id="legend" class="shadow">
-<!--                            
-                <img src ="theme/weatherph/img/timeline.png"/>-->
+                            
+<!--                <img src ="theme/weatherph/img/timeline.png"/>-->
 
                 <div id="province-select">
                     <h6>Province:</h6>
@@ -293,11 +293,11 @@
         <div class="news">
             <h4>Breaking News</h4>
             <ul>
-                <li><img src="<?= $this->webroot ?>theme/weatherph_compact/img/thumbnail.png"/><p>Breaking News</p></li>
-                <li><img src="<?= $this->webroot ?>theme/weatherph_compact/img/thumbnail2.png"/><p>Weather TV</p></li>
-                <li><img src="<?= $this->webroot ?>theme/weatherph_compact/img/thumbnail3.png"/><p>Mike Padua: Typhoons, Explained</p></li>
-                <li><img src="<?= $this->webroot ?>theme/weatherph_compact/img/thumbnail.png"/><p>Meteomedia Weather Shop</p></li>
-                <li><img src="<?= $this->webroot ?>theme/weatherph_compact/img/thumbnail2.png"/><p>Webcams</p></li>
+                <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail.png"/><p>Breaking News</p></li>
+                <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail2.png"/><p>Weather TV</p></li>
+                <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail3.png"/><p>Mike Padua: Typhoons, Explained</p></li>
+                <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail.png"/><p>Meteomedia Weather Shop</p></li>
+                <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail2.png"/><p>Webcams</p></li>
             </ul>
         </div>-->
 
