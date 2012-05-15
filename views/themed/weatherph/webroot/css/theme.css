@@ -233,6 +233,16 @@ h6.time {
     padding: 1px 5px;
 }
 
+#current-readings-box {
+    
+}
+
+.no-readings {
+    margin: 25px 15px;
+    text-align:center;
+    display: none;
+}
+
 .no-forecast {
     margin: 25px 15px;
     text-align:center;
