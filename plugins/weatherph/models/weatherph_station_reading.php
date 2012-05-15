@@ -1036,7 +1036,13 @@ public function arrayToAnyChartXML ($conditions = null, $fields = array(), $orde
                 unset($result['ort1'][0]);
                 $result['ort1'] = implode('/', $result['ort1']);
                 
+                
                 $abfrageResults['ort1'] = $result['ort1']; 
+//                $utcDate = strtotime('+8 hours', strtotime($result['Datum'] . $result['utc'] . ':' .$result['min']));
+//                $result['Datum'] = date('Ymd', $utcDate);
+//                $result['utc'] = date('H',$utcDate);
+//                $result['min'] = date('m',$utcDate);
+            
                 $abfrageResults['readings'][$result['Datum']][] = $result;
                 //}    
             }
