@@ -755,31 +755,31 @@ class WeatherphStationForecast extends WeatherphAppModel
                         <line enabled="false"/>
                     </line_style>
                     <marker_style name="wind_1"><!-- EAST -->
-                        <marker type="Image" image_url="../theme/weatherph/img/w1.png" size="23"/>
+                        <marker type="Image" image_url="../../theme/weatherph/img/w1.png" size="23"/>
                     </marker_style>
                     <marker_style name="wind_2"><!-- SOUTH EAST -->
-                        <marker type="Image" image_url="../theme/weatherph/img/w2.png" size="23"/>
+                        <marker type="Image" image_url="../../theme/weatherph/img/w2.png" size="23"/>
                     </marker_style>
                     <marker_style name="wind_3"><!-- SOUTH -->
-                        <marker type="Image" image_url="../theme/weatherph/img/w3.png" size="23"/>
+                        <marker type="Image" image_url="../../theme/weatherph/img/w3.png" size="23"/>
                     </marker_style>
                     <marker_style name="wind_4"><!-- SOUTH WEST -->
-                        <marker type="Image" image_url="../theme/weatherph/img/w4.png" size="23"/>
+                        <marker type="Image" image_url="../../theme/weatherph/img/w4.png" size="23"/>
                     </marker_style>
                     <marker_style name="wind_5"><!-- WEST -->
-                        <marker type="Image" image_url="../theme/weatherph/img/w5.png" size="23"/>
+                        <marker type="Image" image_url="../../theme/weatherph/img/w5.png" size="23"/>
                     </marker_style>
                     <marker_style name="wind_6"><!-- NORTH WEST -->
-                        <marker type="Image" image_url="../theme/weatherph/img/w6.png" size="23"/>
+                        <marker type="Image" image_url="../../theme/weatherph/img/w6.png" size="23"/>
                     </marker_style>
                     <marker_style name="wind_7"><!-- NORTH -->
-                        <marker type="Image" image_url="../theme/weatherph/img/w7.png" size="23"/>
+                        <marker type="Image" image_url="../../theme/weatherph/img/w7.png" size="23"/>
                     </marker_style>
                     <marker_style name="wind_8"><!-- NORTH EAST -->
-                        <marker type="Image" image_url="../theme/weatherph/img/w8.png" size="23"/>
+                        <marker type="Image" image_url="../../theme/weatherph/img/w8.png" size="23"/>
                     </marker_style>
                     <marker_style name="wind_9"><!-- NO WIND DIRECTION -->
-                        <marker type="Image" image_url="../theme/weatherph/img/w9.png" size="23"/>
+                        <marker type="Image" image_url="../../theme/weatherph/img/w9.png" size="23"/>
                     </marker_style>
                     ';
             
