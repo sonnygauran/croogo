@@ -81,9 +81,9 @@
                 </ul>
             </nav>
             
-<!--            <div class="severe-warning shadow">
+            <div class="severe-warning shadow">
                 <p><strong>Alert:</strong> Typhoon Dador is approaching the NCR. No classes in all levels. Stay at home!</p>
-            </div>-->
+            </div>
 <?php
 echo $this->Layout->sessionFlash();
 echo $content_for_layout;

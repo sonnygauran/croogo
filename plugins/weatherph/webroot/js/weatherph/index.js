@@ -94,7 +94,7 @@ $.ajax({
                 
                 $('.current.readings-location').html($stationReadings.reading.ort1);
                 $('.last-update').html($stationReadings.reading.update);
-                
+                    
                 cr_temperature = $stationReadings.reading.tl;
                 cr_wind = $stationReadings.reading.ff;
                 cr_precip = $stationReadings.reading.rr;
@@ -141,14 +141,14 @@ $.ajax({
 
 function hideForecast(){
     $('#forecast-details ul').fadeOut(function(){
-        $('#forecast-not-available').fadeIn();
+        $('div.no-forecast').fadeIn();
     });
     
 }
 
 function showForecast(){
     $('#forecast-details ul').fadeIn(function(){
-        $('#forecast-not-available').fadeOut();
+        $('.noforecast').fadeOut();
     });
 }
 

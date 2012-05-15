@@ -78,8 +78,11 @@
         <div id="info" class="shadow">
             <div id="current-readings-panel">
                 <h2 class="current readings-location">&nbsp;</h2>
-                <a href="#" >change station</a>
+<!--                <a href="#" >change station</a>-->
                 <h4>Current Readings:</h4>
+            </div>
+            <div class="no-forecast">
+                <p>Sorry, there's no forecast available for this station right now. Please try another.</p>
             </div>
             <div class="readings shadow">
                 <p>last updated: <span class="last-update">--:--</span></p>
@@ -102,16 +105,12 @@
                     </tbody>
                 </table>
             </div>
-
             <div class="detail-page-link">
                 <h2 style="height: 21px; text-align: center; width: 195px;">
                     <a href="<?= $this->webroot ?>view" style="background: url('<?= $this->webroot ?>theme/weatherph/img/arrow.png') no-repeat left center; padding-left: 40px; margin: 0 auto;">
                         More Details
                     </a>
                 </h2>
-            </div>
-            <div class="no-forecast">
-                <p>Sorry, there's no forecast available for this station right now.</p>
             </div>
             <div class="day-forecast">
                 <ul>
@@ -276,13 +275,10 @@
                             </table>
                         </div>
                     </li>
-
                 </ul>
-            </div>
+            </div> <!--DAY FORECAST-->
         </div> <!--INFO-->
-
     </section> <!--MAIN CONTENT-->
-
     <section class="secondary">
         <div class="posts">
             <h4>Intro to Typhoon Climatology</h4>
