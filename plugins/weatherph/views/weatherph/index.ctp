@@ -29,8 +29,8 @@
             </div>
 
             <div id="legend" class="shadow">
-<!--                            
-                <img src ="theme/weatherph/img/timeline.png"/>-->
+                            
+<!--                <img src ="theme/weatherph/img/timeline.png"/>-->
 
                 <div id="province-select">
                     <h6>Province:</h6>
@@ -76,31 +76,36 @@
             </div> <!--END LEGEND-->
         </div>
         <div id="info" class="shadow">
-            <div id="current-readings-panel">
-                <h2 class="current readings-location">&nbsp;</h2>
-                <a href="#" >change station</a>
-                <h4>Current Readings:</h4>
+            <div id="current-readings-box">
+                <div id="current-readings-panel">
+                    <h2 class="current readings-location">&nbsp;</h2>
+                    <a href="#" >change station</a>
+                    <h4>Current Readings:</h4>
+                </div>
+                <div class="readings shadow">
+                    <p>last updated: <span class="last-update">--:--</span></p>
+                    <span class="current temperature"><span>&nbsp;</span>&deg;C</span>
+                    <span class="symbol"></span>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>Wind</td>
+                                <td class="current wind"><span>&nbsp;</span>km/h</td>
+                            </tr>
+                            <tr>
+                                <td>Precip.</td>
+                                <td class="current precipitation"><span>&nbsp;</span>mm</td>
+                            </tr>
+                            <tr>
+                                <td>Humidity</td>
+                                <td class="current humidity"><span>&nbsp;</span>%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <div class="readings shadow">
-                <p>last updated: <span class="last-update">--:--</span></p>
-                <span class="current temperature"><span>&nbsp;</span>&deg;C</span>
-                <span class="symbol"></span>
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>Wind</td>
-                            <td class="current wind"><span>&nbsp;</span>km/h</td>
-                        </tr>
-                        <tr>
-                            <td>Precip.</td>
-                            <td class="current precipitation"><span>&nbsp;</span>mm</td>
-                        </tr>
-                        <tr>
-                            <td>Humidity</td>
-                            <td class="current humidity"><span>&nbsp;</span>%</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="no-readings">
+                <p>Sorry, there's no readings available for this station right now.</p>
             </div>
 
             <div class="detail-page-link">
@@ -293,11 +298,11 @@
         <div class="news">
             <h4>Breaking News</h4>
             <ul>
-                <li><img src="<?= $this->webroot ?>theme/weatherph_compact/img/thumbnail.png"/><p>Breaking News</p></li>
-                <li><img src="<?= $this->webroot ?>theme/weatherph_compact/img/thumbnail2.png"/><p>Weather TV</p></li>
-                <li><img src="<?= $this->webroot ?>theme/weatherph_compact/img/thumbnail3.png"/><p>Mike Padua: Typhoons, Explained</p></li>
-                <li><img src="<?= $this->webroot ?>theme/weatherph_compact/img/thumbnail.png"/><p>Meteomedia Weather Shop</p></li>
-                <li><img src="<?= $this->webroot ?>theme/weatherph_compact/img/thumbnail2.png"/><p>Webcams</p></li>
+                <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail.png"/><p>Breaking News</p></li>
+                <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail2.png"/><p>Weather TV</p></li>
+                <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail3.png"/><p>Mike Padua: Typhoons, Explained</p></li>
+                <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail.png"/><p>Meteomedia Weather Shop</p></li>
+                <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail2.png"/><p>Webcams</p></li>
             </ul>
         </div>-->
 

@@ -123,12 +123,9 @@ nav li {
     font-size: .875em;
 }
 
-nav li + li {
-    border-left: 1px solid #2E4471;
-}
-
 nav li > a {
     text-decoration: none;
+    border-bottom: 1px solid #f1f1f1;
 }
 
 .severe-warning {
@@ -161,7 +158,7 @@ nav li > a {
 }
 
 .layerSelector {
-    width: 554px;
+    width: 100%;
     text-align: center;
     border-bottom: 1px solid #555;
     -webkit-border-top-left-radius: 5px;
@@ -187,7 +184,7 @@ div.layerSelector li {
 }
 
 #legend {
-    width: 542px;
+    width: 544px;
     padding: 5px;
     border-top: 1px solid #ddd;
     -webkit-border-bottom-right-radius: 5px;
@@ -197,6 +194,7 @@ div.layerSelector li {
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
     overflow: auto;
+    position:relative; /* IE 7 Scrollbar fix */
 }
 
 #legend > img {
@@ -220,7 +218,7 @@ div.layerSelector li {
 ====================*/
 
 #info {
-    width: 238px;
+    width: 240px;
     float:left;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
@@ -233,6 +231,16 @@ div.layerSelector li {
 
 h6.time {
     padding: 1px 5px;
+}
+
+#current-readings-box {
+    
+}
+
+.no-readings {
+    margin: 25px 15px;
+    text-align:center;
+    display: none;
 }
 
 .no-forecast {
@@ -369,6 +377,7 @@ text-shadow: 0px 2px 3px #555;
 #currentWeather {
     width: 100%;
     overflow: auto;
+    border: 1px solid #365283;
 }
 
 #station, #condition, #conditionTable {
@@ -456,6 +465,7 @@ div.current-tab {
     padding: 10px;
     margin-bottom: 15px;
     border-radius: 8px;
+    text-align: center;
 }
 
 .ads {
@@ -487,6 +497,24 @@ div.current-tab {
 
 #glossary-alphabet li {
     display: inline;
+}
+
+/*====================
+    FOOTER
+====================*/
+
+footer {
+    float: left;
+    clear: both;
+    width: 100%;
+    margin-top: 8em;
+    padding: 10px;
+    font-size: .75em;
+    background-color: #e1e6f3;
+    background-color: rgba(225,230,243,.3);
+    -webkit-box-shadow: 0 -4px 4px -4px #555;
+    -moz-box-shadow:    0 -4px 4px -4px #555;
+    box-shadow:         0 -4px 4px -4px #555;
 }
 
 /*========================================
@@ -562,7 +590,7 @@ body {
 }
 
 nav, .layerSelector, .promo, #info, .week-forecast .time, .output {
-    background: #365283;
+    background-color: #365283;
     color: #fafafa;
 }
 
@@ -580,7 +608,8 @@ nav, .layerSelector, .promo, #info, .week-forecast .time, .output {
 }
 
 .news li:nth-child(odd) {
-    background: #e1e6f3;
+    background-color: #e1e6f3;
+    background-color: rgba(225,230,243,.7);
 }
 
 .caption {
@@ -590,7 +619,7 @@ nav, .layerSelector, .promo, #info, .week-forecast .time, .output {
 }
 
 .sponsored {
-    background: #eee;
+    background-color: #fafafa;
     -moz-box-shadow:    inset 0 0 1px 2px #aaa;
     -webkit-box-shadow: inset 0 0 1px 2px #aaa;
     box-shadow:         inset  0 0 1px 2px #aaa;
@@ -607,7 +636,7 @@ nav, .layerSelector, .promo, #info, .week-forecast .time, .output {
     clear: both;
 }
 
-a {
+nav li, a {
     -webkit-transition: all .2s ease;
     -moz-transition: all .2s ease;
     -o-transition: all .2s ease;
@@ -623,8 +652,11 @@ a:link, a:visited {
     color: #fafafa;
 }
 
-.layerSelector a:link, .layerSelector a:visited,
-footer a:link, footer a:visited {
+nav li:hover {
+    background-color: #3e5e95;
+}
+
+.layerSelector a:link, .layerSelector a:visited {
     color: #fafafa;
 }
 

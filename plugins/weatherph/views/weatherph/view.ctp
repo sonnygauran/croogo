@@ -54,7 +54,7 @@ echo $this->Html->script(array(
                         </tr>
                     </tbody>
                 </table>
-            </div> <!--END CONDITON TABLE-->
+            </div> <!--END CONDITION TABLE-->
         </div> <!--END CURRENT WEATHER-->
 
         <div id="weekWeather">

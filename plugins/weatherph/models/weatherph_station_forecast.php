@@ -32,8 +32,6 @@ class WeatherphStationForecast extends WeatherphAppModel
         $startdatum = date('Ymd', strtotime($startdatum));    
         $enddatum = date('Ymd', strtotime($enddatum));
         
-        $this->log($startutc . '-' . $endutc);
-        
         $abfrageResults = array();
         
         $headersSpecimen = "Datum;utc;min;ort1;dir;ff;g3h;tl;rr;sy;rh;sy2;";
@@ -54,8 +52,6 @@ class WeatherphStationForecast extends WeatherphAppModel
 
         $curlResults = curl_exec($ch);
         curl_close($ch);
-        
-//        debug($curlResults);exit;
         
         $resultsReadings = $this->csvToArray($curlResults, $headersSpecimen);
         
@@ -98,7 +94,14 @@ class WeatherphStationForecast extends WeatherphAppModel
         }
         
         $currentReading = array_pop($currentReadings);
-        $abfrageResults['reading'] = $currentReading;
+        
+        if(count($currentReading)>0){
+            $abfrageResults['reading'] = $currentReading;
+            $abfrageResults['reading']['status'] = 'ok';
+        }else{
+            $abfrageResults['reading']['status'] = 'none';
+        }
+        
         
         //$this->log(print_r($currentReadings, true));
         
@@ -126,6 +129,7 @@ class WeatherphStationForecast extends WeatherphAppModel
         
         //$this->log($resultsForecast);
         
+        $abfrageResults['forecast'] = array();
         foreach($resultsForecast as $result){
             
             if(trim($result['tl'])!=''){
@@ -304,8 +308,15 @@ class WeatherphStationForecast extends WeatherphAppModel
         $startdatum = date('Ymd', strtotime($startdatum));    
         $enddatum = date('Ymd', strtotime($enddatum));
         
+        $unit = '';
+        switch($type){
+            case 'wind':
+                $unit = 2;
+                break;
+        }
+        
         //Grab stations readings  
-        $url = "http://192.168.20.89/abfrage.php?stationidstring=$stationId&datumstart=$startdatum&datumend=$enddatum&utcstart=$startutc&utcend=$endutc&zeiten1=$timeRes&paramtyp=mos_mix_mm&mosmess=ja&rain6=on&paramliste=tl,tx,tn,td,rh,ff,g1h,dir,qff,sh,gl1h&output=csv2&ortoutput=wmo6,name&timefill=nein&verknuepft=nein&aufruf=auto";
+        $url = "http://192.168.20.89/abfrage.php?stationidstring=$stationId&datumstart=$startdatum&datumend=$enddatum&utcstart=$startutc&utcend=$endutc&zeiten1=$timeRes&paramtyp=mos_mix_mm&unit=$unit&mosmess=ja&rain6=on&paramliste=tl,tx,tn,td,rh,ff,g1h,dir,qff,sh,gl1h&output=csv2&ortoutput=wmo6,name&timefill=nein&verknuepft=nein&aufruf=auto";
         
         $this->log($url);
         $ch = curl_init();

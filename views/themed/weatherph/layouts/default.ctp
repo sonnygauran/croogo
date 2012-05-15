@@ -89,20 +89,18 @@ echo $this->Layout->sessionFlash();
 echo $content_for_layout;
 ?>
             <aside id="sidebar">
-                <div id="sponsors">
+                <div class="sponsored">
                     <h6>Platinum sponsors:</h6>
-                    <div class="sponsored center">
-                        <ul>
-                            <li><?php echo $this->Html->image('ICTS.jpg'); ?></li>
-                            <li><?php echo $this->Html->image('NAC1.png'); ?></li>
-                            <li><?php echo $this->Html->image('SGS1.png'); ?></li>
-                            <li><?php echo $this->Html->image('vistaland.jpg'); ?></li>
-                            <li><?php echo $this->Html->image('ngcp1.png'); ?></li>
-                            <li><?php echo $this->Html->image('sumitomo.png'); ?></li>
-                            <li><?php echo $this->Html->image('sm.gif'); ?></li>
-                            <li><?php echo $this->Html->image('tyk.jpg'); ?></li>
-                        </ul>
-                    </div>
+                    <ul>
+                        <li><?php echo $this->Html->image('ICTS.jpg'); ?></li>
+                        <li><?php echo $this->Html->image('NAC1.png'); ?></li>
+                        <li><?php echo $this->Html->image('SGS1.png'); ?></li>
+                        <li><?php echo $this->Html->image('vistaland1.png'); ?></li>
+                        <li><?php echo $this->Html->image('ngcp1.png'); ?></li>
+                        <li><?php echo $this->Html->image('sumitomo1.png'); ?></li>
+                        <li><?php echo $this->Html->image('sm.gif'); ?></li>
+                        <li><?php echo $this->Html->image('tyk.jpg'); ?></li>
+                    </ul>
                 </div>
                 
                 <!-- AddThis Button BEGIN -->
@@ -135,6 +133,11 @@ echo $content_for_layout;
                 </div>-->
 
             </aside>
+
+            <footer>
+                <small>&copy; 2012 Meteomedia A.G.</small>
+            </footer>
+
         </section><!-- #container -->
     </body>
 </html>
