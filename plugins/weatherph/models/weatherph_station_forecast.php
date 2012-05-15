@@ -340,103 +340,161 @@ class WeatherphStationForecast extends WeatherphAppModel
        
         }
         
-        //debug($abfrageResults['forecast']);exit;
-        
-            
-        
-            $resultData = array();
-            foreach($abfrageResults['forecast'] as $key=>$forecast){
-                foreach($forecast as $data){
-                    
-                    if($type == 'temp' || $type == 'temperature'){
-                        
-                        $resultData['tl'][] = array(
-                            'utcDate' => strtotime($data['Datum'] . ' ' . $data['utc'] . ':' . $data['min']),
-                            'data' => $data['tl'],
-                            );
-                        
-                        $resultData['td'][] = array(
-                            'utcDate' => strtotime($data['Datum'] . ' ' . $data['utc'] . ':' . $data['min']),
-                            'data' => $data['td'],
-                            );
-                        
-                        if($data['utc'] == '18'){
-                        $resultData['tx'][] = array(
-                            'utcDate' => strtotime($data['Datum'] . ' ' . $data['utc'] . ':' . $data['min']),
-                            'data' => $data['tx'],
-                            );
-                        }
-                        
-                        if($data['utc'] == '06'){
-                        $resultData['tn'][] = array(
-                            'utcDate' => strtotime($data['Datum'] . ' ' . $data['utc'] . ':' . $data['min']),
-                            'data' => $data['tn'],
-                            );
-                        }
-                        
-                        
-                    }elseif($type == 'wind'){
-            
-                        $resultData[] = array(
-                            'utcDate' => strtotime($data['Datum'] . ' ' . $data['utc'] . ':' . $data['min']),
-                            'ff' => $data['ff'],
-                            'fg' => $data['g1h'],
-                            );
-            
-                    }elseif($type == 'humidity'){
-                        
-                        $resultData[] = array(
-                            'utcDate' => strtotime($data['Datum'] . ' ' . $data['utc'] . ':' . $data['min']),
-                            'rh' => $data['rh'],
-                            );
+        $resultData = array();
+        switch($type){
+            case 'temp':
+            case 'temperature':
+                $resultData['sets'] = array(
+                    'tl' => $this->popValArray($abfrageResults['forecast'], 'tl'),
+                    'td' => $this->popValArray($abfrageResults['forecast'], 'td'),
+                    'tx' => $this->amaxmin($abfrageResults['forecast'], 'tx', 'max'),
+                    'tn' => $this->amaxmin($abfrageResults['forecast'], 'tn', 'min'),
+                );
+                    $resultData['settings'] = array(
+                        'minor_interval' => 6,
+                        'show_cross_label' => 'False',
+                        'default_series_type' => 'Spline',
+                        );
+                    $resultData['series'] = array(
+                        'tl' => array('name'=>'tlseries', 'style'=>'tlline', 'use_hand_cursor'=>'False', 'hoverable'=>'False'),
+                        'td' => array('name'=>'tdseries', 'style'=>'tdline', 'use_hand_cursor'=>'False', 'hoverable'=>'False'),
+                        'tx' => array('name'=>'txseries', 'style'=>'noline', 'use_hand_cursor'=>'False', 'hoverable'=>'False'),
+                        'tn' => array('name'=>'tnseries', 'style'=>'noline', 'use_hand_cursor'=>'False', 'hoverable'=>'False'),
+                    );
+                    $resultData['additional'] = array(
+                        'tl' => array('tooltip' => array('enabled' => 'false')),
+                        'td' => array('tooltip' => array('enabled' => 'false')),
+                        'tx' => array('marker' => array('enabled'=>'true', 'style'=>'dotred')),
+                        'tn' => array('marker' => array('enabled'=>'true', 'style'=>'dotblue')),
+                    );
+                break;
+            case 'wind':
+                $resultData['sets'] = array(
+                    'ff' => $this->popValArray($abfrageResults['forecast'], 'ff'),
+                    'g1h' => $this->popValArray($abfrageResults['forecast'], 'g1h'), 
+                );
+                    $resultData['settings'] = array(
+                        'minor_interval' => 3,
+                        'show_cross_label' => 'True',
+                        'default_series_type' => 'Spline',
+                        );
+                    $resultData['series'] = array(
+                        'ff' => array('name'=>'ffseries', 'style'=>'ffline', 'use_hand_cursor'=>'False', 'hoverable'=>'False'),
+                        'g1h' => array('name'=>'g1hseries', 'style'=>'g1hline', 'use_hand_cursor'=>'False', 'hoverable'=>'False'),
+                    );
+                    $resultData['additional'] = array(
+                        'ff' => array('tooltip' => array('enabled' => 'false')),
+                        'g1h' => array('tooltip' => array('enabled' => 'false')),
+                    );
+                break;
+            case 'winddir':
 
-                    }elseif($type == 'winddir'){
-                        
-                        $winddir = $this->showWindDirection($data['dir']);
-                        $winddir = ($winddir == 'wind_9')? 'wind_1' : $winddir;
-                        
-                        $resultData[] = array(
-                            'utcDate' => strtotime($data['Datum'] . ' ' . $data['utc'] . ':' . $data['min']),
-                            'dir' => $winddir,
-                            );
+                $windDir = $this->popValArray($abfrageResults['forecast'], 'dir', NULL, '0.5');
 
-                    }elseif($type == 'precipitation' || $type == 'precip'){
-                        
-                        $resultData[] = array(
-                            'utcDate' => strtotime($data['Datum'] . ' ' . $data['utc'] . ':' . $data['min']),
-                            'rain6' => $data['rain6'],
-                            );
-
-                    }elseif($type == 'airpressure'){
-                        
-                        $resultData[] = array(
-                            'utcDate' => strtotime($data['Datum'] . ' ' . $data['utc'] . ':' . $data['min']),
-                            'qff' => $data['qff'],
-                            );
-
-                    }elseif($type == 'globalradiation'){
-                        
-                        $resultData[] = array(
-                            'utcDate' => strtotime($data['Datum'] . ' ' . $data['utc'] . ':' . $data['min']),
-                            'gl1h' => $data['gl1h'],
-                            );
-                        
-                    }elseif($type == 'sunshine'){
-                        
-                        $resultData[] = array(
-                            'utcDate' => strtotime($data['Datum'] . ' ' . $data['utc'] . ':' . $data['min']),
-                            'sh' => $data['sh'],
-                            );
-                        
-                    }
-                    
+                foreach($windDir as $dir){
+                    $resultDir[] = array(
+                        'x' => $dir['x'],
+                        'y' => $dir['y'],
+                        'marker' => $this->showWindDirection($dir['data']),
+                    ); 
                 }
 
-            }
+                $resultData['sets'] = array(
+                    'dir' => $resultDir,
+                );
+                    $resultData['settings'] = array(
+                        'minor_interval' => 6,
+                        'show_cross_label' => 'True',
+                        'default_series_type' => 'Line',
+                        );
+                    $resultData['series'] = array(
+                        'dir' => array('name'=>'dirline', 'style'=>'dirline', 'use_hand_cursor'=>'False', 'hoverable'=>'False'),
+                        );
+                break;
+            case 'humidity':
+                $resultData['sets'] = array(
+                    'rh' => $this->popValArray($abfrageResults['forecast'], 'rh'),
+                );
+                    $resultData['settings'] = array(
+                        'minor_interval' => 3,
+                        'show_cross_label' => 'False',
+                        'default_series_type' => 'Spline',
+                        );
+                    $resultData['series'] = array(
+                        'rh' => array('name'=>'rhseries', 'style'=>'rhline', 'use_hand_cursor'=>'False', 'hoverable'=>'False'),
+                        );
+                    $resultData['additional'] = array(
+                        'rh' => array('tooltip' => array('enabled' => 'false')),
+                    );
+                break;
+            case 'precip':
+            case 'precipitation':
+                $resultData['sets'] = array(
+                    'rain6' => $this->popValArray($abfrageResults['forecast'], 'rain6'),
+                );
+                    $resultData['settings'] = array(
+                        'minor_interval' => 3,
+                        'show_cross_label' => 'True',
+                        'default_series_type' => 'Bar',
+                        );
+                    $resultData['series'] = array(
+                        'rain6' => array('name'=>'rain6series', 'style'=>'', 'use_hand_cursor'=>'False', 'hoverable'=>'True'),
+                        );
+                    $resultData['additional'] = array(
+                        'rain6' => array('tooltip' => array('enabled' => 'true')),
+                    );
+                break;
+            case 'airpressure':
+                $resultData['sets'] = array(
+                    'qff' => $this->popValArray($abfrageResults['forecast'], 'qff'),
+                );
+                    $resultData['settings'] = array(
+                        'minor_interval' => 3,
+                        'show_cross_label' => 'True',
+                        'default_series_type' => 'Bar',
+                        );
+                    $resultData['series'] = array(
+                        'qff' => array('name'=>'qffseries', 'style'=>'', 'use_hand_cursor'=>'False', 'hoverable'=>'True'),
+                        );
+                    $resultData['additional'] = array(
+                        'qff' => array('tooltip' => array('enabled' => 'true')),
+                    );
+                break;
+            case 'sunshine':
+                $resultData['sets'] = array(
+                    'sh' => $this->popValArray($abfrageResults['forecast'], 'sh'),
+                );
+                    $resultData['settings'] = array(
+                        'minor_interval' => 1,
+                        'show_cross_label' => 'True',
+                        'default_series_type' => 'Bar',
+                        );
+                    $resultData['series'] = array(
+                        'sh' => array('name'=>'shseries', 'style'=>'sunshine', 'use_hand_cursor'=>'False', 'hoverable'=>'False'),
+                        );
+                    $resultData['additional'] = array(
+                        'sh' => array('tooltip' => array('enabled' => 'true')),
+                    );
+                break;
+            case 'globalradiation':
+                $resultData['sets'] = array(
+                    'gl1h' => $this->popValArray($abfrageResults['forecast'], 'gl1h'),
+                );
+                    $resultData['settings'] = array(
+                        'minor_interval' => 1,
+                        'show_cross_label' => 'False',
+                        'default_series_type' => 'Bar',
+                        );
+                    $resultData['series'] = array(
+                        'gl1h' => array('name'=>'gl1hseries', 'style'=>'globalradiation', 'use_hand_cursor'=>'False', 'hoverable'=>'True'),
+                        );
+                    $resultData['additional'] = array(
+                        'gl1h' => array('tooltip' => array('enabled' => 'true')),
+                    );
+                break;
+        }
             
         $abfrageResults = ($type != NULL)?  $resultData : $abfrageResults;
-        
-        //$this->log($abfrageResults);
         
         return $abfrageResults;
         
@@ -446,55 +504,6 @@ class WeatherphStationForecast extends WeatherphAppModel
         
         $arrData = $fields['conditions']['arrData'];
         $type = strtolower($fields['conditions']['type']);
-        
-        //$this->log($arrData);
-        
-        switch($type){
-            
-            case 'temperature':
-            case 'temp':
-                $min_interval = 6;
-                $show_label_cross = 'False';
-                $default_series_type = 'Spline';
-            break;
-            case 'wind':
-                $min_interval = 3;
-                $show_label_cross = 'True';
-                $default_series_type = 'Spline';
-            break;
-            case 'winddir':
-                $min_interval = 6;
-                $show_label_cross = 'True';
-                $default_series_type = 'Line';
-            break;
-            case 'humidity':
-                $min_interval = 3;
-                $show_label_cross = 'False';
-                $default_series_type = 'Spline';
-            break;
-            case 'precipitation':
-            case 'precip':
-                $min_interval = 3;
-                $show_label_cross = 'True';
-                $default_series_type = 'Bar';
-            break;
-            case 'airpressure':
-                $min_interval = 3;
-                $show_label_cross = 'False';
-                $default_series_type = 'Bar';
-            break;
-            case 'globalradiation':
-                $min_interval = 1;
-                $show_label_cross = 'True';
-                $default_series_type = 'Bar';
-            break;
-            case 'sunshine':
-                $min_interval = 1;
-                $show_label_cross = 'False';
-                $default_series_type = 'Bar';
-            break;
-            
-        }
         
         $xml_string = 
             '<?xml version="1.0" encoding="ISO-8859-1"?>
@@ -528,9 +537,9 @@ class WeatherphStationForecast extends WeatherphAppModel
                             <title enabled="false"/>
                             <axes>
                                 <x_axis enable="true">
-                                    <scale type="DateTime" minimum_offset="0" maximum_offset="0" minor_interval="'.$min_interval.'" minor_interval_unit="Hour" major_interval="1" major_interval_unit="Day"/>
+                                    <scale type="DateTime" minimum_offset="0" maximum_offset="0" minor_interval="'.$arrData['settings']['minor_interval'].'" minor_interval_unit="Hour" major_interval="1" major_interval_unit="Day"/>
                                     <title enabled="false"/>
-                                    <labels enabled="True" show_cross_label="'.$show_label_cross.'" allow_overlap="true">
+                                    <labels enabled="True" show_cross_label="'.$arrData['settings']['show_cross_label'].'" allow_overlap="true">
                                         <format>
                                             <![CDATA[ ]]>
                                             {%Value}{dateTimeFormat:%ddd %dd.%MM.}
@@ -588,22 +597,22 @@ class WeatherphStationForecast extends WeatherphAppModel
                     </chart_settings>';
         
         $xml_string .= '
-                <data_plot_settings default_series_type="'.$default_series_type.'">
+                <data_plot_settings default_series_type="'.$arrData['settings']['default_series_type'].'">
                     ';
         
         // Settings
         // Temperature
         if($type == 'temp' || $type == 'temperature'){
         $xml_string .= '<line_series>
-                        <marker_settings enabled="false"/>
-                        <line_style>
-                            <line enabled="true" thickness="2" caps="round" joints="round"/>
-                        </line_style>
-                        <tooltip_settings enabled="true">
-                            <format>
-                                <![CDATA[ {%YValue}{numDecimals:1} ]]>
-                            </format>
-                        </tooltip_settings>
+                            <marker_settings enabled="false"/>
+                            <line_style>
+                                <line enabled="true" thickness="2" caps="round" joints="round"/>
+                            </line_style>
+                            <tooltip_settings enabled="true">
+                                <format>
+                                    <![CDATA[ {%YValue}{numDecimals:1} ]]>
+                                </format>
+                            </tooltip_settings>
                         </line_series>';
         }
         
@@ -713,7 +722,7 @@ class WeatherphStationForecast extends WeatherphAppModel
             
         $xml_string .= '
                     <line_style name="ffline" color="#966400"/>
-                    <line_style name="fgline" color="#c800aa"/>';    
+                    <line_style name="g1hline" color="#c800aa"/>';    
             
         }elseif($type == 'winddir'){
             
@@ -760,169 +769,51 @@ class WeatherphStationForecast extends WeatherphAppModel
                 </styles>
                 <data>';
         
-        if($type == 'temperature' || $type == 'temp'){
-        
-            // Temperature
-            $xml_string .= '
-                    <series name="80b" style="tlline" use_hand_cursor="False" hoverable="False">
-                        <tooltip enabled="false"/>';
-        
-            foreach($arrData['tl'] as $data){
-                $xml_string .= '<point name="'.$data['utcDate'].'" x="'.$data['utcDate'].'" y="'.$data['data'].'"/><!-- '.date('Y-m-d H:i:s', $data['utcDate']).'-->';
-            }
-        
-            $xml_string .='</series>';
+        //$this->log($arrData);
             
-            // Dew Point
-            $xml_string .='
-                    <series name="80c" style="tdline" use_hand_cursor="False" hoverable="False">
-                        <tooltip enabled="false"/>';
-        
-            foreach($arrData['td'] as $data){
-                $xml_string .= '<point name="'.$data['utcDate'].'" x="'.$data['utcDate'].'" y="'.$data['data'].'"/><!-- '.date('Y-m-d H:i:s', $data['utcDate']).'-->';
+        foreach($arrData['sets'] as $key=>$sets){
+
+        $xml_string .= '<series';
+
+            foreach($arrData['series'][$key] as $index=>$attr){
+                $xml_string .= (trim($attr) != '')? ' '. $index . '="' . $attr .'"' : '';
             }
-        
-            $xml_string .='</series>';
-            
-            // Maximum Temperature
-            $xml_string .='
-                    <series name="80d" style="noline" use_hand_cursor="False" hoverable="False">
-                        <marker enabled="true" style="dotblue"/>';
-        
-            foreach($arrData['tn'] as $data){
-                $xml_string .= '<point name="'.$data['utcDate'].'" x="'.$data['utcDate'].'" y="'.$data['data'].'"/><!-- '.date('Y-m-d H:i:s', $data['utcDate']).'-->';
+
+            $xml_string .= '>';
+
+            if(isset($arrData['additional'][$key])){
+
+                foreach($arrData['additional'][$key] as $index=>$addtnl){
+
+                    $xml_string .= '<'.$index.' ';
+
+                    foreach($addtnl as $key2=>$add){
+                        $xml_string .= ' ' . $key2 . '="'.$add.'"';
+                    }
+                    $xml_string .= '/>';
+                }
+
             }
-        
-            $xml_string .='</series>';
-            
-            // Minimum Temperature
-            $xml_string .='
-                    <series name="80e" style="noline" use_hand_cursor="False" hoverable="False">
-                        <marker enabled="true" style="dotred"/>';
-        
-            foreach($arrData['tx'] as $data){
-                $xml_string .= '<point name="'.$data['utcDate'].'" x="'.$data['utcDate'].'" y="'.$data['data'].'"/><!-- '.date('Y-m-d H:i:s', $data['utcDate']).'-->';
+
+            foreach($sets as $set){
+                $xml_string .= '<point x="'.$set['x'].'" y="'.$set['y'].'">';
+                $xml_string .= (isset($set['marker']))? '<marker style="'.$set['marker'].'" />' : '';
+                $xml_string .= '<!-- '.date('Y-m-d H:i:s', $set['x']).'-->';
+                $xml_string .= '</point>';
             }
-        
-            $xml_string .='</series>';
-        
-        $xml_string .='<series name="80d" style="noline" use_hand_cursor="True" hoverable="False">';
-        $xml_string .='<marker enabled="true" style="dotblue"/>';
-        foreach($arrData as $key=>$value){
-            if($key == '2' || $key == '10' || $key == '18' || $key == '26' || $key == '34'){
-                $xml_string .= '<point name="'.$value['utcDate'].'" x="'.$value['utcDate'].'" y="'.$value['tn'].'"/><!-- '.date('Y-m-d H:i:s', $value['utcDate']).'-->';
-            }
-        }
+
         $xml_string .='</series>';
 
-        $xml_string .='<series name="80e" style="noline" use_hand_cursor="True" hoverable="False">';
-        $xml_string .='<marker enabled="true" style="dotred"/>';
-        foreach($arrData as $key=>$value){
-            if($key == '6' || $key == '14' || $key == '22' || $key == '30' || $key == '38'){
-                $xml_string .= '<point name="'.$value['utcDate'].'" x="'.$value['utcDate'].'" y="'.$value['tx'].'"/><!-- '.date('Y-m-d H:i:s', $value['utcDate']).'-->';
-            }
+
         }
-        $xml_string .='</series>';
-        
-        }elseif($type == 'wind'){
-            
-            $xml_string .= '
-                    <series name="80b" style="ffline" use_hand_cursor="False" hoverable="False">
-                        <tooltip enabled="false"/>';
-        
-            foreach($arrData as $data){
-                $xml_string .= '<point name="'.$data['utcDate'].'" x="'.$data['utcDate'].'" y="'.$data['ff'].'"/><!-- '.date('Y-m-d H:i:s', $data['utcDate']).'-->';
-            }
-
-            $xml_string .='</series>';
-            
-            $xml_string .= '
-                    <series name="80b" style="fgline" use_hand_cursor="False" hoverable="False">
-                        <tooltip enabled="false"/>';
-        
-            foreach($arrData as $data){
-                $xml_string .= '<point name="'.$data['utcDate'].'" x="'.$data['utcDate'].'" y="'.$data['fg'].'"/><!-- '.date('Y-m-d H:i:s', $data['utcDate']).'-->';
-            }
-
-            $xml_string .='</series>';
-            
-        }elseif($type == 'winddir'){
-            
-            $xml_string .= '
-                    <series name="80b" style="dirline" use_hand_cursor="False" hoverable="False">';
-            
-            foreach($arrData as $data){
-                $xml_string .= '<point x="'.$data['utcDate'].'" y="0.5">
-                                    <marker style="'.$data['dir'].'" />
-                                </point><!-- '.date('Y-m-d H:i:s', $data['utcDate']).'-->';
-            }
-                        
-            $xml_string .= '</series>';
-            
-        }elseif($type == 'humidity'){
-            
-            $xml_string .= '
-                    <series name="80b" style="rhline" use_hand_cursor="False" hoverable="False">
-                        <tooltip enabled="false"/>';
-        
-            foreach($arrData as $data){
-                $xml_string .= '<point name="'.$data['utcDate'].'" x="'.$data['utcDate'].'" y="'.$data['rh'].'"/><!-- '.date('Y-m-d H:i:s', $data['utcDate']).'-->';
-            }
-
-            $xml_string .='</series>';
-            
-        }elseif($type == 'precipitation' || $type == 'precip'){
-            
-            $xml_string .= '
-                    <series name="80b" use_hand_cursor="False" hoverable="False">';
-        
-            foreach($arrData as $data){
-                $xml_string .= '<point name="'.$data['utcDate'].'" x="'.$data['utcDate'].'" y="'.$data['rain6'].'"/><!-- '.date('Y-m-d H:i:s', $data['utcDate']).'-->';
-            }
-
-            $xml_string .='</series>';
-            
-        }elseif($type == 'airpressure'){
-            
-            $xml_string .= '
-                    <series name="80b" use_hand_cursor="False" hoverable="False">';
-        
-            foreach($arrData as $data){
-                $xml_string .= '<point name="'.$data['utcDate'].'" x="'.$data['utcDate'].'" y="'.$data['qff'].'"/><!-- '.date('Y-m-d H:i:s', $data['utcDate']).'-->';
-            }
-
-            $xml_string .='</series>';
-            
-        }elseif($type == 'globalradiation'){
-            
-            $xml_string .= '
-                    <series name="80b" use_hand_cursor="False" hoverable="False">';
-        
-            foreach($arrData as $data){
-                $xml_string .= '<point name="'.$data['utcDate'].'" x="'.$data['utcDate'].'" y="'.$data['gl1h'].'"/><!-- '.date('Y-m-d H:i:s', $data['utcDate']).'-->';
-            }
-
-            $xml_string .='</series>';
-            
-        }elseif($type == 'sunshine'){
-            
-            $xml_string .= '
-                    <series name="80b" use_hand_cursor="False" hoverable="False">';
-        
-            foreach($arrData as $data){
-                $xml_string .= '<point name="'.$data['utcDate'].'" x="'.$data['utcDate'].'" y="'.$data['sh'].'"/><!-- '.date('Y-m-d H:i:s', $data['utcDate']).'-->';
-            }
-
-            $xml_string .='</series>';
-            
-        }
-        
-        
+         
         $xml_string .= '
                 </data>
                 </chart>
                 </charts>
             </anychart>';
+        
+        //$this->log($xml_string);
         
         $xml = simplexml_load_string($xml_string);
 
@@ -1130,6 +1021,7 @@ class WeatherphStationForecast extends WeatherphAppModel
         }
     }
     
+    // Show what the moon phase for a certain date.
     private function moon_phase($year, $month, $day){
 
 	$c = $e = $jd = $phase = $b = 0;
@@ -1186,6 +1078,75 @@ class WeatherphStationForecast extends WeatherphAppModel
         
 	return $moonphase;
 
+    }
+    
+    private function popValArray($array, $val, $xdata = NULL, $ydata = NULL){
+        foreach($array as $key=>$arr){
+            foreach($arr as $ar){
+                $arrSet[] = array(
+                    'x' => (trim($xdata) != NULL)? $xdata : strtotime($ar['Datum'] . ' ' . $ar['utc'] . ':' . $ar['min']),
+                    'y' => (trim($ydata) != NULL)? $ydata : $ar[$val],
+                    'data' =>$ar[$val],
+                    );
+            }
+        }
+        return $arrSet;
+    }
+    
+    // Used to get the maximum and minimum in a set of array.
+    private function amaxmin($array, $val, $arg){
+        
+        foreach($array as $key=>$arr){
+            
+            foreach($arr as $ar){
+                if(!isset($arrmaxmin[$key])) {
+                    if(trim($ar[$val])!='') {
+                       $arrmaxmin[$key] = array(
+//                           'utcDate' => strtotime($ar['Datum'] . ' ' . $ar['utc'] . ':' . $ar['min']),
+//                           'data' => $ar[$val],
+                           'x' => strtotime($ar['Datum'] . ' ' . $ar['utc'] . ':' . $ar['min']),
+                           'y' => $ar[$val],
+                           'data' =>$ar[$val],
+                           );
+                       break;
+                    }
+                }
+            }
+            
+            
+            foreach($arr as $ar){
+                if(trim($ar[$val])!=''){
+                    if($arg == 'max' && $ar[$val]>$arrmaxmin[$key]['y']){
+                        $arrmaxmin[$key] = array(
+                            'x' => strtotime($ar['Datum'] . ' ' . $ar['utc'] . ':' . $ar['min']),
+                            'y' => trim($ar[$val]),
+                            'data' => $ar[$val],
+                        );
+                        
+                    }elseif($arg == 'min' && $ar[$val]<$arrmaxmin[$key]['y']){
+                        $arrmaxmin[$key] = array(
+                            'x' => strtotime($ar['Datum'] . ' ' . $ar['utc'] . ':' . $ar['min']),
+                            'y' => trim($ar[$val]),
+                            'data' => $ar[$val], 
+                        );
+                        
+                    }
+                  
+                }
+                 
+                
+            }
+            
+            
+        }
+        
+        $arrData = array();
+        foreach($arrmaxmin as $maxmin){
+            $arrData[] = $maxmin;
+        }
+        
+        return $arrData;
+        
     }
     
 }
