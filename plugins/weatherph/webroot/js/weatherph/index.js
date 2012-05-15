@@ -143,6 +143,7 @@ $.ajax({
                 $('.loader').fadeOut();
                 $('.detail-page-link a').attr({href: '<?= $this->webroot ?>view/'+id});
                 
+                
             }
         });
 }
