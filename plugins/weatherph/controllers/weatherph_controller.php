@@ -172,7 +172,7 @@ class WeatherphController extends WeatherphAppController {
    
     public function getDetailedReading($stationID = '984290', $type = NULL, $timeRes = '3h', $startDatum = NULL, $endDatum = NULL){
         
-        $this->layout = 'xml';
+        
         App::import('Model', 'Weatherph.WeatherphStationReading');
         
         $WeatherphStationReading = new WeatherphStationReading();
@@ -184,20 +184,41 @@ class WeatherphController extends WeatherphAppController {
             'endDatum' => $endDatum,
         )));
         
-        //debug($detailedReading);exit;
+        if($type != NULL){
         
-        $WeatherphStationReading = new WeatherphStationReading();
-        $anyChartXML = $WeatherphStationReading->arrayToAnyChartXML('all', array('conditions' => array(
-            'arrData' => $detailedReading,
-            'type' => $type,
-        )));
+            $WeatherphStationReading = new WeatherphStationReading();
+            $anyChartXML = $WeatherphStationReading->arrayToAnyChartXML('all', array('conditions' => array(
+                'arrData' => $detailedReading,
+                'type' => $type,
+            )));
+            
+            $this->layout = 'xml';
+            $this->set('outputData', $anyChartXML);
         
-        $this->set('anyChartXML', $anyChartXML);
+        }else{
+            
+            $this->layout = 'plain';
+            $this->set('outputData', $detailedReading);
+            
+        }
     }
     
-    public function detailedReading(){
+    public function detailedReading($stationID= '984290',$startDate=NULL, $endDate=NULL){
         
         $this->layout = 'plain';
+        
+        $startDate = ($startDate == NULL)? date('Ymd',  strtotime('-3 Days', strtotime(date('Ymd')))) : $startDate;
+        $endDate = ($endDate == NULL)? date('Ymd') : $endDate;
+        
+        $set = array(
+            'stationID' => $stationID,
+            'startDate' => $startDate,
+            'endDate' => $endDate,
+        );
+        
+        $this->set('set', $set);
+        
+        
         
     }
     
