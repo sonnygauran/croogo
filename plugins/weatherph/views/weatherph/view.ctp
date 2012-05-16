@@ -1,10 +1,19 @@
 <?php //echo $this->Html->script('AnyChart.js'); ?>
 
 <?php
+//echo $this->Html->script(array(
+//    $this->webroot.'weatherph/js/weatherph/view',
+//    $this->webroot.'weatherph/js/weatherph/AnyChart',
+//    )); 
+
 echo $this->Html->script(array(
-    $this->webroot.'weatherph/js/weatherph/view',
-    $this->webroot.'weatherph/js/weatherph/AnyChart',
-)); ?>
+    $this->webroot.'js/weatherph/view',
+    $this->webroot.'js/weatherph/AnyChart',
+    )); 
+?>
+
+<!--<script type="text/javascript" scr="<?= $this->webroot ?>js/weatherph/view.js"></script>
+<script type="text/javascript" scr="<?= $this->webroot ?>js/weatherph/AnyChart.js"></script>-->
 
 <div class="content">
     <section class="main">

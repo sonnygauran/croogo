@@ -345,21 +345,34 @@ class WeatherphStationForecast extends WeatherphAppModel
                 $result['ort1'] = implode('/', $result['ort1']);
                 
                 $abfrageResults['ort1'] = $result['ort1']; 
+                
+                $utcDate = strtotime('+8 hours', strtotime($result['Datum'] . $result['utc'] . ':' .$result['min']));
+                $result['Datum'] = date('Ymd', $utcDate);
+                $result['utc'] = date('H', $utcDate);
+                $result['min'] = date('m', $utcDate);
+                
                 $abfrageResults['forecast'][$result['Datum']][] = $result;
                 }    
             }
        
         }
         
+        
+        
         $resultData = array();
         switch($type){
             case 'temp':
             case 'temperature':
+                
+//                echo '<pre>';
+//                print_r($this->highTemp($this->popValArray($abfrageResults['forecast'], 'tx')));
+//                echo '</pre>';
+                
                 $resultData['sets'] = array(
                     'tl' => $this->popValArray($abfrageResults['forecast'], 'tl'),
                     'td' => $this->popValArray($abfrageResults['forecast'], 'td'),
-                    'tx' => $this->amaxmin($abfrageResults['forecast'], 'tx', 'max'),
-                    'tn' => $this->amaxmin($abfrageResults['forecast'], 'tn', 'min'),
+                    'tx' => $this->highTemp($this->popValArray($abfrageResults['forecast'], 'tx')),
+                    'tn' => $this->LowTemp($this->popValArray($abfrageResults['forecast'], 'tn')),
                 );
                     $resultData['settings'] = array(
                         'minor_interval' => 6,
@@ -1104,6 +1117,33 @@ class WeatherphStationForecast extends WeatherphAppModel
         return $arrSet;
     }
     
+    private function highTemp($array){
+        //print_r($array);
+        foreach($array as $arr){
+            //print_r($arr);
+            //echo date('H', $arr['x']).'<br />';
+            if(date('H', $arr['x']) == '20'){ $result[] = array(
+                'x' => $arr['x'],
+                'y' => $arr['data'],
+                'data' => $arr['data'],
+                );
+            }
+        }
+        return $result;
+    }
+    
+    private function LowTemp($array){
+        foreach($array as $arr){
+            if(date('H', $arr['x']) == '08'){ $result[] = array(
+                'x' => $arr['x'],
+                'y' => $arr['data'],
+                'data' => $arr['data'],
+                );
+            }
+        }
+        return $result;
+    }
+    
     // Used to get the maximum and minimum in a set of array.
     private function amaxmin($array, $val, $arg){
         
@@ -1127,14 +1167,14 @@ class WeatherphStationForecast extends WeatherphAppModel
             
             foreach($arr as $ar){
                 if(trim($ar[$val])!=''){
-                    if($arg == 'max' && $ar[$val]>$arrmaxmin[$key]['y']){
+                    if($arg == 'max' && $ar[$val]>=$arrmaxmin[$key]['y']){
                         $arrmaxmin[$key] = array(
                             'x' => strtotime($ar['Datum'] . ' ' . $ar['utc'] . ':' . $ar['min']),
                             'y' => trim($ar[$val]),
                             'data' => $ar[$val],
                         );
                         
-                    }elseif($arg == 'min' && $ar[$val]<$arrmaxmin[$key]['y']){
+                    }elseif($arg == 'min' && $ar[$val]<=$arrmaxmin[$key]['y']){
                         $arrmaxmin[$key] = array(
                             'x' => strtotime($ar['Datum'] . ' ' . $ar['utc'] . ':' . $ar['min']),
                             'y' => trim($ar[$val]),

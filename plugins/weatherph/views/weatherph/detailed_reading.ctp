@@ -1,7 +1,7 @@
 <?php echo $this->Html->script('AnyChart.js'); ?>
 
 <center>
-<p> Detailed Reading </p>
+<p> Detailed Measurement </p>
 <br>
 
 <p> WIND </p>
