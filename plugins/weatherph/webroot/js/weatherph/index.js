@@ -83,7 +83,7 @@ map.geomap({
 function getForecast(id) {
 $.ajax({
             type:     'GET',
-            url:        '<?= $this->webroot ?>weatherph/weatherph/getForecast/'+id+'/2/3h',
+            url:        '<?= $this->webroot ?>weatherph/weatherph/getForecast/'+id+'/3/3h',
             cache:    false,
             success:  function(readings) {
                 
@@ -110,11 +110,12 @@ $.ajax({
                     $('.current.humidity span').html(cr_humidity);
                     $('#info .readings .symbol:eq(0)').addClass($stationReadings.reading.sy);
                     $('.current.time').html($stationReadings.reading.uthc);
+                    
                 }else{
                     hideReadings();
                 }
                 
-                console.log(hideReadings)
+                //console.log(hideReadings)
                 
                 if($stationReadings.forecast.status == 'ok'){
                     
