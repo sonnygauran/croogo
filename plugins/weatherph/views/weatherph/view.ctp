@@ -65,6 +65,10 @@ echo $this->Html->script(array(
                 </table>
             </div> <!--END CONDITION TABLE-->
         </div> <!--END CURRENT WEATHER-->
+        
+        <div class="no-forecast">
+            <p>Sorry, there's no forecast available for this station right now. Please try another station.</p>
+        </div>
 
         <div id="weekWeather">
             <h4>This week's forecast</h4>
@@ -88,7 +92,6 @@ echo $this->Html->script(array(
             </ul>
             
             <div class="tab-container">
-                
             <?php foreach ($weeklyForecasts['forecast'] as $key => $dayForecast) {
                 $today = date("Ymd");
                 $tab_class = ($key == $today)? 'current-tab' : 'tab';
@@ -98,7 +101,7 @@ echo $this->Html->script(array(
                     <table class="week-forecast" cellspacing="0">
            
                     <tr class="time">
-                        <td class="caption">Time</td>   
+                        <td class="caption">Time</td>
                         <?php foreach (Set::extract($dayForecast, '{n}.utch') as $column) { ?>
                             <td><?= $column; ?></td>
                         <?php } ?>
@@ -142,13 +145,9 @@ echo $this->Html->script(array(
                     </table>
                 </div>
             <?php } ?>
-            
             </div>
-                
         </div> <!--END WEEK WEATHER-->
-
     </section> <!--MAIN CONTENT-->
-    
 
     <section class="secondary">
         <div id="charts">
@@ -204,18 +203,15 @@ echo $this->Html->script(array(
                         //]]>
                     </script>
                 </div>
-
             </div>
         </div> <!--END CHARTS-->
-
-        <div id="outlook">
+<!--        <div id="outlook">
             <h4>15-Day Outlook</h4>
             <ul class="tabs">
                 <li class="current-tab"><a href="javascript: void(0);">Temperature</a></li>
                 <li><a href="javascript: void(0);">Precipitation</a></li>
                 <li><a href="javascript: void(0);">Wind</a></li>
             </ul>
-            <!--<?php echo $this->Html->image('chart.png'); ?>-->
-        </div> <!--END OUTLOOK-->
+        </div> END OUTLOOK-->
     </section> <!--SECONDARY-->
 </div> <!--CONTENT-->

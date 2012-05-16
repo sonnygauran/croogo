@@ -79,7 +79,7 @@
             <div id="current-readings-box">
                 <div id="current-readings-panel">
                     <h2 class="current readings-location">&nbsp;</h2>
-                    <a href="#" >change station</a>
+    <!--                <a href="#" >change station</a>-->
                     <h4>Current Readings:</h4>
                 </div>
                 <div class="readings shadow">
@@ -105,9 +105,8 @@
                 </div>
             </div>
             <div class="no-readings">
-                <p>Sorry, there's no readings available for this station right now.</p>
+                <p>Sorry, there's no readings available for this station right now. Please try another.</p>
             </div>
-
             <div class="day-forecast">
                 <div class="detail-page-link">
                     <h2 style="height: 21px; text-align: center; width: 195px;">
@@ -284,9 +283,7 @@
                 <p>Sorry, there's no forecast available for this station right now.</p>
             </div>
         </div> <!--INFO-->
-
     </section> <!--MAIN CONTENT-->
-
     <section class="secondary">
         <div class="posts">
             <h4>Intro to Typhoon Climatology</h4>

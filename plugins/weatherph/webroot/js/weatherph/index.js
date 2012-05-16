@@ -64,8 +64,8 @@ map.geomap({
     click: function(e, geo) {
         var outputHtml = "";
     result = $('#map').geomap("find", geo, 6);
-    console.log(result);
-    console.log(e);
+//    console.log(result);
+//    console.log(e);
     
     console.log(JSON.stringify(result));
     $.each(result, function () {
@@ -114,6 +114,7 @@ $.ajax({
                     hideReadings();
                 }
                 
+                console.log(hideReadings)
                 
                 if($stationReadings.forecast.status == 'ok'){
                     
@@ -163,14 +164,14 @@ function showForecast(){
 
 function hideReadings(){
     $('#current-readings-box').fadeOut(function(){
-        $('.no-readings').fadeIn();
+        $('.no-forecast').fadeIn();
     });
     
 }
 
 function showReadings(){
     $('#current-readings-box').fadeIn(function(){
-        $('.no-readings').fadeOut();
+        $('.no-forecast').fadeOut();
     });
 }
 

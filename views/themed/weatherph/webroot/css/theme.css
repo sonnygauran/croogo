@@ -129,6 +129,7 @@ nav li > a {
 }
 
 .severe-warning {
+    display: none;
     width: 75%;
     padding: 8px;
     margin: -15px auto 15px;
@@ -235,18 +236,6 @@ h6.time {
 
 #current-readings-box {
     
-}
-
-.no-readings {
-    margin: 25px 15px;
-    text-align:center;
-    display: none;
-}
-
-.no-forecast {
-    margin: 25px 15px;
-    text-align:center;
-    display: none;
 }
 
 /*READINGS*/
@@ -375,7 +364,7 @@ text-shadow: 0px 2px 3px #555;
 }
 
 #currentWeather {
-    width: 100%;
+    width: 802px;
     overflow: auto;
     border: 1px solid #365283;
 }
@@ -400,7 +389,7 @@ text-shadow: 0px 2px 3px #555;
 }
 
 #conditionTable td {
-    padding: 5px 10px;
+    padding: 5px 8px;
 }
 
 .output {
@@ -507,7 +496,7 @@ footer {
     float: left;
     clear: both;
     width: 100%;
-    margin-top: 8em;
+    margin-top: 15em;
     padding: 10px;
     font-size: .75em;
     background-color: #e1e6f3;
@@ -652,8 +641,12 @@ a:link, a:visited {
     color: #fafafa;
 }
 
-nav li:hover {
+nav li:hover{
     background-color: #3e5e95;
+}
+
+nav li:active {
+    background-color: #20304d;
 }
 
 .layerSelector a:link, .layerSelector a:visited {
@@ -669,6 +662,15 @@ nav li:hover {
     -webkit-box-shadow: 0 4px 3px -3px black;
     -moz-box-shadow: 0 4px 3px -3px black;
     box-shadow: 0 4px 3px -3px black;
+}
+
+.no-readings, .no-forecast {
+    display: none;
+    padding: 25px 15px;
+    text-align: center;
+    background-color: #20304d;
+    color: #fafafa;
+    border: 1px solid #365283;
 }
 
 span.symbol { background: url('<?= $this->webroot ?>theme/weatherph/img/warning-sprites.png') -5px -65px no-repeat; height: 30px; width: 40px; display: block; margin-left: 10px; float: left; }
