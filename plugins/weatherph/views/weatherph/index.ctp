@@ -105,7 +105,10 @@
                 </div>
             </div>
             <div class="no-readings">
-                <p>Sorry, there's no readings available for this station right now. Please try another.</p>
+                <p>Sorry, there's no reading available for this station right now. Please try another.</p>
+            </div>
+            <div class="no-forecast">
+                <p>Sorry, there's no forecast available for this station right now. Please try another.</p>
             </div>
             <div class="day-forecast">
                 <div class="detail-page-link">
