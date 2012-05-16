@@ -115,8 +115,6 @@ $.ajax({
                     hideReadings();
                 }
                 
-                //console.log(hideReadings)
-                
                 if($stationReadings.forecast.status == 'ok'){
                     
                     showForecast();
@@ -164,73 +162,73 @@ function showForecast(){
 }
 
 function hideReadings(){
-    $('#current-readings-box').fadeOut(function(){
+    $('.readings.shadow').fadeOut(function(){
         $('.no-readings').fadeIn();
     });
     
 }
 
 function showReadings(){
-    $('#current-readings-box').fadeIn(function(){
+    $('.readings.shadow').fadeIn(function(){
         $('.no-readings').fadeOut();
     });
 }
 
 //Stations
-var $data = {
-stations : [
-	{
-		id: 26481,
-		name: 'Iloilo',
-		coordinates: [122.5667, 10.7]
-	},
-	{
-		id: 26437,
-		name: 'Alabat',
-		coordinates: [122.0167, 14.0833]
-	},
-		{
-		id: 26395,
-		name: 'Aparri',
-		coordinates: [121.6333, 18.3667]
-	},
-		{
-		id: 26409,
-		name: 'Baguio',
-		coordinates: [120.6, 16.4167]
-	},
-		{
-		id: 26412,
-		name: 'Cabanatuan',
-		coordinates: [120.9667, 15.4833]
-	},
-		{
-		id: 26390,
-		name: 'Vigan',
-		coordinates: [120.3833, 17.5667]
-	},
-		{
-		id: 26527,
-		name: 'Surallah/Allah Valley',
-		coordinates: [124.75, 6.3667]
-	},
-		{
-		id: 26426,
-		name: 'Sangley Point',
-		coordinates: [120.9167, 14.5]
-	},
-		{
-		id: 26456,
-		name: 'Romblon',
-		coordinates: [122.2667, 12.5833]
-	},
-		{
-		id: 26499,
-		name: 'Pagadian',
-		coordinates: [123.4667, 7.8333]
-	},
-]
-}
+//var $data = {
+//stations : [
+//	{
+//		id: 26481,
+//		name: 'Iloilo',
+//		coordinates: [122.5667, 10.7]
+//	},
+//	{
+//		id: 26437,
+//		name: 'Alabat',
+//		coordinates: [122.0167, 14.0833]
+//	},
+//		{
+//		id: 26395,
+//		name: 'Aparri',
+//		coordinates: [121.6333, 18.3667]
+//	},
+//		{
+//		id: 26409,
+//		name: 'Baguio',
+//		coordinates: [120.6, 16.4167]
+//	},
+//		{
+//		id: 26412,
+//		name: 'Cabanatuan',
+//		coordinates: [120.9667, 15.4833]
+//	},
+//		{
+//		id: 26390,
+//		name: 'Vigan',
+//		coordinates: [120.3833, 17.5667]
+//	},
+//		{
+//		id: 26527,
+//		name: 'Surallah/Allah Valley',
+//		coordinates: [124.75, 6.3667]
+//	},
+//		{
+//		id: 26426,
+//		name: 'Sangley Point',
+//		coordinates: [120.9167, 14.5]
+//	},
+//		{
+//		id: 26456,
+//		name: 'Romblon',
+//		coordinates: [122.2667, 12.5833]
+//	},
+//		{
+//		id: 26499,
+//		name: 'Pagadian',
+//		coordinates: [123.4667, 7.8333]
+//	},
+//]
+//}
 
 $stationsPagasa = new Array();
 $.ajax({
@@ -397,18 +395,18 @@ var $boxMap = [
               });
 	});
 
-			$('#upak').click(function(){
-				$(".geo-map").geomap("opacity", 70/100);
-				$("#map").css({opacity: 1});
-				//.append();
-				
-          });
-			$('#reupak').click(function(){
-				$(".geo-map").geomap("opacity", 100/100);
-				$("#map").css({opacity: 1});
-				//.append();
-				
-          });
+//			$('#upak').click(function(){
+//				$(".geo-map").geomap("opacity", 70/100);
+//				$("#map").css({opacity: 1});
+//				//.append();
+//				
+//          });
+//			$('#reupak').click(function(){
+//				$(".geo-map").geomap("opacity", 100/100);
+//				$("#map").css({opacity: 1});
+//				//.append();
+//				
+//          });
 
 /*
         var $widther = 220;    
