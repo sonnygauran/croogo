@@ -238,18 +238,6 @@ h6.time {
     
 }
 
-.no-readings {
-    margin: 25px 15px;
-    text-align:center;
-    display: none;
-}
-
-.no-forecast {
-    margin: 25px 15px;
-    text-align:center;
-    display: none;
-}
-
 /*READINGS*/
 .readings {
     clear: both;
@@ -676,7 +664,7 @@ nav li:active {
     box-shadow: 0 4px 3px -3px black;
 }
 
-.no-forecast {
+.no-readings, .no-forecast {
     display: none;
     padding: 25px 15px;
     text-align: center;

@@ -64,8 +64,8 @@ map.geomap({
     click: function(e, geo) {
         var outputHtml = "";
     result = $('#map').geomap("find", geo, 6);
-    console.log(result);
-    console.log(e);
+//    console.log(result);
+//    console.log(e);
     
     console.log(JSON.stringify(result));
     $.each(result, function () {
@@ -88,18 +88,33 @@ $.ajax({
             success:  function(readings) {
                 
                 var $stationReadings = readings; // the complete retrieved stations
-                console.log($stationReadings);
+                //console.log($stationReadings);
                 var cr_temperature, cr_wind, cr_precip, cr_humidity, cr_symbol;
                 var sr_temperature, sr_wind, sr_precip, sr_humidity, sr_symbol;                
                 
-                $('.current.readings-location').html($stationReadings.reading.ort1);
-                $('.last-update').html($stationReadings.reading.update);
+                if($stationReadings.reading.status == 'ok'){
                     
-                cr_temperature = $stationReadings.reading.tl;
-                cr_wind = $stationReadings.reading.ff;
-                cr_precip = $stationReadings.reading.rr;
-                cr_humidity = $stationReadings.reading.rh;
+                    showReadings();
+                    
+                    $('.current.readings-location').html($stationReadings.reading.ort1);
+                    $('.last-update').html($stationReadings.reading.update);
+
+                    cr_temperature = $stationReadings.reading.tl;
+                    cr_wind = $stationReadings.reading.ff;
+                    cr_precip = $stationReadings.reading.rr;
+                    cr_humidity = $stationReadings.reading.rh;
+
+                    $('.current.temperature span').html(cr_temperature);
+                    $('.current.wind span').html(cr_wind);
+                    $('.current.precipitation span').html(cr_precip);
+                    $('.current.humidity span').html(cr_humidity);
+                    $('#info .readings .symbol:eq(0)').addClass($stationReadings.reading.sy);
+                    $('.current.time').html($stationReadings.reading.uthc);
+                }else{
+                    hideReadings();
+                }
                 
+                console.log(hideReadings)
                 
                 if($stationReadings.forecast.status == 'ok'){
                     
@@ -135,28 +150,28 @@ $.ajax({
 }
 
 function hideForecast(){
-    $('#forecast-details ul').fadeOut(function(){
-        $('div.no-forecast').fadeIn();
+    $('.day-forecast ul').fadeOut(function(){
+        $('.no-readings').fadeIn();
     });
     
 }
 
 function showForecast(){
-    $('#forecast-details ul').fadeIn(function(){
-        $('.noforecast').fadeOut();
+    $('.day-forecast ul').fadeIn(function(){
+        $('.no-readings').fadeOut();
     });
 }
 
 function hideReadings(){
     $('#current-readings-box').fadeOut(function(){
-        $('.no-readings').fadeIn();
+        $('.no-forecast').fadeIn();
     });
     
 }
 
 function showReadings(){
     $('#current-readings-box').fadeIn(function(){
-        $('.no-readings').fadeOut();
+        $('.no-forecast').fadeOut();
     });
 }
 
