@@ -24,7 +24,7 @@
                 </ul>
             </div> <!--LAYER SELECTOR-->
             <div id="map">
-                <div class="loader" style="">
+                <div class="loader">
                 </div>
             </div>
 
@@ -76,7 +76,6 @@
             </div> <!--END LEGEND-->
         </div>
         <div id="info" class="shadow">
-            <div id="current-readings-box">
                 <div id="current-readings-panel">
                     <h2 class="current readings-location">&nbsp;</h2>
     <!--                <a href="#" >change station</a>-->
@@ -103,7 +102,6 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
             <div class="no-readings">
                 <p>Sorry, there's no reading available for this station right now. Please try another.</p>
             </div>
