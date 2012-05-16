@@ -108,17 +108,14 @@
                 <p>Sorry, there's no readings available for this station right now.</p>
             </div>
 
-            <div class="detail-page-link">
-                <h2 style="height: 21px; text-align: center; width: 195px;">
-                    <a href="<?= $this->webroot ?>view" style="background: url('<?= $this->webroot ?>theme/weatherph/img/arrow.png') no-repeat left center; padding-left: 40px; margin: 0 auto;">
-                        More Details
-                    </a>
-                </h2>
-            </div>
-            <div class="no-forecast">
-                <p>Sorry, there's no forecast available for this station right now.</p>
-            </div>
             <div class="day-forecast">
+                <div class="detail-page-link">
+                    <h2 style="height: 21px; text-align: center; width: 195px;">
+                        <a href="<?= $this->webroot ?>view" style="background: url('<?= $this->webroot ?>theme/weatherph/img/arrow.png') no-repeat left center; padding-left: 40px; margin: 0 auto;">
+                            More Details
+                        </a>
+                    </h2>
+                </div>
                 <ul>
                     <li class="forecast-highlight">
                         <h6 class="0-hour time">--:--</h6>
@@ -281,8 +278,10 @@
                             </table>
                         </div>
                     </li>
-
                 </ul>
+            </div>
+            <div class="no-forecast">
+                <p>Sorry, there's no forecast available for this station right now.</p>
             </div>
         </div> <!--INFO-->
 
