@@ -164,14 +164,14 @@ function showForecast(){
 
 function hideReadings(){
     $('#current-readings-box').fadeOut(function(){
-        $('.no-forecast').fadeIn();
+        $('.no-readings').fadeIn();
     });
     
 }
 
 function showReadings(){
     $('#current-readings-box').fadeIn(function(){
-        $('.no-forecast').fadeOut();
+        $('.no-readings').fadeOut();
     });
 }
 
