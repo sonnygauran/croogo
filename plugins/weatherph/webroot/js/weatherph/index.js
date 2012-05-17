@@ -149,11 +149,12 @@ $.ajax({
         });
 }
 
+// Show/hide forecasts depending on availability
+
 function hideForecast(){
     $('.day-forecast').fadeOut(function(){
         $('.no-forecast').fadeIn();
     });
-    
 }
 
 function showForecast(){
@@ -166,7 +167,6 @@ function hideReadings(){
     $('.readings.shadow').fadeOut(function(){
         $('.no-readings').fadeIn();
     });
-    
 }
 
 function showReadings(){
@@ -174,6 +174,33 @@ function showReadings(){
         $('.no-readings').fadeOut();
     });
 }
+
+// Layer selector toggle
+
+$('#link-map').click(function(event){
+    event.preventDefault();
+    $('#map').fadeIn(function(){
+        $('#video-wind').fadeOut();
+        $('#video-precip').fadeOut();
+    });
+});
+
+$('#link-video-wind').click(function(event){
+    event.preventDefault();
+    $('#video-wind').fadeIn(function(){
+        $('#map').fadeOut();
+        $('#video-precip').fadeOut();
+    });
+});
+
+$('#link-video-precip').click(function(event){
+    event.preventDefault();
+    
+    $('#video-precip').fadeIn(function(){
+        $('#map').fadeOut();
+        $('#video-wind').fadeOut();
+    });
+});
 
 //Stations
 //var $data = {

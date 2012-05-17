@@ -19,12 +19,12 @@
         <div id="map-container">
             <div class="layerSelector cf">
                 <ul class="dropdown">
-                    <li><a href="#">Weather stations</a></li>
+                    <li><a href="#" id="link-map">Weather stations</a></li>
                     <li>
                         <a href="#">Weather movies</a>
                         <ul>
-                            <li><a href="#">Precipitation</a></li>
-                            <li><a href="#">Wind</a></li>
+                            <li><a href="#" id="link-video-wind">Wind</a></li>
+                            <li><a href="#" id="link-video-precip">Precipitation</a></li>
                         </ul>
                     </li>
                 </ul>
