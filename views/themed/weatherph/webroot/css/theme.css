@@ -65,6 +65,10 @@ html, body, div, span, object, iframe, h1, h2, h3, dl dt, h4, h5, h6, p, blockqu
     margin: 60px 10px;
 }
 
+/* OPTIONS
+Contains language selector (none yet), and search bar
+*/
+
 #options {
     float: right;
     margin: 85px 10px 10px 10px;
@@ -126,23 +130,6 @@ nav li {
 nav li > a {
     text-decoration: none;
     border-bottom: 1px solid #f1f1f1;
-}
-
-.severe-warning {
-    display: none;
-    width: 75%;
-    padding: 8px;
-    margin: -15px auto 15px;
-    border-top: 1px solid #333;
-    text-align: center;
-    background-color: #aa1111;
-    color: #f1f1f1;
-    -webkit-border-bottom-right-radius: 5px;
-    -webkit-border-bottom-left-radius: 5px;
-    -moz-border-radius-bottomright: 5px;
-    -moz-border-radius-bottomleft: 5px;
-    border-bottom-right-radius: 5px;
-    border-bottom-left-radius: 5px;
 }
 
 /*====================
@@ -428,6 +415,12 @@ div.current-tab {
 }
 
 /*===============
+    DROPDOWN
+===============*/
+
+
+
+/*===============
     WEEK
 ===============*/
 
@@ -471,6 +464,8 @@ div.current-tab {
 .promo img {
     margin: 5px;
 }
+
+/* Glossary */
 
 .figure {
     max-width: 554px;
@@ -560,12 +555,23 @@ h5, h6 {
 4.	Color Scheme
 ========================================*/
 
+/*
+
+So much blue.
+
+    Main blue: #365283
+    Lighter blue: #3e5e95
+    Darker blue: #365283
+    Off-white: #fafafa
+
+*/
+
 html {
     color: #365283;
 }
 
 body {
-    background: transparent url('<?= $this->webroot ?>theme/weatherph/img/bg.png');
+    background: #fafafa url('<?= $this->webroot ?>theme/weatherph/img/bg.png');
 }
 
 .banner {
@@ -621,7 +627,7 @@ nav, .layerSelector, .promo, #info, .week-forecast .time, .output {
     clear: both;
 }
 
-nav li, a {
+a {
     -webkit-transition: all .2s ease;
     -moz-transition: all .2s ease;
     -o-transition: all .2s ease;
@@ -637,11 +643,19 @@ a:link, a:visited {
     color: #fafafa;
 }
 
-nav li:hover{
+nav li, .detail-page-link {
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    -ms-transition: all .1s ease;
+    transition: all .1s ease;
+}
+
+nav li:hover {
     background-color: #3e5e95;
 }
 
-nav li:active {
+nav li:active, .detail-page-link:active {
     background-color: #20304d;
 }
 
@@ -660,6 +674,28 @@ nav li:active {
     box-shadow: 0 4px 3px -3px black;
 }
 
+/*====================
+    ERROR STATES
+====================*/
+
+/* Severe weather warning show up below the nav */
+.severe-warning {
+    display: none;
+    width: 75%;
+    padding: 8px;
+    margin: -15px auto 15px;
+    border-top: 1px solid #333;
+    text-align: center;
+    background-color: #aa1111;
+    color: #f1f1f1;
+    -webkit-border-bottom-right-radius: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+    -moz-border-radius-bottomright: 5px;
+    -moz-border-radius-bottomleft: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
 .no-readings, .no-forecast {
     display: none;
     padding: 25px 15px;
@@ -668,6 +704,10 @@ nav li:active {
     color: #fafafa;
     border: 1px solid #365283;
 }
+
+/*====================
+    SPRITEMAP
+====================*/
 
 span.symbol { background: url('<?= $this->webroot ?>theme/weatherph/img/warning-sprites.png') -5px -65px no-repeat; height: 30px; width: 40px; display: block; margin-left: 10px; float: left; }
 

@@ -1,7 +1,8 @@
 $(document).ready(function(){
 var map = $("#map").geomap({
-    center: [ 121.750488, 12.698865 ],
-    zoom: 6,
+    center: [124,12.7], //to fit weather animations
+        // was[ 121.750488, 12.698865 ],
+    zoom: 5,
     scroll: 'off',
     cursors: {
         static: "default",

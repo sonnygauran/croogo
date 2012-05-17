@@ -19,8 +19,12 @@
         <div id="map-container">
             <div class="layerSelector">
                 <ul>
-                    <li><a href="#">Weather Stations</a></li>
-                    <li><a href="#">Temperature</a></li>
+                    <li><a href="#">Weather stations</a></li>
+                    <li><a href="#">Weather movies</a></li>
+                        <!--<ul>
+                            <li>Precipitation</li>
+                            <li>Wind</li>
+                        </ul>-->
                 </ul>
             </div> <!--LAYER SELECTOR-->
             <div id="map">
