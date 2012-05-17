@@ -102,7 +102,7 @@ class WeatherphStationForecast extends WeatherphAppModel
         }
         
         
-        //$this->log(print_r($currentReadings, true));
+        $this->log(print_r($currentReadings, true));
         
         //Grab stations forecast  
         $url = "http://192.168.20.89/abfrage.php?stationidstring=$stationId&datumstart=$startdatum&datumend=$enddatum&utcstart=$startutc&utcend=$endutc&zeiten1=$utch&paramtyp=mos_mix_mm&mosmess=ja&tl=on&dir=on&ff=on&g3h=on&paramliste=rr,rh,sy,sy2&output=csv2&ortoutput=wmo6,name&aufruf=auto";
@@ -120,8 +120,6 @@ class WeatherphStationForecast extends WeatherphAppModel
         curl_close($ch);
         
         $resultsForecast = $this->csvToArray($curlResults, $headersSpecimen);
-        
-        //if
         
         $nowHour = date('H',strtotime($currentReading['update']));
         $nowHourRound = $nowHour - ($nowHour % 3);
@@ -155,7 +153,6 @@ class WeatherphStationForecast extends WeatherphAppModel
                 $result['g3h'] = ($result['g3h'] == '')? '0' : round($result['g3h'],0);
                 
                 // Translate raw date to 3 hourly range value
-                //$result['utch'] = $result['utc'] . ':' . $result['min'] .' - '. sprintf('%02d',$result['utc'] + 3) .':'. $result['min'];
                 $thierTime = strtotime($result['Datum'].' '.$result['utc'].':'.$result['min']);
                 $ourTime = strtotime('+8 hours', $thierTime);
                 $result['utch'] = date('h:iA', $ourTime);
@@ -166,9 +163,11 @@ class WeatherphStationForecast extends WeatherphAppModel
                 
                 unset($result['ort1']);
                 
-                $readingTime = strtotime($currentReading['update']);
+                $readingTime = (!isset($currentReading['update']))? date('Ymd H:i:s') : $currentReading['update'];
                 
-                if ($ourTime > $readingTime) {
+                $this->log(date('Ymd H:i:s', $ourTime). '-' . date('Ymd H:i:s', strtotime($readingTime)));
+                
+                if ($ourTime > strtotime($readingTime)) {
                     $abfrageResults['forecast']['status'] = 'ok';
                     $abfrageResults['forecast'][] = $result;
                 }else{
@@ -403,10 +402,6 @@ class WeatherphStationForecast extends WeatherphAppModel
         switch($type){
             case 'temp':
             case 'temperature':
-                
-//                echo '<pre>';
-//                print_r($this->highTemp($this->popValArray($abfrageResults['forecast'], 'tx')));
-//                echo '</pre>';
                 
                 $resultData['sets'] = array(
                     'tl' => $this->popValArray($abfrageResults['forecast'], 'tl'),
@@ -1158,10 +1153,7 @@ class WeatherphStationForecast extends WeatherphAppModel
     }
     
     private function highTemp($array){
-        //print_r($array);
         foreach($array as $arr){
-            //print_r($arr);
-            //echo date('H', $arr['x']).'<br />';
             if(date('H', $arr['x']) == '20'){ $result[] = array(
                 'x' => $arr['x'],
                 'y' => $arr['data'],
@@ -1193,8 +1185,6 @@ class WeatherphStationForecast extends WeatherphAppModel
                 if(!isset($arrmaxmin[$key])) {
                     if(trim($ar[$val])!='') {
                        $arrmaxmin[$key] = array(
-//                           'utcDate' => strtotime($ar['Datum'] . ' ' . $ar['utc'] . ':' . $ar['min']),
-//                           'data' => $ar[$val],
                            'x' => strtotime($ar['Datum'] . ' ' . $ar['utc'] . ':' . $ar['min']),
                            'y' => $ar[$val],
                            'data' =>$ar[$val],
