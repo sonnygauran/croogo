@@ -17,20 +17,34 @@
 <div class="content">
     <section class="main">
         <div id="map-container">
-            <div class="layerSelector">
-                <ul>
+            <div class="layerSelector cf">
+                <ul class="dropdown">
                     <li><a href="#">Weather stations</a></li>
-                    <li><a href="#">Weather movies</a></li>
-                        <!--<ul>
-                            <li>Precipitation</li>
-                            <li>Wind</li>
-                        </ul>-->
+                    <li>
+                        <a href="#">Weather movies</a>
+                        <ul>
+                            <li><a href="#">Precipitation</a></li>
+                            <li><a href="#">Wind</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </div> <!--LAYER SELECTOR-->
             <div id="map">
                 <div class="loader">
                 </div>
             </div>
+            
+            <video id="video-wind" width="554" height="554" controls="controls">
+                <source src="<?= $this->webroot ?>theme/weatherph/vid/wind.mp4" type="video/mp4" />
+                <source src="<?= $this->webroot ?>theme/weatherph/vid/wind.webm" type="video/webm" />
+                Your browser does not support the video tag.
+            </video>
+            
+            <video id="video-precip" width="554" height="554" controls="controls">
+                <source src="<?= $this->webroot ?>theme/weatherph/vid/precip.mp4" type="video/mp4" />
+                <source src="<?= $this->webroot ?>theme/weatherph/vid/precip.webm" type="video/webm" />
+                Your browser does not support the video tag.
+            </video>
 
             <div id="legend" class="shadow">
                             

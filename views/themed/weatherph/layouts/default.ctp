@@ -73,7 +73,7 @@
                 <ul>
                     <li><a href="<?= $this->webroot ?>">Home</a></li>
                     <li><a href="<?= $this->webroot ?>view">Detailed Forecasts</a></li>
-                    <li><a href="#">Typhoon Preparedness</a></li>
+                    <li><a href="<?= $this->webroot ?>typhoonPreparedness">Typhoon Preparedness</a></li>
                     <li><a href="#">Typhoon Climatology</a></li>
                     <li><a href="#">Typhoon Glossary</a></li>
                     <li><a href="#">About</a></li>
