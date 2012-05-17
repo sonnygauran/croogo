@@ -60,18 +60,15 @@ class WeatherphStationForecast extends WeatherphAppModel
             if($readings['tl']!=''){
                 
                 //Determine sunrise and sunset for every location using latituted and longtitude
-                $sunrise = date_sunrise(strtotime($readings['Datum']), SUNFUNCS_RET_STRING, $stationInfo['lat'], $stationInfo['lon'], 90);
-                $sunset = date_sunset(strtotime($readings['Datum']), SUNFUNCS_RET_STRING, $stationInfo['lat'], $stationInfo['lon'], 90);
-
-                $readings['sunrise'] = $sunrise;
-                $readings['sunset'] = $sunset;
+                $readings['sunrise'] = date_sunrise(strtotime($readings['Datum']), SUNFUNCS_RET_STRING, $stationInfo['lat'], $stationInfo['lon'], 90);
+                $readings['sunset'] = date_sunset(strtotime($readings['Datum']), SUNFUNCS_RET_STRING, $stationInfo['lat'], $stationInfo['lon'], 90);
                 
                 $readings['ort1'] = explode('/', $readings['ort1']);
                 unset($readings['ort1'][0]);
                 $readings['ort1'] = implode('/', $readings['ort1']);
                 
                 //Determine weather symbol for certain utc time
-                $readings['sy'] = $this->dayOrNightSymbol(number_format($readings['sy'],0), $readings['utc'], array("sunrise"=>$sunrise,"sunset"=>$sunset));
+                $readings['sy'] = $this->dayOrNightSymbol(number_format($readings['sy'],0), $readings['utc'], array("sunrise"=>$readings['sunrise'],"sunset"=>$readings['sunset']));
                 
                 // Replace the null values with hypen character and round it off to the nearest tenths
                 $readings['tl'] = ($readings['tl'] == '')? '0' : round($readings['tl'],0);
@@ -83,10 +80,12 @@ class WeatherphStationForecast extends WeatherphAppModel
                 // Translate raw data to wind direction image value
                 $readings['dir'] = $this->showWindDirection($readings['dir']);
                 
-                $thierTime = strtotime($readings['Datum'].' '.$readings['utc'].':'.$readings['min']);
-                $ourTime = strtotime('+8 hours', $thierTime);
-                $readings['update'] = date('h:iA', $ourTime);
-                //$readings['update'] = date('h:iA', $thierTime);
+                $utcDate = strtotime('+8 hours', strtotime($readings['Datum'] . $readings['utc'] . ':' .$readings['min']));
+                $readings['Datum'] = date('Ymd', $utcDate);
+                $readings['utc'] = date('H', $utcDate);
+                $readings['min'] = date('m', $utcDate);
+                
+                $readings['update'] = date('h:iA', $utcDate);
                 
                 $currentReadings[] = $readings;
                 
@@ -103,7 +102,7 @@ class WeatherphStationForecast extends WeatherphAppModel
         }
         
         
-        //$this->log(print_r($currentReadings, true));
+        $this->log(print_r($currentReadings, true));
         
         //Grab stations forecast  
         $url = "http://192.168.20.89/abfrage.php?stationidstring=$stationId&datumstart=$startdatum&datumend=$enddatum&utcstart=$startutc&utcend=$endutc&zeiten1=$utch&paramtyp=mos_mix_mm&mosmess=ja&tl=on&dir=on&ff=on&g3h=on&paramliste=rr,rh,sy,sy2&output=csv2&ortoutput=wmo6,name&aufruf=auto";
@@ -127,19 +126,14 @@ class WeatherphStationForecast extends WeatherphAppModel
         
         $hourStart = false;
         
-        //$this->log($resultsForecast);
-        
         $abfrageResults['forecast'] = array();
         foreach($resultsForecast as $result){
             
             if(trim($result['tl'])!=''){
                 
                 //Determine sunrise and sunset for every location using latituted and longtitude
-                $sunrise = date_sunrise(strtotime($result['Datum']), SUNFUNCS_RET_STRING, $stationInfo['lat'], $stationInfo['lon'], 90);
-                $sunset = date_sunset(strtotime($result['Datum']), SUNFUNCS_RET_STRING, $stationInfo['lat'], $stationInfo['lon'], 90);
-
-                $result['sunrise'] = $sunrise;
-                $result['sunset'] = $sunset;
+                $result['sunrise'] = date_sunrise(strtotime($result['Datum']), SUNFUNCS_RET_STRING, $stationInfo['lat'], $stationInfo['lon'], 90);
+                $result['sunset'] = date_sunset(strtotime($result['Datum']), SUNFUNCS_RET_STRING, $stationInfo['lat'], $stationInfo['lon'], 90);
 
                 //explode the ort1 raw data, grab only those needed
                 $result['ort1'] = explode('/', $result['ort1']);
@@ -149,7 +143,7 @@ class WeatherphStationForecast extends WeatherphAppModel
                 $abfrageResults['ort1'] = $result['ort1'];
                 
                 //Determine weather symbol for certain utc time
-                $result['sy'] = $this->dayOrNightSymbol(number_format($result['sy'],0), $result['utc'], array("sunrise"=>$sunrise,"sunset"=>$sunset));
+                $result['sy'] = $this->dayOrNightSymbol(number_format($result['sy'],0), $result['utc'], array("sunrise"=>$result['sunrise'],"sunset"=>$result['sunset']));
                 
                 // Replace the null values with hypen character and round it off to the nearest tenths
                 $result['tl'] = ($result['tl'] == '')? '0' : round($result['tl'],0);
@@ -159,10 +153,9 @@ class WeatherphStationForecast extends WeatherphAppModel
                 $result['g3h'] = ($result['g3h'] == '')? '0' : round($result['g3h'],0);
                 
                 // Translate raw date to 3 hourly range value
-                //$result['utch'] = $result['utc'] . ':' . $result['min'] .' - '. sprintf('%02d',$result['utc'] + 3) .':'. $result['min'];
                 $thierTime = strtotime($result['Datum'].' '.$result['utc'].':'.$result['min']);
                 $ourTime = strtotime('+8 hours', $thierTime);
-                $result['utch'] = date('H:iA', $ourTime);
+                $result['utch'] = date('h:iA', $ourTime);
                 $result['ourtime'] = $nowHourRound;
                 
                 // Translate raw data to wind direction image value
@@ -170,19 +163,21 @@ class WeatherphStationForecast extends WeatherphAppModel
                 
                 unset($result['ort1']);
                 
-                $readingTime = strtotime($currentReading['update']);
+                $readingTime = (!isset($currentReading['update']))? date('Ymd H:i:s') : $currentReading['update'];
                 
-                if ($ourTime > $readingTime) {
+                $this->log(date('Ymd H:i:s', $ourTime). '-' . date('Ymd H:i:s', strtotime($readingTime)));
+                
+                if ($ourTime > strtotime($readingTime)) {
                     $abfrageResults['forecast']['status'] = 'ok';
                     $abfrageResults['forecast'][] = $result;
                 }else{
                     $abfrageResults['forecast']['status'] = 'none';
                 }
                 
-                //$this->log(print_r($abfrageResults, TRUE));
-                
             }
         }
+        
+        //$this->log(print_r($abfrageResults, TRUE));
         
         return $abfrageResults;
         
@@ -195,12 +190,87 @@ class WeatherphStationForecast extends WeatherphAppModel
         date_default_timezone_set('Asia/Manila');
         
         $stationId = $fields['conditions']['id'];
- 
-        $startdatum = date('Ymd');
-        $enddatum = strtotime("+4 days", strtotime($startdatum));
-        $enddatum = date('Ymd', $enddatum);
+        
+        $startdatum = date('Ymd H:i:s', strtotime('-8 hours', strtotime(date('Ymd'))));    
+        
+        $startutc = date('H', strtotime($startdatum));
+        $endutc = '00';
+        
+        $startdatum = date('Ymd', strtotime($startdatum));    
+        $enddatum = date('Ymd', strtotime('+1 Day', strtotime(date('Ymd'))));
+        
+        $stationInfo = $this->getStationInfo($stationId, array("lat","lon"));
         
         //Grab stations readings  
+        $url = "http://192.168.20.89/abfrage.php?stationidstring=$stationId&datumstart=$startdatum&datumend=$enddatum&utcstart=$startutc&utcend=$endutc&zeiten1=10m&tl=on&dir=on&ff=on&g3h=on&paramliste=rr,rh,sy,sy2&output=csv2&ortoutput=wmo6,name&aufruf=auto";
+        
+        $this->log($url);
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_USERPWD, "{$karten['username']}:{$karten['password']}");
+        curl_setopt($ch, CURLOPT_USERAGENT, "Weather.com.ph Curl Client 1.0");
+        curl_setopt($ch, CURLOPT_TIMEOUT, 10); //times out after 10s 
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+
+        $curlResults = curl_exec($ch);
+        curl_close($ch);
+        
+        $headersSpecimen = "Datum;utc;min;ort1;dir;ff;g3h;tl;rr;sy;rh;sy2;";
+        
+        $resultsReadings = $this->csvToArray($curlResults, $headersSpecimen);
+        
+        $currentReadings = array();
+        foreach($resultsReadings as $readings){
+            if($readings['tl']!=''){
+                
+                //Determine sunrise and sunset for every location using latituted and longtitude
+                $readings['sunrise'] = date_sunrise(strtotime($readings['Datum']), SUNFUNCS_RET_STRING, $stationInfo['lat'], $stationInfo['lon'], 90);
+                $readings['sunset'] = date_sunset(strtotime($readings['Datum']), SUNFUNCS_RET_STRING, $stationInfo['lat'], $stationInfo['lon'], 90);
+                
+                $readings['ort1'] = explode('/', $readings['ort1']);
+                unset($readings['ort1'][0]);
+                $readings['ort1'] = implode('/', $readings['ort1']);
+                
+                //Determine weather symbol for certain utc time
+                $readings['sy'] = $this->dayOrNightSymbol(number_format($readings['sy'],0), $readings['utc'], array("sunrise"=>$readings['sunrise'],"sunset"=>$readings['sunset']));
+                
+                // Replace the null values with hypen character and round it off to the nearest tenths
+                $readings['tl'] = ($readings['tl'] == '')? '0' : round($readings['tl'],0);
+                $readings['rr'] = ($readings['rr'] == '')? '0' : round($readings['rr'],0);
+                $readings['rh'] = ($readings['rh'] == '')? '0' : round($readings['rh'],0);
+                $readings['ff'] = ($readings['ff'] == '')? '0' : round($readings['ff'],0);
+                $readings['g3h'] = ($readings['g3h'] == '')? '0' : round($readings['g3h'],0);
+                
+                $readings['moonphase'] = $this->moon_phase(date('Y', strtotime($readings['Datum'])), date('m', strtotime($readings['Datum'])), date('d', strtotime($readings['Datum'])));
+                
+                // Translate raw data to wind direction image value
+                $readings['dir'] = $this->showWindDirection($readings['dir']);
+                
+                $utcDate = strtotime('+8 hours', strtotime($readings['Datum'] . $readings['utc'] . ':' .$readings['min']));
+                $readings['Datum'] = date('Ymd', $utcDate);
+                $readings['utc'] = date('H', $utcDate);
+                $readings['min'] = date('m', $utcDate);
+                
+                $readings['update'] = date('h:iA', $utcDate);
+                
+                $currentReadings[] = $readings;
+                
+            }
+        }
+        
+        $currentReading = array_pop($currentReadings);
+        
+        if(count($currentReading)>0){
+            $abfrageResults['reading'] = $currentReading;
+            $abfrageResults['reading']['status'] = 'ok';
+        }else{
+            $abfrageResults['reading']['status'] = 'none';
+        }
+        
+        $enddatum = date('Ymd', strtotime("+5 Days", strtotime($startdatum)));
+        
+        //Grab stations forecast  
         $url = "http://192.168.20.89/abfrage.php?stationidstring=$stationId&datumstart=$startdatum&datumend=$enddatum&&zeiten1=3h&paramtyp=mos_mix_mm&mosmess=ja&tl=on&dir=on&ff=on&g3h=on&paramliste=rr,rh,sy,sy2&output=csv2&ortoutput=wmo6,name&timefill=nein&verknuepft=nein&aufruf=auto";
         
         $this->log($url);
@@ -215,43 +285,20 @@ class WeatherphStationForecast extends WeatherphAppModel
         $curlResults = curl_exec($ch);
         curl_close($ch);
         
-        $stationInfo = $this->getStationInfo($stationId, array("lat","lon"));
-             
         $headersSpecimen = "Datum;utc;min;ort1;dir;ff;g3h;tl;rr;sy;rh;sy2;";
         
         $results = $this->csvToArray($curlResults, $headersSpecimen);
         
-        $nowHour = date('H');
-        $nowHourRound = $nowHour - ($nowHour % 3);
-        
-        $hourStart = false;
-        $abfrageResults = array();
         foreach($results as $result){
             
             if(trim($result['tl'])!=''){
                 
                 //Determine sunrise and sunset for every location using latituted and longtitude
-                $sunrise = date_sunrise(strtotime($result['Datum']), SUNFUNCS_RET_STRING, $stationInfo['lat'], $stationInfo['lon'], 90);
-                $sunset = date_sunset(strtotime($result['Datum']), SUNFUNCS_RET_STRING, $stationInfo['lat'], $stationInfo['lon'], 90);
-                
-                $result['sunrise'] = $sunrise;
-                $result['sunset'] = $sunset;
-
-                //explode the ort1 raw data, grab only those needed
-                $result['ort1'] = explode('/', $result['ort1']);
-                unset($result['ort1'][0]);
-                $result['ort1'] = implode('/', $result['ort1']);
-                
-                $abfrageResults['stationId'] = $stationId; 
-                $abfrageResults['ort1'] = $result['ort1'];
-                $abfrageResults['update'] = date('H:iA');
-                
-                $thierTime = strtotime($result['Datum'].' '.$result['utc']);
-                $ourTime = strtotime('+8 hours', $thierTime);
-                $abfrageResults['update'] = date('H:iA', $ourTime);
+                $result['sunrise'] = date_sunrise(strtotime($result['Datum']), SUNFUNCS_RET_STRING, $stationInfo['lat'], $stationInfo['lon'], 90);
+                $result['sunset'] = date_sunset(strtotime($result['Datum']), SUNFUNCS_RET_STRING, $stationInfo['lat'], $stationInfo['lon'], 90);
                 
                 //Determine weather symbol for certain utc time
-                $result['sy'] = $this->dayOrNightSymbol(number_format($result['sy'],0), $result['utc'], array("sunrise"=>$sunrise,"sunset"=>$sunset));
+                $result['sy'] = $this->dayOrNightSymbol(number_format($result['sy'],0), $result['utc'], array("sunrise"=>$result['sunrise'],"sunset"=>$result['sunset']));
                 
                 // Replace the null values with hypen character and round it off to the nearest tenths
                 $result['tl'] = ($result['tl'] == '')? '0' : round($result['tl'],0);
@@ -260,30 +307,22 @@ class WeatherphStationForecast extends WeatherphAppModel
                 $result['ff'] = ($result['ff'] == '')? '0' : round($result['ff'],0);
                 $result['g3h'] = ($result['g3h'] == '')? '0' : round($result['g3h'],0);
                 
-                $result['moonphase'] = $this->moon_phase(date('Y', strtotime($result['Datum'])), date('m', strtotime($result['Datum'])), date('d', strtotime($result['Datum'])));
-                
                 // Translate raw date to 3 hourly range value
-                //$result['utch'] = date('H:sA', strtotime($result['Datum'] .' '. $result['utc'] . ':' . $result['min']));
                 $thierTime = strtotime($result['Datum'].' '.$result['utc'].':'.$result['min']);
                 $ourTime = strtotime('+8 hours', $thierTime);
                 $result['utch'] = date('H:iA', $ourTime);
-                $result['ourtime'] = $nowHourRound;
                 
                 // Translate raw data to wind direction image value
                 $result['dir'] = $this->showWindDirection($result['dir']);
                 
                 unset($result['ort1']);
                 
-                if (!key_exists('reading', $abfrageResults) AND !$hourStart) {
-                    if ($result['utc'] == $nowHourRound) {
-                        $abfrageResults['reading'] = $result;
-                    }
-                }
-                
                 $abfrageResults['forecast'][$result['Datum']][] = $result;
                 
             }
         }
+        
+        $abfrageResults['stationId'] = $stationId;
        
         return $abfrageResults;
         
@@ -363,10 +402,6 @@ class WeatherphStationForecast extends WeatherphAppModel
         switch($type){
             case 'temp':
             case 'temperature':
-                
-//                echo '<pre>';
-//                print_r($this->highTemp($this->popValArray($abfrageResults['forecast'], 'tx')));
-//                echo '</pre>';
                 
                 $resultData['sets'] = array(
                     'tl' => $this->popValArray($abfrageResults['forecast'], 'tl'),
@@ -1118,10 +1153,7 @@ class WeatherphStationForecast extends WeatherphAppModel
     }
     
     private function highTemp($array){
-        //print_r($array);
         foreach($array as $arr){
-            //print_r($arr);
-            //echo date('H', $arr['x']).'<br />';
             if(date('H', $arr['x']) == '20'){ $result[] = array(
                 'x' => $arr['x'],
                 'y' => $arr['data'],
@@ -1153,8 +1185,6 @@ class WeatherphStationForecast extends WeatherphAppModel
                 if(!isset($arrmaxmin[$key])) {
                     if(trim($ar[$val])!='') {
                        $arrmaxmin[$key] = array(
-//                           'utcDate' => strtotime($ar['Datum'] . ' ' . $ar['utc'] . ':' . $ar['min']),
-//                           'data' => $ar[$val],
                            'x' => strtotime($ar['Datum'] . ' ' . $ar['utc'] . ':' . $ar['min']),
                            'y' => $ar[$val],
                            'data' =>$ar[$val],

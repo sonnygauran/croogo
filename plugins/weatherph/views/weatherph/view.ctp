@@ -7,8 +7,8 @@
 //    )); 
 
 echo $this->Html->script(array(
-    $this->webroot.'js/weatherph/view',
-    $this->webroot.'js/weatherph/AnyChart',
+    $this->webroot.'weatherph/js/weatherph/view',
+    $this->webroot.'weatherph/js/weatherph/AnyChart',
     )); 
 ?>
 
@@ -18,52 +18,51 @@ echo $this->Html->script(array(
 <div class="content">
     <section class="main">
         <div id="currentWeather" class="shadow">
+            
             <div id="station">
-                <h1><?= $weeklyForecasts['ort1']; ?></h1>
+                <h1><?= $dataSets['reading']['ort1']; ?></h1>
 <!--                <a href="#">change station</a>-->
             </div> <!--END STATION-->
 
             <div id="condition">
                 <table>
                     <tbody>
-<!--                        <tr>
-                            <td>img src="/theme/weatherph/img/cloudy.png"/</td>
-                            <td><?= $weeklyForecasts['reading']['tl']; ?>&deg;C</td>
-                        </tr>
--->
                         <tr>
                             <td><span class="symbol sunrise"></span></td>
-                            <td>Sunrise: <?= date("h:iA",strtotime($weeklyForecasts['reading']['sunrise'])); ?></td>
+                            <td>Sunrise: <?= date("h:iA",strtotime($dataSets['reading']['sunrise'])); ?></td>
                         </tr>
                         <tr>
                             <td><span class="symbol sunset"></span></td>
-                            <td>Sunset: <?= date("h:iA",strtotime($weeklyForecasts['reading']['sunset'])); ?></td>
+                            <td>Sunset: <?= date("h:iA",strtotime($dataSets['reading']['sunset'])); ?></td>
                         </tr>
                         <tr>
-                            <td><span class="symbol moonphase_<?= $weeklyForecasts['reading']['moonphase']['phase_code']; ?>"></span></td>
-                            <td>Moon Phase: <?= $weeklyForecasts['reading']['moonphase']['phase']; ?></td>
+                            <td><span class="symbol moonphase_<?= $dataSets['reading']['moonphase']['phase_code']; ?>"></span></td>
+                            <td>Moon Phase: <?= $dataSets['reading']['moonphase']['phase']; ?></td>
                         </tr>
                     </tbody>
                 </table>
             </div> <!--END CONDITION-->
+            
             <div id="conditionTable">
                 <table>
                     <tbody>
                         <tr>
-                            <td class="caption">Precipitation</td>
-                            <td class="output"><?= $weeklyForecasts['reading']['rr']; ?>mm</td>
+                            <td class="caption">Avg. Wind Speed</td>
+                            <td class="output"><?= $dataSets['reading']['ff']; ?>km/h</td>
                         </tr>
                         <tr>
-                            <td class="caption">Avg. Wind Speed</td>
-                            <td class="output"><?= $weeklyForecasts['reading']['ff']; ?>km/h</td>
+                            <td class="caption">Precipitation</td>
+                            <td class="output"><?= $dataSets['reading']['rr']; ?>mm</td>
                         </tr>
                         <tr>
                             <td class="caption">Relative Humidity</td>
-                            <td class="output"><?= $weeklyForecasts['reading']['rh']; ?>%</td>
+                            <td class="output"><?= $dataSets['reading']['rh']; ?>%</td>
                         </tr>
                     </tbody>
                 </table>
             </div> <!--END CONDITION TABLE-->
+            
+            
         </div> <!--END CURRENT WEATHER-->
         
         <div class="no-forecast">
@@ -92,7 +91,7 @@ echo $this->Html->script(array(
             </ul>
             
             <div class="tab-container">
-            <?php foreach ($weeklyForecasts['forecast'] as $key => $dayForecast) {
+            <?php foreach ($dataSets['forecast'] as $key => $dayForecast) {
                 $today = date("Ymd");
                 $tab_class = ($key == $today)? 'current-tab' : 'tab';
                 $div_id = ($key == $today)? "Today" : date('l', strtotime($key));
@@ -165,7 +164,7 @@ echo $this->Html->script(array(
                             var chart = new AnyChart('<?= $this->webroot ?>swf/AnyChart.swf');
                             chart.width = 830;
                             chart.height = 200;
-                            chart.setXMLFile('<?= $this->webroot ?>getDetailedForecast/<?= $weeklyForecasts['stationId']; ?>/temperature/3h');
+                            chart.setXMLFile('<?= $this->webroot ?>getDetailedForecast/<?= $dataSets['stationId']; ?>/temperature/3h');
                             chart.write();
                         //]]>
                     </script>
@@ -176,7 +175,7 @@ echo $this->Html->script(array(
                             var chart = new AnyChart('<?= $this->webroot ?>swf/AnyChart.swf');
                             chart.width = 830;
                             chart.height = 200;
-                            chart.setXMLFile('<?= $this->webroot ?>getDetailedForecast/<?= $weeklyForecasts['stationId']; ?>/precip');
+                            chart.setXMLFile('<?= $this->webroot ?>getDetailedForecast/<?= $dataSets['stationId']; ?>/precip');
                             chart.write();
                         //]]>
                     </script>
@@ -187,7 +186,7 @@ echo $this->Html->script(array(
                             var chart = new AnyChart('<?= $this->webroot ?>swf/AnyChart.swf');
                             chart.width = 830;
                             chart.height = 200;
-                            chart.setXMLFile('<?= $this->webroot ?>getDetailedForecast/<?= $weeklyForecasts['stationId']; ?>/wind');
+                            chart.setXMLFile('<?= $this->webroot ?>getDetailedForecast/<?= $dataSets['stationId']; ?>/wind');
                             chart.write();
                         //]]>
                     </script>
@@ -198,7 +197,7 @@ echo $this->Html->script(array(
                             var chart = new AnyChart('<?= $this->webroot ?>swf/AnyChart.swf');
                             chart.width = 830;
                             chart.height = 200;
-                            chart.setXMLFile('<?= $this->webroot ?>getDetailedForecast/<?= $weeklyForecasts['stationId']; ?>/humidity');
+                            chart.setXMLFile('<?= $this->webroot ?>getDetailedForecast/<?= $dataSets['stationId']; ?>/humidity');
                             chart.write();
                         //]]>
                     </script>

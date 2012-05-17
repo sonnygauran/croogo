@@ -73,7 +73,7 @@
                 <ul>
                     <li><a href="<?= $this->webroot ?>">Home</a></li>
                     <li><a href="<?= $this->webroot ?>view">Detailed Forecasts</a></li>
-                    <li><a href="#">Typhoon Preparedness</a></li>
+                    <li><a href="<?= $this->webroot ?>typhoonPreparedness">Typhoon Preparedness</a></li>
                     <li><a href="#">Typhoon Climatology</a></li>
                     <li><a href="#">Typhoon Glossary</a></li>
                     <li><a href="#">About</a></li>
@@ -92,14 +92,14 @@ echo $content_for_layout;
                 <div class="sponsored">
                     <h6>Platinum sponsors:</h6>
                     <ul>
-                        <li><?php echo $this->Html->image('ICTS.jpg'); ?></li>
-                        <li><?php echo $this->Html->image('NAC1.png'); ?></li>
-                        <li><?php echo $this->Html->image('SGS1.png'); ?></li>
-                        <li><?php echo $this->Html->image('vistaland1.png'); ?></li>
-                        <li><?php echo $this->Html->image('ngcp1.png'); ?></li>
-                        <li><?php echo $this->Html->image('sumitomo1.png'); ?></li>
-                        <li><?php echo $this->Html->image('sm.gif'); ?></li>
-                        <li><?php echo $this->Html->image('tyk.jpg'); ?></li>
+                        <li><?php echo $this->Html->image('sponsor-sm.gif'); ?></li>
+                        <li><?php echo $this->Html->image('sponsor-ngcp.png'); ?></li>
+                        <li><?php echo $this->Html->image('sponsor-icts.jpg'); ?></li>
+                        <li><?php echo $this->Html->image('sponsor-nac.png'); ?></li>
+                        <li><?php echo $this->Html->image('sponsor-sgs.png'); ?></li>
+                        <li><?php echo $this->Html->image('sponsor-vistaland.png'); ?></li>
+                        <li><?php echo $this->Html->image('sponsor-sumitomo.png'); ?></li>
+                        <li><?php echo $this->Html->image('sponsor-tyk.jpg'); ?></li>
                     </ul>
                 </div>
                 

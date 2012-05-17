@@ -17,16 +17,34 @@
 <div class="content">
     <section class="main">
         <div id="map-container">
-            <div class="layerSelector">
-                <ul>
-                    <li><a href="#">Weather Stations</a></li>
-                    <li><a href="#">Temperature</a></li>
+            <div class="layerSelector cf">
+                <ul class="dropdown">
+                    <li><a href="#" id="link-map">Weather stations</a></li>
+                    <li>
+                        <a href="#">Weather movies</a>
+                        <ul>
+                            <li><a href="#" id="link-video-wind">Wind</a></li>
+                            <li><a href="#" id="link-video-precip">Precipitation</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </div> <!--LAYER SELECTOR-->
             <div id="map">
-                <div class="loader" style="">
+                <div class="loader">
                 </div>
             </div>
+            
+            <video id="video-wind" width="554" height="554" controls="controls">
+                <source src="<?= $this->webroot ?>theme/weatherph/vid/wind.mp4" type="video/mp4" />
+                <source src="<?= $this->webroot ?>theme/weatherph/vid/wind.webm" type="video/webm" />
+                Your browser does not support the video tag.
+            </video>
+            
+            <video id="video-precip" width="554" height="554" controls="controls">
+                <source src="<?= $this->webroot ?>theme/weatherph/vid/precip.mp4" type="video/mp4" />
+                <source src="<?= $this->webroot ?>theme/weatherph/vid/precip.webm" type="video/webm" />
+                Your browser does not support the video tag.
+            </video>
 
             <div id="legend" class="shadow">
                             
@@ -76,12 +94,13 @@
             </div> <!--END LEGEND-->
         </div>
         <div id="info" class="shadow">
+            <div id="current-readings-panel">
+                <h2 class="current readings-location">&nbsp;</h2>
+<!--                <a href="#" >change station</a>-->
+                <h4>Current Readings:</h4>
+            </div>
             <div id="current-readings-box">
-                <div id="current-readings-panel">
-                    <h2 class="current readings-location">&nbsp;</h2>
-    <!--                <a href="#" >change station</a>-->
-                    <h4>Current Readings:</h4>
-                </div>
+
                 <div class="readings shadow">
                     <p>last updated: <span class="last-update">--:--</span></p>
                     <span class="current temperature"><span>&nbsp;</span>&deg;C</span>
@@ -103,7 +122,6 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
             <div class="no-readings">
                 <p>Sorry, there's no readings available for this station right now. Please try another.</p>
             </div>

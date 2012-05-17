@@ -1,7 +1,8 @@
 $(document).ready(function(){
 var map = $("#map").geomap({
-    center: [ 121.750488, 12.698865 ],
-    zoom: 6,
+    center: [124,12.7], //to fit weather animations
+        // was[ 121.750488, 12.698865 ],
+    zoom: 5,
     scroll: 'off',
     cursors: {
         static: "default",
@@ -83,7 +84,7 @@ map.geomap({
 function getForecast(id) {
 $.ajax({
             type:     'GET',
-            url:        '<?= $this->webroot ?>weatherph/weatherph/getForecast/'+id+'/2/3h',
+            url:        '<?= $this->webroot ?>weatherph/weatherph/getForecast/'+id+'/3/3h',
             cache:    false,
             success:  function(readings) {
                 
@@ -110,11 +111,10 @@ $.ajax({
                     $('.current.humidity span').html(cr_humidity);
                     $('#info .readings .symbol:eq(0)').addClass($stationReadings.reading.sy);
                     $('.current.time').html($stationReadings.reading.uthc);
+                    
                 }else{
                     hideReadings();
                 }
-                
-                console.log(hideReadings)
                 
                 if($stationReadings.forecast.status == 'ok'){
                     
@@ -149,11 +149,12 @@ $.ajax({
         });
 }
 
+// Show/hide forecasts depending on availability
+
 function hideForecast(){
     $('.day-forecast').fadeOut(function(){
         $('.no-forecast').fadeIn();
     });
-    
 }
 
 function showForecast(){
@@ -163,73 +164,99 @@ function showForecast(){
 }
 
 function hideReadings(){
-    $('#current-readings-box').fadeOut(function(){
+    $('.readings.shadow').fadeOut(function(){
         $('.no-readings').fadeIn();
     });
-    
 }
 
 function showReadings(){
-    $('#current-readings-box').fadeIn(function(){
+    $('.readings.shadow').fadeIn(function(){
         $('.no-readings').fadeOut();
     });
 }
 
+// Layer selector toggle
+
+$('#link-map').click(function(event){
+    event.preventDefault();
+    $('#map').fadeIn(function(){
+        $('#video-wind').fadeOut();
+        $('#video-precip').fadeOut();
+    });
+});
+
+$('#link-video-wind').click(function(event){
+    event.preventDefault();
+    $('#video-wind').fadeIn(function(){
+        $('#map').fadeOut();
+        $('#video-precip').fadeOut();
+    });
+});
+
+$('#link-video-precip').click(function(event){
+    event.preventDefault();
+    
+    $('#video-precip').fadeIn(function(){
+        $('#map').fadeOut();
+        $('#video-wind').fadeOut();
+    });
+});
+
 //Stations
-var $data = {
-stations : [
-	{
-		id: 26481,
-		name: 'Iloilo',
-		coordinates: [122.5667, 10.7]
-	},
-	{
-		id: 26437,
-		name: 'Alabat',
-		coordinates: [122.0167, 14.0833]
-	},
-		{
-		id: 26395,
-		name: 'Aparri',
-		coordinates: [121.6333, 18.3667]
-	},
-		{
-		id: 26409,
-		name: 'Baguio',
-		coordinates: [120.6, 16.4167]
-	},
-		{
-		id: 26412,
-		name: 'Cabanatuan',
-		coordinates: [120.9667, 15.4833]
-	},
-		{
-		id: 26390,
-		name: 'Vigan',
-		coordinates: [120.3833, 17.5667]
-	},
-		{
-		id: 26527,
-		name: 'Surallah/Allah Valley',
-		coordinates: [124.75, 6.3667]
-	},
-		{
-		id: 26426,
-		name: 'Sangley Point',
-		coordinates: [120.9167, 14.5]
-	},
-		{
-		id: 26456,
-		name: 'Romblon',
-		coordinates: [122.2667, 12.5833]
-	},
-		{
-		id: 26499,
-		name: 'Pagadian',
-		coordinates: [123.4667, 7.8333]
-	},
-]
-}
+//var $data = {
+//stations : [
+//	{
+//		id: 26481,
+//		name: 'Iloilo',
+//		coordinates: [122.5667, 10.7]
+//	},
+//	{
+//		id: 26437,
+//		name: 'Alabat',
+//		coordinates: [122.0167, 14.0833]
+//	},
+//		{
+//		id: 26395,
+//		name: 'Aparri',
+//		coordinates: [121.6333, 18.3667]
+//	},
+//		{
+//		id: 26409,
+//		name: 'Baguio',
+//		coordinates: [120.6, 16.4167]
+//	},
+//		{
+//		id: 26412,
+//		name: 'Cabanatuan',
+//		coordinates: [120.9667, 15.4833]
+//	},
+//		{
+//		id: 26390,
+//		name: 'Vigan',
+//		coordinates: [120.3833, 17.5667]
+//	},
+//		{
+//		id: 26527,
+//		name: 'Surallah/Allah Valley',
+//		coordinates: [124.75, 6.3667]
+//	},
+//		{
+//		id: 26426,
+//		name: 'Sangley Point',
+//		coordinates: [120.9167, 14.5]
+//	},
+//		{
+//		id: 26456,
+//		name: 'Romblon',
+//		coordinates: [122.2667, 12.5833]
+//	},
+//		{
+//		id: 26499,
+//		name: 'Pagadian',
+//		coordinates: [123.4667, 7.8333]
+//	},
+//]
+//}
 
 $stationsPagasa = new Array();
 $.ajax({
@@ -396,18 +423,18 @@ var $boxMap = [
               });
 	});
 
-			$('#upak').click(function(){
-				$(".geo-map").geomap("opacity", 70/100);
-				$("#map").css({opacity: 1});
-				//.append();
-				
-          });
-			$('#reupak').click(function(){
-				$(".geo-map").geomap("opacity", 100/100);
-				$("#map").css({opacity: 1});
-				//.append();
-				
-          });
+//			$('#upak').click(function(){
+//				$(".geo-map").geomap("opacity", 70/100);
+//				$("#map").css({opacity: 1});
+//				//.append();
+//				
+//          });
+//			$('#reupak').click(function(){
+//				$(".geo-map").geomap("opacity", 100/100);
+//				$("#map").css({opacity: 1});
+//				//.append();
+//				
+//          });
 
 /*
         var $widther = 220;    

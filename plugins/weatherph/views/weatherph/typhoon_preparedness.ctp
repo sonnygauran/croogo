@@ -1,7 +1,7 @@
 <div class="content">
     <section class="main">
         <div class="posts">
-            <h2>Typhoon Preparedness</h2>
+            <h2 class="center">Typhoon Preparedness</h2>
             <h3>What To Do <em>Before</em> A Typhoon</h3>
             <ul>
                 <li>Inspect your house if necessary repair/fixing is needed. (eg. Roof, doors, windows, ceilings)</li>
@@ -13,13 +13,13 @@
                 <li>If you are living in a lowland, hazard prone and/or risked areas, the ideal resort is to evacuate as early as possible.</li>
                 <li>Always keep flashlights, candles, and batteries and first-aid supplies available.</li>
                 <li>It is important as well to have an available transistor radio (battery – powered incase power supply will be unavailable) so you can be updated about the typhoon and its current location.</li>
-                <li>Frequently listen to your local radio, television or internet (www.weather.com.ph ) for storm advisories on the progress of the typhoon.</li>
+                <li>Frequently listen to your local radio, television or visit <a href="http://weather.com.ph">Weather Philippines</a> for storm advisories on the progress of the typhoon.</li>
             </ul>
-
-            <h3>What To Do </em>During</em> A Typhoon</h3>
+            <hr/>
+            <h3>What To Do <em>During</em> A Typhoon</h3>
             <ul>
                 <li>Stay inside the house and keep calm. Postpone any travel.</li>
-                <li>Monitor to your local radio, television or internet (www.weather.com.ph ) for storm advisories on the progress of the typhoon.</li>
+                <li>Monitor to your local radio, television or visit <a href="http://weather.com.ph">Weather Philippines</a> for storm advisories on the progress of the typhoon.</li>
                 <li>In case of flooding, turn off the main sources of electricity to prevent electrical accidents.</li>
                 <li>Avoid wading through flooded areas to avoid water-transmitted diseases.</li>
                 <li>Do not operate any electrical equipment during a flood.</li>
@@ -31,10 +31,10 @@
                 <li>Put important appliances and belongings in a high ground.</li>
                 <li>Avoid the way leading to or along the river.</li>
             </ul>
-
-            <h3>What To Do </em>After</em> A Typhoon</h3>
+            <hr/>
+            <h3>What To Do <em>After</em> A Typhoon</h3>
             <ul>
-                <li>Monitor to your radio, television or internet (www.weather.com.ph ) for storm advisories on the progress of the typhoon.</li>
+                <li>Monitor to your radio, television or visit <a href="http://weather.com.ph">Weather Philippines</a> for storm advisories on the progress of the typhoon.</li>
                 <li>Check your house for damage and make necessary repairs at once. Avoid scattered debris especially tin and lumber as there may be rusty nails protruding.</li>
                 <li>Wear proper safety gear and equipment when working in hazardous areas.</li>
                 <li>If your house was damaged, make sure that it is already safe and stable when you enter.</li>
