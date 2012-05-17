@@ -7,8 +7,8 @@
 //    )); 
 
 echo $this->Html->script(array(
-    $this->webroot.'js/weatherph/view',
-    $this->webroot.'js/weatherph/AnyChart',
+    $this->webroot.'weatherph/js/weatherph/view',
+    $this->webroot.'weatherph/js/weatherph/AnyChart',
     )); 
 ?>
 
