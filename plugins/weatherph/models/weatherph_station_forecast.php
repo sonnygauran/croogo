@@ -174,7 +174,7 @@ class WeatherphStationForecast extends WeatherphAppModel
             }
         }
         
-        $this->log(print_r($abfrageResults, TRUE));
+        //$this->log(print_r($abfrageResults, TRUE));
         
         return $abfrageResults;
         
