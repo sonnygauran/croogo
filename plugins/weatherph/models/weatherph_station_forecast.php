@@ -624,6 +624,15 @@ class WeatherphStationForecast extends WeatherphAppModel
                                         <font family="Arial" color="#444444" size="11"/>
                                     </labels>
                                 </y_axis>';
+        }else if($type=='humidity'){
+        $xml_string .=  '       <y_axis>
+                                    <scale type="Linear" maximum="100" minimum="0" maximum_offset="0.01" minimum_offset="0.01" />
+                                    <title enabled="false"/>
+                                    <labels>
+                                        <format>{%Value}{numDecimals:0}</format>
+                                        <font family="Arial" color="#444444" size="11"/>
+                                    </labels>
+                                </y_axis>';
         }else{
         $xml_string .=  '       <y_axis>
                                     <!--scale type="Linear" maximum="auto" minimum="auto" maximum_offset="0.01" minimum_offset="0.01"/-->
