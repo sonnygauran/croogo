@@ -190,6 +190,15 @@ echo $this->Html->script(array(
                             chart.write();
                         //]]>
                     </script>
+                  <script type="text/javascript" language="javascript">
+                        //<![CDATA[
+                            var chart = new AnyChart('<?= $this->webroot ?>swf/AnyChart.swf');
+                            chart.width = 830;
+                            chart.height = 50;
+                            chart.setXMLFile('<?= $this->webroot ?>getDetailedForecast/<?= $dataSets['stationId']; ?>/winddir/6h');
+                            chart.write();
+                        //]]>
+                    </script>
                 </div>
                 <div class="humidity panel">
                   <script type="text/javascript" language="javascript">
