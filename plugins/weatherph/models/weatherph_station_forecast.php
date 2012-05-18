@@ -102,7 +102,7 @@ class WeatherphStationForecast extends WeatherphAppModel
         }
         
         
-        $this->log(print_r($currentReadings, true));
+        //$this->log(print_r($currentReadings, true));
         
         //Grab stations forecast  
         $url = "http://192.168.20.89/abfrage.php?stationidstring=$stationId&datumstart=$startdatum&datumend=$enddatum&utcstart=$startutc&utcend=$endutc&zeiten1=$utch&paramtyp=mos_mix_mm&mosmess=ja&tl=on&dir=on&ff=on&g3h=on&paramliste=rr,rh,sy,sy2&output=csv2&ortoutput=wmo6,name&aufruf=auto";
@@ -165,7 +165,7 @@ class WeatherphStationForecast extends WeatherphAppModel
                 
                 $readingTime = (!isset($currentReading['update']))? date('Ymd H:i:s') : $currentReading['update'];
                 
-                $this->log(date('Ymd H:i:s', $ourTime). '-' . date('Ymd H:i:s', strtotime($readingTime)));
+                //$this->log(date('Ymd H:i:s', $ourTime). '-' . date('Ymd H:i:s', strtotime($readingTime)));
                 
                 if ($ourTime > strtotime($readingTime)) {
                     $abfrageResults['forecast']['status'] = 'ok';
@@ -323,6 +323,9 @@ class WeatherphStationForecast extends WeatherphAppModel
         }
         
         $abfrageResults['stationId'] = $stationId;
+        $readings['ort1'] = explode('/', $readings['ort1']);
+        $readings['ort1'] = $readings['ort1'][1];
+        $abfrageResults['stationName'] = $readings['ort1'];
        
         return $abfrageResults;
         
@@ -620,6 +623,15 @@ class WeatherphStationForecast extends WeatherphAppModel
                                     <scale type="Linear" maximum="1" minimum="0"/>
                                     <title enabled="false"/>
                                     <labels enabled="false">
+                                        <format>{%Value}{numDecimals:0}</format>
+                                        <font family="Arial" color="#444444" size="11"/>
+                                    </labels>
+                                </y_axis>';
+        }else if($type=='humidity'){
+        $xml_string .=  '       <y_axis>
+                                    <scale type="Linear" maximum="100" minimum="0" maximum_offset="0.01" minimum_offset="0.01" />
+                                    <title enabled="false"/>
+                                    <labels>
                                         <format>{%Value}{numDecimals:0}</format>
                                         <font family="Arial" color="#444444" size="11"/>
                                     </labels>
