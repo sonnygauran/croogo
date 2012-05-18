@@ -377,6 +377,14 @@ var $centerMap = [
 ];
 
 var $boxMap = [
+    
+        //MAJOR AREAS
+        //These values were just taken directly from wetter4. No conversion.
+        {id: 'Philippines', box: [114, 4, 133, 21.5]},
+        {id: 'Luzon', box: [117.5, 12.2, 127, 21.4]},
+	{id: 'VisMin', box: [120.466, 5.06, 129.966, 14.26]},
+	{id: 'Palawan', box: [115.87, 4.479, 125.37, 12.679]},
+        
 	//LUZON
 	{id: 'NCR', box: [120.78025838964851, 14.340234924288968, 121.28150961035149, 14.739027102167846]},
 	{id: 'CAR', box: [119.07531711718802, 15.860957319356404, 123.08532688281198, 19.004996360800135]},

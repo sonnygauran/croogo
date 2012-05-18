@@ -54,6 +54,14 @@
                     <h6>Province:</h6>
                     <select name="philippine-regions">
                         <option>Choose one...</option>
+                       
+                        <optgroup label="Major Areas">
+                            <option data-region-id="Philippines">All Philippines</option>
+                            <option data-region-id="Luzon">Luzon</option>
+                            <option data-region-id="VisMin">Visayas/Mindanao</option>
+                            <option data-region-id="Palawan">Palawan/Sulu Sea</option>
+                        </optgroup>
+                        
                         <optgroup label="Luzon">
                             <option data-region-id="NCR">NCR</option>
                             <option data-region-id="CAR">CAR</option>

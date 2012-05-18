@@ -1,7 +1,7 @@
 <div class="content">
     <section class="main">
         <div class="posts">
-            <h2 class="center">Typhoon Preparedness</h2>
+            <h2 class="center">Typhoon Preparedness Guide</h2>
             <h3>What To Do <em>Before</em> A Typhoon</h3>
             <ul>
                 <li>Inspect your house if necessary repair/fixing is needed. (eg. Roof, doors, windows, ceilings)</li>
@@ -25,11 +25,16 @@
                 <li>Do not operate any electrical equipment during a flood.</li>
                 <li>Do not use gas or electrical appliances that have been flooded.</li>
                 <li>Keep an eye on lighted candles or gas lamps.</li>
-                <li>Heed the advice of the local authorities if they ask you to evacuate your area. If there is a need to move to an evacuation center, follow these reminders:</li>
-                <li>Evacuate calmly.</li>
-                <li>Close the windows and turn off the main power switch.</li>
-                <li>Put important appliances and belongings in a high ground.</li>
-                <li>Avoid the way leading to or along the river.</li>
+                <li>
+                    Heed the advice of the local authorities if they ask you to evacuate your area. If there is a need to move to an evacuation center, follow these reminders:
+                    <ul>
+                        <li>Evacuate calmly.</li>
+                        <li>Close the windows and turn off the main power switch.</li>
+                        <li>Put important appliances and belongings in a high ground.</li>
+                        <li>Avoid the way leading to or along the river.</li>
+                    </ul>
+                </li>
+                
             </ul>
             <hr/>
             <h3>What To Do <em>After</em> A Typhoon</h3>

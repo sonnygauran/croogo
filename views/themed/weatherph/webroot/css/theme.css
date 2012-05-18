@@ -337,15 +337,18 @@ text-shadow: 0px 2px 3px #555;
 }
 
 .posts {
-/*    width: 554px;*/
     margin: 0 auto;
-    padding: 1em;
+    padding: 2em;
+    background-color: #fafafa;
+    border: 1px solid #e1e1e1;
+    -webkit-box-shadow: 0 1px 2px #CCC;
+    -moz-box-shadow:    0 1px 2px #CCC;
+    box-shadow:         0 1px 2px #CCC;
 }
 
 .secondary > .posts {
-    width: 500px;
+    width: 494px;
     float:left;
-    padding: 1em 0;
 }
 
 .secondary > .news {
@@ -410,7 +413,7 @@ text-shadow: 0px 2px 3px #555;
 }
 
 #station {
-    max-width: 240px;
+    max-width: 220px;
 }
 
 #station h1 {
@@ -514,6 +517,7 @@ div.current-tab {
 
 .figure {
     max-width: 554px;
+    margin: 2em auto;
 }
 
 #glossary-alphabet > ul {
