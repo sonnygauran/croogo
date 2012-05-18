@@ -323,6 +323,9 @@ class WeatherphStationForecast extends WeatherphAppModel
         }
         
         $abfrageResults['stationId'] = $stationId;
+        $readings['ort1'] = explode('/', $readings['ort1']);
+        $readings['ort1'] = $readings['ort1'][1];
+        $abfrageResults['stationName'] = $readings['ort1'];
        
         return $abfrageResults;
         
