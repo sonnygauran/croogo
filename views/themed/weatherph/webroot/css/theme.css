@@ -790,7 +790,7 @@ nav li:active, .detail-page-link:active {
     SPRITEMAP
 ====================*/
 
-span.symbol { background: url('<?= $this->webroot ?>theme/weatherph/img/warning-sprites.png') -5px -65px no-repeat; height: 30px; width: 40px; display: block; margin-left: 10px; float: left; }
+span.symbol { background: url('<?= $this->webroot ?>theme/weatherph/img/warning-sprites.png') -5px -65px no-repeat; height: 30px; width: 40px; display: block; margin: auto;}
 
 span.day_1 { background-position: -70px -180px; }
 span.day_2 { background-position: -125px -180px; }
