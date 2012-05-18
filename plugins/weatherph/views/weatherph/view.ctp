@@ -7,8 +7,8 @@
 //    )); 
 
 echo $this->Html->script(array(
-    $this->webroot.'js/weatherph/view',
-    $this->webroot.'js/weatherph/AnyChart',
+    $this->webroot.'weatherph/js/weatherph/view',
+    $this->webroot.'weatherph/js/weatherph/AnyChart',
     )); 
 ?>
 
@@ -24,7 +24,7 @@ echo $this->Html->script(array(
 <!--                <a href="#">change station</a>-->
             </div> <!--END STATION-->
 
-            <?php if(!empty($dataSets['reading']['ort1'])): ?>
+            <?php if(!empty($dataSets['reading']['sunrise'])): ?>
             <div id="condition">
                 <table>
                     <tbody>
@@ -65,7 +65,7 @@ echo $this->Html->script(array(
             <?php endIf; ?>
             
         </div> <!--END CURRENT WEATHER-->
-        <?php if(empty($dataSets['readings'])): ?>
+        <?php if(empty($dataSets['reading']['sunrise'])): ?>
             <div class="no-readings" style="display: block;">
                 <p>Sorry, there are no readings available for this station.</p>
             </div>
