@@ -34,7 +34,6 @@
                         <li>Avoid the way leading to or along the river.</li>
                     </ul>
                 </li>
-                
             </ul>
             <hr/>
             <h3>What To Do <em>After</em> A Typhoon</h3>

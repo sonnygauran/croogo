@@ -15,7 +15,7 @@
     });
 </script>
 <div class="content">
-    <section class="main">
+    <section class="main cf">
         <div id="map-container">
             <div class="layerSelector cf">
                 <ul class="dropdown">
@@ -47,8 +47,6 @@
             </video>
 
             <div id="legend" class="shadow">
-                            
-<!--                <img src ="theme/weatherph/img/timeline.png"/>-->
 
                 <div id="province-select">
                     <h6>Province:</h6>
@@ -97,15 +95,15 @@
                     <h6>PAGASA stations</h6>
                 </div>
                             
-                <img src ="theme/weatherph/img/legend.png"/>-->
-
+                <img src ="theme/weatherph/img/legend.png"/>
+-->
             </div> <!--END LEGEND-->
         </div>
         <div id="info" class="shadow">
             <div id="current-readings-panel">
                 <h2 class="current readings-location">&nbsp;</h2>
 <!--                <a href="#" >change station</a>-->
-                <h4>Current Readings:</h4>
+                <p>Current Readings:</p>
             </div>
             <div id="current-readings-box">
 
