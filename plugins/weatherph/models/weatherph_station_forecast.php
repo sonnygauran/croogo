@@ -101,9 +101,6 @@ class WeatherphStationForecast extends WeatherphAppModel
             $abfrageResults['reading']['status'] = 'none';
         }
         
-        
-        //$this->log(print_r($currentReadings, true));
-        
         //Grab stations forecast  
         $url = "http://192.168.20.89/abfrage.php?stationidstring=$stationId&datumstart=$startdatum&datumend=$enddatum&utcstart=$startutc&utcend=$endutc&zeiten1=$utch&paramtyp=mos_mix_mm&mosmess=ja&tl=on&dir=on&ff=on&g3h=on&paramliste=rr,rh,sy,sy2&output=csv2&ortoutput=wmo6,name&aufruf=auto";
         
@@ -177,7 +174,7 @@ class WeatherphStationForecast extends WeatherphAppModel
             }
         }
         
-        //$this->log(print_r($abfrageResults, TRUE));
+        $this->log(print_r($abfrageResults, TRUE));
         
         return $abfrageResults;
         
