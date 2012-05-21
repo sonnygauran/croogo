@@ -49,6 +49,10 @@ html, body, div, span, object, iframe, h1, h2, h3, dl dt, h4, h5, h6, p, blockqu
     float:right;
 }
 
+.main {
+    margin-bottom: 1em;
+}
+
 /*====================
     HEADER
 ====================*/
@@ -337,15 +341,18 @@ text-shadow: 0px 2px 3px #555;
 }
 
 .posts {
-/*    width: 554px;*/
     margin: 0 auto;
-    padding: 1em;
+    padding: 2em;
+    background-color: #fafafa;
+    border: 1px solid #e1e1e1;
+    -webkit-box-shadow: 0 1px 2px #CCC;
+    -moz-box-shadow:    0 1px 2px #CCC;
+    box-shadow:         0 1px 2px #CCC;
 }
 
 .secondary > .posts {
-    width: 500px;
+    width: 494px;
     float:left;
-    padding: 1em 0;
 }
 
 .secondary > .news {
@@ -514,6 +521,7 @@ div.current-tab {
 
 .figure {
     max-width: 554px;
+    margin: 2em auto;
 }
 
 #glossary-alphabet > ul {
@@ -790,7 +798,7 @@ nav li:active, .detail-page-link:active {
     SPRITEMAP
 ====================*/
 
-span.symbol { background: url('<?= $this->webroot ?>theme/weatherph/img/warning-sprites.png') -5px -65px no-repeat; height: 30px; width: 40px; display: block; margin-left: 10px; float: left; }
+span.symbol { background: url('<?= $this->webroot ?>theme/weatherph/img/warning-sprites.png') -5px -65px no-repeat; height: 30px; width: 40px; display: block; margin: auto;}
 
 span.day_1 { background-position: -70px -180px; }
 span.day_2 { background-position: -125px -180px; }

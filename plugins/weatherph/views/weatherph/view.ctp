@@ -7,8 +7,8 @@
 //    )); 
 
 echo $this->Html->script(array(
-    $this->webroot.'weatherph/js/weatherph/view',
-    $this->webroot.'weatherph/js/weatherph/AnyChart',
+    $this->webroot.'js/weatherph/view',
+    $this->webroot.'js/weatherph/AnyChart',
     )); 
 ?>
 
@@ -20,10 +20,11 @@ echo $this->Html->script(array(
         <div id="currentWeather" class="shadow">
             
             <div id="station">
-                <h1><?= $dataSets['reading']['ort1']; ?></h1>
+                <h1><?= $dataSets['stationName']; ?></h1>
 <!--                <a href="#">change station</a>-->
             </div> <!--END STATION-->
 
+            <?php if(!empty($dataSets['reading']['sunrise'])): ?>
             <div id="condition">
                 <table>
                     <tbody>
@@ -61,9 +62,14 @@ echo $this->Html->script(array(
                     </tbody>
                 </table>
             </div> <!--END CONDITION TABLE-->
-            
+            <?php endIf; ?>
             
         </div> <!--END CURRENT WEATHER-->
+        <?php if(empty($dataSets['reading']['sunrise'])): ?>
+            <div class="no-readings" style="display: block;">
+                <p>Sorry, there are no readings available for this station.</p>
+            </div>
+        <?php endIf; ?>
         
         <div class="no-forecast">
             <p>Sorry, there's no forecast available for this station right now. Please try another station.</p>

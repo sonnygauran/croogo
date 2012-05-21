@@ -1,6 +1,6 @@
 $(document).ready(function(){
 var map = $("#map").geomap({
-    center: [124,12.7], //to fit weather animations
+    center: [123.5, 12.902712695115516], //to fit weather animations
         // was[ 121.750488, 12.698865 ],
     zoom: 5,
     scroll: 'off',
@@ -93,11 +93,12 @@ $.ajax({
                 var cr_temperature, cr_wind, cr_precip, cr_humidity, cr_symbol;
                 var sr_temperature, sr_wind, sr_precip, sr_humidity, sr_symbol;                
                 
+                $('.current.readings-location').html($stationReadings.ort1);
+                
                 if($stationReadings.reading.status == 'ok'){
                     
                     showReadings();
                     
-                    $('.current.readings-location').html($stationReadings.reading.ort1);
                     $('.last-update').html($stationReadings.reading.update);
 
                     cr_temperature = $stationReadings.reading.tl;
@@ -370,13 +371,21 @@ function mapStations($stationsArray) {
 }
 
 //Region selector
-var $centerMap = [
-	{id: 'NCR', center: [ 121.030884, 14.539721 ], zoom: 11},
-	{id: 'VI', center: [ 122.563477, 10.719984 ], zoom: 8},
-	{id: 'ARMM', center: [ 121.981201, 6.489983 ], zoom: 7},
-];
+//var $centerMap = [
+//	{id: 'NCR', center: [ 121.030884, 14.539721 ], zoom: 11},
+//	{id: 'VI', center: [ 122.563477, 10.719984 ], zoom: 8},
+//	{id: 'ARMM', center: [ 121.981201, 6.489983 ], zoom: 7},
+//];
 
 var $boxMap = [
+    
+        //MAJOR AREAS
+        //These values were just taken directly from wetter4. No conversion.
+        {id: 'Philippines', box: [109.43750000000374,5.008732666086105,137.56249999999628,20.55552655903733]},
+        {id: 'Luzon', box: [115.21875000000186,12.992620600954227,129.28124999999815,20.641882002574366]},
+	{id: 'VisMin', box: [118.18475000000187,5.729469014423421,132.24724999999813,13.607339308212687]},
+	{id: 'Palawan', box: [113.58875000000187,4.629597878684261,127.65124999999814,12.531566520871163]},
+        
 	//LUZON
 	{id: 'NCR', box: [120.78025838964851, 14.340234924288968, 121.28150961035149, 14.739027102167846]},
 	{id: 'CAR', box: [119.07531711718802, 15.860957319356404, 123.08532688281198, 19.004996360800135]},
@@ -409,12 +418,12 @@ var $boxMap = [
                 if ($(this).attr('selected')) { // Is the current <option> selected?
                 	$region = $(this).attr('data-region-id'); // the region id
                 	
-                	for (var key in $boxMap) { // let's traverse the $centerMap
+                	for (var key in $boxMap) { // let's traverse the $boxMap
 						if ($boxMap[key].id == $region) {  // Initially matches 'data-region-id' with 'NCR'
-							$current = $boxMap[key]; // the current $centerMap record
+							$current = $boxMap[key]; // the current $boxMap record
 
 							console.log($current.box);
-							$('#map').geomap({ // Then set the value from the $centerMap
+							$('#map').geomap({ // Then set the value from the $boxMap
 								bbox: $current.box
 							});
 						}
