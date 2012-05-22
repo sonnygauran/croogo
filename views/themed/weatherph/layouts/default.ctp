@@ -96,10 +96,10 @@ echo $content_for_layout;
                         <li><?php echo $this->Html->image('sponsor-ngcp.png'); ?></li>
                         <li><?php echo $this->Html->image('sponsor-icts.jpg'); ?></li>
                         <li><?php echo $this->Html->image('sponsor-nac.png'); ?></li>
-                        <li><?php echo $this->Html->image('sponsor-sgs.png'); ?></li>
+<!--                        <li><?php echo $this->Html->image('sponsor-sgs.png'); ?></li>-->
                         <li><?php echo $this->Html->image('sponsor-vistaland.png'); ?></li>
-                        <li><?php echo $this->Html->image('sponsor-sumitomo.png'); ?></li>
-                        <li><?php echo $this->Html->image('sponsor-tyk.jpg'); ?></li>
+                        <li><?php echo $this->Html->image('sponsor-sumitomo-bigger.png'); ?></li>
+                        <li><?php echo $this->Html->image('sponsor-tyk-bigger.png'); ?></li>
                     </ul>
                 </div>
                 
