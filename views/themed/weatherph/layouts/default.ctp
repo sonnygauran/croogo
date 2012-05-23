@@ -96,7 +96,6 @@ echo $content_for_layout;
                         <li><?php echo $this->Html->image('sponsor-ngcp.png'); ?></li>
                         <li><?php echo $this->Html->image('sponsor-icts.jpg'); ?></li>
                         <li><?php echo $this->Html->image('sponsor-nac.png'); ?></li>
-<!--                        <li><?php echo $this->Html->image('sponsor-sgs.png'); ?></li>-->
                         <li><?php echo $this->Html->image('sponsor-vistaland.png'); ?></li>
                         <li><?php echo $this->Html->image('sponsor-sumitomo-mod.png'); ?></li>
                         <li><?php echo $this->Html->image('sponsor-tyk-mod.png'); ?></li>
@@ -117,18 +116,15 @@ echo $content_for_layout;
                 <div class="ads">
                     <div class="promo">
                         <h4>Visit Boracay!</h4>
-                        <img src="../theme/weatherph/img/boracay.jpg" alt="Boracay!"/>
-                        <p>
-                            Boracay is an island of the Philippines located approximately 315 km (196 mi) south of Manila. Boracay Island and its beaches have received awards numerous times.
-                        </p>
+                        <img src="<?= $this->webroot ?>theme/weatherph/img/boracay.jpg" alt="Boracay!"/>
+                        <p>Boracay is an island of the Philippines located approximately 315 km (196 mi) south of Manila.
+							Boracay Island and its beaches have received awards numerous times.</p>
                     </div>
 
                     <div class="promo">
                         <h4>Discover Pamalican.</h4>
-                        <img src="../theme/weatherph/img/pamalican.jpg" alt="Pamalican!"/>
-                        <p>
-                            Pamalican Island is a small island of the Cuyo Islands in the Sulu Sea.
-                        </p>
+                        <img src="<?= $this->webroot ?>theme/weatherph/img/pamalican.jpg" alt="Pamalican!"/>
+                        <p>Pamalican Island is a small island of the Cuyo Islands in the Sulu Sea.</p>
                     </div>
                 </div>
 
