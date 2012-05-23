@@ -98,8 +98,8 @@ echo $content_for_layout;
                         <li><?php echo $this->Html->image('sponsor-nac.png'); ?></li>
 <!--                        <li><?php echo $this->Html->image('sponsor-sgs.png'); ?></li>-->
                         <li><?php echo $this->Html->image('sponsor-vistaland.png'); ?></li>
-                        <li><?php echo $this->Html->image('sponsor-sumitomo-bigger.png'); ?></li>
-                        <li><?php echo $this->Html->image('sponsor-tyk-bigger.png'); ?></li>
+                        <li><?php echo $this->Html->image('sponsor-sumitomo-mod.png'); ?></li>
+                        <li><?php echo $this->Html->image('sponsor-tyk-mod.png'); ?></li>
                     </ul>
                 </div>
                 
@@ -113,7 +113,7 @@ echo $content_for_layout;
                 </div>
                 <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4f94bc453ecffca4"></script>
                 <!-- AddThis Button END -->
-<!--
+
                 <div class="ads">
                     <div class="promo">
                         <h4>Visit Boracay!</h4>
@@ -130,7 +130,7 @@ echo $content_for_layout;
                             Pamalican Island is a small island of the Cuyo Islands in the Sulu Sea.
                         </p>
                     </div>
-                </div>-->
+                </div>
 
             </aside>
 
