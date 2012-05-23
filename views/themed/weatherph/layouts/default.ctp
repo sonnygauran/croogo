@@ -94,10 +94,9 @@ echo $content_for_layout;
                     <ul>
                         <li><?php echo $this->Html->image('sponsor-sm.gif'); ?></li>
                         <li><?php echo $this->Html->image('sponsor-ngcp.png'); ?></li>
+                        <li><?php echo $this->Html->image('sponsor-vistaland.png'); ?></li>
                         <li><?php echo $this->Html->image('sponsor-icts.jpg'); ?></li>
                         <li><?php echo $this->Html->image('sponsor-nac.png'); ?></li>
-                        <li><?php echo $this->Html->image('sponsor-vistaland.png'); ?></li>
-                        <li><?php echo $this->Html->image('sponsor-sumitomo-mod.png'); ?></li>
                         <li><?php echo $this->Html->image('sponsor-tyk-mod.png'); ?></li>
                     </ul>
                 </div>
