@@ -37,6 +37,15 @@ class WeatherphController extends WeatherphAppController {
     public function index() {
         $this->set('title_for_layout', __('Weatherph', true));
         $this->set('weatherphVariable', 'value here');
+        
+        $featuredBlog = $this->Node->find('all', array(
+            'order' => 'Node.created DESC',
+            'conditions' => array('Node.type' => 'blog'),
+            'limit' => 5,
+        ));
+        
+        $this->set('featuredBlog', $featuredBlog);
+        
     }
     
     public function getStations($provider = 'pagasa'){
