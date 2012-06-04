@@ -1,7 +1,8 @@
 <div class="content">
     <section class="main">
         <div class="posts">
-            <h2 class="center">Typhoon Preparedness Guide</h2>
+            <h2>Typhoon Preparedness Guide</h2>
+            <hr/>
             <h3>What To Do <em>Before</em> A Typhoon</h3>
             <ul>
                 <li>Inspect your house if necessary repair/fixing is needed. (eg. Roof, doors, windows, ceilings)</li>

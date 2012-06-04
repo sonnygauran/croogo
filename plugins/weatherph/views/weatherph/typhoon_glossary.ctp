@@ -2,13 +2,16 @@
     <section class="main">
         <div class="posts">
         <h2>Glossary</h2>
+        <hr/>
         <dl>
+            <!--A-->
             <dt>Air Mass</dt>
             <dd>a widespread body of air, the properties of which can be identified as  (a) having been established while that air was situated over a particular region, and (b) undergoing specific modifications while in transit away from the source region.</dd>
 
             <dt>Anticyclone (e.g. High-Pressure Cell, High Pressure Area)</dt>
             <dd>an area where the atmospheric pressure is high relative to the surroundings.  The wind circulation is clockwise around an anticyclone in the Northern Hemisphere, with the wind crossing the isobars at an angle and blowing from higher toward lower pressure.  The wind circulation is counterclockwise around an anticyclone in the Southern Hemisphere, with the wind crossing the isobars at an angle and blowing from higher toward lower pressure.</dd>
 
+            <!--B-->
             <dt>Backing</dt>
             <dd>refers to the shifting of the wind direction of a tropical cyclone observed by the observer from northwest through southwest by way of west (also known as First Wind). It also means that the storm is passing north of the locality (over the northern hemisphere).</dd>
 
@@ -21,6 +24,7 @@
             <dt>Buys Ballot's Law</dt>
             <dd>this is a law describing the relationship of the horizontal wind direction in the atmosphere to the pressure distribution. "If one stands with his face to the wind in the Northern Hemisphere, lower pressure will always be to the right, and higher pressure to the left."  "In the Southern Hemisphere, if one stands with his face to the wind, lower pressure will always be to the left, and higher pressure to the right."  This law was first formulated in 1857 by the Dutch meteorologist, Buys Ballot, and bears his name. It is also known as the Baric Wind Law.</dd>
 
+            <!--C-->
             <dt>Center</dt>
             <dd>the vertical axis or core of a tropical cyclone. Usually determined by cloud vorticity patterns, wind and/or pressure distribution.</dd>
 
@@ -33,12 +37,11 @@
             <dt>Cyclone (or Low-Pressure Area, or simply Low or Depression)</dt>
             <dd>an area within which the pressure is low relative to the surroundings.  An atmospheric "closed circulation" with the winds blowing counterclockwise around cyclones in the Northern Hemisphere, and clockwise around cyclones in the Southern Hemisphere.  The winds cross the isobars at an angle (15 degrees over water and 30 degrees over land), and blow from higher toward lower pressure. </dd>
 
+            <!--D-->
             <dt>Divergence</dt>
             <dd>the expansion, or spreading out, of a vector field.  In meteorology, the term is used in a broad sense to include the "spreading apart," or drawing apart, of winds (air particles) either horizontally or vertically.</dd>
 
-            <dt>Easterly Wave</dt>
-            <dd>see Tropical Wave.</dd>
-
+            <!--E-->
             <dt>Ephemeris</dt>
             <dd>position of a body (satellite) in space as a function of time; used for gridding satellite imagery.  Since ephemeris gridding is based solely on the predicted position of the satellite, it is susceptible to errors from vehicle wobble, orbital eccentricity, the oblateness of the Earth, and variation in vehicle speed. </dd>
 
@@ -54,6 +57,7 @@
             <dt>Eye Wall</dt>
             <dd>an organized band of deep cumuliform clouds that immediately surrounds the area of a tropical cyclone.  The eye wall may entirely enclose or partially surround the center.  This is the area where the strongest wind and rain of a tropical cyclone can be found.</dd>
 
+            <!--F-->
             <dt>Front</dt>
             <dd>the interface, or transition zone, between two air masses of different density.  Since the temperature distribution is the most important "regulator" of atmospheric density, a front usually separates air masses of different temperature.  Fronts are drawn as "lines" separating different air masses on weather maps.  Following are the four (4) types of fronts:   </dd>
 
@@ -69,9 +73,11 @@
             <dt>Stationary Front</dt>
             <dd>a front along which one air mass does not replace another air mass. The front is not moving. </dd>
 
+            <!--F-->
             <dt>Fujiwhara Effect</dt>
             <dd>the interaction between two, three, or four tropical cyclones within 1,500 km of each other. These tropical cyclones either attract or repel each other.</dd>
 
+            <!--G-->
             <dt>Gale</dt>
             <dd>an unusually strong wind. In storm warning terminology, a wind of 52-102 kph (28-47 knots). </dd>
 
@@ -81,12 +87,11 @@
             <dt>Gust(s)</dt>
             <dd>also known as gustiness - the peak wind speed or the sudden, temporary increase in wind speed.  Maximum sustained wind speeds of 56 kph may have superimposed gusts of 93 kph. </dd>
 
-            <dt>High Pressure Area/Cell</dt>
-            <dd>see Anticyclone. </dd>
-
+            <!--H-->
             <dt>Hurricane Season</dt>
             <dd>that portion of the year having a relatively high incidence of hurricanes. In the Atlantic, Caribbean, and Gulf of Mexico, this is the period from June through November; in the eastern Pacific, June through November 15; and in the central Pacific, the period is from June through October. </dd>
 
+            <!--I-->
             <dt>Intensity</dt>
             <dd>the maximum sustained one (1) minute mean (10 min. in other weather bureaus) surface wind speed, typically within one degree of the center of a tropical cyclone.</dd>
 
@@ -99,12 +104,11 @@
             <dt>Isobar</dt>
             <dd>a line of equal or constant pressure.  On weather maps, isobars are lines drawn through all points of equal atmospheric pressure along a given reference surface (such as mean-sea-level on surface weather maps).  Isobars are usually drawn at four-millibar intervals. </dd>
 
+            <!--K-->
             <dt>Kona</dt>
             <dd>a stormy, rain-bringing wind from the SW or SSW in Hawaii.  It occurs about five times per year on the southwest slopes, which are in the lee of the prevailing NE trade winds.  Kona is the Polynesian word meaning "leeward."</dd>
 
-            <dt>Low Pressure Area (LPA)</dt>
-            <dd>see Cyclone.</dd>
-
+            <!--M-->
             <dt>Maximum Sustained Wind</dt>
             <dd>the highest surface wind speed averaged over a 1-minute period of time. Some weather bureaus (eg. PAGASA, Japan Meteorological Agency, etc.) averaged it over a 10-minute period of time. Peak gusts over water average 20 to 25 percent higher than sustained winds. </dd>
 
@@ -132,6 +136,7 @@
                 with light winds and scattered low cumulus clouds; later, the area within the outer closed isobar may fill with deep convective cloud and become a monsoon depression or tropical cyclone; and,  4) the large vortex cannot be the result of the expanding wind field of a pre-existing 
                 monsoon depression or tropical cyclone.  Note: a series of small or very small tropical cyclones may emerge from the "head" or leading edge of the peripheral cloud band of a monsoon gyre. (JTWC 1993; Lander 1994a). </dd>
 
+            <!--P-->
             <dt>PAR (Philippine Area of Responsibility)</dt>
             <dd>an area bounded by rhumb lines on the Philippine Tropical Cyclone Tracking Chart/Map or imaginary lines on the surface of the earth that makes equal oblique angles with all meridians joining the following points:  25°N 120°E, 5°N 135°E, 5°N 115°E, 15°N 115°E, and 21°N 120°E.  Tropical cyclone bulletins are issued by the Philippine Atmospheric, Geophysical and Astronomical Services Administration (PAGASA) every six or twelve hours for all tropical cyclones within this area. </dd>
 
@@ -144,9 +149,11 @@
             <dt>Public Storm Warning Signals</dt>
             <dd>it is the tropical cyclone warning signals used by the Philippine weather bureau.  Click here to view. </dd>
 
+            <!--Q-->
             <dt>Quadrant (in Storm Warnings)</dt>
             <dd>the 90-degree sector of the storm centered on a designated cardinal point of the compass.  An eight-point compass rose is used when referring to quadrants.  Example: The north quadrant refers to the sector of the storm from 315° through 360° to 045°.</dd>
 
+            <!--R-->
             <dt>Rapid Deepening</dt>
             <dd>a decrease in the minimum sea-level pressure (mslp) of a tropical cyclone of 1.75 mb/hr or 42 mb for 24 hours (Holliday and Thompson 1979). </dd>
 
@@ -159,6 +166,7 @@
             <dt>Reverse-Oriented Monsoon Trough</dt>
             <dd>the distinguishing characteristics of a reverse-oriented monsoon trough in the western North Pacific are a SW-NE (i.e., reverse) orientation of the trough axis, and the penetration of the trough axis into subtropical areas normally the province of easterly flow also known as easterlies.</dd>
 
+            <!--S-->
             <dt>Satellite Fix</dt>
             <dd>the location of the surface and/or flight level center of a tropical cyclone or subtropical cyclone obtained through the use of 1-km satellite imageries. </dd>
 
@@ -204,6 +212,7 @@
             <dt>Suspect Area</dt>
             <dd>an area suspected of containing a developing or existing tropical cyclone. </dd>
 
+            <!--T-->
             <dt>Tropical Cyclone</dt>
             <dd>a non-frontal, migratory low-pressure system, usually of synoptic scale, originating over tropical or subtropical waters and having a definite organized circulation.  The center is normally warmer than the surroundings.  Globally, a tropical cyclone is categorized into three types or classification (with the exception of the fourth, coined by JTWC), which is based on its strength or intensity: </dd>
 
@@ -240,12 +249,14 @@
             <dt>Typhoon Season</dt>
             <dd>there is no true typhoon season.  Typhoons in the western Pacific can--and do--occur in every month of the year.  However, 90 percent of the typhoons occur between early June and late December.  A maximum (22.6 percent) of the total occurs in August, and a minimum (0.6 percent) in February. </dd>
 
+            <!--V-->
             <dt>Veering</dt>
             <dd>refers to the shifting of the wind direction of a tropical cyclone observed by the observer  from northeast through southeast by way of east (also known as First Wind).  It also means that the storm is passing south of the locality (in the Northern Hemisphere). </dd>
 
             <dt>Vortex Fix</dt>
             <dd>the location of the surface and/or flight level center of a tropical cyclone or subtropical cyclone obtained by reconnaissance aircraft penetration. </dd>
 
+            <!--W-->
             <dt>Westerly Wind Burst  (WWB)</dt>
             <dd>a short-duration low-level westerly wind event along and near the equator in the western Pacific Ocean (and sometimes in the Indian Ocean) (Luther et al. 1983).  Typically, a westerly wind burst (WWB) lasts several days and has westerly winds of at least 19 kph (10 kt) (Keen 1988).  Most WWBs occur during the monsoon transition months of April-May, and November-December.  They show some relationship to the El Nino Southern Oscillation (ENSO) phenomenon (Luther et al. 1983; Ramage 1986).  Some WWBs are even more energetic, with wind speeds of 59 kph (30 kt) observed during well-developed systems. These intense WWBs are associated with a large cluster of deep-convective clouds along the equator.  An intense WWB is a necessary precursor to the formation of tropical cyclone twins symmetrical with respect to the equator (Keen 1982; Lander 1990). </dd>
 
