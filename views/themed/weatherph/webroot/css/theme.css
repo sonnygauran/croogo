@@ -335,7 +335,7 @@ text-shadow: 0px 2px 3px #555;
 }
 
 /*====================
-    POSTS, NEWS
+    POSTS, NEWS, BLOG
 ====================*/
 .secondary{
     width: 794px;
@@ -347,6 +347,16 @@ text-shadow: 0px 2px 3px #555;
 }
 
 .posts {
+    margin: 0 auto;
+    padding: 2em;
+    background-color: #fafafa;
+    border: 1px solid #e1e1e1;
+    -webkit-box-shadow: 0 1px 2px #CCC;
+    -moz-box-shadow:    0 1px 2px #CCC;
+    box-shadow:         0 1px 2px #CCC;
+}
+
+.blog-post {
     margin: 0 auto;
     padding: 2em;
     background-color: #fafafa;
@@ -375,7 +385,7 @@ text-shadow: 0px 2px 3px #555;
 
 .posts li {
     list-style: disc;
-    margin: 1em;
+    margin: 1em 0;
 }
 
 .posts h2 {

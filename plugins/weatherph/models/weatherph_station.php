@@ -45,7 +45,7 @@ class WeatherphStation extends WeatherphAppModel {
             //print_r($row);
 
             $orgs = array();
-            $current = array();
+            $current = array();    
             foreach ($row as $key => $field) {
                 $index = $headers[$key];
 
