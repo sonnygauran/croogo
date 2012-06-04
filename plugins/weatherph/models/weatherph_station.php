@@ -11,30 +11,34 @@ class WeatherphStation extends WeatherphAppModel {
         //$url = "http://abfrage.meteomedia.ch/abfrage.php?land=PHL&ortsinfo=ja&datumstart=20120313&datumend=20120313&output=csv2&ortoutput=wmo6,name&aufruf=auto";
         $url = "http://abfrage.meteomedia.ch/manila.php?land=PHL&ortsinfo=ja&output=csv2&ortoutput=wmo6,name&aufruf=auto";
         
-        //$this->log($url);
-        
         $stations = array();
         $location = $url;
+        
+        $gum = 'Stations';
+        $result = NULL;
+        if (!Cache::read($gum, 'stations')) {
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $location);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    //        curl_setopt($ch, CURLOPT_USERPWD, "{$karten['username']}:{$karten['password']}");
+            curl_setopt($ch, CURLOPT_USERAGENT, "Weather.com.ph Client 1.0");
+            curl_setopt($ch, CURLOPT_TIMEOUT, 10); //times out after 10s 
+            curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
 
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $location);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-//        curl_setopt($ch, CURLOPT_USERPWD, "{$karten['username']}:{$karten['password']}");
-        curl_setopt($ch, CURLOPT_USERAGENT, "Weather.com.ph Client 1.0");
-        curl_setopt($ch, CURLOPT_TIMEOUT, 10); //times out after 10s 
-        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-
-        $result = curl_exec($ch);
+            $result = curl_exec($ch);
+            curl_close($ch);
+            
+            Cache::write($gum, $result, 'stations');
+        } else {
+            $result = Cache::read($gum, 'stations');
+        }
+        
         $rows = explode("\n", $result);
-        //$numrow=count($rows);
         
         $headers = explode(';', $rows[0]);
-        //print_r($headers);
         
         unset($rows[0]);
-        
-        //$this->log(print_r($rows, true));
-        
+
         $station_map = array();
         foreach ($rows as $row) {
             $row = explode(';', $row);
@@ -95,8 +99,11 @@ class WeatherphStation extends WeatherphAppModel {
             // there are defined conditions
             $provider = 'meteomedia';
             if (key_exists('provider', $fields['conditions'])) {
-                $provider = $fields['conditions']['provider'];
+                if (in_array($fields['conditions']['provider'], array('pagasa','meteomedia'))) {
+                    $provider = $fields['conditions']['provider'];
+                }
             }
+
             foreach ($station_map as $stationItem) {
                 if (key_exists('provider', $stationItem) AND $stationItem['provider'] == $provider) {
                     $weatherStations[] = $stationItem;
@@ -122,7 +129,6 @@ class WeatherphStation extends WeatherphAppModel {
                 )
             );
         }
-        curl_close($ch);
 
         return $stations;
     }

@@ -1,4 +1,4 @@
-<script type="text/javascript" src="weatherph/js/weatherph/index.js"></script>
+<script type="text/javascript" src="<?= $this->webroot ?>weatherph/js/weatherph/index.js"></script>
 <style type="text/css">
     .loader {
         background: white url('<?= $this->webroot ?>theme/weatherph/img/loader-twirl.gif') no-repeat center center;
@@ -9,43 +9,30 @@
         margin-left: 275px;
     }
 </style>
-<script type="text/javascript">
-    $(function(){
-        $('.loader').css('opacity', 0.8);
-    });
-</script>
 <div class="content">
     <section class="main cf">
         <div id="map-container">
             <div class="layerSelector cf">
-                <ul class="dropdown">
+                <ul class="movies dropdown">
                     <li><a href="#" id="link-map">Weather stations</a></li>
                     <li>
                         <a href="#">Weather movies</a>
                         <ul>
-                            <li><a href="#" id="link-video-wind">Wind</a></li>
-                            <li><a href="#" id="link-video-precip">Precipitation</a></li>
+                            <li><a href="#map" id="link-video-wind"   data-name="wind"          data-target="video-wind">Wind</a></li>
+                            <li><a href="#map" id="link-video-precip" data-name="precipitation" data-target="video-precip">Precipitation</a></li>
                         </ul>
                     </li>
                 </ul>
             </div> <!--LAYER SELECTOR-->
-            <div id="map">
-                <div class="loader">
+            <div class="video-viewport">
+
+            </div>
+            <div class="map-viewport">
+                <div id="map">
+                    <div class="loader">
+                    </div>
                 </div>
             </div>
-            
-            <video id="video-wind" width="554" height="554" controls="controls">
-                <source src="<?= $this->webroot ?>assets/theme/weatherph/vid/wind.mp4" type="video/mp4" />
-                <source src="<?= $this->webroot ?>assets/theme/weatherph/vid/wind.webm" type="video/webm" />
-                Your browser does not support the video tag.
-            </video>
-            
-            <video id="video-precip" width="554" height="554" controls="controls">
-                <source src="<?= $this->webroot ?>assets/theme/weatherph/vid/precip.mp4" type="video/mp4" />
-                <source src="<?= $this->webroot ?>assets/theme/weatherph/vid/precip.webm" type="video/webm" />
-                Your browser does not support the video tag.
-            </video>
-
             <div id="legend" class="shadow">
 
                 <div id="province-select">
