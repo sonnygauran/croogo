@@ -44,10 +44,7 @@ class WeatherphController extends WeatherphAppController {
             'limit' => 5,
         ));
         
-        
-        
-        //debug($featured);
-        //$this->set('featured', $featured);
+        $this->set('featuredBlog', $featuredBlog);
         
     }
     
