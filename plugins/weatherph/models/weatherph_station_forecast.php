@@ -53,6 +53,10 @@ class WeatherphStationForecast extends WeatherphAppModel
         $curlResults = curl_exec($ch);
         curl_close($ch);
         
+        debug();
+        
+        //$this->log(print_r($curlResults, TRUE));
+        
         $resultsReadings = $this->csvToArray($curlResults, $headersSpecimen);
         
         $currentReadings = array();
@@ -1238,5 +1242,4 @@ class WeatherphStationForecast extends WeatherphAppModel
         return $arrData;
         
     }
-    
-}
+}    

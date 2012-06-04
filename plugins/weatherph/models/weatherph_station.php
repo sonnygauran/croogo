@@ -35,6 +35,8 @@ class WeatherphStation extends WeatherphAppModel {
         
         //$this->log(print_r($rows, true));
         
+        $this->log($headers);
+        
         $station_map = array();
         foreach ($rows as $row) {
             $row = explode(';', $row);
@@ -42,7 +44,12 @@ class WeatherphStation extends WeatherphAppModel {
 
             $orgs = array();
             $current = array();
+            
+            $this->log($row);
+            
             foreach ($row as $key => $field) {
+                
+                
                 $index = $headers[$key];
 
                 if (strlen($index) == 0) {
