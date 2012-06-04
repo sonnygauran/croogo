@@ -62,7 +62,7 @@
                 <div id="options">
                     <img src="<?= $this->webroot ?>theme/weatherph/img/flag.png" alt="Philippines" />
                     <form class="search">
-                        Weather Search: <input type="text" name="city" size="15" />
+                        <label for="search-field">Search:</label><input id="search-field" type="text" name="city" size="15" />
                         <img src="<?= $this->webroot ?>theme/weatherph/img/search.png" alt="" />
                     </form>
                     
@@ -72,23 +72,19 @@
             <nav class="shadow">
                 <ul>
                     <li><a href="<?= $this->webroot ?>">Home</a></li>
-                    <li><a href="<?= $this->webroot ?>view">Detailed Forecasts</a></li>
-                    <li><a href="<?= $this->webroot ?>typhoonPreparedness">Typhoon Preparedness</a></li>
-                    <li><a href="<?= $this->webroot ?>typhoonGlossary">Typhoon Glossary</a></li>
-                    <li><a href="<?= $this->webroot ?>typhoonClimatology">Typhoon Climatology</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Impressum</a></li>
+                    <li><a href="<?= $this->webroot ?>typhoon-preparedness">Typhoon Preparedness</a></li>
+                    <li><a href="<?= $this->webroot ?>typhoon-glossary">Typhoon Glossary</a></li>
+                    <li><a href="<?= $this->webroot ?>typhoon-climatology">Typhoon Climatology</a></li>
+                    <li><a href="/about">About</a></li>
+<!--                    <li><a href="#">Impressum</a></li>-->
                 </ul>
             </nav>
-            
+<!--            
             <div class="severe-warning shadow">
                 <p><strong>Alert:</strong> Typhoon Dador is approaching the NCR. No classes in all levels. Stay at home!</p>
             </div>
-<?php
-echo $this->Layout->sessionFlash();
-echo $content_for_layout;
-?>
-            <aside id="sidebar">
+            -->
+            <div id="sidebar">
                 <div class="sponsored">
                     <h6>Platinum sponsors:</h6>
                     <ul>
@@ -127,8 +123,11 @@ echo $content_for_layout;
                     </div>
                 </div>
 
-            </aside>
-
+            </div>
+<?php
+            echo $this->Layout->sessionFlash();
+            echo $content_for_layout;
+?>
             <footer>
                 <small>&copy; 2012 Meteomedia A.G.</small>
             </footer>
