@@ -65,7 +65,7 @@ class WeatherphHelper extends AppHelper {
  * @return string
  */
     public function beforeNodeInfo() {
-        //return '<p>beforeNodeInfo</p>';
+//        return '<p>beforeNodeInfo</p>';
     }
 /**
  * Called after LayoutHelper::nodeInfo()
@@ -81,7 +81,6 @@ class WeatherphHelper extends AppHelper {
  * @return string
  */
     public function beforeNodeBody() {
-        //return '<p>beforeNodeBody</p>';
     }
 /**
  * Called after LayoutHelper::nodeBody()
@@ -89,7 +88,6 @@ class WeatherphHelper extends AppHelper {
  * @return string
  */
     public function afterNodeBody() {
-        //return '<p>afterNodeBody</p>';
     }
 /**
  * Called before LayoutHelper::nodeMoreInfo()
@@ -97,7 +95,6 @@ class WeatherphHelper extends AppHelper {
  * @return string
  */
     public function beforeNodeMoreInfo() {
-        //return '<p>beforeNodeMoreInfo</p>';
     }
 /**
  * Called after LayoutHelper::nodeMoreInfo()
@@ -105,7 +102,6 @@ class WeatherphHelper extends AppHelper {
  * @return string
  */
     public function afterNodeMoreInfo() {
-        //return '<p>afterNodeMoreInfo</p>';
     }
 }
 ?>
