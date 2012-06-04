@@ -28,8 +28,5 @@
  */
 	App::import('Lib', 'CroogoRouter');
 	
-	Router::connect('/view', array('plugin' => 'weatherph', 'controller' => 'weatherph', 'action' => 'view'));
-    Router::connect('/view/*', array('plugin' => 'weatherph', 'controller' => 'weatherph', 'action' => 'view'));
-    
 	require_once CONFIGS.'croogo_routes.php';
 	CroogoRouter::localize();
