@@ -25,10 +25,6 @@ class WeatherphController extends WeatherphAppController {
     public $uses = array('Setting');
     
 
-    public function beforeFilter(){
-        date_default_timezone_set('UTC');
-        parent::beforeFilter();
-    }
 
     public function admin_index() {
         $this->set('title_for_layout', __('Weatherph', true));

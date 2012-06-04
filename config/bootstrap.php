@@ -50,3 +50,5 @@
  */
 	App::import('Lib', 'Croogo');
 	require_once CONFIGS.'croogo_bootstrap.php';
+    
+    date_default_timezone_set('UTC');    
