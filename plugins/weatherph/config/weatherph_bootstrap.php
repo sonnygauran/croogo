@@ -46,3 +46,7 @@
  */
     Croogo::hookAdminTab('Nodes/admin_add', 'Weatherph', 'weatherph.admin_tab_node');
     Croogo::hookAdminTab('Nodes/admin_edit', 'Weatherph', 'weatherph.admin_tab_node');
+    
+    App::import('Lib', 'Meteomedia.Curl');
+
+    Curl::setAuth(Configure::read('Abfrage.username'), Configure::read('Abfrage.password'));
