@@ -7,6 +7,33 @@
  *  
  */
 class Abfrage{
+    
+    /**
+     * Usage: 
+     * 
+     * 1. Import class:
+     * App::import('Lib', 'Abfrage');
+     * 
+     * 2. Initialize an instance
+     * $Abfrage = new Abfrage($stationId);
+     * 
+     * 3. Class methods
+     * $Abfrage->generateURL();
+     * 
+     */
+    
+    private $stationId;
+    
+    /**
+     * set the station ID on instance creation
+     * 
+     * @param type $stationId 
+     */
+    public function __construct($stationId) {
+        $this->stationId = $stationId;
+        CakeLog::write('abfrage', 'Station ID: ' . $this->stationId);
+        
+    }
 
     /**
      * Translate all parameters into raw weather abbreviations
@@ -14,7 +41,7 @@ class Abfrage{
      * @param type $parameters
      * @return string 
      */
-    public function translateWeatherCodes($parameters){
+    private function translateWeatherCodes($parameters){
         /**
          * Used: tl,tx,tn,td,rh,ff,g1h,dir,qff,sh,gl1h, g3h, rain6,rr,sy,sy2 
          */
@@ -52,9 +79,7 @@ class Abfrage{
             'Sunshine' => 'sh'
         );
         
-        
-        CakeLog::write('parameters', print_r($parameters, true));
-        
+        CakeLog::write('abfrage', 'Parameters: ' . print_r($parameters, true));
         /**
          * Loop through the parameters given 
          */
@@ -79,7 +104,7 @@ class Abfrage{
      * @param type $details
      * @return type 
      */
-    public function translateKeys($details){
+    private function translateKeys($details){
         $legend = array(
             'time_resolution' => 'zeiten1',
             'start_date'      => 'datumstart',
@@ -102,10 +127,10 @@ class Abfrage{
     /**
      * Dynamically Generate URLs using given parameters 
      */
-    public function generateURL($stationId, $type, $format, $parameters, $extras = ''){
+    public function generateURL($type, $format, $parameters, $extras = ''){
        $counter = 0;
         
-       $url['stationId'] = $stationId;
+       $url['stationId'] = $this->stationId;
        /**
         * Default Parameters
         * 
@@ -187,7 +212,7 @@ class Abfrage{
          *   )
          */
         $url['parameters'] = $this->translateWeatherCodes($parameters);
-        $url['special_parameters'] = $this->translateWeatherCodes($extras);
+        if (!empty($url['special_parameters'])) $url['special_parameters'] = $this->translateWeatherCodes($extras);
         
         $url['generated'] = "http://192.168.20.89/abfrage.php?stationidstring={$url['stationId']}&";
         
@@ -208,8 +233,10 @@ class Abfrage{
         }
         
         // Append the special parameters if there are any
-        foreach($url['special_parameters'] as $special_parameters){
-            $url['generated'] .= "$special_parameters=on&";
+        if(!empty($url['special_parameters'])){
+            foreach($url['special_parameters'] as $special_parameters){
+                $url['generated'] .= "$special_parameters=on&";
+            }
         }
         
         $url['generated'] .= "paramliste=";
@@ -231,10 +258,10 @@ class Abfrage{
         }
         
         /**
-         * logs the array in WEBROOT/tmp/logs/curl.log
+         * logs the array in WEBROOT/tmp/logs/abfrage.log
          *  
          */
-        CakeLog::write('curl', print_r($url, true));
+//        CakeLog::write('abfrage', print_r($url, true));
         return $url['generated'];
     }
 }
