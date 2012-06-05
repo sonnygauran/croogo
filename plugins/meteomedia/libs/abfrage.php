@@ -7,6 +7,20 @@
  *  
  */
 class Abfrage{
+    
+    /**
+     * Usage: 
+     * 
+     * 1. Import class:
+     * App::import('Lib', 'Abfrage');
+     * 
+     * 2. Initialize an instance
+     * $Abfrage = new Abfrage();
+     * 
+     * 3. Class methods
+     * $Abfrage->generateURL();
+     * 
+     */
 
     /**
      * Translate all parameters into raw weather abbreviations
