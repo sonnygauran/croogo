@@ -296,15 +296,17 @@
         </div> <!--INFO-->
     </section> <!--MAIN CONTENT-->
     <section class="secondary">
-        <!--div style="float: left;"-->
-        <?php foreach($featuredBlog as $blog){ ?>
+        <div class="blog">
+            <h4>Blog</h4>
             <div class="posts">
-                <h4><?= $html->link($blog['Node']['title'], $blog['Node']['url'], array('class' => 'link'))?></h4>  
+            <?php foreach($featuredBlog as $blog){ ?>
+                <h3><?= $html->link($blog['Node']['title'], $blog['Node']['url'], array('class' => 'link'))?></h3>  
                 <p><?= $text->excerpt(strip_tags($blog['Node']['body']), 'method', 200, '...')?></p>
-                <p><?= $html->link('Read More...', $blog['Node']['url']); ?></p>
+                <p class="read-more-link"><?= $html->link('Read More...', $blog['Node']['url']); ?></p>
+                <hr />
+            <?php }?>
             </div>
-        <?php }?>
-        <!--/div-->
+        </div>
 
         <div class="news">
             <h4>Breaking News</h4>
