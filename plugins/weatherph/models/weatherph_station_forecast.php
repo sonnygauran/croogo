@@ -77,7 +77,7 @@ class WeatherphStationForecast extends WeatherphAppModel
                 $readings['tl'] = ($readings['tl'] == '')? '0' : round($readings['tl'],0);
                 $readings['rr'] = ($readings['rr'] == '')? '0' : round($readings['rr'],0);
                 $readings['rh'] = ($readings['rh'] == '')? '0' : round($readings['rh'],0);
-                $readings['ff'] = ($readings['ff'] == '')? '0' : round($readings['ff'],0);
+                $readings['ff'] = ($readings['ff'] == '')? '0' : floor($readings['ff'] * 1.852 + 0.5);
                 $readings['g3h'] = ($readings['g3h'] == '')? '0' : round($readings['g3h'],0);
                 
                 // Translate raw data to wind direction image value
@@ -156,7 +156,7 @@ class WeatherphStationForecast extends WeatherphAppModel
                 $result['tl'] = ($result['tl'] == '')? '0' : round($result['tl'],0);
                 $result['rr'] = ($result['rr'] == '')? '0' : round($result['rr'],0);
                 $result['rh'] = ($result['rh'] == '')? '0' : round($result['rh'],0);
-                $result['ff'] = ($result['ff'] == '')? '0' : round($result['ff'],0); 
+                $result['ff'] = ($result['ff'] == '')? '0' : floor($result['ff'] * 1.852 + 0.5); 
                 $result['g3h'] = ($result['g3h'] == '')? '0' : round($result['g3h'],0);
                 
                 // Translate raw date to 3 hourly range value
@@ -205,7 +205,7 @@ class WeatherphStationForecast extends WeatherphAppModel
         $stationInfo = $this->getStationInfo($stationId, array("lat","lon"));
         
         //Grab stations readings  
-        $url = "http://192.168.20.89/abfrage.php?stationidstring=$stationId&datumstart=$startdatum&datumend=$enddatum&utcstart=$startutc&utcend=$endutc&zeiten1=10m&tl=on&dir=on&ff=on&g3h=on&paramliste=rr,rh,sy,sy2&output=csv2&ortoutput=wmo6,name&aufruf=auto";
+        $url = "http://192.168.20.89/abfrage.php?stationidstring=$stationId&datumstart=$startdatum&datumend=$enddatum&utcstart=$startutc&utcend=$endutc&zeiten1=10m&unit_ss24=1&tl=on&dir=on&ff=on&g3h=on&paramliste=rr,rh,sy,sy2&output=csv2&ortoutput=wmo6,name&aufruf=auto";
         
         // Get the string after the question-mark sign
         $gum = $stationId.'_reading_weekly_'.sha1(end(explode('?',$url)));
@@ -251,7 +251,7 @@ class WeatherphStationForecast extends WeatherphAppModel
                 $readings['tl'] = ($readings['tl'] == '')? '0' : round($readings['tl'],0);
                 $readings['rr'] = ($readings['rr'] == '')? '0' : round($readings['rr'],0);
                 $readings['rh'] = ($readings['rh'] == '')? '0' : round($readings['rh'],0);
-                $readings['ff'] = ($readings['ff'] == '')? '0' : round($readings['ff'],0);
+                $readings['ff'] = ($readings['ff'] == '')? '0' : floor($readings['ff'] * 1.852 + 0.5);
                 $readings['g3h'] = ($readings['g3h'] == '')? '0' : round($readings['g3h'],0);
                 
                 $readings['moonphase'] = $this->moon_phase(date('Y', strtotime($readings['Datum'])), date('m', strtotime($readings['Datum'])), date('d', strtotime($readings['Datum'])));
@@ -310,6 +310,8 @@ class WeatherphStationForecast extends WeatherphAppModel
         
         $results = $this->csvToArray($curlResults, $headersSpecimen);
         
+        //$this->log(print_r($results, true));
+        
         foreach($results as $result){
             
             if(trim($result['tl'])!=''){
@@ -325,13 +327,13 @@ class WeatherphStationForecast extends WeatherphAppModel
                 $result['tl'] = ($result['tl'] == '')? '0' : round($result['tl'],0);
                 $result['rr'] = ($result['rr'] == '')? '0' : round($result['rr'],0);
                 $result['rh'] = ($result['rh'] == '')? '0' : round($result['rh'],0);
-                $result['ff'] = ($result['ff'] == '')? '0' : round($result['ff'],0);
+                $result['ff'] = ($result['ff'] == '')? '0' : floor($result['ff'] * 1.852 + 0.5);
                 $result['g3h'] = ($result['g3h'] == '')? '0' : round($result['g3h'],0);
                 
                 // Translate raw date to 3 hourly range value
                 $thierTime = strtotime($result['Datum'].' '.$result['utc'].':'.$result['min']);
                 $ourTime = strtotime('+8 hours', $thierTime);
-                $result['utch'] = date('H:iA', $ourTime);
+                $result['utch'] = date('hA', $ourTime) . '-' . date('hA', strtotime('+3 hours', $ourTime));
                 
                 // Translate raw data to wind direction image value
                 $result['dir'] = $this->showWindDirection($result['dir']);
