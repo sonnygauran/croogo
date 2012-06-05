@@ -15,12 +15,25 @@ class Abfrage{
      * App::import('Lib', 'Abfrage');
      * 
      * 2. Initialize an instance
-     * $Abfrage = new Abfrage();
+     * $Abfrage = new Abfrage($stationId);
      * 
      * 3. Class methods
      * $Abfrage->generateURL();
      * 
      */
+    
+    private $stationId;
+    
+    /**
+     * set the station ID on instance creation
+     * 
+     * @param type $stationId 
+     */
+    public function __construct($stationId) {
+        $this->stationId = $stationId;
+        CakeLog::write('abfrage', 'Station ID: ' . $this->stationId);
+        
+    }
 
     /**
      * Translate all parameters into raw weather abbreviations
@@ -66,8 +79,6 @@ class Abfrage{
             'Sunshine' => 'sh'
         );
         
-        
-        CakeLog::write('parameters', print_r($parameters, true));
         
         /**
          * Loop through the parameters given 
@@ -116,10 +127,10 @@ class Abfrage{
     /**
      * Dynamically Generate URLs using given parameters 
      */
-    public function generateURL($stationId, $type, $format, $parameters, $extras = ''){
+    public function generateURL($type, $format, $parameters, $extras = ''){
        $counter = 0;
         
-       $url['stationId'] = $stationId;
+       $url['stationId'] = $this->stationId;
        /**
         * Default Parameters
         * 
@@ -245,10 +256,10 @@ class Abfrage{
         }
         
         /**
-         * logs the array in WEBROOT/tmp/logs/curl.log
+         * logs the array in WEBROOT/tmp/logs/abfrage.log
          *  
          */
-        CakeLog::write('curl', print_r($url, true));
+        CakeLog::write('abfrage', print_r($url, true));
         return $url['generated'];
     }
 }
