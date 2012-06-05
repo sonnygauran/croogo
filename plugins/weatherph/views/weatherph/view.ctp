@@ -168,7 +168,7 @@ echo $this->Html->script(array(
                   <script type="text/javascript" language="javascript">
                         //<![CDATA[
                             var chart = new AnyChart('<?= $this->webroot ?>swf/AnyChart.swf');
-                            chart.width = 830;
+                            chart.width = 794;
                             chart.height = 200;
                             chart.setXMLFile('<?= $this->webroot ?>getDetailedForecast/<?= $dataSets['stationId']; ?>/temperature/3h');
                             chart.write();
@@ -179,7 +179,7 @@ echo $this->Html->script(array(
                   <script type="text/javascript" language="javascript">
                         //<![CDATA[
                             var chart = new AnyChart('<?= $this->webroot ?>swf/AnyChart.swf');
-                            chart.width = 830;
+                            chart.width = 794;
                             chart.height = 200;
                             chart.setXMLFile('<?= $this->webroot ?>getDetailedForecast/<?= $dataSets['stationId']; ?>/precip');
                             chart.write();
@@ -190,7 +190,7 @@ echo $this->Html->script(array(
                   <script type="text/javascript" language="javascript">
                         //<![CDATA[
                             var chart = new AnyChart('<?= $this->webroot ?>swf/AnyChart.swf');
-                            chart.width = 830;
+                            chart.width = 794;
                             chart.height = 200;
                             chart.setXMLFile('<?= $this->webroot ?>getDetailedForecast/<?= $dataSets['stationId']; ?>/wind');
                             chart.write();
@@ -199,7 +199,7 @@ echo $this->Html->script(array(
                   <script type="text/javascript" language="javascript">
                         //<![CDATA[
                             var chart = new AnyChart('<?= $this->webroot ?>swf/AnyChart.swf');
-                            chart.width = 830;
+                            chart.width = 794;
                             chart.height = 50;
                             chart.setXMLFile('<?= $this->webroot ?>getDetailedForecast/<?= $dataSets['stationId']; ?>/winddir/6h');
                             chart.write();
@@ -210,7 +210,7 @@ echo $this->Html->script(array(
                   <script type="text/javascript" language="javascript">
                         //<![CDATA[
                             var chart = new AnyChart('<?= $this->webroot ?>swf/AnyChart.swf');
-                            chart.width = 830;
+                            chart.width = 794;
                             chart.height = 200;
                             chart.setXMLFile('<?= $this->webroot ?>getDetailedForecast/<?= $dataSets['stationId']; ?>/humidity');
                             chart.write();

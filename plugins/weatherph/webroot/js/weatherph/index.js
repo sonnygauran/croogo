@@ -71,7 +71,7 @@ map.geomap({
     console.log(JSON.stringify(result));
     $.each(result, function () {
         outputHtml += ("<p>Found a " + this.type + " at " + this.coordinates + "</p>");
-        console.log(this.id);
+        console.error(this.id);
         
         $stations = new Array();
         $('.loader').fadeIn();
@@ -82,10 +82,13 @@ map.geomap({
 });
 
 function getForecast(id) {
+    console.error('<?php Router::url($this->webroot) ?>');
+    console.error('<?= $this->webroot ?>weatherph/weatherph/getForecast/'+id+'/3/3h');
+    
 $.ajax({
             type:     'GET',
-            url:        '<?= $this->webroot ?>weatherph/weatherph/getForecast/'+id+'/3/3h',
-            cache:    false,
+            url:      '<?= $this->webroot ?>weatherph/weatherph/getForecast/'+id+'/3/3h',
+            cache:    true,
             success:  function(readings) {
                 
                 var $stationReadings = readings; // the complete retrieved stations
@@ -145,9 +148,12 @@ $.ajax({
                 $('.loader').fadeOut();
                 $('.detail-page-link a').attr({href: '<?= $this->webroot ?>view/'+id});
                 
-                
             }
         });
+     
+//        $('.loader').fadeOut();
+//        $('.detail-page-link a').attr({href: '<?= $this->webroot ?>view/'+id});
+//        console.error('DOne fading out');
 }
 
 // Show/hide forecasts depending on availability
@@ -175,33 +181,6 @@ function showReadings(){
         $('.no-readings').fadeOut();
     });
 }
-
-// Layer selector toggle
-
-$('#link-map').click(function(event){
-    event.preventDefault();
-    $('#map').fadeIn(function(){
-        $('#video-wind').fadeOut();
-        $('#video-precip').fadeOut();
-    });
-});
-
-$('#link-video-wind').click(function(event){
-    event.preventDefault();
-    $('#video-wind').fadeIn(function(){
-        $('#map').fadeOut();
-        $('#video-precip').fadeOut();
-    });
-});
-
-$('#link-video-precip').click(function(event){
-    event.preventDefault();
-    
-    $('#video-precip').fadeIn(function(){
-        $('#map').fadeOut();
-        $('#video-wind').fadeOut();
-    });
-});
 
 //Stations
 //var $data = {
@@ -480,3 +459,49 @@ var $boxMap = [
 */	  
 getForecast(984290);
 });
+$(function(){
+        $('.loader').css('opacity', 0.8);
+        var windContent = '<?php echo str_replace("\n", "\\", (<<<ECHO
+<video id="video-wind" width="554" height="554" controls="controls" style="display: none;">
+    <source src="{$this->webroot}assets/theme/weatherph/vid/wind.mp4" type="video/mp4" />
+    <source src="{$this->webroot}assets/theme/weatherph/vid/wind.webm" type="video/webm" />
+    Your browser does not support the video tag.
+</video>
+ECHO
+));
+    ?>';
+        var precipContent = '<?php echo str_replace("\n", "\\", (<<<ECHO
+<video id="video-precipitation" width="554" height="554" controls="controls" style="display: none;">
+    <source src="{$this->webroot}assets/theme/weatherph/vid/precip.mp4" type="video/mp4" />
+    <source src="{$this->webroot}assets/theme/weatherph/vid/precip.webm" type="video/webm" />
+    Your browser does not support the video tag.
+</video>
+ECHO
+)); ?>';
+        
+        var content = {
+            wind:          windContent,
+            precipitation: precipContent
+        };
+        
+        // Layer selector toggle
+
+        $('#link-map').on('click', function(){
+            //event.preventDefault();
+            $('.video-viewport').hide(1, function(){
+                $('.map-viewport').show();
+            });
+            
+            
+        });
+
+        $('.movies.dropdown a').on('click', function(){
+            var _name = $(this).attr('data-name');
+            var _content = eval('content.'+_name);
+            
+            $('.video-viewport').show().html(_content);
+            event.preventDefault();
+            $('.map-viewport').hide();
+            $('#video-'+_name).show();
+        });
+    });

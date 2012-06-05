@@ -100,7 +100,7 @@
  * Turn off all caching application-wide.
  *
  */
-	Configure::write('Cache.disable', true);
+	Configure::write('Cache.disable', false);
 
 /**
  * Enable cache checking.
@@ -295,3 +295,21 @@
  *
  */
 	Cache::config('default', array('engine' => 'File'));
+    Cache::config('hourly', array(  
+        'engine' => 'File',  
+        'duration'=> '+1 hour',  
+        'path' => CACHE,
+        'prefix' => 'hourly_'
+    ));
+    Cache::config('3hour', array(  
+        'engine' => 'File',  
+        'duration'=> '+3 hour',  
+        'path' => CACHE.DS.'models',
+        'prefix' => '3hour_'
+    ));
+    Cache::config('stations', array(  
+        'engine' => 'File',  
+        'duration'=> '+24 hours',  
+        'path' => CACHE.DS.'models',  
+        'prefix' => 'daily_'
+    ));
