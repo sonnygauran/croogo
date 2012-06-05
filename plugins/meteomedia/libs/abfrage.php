@@ -28,7 +28,7 @@ class Abfrage{
      * @param type $parameters
      * @return string 
      */
-    public function translateWeatherCodes($parameters){
+    private function translateWeatherCodes($parameters){
         /**
          * Used: tl,tx,tn,td,rh,ff,g1h,dir,qff,sh,gl1h, g3h, rain6,rr,sy,sy2 
          */
@@ -93,7 +93,7 @@ class Abfrage{
      * @param type $details
      * @return type 
      */
-    public function translateKeys($details){
+    private function translateKeys($details){
         $legend = array(
             'time_resolution' => 'zeiten1',
             'start_date'      => 'datumstart',
