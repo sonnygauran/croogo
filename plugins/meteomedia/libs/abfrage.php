@@ -79,7 +79,7 @@ class Abfrage{
             'Sunshine' => 'sh'
         );
         
-        
+        CakeLog::write('abfrage', 'Parameters: ' . print_r($parameters, true));
         /**
          * Loop through the parameters given 
          */
@@ -212,7 +212,7 @@ class Abfrage{
          *   )
          */
         $url['parameters'] = $this->translateWeatherCodes($parameters);
-        $url['special_parameters'] = $this->translateWeatherCodes($extras);
+        if (!empty($url['special_parameters'])) $url['special_parameters'] = $this->translateWeatherCodes($extras);
         
         $url['generated'] = "http://192.168.20.89/abfrage.php?stationidstring={$url['stationId']}&";
         
@@ -233,8 +233,10 @@ class Abfrage{
         }
         
         // Append the special parameters if there are any
-        foreach($url['special_parameters'] as $special_parameters){
-            $url['generated'] .= "$special_parameters=on&";
+        if(!empty($url['special_parameters'])){
+            foreach($url['special_parameters'] as $special_parameters){
+                $url['generated'] .= "$special_parameters=on&";
+            }
         }
         
         $url['generated'] .= "paramliste=";
@@ -259,7 +261,7 @@ class Abfrage{
          * logs the array in WEBROOT/tmp/logs/abfrage.log
          *  
          */
-        CakeLog::write('abfrage', print_r($url, true));
+//        CakeLog::write('abfrage', print_r($url, true));
         return $url['generated'];
     }
 }
