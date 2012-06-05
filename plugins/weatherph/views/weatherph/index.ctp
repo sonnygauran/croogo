@@ -296,11 +296,18 @@
         </div> <!--INFO-->
     </section> <!--MAIN CONTENT-->
     <section class="secondary">
-        <div class="posts">
-        <?php foreach($featuredBlog as $blog){ ?>
-            <h4><?=$html->link($blog['Node']['title'], $blog['Node']['url'], array('class' => 'link'))?></h4>  
-            <p><?=$text->excerpt(strip_tags($blog['Node']['body']), 'method', 200, '...' . $html->link('Read More...', $blog['Node']['url']))?></p>
-        <?php }?>
+        <div class="blog">
+        <h4>Blog</h4>
+            <div class="posts">
+            <?php foreach($featuredBlog as $blog){ ?>
+                <h4><?=$html->link($blog['Node']['title'], $blog['Node']['url'], array('class' => 'link'))?></h4>  
+                <p><?=$text->excerpt(strip_tags($blog['Node']['body']), 'method', 200, '...' . $html->link('Read More...', $blog['Node']['url']))?></p>
+                <h4><?=$html->link($blog['Node']['title'], $blog['Node']['url'], array('class' => 'link'))?></h4>  
+                <p><?=$text->excerpt(strip_tags($blog['Node']['body']), 'method', 200, '...' . $html->link('Read More...', $blog['Node']['url']))?></p>
+                <h4><?=$html->link($blog['Node']['title'], $blog['Node']['url'], array('class' => 'link'))?></h4>  
+                <p><?=$text->excerpt(strip_tags($blog['Node']['body']), 'method', 200, '...' . $html->link('Read More...', $blog['Node']['url']))?></p>
+            <?php }?>
+            </div>
         </div>
 
         <div class="news">
