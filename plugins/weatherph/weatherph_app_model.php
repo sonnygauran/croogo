@@ -1,6 +1,30 @@
 <?php
 
 class WeatherphAppModel extends AppModel {
+        
+    protected function generateDate($type){
+        
+        // Adjust our time so that the data we get can match theirs
+        $theirTime = strtotime("-8 hours"); 
+        $format = array();
+        
+        $format['start_date'] = date('Ymd', $theirTime);
+        
+        switch($type){
+            case 'reading':
+                $format['time_resolution'] = '10m';
+                $format['start_hour'] = date('H', $theirTime);
+                $format['end_hour'] = '00';
+                $format['end_date'] = date('Ymd', strtotime('+1 day', $theirTime));
+                break;
+            case 'forecast':
+                $format['time_resolution'] = '3h';
+                $format['end_date'] = date('Ymd', strtotime("+5 Days", $theirTime));;
+                break;
+        }
+        
+        return $format;
+    }
 
     // Show what the moon phase for a certain date.
     protected function moon_phase($year, $month, $day) {
@@ -86,7 +110,7 @@ class WeatherphAppModel extends AppModel {
         //Convert 
         $expected = strstr($csv, $headersSpecimen);
         if ($expected == '') {
-            $error = 'There was an error generating the CSV from ' . $url;
+            $error = 'There was an error generating the CSV';
             $this->log($error);
             return array();
         }
@@ -627,5 +651,5 @@ class WeatherphAppModel extends AppModel {
 
         return $arrData;
     }
-
+    
 }
