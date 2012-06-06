@@ -123,11 +123,11 @@ class Abfrage{
         }
         return $details;
     }
-    
+
     /**
      * Dynamically Generate URLs using given parameters 
      */
-    public function generateURL($format, $parameters, $special_parameters = ''){
+    public function generateURL($format, $parameters){
        $counter = 0;
        
        $url['stationId'] = $this->stationId;
@@ -211,7 +211,6 @@ class Abfrage{
          *   )
          */
         $url['parameters'] = $this->translateWeatherCodes($parameters);
-        if (!empty($special_parameters)) $url['special_parameters'] = $this->translateWeatherCodes($special_parameters);
         
         $url['generated'] = "http://192.168.20.89/abfrage.php?stationidstring={$url['stationId']}&";
         
@@ -225,22 +224,17 @@ class Abfrage{
          * Spacial cases for parameters... specifically for wind
          *  
          */
-        if($url['parameter_type'] == 'forecast'){
-            $url['generated'] .= "paramtyp=mos_mix_mm&unit=&mosmess=ja&";
-        }
-        
-        // Append the special parameters if there are any
-        if(!empty($special_parameters)){
-            foreach($url['special_parameters'] as $special_parameter){
-                $url['generated'] .= "$special_parameter=on&";
+            if($url['parameter_type'] == 'forecast'){
+                $url['generated'] .= "paramtyp=mos_mix_mm&mosmess=ja&";
             }
-        }
-        
+
+            
         $url['generated'] .= "paramliste=";
         
         // Append the parameter lists
         foreach($url['parameters'] as $parameter){
             $url['generated'] .= "{$parameter}";
+            // Hope therre's a better way to do this
             $counter++;
             $url['generated'] .= ($counter == count($url['parameters'])) ? '&' : ',';
         }
