@@ -364,11 +364,36 @@ text-shadow: 0px 2px 3px #555;
     margin-right: 10px;
 }
 
-.node-info {
+.blog > .posts {
+    padding: 1.5em 1em;
+}
+
+.date {
     position: absolute;
     top: 0;
     right: 0;
-    padding: 1em;
+    margin: 0.4em;
+    padding: 0.3em;
+    background-color: #3990BD;
+    color: #fafafa;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.blog-preview > .date {
+    position: static;
+    float: left;
+    margin-right: .6em;
+}
+
+.date .day {
+    font-size: 1.875em;
+    font-weight: 700;
+}
+
+.date .month, .date .year {
+    font-size: 1.2em;
+    text-transform: uppercase;
 }
 
 .secondary > .news {
