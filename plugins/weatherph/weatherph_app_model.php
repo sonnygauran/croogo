@@ -2,27 +2,28 @@
 
 class WeatherphAppModel extends AppModel {
         
-    protected function generateDate($type){
+    protected function generateDate($type, $time_resolution = '1h', $hasUTC = true){
         
         // Adjust our time so that the data we get can match theirs
         $theirTime = strtotime("-8 hours"); 
         $format = array();
         
         $format['start_date'] = date('Ymd', $theirTime);
+        $format['time_resolution'] = $time_resolution;
         
         switch($type){
             case 'reading':
-                $format['time_resolution'] = '10m';
-                $format['start_hour'] = date('H', $theirTime);
-                $format['end_hour'] = '00';
                 $format['end_date'] = date('Ymd', strtotime('+1 day', $theirTime));
                 break;
             case 'forecast':
-                $format['time_resolution'] = '3h';
                 $format['end_date'] = date('Ymd', strtotime("+5 Days", $theirTime));;
                 break;
         }
-        
+
+        if($hasUTC){
+            $format['start_hour'] = date('H', $theirTime);
+            $format['end_hour'] = '00';
+        }
         return $format;
     }
 
