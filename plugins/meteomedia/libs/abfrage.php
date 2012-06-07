@@ -256,7 +256,6 @@ class Abfrage{
          * Add a special parameter if wind speed is being traced 
          */
         if(in_array('ff', $url['parameters']) && in_array('g1h', $url['parameters']) && count($url['parameters']) == 2)  $url['generated'] .= 'unit=2';
-        if($url['parameter_type']) $url['generated'] .= 'unit_ss24=1';
         
         /**
          * logs the array in WEBROOT/tmp/logs/abfrage.log
