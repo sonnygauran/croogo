@@ -74,13 +74,13 @@ class Xml {
         foreach($dump as $bag => $garbage){
             
             if(empty($garbage['properties']))$garbage['properties'] = '';
-            if(empty($garbage['values']))$garbage['values'] = '';
+            if(empty($garbage['value']))$garbage['value'] = '';
             
-            if(self::isGarbageBag($garbage['values'])){
-                $cart[count($cart)] = self::dumpsterDive($garbage['values']);
+            if(self::isGarbageBag($garbage)){
+                $cart[count($cart)] = self::dumpsterDive($garbage['children']);
                 $treasure .= self::createTag($bag, $garbage['properties'], $cart);
             }else{
-                $treasure .= self::createTag($bag, $garbage['properties'], $garbage['values']);
+                $treasure .= self::createTag($bag, $garbage['properties'], $garbage['value']);
             }
             $cart = array();
         }
@@ -88,7 +88,7 @@ class Xml {
     }
     
     private static function isGarbageBag($content){
-        return is_array($content);
+        return array_key_exists('children', $content);
     }
     
 
