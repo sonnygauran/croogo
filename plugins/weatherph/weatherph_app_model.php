@@ -3,9 +3,9 @@
 class WeatherphAppModel extends AppModel {
         
     protected function generateDate($type, $time_resolution = '1h', $hasUTC = true){
-        
+
         // Adjust our time so that the data we get can match theirs
-        $theirTime = strtotime("-8 hours"); 
+        $theirTime = strtotime(($type=='forecast') ? '-16 hours' : '-8 hours', strtotime(date('Ymd'))); 
         $format = array();
         
         $format['start_date'] = date('Ymd', $theirTime);
@@ -13,7 +13,7 @@ class WeatherphAppModel extends AppModel {
         
         switch($type){
             case 'reading':
-                $format['end_date'] = date('Ymd', strtotime('+1 day', $theirTime));
+                $format['end_date'] = date('Ymd', strtotime('+2 days', $theirTime));
                 break;
             case 'forecast':
                 $format['end_date'] = date('Ymd', strtotime("+5 Days", $theirTime));;
@@ -22,7 +22,7 @@ class WeatherphAppModel extends AppModel {
 
         if($hasUTC){
             $format['start_hour'] = date('H', $theirTime);
-            $format['end_hour'] = '00';
+            $format['end_hour'] = ($type == 'forecast') ? '16' : '00';
         }
         return $format;
     }
@@ -292,6 +292,7 @@ class WeatherphAppModel extends AppModel {
         $arrData = $fields['conditions']['arrData'];
         $type = strtolower($fields['conditions']['type']);
 
+        $this->log(print_r($arrData['settings'], true), 'anychart');
         $xml_string =
         '<?xml version="1.0" encoding="ISO-8859-1"?>
                 <anychart>
@@ -594,11 +595,11 @@ class WeatherphAppModel extends AppModel {
             $xml_string .='</series>';
         }
 
-        $xml_string .= '
-                </data>
+        $xml_string .= ' 
+               </data>
                 </chart>
-                </charts>
-            </anychart>';
+                </charts> 
+           </anychart>';
 
         //$this->log($xml_string);
 
