@@ -130,6 +130,12 @@ class Abfrage{
     public function generateURL($format, $parameters){
        $counter = 0;
        
+       /**
+        * Parameter Types
+        * 
+        */
+       $url['parameter_type'] = ($format['time_resolution'] == '10m') ? 'reading' : 'forecast';
+       
        $url['stationId'] = $this->stationId;
        /**
         * Default Parameters
@@ -149,14 +155,16 @@ class Abfrage{
             'call' => 'auto', // aufruf 
         );
         
-        $url['defaults'] = $this->translateKeys($url['defaults']);        
-        
         /**
-         * Parameter Types
-         * 
+         * Unset when we're getting reading values
+         *  
          */
-        $url['parameter_type'] = ($format['time_resolution'] == '10m') ? 'reading' : 'forecast';
+        if($url['parameter_type'] == 'reading'){
+            unset($url['defaults']['linked']);
+            unset($url['defaults']['timefill']);
+        }
         
+        $url['defaults'] = $this->translateKeys($url['defaults']);        
         
         /**
          * Format
@@ -248,6 +256,7 @@ class Abfrage{
          * Add a special parameter if wind speed is being traced 
          */
         if(in_array('ff', $url['parameters']) && in_array('g1h', $url['parameters']) && count($url['parameters']) == 2)  $url['generated'] .= 'unit=2';
+        if($url['parameter_type']) $url['generated'] .= 'unit_ss24=1';
         
         /**
          * logs the array in WEBROOT/tmp/logs/abfrage.log
