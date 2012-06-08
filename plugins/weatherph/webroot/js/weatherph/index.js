@@ -96,7 +96,7 @@ $.ajax({
                 var cr_temperature, cr_wind, cr_precip, cr_humidity, cr_symbol;
                 var sr_temperature, sr_wind, sr_precip, sr_humidity, sr_symbol;                
                 
-                $('.current.readings-location').html($stationReadings.ort1);
+                $('.current.readings-location').html($stationReadings.station_name);
                 
                 if($stationReadings.reading.status == 'ok'){
                     

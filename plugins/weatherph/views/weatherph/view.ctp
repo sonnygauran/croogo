@@ -24,7 +24,7 @@ echo $this->Html->script(array(
 <!--                <a href="#">change station</a>-->
             </div> <!--END STATION-->
 
-            <?php if(!empty($dataSets['reading']['sunrise'])): ?>
+            <?php if($dataSets['reading']['status'] == 'ok'): ?>
             <div id="condition">
                 <table>
                     <tbody>
@@ -65,49 +65,41 @@ echo $this->Html->script(array(
             <?php endIf; ?>
             
         </div> <!--END CURRENT WEATHER-->
-        <?php if(empty($dataSets['reading']['sunrise'])): ?>
+        <?php if($dataSets['reading']['sunrise'] == 'none'): ?>
             <div class="no-readings" style="display: block;">
                 <p>Sorry, there are no readings available for this station.</p>
             </div>
         <?php endIf; ?>
         
-        <div class="no-forecast">
-            <p>Sorry, there's no forecast available for this station right now. Please try another station.</p>
-        </div>
-
         <div id="weekWeather">
             <h4>This week's forecast</h4>
             <ul id="week-forecast" class="tabs">
+                
             <?php
-            $start_date = date('Y-m-d');
-            $check_date = $start_date; 
-            $end_date = date('Y-m-d', strtotime('+5 days')); 
-
             $i = 0; 
-            while ($check_date != $end_date) {
+            foreach ($forecastRange as $day) {
                 $class = ($i == 0)? "current-tab" : "";
-                $dayName = ($i == 0)? "Today" : date('l', strtotime($check_date));
+                $dayName = ($i == 0)? "Today" : date('l', strtotime($day));
+                $i++;
             ?>
                 <li id="<?= strtolower($dayName); ?>" class="<?= $class; ?>" ><?= $dayName; ?></li>
-            <?php $check_date = date ("Y-m-d", strtotime ("+1 day", strtotime($check_date))); $i++; 
-                if ($i > 31) { die ('Error!'); }
-            }  
-            
-            ?>
+            <?php } ?>
             </ul>
             
             <div class="tab-container">
             <?php foreach ($dataSets['forecast'] as $key => $dayForecast) {
+                
                 $today = date("Ymd");
                 $tab_class = ($key == $today)? 'current-tab' : 'tab';
                 $div_id = ($key == $today)? "Today" : date('l', strtotime($key));
+                
                 ?>
                 <div id="<?= strtolower($div_id); ?>" class="<?= $tab_class; ?>">
+                    
                     <table class="week-forecast" cellspacing="0">
-           
                     <tr class="time">
                         <td class="caption">Time</td>
-                        <?php foreach (Set::extract($dayForecast, '{n}.utch') as $column) { ?>
+                        <?php foreach (Set::extract($dayForecast, '{n}.localtime_range') as $column) { ?>
                             <td><?= $column; ?></td>
                         <?php } ?>
                     </tr>
@@ -127,9 +119,9 @@ echo $this->Html->script(array(
                     </tr>
                     
                     <tr class="precipitation">
-                        <td class="caption">Precipitation</td>   
-                        <?php foreach (Set::extract($dayForecast, '{n}.rr') as $column) { ?>
-                        <td><?= $column; ?>mm</td>
+                        <td class="caption">Precipitation</td> 
+                        <?php foreach (Set::extract($dayForecast, '{n}.rain6') as $key=>$column) { ?>
+                        <?php if($key%2 == 0){ ?><td colspan="2"><?= $column; ?>mm</td><?php } ?>
                         <?php } ?>
                     </tr>
                     
@@ -142,8 +134,10 @@ echo $this->Html->script(array(
                     
                     <tr class="direction">
                         <td class="caption">Wind Direction</td>   
-                        <?php foreach (Set::extract($dayForecast, '{n}.dir') as $column) { ?>
-                            <td><span class="symbol <?= $column; ?>"></span></td>
+                        <?php $windDir = Set::extract($dayForecast, '{n}.dir'); ?>
+                        <?php $windDesc = Set::extract($dayForecast, '{n}.windDesc'); ?>
+                        <?php for($x=0; $x<count($windDir); $x++){ ?>
+                            <td><span class="symbol <?= $windDir[$x]; ?>"></span><span class="wind-description"><?= $windDesc[$x]?></span></td>
                         <?php } ?>
                     </tr>
            
