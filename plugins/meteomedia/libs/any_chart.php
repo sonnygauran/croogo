@@ -15,7 +15,6 @@ class AnyChart {
      */
     
     private static $data = array(
-        'chart_type' => '',
         'minor_interval' => '',
         'show_cross_label' => '',
         'default_series_type' => '',
@@ -27,6 +26,7 @@ class AnyChart {
      * @var type 
      */
     private static $properties = array(
+        'chart_type' => '',
         'font' => array(
             'family' => 'Helvetica',
             'color' => '#444444',
@@ -45,7 +45,7 @@ class AnyChart {
                 'left' => 10,
                 'right' => 8,
             ),
-        )
+        ),
     );
     
     private static function globalSettings(){
@@ -56,15 +56,49 @@ class AnyChart {
                 'locale' => array(
                     'children'=> array(
                         'date_time_format' => array(
-                            
+                            'properties' => array(),
+                            'children' => array(
+                                'format' => array(
+                                    'properties' => array(),
+                                    'value' => '%u',
+                                )
+                            ),
                         ),
+                        'week_days'=> array(
+                            'properties' => array(),
+                            'children' => array(
+                                'short_names' => array(
+                                    'properties' => array(
+                                        'start_from' => 'Sunday'
+                                    ),
+                                    'value' => '<![CDATA[ Su.,Mo.,Tu.,We.,Th.,Fr.,Sa. ]]>',
+                                )
+                            ),
+                        )
                     ),
 
-                )
+                ),
             )
         );
         
-        CakeLog::write('anychart', print_r($settings, true));
+        switch(self::$properties['chart_type']){
+            case 'precip':
+            case 'precipitation':
+                $settings['children']['months'] = array(
+                        'properties' => array(),
+                        'children' => array(
+                            'names' => array(
+                                'properties'=> array(),
+                                'value' => 'January,February,March,April,May,June,July,August,September,October,November,December'
+                            ),
+                            'short_names' => array(
+                                'properties'=> array(),
+                                'value' => 'Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec'
+                            ),
+                        ),
+                );
+                break;
+        }
         
         return $settings;
     }
@@ -193,8 +227,8 @@ class AnyChart {
     public static function createChart($type, $arrData){
 //        CakeLog::write('anychart', print_r($arrData, true));
         
-//        self::$data['chart_type'] = $type;
-//        self::$data .= $arrData['settings'];
+        self::$properties['chart_type'] = $type;
+        self::$data .= $arrData['settings'];
         
         $anychart = array(
             'anychart' => array(
