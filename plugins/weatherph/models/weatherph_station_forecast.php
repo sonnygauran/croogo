@@ -211,9 +211,7 @@ class WeatherphStationForecast extends WeatherphAppModel
                 
                 if(date('Ymd', strtotime($today)) == $new_key){
                     
-                    if(strtotime($data['localtime_range_end']) >= strtotime('+8 hours', strtotime($today))){
-                        
-                        //$this->log($data['localtime_range_end'] .' >= '. $today);
+                    if(strtotime($data['localtime_range_end']) >= strtotime($today)){
                         
                         $new_datasets[$new_key][] = $data;
                         

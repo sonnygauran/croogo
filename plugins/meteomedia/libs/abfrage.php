@@ -79,7 +79,7 @@ class Abfrage{
             'Sunshine' => 'sh'
         );
         
-        CakeLog::write('abfrage', 'Parameters: ' . print_r($parameters, true));
+//        CakeLog::write('abfrage', 'Parameters: ' . print_r($parameters, true));
         /**
          * Loop through the parameters given 
          */
@@ -123,13 +123,19 @@ class Abfrage{
         }
         return $details;
     }
-    
+
     /**
      * Dynamically Generate URLs using given parameters 
      */
-    public function generateURL($type, $format, $parameters, $extras = ''){
+    public function generateURL($format, $parameters){
        $counter = 0;
-        
+       
+       /**
+        * Parameter Types
+        * 
+        */
+       $url['parameter_type'] = ($format['time_resolution'] == '10m') ? 'reading' : 'forecast';
+       
        $url['stationId'] = $this->stationId;
        /**
         * Default Parameters
@@ -149,7 +155,17 @@ class Abfrage{
             'call' => 'auto', // aufruf 
         );
         
+        /**
+         * Unset when we're getting reading values
+         *  
+         */
+        if($url['parameter_type'] == 'reading'){
+            unset($url['defaults']['linked']);
+            unset($url['defaults']['timefill']);
+        }
+        
         $url['defaults'] = $this->translateKeys($url['defaults']);        
+        
         /**
          * Format
          * 
@@ -170,15 +186,6 @@ class Abfrage{
          */
         $url['format'] = $this->translateKeys($format);
         
-        /**
-         * Parameter Types
-         * Known as: paramtyp
-         * 
-         * Input used: paramtyp=mos_mix_mm
-         * 
-         */
-        $url['parameter_type'] = $type;
-
         /**
          * Parameter Lists
          * Known as: parameterliste
@@ -212,7 +219,6 @@ class Abfrage{
          *   )
          */
         $url['parameters'] = $this->translateWeatherCodes($parameters);
-        if (!empty($url['special_parameters'])) $url['special_parameters'] = $this->translateWeatherCodes($extras);
         
         $url['generated'] = "http://192.168.20.89/abfrage.php?stationidstring={$url['stationId']}&";
         
@@ -226,42 +232,36 @@ class Abfrage{
          * Spacial cases for parameters... specifically for wind
          *  
          */
-        if($url['parameter_type'] == 'wind'){
-            $url['generated'] .= "paramtyp=mos_mix_mm&unit=2&mosmess=ja&";
-        }else if(!empty($url['parameter_type']) && $url['parameter_type'] != 'reading'){
-            $url['generated'] .= "paramtyp=mos_mix_mm&unit=&mosmess=ja&";
-        }
-        
-        // Append the special parameters if there are any
-        if(!empty($url['special_parameters'])){
-            foreach($url['special_parameters'] as $special_parameters){
-                $url['generated'] .= "$special_parameters=on&";
+            if($url['parameter_type'] == 'forecast'){
+                $url['generated'] .= "paramtyp=mos_mix_mm&mosmess=ja&";
             }
-        }
-        
+
+            
         $url['generated'] .= "paramliste=";
         
         // Append the parameter lists
         foreach($url['parameters'] as $parameter){
             $url['generated'] .= "{$parameter}";
+            // Hope therre's a better way to do this
             $counter++;
-            // print out an ampersand when it's the final parameter
             $url['generated'] .= ($counter == count($url['parameters'])) ? '&' : ',';
         }
-        $counter = 0;
         
         // Append the default parameters
         foreach($url['defaults'] as $key=>$value){
-            $url['generated'] .= "$key=$value";
-            $counter++;
-            $url['generated'] .= ($counter == count($url['defaults'])) ? '' : '&';
+            $url['generated'] .= "$key=$value&";
         }
+        
+        /**
+         * Add a special parameter if wind speed is being traced 
+         */
+        if(in_array('ff', $url['parameters']) && in_array('g1h', $url['parameters']) && count($url['parameters']) == 2)  $url['generated'] .= 'unit=2';
         
         /**
          * logs the array in WEBROOT/tmp/logs/abfrage.log
          *  
          */
-//        CakeLog::write('abfrage', print_r($url, true));
+        CakeLog::write('abfrage', print_r($url, true));
         return $url['generated'];
     }
 }

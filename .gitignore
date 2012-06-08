@@ -1,6 +1,5 @@
 # App
 config/database.php
-config/settings.yml
 plugins/debug_kit/
 plugins/migrations/
 vendors/simpletest/
@@ -10,3 +9,4 @@ webroot/uploads/
 tmp/
 
 .DS_Store
+/nbproject/private/

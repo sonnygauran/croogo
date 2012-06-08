@@ -137,7 +137,7 @@ class WeatherphController extends WeatherphAppController {
 
     public function getDetailedForecast($stationID = '984290', $type = NULL, $timeRes = '3h', $startDatum = NULL) {
 
-
+//        if($this->referer() != '/swf/AnyChart.swf') return; // limits the access of the XML for anychart usage
         App::import('Model', 'Weatherph.WeatherphStationForecast');
 
         $WeatherphStationForecast = new WeatherphStationForecast();
@@ -223,7 +223,7 @@ class WeatherphController extends WeatherphAppController {
         'id' => $stationID,
         )));
         
-        $today = date('Ymd', strtotime('+8 hours'));
+        $today = date('Ymd');
         $enddate = date('Ymd', strtotime('+2 days', strtotime($today)));
         $forecastRange = range($today, $enddate);
         //$this->log(print_r($forecastRange, true));
