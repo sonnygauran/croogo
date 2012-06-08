@@ -37,6 +37,7 @@ class AnyChart {
             'chart' => null, 
             'x_axis' => null,
             'y_axis' => null,
+            'y_axis2' => null,
         ),
         'margin' => array(
             'properties' => array(
@@ -104,6 +105,12 @@ class AnyChart {
     }
     
     private static function chartSettings(){
+        $x_axis = array();
+        $y_axis = array();
+        $extra = array();
+        $chart_background = array();
+        $data_plot_background = array();
+        
         $x_axis = array(
                 'properties' => array(
                     'enable' => 'true'
@@ -225,6 +232,68 @@ class AnyChart {
                 );
                 break;
         }
+
+        
+        $extra = array(
+            'properties' => array(),
+            'children' => array(
+                'y_axis' => array(
+                    'properties' => array(),
+                    'children' => array(
+                        'title' => array(
+                            'properties' => array(
+                                'enabled' => (empty(self::$properties['titles']['y_axis2'])) ? 'false' : 'true'
+                            ),
+                            'value' => self::$properties['titles']['y_axis2'],
+                        ),
+                        'labels' => array(
+                            'properties' => array(),
+                            'children' => array(
+                                'format' => array()
+                            ),
+                        ),
+                    ),
+                )
+            ),
+        );
+
+        $chart_background = array(
+            'properties' => array(
+                'enabled' => 'false'
+            ),
+            'children' => array(
+                'effects' => array(
+                    'properties' => array(
+                        'enabled' => 'false'
+                    ),
+                    'value' => null,
+                ),
+                'boder' => array(
+                    'properties' => array(
+                        'enabled' => 'false'
+                    ),
+                    'value' => null,
+                ),
+                'inside_margin' => array(
+                    'properties' => array(
+                        'all' => '0' 
+                    ),
+                    'value' => null,
+                ),
+            ),
+        );
+        
+        $data_plot_background = array(
+            'properties' => array(),
+            'children' => array(
+                'effects' => array(
+                    'properties' => array(
+                        'enabled' => 'false'
+                    ),
+                    'value' => null,
+                ),
+            ),
+        );
         
         $chart_settings = array(
             'properties' => array(),
@@ -241,27 +310,12 @@ class AnyChart {
                     'children' => array(
                         'x_axis' => $x_axis,
                         'y_axis' => $y_axis,
-                        'extra' => array(
-                            'properties' => array(),
-                            'children' => array(
-
-                            ),
-                        ),
-                        'chart_background' => array(
-                            'properties' => array(),
-                            'children' => array(
-
-                            ),
-                        ),
-                        'data_plot_background' => array(
-                            'properties' => array(),
-                            'children' => array(
-
-                            ),
-                        ),
+                        'extra' => $extra
                     ),
 
                 ),
+                'chart_background' => $chart_background,
+                'data_plot_background' => $data_plot_background,
             )
         );
         
