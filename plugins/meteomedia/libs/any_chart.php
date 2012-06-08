@@ -179,9 +179,53 @@ class AnyChart {
         $y_axis = array(
             'properties' => array(),
             'children' => array(
-
+                'title' => array(
+                    'properties' => array(
+                        'enabled' => (empty(self::$properties['titles']['y_axis'])) ? 'false' : 'true'
+                    ),
+                    'value' => self::$properties['titles']['y_axis'],
+                ),
+                'labels' => array(
+                    'properties' => array(),
+                    'children' => array(
+                        'format' => array(
+                            'properties' => array(),
+                            'value' => '{%Value}{numDecimals:0}'
+                        ),
+                        'font' => array(
+                            'properties' => self::$properties['font'],
+                            'value' => null,
+                        ),
+                    ),
+                ),
             ),
         );
+        switch(self::$properties['chart_type']){
+            case 'winddir':
+            case 'dir':
+            case 'wind_direction':
+                $y_axis['children']['scale'] = array(
+                    'properties' => array(
+                        'type' => 'Linear',
+                        'maximum' => 100,
+                        'minimum' => 0,
+                    ),
+                );
+                break;
+            case 'humidity':
+                $y_axis['children']['scale'] = array(
+                    'properties' => array(
+                        'type' => 'Linear',
+                        'maximum' => 1,
+                        'minimum' => 0,
+                        'maximum_offset' => 0.01,
+                        'minimum_offset' => 0.01,
+                    ),
+                    
+                );
+                break;
+        }
+        
         $chart_settings = array(
             'properties' => array(),
 
