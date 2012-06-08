@@ -15,6 +15,7 @@ class AnyChart {
      */
     
     private static $data = array(
+        'test' => 'sadf',
         'minor_interval' => '',
         'show_cross_label' => '',
         'default_series_type' => '',
@@ -322,17 +323,155 @@ class AnyChart {
         return $chart_settings;
     }
     
+    private static function dataPlotSettings(){
+        
+        $data_plot_settings = array();
+        $graph_type = '';
+        $graph_settings = array();
+        
+        
+        
+        $bar_settings = array(
+            'properties' => array(),
+            'children' => array(
+                'bar_style' => array(
+                    'properties' => array(),
+                    'children' => array(
+                        'fill' => array(
+                            'properties' => array(),
+                            'value' => null
+                        ),
+                        'border' => array(
+                            'properties' => array(),
+                            'children' => array(
+                                'gradient' => array(
+                                    'properties' => array(),
+                                    'children' => array(
+                                        'key' => array(
+                                            'properties' => array(),
+                                            'value' => null
+                                        ),
+                                        'key' => array(
+                                            'properties' => array(),
+                                            'value' => null
+                                        ),
+                                        'key' => array(
+                                            'properties' => array(),
+                                            'value' => null
+                                        ),
+                                    )
+                                )
+                            )
+                        ),
+                        'effects' => array(
+                            'properties' => array(),
+                            'children' => array()
+                        ),
+                    ),
+                )
+            ),
+        );
+        $line_settings = array(
+            'properties' => array(),
+            'children' => array(
+                'marker_settings' => array(
+                    'properties' => array(
+                        'enabled' => 'false'
+                    ),
+                    'value' => null,
+                ),
+                'line_style' => array(
+                    'properties' => array(),
+                    'children' => array(
+                        'line' => array(
+                            'properties' => array(
+                                'enabled' => 'true',
+                                'thickness' => '2',
+                                'caps' => 'round',
+                                'joints' => 'round',
+                            )
+                        )
+                    ),
+                ),
+            ),
+        );
+        
+        
+        
+        
+        switch(self::$properties['chart_type']){
+            case 'winddir':
+            case 'direction':
+            case 'dir':
+                $line_settings['children']['marker_settings']['properties']['enabled'] = 'true';
+                break;
+            case 'temp':
+            case 'temperature':
+                $line_settings['children']['tooltip_settings'] = array(
+                    'properties'=> array(),
+                    'children'=> array(
+                        'format' => array(
+                            'properties' => array(
+                                'enabled'=>'true'
+                            ),
+                            'value' => '<![CDATA[ {%YValue}{numDecimals:1} ]]>',
+                        )
+                    ),
+                );
+                break;
+        }
+        
+        switch(self::$properties['chart_type']){
+            case 'temp':
+            case 'temperature':
+            case 'wind':
+            case 'winddir':
+            case 'dir':
+            case 'direction':
+            case 'humidity':
+                $graph_type = 'line_series';
+                $graph_settings = $line_settings;
+                break;
+            case 'sunshine':
+            case 'airpressure':
+            case 'globalradiation':
+            case 'precipitation':
+            case 'precip':
+                $graph_type = 'bar_series';
+                $graph_settings = $bar_settings;
+                break;
+        }
+        
+        $data_plot_settings = array(
+            'properties' => array(
+                'default_series_type' => self::$data['default_series_type']
+            ),
+            'children' => array(
+                $graph_type => $graph_settings
+            )
+        );
+        return $data_plot_settings;
+    }
+    
     public static function createChart($type, $arrData){
 //        CakeLog::write('anychart', print_r($arrData, true));
         
         self::$properties['chart_type'] = $type;
-        self::$data .= $arrData['settings'];
+        self::$data = $arrData['settings'];
         
         $anychart = array(
             'anychart' => array(
                 'children' => array(
                     'settings' => self::globalSettings(),
-                    'chart_settings' => self::chartSettings()
+                    'charts' => array(
+                        'properties' => array(
+                            'plot_type' => 'Scatter'
+                        ),
+                        'children' => array(
+                            'chart_settings' => self::chartSettings(),
+                            'data_plot_settings' => self::dataPlotSettings(),
+                        ),
+                    ),
                 )
             )
         );
@@ -341,4 +480,6 @@ class AnyChart {
         
         return $anychart;
     }
+    
+    
 }
