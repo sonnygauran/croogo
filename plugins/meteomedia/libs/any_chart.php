@@ -8,12 +8,24 @@
  */
 class AnyChart {
 
-    private static $chartType;
     
-    private static $scale = 'XXXXXXXXXXXXXXXXXX';
-    private static $minorInterval = 'XXXXXXXXXXXXXXXXXX';
-    private static $showCrossLabel = 'XXXXXXXXXXXXXXXXXX';
+    /**
+     * Dynamic objects depending on given parameters
+     * 
+     */
     
+    private static $data = array(
+        'chart_type' => '',
+        'minor_interval' => '',
+        'show_cross_label' => '',
+        'default_series_type' => '',
+    );
+    
+    /**
+     *Global properties.. 
+     * 
+     * @var type 
+     */
     private static $properties = array(
         'font' => array(
             'family' => 'Helvetica',
@@ -25,11 +37,7 @@ class AnyChart {
             'chart' => null, 
             'x_axis' => null,
             'y_axis' => null,
-        )
-    );
-    
-    
-    private static $margin = array(
+        ),
         'margin' => array(
             'properties' => array(
                 'all' => 3,
@@ -37,30 +45,31 @@ class AnyChart {
                 'left' => 10,
                 'right' => 8,
             ),
-            'values' => null,
-            
         )
     );
     
-    private static $settings =  array(
-            'settings' => array(
-                'children' => array(
+    private static function globalSettings(){
+        $settings =  array(
+            'properties' => array(),
+            'children' => array(
+                'margin' => self::$properties['margin'],
+                'locale' => array(
+                    'children'=> array(
+                        'date_time_format' => array(
+                            
+                        ),
+                    ),
 
-                    'locale' => array(
-                        'children'=> array(
-
-                            'date_time_format' => array(
-                                'value' => 'safasd'
-                            ),
-                        )
-                    )
                 )
             )
         );
+        
+        CakeLog::write('anychart', print_r($settings, true));
+        
+        return $settings;
+    }
     
-    
-    
-    public static function chartSettings(){
+    private static function chartSettings(){
         $x_axis = array(
                 'properties' => array(
                     'enable' => 'true'
@@ -71,7 +80,7 @@ class AnyChart {
                             'type'=>'DateTime',
                             'minimum_offset'=>'0',
                             'maximum_offset'=>'0',
-                            'minor_interval'=>  $this->minorInterval,
+                            'minor_interval'=>  self::$data['minor_interval'],
                             'minor_interval_unit'=>'Hour',
                             'major_interval'=>'1',
                             'major_interval_unit'=>'Day',
@@ -80,14 +89,14 @@ class AnyChart {
                     ),
                     'title' => array(
                         'properties' => array(
-                            'enabled' => (empty($this->properties['titles']['x_axis'])) ? 'false' : 'true'
+                            'enabled' => (empty(self::$properties['titles']['x_axis'])) ? 'false' : 'true'
                         ),
-                        'value' => $this->properties['titles']['x_axis'],
+                        'value' => self::$properties['titles']['x_axis'],
                     ),
                     'labels' => array(
                         'properties' => array(
                             'enabled' => 'true',
-                            'show_cross_label' => $this->showCrossLabel,
+                            'show_cross_label' => self::$data['show_cross_label'],
                             'allow_overlap'=>'true'
                         ),
                         'children' => array(
@@ -99,7 +108,7 @@ class AnyChart {
                                 ),
                             ),
                             'font' => array(
-                                'properties' => $this->properties['font'],
+                                'properties' => self::$properties['font'],
                                 'value' => null,
                             ),
 
@@ -140,55 +149,64 @@ class AnyChart {
             ),
         );
         $chart_settings = array(
-            'chart_settings' => array(
-                'properties' => array(),
+            'properties' => array(),
 
-                'children' => array(
-                    'title' => array(
-                        'properties' => array(
-                            'enabled' => (empty($this->properties['titles']['chart'])) ? 'false' : 'true'
-                        ),
-                        'value' => $this->properties['titles']['chart'],
+            'children' => array(
+                'title' => array(
+                    'properties' => array(
+                        'enabled' => (empty(self::$properties['titles']['chart'])) ? 'false' : 'true'
                     ),
-                    'axes' => array(
-                        'properties' => array(),
-                        'children' => array(
-                            'x_axis' => $x_axis,
-                            'y_axis' => $y_axis,
-                            'extra' => array(
-                                'properties' => array(),
-                                'children' => array(
+                    'value' => self::$properties['titles']['chart'],
+                ),
+                'axes' => array(
+                    'properties' => array(),
+                    'children' => array(
+                        'x_axis' => $x_axis,
+                        'y_axis' => $y_axis,
+                        'extra' => array(
+                            'properties' => array(),
+                            'children' => array(
 
-                                ),
-                            ),
-                            'chart_background' => array(
-                                'properties' => array(),
-                                'children' => array(
-
-                                ),
-                            ),
-                            'data_plot_background' => array(
-                                'properties' => array(),
-                                'children' => array(
-
-                                ),
                             ),
                         ),
+                        'chart_background' => array(
+                            'properties' => array(),
+                            'children' => array(
 
+                            ),
+                        ),
+                        'data_plot_background' => array(
+                            'properties' => array(),
+                            'children' => array(
+
+                            ),
+                        ),
                     ),
-                )
+
+                ),
             )
         );
         
         return $chart_settings;
     }
     
-    public static function createChart($type){
+    public static function createChart($type, $arrData){
+//        CakeLog::write('anychart', print_r($arrData, true));
+        
+//        self::$data['chart_type'] = $type;
+//        self::$data .= $arrData['settings'];
+        
         $anychart = array(
             'anychart' => array(
-                self::chartSettings()
+                'children' => array(
+                    'settings' => self::globalSettings(),
+                    'chart_settings' => self::chartSettings()
+                )
             )
         );
         
+        CakeLog::write('anychart', print_r($anychart, true));
+        
+        return $anychart;
     }
 }
