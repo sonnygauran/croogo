@@ -205,15 +205,12 @@ class WeatherphAppModel extends AppModel {
         }
         return $arrSet;
     }
-
-    protected function showWindDirection($wd = NULL) {
-
-        if ($wd == NULL || trim($wd) == '') {
-
-            return NULL;
-        } else {
-
-            $lowest_value = 1000;
+    
+    protected function windDirection($wd = NULL){
+        
+         $lowest_value = 1000;
+         
+         $value = array();
 
             if ($wd == (-99) || $wd == (-999)) {
                 $value = "-99";
@@ -229,64 +226,164 @@ class WeatherphAppModel extends AppModel {
                     $diff = abs($wd_loc - 360);
                     if ($diff < $lowest_value) {
                         $lowest_value = $diff;
-                        $value = 1;
+                        $value = array(
+                            'numeric' => 7,
+                            'eng' => 'North',
+                            'symbol' => 'N'
+                        );
                     }
 
                     # 45
                     $diff = abs($wd_loc - 45);
                     if ($diff < $lowest_value) {
                         $lowest_value = $diff;
-                        $value = 8;
+                        $value = array(
+                            'numeric' => 8,
+                            'eng' => 'North East',
+                            'symbol' => 'NE'
+                        );
                     }
 
-                    # 90
+                    # 90 
                     $diff = abs($wd_loc - 90);
                     if ($diff < $lowest_value) {
                         $lowest_value = $diff;
-                        $value = 7;
+                        $value = array(
+                            'numeric' => 1,
+                            'eng' => 'East',
+                            'symbol' => 'E'
+                        );
                     }
 
                     # 135
                     $diff = abs($wd_loc - 135);
                     if ($diff < $lowest_value) {
                         $lowest_value = $diff;
-                        $value = 6;
+                        $value = array(
+                            'numeric' => 2,
+                            'eng' => 'South East',
+                            'symbol' => 'SE'
+                        );
                     }
 
                     # 180
                     $diff = abs($wd_loc - 180);
                     if ($diff < $lowest_value) {
                         $lowest_value = $diff;
-                        $value = 5;
+                        $value = array(
+                            'numeric' => 3,
+                            'eng' => 'South',
+                            'symbol' => 'S'
+                        );
                     }
 
                     # 225
                     $diff = abs($wd_loc - 225);
                     if ($diff < $lowest_value) {
                         $lowest_value = $diff;
-                        $value = 4;
+                        $value = array(
+                            'numeric' => 4,
+                            'eng' => 'South West',
+                            'symbol' => 'SW'
+                        );
                     }
 
                     # 270
                     $diff = abs($wd_loc - 270);
                     if ($diff < $lowest_value) {
                         $lowest_value = $diff;
-                        $value = 3;
+                        $value = array(
+                            'numeric' => 5,
+                            'eng' => 'West',
+                            'symbol' => 'W'
+                        );
                     }
 
                     # 315
                     $diff = abs($wd_loc - 315);
                     if ($diff < $lowest_value) {
                         $lowest_value = $diff;
-                        $value = 2;
+                        $value = array(
+                            'numeric' => 6,
+                            'eng' => 'North West',
+                            'symbol' => 'NW'
+                        );
                     }
                 }
             }
+            
+        return $value;
+        
+    }
 
-            return "wind_" . $value;
+    protected function showWindDirection($wd = NULL) {
+
+        if ($wd == NULL || trim($wd) == '') {
+
+            return NULL;
+        } else {
+
+            $windDir = $this->windDirection($wd);
+            return "wind_" . $windDir['numeric'];
         }
     }
 
+    public function showWindDescription($windDirRaw = NULL, $windSpeed = NULL) {
+
+        //Creates an array for Beufort Scale(http://en.wikipedia.org/wiki/Beaufort_scale)
+        $beaufort = array(
+            "Calm",
+            "Light Air",
+            "Light Breeze",
+            "Gentle Breeze",
+            "Moderate Breeze",
+            "Fresh Breeze",
+            "Strong Breeze",
+            "High wind, Moderate Gale, Near Gale",
+            "Gale, Fresh Gale",
+            "Strong Gale",
+            "Storm",
+            "Violent Storm",
+            "Hurricane Force",
+        );
+        
+        $windDir = $this->windDirection($windDirRaw);
+        
+        if ($windDirRaw == NULL && $windSpeed == NULL) {
+            return NULL;
+        } elseif ($windSpeed < 1) {
+            $windDirDesc = $beaufort[0];
+        } elseif ($windSpeed <= 5.5 and $windSpeed >= 1.1){
+            $windDirDesc = $beaufort[1];
+        } elseif ($windSpeed <= 11 and $windSpeed >= 5.6){
+            $windDirDesc = $beaufort[2];
+        } elseif ($windSpeed <= 19 and $windSpeed >= 12){
+            $windDirDesc = $beaufort[3];
+        } elseif ($windSpeed <= 28 and $windSpeed >= 20){
+            $windDirDesc = $beaufort[4];
+        } elseif ($windSpeed <= 38 and $windSpeed >= 29){
+            $windDirDesc = $beaufort[5];
+        } elseif ($windSpeed <= 49 and $windSpeed >= 39){
+            $windDirDesc = $beaufort[6];
+        } elseif ($windSpeed <= 61 and $windSpeed >= 50){
+            $windDirDesc = $beaufort[7];
+        } elseif ($windSpeed <= 74 and $windSpeed >= 62){
+            $windDirDesc = $beaufort[8];
+        } elseif ($windSpeed <= 88 and $windSpeed >= 75){
+            $windDirDesc = $beaufort[9];
+        } elseif ($windSpeed <= 102 and $windSpeed >= 89){
+            $windDirDesc = $beaufort[10];
+        } elseif ($windSpeed <= 117 and $windSpeed >= 103){
+            $windDirDesc = $beaufort[11];
+        } elseif ($windSpeed >= 118){
+            $windDirDesc = $beaufort[12];
+        }
+        
+        return $windDirDesc . '. '. $windSpeed . 'km/h, from ' . $windDir['eng'];
+        
+        
+    }
+    
     public function arrayToAnyChartXML($conditions = null, $fields = array(), $order = null, $recursive = null) {
 
         $arrData = $fields['conditions']['arrData'];
@@ -654,4 +751,22 @@ class WeatherphAppModel extends AppModel {
         return $arrData;
     }
     
+    //Determine sunrise and sunset for every location using latituted and longtitude
+    protected function sunInfo($lat = NULL, $lon = NULL, $type = NULL){
+        
+        $siteTimezone = Configure::read('Site.timezone');
+        $Date = new DateTime(null, new DateTimeZone($siteTimezone));
+        
+        $sunInfo = date_sun_info(time(), $lat, $lon);
+        
+        if($type == 'sunrise'){
+            return date("H:i:s", $sunInfo['sunrise'] + $Date->getOffset());
+        }elseif($type == 'sunset'){
+            return date("H:i:s", $sunInfo['sunset'] + $Date->getOffset());
+        }else{
+            return $sunInfo;
+        }
+        
+    }
+
 }

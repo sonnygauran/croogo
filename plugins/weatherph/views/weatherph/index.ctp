@@ -301,7 +301,7 @@
             <div class="posts">
                 <?php foreach ($featuredBlog as $blog) { ?>
                     <div class="blog-preview">
-                        <?php $createdTime = strtotime($this->Layout->node('created')); ?>
+                        <?php $createdTime = strtotime($blog['Node']['created']); ?>
                         <!--the date here is wrong, just testing-->
                         <div class="date">
                             <div class="day"><?= date('d', $createdTime) ?></div>

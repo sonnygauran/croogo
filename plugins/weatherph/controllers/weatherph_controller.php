@@ -71,40 +71,42 @@ class WeatherphController extends WeatherphAppController {
         //       Configure::write('debug', 0);
         $this->set('readings', json_encode($currentReading));
     }
-
-    public function admin_getTwoWeekReadings($date = null) {
-        //$this->layout = 'json/ajax';
-
-        App::import('Model', 'Weatherph.WeatherphStationReading');
-
-        $WeatherphStationReading = new WeatherphStationReading();
-        $TwoWeekReadings = $WeatherphStationReading->get('all', array('conditions' => array(
-        'days_target' => 1,
-        )));
-        //       Configure::write('debug', 0);
-        //debug($TwoWeekReadings);
-        $this->set('two_week_readings', $TwoWeekReadings);
-    }
-
-    public function admin_getReadings($date = null) {
-        //$this->layout = 'json/ajax';
-
-        $date = ($date == null) ? date('Ymd') : $date;
-
-        App::import('Model', 'Weatherph.WeatherphStationReading');
-
-        $WeatherphStationReading = new WeatherphStationReading();
-        $DateReadings = $WeatherphStationReading->get('all', array('conditions' => array(
-        'date' => $date,
-        )));
-        //       Configure::write('debug', 0);
-        //debug($TwoWeekReadings);
-        $this->set('date_readings', $DateReadings);
-    }
+    
+//    
+//    public function admin_getTwoWeekReadings($date = null) {
+//        //$this->layout = 'json/ajax';
+//
+//        App::import('Model', 'Weatherph.WeatherphStationReading');
+//
+//        $WeatherphStationReading = new WeatherphStationReading();
+//        $TwoWeekReadings = $WeatherphStationReading->get('all', array('conditions' => array(
+//        'days_target' => 1,
+//        )));
+//        //       Configure::write('debug', 0);
+//        //debug($TwoWeekReadings);
+//        $this->set('two_week_readings', $TwoWeekReadings);
+//    }
+//
+//    public function admin_getReadings($date = null) {
+//        //$this->layout = 'json/ajax';
+//
+//        $date = ($date == null) ? date('Ymd') : $date;
+//
+//        App::import('Model', 'Weatherph.WeatherphStationReading');
+//
+//        $WeatherphStationReading = new WeatherphStationReading();
+//        $DateReadings = $WeatherphStationReading->get('all', array('conditions' => array(
+//        'date' => $date,
+//        )));
+//        //       Configure::write('debug', 0);
+//        //debug($TwoWeekReadings);
+//        $this->set('date_readings', $DateReadings);
+//    }
 
     public function getForecast($stationID = '984290', $numDays = 1, $utch = '3h') {
+        
+        //For Index
 
-        //$this->layout = 'plain';
         $this->layout = 'json/ajax';
         App::import('Model', 'Weatherph.WeatherphStationForecast');
 
@@ -213,14 +215,20 @@ class WeatherphController extends WeatherphAppController {
     }
 
     public function view($stationID = '984290') {
+        
         App::import('Model', 'Weatherph.WeatherphStationForecast');
 
         $WeatherphStationForecast = new WeatherphStationForecast();
         $dataSets = $WeatherphStationForecast->getWeeklyForecast('all', array('conditions' => array(
         'id' => $stationID,
         )));
-
-        $this->set('dataSets', $dataSets);
+        
+        $today = date('Ymd');
+        $enddate = date('Ymd', strtotime('+2 days', strtotime($today)));
+        $forecastRange = range($today, $enddate);
+        //$this->log(print_r($forecastRange, true));
+        
+        $this->set(compact('forecastRange', 'dataSets'));
     }
 
     public function about() {
