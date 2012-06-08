@@ -8,13 +8,13 @@
  */
 class AnyChart {
 
-    private static $instance;
+    private static $chartType;
     
-    private $scale = 'XXXXXXXXXXXXXXXXXX';
-    private $minorInterval = 'XXXXXXXXXXXXXXXXXX';
-    private $showCrossLabel = 'XXXXXXXXXXXXXXXXXX';
+    private static $scale = 'XXXXXXXXXXXXXXXXXX';
+    private static $minorInterval = 'XXXXXXXXXXXXXXXXXX';
+    private static $showCrossLabel = 'XXXXXXXXXXXXXXXXXX';
     
-    private $properties = array(
+    private static $properties = array(
         'font' => array(
             'family' => 'Helvetica',
             'color' => '#444444',
@@ -29,7 +29,7 @@ class AnyChart {
     );
     
     
-    private $margin = array(
+    private static $margin = array(
         'margin' => array(
             'properties' => array(
                 'all' => 3,
@@ -42,7 +42,7 @@ class AnyChart {
         )
     );
     
-    private $settings =  array(
+    private static $settings =  array(
             'settings' => array(
                 'children' => array(
 
@@ -60,17 +60,7 @@ class AnyChart {
     
     
     
-    public function __construct() {
-        
-    }
-
-    public static function getInstance() {
-        if (empty(self::$instance))
-            self::$instance = new AnyChart();
-        return self::$instance;
-    }
-
-    public function chartSettings(){
+    public static function chartSettings(){
         $x_axis = array(
                 'properties' => array(
                     'enable' => 'true'
@@ -142,6 +132,13 @@ class AnyChart {
                     ),
                 ),
         );
+        
+        $y_axis = array(
+            'properties' => array(),
+            'children' => array(
+
+            ),
+        );
         $chart_settings = array(
             'chart_settings' => array(
                 'properties' => array(),
@@ -157,12 +154,7 @@ class AnyChart {
                         'properties' => array(),
                         'children' => array(
                             'x_axis' => $x_axis,
-                            'y_axis' => array(
-                                'properties' => array(),
-                                'children' => array(
-
-                                ),
-                            ),
+                            'y_axis' => $y_axis,
                             'extra' => array(
                                 'properties' => array(),
                                 'children' => array(
@@ -189,5 +181,14 @@ class AnyChart {
         );
         
         return $chart_settings;
+    }
+    
+    public static function createChart($type){
+        $anychart = array(
+            'anychart' => array(
+                self::chartSettings()
+            )
+        );
+        
     }
 }
