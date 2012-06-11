@@ -543,6 +543,65 @@ class AnyChart {
         return $data_plot_settings;
     }
     
+    public static function chartStyles(){
+        
+        $styles = array();
+        
+        switch(self::$properties['chart_type']){
+            case 'temperature':
+            case 'temp':
+                $styles = array(
+                    'properties' => array(),
+                    'value' => array(
+                        Xml::createTag('line_style', array('name'=>'tlline', 'color' =>'#c80000'), array(Xml::createTag('line', array('thickness'=> '2')))),
+                        Xml::createTag('line_style', array('name'=>'tdline', 'color' =>'#00c800'), array(Xml::createTag('line', array('thickness'=> '2')))),
+                        Xml::createTag('line_style', array('name'=>'noline'), array(Xml::createTag('line', array('enabled'=> 'false')))),
+                        Xml::createTag('marker_style', array('name'=>'dotblue', 'color' =>'blue'), array(Xml::createTag('line', array('size'=> '3', 'type'=>'circle')))),
+                        Xml::createTag('marker_style', array('name'=>'dotred', 'color' =>'c80000'), array(Xml::createTag('line', array('size'=> '3', 'type'=>'circle')))),
+                    ),
+                );
+                break;
+            case 'wind':
+                $styles = array(
+                    'properties' => array(),
+                    'value' => array(
+                        Xml::createTag('line_style', array('name'=>'ffline', 'color' =>'#966400')),
+                        Xml::createTag('line_style', array('name'=>'g1line', 'color' =>'#c800aa')),
+                    ),
+                );
+                break;
+            case 'dir':
+            case 'winddir':
+                $styles = array(
+                    'properties' => array(),
+                    'value' => array(
+                        Xml::createTag('line_style', array('name'=>'dirline', 'color' =>'green'), array(Xml::createTag('line', array('enabled' => 'false')))),
+                        Xml::createTag('marker_style', array('name'=>'wind_1'), array(Xml::createTag('marker', array('type' => 'Image', 'image_url' => '../theme/weatherph/img/w1.png', 'size' =>'23')))),
+                        Xml::createTag('marker_style', array('name'=>'wind_2'), array(Xml::createTag('marker', array('type' => 'Image', 'image_url' => '../theme/weatherph/img/w2.png', 'size' =>'23')))),
+                        Xml::createTag('marker_style', array('name'=>'wind_3'), array(Xml::createTag('marker', array('type' => 'Image', 'image_url' => '../theme/weatherph/img/w3.png', 'size' =>'23')))),
+                        Xml::createTag('marker_style', array('name'=>'wind_4'), array(Xml::createTag('marker', array('type' => 'Image', 'image_url' => '../theme/weatherph/img/w4.png', 'size' =>'23')))),
+                        Xml::createTag('marker_style', array('name'=>'wind_5'), array(Xml::createTag('marker', array('type' => 'Image', 'image_url' => '../theme/weatherph/img/w5.png', 'size' =>'23')))),
+                        Xml::createTag('marker_style', array('name'=>'wind_6'), array(Xml::createTag('marker', array('type' => 'Image', 'image_url' => '../theme/weatherph/img/w6.png', 'size' =>'23')))),
+                        Xml::createTag('marker_style', array('name'=>'wind_7'), array(Xml::createTag('marker', array('type' => 'Image', 'image_url' => '../theme/weatherph/img/w7.png', 'size' =>'23')))),
+                        Xml::createTag('marker_style', array('name'=>'wind_8'), array(Xml::createTag('marker', array('type' => 'Image', 'image_url' => '../theme/weatherph/img/w8.png', 'size' =>'23')))),
+                        Xml::createTag('marker_style', array('name'=>'wind_9'), array(Xml::createTag('marker', array('type' => 'Image', 'image_url' => '../theme/weatherph/img/w9.png', 'size' =>'23')))),
+                    ),
+                );
+                break;
+            case 'humidity':
+                $styles = array(
+                    'properties' => array(),
+                    'value' => array(
+                        Xml::createTag('line_style', array('name'=>'rhline', 'color' =>'#00c800')),
+                    ),
+                );
+                break;
+        }
+        
+        CakeLog::write('anychart', print_r($styles, true));
+        return $styles;
+    }
+    
     public static function createChart($type, $arrData){
 //        CakeLog::write('anychart', print_r($arrData, true));
         
@@ -560,13 +619,14 @@ class AnyChart {
                         'children' => array(
                             'chart_settings' => self::chartSettings(),
                             'data_plot_settings' => self::dataPlotSettings(),
+                            'styles' => self::chartStyles(),
                         ),
                     ),
                 )
             )
         );
         
-        CakeLog::write('anychart', print_r($anychart, true));
+//        CakeLog::write('anychart', print_r($anychart, true));
         
         return $anychart;
     }
