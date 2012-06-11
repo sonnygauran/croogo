@@ -364,11 +364,36 @@ text-shadow: 0px 2px 3px #555;
     margin-right: 10px;
 }
 
-.node-info {
+.blog > .posts {
+    padding: 1.5em 1em;
+}
+
+.date {
     position: absolute;
     top: 0;
     right: 0;
-    padding: 1em;
+    margin: 0.4em;
+    padding: 0.3em;
+    background-color: #3990BD;
+    color: #fafafa;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.blog-preview > .date {
+    position: static;
+    float: left;
+    margin-right: .6em;
+}
+
+.date .day {
+    font-size: 1.875em;
+    font-weight: 700;
+}
+
+.date .month, .date .year {
+    font-size: 1.2em;
+    text-transform: uppercase;
 }
 
 .secondary > .news {
@@ -875,14 +900,14 @@ span.night_17 { background-position: -427px -120px; }
 span.night_18 { background-position: -486px -120px; }
 span.night_19 { background-position: -545px -120px; }
 
-span.wind_1 { background-position: 6px -300px; }
-span.wind_2 { background-position: -55px -300px; }
-span.wind_3 { background-position: -119px -300px; }
-span.wind_4 { background-position: -175px -300px; }
-span.wind_5 { background-position: -235px -300px; }
-span.wind_6 { background-position: -295px -300px; }
-span.wind_7 { background-position: -355px -300px; }
-span.wind_8 { background-position: -415px -300px; }
+span.wind_1 { background-position: -354px -300px; }
+span.wind_2 { background-position: -416px -300px; }
+span.wind_3 { background-position: 6px -300px; }
+span.wind_4 { background-position: -57px -300px; }
+span.wind_5 { background-position: -117px -300px; }
+span.wind_6 { background-position: -175px -300px; }
+span.wind_7 { background-position: -236px -300px; }
+span.wind_8 { background-position: -295px -300px; }
 span.wind_9 { background-position: -480px -300px; }
 
 span.moonphase_0 { background-position: -120px 5px; }
@@ -897,6 +922,7 @@ span.moonphase_7 { background-position: -540px 5px; }
 span.sunrise { background-position: 0px 5px; }
 span.sunset { background-position: -60px 5px; }
 
+span.wind-description { font-size: 10px; }
 /*
  *
  */
