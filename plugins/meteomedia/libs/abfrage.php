@@ -56,7 +56,9 @@ class Abfrage{
                 'dew point' => 'td',
             ),
             'Rainfall' => array(
-                '1 hour' => 'rr',
+                'Period' => 'rr',
+                '1 hour' => 'rr1h',
+                '3 hours' => 'rain3',
                 '6 hours' => 'rain6',
             ),
             'Wind' => array(
@@ -79,7 +81,6 @@ class Abfrage{
             'Sunshine' => 'sh'
         );
         
-//        CakeLog::write('abfrage', 'Parameters: ' . print_r($parameters, true));
         /**
          * Loop through the parameters given 
          */
@@ -148,8 +149,6 @@ class Abfrage{
         *  
         */
         $url['defaults'] = array(
-            'timefill' => 'nein',
-            'linked' => 'nein', // verknuepft
             'output' => 'csv2', // comma separated values
             'ortoutput' => 'wmo6,name',
             'call' => 'auto', // aufruf 
@@ -233,7 +232,7 @@ class Abfrage{
          *  
          */
             if($url['parameter_type'] == 'forecast'){
-                $url['generated'] .= "paramtyp=mos_mix_mm&mosmess=ja&";
+                $url['generated'] .= "paramtyp=mos_mix_mm&&";
             }
 
             
