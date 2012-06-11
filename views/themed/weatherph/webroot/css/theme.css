@@ -896,3 +896,10 @@ span.moonphase_7 { background-position: -540px 5px; }
 
 span.sunrise { background-position: 0px 5px; }
 span.sunset { background-position: -60px 5px; }
+
+/*
+ *
+ */
+ .names a:link {
+     color: blue;
+ }
