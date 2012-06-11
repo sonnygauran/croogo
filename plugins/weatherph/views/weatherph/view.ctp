@@ -106,36 +106,36 @@ echo $this->Html->script(array(
                     
                     <tr class="condition">
                         <td class="caption">Condition</td>
-                        <?php foreach (Set::extract($dayForecast, '{n}.sy') as $column) { ?>
+                        <?php foreach (Set::extract($dayForecast, '{n}.weather_symbol') as $column) { ?>
                             <td><span class="symbol <?= $column; ?>"></span></td>
                         <?php } ?>
                     </tr>
                     
                     <tr class="temperature">
                         <td class="caption">Temperature</td>   
-                        <?php foreach (Set::extract($dayForecast, '{n}.tl') as $column) { ?>
+                        <?php foreach (Set::extract($dayForecast, '{n}.temperature') as $column) { ?>
                             <td><?= $column; ?>&deg;C</td>
                         <?php } ?>
                     </tr>
                     
                     <tr class="precipitation">
                         <td class="caption">Precipitation</td> 
-                        <?php foreach (Set::extract($dayForecast, '{n}.rain6') as $key=>$column) { ?>
+                        <?php foreach (Set::extract($dayForecast, '{n}.precipitation') as $key=>$column) { ?>
                         <?php if($key%2 == 0){ ?><td colspan="2"><?= $column; ?>mm</td><?php } ?>
                         <?php } ?>
                     </tr>
                     
                     <tr class="wind">
                         <td class="caption">Wind speed</td>   
-                        <?php foreach (Set::extract($dayForecast, '{n}.ff') as $column) { ?>
+                        <?php foreach (Set::extract($dayForecast, '{n}.wind_speed') as $column) { ?>
                             <td><?= $column; ?>km/h</td>
                         <?php } ?>
                     </tr>
                     
                     <tr class="direction">
                         <td class="caption">Wind Direction</td>   
-                        <?php $windDir = Set::extract($dayForecast, '{n}.dir'); ?>
-                        <?php $windDesc = Set::extract($dayForecast, '{n}.windDesc'); ?>
+                        <?php $windDir = Set::extract($dayForecast, '{n}.wind_direction'); ?>
+                        <?php $windDesc = Set::extract($dayForecast, '{n}.wind_description'); ?>
                         <?php for($x=0; $x<count($windDir); $x++){ ?>
                             <td><span class="symbol <?= $windDir[$x]; ?>"></span><span class="wind-description"><?= $windDesc[$x]?></span></td>
                         <?php } ?>

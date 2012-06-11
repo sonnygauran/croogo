@@ -340,8 +340,8 @@ class WeatherphStationForecast extends WeatherphAppModel
         $endutc = date('H', strtotime($dateOffsets['endDate']));
         
         // Generate cURL for stations forecast  
-        $url = "http://192.168.20.89/abfrage.php?stationidstring=$stationId&datumstart=$startdatum&datumend=$enddatum&utcstart=$startutc&utcend=$endutc&zeiten1=1h&paramtyp=mos_mix_mm&mosmess=nein&paramliste=tl,dir,ff,g3h,rr,rh,sy,sy2,rain6&output=csv2&ortoutput=wmo6,name&timefill=nein&verknuepft=nein&aufruf=auto";
-        //$this->log($url);
+        $url = "http://192.168.20.89/abfrage.php?stationidstring=$stationId&datumstart=$startdatum&datumend=$enddatum&utcstart=$startutc&utcend=$endutc&zeiten1=1h&paramtyp=mos_mix_mm&mosmess=nein&paramliste=tl,dir,ff,g3h,rr,rh,sy,sy2,rr1h,rain3,rain6&output=csv2&ortoutput=wmo6,name&timefill=nein&verknuepft=nein&aufruf=auto";
+        $this->log($url);
         
         // Get the string after the question-mark sign
         $gum = $stationId.'_forecast_weekly_'.sha1(end(explode('?',$url)));
@@ -364,67 +364,95 @@ class WeatherphStationForecast extends WeatherphAppModel
             $curlResults = Cache::read($gum, '3hour');
         }
         
-        $headersSpecimen = "Datum;utc;min;ort1;dir;ff;g3h;tl;rr;sy;rain6;rh;sy2;";
+        $headersSpecimen = "Datum;utc;min;ort1;dir;ff;g3h;tl;rr;rr1h;sy;rain3;rain6;rh;sy2;";
+        //$headersSpecimen = "Datum;utc;min;ort1;dir;ff;g3h;tl;rr;sy;rain6;rh;sy2;";
         
         $forecasts = $this->csvToArray($curlResults, $headersSpecimen);
         
         foreach($forecasts as $forecast){
             
             $utc_arr = explode(":", $forecast['utc']);
-        
+            
+            $new_forecast = array();
+            
             if(trim($forecast['tl'])!=''){
 
                 if($utc_arr[0]%3 == 0){
                     
                     // Determine the weather symbol for certain UTC time
-                    $forecast['sy'] = $this->dayOrNightSymbol($forecast['sy'], $forecast['utc'], array("sunrise"=>$sunrise,"sunset"=>$sunset));
+                    
+                    $new_forecast['Datum'] = $forecast['Datum'];
+                    $new_forecast['utc'] = $forecast['utc'];
+                    $new_forecast['min'] = $forecast['min'];
+                    
+                    $new_forecast['weather_symbol'] = $this->dayOrNightSymbol($forecast['sy'], $forecast['utc'], array("sunrise"=>$sunrise,"sunset"=>$sunset));
 
                     // Replace the NULL values with hypen character and do roundings
-                    $forecast['rain6'] = ($forecast['rain6'] == "")? '0' : round($forecast['rain6'],1);
-                    $forecast['rh'] = ($forecast['rh'] == '')? '0' : round($forecast['rh'],0);
-                    $forecast['ff'] = ($forecast['ff'] == '')? '0' : floor($forecast['ff'] * 1.852 + 0.5);
-                    $forecast['g3h'] = ($forecast['g3h'] == '')? '0' : floor($forecast['g3h'] * 1.852 + 0.5);
-                    $forecast['tl'] = ($forecast['tl'] == '')? '0' : number_format($forecast['tl'],0); 
+                    //$forecast['rain6'] = ($forecast['rain6'] == "")? '0' : round($forecast['rain6'],1);
+                    
+                    //$new_forecast['precipitation'] = ($forecast['rr1h'] == "")? '0' : round($forecast['rr1h'],1); // Change this to 3hours rain from abfrage
+                    
+                    $new_forecast['precipitation'] = (trim($forecast['rain3']) == "")? NULL : round($forecast['rain3'],1); // Change this to 3hours rain from abfrage
+                    
+                    $new_forecast['relative_humidity'] = ($forecast['rh'] == '')? '0' : round($forecast['rh'],0);
+                    $new_forecast['wind_speed'] = ($forecast['ff'] == '')? '0' : floor($forecast['ff'] * 1.852 + 0.5);
+                    $new_forecast['wind_gust'] = ($forecast['g3h'] == '')? '0' : floor($forecast['g3h'] * 1.852 + 0.5);
+                    $new_forecast['temperature'] = ($forecast['tl'] == '')? '0' : number_format($forecast['tl'],0); 
 
                     // Translate raw date to 3 hourly range value
                     $thierTime = strtotime($forecast['Datum'].' '.$forecast['utc'].':'.$forecast['min']);
                     
-                    $forecast['localtime'] = date('Ymd H:s:s', $thierTime + $Date->getOffset());
-                    $forecast['localtime_range_start'] = date('Ymd H:i:s', $thierTime + $Date->getOffset()); 
-                    $forecast['localtime_range_end'] = date('Ymd H:i:s', strtotime('+3 hours', $thierTime) + $Date->getOffset());
-                    $forecast['localtime_range'] = date('hA', strtotime($forecast['localtime_range_start'])) . '-' . date('hA', strtotime($forecast['localtime_range_end']));
+                    $new_forecast['localtime'] = date('Ymd H:s:s', $thierTime + $Date->getOffset());
+                    
+//                    $forecast['localtime_range_start'] = date('Ymd H:i:s', $thierTime + $Date->getOffset()); 
+//                    $forecast['localtime_range_end'] = date('Ymd H:i:s', strtotime('+3 hours', $thierTime) + $Date->getOffset());
+                    
+                    $new_forecast['localtime_range_start'] = date('Ymd H:i:s', strtotime('-3 hours', $thierTime) + $Date->getOffset()); 
+                    $new_forecast['localtime_range_end'] = date('Ymd H:i:s', $thierTime + $Date->getOffset());
+                    
+                    $new_forecast['localtime_range'] = date('hA', strtotime($new_forecast['localtime_range_start'])) . '-' . date('hA', strtotime($new_forecast['localtime_range_end']));
 
                     // Generate the wind description
-                    $forecast['windDesc'] = $this->showWindDescription($forecast['dir'], $forecast['ff']);
+                    $new_forecast['wind_description'] = $this->showWindDescription($forecast['dir'], $new_forecast['wind_speed']);
                     
                     // Translate raw data to wind direction image value
-                    $forecast['dir'] = $this->showWindDirection($forecast['dir']);
-                   
-                    $abfrageResults['forecast'][$forecast['Datum']][] = $forecast;
-//                  
+                    $new_forecast['wind_direction'] = $this->showWindDirection($forecast['dir']);
+                    
+                    //$this->log(print_r($new_forecast, TRUE));
+                    
+                    $abfrageResults['forecast'][$forecast['Datum']][] = $new_forecast;
+                    
                 }
+                
+                //$last_arr = end($abfrageResults['forecast'][$forecast['Datum']]);
+                
+                //$this->log(print_r($last_arr, TRUE));
+                
+                //$this->log('End');
+                
+                
 
             }
         }
         
-        $rain6_arr = array();
-        foreach($abfrageResults['forecast'] as $datum=>$forecasts){
-            foreach($forecasts as $utc=>$forecast){
-                $rain6_arr[] = $forecast['rain6'];
-            }
-        }
-        
-        $rain6_arr = array_slice($rain6_arr,2);
-        
-        $cntr = 0;
-        foreach($abfrageResults['forecast'] as $datum=>$forecasts){
-            foreach($forecasts as $utc=>$forecast){
-                if($cntr < count($rain6_arr)){
-                    $abfrageResults['forecast'][$datum][$utc]['rain6'] = number_format($rain6_arr[$cntr],1);
-                    $cntr++;
-                }
-            }
-        }
+//        $rain6_arr = array();
+//        foreach($abfrageResults['forecast'] as $datum=>$forecasts){
+//            foreach($forecasts as $utc=>$forecast){
+//                $rain6_arr[] = $forecast['precipitation'];
+//            }
+//        }
+//        
+//        $rain6_arr = array_slice($rain6_arr,2);
+//        
+//        $cntr = 0;
+//        foreach($abfrageResults['forecast'] as $datum=>$forecasts){
+//            foreach($forecasts as $utc=>$forecast){
+//                if($cntr < count($rain6_arr)){
+//                    $abfrageResults['forecast'][$datum][$utc]['precipitation'] = number_format($rain6_arr[$cntr],1);
+//                    $cntr++;
+//                }
+//            }
+//        }
         
         $abfrageResults['forecast'] = $this->localTimeForecast($abfrageResults['forecast']);
         
