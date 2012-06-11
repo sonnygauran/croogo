@@ -47,7 +47,19 @@ class AssetsController extends AppController {
 			$this->redirect(array('controller' => 'weatherph','action'=>'index'));
         } else {
             $assetFile = null;
-            if ($parts[0] === 'theme') {
+            //print_r($_SERVER);
+            $this->log(print_r($parts, true));
+            $isKarten = ($_SERVER['HTTP_HOST'] == 'karten.meteomedia.ch');
+            
+            if ($parts[0] === 'theme' OR $isKarten) {
+                $path = array();
+                if ($isKarten) {
+                        $path[] = $parts[3];
+                        $path[] = $parts[4];
+                        $path[] = $parts[5];
+                        $path[] = $parts[6];
+                        $parts = $path;
+                }
                 $themeName = $parts[1];
                 unset($parts[0], $parts[1]);
                 $fileFragment = implode(DS, $parts);
