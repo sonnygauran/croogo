@@ -922,3 +922,9 @@ span.sunrise { background-position: 0px 5px; }
 span.sunset { background-position: -60px 5px; }
 
 span.wind-description { font-size: 10px; }
+/*
+ *
+ */
+ .names a:link {
+     color: blue;
+ }

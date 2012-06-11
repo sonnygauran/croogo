@@ -1,0 +1,2 @@
+<?php
+Croogo::hookRoutes('Nima');
