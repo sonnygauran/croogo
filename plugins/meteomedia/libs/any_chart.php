@@ -1,5 +1,7 @@
 <?php
 
+App::import('Lib', 'Meteomedia.Xml');
+
 /**
  * @author Jaggy Gauran
  *  
@@ -328,44 +330,68 @@ class AnyChart {
         $data_plot_settings = array();
         $graph_type = '';
         $graph_settings = array();
+        $keys = array();
         
+        $fill = array(
+            'properties' => array(
+                'enabled' => 'true',
+                'type' => 'Gradient',
+            ),
+            'children' => array(
+                'gradient' => array(
+                    'properties' => array(
+                        'type' => 'Radial'
+                    ),
+                    'children' => array(
+                        'key' => array(
+                            'properties' => array(),
+                            'value' => array(),
+                        ),
+                        'key' => array(
+                            'properties' => array(),
+                            'value' => array(),
+                        ),
+                    )
+                ),
+                'border' => array(
+                    'properties' => array(),
+                    'value' => array(),
+                ),
+                'effects' => array(
+                    'properties' => array(),
+                    'value' => array(),
+                ),
+            ),
+        );
         
         
         $bar_settings = array(
-            'properties' => array(),
+            'properties' => array(
+                'point_padding' => '0',
+                'scatter_point_width' => '4.7%',
+            ),
             'children' => array(
                 'bar_style' => array(
                     'properties' => array(),
                     'children' => array(
                         'fill' => array(
-                            'properties' => array(),
-                            'value' => null
+                            'properties' => array(
+                                'enabled' => 'true',
+                                'type' => 'Gradient',
+                            ),
+                            'children' => null
                         ),
                         'border' => array(
-                            'properties' => array(),
-                            'children' => array(
-                                'gradient' => array(
-                                    'properties' => array(),
-                                    'children' => array(
-                                        'key' => array(
-                                            'properties' => array(),
-                                            'value' => null
-                                        ),
-                                        'key' => array(
-                                            'properties' => array(),
-                                            'value' => null
-                                        ),
-                                        'key' => array(
-                                            'properties' => array(),
-                                            'value' => null
-                                        ),
-                                    )
-                                )
-                            )
+                            'properties' => array(
+                                'enabled' => 'false',
+                            ),
+                            'value' => null
                         ),
                         'effects' => array(
-                            'properties' => array(),
-                            'children' => array()
+                            'properties' => array(
+                                'enabled' => 'false',
+                            ),
+                            'value' => null
                         ),
                     ),
                 )
@@ -418,6 +444,70 @@ class AnyChart {
                         )
                     ),
                 );
+                break;
+            case 'sunshine':
+               $keys = array(
+                    Xml::createTag('key', array('position' => '0','color' => '#FFD500')),
+                    Xml::createTag('key', array('position' => '0.3','color' => '#FFF000')),
+                    Xml::createTag('key', array('position' => '1','color' => '#FFF000')),
+                );
+                
+                unset($bar_settings['children']['bar_style']['children']['fill']);
+                unset($bar_settings['children']['bar_style']['children']['border']);
+                $bar_settings['properties']['scatter_point_width'] = '0.4%';
+                $bar_settings['properties']['group_padding'] = '0';
+                
+                $bar_settings['children']['bar_style']['children']['fill']['properties'] = array(
+                    'enabled' => 'true',
+                    'type' => 'Solid',
+                    'color' => '#fff000',
+                    'thickness' => '1',
+                );
+                
+                $bar_settings['children']['bar_style']['children']['border'] = array(
+                    'properties' => array(
+                        'enabled' => 'True',
+                        'type' =>'Gradient'
+                    ),
+                    'children' => array(
+                        'gradient' => array(
+                            'properties' => array(
+                                'angle' => '90'
+                            ),
+                        )
+                    )
+                );
+                $bar_settings['children']['bar_style']['children']['border']['children']['gradient']['value'] = $keys;
+                break;
+            case 'global_radiation':
+                unset($bar_settings['children']['bar_style']['children']['fill']);
+                unset($bar_settings['children']['bar_style']['children']['border']);
+                
+                $bar_settings['children']['bar_style']['children']['fill'] = array(
+                    'properties' => array(
+                        'enabled' => 'true',
+                        'type' => 'Solid',
+                        'color' => '#182DCC',
+                        'thickness' => '1',
+                    )
+                );
+                break;
+            case 'precipitation':
+                // This is a quick fix for the nested same key names
+                $keys = array(
+                    Xml::createTag('key', array('position' => '0','color' => '#0036D9')),
+                    Xml::createTag('key', array('position' => '1','color' => '#002080')),
+                );
+                
+                
+                break;
+                $bar_settings['children']['bar_style']['children']['fill']['children']['gradient']['value'] = $keys;
+            case 'airpressure':
+                $keys = array(
+                    Xml::createTag('key', array('position' => '0','color' => '#F5E616')),
+                    Xml::createTag('key', array('position' => '1','color' => '#E3D50B')),
+                );
+                $bar_settings['children']['bar_style']['children']['fill']['children']['gradient']['value'] = $keys;
                 break;
         }
         
