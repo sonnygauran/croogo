@@ -10,6 +10,7 @@ App::import('Lib', 'Meteomedia.Xml');
  */
 class AnyChart {
 
+    private static $chartData = array();
     
     /**
      * Dynamic objects depending on given parameters
@@ -31,7 +32,7 @@ class AnyChart {
     private static $properties = array(
         'chart_type' => '',
         'font' => array(
-            'family' => 'Helvetica',
+            'family' => 'Arial',
             'color' => '#444444',
             'size' => '11',
         ),
@@ -56,7 +57,6 @@ class AnyChart {
         $settings =  array(
             'properties' => array(),
             'children' => array(
-                'margin' => self::$properties['margin'],
                 'locale' => array(
                     'children'=> array(
                         'date_time_format' => array(
@@ -65,20 +65,21 @@ class AnyChart {
                                 'format' => array(
                                     'properties' => array(),
                                     'value' => '%u',
+                                ),
+                                'week_days'=> array(
+                                    'properties' => array(
+                                            'start_from' => 'Sunday'
+                                    ),
+                                    'children' => array(
+                                        'short_names' => array(
+                                            'properties' => array(),
+                                            'value' => '<![CDATA[ Su.,Mo.,Tu.,We.,Th.,Fr.,Sa. ]]>',
+                                        )
+                                    ),
                                 )
                             ),
                         ),
-                        'week_days'=> array(
-                            'properties' => array(),
-                            'children' => array(
-                                'short_names' => array(
-                                    'properties' => array(
-                                        'start_from' => 'Sunday'
-                                    ),
-                                    'value' => '<![CDATA[ Su.,Mo.,Tu.,We.,Th.,Fr.,Sa. ]]>',
-                                )
-                            ),
-                        )
+                        
                     ),
 
                 ),
@@ -193,7 +194,9 @@ class AnyChart {
                     'properties' => array(
                         'enabled' => (empty(self::$properties['titles']['y_axis'])) ? 'false' : 'true'
                     ),
-                    'value' => self::$properties['titles']['y_axis'],
+                    'value' => array(
+                        self::$properties['titles']['y_axis']
+                    ),
                 ),
                 'labels' => array(
                     'properties' => array(),
@@ -217,21 +220,21 @@ class AnyChart {
                 $y_axis['children']['scale'] = array(
                     'properties' => array(
                         'type' => 'Linear',
-                        'maximum' => 100,
-                        'minimum' => 0,
-                    ),
-                );
-                break;
-            case 'humidity':
-                $y_axis['children']['scale'] = array(
-                    'properties' => array(
-                        'type' => 'Linear',
                         'maximum' => 1,
                         'minimum' => 0,
                         'maximum_offset' => 0.01,
                         'minimum_offset' => 0.01,
                     ),
                     
+                );
+                break;
+            case 'humidity':
+                $y_axis['children']['scale'] = array(
+                    'properties' => array(
+                        'type' => 'Linear',
+                        'maximum' => 100,
+                        'minimum' => 0,
+                    ),
                 );
                 break;
         }
@@ -241,7 +244,10 @@ class AnyChart {
             'properties' => array(),
             'children' => array(
                 'y_axis' => array(
-                    'properties' => array(),
+                    'properties' => array(
+                        'name' =>'y2',
+                        'enabled' => 'False'
+                    ),
                     'children' => array(
                         'title' => array(
                             'properties' => array(
@@ -271,7 +277,7 @@ class AnyChart {
                     ),
                     'value' => null,
                 ),
-                'boder' => array(
+                'border' => array(
                     'properties' => array(
                         'enabled' => 'false'
                     ),
@@ -287,7 +293,9 @@ class AnyChart {
         );
         
         $data_plot_background = array(
-            'properties' => array(),
+            'properties' => array(
+                'enabled' => 'false'
+            ),
             'children' => array(
                 'effects' => array(
                     'properties' => array(
@@ -332,39 +340,6 @@ class AnyChart {
         $graph_settings = array();
         $keys = array();
         
-        $fill = array(
-            'properties' => array(
-                'enabled' => 'true',
-                'type' => 'Gradient',
-            ),
-            'children' => array(
-                'gradient' => array(
-                    'properties' => array(
-                        'type' => 'Radial'
-                    ),
-                    'children' => array(
-                        'key' => array(
-                            'properties' => array(),
-                            'value' => array(),
-                        ),
-                        'key' => array(
-                            'properties' => array(),
-                            'value' => array(),
-                        ),
-                    )
-                ),
-                'border' => array(
-                    'properties' => array(),
-                    'value' => array(),
-                ),
-                'effects' => array(
-                    'properties' => array(),
-                    'value' => array(),
-                ),
-            ),
-        );
-        
-        
         $bar_settings = array(
             'properties' => array(
                 'point_padding' => '0',
@@ -383,13 +358,13 @@ class AnyChart {
                         ),
                         'border' => array(
                             'properties' => array(
-                                'enabled' => 'false',
+                                'enabled' => 'False',
                             ),
                             'value' => null
                         ),
                         'effects' => array(
                             'properties' => array(
-                                'enabled' => 'false',
+                                'enabled' => 'False',
                             ),
                             'value' => null
                         ),
@@ -454,6 +429,7 @@ class AnyChart {
                 
                 unset($bar_settings['children']['bar_style']['children']['fill']);
                 unset($bar_settings['children']['bar_style']['children']['border']);
+                $bar_settings = array();
                 $bar_settings['properties']['scatter_point_width'] = '0.4%';
                 $bar_settings['properties']['group_padding'] = '0';
                 
@@ -492,16 +468,21 @@ class AnyChart {
                     )
                 );
                 break;
+            case 'precip':
             case 'precipitation':
                 // This is a quick fix for the nested same key names
                 $keys = array(
-                    Xml::createTag('key', array('position' => '0','color' => '#0036D9')),
+                    Xml::createTag('key', array('position' => '0','color' => '#0036d9')),
+                    '<!-- innen -->',
                     Xml::createTag('key', array('position' => '1','color' => '#002080')),
                 );
                 
                 
-                break;
+                $bar_settings['children']['bar_style']['children']['fill']['children']['gradient']['properties'] = array(
+                    'type' => 'Radial'
+                );
                 $bar_settings['children']['bar_style']['children']['fill']['children']['gradient']['value'] = $keys;
+                break;
             case 'airpressure':
                 $keys = array(
                     Xml::createTag('key', array('position' => '0','color' => '#F5E616')),
@@ -510,6 +491,8 @@ class AnyChart {
                 $bar_settings['children']['bar_style']['children']['fill']['children']['gradient']['value'] = $keys;
                 break;
         }
+        
+        
         
         switch(self::$properties['chart_type']){
             case 'temp':
@@ -540,6 +523,8 @@ class AnyChart {
                 $graph_type => $graph_settings
             )
         );
+        
+        CakeLog::write('anychart', print_r($data_plot_settings, true));
         return $data_plot_settings;
     }
     
@@ -602,24 +587,94 @@ class AnyChart {
         return $styles;
     }
     
+    public static function plotData(){
+
+        $counter = 0;
+        $data = array();
+        $series = array();
+        $series_properties = array();
+        $series_children = array();
+
+        foreach (self::$chartData['sets'] as $key => $sets) {
+            $series_properties = array();
+            $series_children = array();
+            
+            
+            
+            foreach (self::$chartData['series'][$key] as $index => $attr) {
+                $series_properties[$index] = $attr; 
+
+            }
+            
+            
+            if(isset(self::$chartData['additional'][$key])){
+                foreach (self::$chartData['additional'][$key] as $index => $addtnl) {
+                    $index_properties = array();
+                    foreach ($addtnl as $key2 => $add) {
+                        $index_properties[$key2] = $add;
+                    }
+
+                    $series_children[count($series_children)] = Xml::createTag($index, $index_properties);
+                }
+            }
+            
+                
+            foreach ($sets as $set) {
+                $values = array();
+                if(is_array($set)){
+                    if(key_exists('x', $set)){
+                        $values[0] = '<!-- ' . date('Y-m-d H:i:s', $set['x']) . '-->';
+                        if (isset($set['marker'])){
+                            $values[1] = Xml::createTag('marker', array('style' => $set['marker']));
+                        }
+                        $series_children[count($series_children)] = Xml::createTag('point', array('x' => $set['x'], 'y' => $set['y']), $values);
+                    }
+                }
+            }
+            
+            
+            
+            $series[count($series)] = Xml::createTag('series', $series_properties, $series_children);
+            unset($series_properties);
+            unset($series_children);
+        }
+        
+       CakeLog::write('anychart', print_r(self::$chartData, true));
+       
+       return $series;
+    }
+    
     public static function createChart($type, $arrData){
 //        CakeLog::write('anychart', print_r($arrData, true));
         
         self::$properties['chart_type'] = $type;
         self::$data = $arrData['settings'];
+        self::$chartData = $arrData;
+        
+//        CakeLog::write('anychart', print_r(self::$chartData, true));
         
         $anychart = array(
             'anychart' => array(
                 'children' => array(
+                    'margin' => self::$properties['margin'],
                     'settings' => self::globalSettings(),
                     'charts' => array(
-                        'properties' => array(
-                            'plot_type' => 'Scatter'
-                        ),
+                        'properties' => array(),
                         'children' => array(
-                            'chart_settings' => self::chartSettings(),
-                            'data_plot_settings' => self::dataPlotSettings(),
-                            'styles' => self::chartStyles(),
+                            'chart' => array(
+                                'properties' => array(
+                                    'plot_type' => 'Scatter'
+                                ),
+                                'children' => array(
+                                    'chart_settings' => self::chartSettings(),
+                                    'data_plot_settings' => self::dataPlotSettings(),
+                                    'styles' => self::chartStyles(),
+                                    'data' => array(
+                                        'properties' => array(),
+                                        'value' => self::plotData()
+                                    )
+                                )
+                            )
                         ),
                     ),
                 )
