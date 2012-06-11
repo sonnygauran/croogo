@@ -121,7 +121,8 @@ echo $this->Html->script(array(
                     <tr class="precipitation">
                         <td class="caption">Precipitation</td> 
                         <?php foreach (Set::extract($dayForecast, '{n}.precipitation') as $key=>$column) { ?>
-                        <?php if($key%2 == 0){ ?><td colspan="2"><?= $column; ?>mm</td><?php } ?>
+                        <!--?php if($key%2 == 0){ ?><td colspan="2"--><!--?= $column; ?>mm</td--><!--?php } ?-->
+                        <td><?= $column; ?>mm</td>
                         <?php } ?>
                     </tr>
                     
@@ -146,6 +147,7 @@ echo $this->Html->script(array(
             <?php } ?>
             </div>
         </div> <!--END WEEK WEATHER-->
+        
     </section> <!--MAIN CONTENT-->
 
     <section class="secondary">

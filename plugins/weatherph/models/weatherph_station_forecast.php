@@ -184,10 +184,13 @@ class WeatherphStationForecast extends WeatherphAppModel
     
     private function forecastsDateOffsets(){
         
-        $date = strtotime('-'. Configure::read('Site.offset') + Configure::read('Site.time_overlap') . ' hours', strtotime(date('Ymd')));
+        //$date = strtotime('-'. Configure::read('Site.offset') + Configure::read('Site.time_overlap') . ' hours', strtotime(date('Ymd')));
+        $date = strtotime('-'. Configure::read('Site.time_overlap') . ' hours');
         $start = date('Ymd H:i:s', $date);
         
-        $date = strtotime('+'. Configure::read('Site.offset') + Configure::read('Site.time_overlap') . ' hours', strtotime($start));
+        //$this->log(date('Ymd H:i:s', strtotime(date('Ymd H:i:s'))));
+        
+        $date = strtotime('+'. Configure::read('Site.offset'));
         $end = date('Ymd H:i:s', strtotime('+' . Configure::read('Site.forecast_range') . ' Days', $date));
         
         return array('startDate' => $start, 'endDate' => $end);
@@ -200,12 +203,15 @@ class WeatherphStationForecast extends WeatherphAppModel
         $siteTimezone = Configure::read('Site.timezone');
         $Date = new DateTime(null, new DateTimeZone($siteTimezone)); 
         
+        //$this->log(print_r($datasets, TRUE));
+        
         $new_datasets = array();
         
         $today = date('Ymd H:i:s' , strtotime(date('Ymd H:i:s')) + $Date->getOffset());
         
-        foreach($datasets as $key=>$dataset){
-            foreach($dataset as $data){
+        foreach($datasets as $key => $dataset){
+            
+            foreach($dataset as $index => $data){
                 
                 $new_key = date('Ymd', strtotime($data['localtime']));
                 
@@ -217,13 +223,47 @@ class WeatherphStationForecast extends WeatherphAppModel
                         
                     }
                     
-                }else
+                }else{
+                    
                     $new_datasets[$new_key][] = $data;
+                  
+                }
             }
             
         }
         
-        return $new_datasets;
+        //$this->log(print_r($new_datasets, TRUE));
+        
+        $newer_datasets = array();
+        $dummy_datasets = $new_datasets;
+        
+        $skip = true;
+        
+        foreach($new_datasets as $index_date => $datasets){
+            
+            $next_date = date('Ymd', strtotime('+1 day', strtotime($index_date)));
+            
+            if(array_key_exists($next_date, $dummy_datasets)){
+                
+                $array_sets = $dummy_datasets[$next_date][0]; //
+                
+                array_push($datasets, $array_sets);
+                
+                if($skip == false) unset($datasets[0]);
+                
+                $skip = false;
+                
+                $newer_datasets[$index_date] = $datasets;
+                
+            }
+            
+            
+            
+        }
+        
+        $this->log(print_r($newer_datasets, TRUE));
+        
+        return $newer_datasets;
         
     }
     
@@ -240,6 +280,8 @@ class WeatherphStationForecast extends WeatherphAppModel
         // Set local UTC time based on the default timestamp timezone
         $dateOffsets = $this->forecastsDateOffsets();
         
+        $this->log($dateOffsets);
+        
         // Get the start date from local UTC time
         $startdatum = date('Ymd', strtotime($dateOffsets['startDate']));
         $startutc = date('H', strtotime($dateOffsets['startDate']));
@@ -255,7 +297,7 @@ class WeatherphStationForecast extends WeatherphAppModel
         
         //Grab stations readings  
         $url = "http://192.168.20.89/abfrage.php?stationidstring=$stationId&datumstart=$startdatum&datumend=$enddatum&utcstart=$startutc&utcend=$endutc&zeiten1=10m&paramliste=tl,dir,ff,g3h,rr,rh,sy,sy2,rain6&output=csv2&ortoutput=wmo6,name&aufruf=auto";
-        //$this->log($url);
+        $this->log($url);
         
         // Get the string after the question-mark sign
         $gum = $stationId.'_reading_weekly_'.sha1(end(explode('?',$url)));
@@ -365,9 +407,10 @@ class WeatherphStationForecast extends WeatherphAppModel
         }
         
         $headersSpecimen = "Datum;utc;min;ort1;dir;ff;g3h;tl;rr;rr1h;sy;rain3;rain6;rh;sy2;";
-        //$headersSpecimen = "Datum;utc;min;ort1;dir;ff;g3h;tl;rr;sy;rain6;rh;sy2;";
         
         $forecasts = $this->csvToArray($curlResults, $headersSpecimen);
+        
+        $sum_rr1h = 0;
         
         foreach($forecasts as $forecast){
             
@@ -375,11 +418,11 @@ class WeatherphStationForecast extends WeatherphAppModel
             
             $new_forecast = array();
             
+            $sum_rr1h = ($sum_rr1h + $forecast['rr1h']); 
+            
             if(trim($forecast['tl'])!=''){
 
                 if($utc_arr[0]%3 == 0){
-                    
-                    // Determine the weather symbol for certain UTC time
                     
                     $new_forecast['Datum'] = $forecast['Datum'];
                     $new_forecast['utc'] = $forecast['utc'];
@@ -387,12 +430,12 @@ class WeatherphStationForecast extends WeatherphAppModel
                     
                     $new_forecast['weather_symbol'] = $this->dayOrNightSymbol($forecast['sy'], $forecast['utc'], array("sunrise"=>$sunrise,"sunset"=>$sunset));
 
-                    // Replace the NULL values with hypen character and do roundings
-                    //$forecast['rain6'] = ($forecast['rain6'] == "")? '0' : round($forecast['rain6'],1);
-                    
-                    //$new_forecast['precipitation'] = ($forecast['rr1h'] == "")? '0' : round($forecast['rr1h'],1); // Change this to 3hours rain from abfrage
-                    
-                    $new_forecast['precipitation'] = (trim($forecast['rain3']) == "")? NULL : round($forecast['rain3'],1); // Change this to 3hours rain from abfrage
+                    if(trim($forecast['rain3']) == ""){
+                        $new_forecast['precipitation'] = $sum_rr1h;
+                        $sum_rr1h = 0;
+                    }else{
+                        round($forecast['rain3'],1);
+                    }
                     
                     $new_forecast['relative_humidity'] = ($forecast['rh'] == '')? '0' : round($forecast['rh'],0);
                     $new_forecast['wind_speed'] = ($forecast['ff'] == '')? '0' : floor($forecast['ff'] * 1.852 + 0.5);
@@ -402,10 +445,9 @@ class WeatherphStationForecast extends WeatherphAppModel
                     // Translate raw date to 3 hourly range value
                     $thierTime = strtotime($forecast['Datum'].' '.$forecast['utc'].':'.$forecast['min']);
                     
-                    $new_forecast['localtime'] = date('Ymd H:s:s', $thierTime + $Date->getOffset());
+                    $new_forecast['their_time'] = date('Ymd H:i:s', $thierTime);
                     
-//                    $forecast['localtime_range_start'] = date('Ymd H:i:s', $thierTime + $Date->getOffset()); 
-//                    $forecast['localtime_range_end'] = date('Ymd H:i:s', strtotime('+3 hours', $thierTime) + $Date->getOffset());
+                    $new_forecast['localtime'] = date('Ymd H:i:s', $thierTime + $Date->getOffset());
                     
                     $new_forecast['localtime_range_start'] = date('Ymd H:i:s', strtotime('-3 hours', $thierTime) + $Date->getOffset()); 
                     $new_forecast['localtime_range_end'] = date('Ymd H:i:s', $thierTime + $Date->getOffset());
@@ -424,14 +466,6 @@ class WeatherphStationForecast extends WeatherphAppModel
                     
                 }
                 
-                //$last_arr = end($abfrageResults['forecast'][$forecast['Datum']]);
-                
-                //$this->log(print_r($last_arr, TRUE));
-                
-                //$this->log('End');
-                
-                
-
             }
         }
         
@@ -455,8 +489,6 @@ class WeatherphStationForecast extends WeatherphAppModel
 //        }
         
         $abfrageResults['forecast'] = $this->localTimeForecast($abfrageResults['forecast']);
-        
-        //$this->log(print_r($abfrageResults['forecast'],true));
         
         $abfrageResults['stationId'] = $stationId;
         $abfrageResults['stationName'] = $stationInfo['name'];
