@@ -524,7 +524,6 @@ class AnyChart {
             )
         );
         
-        CakeLog::write('anychart', print_r($data_plot_settings, true));
         return $data_plot_settings;
     }
     
@@ -583,14 +582,11 @@ class AnyChart {
                 break;
         }
         
-        CakeLog::write('anychart', print_r($styles, true));
         return $styles;
     }
     
     public static function plotData(){
 
-        $counter = 0;
-        $data = array();
         $series = array();
         $series_properties = array();
         $series_children = array();
@@ -639,19 +635,16 @@ class AnyChart {
             unset($series_children);
         }
         
-       CakeLog::write('anychart', print_r(self::$chartData, true));
        
        return $series;
     }
     
     public static function createChart($type, $arrData){
-//        CakeLog::write('anychart', print_r($arrData, true));
         
         self::$properties['chart_type'] = $type;
         self::$data = $arrData['settings'];
         self::$chartData = $arrData;
         
-//        CakeLog::write('anychart', print_r(self::$chartData, true));
         
         $anychart = array(
             'anychart' => array(
@@ -681,7 +674,6 @@ class AnyChart {
             )
         );
         
-//        CakeLog::write('anychart', print_r($anychart, true));
         
         return $anychart;
     }
