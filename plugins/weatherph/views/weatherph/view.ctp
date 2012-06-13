@@ -72,7 +72,6 @@ echo $this->Html->script(array(
             <?php endIf; ?>
 
         <div id="weekWeather">
-            <h4>This week's forecast</h4>
 
             <div class="tab-container">
                 <?php
@@ -81,9 +80,12 @@ echo $this->Html->script(array(
                     $today = date("Ymd");
                     $tab_class = ($key == $today) ? 'current-tab' : 'tab';
                     $div_id = ($key == $today) ? "Today" : date('l', strtotime($key));
-                    ?>
+                    
+                    $date = date('F j, Y');
+                    $divdate = ($key == $date) ? date('F j, Y') : date('F j, Y', strtotime($key)); 
+                   ?>
 
-                    <div class ="daydate"><?= $div_id ?></div>
+                    <div class ="daydate"><span class="daytime"><?= $div_id ?></span><?= ', '.$divdate?></div>
                     <table class="week-forecast" cellspacing="0">
                         <tr>
                             <th class="columnheader"> Time </th>

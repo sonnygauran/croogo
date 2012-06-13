@@ -398,12 +398,15 @@ text-shadow: 0px 2px 3px #555;
     padding-top: 8px;
     margin-top: 5px;
     padding-bottom: 5px;
-    font-weight: bold;
     font-size: 15px;
-    width: 7em;
+    width: 20em;
     text-align: center;
     box-shadow: 2px 0 0 0 #555;
 }
+
+span.daytime {
+     font-weight: bold;
+ }
 
 .date .month, .date .year {
     font-size: 1.2em;
@@ -740,8 +743,8 @@ nav, .layerSelector, .promo, #info, .output {
 .columnheader{
     color: #fff;
     vertical-align: middle;
-    background: #3E5E95;
-    padding: 10px;
+    background: #4f75b6;
+    padding: 6px;
     font-weight: normal;
 }
 
@@ -950,3 +953,6 @@ span.wind-description { font-size: 10px; }
  .names a:link {
      color: blue;
  }
+
+ 
+ 
