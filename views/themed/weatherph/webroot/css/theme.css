@@ -541,7 +541,7 @@ div.current-tab {
 ===============*/
 
 .week-forecast td {
-    padding: 10px;
+    padding: 4px;
     text-align: center;
     border: 1px solid #d6dfeb;
 }
@@ -738,7 +738,6 @@ nav, .layerSelector, .promo, #info, .output {
 }
 
 .columnheader{
-/*    background-color: #fafafa;*/
     color: #fff;
     vertical-align: middle;
     background: #3E5E95;
