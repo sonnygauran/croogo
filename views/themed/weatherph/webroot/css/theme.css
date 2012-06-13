@@ -391,6 +391,20 @@ text-shadow: 0px 2px 3px #555;
     font-weight: 700;
 }
 
+.daydate{
+    background-color: #3E5E95;
+    border-radius: 5px 5px 0px 0;
+    color: #fff;
+    padding-top: 8px;
+    margin-top: 5px;
+    padding-bottom: 5px;
+    font-weight: bold;
+    font-size: 15px;
+    width: 7em;
+    text-align: center;
+    box-shadow: 2px 0 0 0 #555;
+}
+
 .date .month, .date .year {
     font-size: 1.2em;
     text-transform: uppercase;
@@ -694,7 +708,7 @@ body {
     text-align: center;
 }
 
-nav, .layerSelector, .promo, #info, .week-forecast .time, .output {
+nav, .layerSelector, .promo, #info, .output {
     background-color: #365283;
     color: #fafafa;
 }
@@ -721,6 +735,15 @@ nav, .layerSelector, .promo, #info, .week-forecast .time, .output {
     background-color: #fafafa;
     color: #365283;
     vertical-align: middle;
+}
+
+.columnheader{
+/*    background-color: #fafafa;*/
+    color: #fff;
+    vertical-align: middle;
+    background: #3E5E95;
+    padding: 10px;
+    font-weight: normal;
 }
 
 .sponsored {
