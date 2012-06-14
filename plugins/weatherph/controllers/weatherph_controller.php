@@ -41,6 +41,15 @@ class WeatherphController extends WeatherphAppController {
             'limit' => 5,
         ));
         
+//        App::import('Model', 'Resource');
+//        $Resource = new Resource();
+//        $key = $Resource->generateKey('wetter4', '');
+//        
+        $wetter4 = 'http://alpha.meteomedia-portal.com/services/wetter4.php?';
+        $temperature = 'api_key=portal-efd339395c80ad957acb695bb9758399&p=QFF&q=meh_ifm&leg=nil&a=image&x=554&y=554&srs=EPSG:900913&';
+        // x1=111.32714843750325&x2=135.67285156249676&y2=24.41201768480203&y1=0.8402895756535625
+        
+        
         $this->set('featuredBlog', $featuredBlog);
         
     }
