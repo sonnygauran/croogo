@@ -34,7 +34,51 @@
                 </div>
             </div>
             <div id="legend" class="shadow">
-
+                <div class="scale-container">
+                    <span class="unit-buttons">
+                        <button type="button">°C</button>
+                        <button type="button">°F</button>
+                    </span>
+                    <ul class="scale">
+                        <li style="background-color: #FFC8C8;">46</li>
+                        <li style="background-color: #FFA0A0;">44</li>
+                        <li style="background-color: #FF82B4;">42</li>
+                        <li style="background-color: #FF5096;">40</li>
+                        <li style="background-color: #FF0064;">38</li>
+                        <li style="background-color: #D2005A;">36</li>
+                        <li style="background-color: #A50041;">34</li>
+                        <li style="background-color: #780000;">32</li>
+                        <li style="background-color: #A00000;">30</li>
+                        <li style="background-color: #C30000;">28</li>
+                        <li style="background-color: #E60000;">26</li>
+                        <li style="background-color: #FF5A00;">24</li>
+                        <li style="background-color: #FF8200;">22</li>
+                        <li style="background-color: #FFA000;">20</li>
+                        <li style="background-color: #FFBE00;">18</li>
+                        <li style="background-color: #FFD200;">16</li>
+                        <li style="background-color: #FFE600;">14</li>
+                        <li style="background-color: #FFFF14;">12</li>
+                        <li style="background-color: #C8FF00;">10</li>
+                        <li style="background-color: #96FF00;">8</li>
+                        <li style="background-color: #64FF00;">6</li>
+                        <li style="background-color: #00EB00;">4</li>
+                        <li style="background-color: #00DC8C;">2</li>
+                        <li style="background-color: #00DCFF;">0</li>
+                        <li style="background-color: #00AFFF;">-2</li>
+                        <li style="background-color: #007DFF;">-4</li>
+                        <li style="background-color: #0046F5;">-6</li>
+                        <li style="background-color: #0014B4;">-8</li>
+                        <li style="background-color: #6E0A6E;">-10</li>
+                        <li style="background-color: #8C008C;">-12</li>
+                        <li style="background-color: #B400B4;">-15</li>
+                        <li style="background-color: #D200D2;">-20</li>
+                        <li style="background-color: #FF00FF;">-25</li>
+                        <li style="background-color: #FF78FF;">-30</li>
+                        <li style="background-color: #FFAAFF;">-35</li>
+                        <li style="background-color: #FFD2FF;">-40</li>
+                        <li style="background-color: #EAE9F9;">-45</li>
+                    </ul>
+                </div>
                 <div id="province-select">
                     <h6>Province:</h6>
                     <select name="philippine-regions">
