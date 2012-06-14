@@ -20,7 +20,7 @@ Site.status: 1
 Site.tagline: A CakePHP powered Content Management System.
 Site.theme: weatherph
 Site.offset: 8
-Site.time_overlap: 2
+Site.time_overlap: 3
 Site.forecast_range: 3
 Site.title: Weather | Philippines
 Writing.wysiwyg: 1

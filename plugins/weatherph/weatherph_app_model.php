@@ -1,29 +1,38 @@
 <?php
 
+App::import('Lib', 'Meteomedia.Xml');
+App::import('Lib', 'Meteomedia.AnyChart');
+
 class WeatherphAppModel extends AppModel {
         
     protected function generateDate($type, $time_resolution = '1h', $hasUTC = true){
 
         // Adjust our time so that the data we get can match theirs
-        $theirTime = strtotime(($type=='forecast') ? '-16 hours' : '-8 hours', strtotime(date('Ymd'))); 
+        $theirTime = strtotime(($type == 'charts' || $type == 'forecast') ? '-16 hours' : '-8 hours', strtotime(date('Ymd'))); 
         $format = array();
         
         $format['start_date'] = date('Ymd', $theirTime);
         $format['time_resolution'] = $time_resolution;
         
+        if($hasUTC){
+            $format['start_hour'] = date('H', $theirTime);
+            $format['end_hour'] = '16';
+        }
         switch($type){
             case 'reading':
                 $format['end_date'] = date('Ymd', strtotime('+2 days', $theirTime));
                 break;
             case 'forecast':
+                $theirTime = strtotime(date('Ymd')); 
+                $format['start_date'] = date('Ymd', $theirTime);    
+                $format['start_hour'] = date('H', $theirTime);
+                $format['end_date'] = date('Ymd', strtotime("+3 Days", $theirTime));;
+                break;
+            case 'chart':
                 $format['end_date'] = date('Ymd', strtotime("+5 Days", $theirTime));;
                 break;
         }
 
-        if($hasUTC){
-            $format['start_hour'] = date('H', $theirTime);
-            $format['end_hour'] = ($type == 'forecast') ? '16' : '00';
-        }
         return $format;
     }
 
@@ -106,16 +115,8 @@ class WeatherphAppModel extends AppModel {
         }
     }
 
-    protected function csvToArray($csv, $headersSpecimen) {
+    protected function csvToArray($csv) {
 
-        //Convert 
-        $expected = strstr($csv, $headersSpecimen);
-        if ($expected == '') {
-            $error = 'There was an error generating the CSV';
-            $this->log($error);
-            return array();
-        }
-        
         $rows = explode("\n", $csv);
         $headers = explode(';', $rows[0]);
 
@@ -389,316 +390,9 @@ class WeatherphAppModel extends AppModel {
         $arrData = $fields['conditions']['arrData'];
         $type = strtolower($fields['conditions']['type']);
 
-        $this->log(print_r($arrData['settings'], true), 'anychart');
-        $xml_string =
-        '<?xml version="1.0" encoding="ISO-8859-1"?>
-                <anychart>
-                <margin all="3" bottom="0" left="10" right="8"/>
-                <settings>
-                    <locale>
-                        <date_time_format>
-                            <format>%u</format>';
-
-        if ($type == 'precipitation' || $type == 'precip') {
-            $xml_string .= '<months>
-                            <names>
-                                January,February,March,April,May,June,July,August,September,October,November,December
-                            </names>
-                            <short_names>Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec</short_names>
-                        </months>';
-        }
-
-        $xml_string .= '<week_days start_from="Sunday">
-                                <short_names>
-                                    <![CDATA[ Su.,Mo.,Tu.,We.,Th.,Fr.,Sa. ]]>
-                                </short_names>
-                            </week_days>
-                        </date_time_format>
-                    </locale>
-                </settings>
-                <charts>
-                    <chart plot_type="Scatter">
-                        <chart_settings>
-                            <title enabled="false"/>
-                            <axes>
-                                <x_axis enable="true">
-                                    <scale type="DateTime" minimum_offset="0" maximum_offset="0" minor_interval="' . $arrData['settings']['minor_interval'] . '" minor_interval_unit="Hour" major_interval="1" major_interval_unit="Day"/>
-                                    <title enabled="false"/>
-                                    <labels enabled="True" show_cross_label="' . $arrData['settings']['show_cross_label'] . '" allow_overlap="true">
-                                        <format>
-                                            <![CDATA[ ]]>
-                                            {%Value}{dateTimeFormat:%ddd %dd.%MM.}
-                                        </format>
-                                        <font family="Arial" color="#444444" size="11"/>
-                                    </labels>
-                                    <major_grid enabled="True" interlaced="True">
-                                        <interlaced_fills>
-                                            <even>
-                                                <fill color="rgb(245,245,245)" opacity="1"/>
-                                            </even>
-                                        </interlaced_fills>
-                                    </major_grid>
-                                </x_axis>';
-
-
-        if ($type == 'winddir') {
-            $xml_string .= '        <y_axis enabled="false">
-                                    <scale type="Linear" maximum="1" minimum="0"/>
-                                    <title enabled="false"/>
-                                    <labels enabled="false">
-                                        <format>{%Value}{numDecimals:0}</format>
-                                        <font family="Arial" color="#444444" size="11"/>
-                                    </labels>
-                                </y_axis>';
-        } else if ($type == 'humidity') {
-            $xml_string .= '       <y_axis>
-                                    <scale type="Linear" maximum="100" minimum="0" maximum_offset="0.01" minimum_offset="0.01" />
-                                    <title enabled="false"/>
-                                    <labels>
-                                        <format>{%Value}{numDecimals:0}</format>
-                                        <font family="Arial" color="#444444" size="11"/>
-                                    </labels>
-                                </y_axis>';
-        } else {
-            $xml_string .= '       <y_axis>
-                                    <!--scale type="Linear" maximum="auto" minimum="auto" maximum_offset="0.01" minimum_offset="0.01"/-->
-                                    <title enabled="false"/>
-                                    <labels>
-                                        <format>{%Value}{numDecimals:0}</format>
-                                        <font family="Arial" color="#444444" size="11"/>
-                                    </labels>
-                                </y_axis>';
-        }
-
-        $xml_string .= '
-                                <extra>
-                                    <y_axis name="y2" enabled="False">
-                                        <title enabled="false"/>
-                                        <labels>
-                                            <format/>
-                                        </labels>
-                                    </y_axis>
-                                </extra>
-                            </axes>
-                        <chart_background enabled="false">
-                            <effects enabled="false"/>
-                            <border enabled="false"/>
-                            <inside_margin all="0"/>
-                        </chart_background>
-                        <data_plot_background enabled="false">
-                            <effects enabled="false"/>
-                        </data_plot_background>
-                    </chart_settings>';
-
-        $xml_string .= '
-                <data_plot_settings default_series_type="' . $arrData['settings']['default_series_type'] . '">
-                    ';
-
-        // Settings
-        // Temperature
-        if ($type == 'temp' || $type == 'temperature') {
-            $xml_string .= '<line_series>
-                            <marker_settings enabled="false"/>
-                            <line_style>
-                                <line enabled="true" thickness="2" caps="round" joints="round"/>
-                            </line_style>
-                            <tooltip_settings enabled="true">
-                                <format>
-                                    <![CDATA[ {%YValue}{numDecimals:1} ]]>
-                                </format>
-                            </tooltip_settings>
-                        </line_series>';
-        }
-
-        // Precipitation (rain6)
-        if ($type == 'precipitation' || $type == 'precip') {
-            $xml_string .= '<bar_series point_padding="0" scatter_point_width="4.7%">
-                            <bar_style>
-                                <fill enabled="true" type="Gradient">
-                                    <gradient type="Radial">
-                                        <key position="0" color="#0036d9"/>
-                                        <!-- innen -->
-                                        <key position="1" color="#002080"/>
-                                    </gradient>
-                                </fill>
-                                <border enabled="False"/>
-                                <effects enabled="False"/>
-                            </bar_style>
-                        </bar_series>';
-        }
-
-        // Air Pressure (qff)
-        if ($type == 'airpressure') {
-            $xml_string .= '<bar_series point_padding="0" scatter_point_width="4.7%">
-                            <bar_style>
-                                <fill enabled="true" type="Gradient">
-                                    <gradient type="Radial">
-                                        <key position="0" color="#F5E616"/>
-                                        <!-- innen -->
-                                        <key position="1" color="#E3D50B"/>
-                                    </gradient>
-                                </fill>
-                                <border enabled="False"/>
-                                <effects enabled="False"/>
-                            </bar_style>
-                        </bar_series>';
-        }
-
-        // Humidity, Wind and Wind Direction
-        if ($type == 'humidity' || $type == 'wind') {
-            $xml_string .= '<line_series>
-                            <marker_settings enabled="false"/>
-                            <line_style>
-                                <line enabled="true" thickness="2" caps="round" joints="round"/>
-                            </line_style>
-                        </line_series>';
-        } elseif ($type == 'winddir') {
-            $xml_string .= '<line_series>
-                            <marker_settings enabled="true"/>
-                            <line_style>
-                                <line enabled="true" thickness="2" caps="round" joints="round"/>
-                            </line_style>
-                        </line_series>';
-        }
-
-        // Sunshine
-        if ($type == 'sunshine') {
-            $xml_string .= '<bar_series scatter_point_width="0.4%" group_padding="0" point_padding="0">
-                            <bar_style>
-                                <fill enabled="true" type="Solid" color="#fff000" thickness="1"></fill>
-                                <border enabled="True" type="Gradient">
-                                    <gradient angle="90">
-                                        <key position="0" color="#ffd500"/>
-                                        <key position="0.3" color="#fff000"/>
-                                        <key position="1" color="#fff000"/>
-                                    </gradient>
-                                </border>
-                                <effects enabled="False"/>
-                            </bar_style>
-                        </bar_series>';
-        }
-
-        if ($type == 'globalradiation') {
-            $xml_string .= '<bar_series scatter_point_width="0.4%" group_padding="0" point_padding="0">
-                            <bar_style>
-                                <fill enabled="true" type="Solid" color="#182DCC" thickness="1"></fill>
-                                <effects enabled="False"/>
-                            </bar_style>
-                        </bar_series>';
-        }
-
-        $xml_string .= '
-                </data_plot_settings>
-                <styles>';
-
-        // Styles
-        if ($type == 'temperature' || $type == 'temp') {
-            $xml_string .= '
-                    <line_style name="tlline" color="#c80000">
-                        <line thickness="2"/>
-                    </line_style>
-                    <line_style name="tdline" color="#00c800">
-                        <line thickness="2"/>
-                    </line_style>
-                    <line_style name="noline">
-                        <line enabled="False"/>
-                    </line_style>
-                    <marker_style name="dotblue" color="blue">
-                        <marker size="3" type="circle"/>
-                    </marker_style>
-                    <marker_style name="dotred" color="#c80000">
-                        <marker size="3" type="circle"/>
-                    </marker_style>';
-        } elseif ($type == 'wind') {
-
-            $xml_string .= '
-                    <line_style name="ffline" color="#966400"/>
-                    <line_style name="g1hline" color="#c800aa"/>';
-        } elseif ($type == 'winddir') {
-
-            $xml_string .= '
-                    <line_style name="dirline" color="green">
-                        <line enabled="false"/>
-                    </line_style>
-                    <marker_style name="wind_1"><!-- EAST -->
-                        <marker type="Image" image_url="../theme/weatherph/img/w1.png" size="23"/>
-                    </marker_style>
-                    <marker_style name="wind_2"><!-- SOUTH EAST -->
-                        <marker type="Image" image_url="../theme/weatherph/img/w2.png" size="23"/>
-                    </marker_style>
-                    <marker_style name="wind_3"><!-- SOUTH -->
-                        <marker type="Image" image_url="../theme/weatherph/img/w3.png" size="23"/>
-                    </marker_style>
-                    <marker_style name="wind_4"><!-- SOUTH WEST -->
-                        <marker type="Image" image_url="../theme/weatherph/img/w4.png" size="23"/>
-                    </marker_style>
-                    <marker_style name="wind_5"><!-- WEST -->
-                        <marker type="Image" image_url="../theme/weatherph/img/w5.png" size="23"/>
-                    </marker_style>
-                    <marker_style name="wind_6"><!-- NORTH WEST -->
-                        <marker type="Image" image_url="../theme/weatherph/img/w6.png" size="23"/>
-                    </marker_style>
-                    <marker_style name="wind_7"><!-- NORTH -->
-                        <marker type="Image" image_url="../theme/weatherph/img/w7.png" size="23"/>
-                    </marker_style>
-                    <marker_style name="wind_8"><!-- NORTH EAST -->
-                        <marker type="Image" image_url="../theme/weatherph/img/w8.png" size="23"/>
-                    </marker_style>
-                    <marker_style name="wind_9"><!-- NO WIND DIRECTION -->
-                        <marker type="Image" image_url="../theme/weatherph/img/w9.png" size="23"/>
-                    </marker_style>
-                    ';
-        } elseif ($type == 'humidity') {
-
-            $xml_string .= '<line_style name="rhline" color="#00c800"/>';
-        }
-
-        $xml_string .= '
-                </styles>
-                <data>';
-
-        //$this->log($arrData);
-
-        foreach ($arrData['sets'] as $key => $sets) {
-
-            $xml_string .= '<series';
-
-            foreach ($arrData['series'][$key] as $index => $attr) {
-                $xml_string .= (trim($attr) != '') ? ' ' . $index . '="' . $attr . '"' : '';
-            }
-
-            $xml_string .= '>';
-
-            if (isset($arrData['additional'][$key])) {
-
-                foreach ($arrData['additional'][$key] as $index => $addtnl) {
-
-                    $xml_string .= '<' . $index . ' ';
-
-                    foreach ($addtnl as $key2 => $add) {
-                        $xml_string .= ' ' . $key2 . '="' . $add . '"';
-                    }
-                    $xml_string .= '/>';
-                }
-            }
-
-            foreach ($sets as $set) {
-                $xml_string .= '<point x="' . $set['x'] . '" y="' . $set['y'] . '">';
-                $xml_string .= (isset($set['marker'])) ? '<marker style="' . $set['marker'] . '" />' : '';
-                $xml_string .= '<!-- ' . date('Y-m-d H:i:s', $set['x']) . '-->';
-                $xml_string .= '</point>';
-            }
-
-            $xml_string .='</series>';
-        }
-
-        $xml_string .= ' 
-               </data>
-                </chart>
-                </charts> 
-           </anychart>';
-
-        //$this->log($xml_string);
+        
+        $xml_string = '<?xml version="1.0" encoding="ISO-8859-1"?>';
+        $xml_string = Xml::dumpsterDive(AnyChart::createChart($type, $arrData));
 
         $xml = simplexml_load_string($xml_string);
 

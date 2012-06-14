@@ -339,7 +339,7 @@ text-shadow: 0px 2px 3px #555;
 ====================*/
 .secondary{
     width: 794px;
-    margin-top: 3em;
+    margin-top: 1em;
     float: left;
 }
 
@@ -371,7 +371,7 @@ text-shadow: 0px 2px 3px #555;
 .date {
     position: absolute;
     top: 0;
-    right: 0;
+    left: 0;
     margin: 0.4em;
     padding: 0.3em;
     background-color: #3990BD;
@@ -390,6 +390,23 @@ text-shadow: 0px 2px 3px #555;
     font-size: 1.875em;
     font-weight: 700;
 }
+
+.daydate{
+    background-color: #3E5E95;
+    border-radius: 5px 5px 0px 0;
+    color: #fff;
+    padding-top: 8px;
+    margin-top: 5px;
+    padding-bottom: 5px;
+    font-size: 15px;
+    width: 20em;
+    text-align: center;
+    box-shadow: 2px 0 0 0 #555;
+}
+
+span.daytime {
+     font-weight: bold;
+ }
 
 .date .month, .date .year {
     font-size: 1.2em;
@@ -424,7 +441,6 @@ text-shadow: 0px 2px 3px #555;
     text-align: right;
     margin-bottom: 0;
     padding-bottom: 0;
-    
 }
 
 .posts .read-more-link a {
@@ -528,7 +544,7 @@ div.current-tab {
 ===============*/
 
 .week-forecast td {
-    padding: 10px;
+    padding: 4px;
     text-align: center;
     border: 1px solid #d6dfeb;
 }
@@ -695,7 +711,7 @@ body {
     text-align: center;
 }
 
-nav, .layerSelector, .promo, #info, .week-forecast .time, .output {
+nav, .layerSelector, .promo, #info, .output {
     background-color: #365283;
     color: #fafafa;
 }
@@ -722,6 +738,14 @@ nav, .layerSelector, .promo, #info, .week-forecast .time, .output {
     background-color: #fafafa;
     color: #365283;
     vertical-align: middle;
+}
+
+.columnheader{
+    color: #fff;
+    vertical-align: middle;
+    background: #4f75b6;
+    padding: 6px;
+    font-weight: normal;
 }
 
 .sponsored {
@@ -929,3 +953,6 @@ span.wind-description { font-size: 10px; }
  .names a:link {
      color: blue;
  }
+
+ 
+ 
