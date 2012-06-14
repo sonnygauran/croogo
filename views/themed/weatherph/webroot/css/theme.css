@@ -857,7 +857,7 @@ nav li:active, .detail-page-link:active {
     SPRITEMAP
 ====================*/
 
-span.symbol { background: url('<?= $this->webroot ?>theme/weatherph/img/warning-sprites.png') -5px -65px no-repeat; height: 30px; width: 40px; display: block; margin: auto;}
+span.symbol { background: url('<?= $this->webroot ?>theme/weatherph/img/warning-sprites.png') -5px -65px no-repeat; height: 30px; width: 40px; display: inline-block; margin: auto;}
 
 span.day_1 { background-position: -70px -180px; }
 span.day_2 { background-position: -125px -180px; }
@@ -920,6 +920,35 @@ span.moonphase_7 { background-position: -540px 5px; }
 
 span.sunrise { background-position: 0px 5px; }
 span.sunset { background-position: -60px 5px; }
+
+.left{
+    text-align: left;
+}
+
+div.day-forecast-wrapper {
+    float: left;
+    margin: 20px 0 30px;
+    width: 100%;
+}
+
+div.day-forecast-wrapper table {
+    margin: 10px 0 0 0;
+    width: 100%;
+}
+
+div.day-forecast-wrapper table th {
+    background-color: #365283;
+    padding: 5px 10px;
+    color: #fff;
+    font-weight: normal;
+}
+
+div.day-forecast-wrapper table td{
+    border-bottom: 1px solid #7F8285;
+    text-align: center;
+    padding: 0 5px;
+}
+
 
 span.wind-description { font-size: 10px; }
 /*

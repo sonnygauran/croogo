@@ -73,75 +73,39 @@ echo $this->Html->script(array(
         
         <div id="weekWeather">
             <h4>This week's forecast</h4>
-            <ul id="week-forecast" class="tabs">
-                
-            <?php
-            $i = 0; 
-            foreach ($forecastRange as $day) {
-                $class = ($i == 0)? "current-tab" : "";
-                $dayName = ($i == 0)? "Today" : date('l', strtotime($day));
-                $i++;
-            ?>
-                <li id="<?= strtolower($dayName); ?>" class="<?= $class; ?>" ><?= $dayName; ?></li>
-            <?php } ?>
-            </ul>
             
             <div class="tab-container">
-            <?php foreach ($dataSets['forecast'] as $key => $dayForecast) {
+            <?php foreach ($dataSets['forecast'] as $key => $dayForecasts) {
                 
                 $today = date("Ymd");
-                $tab_class = ($key == $today)? 'current-tab' : 'tab';
-                $div_id = ($key == $today)? "Today" : date('l', strtotime($key));
+                $forecast_day_name = ($key == $today)? "Today" : date('l', strtotime($key));
                 
                 ?>
-                <div id="<?= strtolower($div_id); ?>" class="<?= $tab_class; ?>">
-                    
-                    <table class="week-forecast" cellspacing="0">
-                    <tr class="time">
-                        <td class="caption">Time</td>
-                        <?php foreach (Set::extract($dayForecast, '{n}.localtime_range') as $column) { ?>
-                            <td><?= $column; ?></td>
-                        <?php } ?>
-                    </tr>
-                    
-                    <tr class="condition">
-                        <td class="caption">Condition</td>
-                        <?php foreach (Set::extract($dayForecast, '{n}.weather_symbol') as $column) { ?>
-                            <td><span class="symbol <?= $column; ?>"></span></td>
-                        <?php } ?>
-                    </tr>
-                    
-                    <tr class="temperature">
-                        <td class="caption">Temperature</td>   
-                        <?php foreach (Set::extract($dayForecast, '{n}.temperature') as $column) { ?>
-                            <td><?= $column; ?>&deg;C</td>
-                        <?php } ?>
-                    </tr>
-                    
-                    <tr class="precipitation">
-                        <td class="caption">Precipitation</td> 
-                        <?php foreach (Set::extract($dayForecast, '{n}.precipitation') as $key=>$column) { ?>
-                        <!--?php if($key%2 == 0){ ?><td colspan="2"--><!--?= $column; ?>mm</td--><!--?php } ?-->
-                        <td><?= $column; ?>mm</td>
-                        <?php } ?>
-                    </tr>
-                    
-                    <tr class="wind">
-                        <td class="caption">Wind speed</td>   
-                        <?php foreach (Set::extract($dayForecast, '{n}.wind_speed') as $column) { ?>
-                            <td><?= $column; ?>km/h</td>
-                        <?php } ?>
-                    </tr>
-                    
-                    <tr class="direction">
-                        <td class="caption">Wind Direction</td>   
-                        <?php $windDir = Set::extract($dayForecast, '{n}.wind_direction'); ?>
-                        <?php $windDesc = Set::extract($dayForecast, '{n}.wind_description'); ?>
-                        <?php for($x=0; $x<count($windDir); $x++){ ?>
-                            <td><span class="symbol <?= $windDir[$x]; ?>"></span><span class="wind-description"><?= $windDesc[$x]?></span></td>
-                        <?php } ?>
-                    </tr>
-           
+                <div class="day-forecast-wrapper">
+                    <h5><?= $forecast_day_name; ?>, <?= date('F d, Y', strtotime($key));?></h5>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Time</th>
+                                <th>Condition</th>
+                                <th>Temperature</th>
+                                <th>Precipitation</th>
+                                <th>Wind Speed</th>
+                                <th>Wind Direction</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+            <?php foreach($dayForecasts as $forecast){ ?>
+                            <tr>
+                                <td><?= $forecast['localtime_range']; ?></td>
+                                <td><span class="symbol <?= $forecast['weather_symbol']; ?>"></span>
+                                <td><?= $forecast['temperature']; ?>&deg;C</td>
+                                <td><?= $forecast['precipitation']; ?>mm</td>
+                                <td><?= $forecast['wind_speed']; ?>km/h</td>
+                                <td class="left"><span class="symbol <?= $forecast['wind_direction']; ?>"></span><span class="wind-description"><?= $forecast['wind_description']?></span></td>
+                            </tr>
+            <? }?>            
+                        </tbody>
                     </table>
                 </div>
             <?php } ?>

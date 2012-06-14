@@ -91,47 +91,47 @@ $.ajax({
             cache:    true,
             success:  function(readings) {
                 
-                var $stationReadings = readings; // the complete retrieved stations
+                var $station_readings = readings; // the complete retrieved stations
                 //console.log($stationReadings);
                 var cr_temperature, cr_wind, cr_precip, cr_humidity, cr_symbol;
                 var sr_temperature, sr_wind, sr_precip, sr_humidity, sr_symbol;                
                 
-                $('.current.readings-location').html($stationReadings.station_name);
+                $('.current.readings-location').html($station_readings.station_name);
                 
-                if($stationReadings.reading.status == 'ok'){
+                if($station_readings.reading.status == 'ok'){
                     
                     showReadings();
                     
-                    $('.last-update').html($stationReadings.reading.update);
+                    $('.last-update').html($station_readings.reading.update);
 
-                    cr_temperature = $stationReadings.reading.tl;
-                    cr_wind = $stationReadings.reading.ff;
-                    cr_precip = $stationReadings.reading.rr;
-                    cr_humidity = $stationReadings.reading.rh;
+                    cr_temperature = $station_readings.reading.temperature;
+                    cr_wind = $station_readings.reading.wind_speed;
+                    cr_precip = $station_readings.reading.precipitation;
+                    cr_humidity = $station_readings.reading.relative_humidity;
 
                     $('.current.temperature span').html(cr_temperature);
                     $('.current.wind span').html(cr_wind);
                     $('.current.precipitation span').html(cr_precip);
                     $('.current.humidity span').html(cr_humidity);
-                    $('#info .readings .symbol:eq(0)').addClass($stationReadings.reading.sy);
-                    $('.current.time').html($stationReadings.reading.uthc);
+                    $('#info .readings .symbol:eq(0)').addClass($station_readings.reading.weather_symbol);
+                    $('.current.time').html($station_readings.reading.update);
                     
                 }else{
                     hideReadings();
                 }
                 
-                if($stationReadings.forecast.status == 'ok'){
+                if($station_readings.forecast.status == 'ok'){
                     
                     showForecast();
                 
-                    for (var key in $stationReadings.forecast) {
-                        sr_temperature = $stationReadings.forecast[key].tl;
-                        sr_wind = $stationReadings.forecast[key].ff;
-                        sr_precip = $stationReadings.forecast[key].rr;
-                        sr_humidity = $stationReadings.forecast[key].rh;
+                    for (var key in $station_readings.forecast) {
+                        sr_temperature = $station_readings.forecast[key].temperature;
+                        sr_wind = $station_readings.forecast[key].wind_speed;
+                        sr_precip = $station_readings.forecast[key].precipitation;
+                        sr_humidity = $station_readings.forecast[key].relative_humidity;
 
-                        $('.' + key + '-hour .symbol').addClass($stationReadings.forecast[key].sy);
-                        $('.' + key + '-hour.time').html($stationReadings.forecast[key].utch);
+                        $('.' + key + '-hour .symbol').addClass($station_readings.forecast[key].weather_symbol);
+                        $('.' + key + '-hour.time').html($station_readings.forecast[key].localtime_range);
                         $('.' + key + '-hour .temperature span').html(sr_temperature);
                         $('.' + key + '-hour .wind span').html(sr_wind);
                         $('.' + key + '-hour .precipitation span').html(sr_precip);
