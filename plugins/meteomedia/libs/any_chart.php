@@ -1,5 +1,7 @@
 <?php
 
+App::import('Lib', 'Meteomedia.Xml');
+
 /**
  * @author Jaggy Gauran
  *  
@@ -8,6 +10,7 @@
  */
 class AnyChart {
 
+    private static $chartData = array();
     
     /**
      * Dynamic objects depending on given parameters
@@ -29,7 +32,7 @@ class AnyChart {
     private static $properties = array(
         'chart_type' => '',
         'font' => array(
-            'family' => 'Helvetica',
+            'family' => 'Arial',
             'color' => '#444444',
             'size' => '11',
         ),
@@ -54,7 +57,6 @@ class AnyChart {
         $settings =  array(
             'properties' => array(),
             'children' => array(
-                'margin' => self::$properties['margin'],
                 'locale' => array(
                     'children'=> array(
                         'date_time_format' => array(
@@ -63,20 +65,21 @@ class AnyChart {
                                 'format' => array(
                                     'properties' => array(),
                                     'value' => '%u',
+                                ),
+                                'week_days'=> array(
+                                    'properties' => array(
+                                            'start_from' => 'Sunday'
+                                    ),
+                                    'children' => array(
+                                        'short_names' => array(
+                                            'properties' => array(),
+                                            'value' => '<![CDATA[ Su.,Mo.,Tu.,We.,Th.,Fr.,Sa. ]]>',
+                                        )
+                                    ),
                                 )
                             ),
                         ),
-                        'week_days'=> array(
-                            'properties' => array(),
-                            'children' => array(
-                                'short_names' => array(
-                                    'properties' => array(
-                                        'start_from' => 'Sunday'
-                                    ),
-                                    'value' => '<![CDATA[ Su.,Mo.,Tu.,We.,Th.,Fr.,Sa. ]]>',
-                                )
-                            ),
-                        )
+                        
                     ),
 
                 ),
@@ -191,14 +194,16 @@ class AnyChart {
                     'properties' => array(
                         'enabled' => (empty(self::$properties['titles']['y_axis'])) ? 'false' : 'true'
                     ),
-                    'value' => self::$properties['titles']['y_axis'],
+                    'value' => array(
+                        self::$properties['titles']['y_axis']
+                    ),
                 ),
                 'labels' => array(
                     'properties' => array(),
                     'children' => array(
                         'format' => array(
                             'properties' => array(),
-                            'value' => '{%Value}{numDecimals:0}'
+                            'value' => (self::$properties['chart_type'] == 'precip' || self::$properties['chart_type'] == 'precipitation')? '{%Value}{numDecimals:1}' : '{%Value}{numDecimals:0}'
                         ),
                         'font' => array(
                             'properties' => self::$properties['font'],
@@ -206,21 +211,13 @@ class AnyChart {
                         ),
                     ),
                 ),
+                
             ),
         );
         switch(self::$properties['chart_type']){
             case 'winddir':
             case 'dir':
             case 'wind_direction':
-                $y_axis['children']['scale'] = array(
-                    'properties' => array(
-                        'type' => 'Linear',
-                        'maximum' => 100,
-                        'minimum' => 0,
-                    ),
-                );
-                break;
-            case 'humidity':
                 $y_axis['children']['scale'] = array(
                     'properties' => array(
                         'type' => 'Linear',
@@ -232,6 +229,15 @@ class AnyChart {
                     
                 );
                 break;
+            case 'humidity':
+                $y_axis['children']['scale'] = array(
+                    'properties' => array(
+                        'type' => 'Linear',
+                        'maximum' => 100,
+                        'minimum' => 0,
+                    ),
+                );
+                break;
         }
 
         
@@ -239,7 +245,10 @@ class AnyChart {
             'properties' => array(),
             'children' => array(
                 'y_axis' => array(
-                    'properties' => array(),
+                    'properties' => array(
+                        'name' =>'y2',
+                        'enabled' => 'False'
+                    ),
                     'children' => array(
                         'title' => array(
                             'properties' => array(
@@ -269,7 +278,7 @@ class AnyChart {
                     ),
                     'value' => null,
                 ),
-                'boder' => array(
+                'border' => array(
                     'properties' => array(
                         'enabled' => 'false'
                     ),
@@ -285,7 +294,9 @@ class AnyChart {
         );
         
         $data_plot_background = array(
-            'properties' => array(),
+            'properties' => array(
+                'enabled' => 'false'
+            ),
             'children' => array(
                 'effects' => array(
                     'properties' => array(
@@ -328,44 +339,35 @@ class AnyChart {
         $data_plot_settings = array();
         $graph_type = '';
         $graph_settings = array();
-        
-        
+        $keys = array();
         
         $bar_settings = array(
-            'properties' => array(),
+            'properties' => array(
+                'point_padding' => '0',
+                'scatter_point_width' => '4.7%',
+            ),
             'children' => array(
                 'bar_style' => array(
                     'properties' => array(),
                     'children' => array(
                         'fill' => array(
-                            'properties' => array(),
-                            'value' => null
+                            'properties' => array(
+                                'enabled' => 'true',
+                                'type' => 'Gradient',
+                            ),
+                            'children' => null
                         ),
                         'border' => array(
-                            'properties' => array(),
-                            'children' => array(
-                                'gradient' => array(
-                                    'properties' => array(),
-                                    'children' => array(
-                                        'key' => array(
-                                            'properties' => array(),
-                                            'value' => null
-                                        ),
-                                        'key' => array(
-                                            'properties' => array(),
-                                            'value' => null
-                                        ),
-                                        'key' => array(
-                                            'properties' => array(),
-                                            'value' => null
-                                        ),
-                                    )
-                                )
-                            )
+                            'properties' => array(
+                                'enabled' => 'False',
+                            ),
+                            'value' => null
                         ),
                         'effects' => array(
-                            'properties' => array(),
-                            'children' => array()
+                            'properties' => array(
+                                'enabled' => 'False',
+                            ),
+                            'value' => null
                         ),
                     ),
                 )
@@ -419,7 +421,79 @@ class AnyChart {
                     ),
                 );
                 break;
+            case 'sunshine':
+               $keys = array(
+                    Xml::createTag('key', array('position' => '0','color' => '#FFD500')),
+                    Xml::createTag('key', array('position' => '0.3','color' => '#FFF000')),
+                    Xml::createTag('key', array('position' => '1','color' => '#FFF000')),
+                );
+                
+                unset($bar_settings['children']['bar_style']['children']['fill']);
+                unset($bar_settings['children']['bar_style']['children']['border']);
+                $bar_settings = array();
+                $bar_settings['properties']['scatter_point_width'] = '0.4%';
+                $bar_settings['properties']['group_padding'] = '0';
+                
+                $bar_settings['children']['bar_style']['children']['fill']['properties'] = array(
+                    'enabled' => 'true',
+                    'type' => 'Solid',
+                    'color' => '#fff000',
+                    'thickness' => '1',
+                );
+                
+                $bar_settings['children']['bar_style']['children']['border'] = array(
+                    'properties' => array(
+                        'enabled' => 'True',
+                        'type' =>'Gradient'
+                    ),
+                    'children' => array(
+                        'gradient' => array(
+                            'properties' => array(
+                                'angle' => '90'
+                            ),
+                        )
+                    )
+                );
+                $bar_settings['children']['bar_style']['children']['border']['children']['gradient']['value'] = $keys;
+                break;
+            case 'global_radiation':
+                unset($bar_settings['children']['bar_style']['children']['fill']);
+                unset($bar_settings['children']['bar_style']['children']['border']);
+                
+                $bar_settings['children']['bar_style']['children']['fill'] = array(
+                    'properties' => array(
+                        'enabled' => 'true',
+                        'type' => 'Solid',
+                        'color' => '#182DCC',
+                        'thickness' => '1',
+                    )
+                );
+                break;
+            case 'precip':
+            case 'precipitation':
+                // This is a quick fix for the nested same key names
+                $keys = array(
+                    Xml::createTag('key', array('position' => '0','color' => '#0036d9')),
+                    '<!-- innen -->',
+                    Xml::createTag('key', array('position' => '1','color' => '#002080')),
+                );
+                
+                
+                $bar_settings['children']['bar_style']['children']['fill']['children']['gradient']['properties'] = array(
+                    'type' => 'Radial'
+                );
+                $bar_settings['children']['bar_style']['children']['fill']['children']['gradient']['value'] = $keys;
+                break;
+            case 'airpressure':
+                $keys = array(
+                    Xml::createTag('key', array('position' => '0','color' => '#F5E616')),
+                    Xml::createTag('key', array('position' => '1','color' => '#E3D50B')),
+                );
+                $bar_settings['children']['bar_style']['children']['fill']['children']['gradient']['value'] = $keys;
+                break;
         }
+        
+        
         
         switch(self::$properties['chart_type']){
             case 'temp':
@@ -450,33 +524,157 @@ class AnyChart {
                 $graph_type => $graph_settings
             )
         );
+        
         return $data_plot_settings;
     }
     
+    public static function chartStyles(){
+        
+        $styles = array();
+        
+        switch(self::$properties['chart_type']){
+            case 'temperature':
+            case 'temp':
+                $styles = array(
+                    'properties' => array(),
+                    'value' => array(
+                        Xml::createTag('line_style', array('name'=>'tlline', 'color' =>'#c80000'), array(Xml::createTag('line', array('thickness'=> '2')))),
+                        Xml::createTag('line_style', array('name'=>'tdline', 'color' =>'#00c800'), array(Xml::createTag('line', array('thickness'=> '2')))),
+                        Xml::createTag('line_style', array('name'=>'noline'), array(Xml::createTag('line', array('enabled'=> 'false')))),
+                        Xml::createTag('marker_style', array('name'=>'dotblue', 'color' =>'blue'), array(Xml::createTag('line', array('size'=> '3', 'type'=>'circle')))),
+                        Xml::createTag('marker_style', array('name'=>'dotred', 'color' =>'c80000'), array(Xml::createTag('line', array('size'=> '3', 'type'=>'circle')))),
+                    ),
+                );
+                break;
+            case 'wind':
+                $styles = array(
+                    'properties' => array(),
+                    'value' => array(
+                        Xml::createTag('line_style', array('name'=>'ffline', 'color' =>'#966400')),
+                        Xml::createTag('line_style', array('name'=>'g1line', 'color' =>'#c800aa')),
+                    ),
+                );
+                break;
+            case 'dir':
+            case 'winddir':
+                $styles = array(
+                    'properties' => array(),
+                    'value' => array(
+                        Xml::createTag('line_style', array('name'=>'dirline', 'color' =>'green'), array(Xml::createTag('line', array('enabled' => 'false')))),
+                        Xml::createTag('marker_style', array('name'=>'wind_1'), array(Xml::createTag('marker', array('type' => 'Image', 'image_url' => '../theme/weatherph/img/w1.png', 'size' =>'15')))),
+                        Xml::createTag('marker_style', array('name'=>'wind_2'), array(Xml::createTag('marker', array('type' => 'Image', 'image_url' => '../theme/weatherph/img/w2.png', 'size' =>'15')))),
+                        Xml::createTag('marker_style', array('name'=>'wind_3'), array(Xml::createTag('marker', array('type' => 'Image', 'image_url' => '../theme/weatherph/img/w3.png', 'size' =>'15')))),
+                        Xml::createTag('marker_style', array('name'=>'wind_4'), array(Xml::createTag('marker', array('type' => 'Image', 'image_url' => '../theme/weatherph/img/w4.png', 'size' =>'15')))),
+                        Xml::createTag('marker_style', array('name'=>'wind_5'), array(Xml::createTag('marker', array('type' => 'Image', 'image_url' => '../theme/weatherph/img/w5.png', 'size' =>'15')))),
+                        Xml::createTag('marker_style', array('name'=>'wind_6'), array(Xml::createTag('marker', array('type' => 'Image', 'image_url' => '../theme/weatherph/img/w6.png', 'size' =>'15')))),
+                        Xml::createTag('marker_style', array('name'=>'wind_7'), array(Xml::createTag('marker', array('type' => 'Image', 'image_url' => '../theme/weatherph/img/w7.png', 'size' =>'15')))),
+                        Xml::createTag('marker_style', array('name'=>'wind_8'), array(Xml::createTag('marker', array('type' => 'Image', 'image_url' => '../theme/weatherph/img/w8.png', 'size' =>'15')))),
+                        Xml::createTag('marker_style', array('name'=>'wind_9'), array(Xml::createTag('marker', array('type' => 'Image', 'image_url' => '../theme/weatherph/img/w9.png', 'size' =>'15')))),
+                    ),
+                );
+                break;
+            case 'humidity':
+                $styles = array(
+                    'properties' => array(),
+                    'value' => array(
+                        Xml::createTag('line_style', array('name'=>'rhline', 'color' =>'#00c800')),
+                    ),
+                );
+                break;
+        }
+        
+        return $styles;
+    }
+    
+    public static function plotData(){
+
+        $series = array();
+        $series_properties = array();
+        $series_children = array();
+
+        foreach (self::$chartData['sets'] as $key => $sets) {
+            $series_properties = array();
+            $series_children = array();
+            
+            
+            
+            foreach (self::$chartData['series'][$key] as $index => $attr) {
+                $series_properties[$index] = $attr; 
+
+            }
+            
+            
+            if(isset(self::$chartData['additional'][$key])){
+                foreach (self::$chartData['additional'][$key] as $index => $addtnl) {
+                    $index_properties = array();
+                    foreach ($addtnl as $key2 => $add) {
+                        $index_properties[$key2] = $add;
+                    }
+
+                    $series_children[count($series_children)] = Xml::createTag($index, $index_properties);
+                }
+            }
+            
+                
+            foreach ($sets as $set) {
+                $values = array();
+                if(is_array($set)){
+                    if(key_exists('x', $set)){
+                        $values[0] = '<!-- ' . date('Y-m-d H:i:s', $set['x']) . '-->';
+                        if (isset($set['marker'])){
+                            $values[1] = Xml::createTag('marker', array('style' => $set['marker']));
+                        }
+                        $series_children[count($series_children)] = Xml::createTag('point', array('x' => $set['x'], 'y' => $set['y']), $values);
+                    }
+                }
+            }
+            
+            
+            
+            $series[count($series)] = Xml::createTag('series', $series_properties, $series_children);
+            unset($series_properties);
+            unset($series_children);
+        }
+        
+       
+       return $series;
+    }
+    
     public static function createChart($type, $arrData){
-//        CakeLog::write('anychart', print_r($arrData, true));
         
         self::$properties['chart_type'] = $type;
         self::$data = $arrData['settings'];
+        self::$chartData = $arrData;
+        
         
         $anychart = array(
             'anychart' => array(
                 'children' => array(
+                    'margin' => self::$properties['margin'],
                     'settings' => self::globalSettings(),
                     'charts' => array(
-                        'properties' => array(
-                            'plot_type' => 'Scatter'
-                        ),
+                        'properties' => array(),
                         'children' => array(
-                            'chart_settings' => self::chartSettings(),
-                            'data_plot_settings' => self::dataPlotSettings(),
+                            'chart' => array(
+                                'properties' => array(
+                                    'plot_type' => 'Scatter'
+                                ),
+                                'children' => array(
+                                    'chart_settings' => self::chartSettings(),
+                                    'data_plot_settings' => self::dataPlotSettings(),
+                                    'styles' => self::chartStyles(),
+                                    'data' => array(
+                                        'properties' => array(),
+                                        'value' => self::plotData()
+                                    )
+                                )
+                            )
                         ),
                     ),
                 )
             )
         );
         
-        CakeLog::write('anychart', print_r($anychart, true));
         
         return $anychart;
     }

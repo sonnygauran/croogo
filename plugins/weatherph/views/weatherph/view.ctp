@@ -1,4 +1,4 @@
-<?php //echo $this->Html->script('AnyChart.js'); ?>
+<?php //echo $this->Html->script('AnyChart.js');   ?>
 
 <?php
 //echo $this->Html->script(array(
@@ -7,9 +7,9 @@
 //    )); 
 
 echo $this->Html->script(array(
-    $this->webroot.'weatherph/js/weatherph/view',
-    $this->webroot.'weatherph/js/weatherph/AnyChart',
-    )); 
+    $this->webroot . 'weatherph/js/weatherph/view',
+    $this->webroot . 'weatherph/js/weatherph/AnyChart',
+));
 ?>
 
 <!--<script type="text/javascript" scr="<?= $this->webroot ?>js/weatherph/view.js"></script>
@@ -18,100 +18,101 @@ echo $this->Html->script(array(
 <div class="content">
     <section class="main">
         <div id="currentWeather" class="shadow">
-            
+
             <div id="station">
                 <h1><?= $dataSets['stationName']; ?></h1>
-<!--                <a href="#">change station</a>-->
+                <!--                <a href="#">change station</a>-->
             </div> <!--END STATION-->
 
-            <?php if($dataSets['reading']['status'] == 'ok'): ?>
-            <div id="condition">
-                <table>
-                    <tbody>
-                        <tr>
-                            <td><span class="symbol sunrise"></span></td>
-                            <td>Sunrise: <?= date("h:iA",strtotime($dataSets['reading']['sunrise'])); ?></td>
-                        </tr>
-                        <tr>
-                            <td><span class="symbol sunset"></span></td>
-                            <td>Sunset: <?= date("h:iA",strtotime($dataSets['reading']['sunset'])); ?></td>
-                        </tr>
-                        <tr>
-                            <td><span class="symbol moonphase_<?= $dataSets['reading']['moonphase']['phase_code']; ?>"></span></td>
-                            <td>Moon Phase: <?= $dataSets['reading']['moonphase']['phase']; ?></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div> <!--END CONDITION-->
-            
-            <div id="conditionTable">
-                <table>
-                    <tbody>
-                        <tr>
-                            <td class="caption">Avg. Wind Speed</td>
-                            <td class="output"><?= $dataSets['reading']['ff']; ?>km/h</td>
-                        </tr>
-                        <tr>
-                            <td class="caption">Precipitation</td>
-                            <td class="output"><?= $dataSets['reading']['rr']; ?>mm</td>
-                        </tr>
-                        <tr>
-                            <td class="caption">Relative Humidity</td>
-                            <td class="output"><?= $dataSets['reading']['rh']; ?>%</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div> <!--END CONDITION TABLE-->
-            <?php endIf; ?>
-            
+            <?php if ($dataSets['reading']['status'] == 'ok'): ?>
+                <div id="condition">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td><span class="symbol sunrise"></span></td>
+                                <td>Sunrise: <?= date("h:iA", strtotime($dataSets['reading']['sunrise'])); ?></td>
+                            </tr>
+                            <tr>
+                                <td><span class="symbol sunset"></span></td>
+                                <td>Sunset: <?= date("h:iA", strtotime($dataSets['reading']['sunset'])); ?></td>
+                            </tr>
+                            <tr>
+                                <td><span class="symbol moonphase_<?= $dataSets['reading']['moonphase']['phase_code']; ?>"></span></td>
+                                <td>Moon Phase: <?= $dataSets['reading']['moonphase']['phase']; ?></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div> <!--END CONDITION-->
+
+                <div id="conditionTable">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td class="caption">Avg. Wind Speed</td>
+                                <td class="output"><?= $dataSets['reading']['ff']; ?>km/h</td>
+                            </tr>
+                            <tr>
+                                <td class="caption">Precipitation</td>
+                                <td class="output"><?= $dataSets['reading']['rr']; ?>mm</td>
+                            </tr>
+                            <tr>
+                                <td class="caption">Relative Humidity</td>
+                                <td class="output"><?= $dataSets['reading']['rh']; ?>%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div> <!--END CONDITION TABLE-->
+                <?php endIf; ?>
+
         </div> <!--END CURRENT WEATHER-->
-        <?php if($dataSets['reading']['sunrise'] == 'none'): ?>
+        <?php if ($dataSets['reading']['status'] == 'none'): ?>
             <div class="no-readings" style="display: block;">
                 <p>Sorry, there are no readings available for this station.</p>
             </div>
-        <?php endIf; ?>
-        
+            <?php endIf; ?>
+
         <div id="weekWeather">
-            <h4>This week's forecast</h4>
-            
+
             <div class="tab-container">
-            <?php foreach ($dataSets['forecast'] as $key => $dayForecasts) {
-                
-                $today = date("Ymd");
-                $forecast_day_name = ($key == $today)? "Today" : date('l', strtotime($key));
-                
-                ?>
-                <div class="day-forecast-wrapper">
-                    <h5><?= $forecast_day_name; ?>, <?= date('F d, Y', strtotime($key));?></h5>
-                    <table>
-                        <thead>
+                <?php
+                foreach ($dataSets['forecast'] as $key => $dayForecast) {
+
+                    $today = date("Ymd");
+                    $tab_class = ($key == $today) ? 'current-tab' : 'tab';
+                    $div_id = ($key == $today) ? "Today" : date('l', strtotime($key));
+                    
+                    $date = date('F j, Y');
+                    $divdate = ($key == $date) ? date('F j, Y') : date('F j, Y', strtotime($key)); 
+                   ?>
+
+                    <div class ="daydate"><span class="daytime"><?= $div_id ?></span><?= ', '.$divdate?></div>
+                    <table class="week-forecast" cellspacing="0">
+                        <tr>
+                            <th class="columnheader"> Time </th>
+                            <th class="columnheader">Condition</th>
+                            <th class="columnheader"> Temperature </th>
+                            <th class="columnheader"> Precipitation </th>
+                            <th class="columnheader"> Wind Speed </th>
+                            <th class="columnheader"> Wind Direction </th>
+                        </tr>
+
+                        <?php foreach ($dayForecast as $forecasts2) { ?>
                             <tr>
-                                <th>Time</th>
-                                <th>Condition</th>
-                                <th>Temperature</th>
-                                <th>Precipitation</th>
-                                <th>Wind Speed</th>
-                                <th>Wind Direction</th>
+                                <td class="time"><?= $forecasts2['localtime_range']; ?></td>
+                                <td class="condition"><span class="symbol <?= $forecasts2['weather_symbol']; ?>"></span></td>
+                                <td class="temperature"><?= $forecasts2['temperature']; ?>&deg;C</td>
+                                <td class="precipitation"><?= $forecasts2['precipitation']; ?>mm</td>
+                                <td class ="wind"><?= $forecasts2['wind_speed']; ?>km/h</td>
+                                <td class="direction"><span class="symbol <?= $forecasts2['wind_direction']; ?>"></span><span class="wind-description"><?= $forecasts2['wind_description']; ?></span></td>
                             </tr>
-                        </thead>
-                        <tbody>
-            <?php foreach($dayForecasts as $forecast){ ?>
-                            <tr>
-                                <td><?= $forecast['localtime_range']; ?></td>
-                                <td><span class="symbol <?= $forecast['weather_symbol']; ?>"></span>
-                                <td><?= $forecast['temperature']; ?>&deg;C</td>
-                                <td><?= $forecast['precipitation']; ?>mm</td>
-                                <td><?= $forecast['wind_speed']; ?>km/h</td>
-                                <td class="left"><span class="symbol <?= $forecast['wind_direction']; ?>"></span><span class="wind-description"><?= $forecast['wind_description']?></span></td>
-                            </tr>
-            <? }?>            
-                        </tbody>
+                        <?php } ?>   
+
                     </table>
+                    <?php } ?>
                 </div>
-            <?php } ?>
-            </div>
-        </div> <!--END WEEK WEATHER-->
-        
+            
+        </div><!--END WEEK WEATHER-->
+
     </section> <!--MAIN CONTENT-->
 
     <section class="secondary">
@@ -125,67 +126,67 @@ echo $this->Html->script(array(
             </ul>
             <div class="tab-container">
                 <div class="temperature panel current-tab">
-                  <script type="text/javascript" language="javascript">
+                    <script type="text/javascript" language="javascript">
                         //<![CDATA[
-                            var chart = new AnyChart('<?= $this->webroot ?>swf/AnyChart.swf');
-                            chart.width = 794;
-                            chart.height = 200;
-                            chart.setXMLFile('<?= $this->webroot ?>getDetailedForecast/<?= $dataSets['stationId']; ?>/temperature/3h');
-                            chart.write();
+                        var chart = new AnyChart('<?= $this->webroot ?>swf/AnyChart.swf');
+                        chart.width = 794;
+                        chart.height = 200;
+                        chart.setXMLFile('<?= $this->webroot ?>getDetailedForecast/<?= $dataSets['stationId']; ?>/temperature/3h');
+                        chart.write();
                         //]]>
                     </script>
                 </div>
                 <div class="precipitation panel">
-                  <script type="text/javascript" language="javascript">
+                    <script type="text/javascript" language="javascript">
                         //<![CDATA[
-                            var chart = new AnyChart('<?= $this->webroot ?>swf/AnyChart.swf');
-                            chart.width = 794;
-                            chart.height = 200;
-                            chart.setXMLFile('<?= $this->webroot ?>getDetailedForecast/<?= $dataSets['stationId']; ?>/precip');
-                            chart.write();
+                        var chart = new AnyChart('<?= $this->webroot ?>swf/AnyChart.swf');
+                        chart.width = 794;
+                        chart.height = 200;
+                        chart.setXMLFile('<?= $this->webroot ?>getDetailedForecast/<?= $dataSets['stationId']; ?>/precip/6h');
+                        chart.write();
                         //]]>
                     </script>
                 </div>
                 <div class="wind panel">
-                  <script type="text/javascript" language="javascript">
+                    <script type="text/javascript" language="javascript">
                         //<![CDATA[
-                            var chart = new AnyChart('<?= $this->webroot ?>swf/AnyChart.swf');
-                            chart.width = 794;
-                            chart.height = 200;
-                            chart.setXMLFile('<?= $this->webroot ?>getDetailedForecast/<?= $dataSets['stationId']; ?>/wind');
-                            chart.write();
+                        var chart = new AnyChart('<?= $this->webroot ?>swf/AnyChart.swf');
+                        chart.width = 794;
+                        chart.height = 200;
+                        chart.setXMLFile('<?= $this->webroot ?>getDetailedForecast/<?= $dataSets['stationId']; ?>/wind/3h');
+                        chart.write();
                         //]]>
                     </script>
-                  <script type="text/javascript" language="javascript">
+                    <script type="text/javascript" language="javascript">
                         //<![CDATA[
-                            var chart = new AnyChart('<?= $this->webroot ?>swf/AnyChart.swf');
-                            chart.width = 794;
-                            chart.height = 50;
-                            chart.setXMLFile('<?= $this->webroot ?>getDetailedForecast/<?= $dataSets['stationId']; ?>/winddir/6h');
-                            chart.write();
+                        var chart = new AnyChart('<?= $this->webroot ?>swf/AnyChart.swf');
+                        chart.width = 794;
+                        chart.height = 70;
+                        chart.setXMLFile('<?= $this->webroot ?>getDetailedForecast/<?= $dataSets['stationId']; ?>/winddir/6h');
+                        chart.write();
                         //]]>
                     </script>
                 </div>
                 <div class="humidity panel">
-                  <script type="text/javascript" language="javascript">
+                    <script type="text/javascript" language="javascript">
                         //<![CDATA[
-                            var chart = new AnyChart('<?= $this->webroot ?>swf/AnyChart.swf');
-                            chart.width = 794;
-                            chart.height = 200;
-                            chart.setXMLFile('<?= $this->webroot ?>getDetailedForecast/<?= $dataSets['stationId']; ?>/humidity');
-                            chart.write();
+                        var chart = new AnyChart('<?= $this->webroot ?>swf/AnyChart.swf');
+                        chart.width = 794;
+                        chart.height = 200;
+                        chart.setXMLFile('<?= $this->webroot ?>getDetailedForecast/<?= $dataSets['stationId']; ?>/humidity/3h');
+                        chart.write();
                         //]]>
                     </script>
                 </div>
             </div>
         </div> <!--END CHARTS-->
-<!--        <div id="outlook">
-            <h4>15-Day Outlook</h4>
-            <ul class="tabs">
-                <li class="current-tab"><a href="javascript: void(0);">Temperature</a></li>
-                <li><a href="javascript: void(0);">Precipitation</a></li>
-                <li><a href="javascript: void(0);">Wind</a></li>
-            </ul>
-        </div> END OUTLOOK-->
+        <!--        <div id="outlook">
+                    <h4>15-Day Outlook</h4>
+                    <ul class="tabs">
+                        <li class="current-tab"><a href="javascript: void(0);">Temperature</a></li>
+                        <li><a href="javascript: void(0);">Precipitation</a></li>
+                        <li><a href="javascript: void(0);">Wind</a></li>
+                    </ul>
+                </div> END OUTLOOK-->
     </section> <!--SECONDARY-->
 </div> <!--CONTENT-->

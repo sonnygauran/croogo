@@ -135,7 +135,7 @@ class WeatherphController extends WeatherphAppController {
         $this->set('detailedForecast', $detailedForecast);
     }
 
-    public function getDetailedForecast($stationID = '984290', $type = NULL, $timeRes = '3h', $startDatum = NULL) {
+    public function getDetailedForecast($stationID = '984290', $type = NULL, $timeRes = '1h', $startDatum = NULL) {
 
 //        if($this->referer() != '/swf/AnyChart.swf') return; // limits the access of the XML for anychart usage
         App::import('Model', 'Weatherph.WeatherphStationForecast');

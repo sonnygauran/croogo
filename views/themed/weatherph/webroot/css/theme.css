@@ -339,7 +339,7 @@ text-shadow: 0px 2px 3px #555;
 ====================*/
 .secondary{
     width: 794px;
-    margin-top: 3em;
+    margin-top: 1em;
     float: left;
 }
 
@@ -390,6 +390,23 @@ text-shadow: 0px 2px 3px #555;
     font-size: 1.875em;
     font-weight: 700;
 }
+
+.daydate{
+    background-color: #3E5E95;
+    border-radius: 5px 5px 0px 0;
+    color: #fff;
+    padding-top: 8px;
+    margin-top: 5px;
+    padding-bottom: 5px;
+    font-size: 15px;
+    width: 20em;
+    text-align: center;
+    box-shadow: 2px 0 0 0 #555;
+}
+
+span.daytime {
+     font-weight: bold;
+ }
 
 .date .month, .date .year {
     font-size: 1.2em;
@@ -527,7 +544,7 @@ div.current-tab {
 ===============*/
 
 .week-forecast td {
-    padding: 10px;
+    padding: 4px;
     text-align: center;
     border: 1px solid #d6dfeb;
 }
@@ -694,7 +711,7 @@ body {
     text-align: center;
 }
 
-nav, .layerSelector, .promo, #info, .week-forecast .time, .output {
+nav, .layerSelector, .promo, #info, .output {
     background-color: #365283;
     color: #fafafa;
 }
@@ -721,6 +738,14 @@ nav, .layerSelector, .promo, #info, .week-forecast .time, .output {
     background-color: #fafafa;
     color: #365283;
     vertical-align: middle;
+}
+
+.columnheader{
+    color: #fff;
+    vertical-align: middle;
+    background: #4f75b6;
+    padding: 6px;
+    font-weight: normal;
 }
 
 .sponsored {
@@ -857,7 +882,7 @@ nav li:active, .detail-page-link:active {
     SPRITEMAP
 ====================*/
 
-span.symbol { background: url('<?= $this->webroot ?>theme/weatherph/img/warning-sprites.png') -5px -65px no-repeat; height: 30px; width: 40px; display: inline-block; margin: auto;}
+span.symbol { background: url('<?= $this->webroot ?>theme/weatherph/img/warning-sprites.png') -5px -65px no-repeat; height: 30px; width: 40px; display: block; margin: auto;}
 
 span.day_1 { background-position: -70px -180px; }
 span.day_2 { background-position: -125px -180px; }
@@ -921,35 +946,6 @@ span.moonphase_7 { background-position: -540px 5px; }
 span.sunrise { background-position: 0px 5px; }
 span.sunset { background-position: -60px 5px; }
 
-.left{
-    text-align: left;
-}
-
-div.day-forecast-wrapper {
-    float: left;
-    margin: 20px 0 30px;
-    width: 100%;
-}
-
-div.day-forecast-wrapper table {
-    margin: 10px 0 0 0;
-    width: 100%;
-}
-
-div.day-forecast-wrapper table th {
-    background-color: #365283;
-    padding: 5px 10px;
-    color: #fff;
-    font-weight: normal;
-}
-
-div.day-forecast-wrapper table td{
-    border-bottom: 1px solid #7F8285;
-    text-align: center;
-    padding: 0 5px;
-}
-
-
 span.wind-description { font-size: 10px; }
 /*
  *
@@ -957,3 +953,6 @@ span.wind-description { font-size: 10px; }
  .names a:link {
      color: blue;
  }
+
+ 
+ 

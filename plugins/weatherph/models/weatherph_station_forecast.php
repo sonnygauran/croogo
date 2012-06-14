@@ -1,5 +1,7 @@
 <?php
 
+App::import('Lib', 'Meteomedia.Abfrage');
+App::import('Lib', 'Meteomedia.Curl');
 /**
  * Acquires the of Weather Forecast Stations
  */
@@ -11,60 +13,51 @@ class WeatherphStationForecast extends WeatherphAppModel
     
     public function get($conditions = null, $fields = array(), $order = null, $recursive = null){
         
-        include dirname(__FILE__) . '/auth.php';
-        
         $abfrageResults = array();
         
         $stationId = $fields['conditions']['id'];
+        $Abfrage = new Abfrage($stationId);
         
         // Get the default timestamp timezone
         $siteTimezone = Configure::read('Site.timezone');
         $Date = new DateTime(null, new DateTimeZone($siteTimezone)); 
         
-        // Set local UTC time based on the default timestamp timezone
-        $localutctimestart = date('Ymd H:i:s', strtotime('-'.($Date->getOffset()/3600).' hours', strtotime(date('Ymd'))));
-        $localutctimeend = date('Ymd H:i:s', strtotime('+2 Day', strtotime($localutctimestart)));
-        
-        // Get the start date from local UTC time
-        $startdatum = date('Ymd', strtotime($localutctimestart));
-        $startutc = date('H', strtotime($localutctimestart));
-        
-        // Get the end date from local UTC time
-        $enddatum = date('Ymd', strtotime($localutctimeend));
-        $endutc = date('H', strtotime($localutctimeend));
-        
         $stationInfo = $this->getStationInfo($stationId, array("name","lat","lon"));
         
         $abfrageResults['station_name'] = $stationInfo['name'];
         
-        // Set the target header specimen 
-        $headersSpecimen = "Datum;utc;min;ort1;dir;ff;g3h;tl;rr;sy;rain3;rh;sy2;";
-        
         //Grab stations readings  
-        $url = "http://192.168.20.89/abfrage.php?stationidstring=$stationId&datumstart=$startdatum&datumend=$enddatum&utcstart=$startutc&utcend=$endutc&zeiten1=10m&paramliste=tl,dir,ff,g3h,rr,rh,sy,sy2,rain3&output=csv2&ortoutput=wmo6,name&aufruf=auto";
-        $this->log($url);
+        $url = $Abfrage->generateURL($this->generateDate('reading', '10m'), array(
+            'Temperature' => array(
+                'low'
+            ),
+            'Wind' => array(
+                'speed', 'direction'
+            ),
+            'Gust' => array(
+                '3 hours'
+            ),
+            'Rainfall' => array(
+                'Period'
+            ),
+            'Weather Symbols' => array(
+                'Set 1', 'Set 2'
+            ),
+            'Humidity'
+        ));
         
         // Get the string after the question-mark sign
         $gum = $stationId.'_reading_'.sha1(end(explode('?',$url)));
         $curlResults = NULL;
         if (!Cache::read($gum, '3hour')) {
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, $url);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-            curl_setopt($ch, CURLOPT_USERPWD, "{$karten['username']}:{$karten['password']}");
-            curl_setopt($ch, CURLOPT_USERAGENT, "Weather.com.ph Curl Client 1.0");
-            curl_setopt($ch, CURLOPT_TIMEOUT, 10); //times out after 10s 
-            curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-
-            $curlResults = curl_exec($ch);
-            curl_close($ch);
+            $curlResults = Curl::getData($url);
             Cache::write($gum, $curlResults, '3hour');
         } else {
             $curlResults = Cache::read($gum, '3hour');
         }
-        
+
         // Convert cURL CSV to Array 
-        $resultsReadings = $this->csvToArray($curlResults, $headersSpecimen);
+        $resultsReadings = $this->csvToArray($curlResults);
         
         // Get sunrise and sunset using current latituted and longtitude station
         $sunrise = $this->sunInfo($stationInfo['lat'], $stationInfo['lon'], 'sunrise');
@@ -113,32 +106,42 @@ class WeatherphStationForecast extends WeatherphAppModel
         //STATION FORECAST
         
         //Grab stations forecast  
-        $url = "http://192.168.20.89/abfrage.php?stationidstring=$stationId&datumstart=$startdatum&datumend=$enddatum&utcstart=$startutc&utcend=$endutc&zeiten1=1h&paramtyp=mos_mix_mm&&paramliste=tl,dir,ff,g3h,rr,rh,rr1h,rain3,sy,sy2&output=csv2&ortoutput=wmo6,name&aufruf=auto";
-        $this->log($url);
+        $url = $Abfrage->generateURL($this->generateDate('forecast', '3h'), array(
+            'Temperature' => array(
+                'low'
+            ),
+            'Wind' => array(
+                'speed', 'direction'
+            ),
+            'Gust' => array(
+                '3 hours'
+            ),
+            'Rainfall' => array(
+                'Period',
+                '1 hour',
+                '3 hours'
+            ),
+            'Weather Symbols' => array(
+                'Set 1', 'Set 2'
+            ),
+            'Humidity'
+        ));
         
         // Get the string after the question-mark sign
         $gum = $stationId.'_forecast_'.sha1(end(explode('?',$url)));
         $curlResults = NULL;
         if (!Cache::read($gum, '3hour')) {
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, $url);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-            curl_setopt($ch, CURLOPT_USERPWD, "{$karten['username']}:{$karten['password']}");
-            curl_setopt($ch, CURLOPT_USERAGENT, "Weather.com.ph Curl Client 1.0");
-            curl_setopt($ch, CURLOPT_TIMEOUT, 10); //times out after 10s 
-            curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-
-            $curlResults = curl_exec($ch);
-            curl_close($ch);
+            $curlResults = Curl::getData($url);
             Cache::write($gum, $curlResults, '3hour');
         } else {
             $curlResults = Cache::read($gum, '3hour');
         }
         
         // Convert cURL CSV results to Array 
-        $resultsForecasts = $this->csvToArray($curlResults, $headersSpecimen);
+        $resultsForecasts = $this->csvToArray($curlResults );
         
-        $current_forecast = array();
+        // Get the current reading time for succeding forecast hours
+        $nowHour = date('H', strtotime($current_reading['update']));
         
         $sum_rr1h = 0;
         
@@ -192,7 +195,7 @@ class WeatherphStationForecast extends WeatherphAppModel
            $abfrageResults['forecast']['status'] = 'none'; 
         }
         
-        $this->log(print_r($abfrageResults, TRUE));
+        //$this->log(print_r($abfrageResults, TRUE));
         
         return $abfrageResults;
         
@@ -277,7 +280,7 @@ class WeatherphStationForecast extends WeatherphAppModel
             
         }
         
-        $this->log(print_r($newer_datasets, TRUE));
+//        $this->log(print_r($newer_datasets, TRUE));
         
         return $newer_datasets;
         
@@ -285,9 +288,8 @@ class WeatherphStationForecast extends WeatherphAppModel
     
     public function getWeeklyForecast($conditions = null, $fields = array(), $order = null, $recursive = null){
         
-        include dirname(__FILE__) . '/auth.php';
-        
         $stationId = $fields['conditions']['id'];
+        $Abfrage = new Abfrage($stationId);
         
         // Get the default timestamp timezone
         $siteTimezone = Configure::read('Site.timezone');
@@ -298,22 +300,32 @@ class WeatherphStationForecast extends WeatherphAppModel
         
         $this->log($dateOffsets);
         
-        // Get the start date from local UTC time
-        $startdatum = date('Ymd', strtotime($dateOffsets['startDate']));
-        $startutc = date('H', strtotime($dateOffsets['startDate']));
-        
-        // Get the end date from local UTC time
-        $enddatum = date('Ymd', strtotime('+1 Day', strtotime($dateOffsets['startDate'])));
-        $endutc = date('H', strtotime($dateOffsets['endDate']));
-        
         // Get station info based on id
         $stationInfo = $this->getStationInfo($stationId, array("name","lat","lon"));
         
         // STATION READINGS
         
         //Grab stations readings  
-        $url = "http://192.168.20.89/abfrage.php?stationidstring=$stationId&datumstart=$startdatum&datumend=$enddatum&utcstart=$startutc&utcend=$endutc&zeiten1=10m&paramliste=tl,dir,ff,g3h,rr,rh,sy,sy2,rain6&output=csv2&ortoutput=wmo6,name&aufruf=auto";
-        $this->log($url);
+        $url = $Abfrage->generateURL($this->generateDate('reading', '10m'), array(
+            'Temperature' => array(
+                'low'
+            ),
+            'Wind' => array(
+                'speed', 'direction'
+            ),
+            'Gust' => array(
+                '3 hours'
+            ),
+            'Rainfall' => array(
+                'Period','6 hours'
+            ),
+            'Weather Symbols' => array(
+                'Set 1', 'Set 2'
+            ),
+            'Humidity'
+        ));
+        
+        $this->log('Readings:'.$url);
         
         // Get the string after the question-mark sign
         $gum = $stationId.'_reading_weekly_'.sha1(end(explode('?',$url)));
@@ -322,26 +334,14 @@ class WeatherphStationForecast extends WeatherphAppModel
         $curlResults = NULL;
         if (!Cache::read($gum, '3hour')) {
             $e = new Exception();
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, $url);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-            curl_setopt($ch, CURLOPT_USERPWD, "{$karten['username']}:{$karten['password']}");
-            curl_setopt($ch, CURLOPT_USERAGENT, "Weather.com.ph Curl Client 1.0");
-            curl_setopt($ch, CURLOPT_TIMEOUT, 10); //times out after 10s 
-            curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-
-            $curlResults = curl_exec($ch);
-            curl_close($ch);
+            $curlResults = Curl::getData($url);
             Cache::write($gum, $curlResults, '3hour');
         } else {
             $curlResults = Cache::read($gum, '3hour');
         }
         
-        // Set the target header specimen
-        $headersSpecimen = "Datum;utc;min;ort1;dir;ff;g3h;tl;rr;sy;rain6;rh;sy2;";
-        
         // Convert cURL CSV to Array 
-        $resultsReadings = $this->csvToArray($curlResults, $headersSpecimen);
+        $resultsReadings = $this->csvToArray($curlResults );
         
         // Get sunrise and sunset using current latituted and longtitude station
         $sunrise = $this->sunInfo($stationInfo['lat'], $stationInfo['lon'], 'sunrise');
@@ -391,40 +391,41 @@ class WeatherphStationForecast extends WeatherphAppModel
         
         // STATION FORECAST
         
-        $startdatum = date('Ymd', strtotime($dateOffsets['startDate']));
-        $startutc = date('H', strtotime($dateOffsets['startDate']));
-        
-        $enddatum = date('Ymd', strtotime($dateOffsets['endDate']));
-        $endutc = date('H', strtotime($dateOffsets['endDate']));
-        
         // Generate cURL for stations forecast  
-        $url = "http://192.168.20.89/abfrage.php?stationidstring=$stationId&datumstart=$startdatum&datumend=$enddatum&utcstart=$startutc&utcend=$endutc&zeiten1=1h&paramtyp=mos_mix_mm&mosmess=nein&paramliste=tl,dir,ff,g3h,rr,rh,sy,sy2,rr1h,rain3,rain6&output=csv2&ortoutput=wmo6,name&timefill=nein&verknuepft=nein&aufruf=auto";
-        $this->log($url);
+        $url = $Abfrage->generateURL($this->generateDate('forecast', '1h'), array(
+            'Temperature' => array(
+                'low'
+            ),
+            'Wind' => array(
+                'speed', 'direction'
+            ),
+            'Gust' => array(
+                '3 hours'
+            ),
+            'Rainfall' => array(
+                'Period','1 hour', '3 hours', '6 hours'
+            ),
+            'Weather Symbols' => array(
+                'Set 1', 'Set 2'
+            ),
+            'Humidity'
+        ));
         
+        //$this->log('Forecast'.$url);
+
         // Get the string after the question-mark sign
         $gum = $stationId.'_forecast_weekly_'.sha1(end(explode('?',$url)));
         
         $curlResults = NULL;
         if (!Cache::read($gum, '3hour')) {
             $e = new Exception();
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, $url);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-            curl_setopt($ch, CURLOPT_USERPWD, "{$karten['username']}:{$karten['password']}");
-            curl_setopt($ch, CURLOPT_USERAGENT, "Weather.com.ph Curl Client 1.0");
-            curl_setopt($ch, CURLOPT_TIMEOUT, 10); //times out after 10s 
-            curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-
-            $curlResults = curl_exec($ch);
-            curl_close($ch);
+            $curlResults = Curl::getData($url);
             Cache::write($gum, $curlResults, '3hour');
         } else {
             $curlResults = Cache::read($gum, '3hour');
         }
         
-        $headersSpecimen = "Datum;utc;min;ort1;dir;ff;g3h;tl;rr;rr1h;sy;rain3;rain6;rh;sy2;";
-        
-        $forecasts = $this->csvToArray($curlResults, $headersSpecimen);
+        $forecasts = $this->csvToArray($curlResults );
         
         $sum_rr1h = 0;
         
@@ -515,75 +516,102 @@ class WeatherphStationForecast extends WeatherphAppModel
     
     public function getDetailedForecast($conditions = null, $fields = array(), $order = null, $recursive = null){
         
-        include dirname(__FILE__) . '/auth.php';
+        // Get the default timestamp timezone
+        $siteTimezone = Configure::read('Site.timezone');
+        $Date = new DateTime(null, new DateTimeZone($siteTimezone)); 
         
         $stationId = $fields['conditions']['id'];
+        $Abfrage = new Abfrage($stationId);
+        $parameters = array();
+        
         $type = $fields['conditions']['type'];
         $timeRes = ($fields['conditions']['timeRes'] == NULL )? '1h' : $fields['conditions']['timeRes'];
         
-        $startdatum = $fields['conditions']['startDatum'];
-        
-        $startdatum = date('Ymd H:i:s', strtotime('-8 hours', strtotime(date('Ymd'))));    
-        $enddatum = date('Ymd H:i:s', strtotime("+5 Days ", strtotime(date('Ymd'))));
-        
-        $startutc = date('H', strtotime($startdatum));
-        $endutc = '00';
-        
-        $startdatum = date('Ymd', strtotime($startdatum));    
-        $enddatum = date('Ymd', strtotime($enddatum));
-        
-        $unit = '';
         switch($type){
+            case 'temperature':
+            case 'temp':
+                $parameters = array(
+                    'Temperature' => array(
+                        'low', 'min', 'max', 'dew point'
+                    )
+                );
+                //$data_time_resolution = '3h'; 
+                break;
+            case 'humidity':
+                $parameters = array(
+                    'Humidity'
+                );
+                //$data_time_resolution = '3h';
+                break;
+            case 'precipitation':
+            case 'precip':
+                $parameters = array(
+                    'Rainfall' => array(
+                        '6 hours'
+                     )
+                );
+                //$data_time_resolution = '6h';
+                break;
             case 'wind':
-                $unit = 2;
+                $parameters = array(
+                    'Wind' => array(
+                        'speed'
+                    ),
+                    'Gust' => array(
+                        '1 hour'
+                    )
+                );
+                //$data_time_resolution = '3h';
+                break;
+            case 'dir':
+            case 'winddir':
+                $parameters = array(
+                    'Wind' =>array(
+                        'direction'
+                    )
+                );
+                //$data_time_resolution = '3h';
                 break;
         }
         
-        //Grab stations readings  
-        $url = "http://192.168.20.89/abfrage.php?stationidstring=$stationId&datumstart=$startdatum&datumend=$enddatum&utcstart=$startutc&utcend=$endutc&zeiten1=$timeRes&paramtyp=mos_mix_mm&unit=$unit&mosmess=ja&rain6=on&paramliste=tl,tx,tn,td,rh,ff,g1h,dir,qff,sh,gl1h&output=csv2&ortoutput=wmo6,name&timefill=nein&verknuepft=nein&aufruf=auto";
+        //$timeRes = $data_time_resolution;
+        
+        $url = $Abfrage->generateURL($this->generateDate('chart', $timeRes), $parameters);
+        
         
         $gum = $stationId.'_detailed_forecast_'.sha1(end(explode('?',$url)));
         $curlResults = NULL;
         if (!Cache::read($gum, '3hour')) {
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, $url);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-            curl_setopt($ch, CURLOPT_USERPWD, "{$karten['username']}:{$karten['password']}");
-            curl_setopt($ch, CURLOPT_USERAGENT, "Weather.com.ph Curl Client 1.0");
-            curl_setopt($ch, CURLOPT_TIMEOUT, 10); //times out after 10s 
-            curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-
-            $curlResults = curl_exec($ch);
-            curl_close($ch);
+            $curlResults = Curl::getData($url);
             Cache::write($gum, $curlResults, '3hour');
         } else {
             $curlResults = Cache::read($gum, '3hour');
         }
         
-        $headersSpecimen = 'Datum;utc;min;ort1;dir;ff;g1h;tl;td;tx;tn;qff;sh;gl1h;rain6;rh;';
-        
-        $results = $this->csvToArray($curlResults, $headersSpecimen);
+        $results = $this->csvToArray($curlResults );
         
         foreach($results as $result){
             
-            if(trim($result['tl'])!=''){
-         
                 if(strtotime($result['Datum']) >= strtotime(date('Ymd'))){
-                //explode the ort1 raw data, grab only those needed
-                $result['ort1'] = explode('/', $result['ort1']);
-                unset($result['ort1'][0]);
-                $result['ort1'] = implode('/', $result['ort1']);
-                
-                $abfrageResults['ort1'] = $result['ort1']; 
-                
-                $utcDate = strtotime('+8 hours', strtotime($result['Datum'] . $result['utc'] . ':' .$result['min']));
-                $result['Datum'] = date('Ymd', $utcDate);
-                $result['utc'] = date('H', $utcDate);
-                $result['min'] = date('m', $utcDate);
-                
-                $abfrageResults['forecast'][$result['Datum']][] = $result;
+                    
+                    //if($result['utc']%$data_time_resolution == 0){ 
+                        
+                        //explode the ort1 raw data, grab only those needed
+                        $result['ort1'] = explode('/', $result['ort1']);
+                        unset($result['ort1'][0]);
+                        $result['ort1'] = implode('/', $result['ort1']);
+
+                        $abfrageResults['ort1'] = $result['ort1']; 
+
+                        $utcDate = strtotime($result['Datum'] . $result['utc'] . ':' .$result['min']) + $Date->getOffset();
+                        $result['Datum'] = date('Ymd', $utcDate);
+                        $result['utc'] = date('H', $utcDate);
+                        $result['min'] = date('m', $utcDate);
+
+                        $abfrageResults['forecast'][$result['Datum']][] = $result;
+                        
+                    //}
                 }    
-            }
        
         }
         
