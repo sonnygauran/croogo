@@ -8,6 +8,7 @@ class SearchController extends WeatherphAppController {
     public function index($terms = '') {
         $this->log('INDEX!!!');
         
+        
         if(!empty($this->params['pass'])){
             $keyword = $this->params['pass'][0];
             $this->paginate['NimaName'] = array (
@@ -48,5 +49,14 @@ class SearchController extends WeatherphAppController {
             
             
         }
+    }
+    
+    public function getResultCoordinates($keyword) {
+        $this->layout = 'json/ajax';
+
+        $NimaName = new NimaName();
+        $keyword = $this->params['pass'][0];
+        $locations = $NimaName->find('all', array('fields' => array('lat', 'long', 'full_name_ro'),  'conditions' => array( 'full_name_ro LIKE' => '%'.$keyword.'%')));
+        $this->set('locations', json_encode($locations));
     }
 }
