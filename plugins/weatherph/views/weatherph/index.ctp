@@ -302,14 +302,31 @@
                 <?php foreach ($featuredBlog as $blog) { ?>
                     <div class="blog-preview">
                         <?php $createdTime = strtotime($blog['Node']['created']); ?>
-                        <!--the date here is wrong, just testing-->
-                        <div class="date">
-                            <div class="day"><?= date('d', $createdTime) ?></div>
-                            <div class="month"><?= date('M', $createdTime) ?></div>
-                            <div class="year"><?= date('Y', $createdTime) ?></div>
+
+
+
+                        <div class="ribbon-wrapper">
+                            <div class="ribbon-front">
+                                <div class="date">
+                                    <div class="month"><?= date('M', $createdTime) ?></div>
+                                    <div class="day"><?= date('d', $createdTime) ?></div>
+                                    <div class="year"><?= date('Y', $createdTime) ?></div>
+                                </div>
+                            </div>
+                            <div class="ribbon-edge-topleft"></div>
+                            <div class="ribbon-edge-topright"></div>
+                            <div class="ribbon-edge-bottomleft"></div>
+                            <div class="ribbon-edge-bottomright"></div>
+
+
+                            
+
                         </div>
+                        
                         <h4><?= $html->link($blog['Node']['title'], $blog['Node']['url'], array('class' => 'link')) ?></h4>  
-                        <p><?= $text->excerpt(strip_tags($blog['Node']['body']), 'method', 200, '...' . $html->link('Read More...', $blog['Node']['url'])) ?></p>
+                        <p><?= $text->excerpt(strip_tags($blog['Node']['body']), 'method', 200, '...' . $html->link('Read More...', $blog['Node']['url'])) ?><?= '<hr>'; ?></p>
+
+
                     </div>
                 <?php } ?>
             </div>
