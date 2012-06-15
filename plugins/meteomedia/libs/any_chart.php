@@ -203,7 +203,7 @@ class AnyChart {
                     'children' => array(
                         'format' => array(
                             'properties' => array(),
-                            'value' => '{%Value}{numDecimals:0}'
+                            'value' => (self::$properties['chart_type'] == 'precip' || self::$properties['chart_type'] == 'precipitation')? '{%Value}{numDecimals:1}' : '{%Value}{numDecimals:0}'
                         ),
                         'font' => array(
                             'properties' => self::$properties['font'],
@@ -211,6 +211,7 @@ class AnyChart {
                         ),
                     ),
                 ),
+                
             ),
         );
         switch(self::$properties['chart_type']){
@@ -560,15 +561,15 @@ class AnyChart {
                     'properties' => array(),
                     'value' => array(
                         Xml::createTag('line_style', array('name'=>'dirline', 'color' =>'green'), array(Xml::createTag('line', array('enabled' => 'false')))),
-                        Xml::createTag('marker_style', array('name'=>'wind_1'), array(Xml::createTag('marker', array('type' => 'Image', 'image_url' => '../theme/weatherph/img/w1.png', 'size' =>'23')))),
-                        Xml::createTag('marker_style', array('name'=>'wind_2'), array(Xml::createTag('marker', array('type' => 'Image', 'image_url' => '../theme/weatherph/img/w2.png', 'size' =>'23')))),
-                        Xml::createTag('marker_style', array('name'=>'wind_3'), array(Xml::createTag('marker', array('type' => 'Image', 'image_url' => '../theme/weatherph/img/w3.png', 'size' =>'23')))),
-                        Xml::createTag('marker_style', array('name'=>'wind_4'), array(Xml::createTag('marker', array('type' => 'Image', 'image_url' => '../theme/weatherph/img/w4.png', 'size' =>'23')))),
-                        Xml::createTag('marker_style', array('name'=>'wind_5'), array(Xml::createTag('marker', array('type' => 'Image', 'image_url' => '../theme/weatherph/img/w5.png', 'size' =>'23')))),
-                        Xml::createTag('marker_style', array('name'=>'wind_6'), array(Xml::createTag('marker', array('type' => 'Image', 'image_url' => '../theme/weatherph/img/w6.png', 'size' =>'23')))),
-                        Xml::createTag('marker_style', array('name'=>'wind_7'), array(Xml::createTag('marker', array('type' => 'Image', 'image_url' => '../theme/weatherph/img/w7.png', 'size' =>'23')))),
-                        Xml::createTag('marker_style', array('name'=>'wind_8'), array(Xml::createTag('marker', array('type' => 'Image', 'image_url' => '../theme/weatherph/img/w8.png', 'size' =>'23')))),
-                        Xml::createTag('marker_style', array('name'=>'wind_9'), array(Xml::createTag('marker', array('type' => 'Image', 'image_url' => '../theme/weatherph/img/w9.png', 'size' =>'23')))),
+                        Xml::createTag('marker_style', array('name'=>'wind_1'), array(Xml::createTag('marker', array('type' => 'Image', 'image_url' => '../theme/weatherph/img/w1.png', 'size' =>'15')))),
+                        Xml::createTag('marker_style', array('name'=>'wind_2'), array(Xml::createTag('marker', array('type' => 'Image', 'image_url' => '../theme/weatherph/img/w2.png', 'size' =>'15')))),
+                        Xml::createTag('marker_style', array('name'=>'wind_3'), array(Xml::createTag('marker', array('type' => 'Image', 'image_url' => '../theme/weatherph/img/w3.png', 'size' =>'15')))),
+                        Xml::createTag('marker_style', array('name'=>'wind_4'), array(Xml::createTag('marker', array('type' => 'Image', 'image_url' => '../theme/weatherph/img/w4.png', 'size' =>'15')))),
+                        Xml::createTag('marker_style', array('name'=>'wind_5'), array(Xml::createTag('marker', array('type' => 'Image', 'image_url' => '../theme/weatherph/img/w5.png', 'size' =>'15')))),
+                        Xml::createTag('marker_style', array('name'=>'wind_6'), array(Xml::createTag('marker', array('type' => 'Image', 'image_url' => '../theme/weatherph/img/w6.png', 'size' =>'15')))),
+                        Xml::createTag('marker_style', array('name'=>'wind_7'), array(Xml::createTag('marker', array('type' => 'Image', 'image_url' => '../theme/weatherph/img/w7.png', 'size' =>'15')))),
+                        Xml::createTag('marker_style', array('name'=>'wind_8'), array(Xml::createTag('marker', array('type' => 'Image', 'image_url' => '../theme/weatherph/img/w8.png', 'size' =>'15')))),
+                        Xml::createTag('marker_style', array('name'=>'wind_9'), array(Xml::createTag('marker', array('type' => 'Image', 'image_url' => '../theme/weatherph/img/w9.png', 'size' =>'15')))),
                     ),
                 );
                 break;

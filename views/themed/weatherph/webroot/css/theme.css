@@ -911,7 +911,7 @@ nav li:active, .detail-page-link:active {
     SPRITEMAP
 ====================*/
 
-span.symbol { background: url('<?= $this->webroot ?>theme/weatherph/img/warning-sprites.png') -5px -65px no-repeat; height: 30px; width: 40px; display: block; margin: auto;}
+span.symbol { background: url('<?= $this->webroot ?>theme/weatherph/img/warning-sprites.png') -5px -65px no-repeat; height: 30px; width: 40px; display: block; margin: auto; cursor: pointer;}
 
 span.day_1 { background-position: -70px -180px; }
 span.day_2 { background-position: -125px -180px; }
@@ -976,6 +976,11 @@ span.sunrise { background-position: 0px 5px; }
 span.sunset { background-position: -60px 5px; }
 
 span.wind-description { font-size: .875em; }
- .names a:link {
-     color: blue;
- }
+
+.names a:link { color: blue; }
+ 
+ .legend { display: block; margin-left: 30px; vertical-align: middle; font-size: 10px; }
+ .legend span { display: inline-block; height: 5px; margin: 0 5px 0 0; padding: 0; width: 10px; }
+ 
+ .legend .red-line { background-color: red; }
+ .legend .green-line { background-color: green; }  
