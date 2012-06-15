@@ -95,11 +95,35 @@ class WeatherphAppModel extends AppModel {
 
     protected function dayOrNightSymbol($symbol = NULL, $utc = NULL, $meridiem = array()) {
 
+        $symbol = number_format($symbol, 0);
+        
+        $weather_description = array(
+            'Clear Sky',
+            'Sunny',
+            'Light Cloudy',
+            'Partly Cloudy',
+            'Cloudy',
+            'Rain',
+            'Rain and Snow, Sleet',
+            'Snow',
+            'Hail, Graupel',
+            'Rain Shower',
+            'Snow Shower',
+            'Sleet Shower',
+            'Fog',
+            'Dense Fog',
+            'Slipperiness',
+            'Thunderstorms',
+            'Drizzle',
+            'Sandstorm'
+        );
+        
         if ($symbol == NULL || trim($symbol) == '') {
 
             return NULL;
+            
         } else {
-
+            
             $utc = (int) $utc + 3;
 
             $sunrise = date('H', strtotime($meridiem['sunrise']));
@@ -110,8 +134,24 @@ class WeatherphAppModel extends AppModel {
             } else {
                 $dayOrNight = 'night';
             }
+            
+            $description = '';
+            
+            switch($dayOrNight){
+                case 'day':
+                    $description = $weather_description[$symbol];
+                    break;
+                case 'night':
+                    $description = ( $symbol == 1 )? $weather_description[0] : $weather_description[$symbol]; 
+                    break;
+            }
+            
+            $weather_condition = array(
+                'symbol' => $dayOrNight . '_' . $symbol,
+                'description' => $description
+            );
 
-            return $dayOrNight . '_' . number_format($symbol, 0);
+            return $weather_condition;
         }
     }
 
@@ -380,7 +420,7 @@ class WeatherphAppModel extends AppModel {
             $windDirDesc = $beaufort[12];
         }
         
-        return $windDirDesc . '. '. $windSpeed . 'km/h, from ' . $windDir['eng'];
+        return $windDirDesc . ', from ' . $windDir['eng'];
         
         
     }

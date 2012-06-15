@@ -65,7 +65,7 @@ echo $this->Html->script(array(
                 <?php endIf; ?>
 
         </div> <!--END CURRENT WEATHER-->
-        <?php if ($dataSets['reading']['sunrise'] == 'none'): ?>
+        <?php if ($dataSets['reading']['status'] == 'none'): ?>
             <div class="no-readings" style="display: block;">
                 <p>Sorry, there are no readings available for this station.</p>
             </div>
@@ -99,7 +99,7 @@ echo $this->Html->script(array(
                         <?php foreach ($dayForecast as $forecasts2) { ?>
                             <tr>
                                 <td class="time"><?= $forecasts2['localtime_range']; ?></td>
-                                <td class="condition"><span class="symbol <?= $forecasts2['weather_symbol']; ?>"></span></td>
+                                <td class="condition"><span class="symbol <?= $forecasts2['weather_symbol']['symbol']; ?>" title="<?= $forecasts2['weather_symbol']['description']; ?>"></span></td>
                                 <td class="temperature"><?= $forecasts2['temperature']; ?>&deg;C</td>
                                 <td class="precipitation"><?= $forecasts2['precipitation']; ?>mm</td>
                                 <td class ="wind"><?= $forecasts2['wind_speed']; ?>km/h</td>
@@ -135,6 +135,7 @@ echo $this->Html->script(array(
                         chart.write();
                         //]]>
                     </script>
+                    <div class="legend"><span class="red-line"></span>Temperature <span class="green-line"></span>Dewpoint</div>
                 </div>
                 <div class="precipitation panel">
                     <script type="text/javascript" language="javascript">
@@ -142,7 +143,7 @@ echo $this->Html->script(array(
                         var chart = new AnyChart('<?= $this->webroot ?>swf/AnyChart.swf');
                         chart.width = 794;
                         chart.height = 200;
-                        chart.setXMLFile('<?= $this->webroot ?>getDetailedForecast/<?= $dataSets['stationId']; ?>/precip');
+                        chart.setXMLFile('<?= $this->webroot ?>getDetailedForecast/<?= $dataSets['stationId']; ?>/precip/6h');
                         chart.write();
                         //]]>
                     </script>
@@ -153,7 +154,7 @@ echo $this->Html->script(array(
                         var chart = new AnyChart('<?= $this->webroot ?>swf/AnyChart.swf');
                         chart.width = 794;
                         chart.height = 200;
-                        chart.setXMLFile('<?= $this->webroot ?>getDetailedForecast/<?= $dataSets['stationId']; ?>/wind');
+                        chart.setXMLFile('<?= $this->webroot ?>getDetailedForecast/<?= $dataSets['stationId']; ?>/wind/3h');
                         chart.write();
                         //]]>
                     </script>
@@ -161,7 +162,7 @@ echo $this->Html->script(array(
                         //<![CDATA[
                         var chart = new AnyChart('<?= $this->webroot ?>swf/AnyChart.swf');
                         chart.width = 794;
-                        chart.height = 50;
+                        chart.height = 70;
                         chart.setXMLFile('<?= $this->webroot ?>getDetailedForecast/<?= $dataSets['stationId']; ?>/winddir/6h');
                         chart.write();
                         //]]>
@@ -173,7 +174,7 @@ echo $this->Html->script(array(
                         var chart = new AnyChart('<?= $this->webroot ?>swf/AnyChart.swf');
                         chart.width = 794;
                         chart.height = 200;
-                        chart.setXMLFile('<?= $this->webroot ?>getDetailedForecast/<?= $dataSets['stationId']; ?>/humidity');
+                        chart.setXMLFile('<?= $this->webroot ?>getDetailedForecast/<?= $dataSets['stationId']; ?>/humidity/3h');
                         chart.write();
                         //]]>
                     </script>

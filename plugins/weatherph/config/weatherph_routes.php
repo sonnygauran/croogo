@@ -8,7 +8,9 @@
     CroogoRouter::connect('/typhoon-climatology', array('plugin' => 'weatherph', 'controller' => 'typhoon', 'action' => 'climatology'));
     CroogoRouter::connect('/typhoon-glossary', array('plugin' => 'weatherph', 'controller' => 'typhoon', 'action' => 'glossary'));
     
+    CroogoRouter::connect('/names', array('plugin' => 'weatherph', 'controller' => 'names', 'action' => 'index'));
     CroogoRouter::connect('/search', array('plugin' => 'weatherph', 'controller' => 'search', 'action' => 'index'));
+    CroogoRouter::connect('/getResultCoordinates/*', array('plugin' => 'weatherph', 'controller' => 'search', 'action' => 'getResultCoordinates'));
     CroogoRouter::connect('/results/*', array('plugin' => 'weatherph', 'controller' => 'search', 'action' => 'index'));
     
 //    CroogoRouter::connect('/impressum', array('plugin' => 'weatherph', 'controller' => 'weatherph', 'action' => 'impressum'));
