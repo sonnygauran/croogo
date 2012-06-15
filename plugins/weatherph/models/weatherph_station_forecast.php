@@ -630,18 +630,18 @@ class WeatherphStationForecast extends WeatherphAppModel
                 );
                     $resultData['settings'] = array(
                         'minor_interval' => 6,
-                        'show_cross_label' => 'False',
+                        'show_cross_label' => 'True',
                         'default_series_type' => 'Spline',
                         );
                     $resultData['series'] = array(
                         'tl' => array('name'=>'tlseries', 'style'=>'tlline', 'use_hand_cursor'=>'False', 'hoverable'=>'False'),
                         'td' => array('name'=>'tdseries', 'style'=>'tdline', 'use_hand_cursor'=>'False', 'hoverable'=>'False'),
-                        'tx' => array('name'=>'txseries', 'style'=>'noline', 'use_hand_cursor'=>'False', 'hoverable'=>'False'),
-                        'tn' => array('name'=>'tnseries', 'style'=>'noline', 'use_hand_cursor'=>'False', 'hoverable'=>'False'),
+                        'tx' => array('name'=>'txseries', 'style'=>'noline', 'use_hand_cursor'=>'True', 'hoverable'=>'False'),
+                        'tn' => array('name'=>'tnseries', 'style'=>'noline', 'use_hand_cursor'=>'True', 'hoverable'=>'False'),
                     );
                     $resultData['additional'] = array(
-                        'tl' => array('tooltip' => array('enabled' => 'false')),
-                        'td' => array('tooltip' => array('enabled' => 'false')),
+                        'tl' => array('tooltip' => array('enabled' => 'True')),
+                        'td' => array('tooltip' => array('enabled' => 'True')),
                         'tx' => array('marker' => array('enabled'=>'true', 'style'=>'dotred')),
                         'tn' => array('marker' => array('enabled'=>'true', 'style'=>'dotblue')),
                     );

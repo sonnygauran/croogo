@@ -99,7 +99,7 @@ echo $this->Html->script(array(
                         <?php foreach ($dayForecast as $forecasts2) { ?>
                             <tr>
                                 <td class="time"><?= $forecasts2['localtime_range']; ?></td>
-                                <td class="condition"><span class="symbol <?= $forecasts2['weather_symbol']; ?>"></span></td>
+                                <td class="condition"><span class="symbol <?= $forecasts2['weather_symbol']['symbol']; ?>" title="<?= $forecasts2['weather_symbol']['description']; ?>"></span></td>
                                 <td class="temperature"><?= $forecasts2['temperature']; ?>&deg;C</td>
                                 <td class="precipitation"><?= $forecasts2['precipitation']; ?>mm</td>
                                 <td class ="wind"><?= $forecasts2['wind_speed']; ?>km/h</td>
@@ -135,6 +135,7 @@ echo $this->Html->script(array(
                         chart.write();
                         //]]>
                     </script>
+                    <div class="legend"><span class="red-line"></span>Temperature <span class="green-line"></span>Dewpoint</div>
                 </div>
                 <div class="precipitation panel">
                     <script type="text/javascript" language="javascript">
