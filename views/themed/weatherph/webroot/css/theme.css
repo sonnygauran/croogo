@@ -250,7 +250,11 @@ nav li > a {
 .scale-container {
     margin-bottom: .5em;
     text-align: center;
-    display: none;
+/*    display: none;*/
+}
+
+.scale-container > form {
+    display:inline;
 }
 
 .unit-buttons > button {
