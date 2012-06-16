@@ -2,6 +2,7 @@
 class Province extends AppModel {
 	var $name = 'Province';
     var $useDbConfig = 'nscb';
+    
 	var $validate = array(
 		'name' => array(
 			'notempty' => array(
@@ -78,7 +79,7 @@ class Province extends AppModel {
 
 	var $belongsTo = array(
 		'Region' => array(
-			'className' => 'Region',
+			'className' => 'Nscb.Region',
 			'foreignKey' => 'region_id',
 			'conditions' => '',
 			'fields' => '',
@@ -88,7 +89,7 @@ class Province extends AppModel {
 
 	var $hasMany = array(
 		'City' => array(
-			'className' => 'City',
+			'className' => 'Nscb.City',
 			'foreignKey' => 'province_id',
 			'dependent' => false,
 			'conditions' => '',
@@ -101,7 +102,7 @@ class Province extends AppModel {
 			'counterQuery' => ''
 		),
 		'Municipality' => array(
-			'className' => 'Municipality',
+			'className' => 'Nscb.Municipality',
 			'foreignKey' => 'province_id',
 			'dependent' => false,
 			'conditions' => '',

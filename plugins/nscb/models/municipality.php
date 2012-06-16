@@ -2,6 +2,7 @@
 class Municipality extends AppModel {
 	var $name = 'Municipality';
     var $useDbConfig = 'nscb';
+    
 	var $validate = array(
 		'name' => array(
 			'notempty' => array(
@@ -78,7 +79,7 @@ class Municipality extends AppModel {
 
 	var $belongsTo = array(
 		'Province' => array(
-			'className' => 'Province',
+			'className' => 'Nscb.Province',
 			'foreignKey' => 'province_id',
 			'conditions' => '',
 			'fields' => '',
