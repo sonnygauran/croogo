@@ -1154,8 +1154,9 @@ span.wind-description { font-size: .875em; }
 	top: 10px;
 	left: -25px;
 	width: 10px;
-	height: 80px;_
-	background-color: #32ABE8;	z-index: 0;
+	height: 80px;
+	background-color: #32ABE8;	
+        z-index: 0;
 }
 
   .ribbon-back-right-blogs {
@@ -1164,5 +1165,5 @@ span.wind-description { font-size: .875em; }
 	right: 0px;
 	width: 0px;
 	height: 80px;
-		z-index: 0;
+	z-index: 0;
 }

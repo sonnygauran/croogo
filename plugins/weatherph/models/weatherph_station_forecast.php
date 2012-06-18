@@ -600,7 +600,7 @@ class WeatherphStationForecast extends WeatherphAppModel
             $abfrageResults['ort1'] = $result['ort1']; 
 
             $utcDate = strtotime($result['Datum'] . $result['utc'] . ':' .$result['min']) + $Date->getOffset();
-
+            
             $result['Datum'] = date('Ymd', $utcDate);
             $result['utc'] = date('H', $utcDate);
             $result['min'] = date('m', $utcDate);
@@ -610,7 +610,7 @@ class WeatherphStationForecast extends WeatherphAppModel
        
         }
                 
-        //$this->log(print_r($abfrageResults, true));
+        $this->log(print_r($abfrageResults, true));
         
         $resultData = array();
         switch($type){
