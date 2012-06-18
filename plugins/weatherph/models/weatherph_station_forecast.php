@@ -365,8 +365,12 @@ class WeatherphStationForecast extends WeatherphAppModel
                 
                 $readings['moonphase'] = $this->moon_phase(date('Y', strtotime($readings['Datum'])), date('m', strtotime($readings['Datum'])), date('d', strtotime($readings['Datum'])));
                 
+                $readings['dir2'] = $this->windDirection($readings['dir']);
+                
                 // Translate raw data to wind direction image value
                 $readings['dir'] = $this->showWindDirection($readings['dir']);
+                
+                
                 
                 $readings['localtime'] = date('Ymd H:i:s', $theirTimestamp + $Date->getOffset());
 
