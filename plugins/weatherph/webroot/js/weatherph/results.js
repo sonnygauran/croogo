@@ -65,6 +65,7 @@ $(document).ready(function(){
                 var $currentRetrievedStation = $retrievedStations[key]; // current station on the loop
                 //console.log($currentRetrievedStation);
                 $locationResults.push({ // create a json object, and then save it to stations array
+                    id: $currentRetrievedStation.Name.id,
                     name: $currentRetrievedStation.Name.full_name_ro,
                     type:'Point',
                     coordinates: [
@@ -75,11 +76,26 @@ $(document).ready(function(){
             }
         
             plotLocations($locationResults); // now the stations are complete
+            plotMarkers($locationResults); // now the stations are complete
         
         }
     
     
     });
+    
+    $('.marker').hide();
+    
+    $('.location').hover(function(event){
+        event.preventDefault();
+        id = $(this).attr('id');
+        
+        $details = getObjects($locationResults, 'id', id);
+        $('#marker-' + $details[0].id).show();
+    }, function(){
+        
+        $('#marker-' + $details[0].id).hide();
+    }
+    );
     
     function plotLocations($stationsArray) {
         // This loop maps the stations from the $stations fetched from getStations
@@ -101,4 +117,32 @@ $(document).ready(function(){
             },true);
         }
     }
+    
+    function plotMarkers($stationsArray) {
+        // This loop maps the stations from the $stations fetched from getStations
+        //console.log($stationsArray);
+        for (var key in $stationsArray) {
+            $currentStation = $stationsArray[key];
+            $('#map').geomap("append", {
+                name: $currentStation.name,
+                type:'Point',                
+                coordinates: $currentStation.coordinates
+            }, '<div class="marker" style="display:none" id="marker-' + $currentStation.id + '"></div>',true);
+        }
+    }
+    
+    function getObjects(obj, key, val) {
+        var objects = [];
+        for (var i in obj) {
+            if (!obj.hasOwnProperty(i)) continue;
+            if (typeof obj[i] == 'object') {
+                objects = objects.concat(getObjects(obj[i], key, val));
+            } else if (i == key && obj[key] == val) {
+                objects.push(obj);
+            }
+        }
+        return objects;
+    }
+    
+   
 });

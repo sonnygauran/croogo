@@ -1,4 +1,22 @@
 <script type="text/javascript" src="<?= $this->webroot ?>weatherph/js/weatherph/results.js"></script>
+<style>
+    .marker {   
+    width: 8px;
+    height: 8px;
+    border: 2px solid black;
+/*    background: url(../img/marker.png);*/
+    position: relative;
+    left: -4px;
+    top: -4px;
+    }
+    
+    .location{
+        padding: 10px 10px;
+        border: 1px solid black;
+        background-color: #343434;
+        display:block;
+    }
+</style>
 <div id="map-container">
     <div class="map-viewport">
         <div id="map">
@@ -45,46 +63,34 @@
             </optgroup>
         </select>
     </div> <!--END PROVINCE SELECT-->
-    <!--
-                    <div id="station-color">
-                        <img src="theme/weatherph/img/legend-blue.png" alt="" />
-                        <h6>Meteomedia stations</h6>
-                        <img src="theme/weatherph/img/legend-red.png" alt="" />
-                        <h6>PAGASA stations</h6>
-                    </div>
-
-                    <img src ="theme/weatherph/img/legend.png"/>
-    -->
 </div>
 
 <div class="main">
     <div class="names index">
-        <h2><?php __('NimaNames'); ?></h2>
+        <h2><?php __('Search results'); ?></h2>
         <ul>
             <?php foreach ($names as $name): ?>
-                <li><?php echo $name['NimaName']['full_name_ro']; ?>&nbsp;</li>
+                <li><a href ="/DmoForecast/<?php echo $name['NimaName']['id']; ?>" class="location" id="<?php echo $name['NimaName']['id']; ?>"><?php echo $name['NimaName']['full_name_ro']; ?>&nbsp;</a></li>
             <?php endforeach; ?>
         </ul>
         <br/>
-        <p>
-            <?php
-            echo $this->Paginator->counter(array(
-                'format' => __('Page %page% of %pages%, showing %current% results out of %count%', true)
-            ));
-            ?>
-        </p>
-        <br/>
         <div class="paging">
             <?php
-            echo $this->Paginator->prev(__('previous', true), array(), null, array('class' => 'disabled'));
-            ?>
-            &nbsp;
+            if ($this->Paginator->hasPage(2)) {
+                echo $this->Paginator->counter(array(
+                    'format' => __('Page %page% of %pages%, showing %current% results out of %count%', true)
+                ));
+                echo ("<br/>");
+                echo $this->Paginator->prev();
+                echo (" | ");
+            }
+            ?> 
+            <?php echo $this->Paginator->numbers(); ?> 
             <?php
-            echo $this->Paginator->numbers();
-            ?>
-            &nbsp;
-            <?php
-            echo $this->Paginator->next(__('next', true), array(), null, array('class' => 'disabled'));
-            ?>
+            if ($this->Paginator->hasPage(2)) {
+                echo (" | ");
+                echo $this->Paginator->next();
+            }
+            ?> 
         </div>
     </div>
