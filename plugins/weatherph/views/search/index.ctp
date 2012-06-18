@@ -1,4 +1,22 @@
 <script type="text/javascript" src="<?= $this->webroot ?>weatherph/js/weatherph/results.js"></script>
+<style>
+    .marker {   
+    width: 8px;
+    height: 8px;
+    border: 2px solid black;
+/*    background: url(../img/marker.png);*/
+    position: relative;
+    left: -4px;
+    top: -4px;
+    }
+    
+    .location{
+        padding: 10px 10px;
+        border: 1px solid black;
+        background-color: #343434;
+        display:block;
+    }
+</style>
 <div id="map-container">
     <div class="map-viewport">
         <div id="map">
@@ -52,7 +70,7 @@
         <h2><?php __('Search results'); ?></h2>
         <ul>
             <?php foreach ($names as $name): ?>
-                <li><?php echo $name['NimaName']['full_name_ro']; ?>&nbsp;</li>
+                <li><a href ="/DmoForecast/<?php echo $name['NimaName']['id']; ?>" class="location" id="<?php echo $name['NimaName']['id']; ?>"><?php echo $name['NimaName']['full_name_ro']; ?>&nbsp;</a></li>
             <?php endforeach; ?>
         </ul>
         <br/>
