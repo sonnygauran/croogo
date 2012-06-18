@@ -59,12 +59,12 @@
                         <li style="background-color: #FFE600;">14</li>
                         <li style="background-color: #FFFF14;">12</li>
                         <li style="background-color: #C8FF00;">10</li>
-                        <li style="background-color: #96FF00;">8</li>
-                        <li style="background-color: #64FF00;">6</li>
-                        <li style="background-color: #00EB00;">4</li>
-                        <li style="background-color: #00DC8C;">2</li>
-                        <li style="background-color: #00DCFF;">0</li>
-                        <li style="background-color: #00AFFF;">-2</li>
+                        <li style="background-color: #96FF00;">8&nbsp;</li>
+                        <li style="background-color: #64FF00;">6&nbsp;</li>
+                        <li style="background-color: #00EB00;">4&nbsp;</li>
+                        <li style="background-color: #00DC8C;">2&nbsp;</li>
+                        <li style="background-color: #00DCFF;">0&nbsp;</li>
+<!--                        <li style="background-color: #00AFFF;">-2</li>
                         <li style="background-color: #007DFF;">-4</li>
                         <li style="background-color: #0046F5;">-6</li>
                         <li style="background-color: #0014B4;">-8</li>
@@ -76,7 +76,7 @@
                         <li style="background-color: #FF78FF;">-30</li>
                         <li style="background-color: #FFAAFF;">-35</li>
                         <li style="background-color: #FFD2FF;">-40</li>
-                        <li style="background-color: #EAE9F9;">-45</li>
+                        <li style="background-color: #EAE9F9;">-45</li>-->
                     </ul>
                 </div>
                 <div id="province-select">
