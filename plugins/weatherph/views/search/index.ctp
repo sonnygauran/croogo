@@ -80,7 +80,7 @@
         <h2><?php __('NimaNames'); ?></h2>
         <ul>
             <?php foreach ($names as $name): ?>
-                <li><a href ="#" class="location" id="<?php echo $name['NimaName']['id']; ?>"><?php echo $name['NimaName']['full_name_ro']; ?>&nbsp;</a></li>
+                <li><a href ="/DmoForecast/<?php echo $name['NimaName']['id']; ?>" class="location" id="<?php echo $name['NimaName']['id']; ?>"><?php echo $name['NimaName']['full_name_ro']; ?>&nbsp;</a></li>
             <?php endforeach; ?>
         </ul>
         <br/>
