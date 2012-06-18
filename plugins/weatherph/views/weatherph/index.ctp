@@ -351,6 +351,7 @@
 
                         <div class="ribbon-wrapper">
                             <div class="ribbon-front">
+                            <div class="ribbon-top-bar"></div>
                                 <div class="date">
                                     <div class="month"><?= date('M', $createdTime) ?></div>
                                     <div class="day"><?= date('d', $createdTime) ?></div>
@@ -362,14 +363,12 @@
                             <div class="ribbon-edge-bottomleft"></div>
                             <div class="ribbon-edge-bottomright"></div>
 
-
-                            
-
                         </div>
                         
                         <h4><?= $html->link($blog['Node']['title'], $blog['Node']['url'], array('class' => 'link')) ?></h4>  
+                        <div class="blog-posts">
                         <p><?= $text->excerpt(strip_tags($blog['Node']['body']), 'method', 200, '...' . $html->link('Read More...', $blog['Node']['url'])) ?><?= '<hr>'; ?></p>
-
+                        </div>
 
                     </div>
                 <?php } ?>
