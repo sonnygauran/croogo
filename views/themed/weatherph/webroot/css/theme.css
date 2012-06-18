@@ -249,7 +249,6 @@ nav li > a {
 
 .scale-container {
     margin-bottom: .5em;
-    text-align: center;
     display: none;
 }
 
@@ -257,14 +256,14 @@ nav li > a {
     display:inline;
 }
 
-.unit-buttons > button {
+/*.unit-buttons > button {
     padding: 3px;
     font-size: .70em;
-}
+}*/
 
 .scale {
-    font-size: .875em;
-    color: #fafafa;
+/*    font-size: .875em;*/
+    color: #f1f1f1;
     display: inline;
 }
 
@@ -273,7 +272,7 @@ nav li > a {
     text-align: center;
     vertical-align: middle;
     margin: -2px;
-    padding: 2px 1px;
+    padding: 3px;
 }
 
 #province-select, #station-color {
@@ -836,11 +835,11 @@ a:hover {
     text-shadow: white 0 0 1px;
 }
 
-.posts a:link {
+.paging a:link, .posts a:link {
     color: #20304d;
 }
 
-.posts a:visited {
+.paging a:visited, .posts a:visited {
     color: #3e5e95;
 }
 

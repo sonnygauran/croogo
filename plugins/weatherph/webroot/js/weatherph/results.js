@@ -54,7 +54,7 @@ $(document).ready(function(){
     $locationResults = new Array();
     var pathname = window.location.pathname.split('/');
     var keyword = pathname[3];
-    alert('<?= $this->webroot ?>getResultCoordinates/' + keyword);
+    //alert('<?= $this->webroot ?>getResultCoordinates/' + keyword);
     $.ajax({
         type:     'POST',
         url :     '<?= $this->webroot ?>getResultCoordinates/' + keyword,
