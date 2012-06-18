@@ -182,7 +182,6 @@ nav li > a {
     width:100%;
     position:relative;
     z-index:5;
-    
 }
 
 .dropdown li{
@@ -247,41 +246,31 @@ nav li > a {
     float:left; 
 }
 
-.scale-container {
-    margin-bottom: .5em;
-    display: none;
-}
-
-.scale-container > form {
-    display:inline;
-}
-
-/*.unit-buttons > button {
-    padding: 3px;
-    font-size: .70em;
-}*/
-
 .scale {
-/*    font-size: .875em;*/
-    color: #f1f1f1;
-    display: inline;
+    float:left;
+    margin-left: 10px;
 }
 
-.scale > li {
-    display: inline;
+.unit-buttons {
+    float: left;
+}
+
+.scale li {
+    display: inline-block;
     text-align: center;
     vertical-align: middle;
-    margin: -2px;
+    margin: 1px -2px;
     padding: 3px;
+    color: #333333;
+    text-shadow: 1px 1px #999999; 
 }
 
-#province-select, #station-color {
+#province-select {
     float: left;
     overflow: auto;
 }
 
-#province-select > h6, #province-select > select,
-#station-color > h6, #station-color > img {
+#province-select > h6, #province-select > select {
     display: inline;
     padding: 0 5px;
     vertical-align: middle;
