@@ -592,30 +592,25 @@ class WeatherphStationForecast extends WeatherphAppModel
         
         foreach($results as $result){
             
-                if(strtotime($result['Datum']) >= strtotime(date('Ymd'))){
-                    
-                    //if($result['utc']%$data_time_resolution == 0){ 
-                        
-                        //explode the ort1 raw data, grab only those needed
-                        $result['ort1'] = explode('/', $result['ort1']);
-                        unset($result['ort1'][0]);
-                        $result['ort1'] = implode('/', $result['ort1']);
+            //explode the ort1 raw data, grab only those needed
+            $result['ort1'] = explode('/', $result['ort1']);
+            unset($result['ort1'][0]);
+            $result['ort1'] = implode('/', $result['ort1']);
 
-                        $abfrageResults['ort1'] = $result['ort1']; 
+            $abfrageResults['ort1'] = $result['ort1']; 
 
-                        $utcDate = strtotime($result['Datum'] . $result['utc'] . ':' .$result['min']) + $Date->getOffset();
-                        $result['Datum'] = date('Ymd', $utcDate);
-                        $result['utc'] = date('H', $utcDate);
-                        $result['min'] = date('m', $utcDate);
+            $utcDate = strtotime($result['Datum'] . $result['utc'] . ':' .$result['min']) + $Date->getOffset();
 
-                        $abfrageResults['forecast'][$result['Datum']][] = $result;
-                        
-                    //}
-                }    
+            $result['Datum'] = date('Ymd', $utcDate);
+            $result['utc'] = date('H', $utcDate);
+            $result['min'] = date('m', $utcDate);
+
+            $abfrageResults['forecast'][$result['Datum']][] = $result;
+
        
         }
-        
-        
+                
+        //$this->log(print_r($abfrageResults, true));
         
         $resultData = array();
         switch($type){
