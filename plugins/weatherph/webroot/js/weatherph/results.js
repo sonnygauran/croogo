@@ -1,7 +1,7 @@
 $(document).ready(function(){
     var map = $("#map").geomap({
-        center: [123.5, 12.902712695115516], //to fit weather animations
-        // was[ 121.750488, 12.698865 ],
+        center: [ 121.750488, 12.698865],
+        // [123.5, 12.902712695115516]
         zoom: 5,
         scroll: 'off',
         cursors: {
@@ -14,9 +14,6 @@ $(document).ready(function(){
             measureLength: "default",
             measureArea: "default"
         },
-        //http://a.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/56590/256/5/15/12.png
-
-        //Tiledrawer Maps
 
         services: [
         {
@@ -30,14 +27,6 @@ $(document).ready(function(){
                 + ".png";
             },
             attr: "¬© OpenStreetMap & contributors, CC-BY-SA"
-        
-        //          return "http://192.168.1.34:8888/convert.php?zoom="
-        //          + view.zoom + "&column="
-        //          + view.tile.column + "&row="
-        //          + view.tile.row
-        //          + "&mode=1";
-        //          },
-        //          attr: "¬© OpenStreetMap & contributors, CC-BY-SA"
         }
         ],
         tilingScheme: {
@@ -65,6 +54,7 @@ $(document).ready(function(){
                 var $currentRetrievedStation = $retrievedStations[key]; // current station on the loop
                 //console.log($currentRetrievedStation);
                 $locationResults.push({ // create a json object, and then save it to stations array
+                    id: $currentRetrievedStation.Name.id,
                     name: $currentRetrievedStation.Name.full_name_ro,
                     type:'Point',
                     coordinates: [
@@ -75,11 +65,25 @@ $(document).ready(function(){
             }
         
             plotLocations($locationResults); // now the stations are complete
+            plotMarkers($locationResults); // now the stations are complete
         
         }
     
-    
     });
+    
+    $('.marker').hide();
+    
+    $('.location').hover(function(event){
+        event.preventDefault();
+        id = $(this).attr('id');
+        
+        $details = getObjects($locationResults, 'id', id);
+        $('#marker-' + $details[0].id).show();
+    }, function(){
+        
+        $('#marker-' + $details[0].id).hide();
+    }
+    );
     
     function plotLocations($stationsArray) {
         // This loop maps the stations from the $stations fetched from getStations
@@ -91,14 +95,40 @@ $(document).ready(function(){
                 type:'Point',                
                 coordinates: $currentStation.coordinates
             }, {
-                strokeWidth: "1px", 
-                height: "6px", 
-                width: "6px", 
-                radius: "8px", 
-                color: "#dd2222", 
-                fillOpacity: "0", 
-                strokeOpacity: "1"
-            },true);
+                height : "0",
+                width : "0"
+            }, '<div class="plot" id="plot-' + $currentStation.id + '"></div>',true);
         }
     }
+    
+    function plotMarkers($stationsArray) {
+        // This loop maps the stations from the $stations fetched from getStations
+        //console.log($stationsArray);
+        for (var key in $stationsArray) {
+            $currentStation = $stationsArray[key];
+            $('#map').geomap("append", {
+                name: $currentStation.name,
+                type:'Point',                
+                coordinates: $currentStation.coordinates
+            }, {
+                height : "0",
+                width : "0"
+            }, '<div class="marker" style="display:none" id="marker-' + $currentStation.id + '"></div>',true);
+        }
+    }
+    
+    function getObjects(obj, key, val) {
+        var objects = [];
+        for (var i in obj) {
+            if (!obj.hasOwnProperty(i)) continue;
+            if (typeof obj[i] == 'object') {
+                objects = objects.concat(getObjects(obj[i], key, val));
+            } else if (i == key && obj[key] == val) {
+                objects.push(obj);
+            }
+        }
+        return objects;
+    }
+    
+   
 });

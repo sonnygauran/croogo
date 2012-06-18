@@ -34,12 +34,13 @@
                 </div>
             </div>
             <div id="legend" class="shadow">
-                <div class="scale-container">
-                    <span class="unit-buttons">
-                        <button type="button">°C</button>
-                        <button type="button">°F</button>
-                    </span>
-                    <ul class="scale">
+                
+                <div class="unit-buttons">
+                    <button type="button">°C</button>
+                    <button type="button">°F</button>
+                </div>
+                <div class="scale">
+                    <ul class="scale-upper">
                         <li style="background-color: #FFC8C8;">46</li>
                         <li style="background-color: #FFA0A0;">44</li>
                         <li style="background-color: #FF82B4;">42</li>
@@ -64,7 +65,10 @@
                         <li style="background-color: #00EB00;">4&nbsp;</li>
                         <li style="background-color: #00DC8C;">2&nbsp;</li>
                         <li style="background-color: #00DCFF;">0&nbsp;</li>
-<!--                        <li style="background-color: #00AFFF;">-2</li>
+                    </ul>
+                    <ul class="scale-lower">
+                        <li style="background-color: #00DCFF;">0&nbsp;</li>
+                        <li style="background-color: #00AFFF;">-2</li>
                         <li style="background-color: #007DFF;">-4</li>
                         <li style="background-color: #0046F5;">-6</li>
                         <li style="background-color: #0014B4;">-8</li>
@@ -76,7 +80,7 @@
                         <li style="background-color: #FF78FF;">-30</li>
                         <li style="background-color: #FFAAFF;">-35</li>
                         <li style="background-color: #FFD2FF;">-40</li>
-                        <li style="background-color: #EAE9F9;">-45</li>-->
+                        <li style="background-color: #EAE9F9;">-45</li>
                     </ul>
                 </div>
                 <div id="province-select">
@@ -118,16 +122,6 @@
                         </optgroup>
                     </select>
                 </div> <!--END PROVINCE SELECT-->
-                <!--
-                                <div id="station-color">
-                                    <img src="theme/weatherph/img/legend-blue.png" alt="" />
-                                    <h6>Meteomedia stations</h6>
-                                    <img src="theme/weatherph/img/legend-red.png" alt="" />
-                                    <h6>PAGASA stations</h6>
-                                </div>
-                                            
-                                <img src ="theme/weatherph/img/legend.png"/>
-                -->
             </div> <!--END LEGEND-->
         </div>
         <div id="info" class="shadow">

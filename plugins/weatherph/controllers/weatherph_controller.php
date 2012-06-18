@@ -248,4 +248,8 @@ class WeatherphController extends WeatherphAppController {
         $this->layout = 'default';
     }
 
+   public function getDmoForecast($id){
+       debug($id);
+       
+   }
 }
