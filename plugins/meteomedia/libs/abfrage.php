@@ -23,6 +23,7 @@ class Abfrage{
      */
     
     private $stationId;
+    private $stationIds;
     
     /**
      * set the station ID on instance creation
@@ -30,7 +31,12 @@ class Abfrage{
      * @param type $stationId 
      */
     public function __construct($stationId) {
-        $this->stationId = $stationId;
+        if (is_array($stationId) AND !empty($stationId)) {
+            $this->stationIds = $stationId;
+        } else {
+            $this->stationId = $stationId;
+        }
+        
         CakeLog::write('abfrage', 'Station ID: ' . $this->stationId);
         
     }
@@ -137,7 +143,13 @@ class Abfrage{
         */
        $url['parameter_type'] = ($format['time_resolution'] == '10m') ? 'reading' : 'forecast';
        
-       $url['stationId'] = $this->stationId;
+       $url['stationId'] = '';
+       if (!empty($this->stationIds)) {
+           $url['stationId'] = implode(',', $this->stationIds);
+       } else {
+           $url['stationId'] = $this->stationId;
+       }
+       
        /**
         * Default Parameters
         * 
