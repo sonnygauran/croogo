@@ -34,11 +34,6 @@
                 </div>
             </div>
             <div id="legend" class="shadow">
-                
-                <div class="unit-buttons">
-                    <button type="button" id="celsius-switch">°C</button>
-                    <button type="button" id="fahrenheit-switch">°F</button>
-                </div>
                 <div class="scale-celsius">
                     <ul class="scale-upper">
                         <li style="background-color: #FFC8C8;">46</li>
@@ -105,7 +100,7 @@
                     </ul>
                     <ul class="scale-lower">
                         <li style="background-color: #C8FF00;">50</li>
-                        <li style="background-color: #96FF00;">46.4;</li>
+                        <li style="background-color: #96FF00;">46.4</li>
                         <li style="background-color: #64FF00;">42.8</li>
                         <li style="background-color: #00EB00;">39.2</li>
                         <li style="background-color: #00DC8C;">35.6</li>
@@ -125,6 +120,10 @@
                         <li style="background-color: #FFD2FF;">-40</li>
                         <li style="background-color: #EAE9F9;">-49</li>
                     </ul>
+                </div>
+                <div class="unit-buttons">
+                    <button type="button" id="celsius-switch">°C</button>
+                    <button type="button" id="fahrenheit-switch">°F</button>
                 </div>
                 <div id="province-select">
                     <h6>Province:</h6>

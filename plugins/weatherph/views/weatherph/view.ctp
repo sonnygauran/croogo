@@ -31,18 +31,28 @@ echo $this->Html->script(array(
 
 
                 <div id="condition">
-
-                    <div class="inner-condition">
-                        
-                        <div class="inner-left">
+                      
+                        <?php if (!empty($dataSets['reading']['sy']['symbol'])) { ?>
+                        <div class="inner-condition">
+                        <div class="left-temp-reading">
                         <?= $dataSets['reading']['tl']; ?>&deg;C
                         </div>
                         
-                        <div class="inner-right">
+                        <div class="right-sy-reading">
                         <span class="symbol <?= $dataSets['reading']['sy']['symbol']; ?>" title="<?= $dataSets['reading']['sy']['description']; ?>" ></span>
                         </div>
+                        </div>    
+                        <?php } else { ?>
+                        <div class="inner-condition-temp-reading-only">
+                        <div class="reading-temperature-only">
+                            
+                        <?= $dataSets['reading']['tl']; ?>&deg;C
+                        </div>
+                        </div>
+                        <?php } ?>
                         
-                    </div>
+                    
+                                        
                     <table>
                         <tbody>
                             <tr>
