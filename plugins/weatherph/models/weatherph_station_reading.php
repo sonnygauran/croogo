@@ -1,4 +1,6 @@
 <?php
+App::import('Lib', 'Meteomedia.Abfrage');
+App::import('Lib', 'Meteomedia.Curl');
 
 include 'weatherph_station_forecast.php';
 /**
@@ -417,6 +419,48 @@ class WeatherphStationReading extends WeatherphAppModel
        
         
     }
+    
+    
+    private function getAllReadings($stationId){
+        
+        
+        $Abfrage = new Abfrage($stationId);
+        
+        //Grab stations readings  
+        $url = $Abfrage->generateURL($this->generateDate('reading', '10m'), array(
+            'Temperature' => array(
+                'low'
+            ),
+            'Wind' => array(
+                'speed', 'direction'
+            ),
+            'Gust' => array(
+                '3 hours'
+            ),
+            'Rainfall' => array(
+                'Period'
+            ),
+            'Weather Symbols' => array(
+                'Set 1', 'Set 2'
+            ),
+            'Humidity'
+        ));
+        
+        // Get the string after the question-mark sign
+        //$gum = $stationId.'_reading_'.sha1(end(explode('?',$url)));
+        $curlResults = NULL;
+        //if (!Cache::read($gum, '3hour')) {
+            $curlResults = Curl::getData($url);
+        //    Cache::write($gum, $curlResults, '3hour');
+        //} else {
+        //    $curlResults = Cache::read($gum, '3hour');
+        //}
+            
+            $this->log($curlResults);
+        
+        
+        
+    } 
     
 }
 

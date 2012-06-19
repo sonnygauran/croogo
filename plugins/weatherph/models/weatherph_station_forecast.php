@@ -816,6 +816,8 @@ class WeatherphStationForecast extends WeatherphAppModel
         
         $nearestGP = $this->nearestGridPoint($stationInfo['long'],$stationInfo['lat']);
         
+        $this->log(print_r($nearestGP, TRUE));
+        
         $dmo_forecast_dir = Configure::read('Data.dmo');
         
         $dmo_forecast = $dmo_forecast_dir . $nearestGP['lon'] . '_' . $nearestGP['lat'] . '.csv';
@@ -824,7 +826,7 @@ class WeatherphStationForecast extends WeatherphAppModel
         
         $forecasts = $this->csvToArray($csvString);
         
-        $this->log(print_r($forecasts, TRUE));
+        //$this->log(print_r($forecasts, TRUE));
         
         // Get sunrise and sunset using current latituted and longtitude station
         $sunrise = $this->sunInfo($stationInfo['lat'], $stationInfo['long'], 'sunrise');
