@@ -306,10 +306,10 @@ class WeatherphController extends WeatherphAppController {
             'speed', 'direction'
         ),
         'Gust' => array(
-            '3 hours'
+            '3 hours', '6 hours'
         ),
         'Rainfall' => array(
-            'Period'
+            'Period', '3 hours', '6 hours'
         ),
         'Weather Symbols' => array(
             'Set 1', 'Set 2'
@@ -330,12 +330,14 @@ class WeatherphController extends WeatherphAppController {
         //$this->log(print_r($rows, TRUE));exit;
 
         unset($rows[0]);
+        
+        ini_set('memory_limit', '512M');
 
         $arrayResults = array();
         foreach ($rows as $key => $row) {
             if (trim($row) != '') {
                 $params = explode(';', $row);
-                $this->log(print_r($params, TRUE));
+                //$this->log(print_r($params, TRUE));
                 foreach ($params as $key2 => $param) {
                     if ($headers[$key2] != '') {
                         $fieldName = $headers[$key2];
@@ -346,11 +348,34 @@ class WeatherphController extends WeatherphAppController {
             }
         }
         
-        exit;
+        //exit;
         //$this->log(print_r($arrayResults, TRUE));exit;
         
         App::import('Model', 'Weatherph.Reading');
         $Reading = new Reading();
+        
+        foreach($arrayResults as $result){
+            $Reading->create();
+            $data = array(
+                'datum' => $result['Datum'],
+                'utc' => $result['utc'],
+                'min' => $result['min'],
+                'ort1' => $result['ort1'],
+                'dir' => $result['dir'],
+                'ff' => $result['ff'],
+                'g3h' => $result['g3h'],
+                'tl' => $result['tl'],
+                'rr' => $result['rr'],
+                'sy' => $result['sy'],
+                'rain6' =>$result['rain6'],
+                'rh' => $result['rh'],
+                'sy2' => $result['sy2'],
+                'rain3' =>$result['rain3'],
+                'g6h' => '',
+            );
+            $Reading->save($data);
+            
+        }
         
 //        foreach ($curlReadingsAsArray as $curlArray) {
 //            
@@ -364,7 +389,8 @@ class WeatherphController extends WeatherphAppController {
 //            $Reading->save($data);
 //          }
 
-        debug($curlResults); exit;
+        //debug($curlResults); exit;
+        exit;
         
    }
    
