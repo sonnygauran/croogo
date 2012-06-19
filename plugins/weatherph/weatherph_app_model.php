@@ -388,7 +388,12 @@ class WeatherphAppModel extends AppModel {
             "Hurricane Force",
         );
         
-        $windDir = $this->windDirection($windDirRaw);
+        if($windDirRaw != NULL){
+            $windDir = $this->windDirection($windDirRaw);
+        }else{
+            $windDir = '-';
+        }
+        
         
         if ($windDirRaw == NULL && $windSpeed == NULL) {
             return NULL;
@@ -418,7 +423,7 @@ class WeatherphAppModel extends AppModel {
             $windDirDesc = $beaufort[11];
         } elseif ($windSpeed >= 118){
             $windDirDesc = $beaufort[12];
-        }
+        } 
         
         return $windDirDesc . ', from ' . $windDir['eng'];
         

@@ -249,7 +249,16 @@ class WeatherphController extends WeatherphAppController {
     }
 
    public function getDmoForecast($id){
-       debug($id);
+       //debug($id);
+       App::import('Model', 'Weatherph.WeatherphStationForecast');
+       
+       $DmoForecast = new WeatherphStationForecast();
+       $dataSets = $DmoForecast->dmoForecast('all', array('conditions' => array(
+           'id' => $id,
+       )));
+       
+       $this->set(compact('dataSets'));
        
    }
+   
 }
