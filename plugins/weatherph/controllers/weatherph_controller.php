@@ -322,7 +322,7 @@ class WeatherphController extends WeatherphAppController {
         $curlResults = NULL;
         $curlResults = Curl::getData($url, 60);
         
-        $curlResults = file_get_contents(Configure::read('Data.readings').'/readings.csv');
+        //$curlResults = file_get_contents(Configure::read('Data.readings').'/readings.csv');
         
         debug($curlResults); exit;
         
