@@ -4,11 +4,9 @@ $(document).ready(function(){
         var id = attributes[1];
         console.error(id);
         if (event.type == 'mouseover') {
-            $('li.' + id).css('background-color', '#e0e6f2');
-            $('#marker-' + id).show();
+            $('#' + id).css('background-color', '#e0e6f2');
         } else {
-            $('li.' + id).css('background-color', 'transparent');
-            $('#marker-' + id).hide();
+            $('#' + id).css('background-color', 'transparent');
         }
         
     });
@@ -78,7 +76,6 @@ $(document).ready(function(){
             }
         
             plotLocations($locationResults); // now the stations are complete
-            plotMarkers($locationResults); // now the stations are complete
         
         }
     
@@ -91,10 +88,9 @@ $(document).ready(function(){
         id = $(this).attr('id');
         
         $details = getObjects($locationResults, 'id', id);
-        $('#marker-' + $details[0].id).show();
+        $('#plot-' + $details[0].id).addClass('marker').removeClass('plot');
     }, function(){
-        
-        $('#marker-' + $details[0].id).hide();
+        $('#plot-' + $details[0].id).addClass('plot').removeClass('marker');
     }
     );
     
@@ -116,21 +112,6 @@ $(document).ready(function(){
         }
     }
     
-    function plotMarkers($stationsArray) {
-        // This loop maps the stations from the $stations fetched from getStations
-        //console.log($stationsArray);
-        for (var key in $stationsArray) {
-            $currentStation = $stationsArray[key];
-            $('#map').geomap("append", {
-                name: $currentStation.name,
-                type:'Point',                
-                coordinates: $currentStation.coordinates
-            }, {
-                height : "0",
-                width : "0"
-            }, '<div class="marker" style="display:none" id="marker-' + $currentStation.id + '"></div>',true);
-        }
-    }
     
     function getObjects(obj, key, val) {
         var objects = [];
@@ -138,7 +119,7 @@ $(document).ready(function(){
             if (!obj.hasOwnProperty(i)) continue;
             if (typeof obj[i] == 'object') {
                 objects = objects.concat(getObjects(obj[i], key, val));
-            } else if (i == key && obj[key] == val) {
+            }else if(i ==key && obj[key] == val){
                 objects.push(obj);
             }
         }
