@@ -2,36 +2,36 @@ $(document).ready(function(){
     window['GEOMAP_SERVICES'] = {
         standard: [{
                 id: "OSM", type: "tiled",
-                attr: "¬© OpenStreetMap & contributors, CC-BY-SA",
+                attr: "<?= Configure::read('Tile.attr') ?>",
                 src: function (view) {
-                    return "http://c.tiles.mapbox.com/v3/mapbox.mapbox-streets/"
+                    return "<?= Configure::read('Tile.main.url') ?>/"
                         + view.zoom + "/"
                         + view.tile.column + "/"
                         + view.tile.row
-                        + ".png";}}],
+                        + ".<?= Configure::read('Tile.main.ext') ?>";}}],
         transparent: [{
                 id: "OSM", type: "tiled",
-                attr: "¬© OpenStreetMap & contributors, CC-BY-SA",
+                attr: "<?= Configure::read('Tile.attr') ?>",
                 src: function (view) {
-                    return "http://tiles.meteomedia.ph/transparent/"
+                    return "<?= Configure::read('Tile.tiles') ?>/transparent/"
                         + view.zoom + "/"
                         + view.tile.column + "/"
                         + view.tile.row
                         + ".png";}}],
         half_transparent: [{
                 id: "OSM", type: "tiled",
-                attr: "¬© OpenStreetMap & contributors, CC-BY-SA",
+                attr: "<?= Configure::read('Tile.attr') ?>",
                 src: function (view) {
-                    return "http://tiles.meteomedia.ph/halftransparent/"
+                    return "<?= Configure::read('Tile.tiles') ?>/halftransparent/"
                         + view.zoom + "/"
                         + view.tile.column + "/"
                         + view.tile.row
                         + ".png";}}],
         outline: [{
                 id: "OSM", type: "tiled",
-                attr: "¬© OpenStreetMap & contributors, CC-BY-SA",
+                attr: "<?= Configure::read('Tile.attr') ?>",
                 src: function (view) {
-                    return "http://tiles.meteomedia.ph/outline/"
+                    return "<?= Configure::read('Tile.tiles') ?>/outline/"
                         + view.zoom + "/"
                         + view.tile.column + "/"
                         + view.tile.row
@@ -239,7 +239,24 @@ $(document).ready(function(){
             } // END IF
         });
 	});
-    
+    $('#map ul').css({
+        'position': 'absolute',
+        'background-color': 'black',
+        'bottom': 0,
+        'left': 0,
+        'list-style-type': 'none',
+        'max-width': '100%',
+        'padding': '4px 0 4px 0',
+        'margin': 0,
+        'width': '100%',
+        'opacity': 1,
+        'font-size': '6.5pt',
+        'text-transform': 'uppercase'
+    });
+    $('#map ul li').css({
+        'margin-left': '6px',
+        'color': 'white'
+    });
     getForecast(984290);
 });
 
