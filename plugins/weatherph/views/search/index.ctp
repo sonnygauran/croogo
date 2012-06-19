@@ -1,24 +1,4 @@
 <script type="text/javascript" src="<?= $this->webroot ?>weatherph/js/weatherph/results.js"></script>
-<style>
-    .plot {   
-        width: 3px;
-        height: 3px;
-        border: 2px solid #365283;
-        border-radius: 8px;
-        position: relative;
-        left: -4px;
-        top: -4px;
-        z-index: 1 !important;
-    }
-    .marker {   
-        width: 32px;
-        height: 32px;
-        background-image: url('<?= $this->webroot ?>theme/weatherph/img/marker.png') !important;
-        position: relative;
-        left: -16px;
-        top: -32px;
-    }
-</style>
 <div class="content">
     <section class="main">
         <div id="map-container">

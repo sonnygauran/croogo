@@ -1027,6 +1027,25 @@ span.wind-description { font-size: .875em; }
 .blue-dot { background-color: blue; height: 10px; width: 2px; border-radius: 8px;}
 .blue-bar { background-color: blue; height: 5px;}
 
+.plot {   
+    width: 16px;
+    height: 16px;
+    background-image: url('<?= $this->webroot ?>theme/weatherph/img/marker-small.png') !important;
+    position: relative;
+    left: -8px;
+    top: -16px;
+    z-index: 1 !important;
+}
+
+.marker {   
+    width: 32px;
+    height: 32px;
+    background-image: url('<?= $this->webroot ?>theme/weatherph/img/marker.png') !important;
+    position: relative;
+    left: -16px;
+    top: -32px;
+}
+
 /* RIBBON  STYLE CSS */
 .ribbon-wrapper {
     position: relative;
