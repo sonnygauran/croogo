@@ -79,11 +79,11 @@
 <!--                    <li><a href="#">Impressum</a></li>-->
                 </ul>
             </nav>
-<!--            
+
             <div class="severe-warning shadow">
                 <p><strong>Alert:</strong> Typhoon Dador is approaching the NCR. No classes in all levels. Stay at home!</p>
             </div>
-            -->
+            
             <div id="sidebar">
                 <div class="sponsored">
                     <h6>Platinum sponsors:</h6>
