@@ -476,7 +476,7 @@ class WeatherphStationForecast extends WeatherphAppModel
                     $new_forecast['localtime_range'] = date('hA', strtotime($new_forecast['localtime_range_start'])) . '-' . date('hA', strtotime($new_forecast['localtime_range_end']));
 
                     // Generate the wind description
-                    $new_forecast['wind_description'] = $this->showWindDescription($forecast['dir'], $new_forecast['wind_speed']);
+                    $new_forecast['wind_description'] = $this->showWindDescription($forecast['dir'], $new_forecast['wind_speed'], $new_forecast['wind_gust']);
                     
                     // Translate raw data to wind direction image value
                     $new_forecast['wind_direction'] = $this->showWindDirection($forecast['dir']);
@@ -805,6 +805,10 @@ class WeatherphStationForecast extends WeatherphAppModel
         
         App::import('Model', 'Nima.NimaName');
         
+        // Get the default timestamp timezone
+        $siteTimezone = Configure::read('Site.timezone');
+        $Date = new DateTime(null, new DateTimeZone($siteTimezone));
+        
         $NimaName = new NimaName();
         $station_id = $fields['conditions']['id']; 
         $stationInfo = $NimaName->find('all', array('fields' => array('id' ,'lat', 'long', 'full_name_ro'),  'conditions' => array( 'id =' => $station_id)));
@@ -820,6 +824,8 @@ class WeatherphStationForecast extends WeatherphAppModel
         
         $forecasts = $this->csvToArray($csvString);
         
+        $this->log(print_r($forecasts, TRUE));
+        
         // Get sunrise and sunset using current latituted and longtitude station
         $sunrise = $this->sunInfo($stationInfo['lat'], $stationInfo['long'], 'sunrise');
         $sunset = $this->sunInfo($stationInfo['lat'], $stationInfo['long'], 'sunset');
@@ -829,8 +835,6 @@ class WeatherphStationForecast extends WeatherphAppModel
         $dmoResults['reading']['sunrise'] = $sunrise;
         $dmoResults['reading']['sunset'] = $sunset;
         
-        //$this->log(print_r($forecasts, TRUE));
-
         foreach($forecasts as $forecast){
             
             $new_forecast = array();
@@ -843,29 +847,29 @@ class WeatherphStationForecast extends WeatherphAppModel
                     
                     $new_forecast['weather_symbol'] = (trim($forecast['sy']) == '')? '0' : $this->dayOrNightSymbol($forecast['sy'], $forecast['utc'], array("sunrise"=>$sunrise,"sunset"=>$sunset));
 
-                    $new_forecast['precipitation'] = ($forecast['rain3'] == '')? '0' : number_format($forecast['rain3'],3);
+                    $new_forecast['precipitation'] = ($forecast['rain3'] == '')? '0' : number_format($forecast['rain3'],1);
                     $new_forecast['relative_humidity'] = ($forecast['rh'] == '')? '0' : round($forecast['rh'],0);
                     $new_forecast['wind_speed'] = ($forecast['ff'] == '')? '0' : floor($forecast['ff'] * 1.852 + 0.5);
-                    $new_forecast['wind_gust'] = ($forecast['g3h'] == '')? '0' : floor($forecast['g3h'] * 1.852 + 0.5);
+                    $new_forecast['wind_gust'] = ($forecast['g6h'] == '')? '0' : floor($forecast['g6h'] * 1.852 + 0.5);
                     $new_forecast['temperature'] = ($forecast['tl'] == '')? '0' : number_format($forecast['tl'],0); 
 
                     // Translate raw date to 3 hourly range value
-                    $localtime = strtotime($forecast['Datum'].' '.$forecast['utc'].':'.$forecast['min']);
+                    $thierTime = strtotime($forecast['Datum'].' '.$forecast['utc'].':'.$forecast['min']);
                     
-                    $new_forecast['localtime'] = date('Ymd H:i:s', $localtime);
+                    $new_forecast['their_time'] = date('Ymd H:i:s', $thierTime);
                     
-                    $new_forecast['localtime_range_start'] = date('Ymd H:i:s', strtotime('-3 hours', $localtime)); 
-                    $new_forecast['localtime_range_end'] = date('Ymd H:i:s', $localtime);
+                    $new_forecast['localtime'] = date('Ymd H:i:s', $thierTime + $Date->getOffset());
+                    
+                    $new_forecast['localtime_range_start'] = date('Ymd H:i:s', strtotime('-3 hours', $thierTime) + $Date->getOffset()); 
+                    $new_forecast['localtime_range_end'] = date('Ymd H:i:s', $thierTime + $Date->getOffset());
                     
                     $new_forecast['localtime_range'] = date('hA', strtotime($new_forecast['localtime_range_start'])) . '-' . date('hA', strtotime($new_forecast['localtime_range_end']));
 
                     // Generate the wind description
-                    $new_forecast['wind_description'] = $this->showWindDescription($forecast['dir'], $new_forecast['wind_speed']);
+                    $new_forecast['wind_description'] = $this->showWindDescription($forecast['dir'], $new_forecast['wind_speed'], $new_forecast['wind_gust']);
                     
                     // Translate raw data to wind direction image value
                     $new_forecast['wind_direction'] = $this->showWindDirection($forecast['dir']);
-                    
-                    //$this->log(print_r($new_forecast, TRUE));
                     
                     $dmoResults['forecast'][$forecast['Datum']][] = $new_forecast;
                 
@@ -874,80 +878,14 @@ class WeatherphStationForecast extends WeatherphAppModel
         
         //$this->log(print_r($dmoResults, TRUE));
         
-        $dmoResults['forecast'] = $this->rearrageForecast($dmoResults['forecast']);
+        $dmoResults['forecast'] = $this->localTimeForecast($dmoResults['forecast']);
         
         $dmoResults['stationId'] = $station_id;
         $dmoResults['stationName'] = $stationInfo['full_name_ro'];
         
-        $this->log(print_r($dmoResults, TRUE));
+        //$this->log(print_r($dmoResults, TRUE));
         
         return $dmoResults;
-        
-    }
-    
-    private function rearrageForecast($datasets = NULL){
-        
-        // Get the default timestamp timezone
-        $siteTimezone = Configure::read('Site.timezone');
-        $Date = new DateTime(null, new DateTimeZone($siteTimezone)); 
-        
-        $new_datasets = array();
-        
-        //$today = date('Ymd H:i:s' , strtotime('-1 Day', strtotime(date('Ymd H:i:s'))) + $Date->getOffset());
-        
-        $today = date('Ymd H:i:s' , strtotime(date('Ymd H:i:s')) + $Date->getOffset());
-        
-        $this->log($today);
-        
-        foreach($datasets as $key => $dataset){
-            
-            foreach($dataset as $index => $data){
-                
-                $new_key = date('Ymd', strtotime($data['localtime']));
-                
-                    
-                    if(strtotime($data['localtime_range_end']) >= strtotime($today)){
-                        
-                        $new_datasets[$new_key][] = $data;
-                        
-                    }
-                    
-            }
-            
-        }
-        
-//        $this->log(print_r($new_datasets, TRUE));
-        
-        $newer_datasets = array();
-        $dummy_datasets = $new_datasets;
-        
-        $skip = true;
-        
-        foreach($new_datasets as $index_date => $datasets){
-            
-            $next_date = date('Ymd', strtotime('+1 day', strtotime($index_date)));
-            
-            if(array_key_exists($next_date, $dummy_datasets)){
-                
-                $array_sets = $dummy_datasets[$next_date][0]; //
-                
-                array_push($datasets, $array_sets);
-                
-                if($skip == false) unset($datasets[0]);
-                
-                $skip = false;
-                
-                $newer_datasets[$index_date] = $datasets;
-                
-            }
-            
-            
-            
-        }
-        
-        //$this->log(print_r($newer_datasets, TRUE));
-        
-        return $newer_datasets;
         
     }
     
