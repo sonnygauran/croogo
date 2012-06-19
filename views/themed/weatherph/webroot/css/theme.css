@@ -1044,6 +1044,7 @@ span.wind-description { font-size: .875em; }
     position: relative;
     left: -16px;
     top: -32px;
+    z-index: 1 !important;
 }
 
 /* RIBBON  STYLE CSS */
@@ -1224,8 +1225,9 @@ span.wind-description { font-size: .875em; }
     top: 10px;
     left: -25px;
     width: 10px;
-    height: 80px;_
-    background-color: #32ABE8;	z-index: 0;
+    height: 80px;
+    background-color: #32ABE8;
+    z-index: 0;
 }
 
 .ribbon-back-right-blogs {
