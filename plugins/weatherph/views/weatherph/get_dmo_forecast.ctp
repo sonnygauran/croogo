@@ -136,7 +136,7 @@ echo $this->Html->script(array(
 
     </section> <!--MAIN CONTENT-->
 
-    <section class="secondary">
+    <!--section class="secondary">
         <div id="charts">
             <h4>Detailed Forecasts</h4>
             <ul class="tabs">
@@ -202,13 +202,5 @@ echo $this->Html->script(array(
                 </div>
             </div>
         </div> <!--END CHARTS-->
-        <!--        <div id="outlook">
-                    <h4>15-Day Outlook</h4>
-                    <ul class="tabs">
-                        <li class="current-tab"><a href="javascript: void(0);">Temperature</a></li>
-                        <li><a href="javascript: void(0);">Precipitation</a></li>
-                        <li><a href="javascript: void(0);">Wind</a></li>
-                    </ul>
-                </div> END OUTLOOK-->
-    </section> <!--SECONDARY-->
+    <!--/section--> <!--SECONDARY-->
 </div> <!--CONTENT-->

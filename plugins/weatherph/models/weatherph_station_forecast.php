@@ -234,7 +234,7 @@ class WeatherphStationForecast extends WeatherphAppModel
                 
                 $new_key = date('Ymd', strtotime($data['localtime']));
                 
-                if(date('Ymd', strtotime($today)) == $new_key){
+                //if(date('Ymd', strtotime($today)) == $new_key){
                     
                     if(strtotime($data['localtime_range_end']) >= strtotime($today)){
                         
@@ -242,11 +242,11 @@ class WeatherphStationForecast extends WeatherphAppModel
                         
                     }
                     
-                }else{
+                //}else{
                     
-                    $new_datasets[$new_key][] = $data;
+                //    $new_datasets[$new_key][] = $data;
                   
-                }
+                //}
             }
             
         }
@@ -891,11 +891,11 @@ class WeatherphStationForecast extends WeatherphAppModel
         $siteTimezone = Configure::read('Site.timezone');
         $Date = new DateTime(null, new DateTimeZone($siteTimezone)); 
         
-        //$this->log('Localtime' . print_r($datasets, TRUE));
-        
         $new_datasets = array();
         
-        $today = date('Ymd H:i:s' , strtotime('-1 Day', strtotime(date('Ymd H:i:s'))) + $Date->getOffset());
+        //$today = date('Ymd H:i:s' , strtotime('-1 Day', strtotime(date('Ymd H:i:s'))) + $Date->getOffset());
+        
+        $today = date('Ymd H:i:s' , strtotime(date('Ymd H:i:s')) + $Date->getOffset());
         
         $this->log($today);
         
@@ -905,7 +905,6 @@ class WeatherphStationForecast extends WeatherphAppModel
                 
                 $new_key = date('Ymd', strtotime($data['localtime']));
                 
-                if(date('Ymd', strtotime($today)) == $new_key){
                     
                     if(strtotime($data['localtime_range_end']) >= strtotime($today)){
                         
@@ -913,11 +912,6 @@ class WeatherphStationForecast extends WeatherphAppModel
                         
                     }
                     
-                }else{
-                    
-                    $new_datasets[$new_key][] = $data;
-                  
-                }
             }
             
         }
