@@ -1,7 +1,7 @@
 $(document).ready(function(){
     var map = $("#map").geomap({
-        center: [123.5, 12.902712695115516], //to fit weather animations
-        // was[ 121.750488, 12.698865 ],
+        center: [ 121.750488, 12.698865],
+        // [123.5, 12.902712695115516]
         zoom: 5,
         scroll: 'off',
         cursors: {
@@ -14,9 +14,6 @@ $(document).ready(function(){
             measureLength: "default",
             measureArea: "default"
         },
-        //http://a.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/56590/256/5/15/12.png
-
-        //Tiledrawer Maps
 
         services: [
         {
@@ -30,14 +27,6 @@ $(document).ready(function(){
                 + ".png";
             },
             attr: "¬© OpenStreetMap & contributors, CC-BY-SA"
-        
-        //          return "http://192.168.1.34:8888/convert.php?zoom="
-        //          + view.zoom + "&column="
-        //          + view.tile.column + "&row="
-        //          + view.tile.row
-        //          + "&mode=1";
-        //          },
-        //          attr: "¬© OpenStreetMap & contributors, CC-BY-SA"
         }
         ],
         tilingScheme: {
@@ -80,7 +69,6 @@ $(document).ready(function(){
         
         }
     
-    
     });
     
     $('.marker').hide();
@@ -107,14 +95,9 @@ $(document).ready(function(){
                 type:'Point',                
                 coordinates: $currentStation.coordinates
             }, {
-                strokeWidth: "1px", 
-                height: "6px", 
-                width: "6px", 
-                radius: "8px", 
-                color: "#dd2222", 
-                fillOpacity: "0", 
-                strokeOpacity: "1"
-            },true);
+                height : "0",
+                width : "0"
+            }, '<div class="plot" id="plot-' + $currentStation.id + '"></div>',true);
         }
     }
     
@@ -127,6 +110,9 @@ $(document).ready(function(){
                 name: $currentStation.name,
                 type:'Point',                
                 coordinates: $currentStation.coordinates
+            }, {
+                height : "0",
+                width : "0"
             }, '<div class="marker" style="display:none" id="marker-' + $currentStation.id + '"></div>',true);
         }
     }
