@@ -33,24 +33,43 @@ class WeatherphController extends WeatherphAppController {
 
     public function index() {
         $this->set('title_for_layout', __('Weatherph', true));
-        $this->set('weatherphVariable', 'value here');
         
-        $featuredBlog = $this->Node->find('all', array(
+        $blogEntries = $this->Node->find('all', array(
             'order' => 'Node.created DESC',
             'conditions' => array('Node.type' => 'blog'),
             'limit' => 5,
         ));
         
-//        App::import('Model', 'Resource');
-//        $Resource = new Resource();
-//        $key = $Resource->generateKey('wetter4', '');
-//        
-        $wetter4 = 'http://alpha.meteomedia-portal.com/services/wetter4.php?';
-        $temperature = 'api_key=portal-efd339395c80ad957acb695bb9758399&p=QFF&q=meh_ifm&leg=nil&a=image&x=554&y=554&srs=EPSG:900913&';
+          
+        // $time = date('YmdHis');
+        $everyHour = date('YmdH0000');
+        
+        $wetter4 = 'http://alpha.meteomedia-portal.com/services/wetter4.php?dt='.$everyHour.'&';
+        $temperature = 'api_key=portal-efd339395c80ad957acb695bb9758399&q=meh_ifm&leg=nil&a=image&x=554&y=554&srs=EPSG:900913&';
+        $pressure    = $temperature.'p=QFF&';
+        
         // x1=111.32714843750325&x2=135.67285156249676&y2=24.41201768480203&y1=0.8402895756535625
         
+        App::import('Model', 'Weatherph.Resource');
+        $Resource = new Resource();
         
-        $this->set('featuredBlog', $featuredBlog);
+        $keyTemperature = $Resource->generateKey('data-layer', 'temperature', $wetter4.$temperature);
+        $keyPressure    = $Resource->generateKey('data-layer', 'pressure', $wetter4.$pressure);
+        
+        $resources = array(
+            'data-layers' => array(
+                'temperature' => $keyTemperature,
+                'pressure'    => $keyPressure,
+            ),
+        );
+        /**
+         * Note:
+         * 
+         * index.js requires the following variable:
+         *      - resource - contains an array of (data-layer => (temperature, pressure)) for retreiving the image key. 
+         *      - featureBlog - to display the featured blogs
+         */
+        $this->set(compact('blogEntries', 'resources'));
         
     }
 

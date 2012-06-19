@@ -1,6 +1,8 @@
 <?php
 class NscbSummary extends AppModel {
 	var $name = 'NscbSummary';
+    var $useDbConfig = 'nscb';
+    
 	var $validate = array(
 		'name' => array(
 			'notempty' => array(

@@ -591,18 +591,32 @@ span.daytime {
 
 ul.tabs {
     margin-top: 1em;
-    border-bottom: 15px solid #365283;
+    border-bottom: 15px solid #3e5e95;
+}
+
+.divider{
+    position: relative;
+    width: 100%;
+    background: #3e5e95;
 }
 
 .tabs li {
     display: inline;
-    padding: 5px 10px 0 10px;
-    border-bottom: 1px solid #365283;
+    padding: 10px 30px 0px 30px;
     cursor: pointer;
+    border-radius: 5px 5px 0 0;
+    -moz-box-shadow: 0 -2px 2px #888;
+    -webkit-box-shadow: 0 -2px 2px #888;
+    box-shadow: 0 -2px 2px #888;
 }
 
 .tabs li > a {
     text-decoration: none;
+}
+
+.tabs li a{
+    padding-bottom:10px;
+    padding-top: 10px;
 }
 
 div.tab{
@@ -926,8 +940,8 @@ nav li:active, .detail-page-link:active {
 }
 
 .tabs li.current-tab {
-    border-top: 1px solid #aa1111;
-    background-color: #365283;
+    border-top: 4px solid #FFBE00;
+    background-color: #3e5e95;
 }
 
 .shadow {

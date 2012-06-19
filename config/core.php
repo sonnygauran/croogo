@@ -67,7 +67,7 @@
  *
  * And uncomment the App.baseUrl below:
  */
-	Configure::write('App.baseUrl', env('SCRIPT_NAME'));
+//	Configure::write('App.baseUrl', env('SCRIPT_NAME'));
 
 /**
  * Uncomment the define below to use CakePHP admin routes.
@@ -100,7 +100,7 @@
  * Turn off all caching application-wide.
  *
  */
-	Configure::write('Cache.disable', true);
+//	Configure::write('Cache.disable', true);
 
 /**
  * Enable cache checking.
@@ -298,7 +298,7 @@
     Cache::config('hourly', array(  
         'engine' => 'File',  
         'duration'=> '+1 hour',  
-        'path' => CACHE,
+        'path' => CACHE.DS.'models',
         'prefix' => 'hourly_'
     ));
     Cache::config('3hour', array(  
