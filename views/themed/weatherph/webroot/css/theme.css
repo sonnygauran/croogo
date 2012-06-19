@@ -246,16 +246,17 @@ nav li > a {
     float:left; 
 }
 
-.scale {
+.scale-fahrenheit, .scale-celsius {
     float:left;
     margin-left: 10px;
+    display:none;
 }
 
 .unit-buttons {
     float: left;
 }
 
-.scale li {
+.scale-fahrenheit li, .scale-celsius li {
     display: inline-block;
     text-align: center;
     vertical-align: middle;
