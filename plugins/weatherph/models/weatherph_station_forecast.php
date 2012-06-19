@@ -222,7 +222,7 @@ class WeatherphStationForecast extends WeatherphAppModel
         $siteTimezone = Configure::read('Site.timezone');
         $Date = new DateTime(null, new DateTimeZone($siteTimezone)); 
         
-        //$this->log(print_r($datasets, TRUE));
+        //$this->log('Localtime' . print_r($datasets, TRUE));
         
         $new_datasets = array();
         
@@ -234,7 +234,7 @@ class WeatherphStationForecast extends WeatherphAppModel
                 
                 $new_key = date('Ymd', strtotime($data['localtime']));
                 
-                if(date('Ymd', strtotime($today)) == $new_key){
+                //if(date('Ymd', strtotime($today)) == $new_key){
                     
                     if(strtotime($data['localtime_range_end']) >= strtotime($today)){
                         
@@ -242,16 +242,16 @@ class WeatherphStationForecast extends WeatherphAppModel
                         
                     }
                     
-                }else{
+                //}else{
                     
-                    $new_datasets[$new_key][] = $data;
+                //    $new_datasets[$new_key][] = $data;
                   
-                }
+                //}
             }
             
         }
         
-        //$this->log(print_r($new_datasets, TRUE));
+//        $this->log(print_r($new_datasets, TRUE));
         
         $newer_datasets = array();
         $dummy_datasets = $new_datasets;
@@ -280,7 +280,7 @@ class WeatherphStationForecast extends WeatherphAppModel
             
         }
         
-//        $this->log(print_r($newer_datasets, TRUE));
+        $this->log(print_r($newer_datasets, TRUE));
         
         return $newer_datasets;
         
@@ -476,7 +476,7 @@ class WeatherphStationForecast extends WeatherphAppModel
                     $new_forecast['localtime_range'] = date('hA', strtotime($new_forecast['localtime_range_start'])) . '-' . date('hA', strtotime($new_forecast['localtime_range_end']));
 
                     // Generate the wind description
-                    $new_forecast['wind_description'] = $this->showWindDescription($forecast['dir'], $new_forecast['wind_speed']);
+                    $new_forecast['wind_description'] = $this->showWindDescription($forecast['dir'], $new_forecast['wind_speed'], $new_forecast['wind_gust']);
                     
                     // Translate raw data to wind direction image value
                     $new_forecast['wind_direction'] = $this->showWindDirection($forecast['dir']);
@@ -596,30 +596,25 @@ class WeatherphStationForecast extends WeatherphAppModel
         
         foreach($results as $result){
             
-                if(strtotime($result['Datum']) >= strtotime(date('Ymd'))){
-                    
-                    //if($result['utc']%$data_time_resolution == 0){ 
-                        
-                        //explode the ort1 raw data, grab only those needed
-                        $result['ort1'] = explode('/', $result['ort1']);
-                        unset($result['ort1'][0]);
-                        $result['ort1'] = implode('/', $result['ort1']);
+            //explode the ort1 raw data, grab only those needed
+            $result['ort1'] = explode('/', $result['ort1']);
+            unset($result['ort1'][0]);
+            $result['ort1'] = implode('/', $result['ort1']);
 
-                        $abfrageResults['ort1'] = $result['ort1']; 
+            $abfrageResults['ort1'] = $result['ort1']; 
 
-                        $utcDate = strtotime($result['Datum'] . $result['utc'] . ':' .$result['min']) + $Date->getOffset();
-                        $result['Datum'] = date('Ymd', $utcDate);
-                        $result['utc'] = date('H', $utcDate);
-                        $result['min'] = date('m', $utcDate);
+            $utcDate = strtotime($result['Datum'] . $result['utc'] . ':' .$result['min']) + $Date->getOffset();
+            
+            $result['Datum'] = date('Ymd', $utcDate);
+            $result['utc'] = date('H', $utcDate);
+            $result['min'] = date('m', $utcDate);
 
-                        $abfrageResults['forecast'][$result['Datum']][] = $result;
-                        
-                    //}
-                }    
+            $abfrageResults['forecast'][$result['Datum']][] = $result;
+
        
         }
-        
-        
+                
+        //$this->log(print_r($abfrageResults, true));
         
         $resultData = array();
         switch($type){
@@ -805,4 +800,108 @@ class WeatherphStationForecast extends WeatherphAppModel
         }
         return $result;
     }
+    
+    public function dmoForecast($condition = NULL, $fields = array()){
+        
+        App::import('Model', 'Nima.NimaName');
+        
+        // Get the default timestamp timezone
+        $siteTimezone = Configure::read('Site.timezone');
+        $Date = new DateTime(null, new DateTimeZone($siteTimezone));
+        
+        $NimaName = new NimaName();
+        $station_id = $fields['conditions']['id']; 
+        $stationInfo = $NimaName->find('all', array('fields' => array('id' ,'lat', 'long', 'full_name_ro'),  'conditions' => array( 'id =' => $station_id)));
+        $stationInfo = $stationInfo[0]['Name'];
+        
+        $nearestGP = $this->nearestGridPoint($stationInfo['long'],$stationInfo['lat']);
+        
+        $dmo_forecast_dir = Configure::read('Data.dmo');
+        
+        $dmo_forecast = $dmo_forecast_dir . $nearestGP['lon'] . '_' . $nearestGP['lat'] . '.csv';
+        
+        $csvString = file_get_contents($dmo_forecast);
+        
+        $forecasts = $this->csvToArray($csvString);
+        
+        $this->log(print_r($forecasts, TRUE));
+        
+        // Get sunrise and sunset using current latituted and longtitude station
+        $sunrise = $this->sunInfo($stationInfo['lat'], $stationInfo['long'], 'sunrise');
+        $sunset = $this->sunInfo($stationInfo['lat'], $stationInfo['long'], 'sunset');
+        
+        $dmoResults['reading'] = '';
+        $dmoResults['reading']['status'] = 'none';
+        $dmoResults['reading']['sunrise'] = $sunrise;
+        $dmoResults['reading']['sunset'] = $sunset;
+        
+        foreach($forecasts as $forecast){
+            
+            $new_forecast = array();
+            
+            if(trim($forecast['tl'])!=''){
+                    
+                    $new_forecast['Datum'] = $forecast['Datum'];
+                    $new_forecast['utc'] = $forecast['utc'];
+                    $new_forecast['min'] = $forecast['min'];
+                    
+                    $new_forecast['weather_symbol'] = (trim($forecast['sy']) == '')? '0' : $this->dayOrNightSymbol($forecast['sy'], $forecast['utc'], array("sunrise"=>$sunrise,"sunset"=>$sunset));
+
+                    $new_forecast['precipitation'] = ($forecast['rain3'] == '')? '0' : number_format($forecast['rain3'],1);
+                    $new_forecast['relative_humidity'] = ($forecast['rh'] == '')? '0' : round($forecast['rh'],0);
+                    $new_forecast['wind_speed'] = ($forecast['ff'] == '')? '0' : floor($forecast['ff'] * 1.852 + 0.5);
+                    $new_forecast['wind_gust'] = ($forecast['g6h'] == '')? '0' : floor($forecast['g6h'] * 1.852 + 0.5);
+                    $new_forecast['temperature'] = ($forecast['tl'] == '')? '0' : number_format($forecast['tl'],0); 
+
+                    // Translate raw date to 3 hourly range value
+                    $thierTime = strtotime($forecast['Datum'].' '.$forecast['utc'].':'.$forecast['min']);
+                    
+                    $new_forecast['their_time'] = date('Ymd H:i:s', $thierTime);
+                    
+                    $new_forecast['localtime'] = date('Ymd H:i:s', $thierTime + $Date->getOffset());
+                    
+                    $new_forecast['localtime_range_start'] = date('Ymd H:i:s', strtotime('-3 hours', $thierTime) + $Date->getOffset()); 
+                    $new_forecast['localtime_range_end'] = date('Ymd H:i:s', $thierTime + $Date->getOffset());
+                    
+                    $new_forecast['localtime_range'] = date('hA', strtotime($new_forecast['localtime_range_start'])) . '-' . date('hA', strtotime($new_forecast['localtime_range_end']));
+
+                    // Generate the wind description
+                    $new_forecast['wind_description'] = $this->showWindDescription($forecast['dir'], $new_forecast['wind_speed'], $new_forecast['wind_gust']);
+                    
+                    // Translate raw data to wind direction image value
+                    $new_forecast['wind_direction'] = $this->showWindDirection($forecast['dir']);
+                    
+                    $dmoResults['forecast'][$forecast['Datum']][] = $new_forecast;
+                
+            }
+        }
+        
+        //$this->log(print_r($dmoResults, TRUE));
+        
+        $dmoResults['forecast'] = $this->localTimeForecast($dmoResults['forecast']);
+        
+        $dmoResults['stationId'] = $station_id;
+        $dmoResults['stationName'] = $stationInfo['full_name_ro'];
+        
+        //$this->log(print_r($dmoResults, TRUE));
+        
+        return $dmoResults;
+        
+    }
+    
+    private function nearestGridPoint($lon, $lat){
+        
+        $schrittx = 0.125;
+        $schritty = 0.125;
+        
+        $nearest_lon = round($lon/$schrittx)*$schrittx;
+        $nearest_lat = round($lat/$schritty)*$schritty;
+        
+        return array(
+            'lon' => $nearest_lon,
+            'lat' => $nearest_lat
+        );
+        
+    }
+    
 }
