@@ -26,6 +26,6 @@
     CroogoRouter::connect('/getDetailedReading/*', array('plugin' => 'weatherph', 'controller' => 'weatherph', 'action' => 'getDetailedReading'));
     CroogoRouter::connect('/detailedReading', array('plugin' => 'weatherph', 'controller' => 'weatherph', 'action' => 'detailedReading'));
     CroogoRouter::connect('/detailedReading/*', array('plugin' => 'weatherph', 'controller' => 'weatherph', 'action' => 'detailedReading'));
-    CroogoRouter::connect('/DmoForecast/*', array('plugin' => 'weatherph', 'controller' => 'weatherph', 'action' => 'getDmoForecast'));
+    CroogoRouter::connect('/dmoForecast/*', array('plugin' => 'weatherph', 'controller' => 'weatherph', 'action' => 'getDmoForecast'));
     
     

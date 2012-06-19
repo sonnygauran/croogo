@@ -32,9 +32,9 @@ class SearchController extends WeatherphAppController {
             }
             
         } else {
-            $termStr = '/^([A-Za-z0-9]+)$/';
+            $termStr = '/^([A-Za-z0-9 ]+)$/';
             
-            if (preg_match($termStr, $terms)) {
+            if (preg_match($termStr, rawurldecode($terms))) {
                 $this->log('MATCH!');
 //                debug($this->data);
 //                debug();
