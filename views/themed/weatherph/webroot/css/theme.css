@@ -1065,6 +1065,7 @@ span.wind-description { font-size: .875em; }
     position: relative;
     left: -16px;
     top: -32px;
+    z-index: 1 !important;
 }
 
 /* RIBBON  STYLE CSS */
