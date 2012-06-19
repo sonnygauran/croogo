@@ -29,3 +29,10 @@ Data.dmo: /Users/juliuslagutan/weather.com.ph/data/dmo/
 
 Abfrage.username: wget
 Abfrage.password: p09tM20
+
+Tile.main.url: http://c.tiles.mapbox.com/v3/mapbox.mapbox-streets
+Tile.main.ext: png
+# Tile.main.url: http://tile.stamen.com/toner
+# Tile.main.ext: jpg
+Tile.tiles: http://tiles.alpha.weather.com.ph
+Tile.attr: Meteomedia, © OpenStreetMap & contributors, CC-BY-SA
