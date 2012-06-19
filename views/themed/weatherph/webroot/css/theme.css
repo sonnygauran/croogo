@@ -249,6 +249,7 @@ nav li > a {
 .scale-fahrenheit, .scale-celsius {
     float:left;
     margin-left: 10px;
+    display:none;
 }
 
 .unit-buttons {
