@@ -11,6 +11,7 @@ class SearchController extends WeatherphAppController {
         
         if(!empty($this->params['pass'])){
             $keyword = $this->params['pass'][0];
+            $keyword = rawurldecode($keyword);
             $this->paginate['NimaName'] = array (
                 'limit' => 15,
                 'conditions' => array(
