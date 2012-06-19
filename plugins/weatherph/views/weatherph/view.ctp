@@ -169,7 +169,12 @@ echo $this->Html->script(array(
                         chart.write();
                         //]]>
                     </script>
-                    <div class="legend"><span class="red-line"></span>Temperature <span class="green-line"></span>Dewpoint</div>
+                    <div class="color-legend">
+                        <span class="red-line"></span>Temperature
+                        <span class="green-line"></span>Dewpoint
+                        <span class="red-dot"></span>Highest Temperature
+                        <span class="blue-dot"></span>Lowest Temperature
+                    </div>
                 </div>
                 <div class="precipitation panel">
                     <script type="text/javascript" language="javascript">
@@ -181,6 +186,9 @@ echo $this->Html->script(array(
                         chart.write();
                         //]]>
                     </script>
+                    <div class="color-legend">
+                        <span class="blue-bar"></span>Humidity
+                    </div>
                 </div>
                 <div class="wind panel">
                     <script type="text/javascript" language="javascript">
@@ -192,6 +200,10 @@ echo $this->Html->script(array(
                         chart.write();
                         //]]>
                     </script>
+                    <div class="color-legend">
+                        <span class="orange-line"></span>Wind Gust
+                        <span class="olive-line"></span>Wind Speed
+                    </div>
                     <script type="text/javascript" language="javascript">
                         //<![CDATA[
                         var chart = new AnyChart('<?= $this->webroot ?>swf/AnyChart.swf');
@@ -212,6 +224,10 @@ echo $this->Html->script(array(
                         chart.write();
                         //]]>
                     </script>
+                    <div class="color-legend">
+                        <span class="green-line"></span>Humidity
+                    </div>
+                    </div>
                 </div>
             </div>
         </div> <!--END CHARTS-->

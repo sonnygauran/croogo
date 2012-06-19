@@ -1,23 +1,4 @@
 <script type="text/javascript" src="<?= $this->webroot ?>weatherph/js/weatherph/results.js"></script>
-<style>
-    .plot {   
-        width: 3px;
-        height: 3px;
-        border: 2px solid #365283;
-        border-radius: 8px;
-        position: relative;
-        left: -4px;
-        top: -4px;
-    }
-    .marker {   
-        width: 32px;
-        height: 32px;
-        background-image: url('<?= $this->webroot ?>theme/weatherph/img/marker.png') !important;
-        position: relative;
-        left: -16px;
-        top: -32px;
-    }
-</style>
 <div class="content">
     <section class="main">
         <div id="map-container">
@@ -72,7 +53,7 @@
             <h2><?php __('Search results'); ?></h2>
             <ul class="search-results">
                 <?php foreach ($names as $name): ?>
-                    <li><a href ="/dmoForecast/<?php echo $name['NimaName']['id']; ?>" class="location" id="<?php echo $name['NimaName']['id']; ?>"><?php echo $name['NimaName']['full_name_ro']; ?>&nbsp;</a></li>
+                    <li class="<?php echo $name['NimaName']['id']; ?>"><a href ="/dmoForecast/<?php echo $name['NimaName']['id']; ?>" class="location" id="<?php echo $name['NimaName']['id']; ?>"><?php echo $name['NimaName']['full_name_ro']; ?>&nbsp;</a></li>
                 <?php endforeach; ?>
             </ul>
             <br/>

@@ -1,4 +1,17 @@
 $(document).ready(function(){
+    $(document).on('mouseover mouseout', 'div.plot', function(){
+        var attributes = $(this).attr('class').split(' ');
+        var id = attributes[1];
+        console.error(id);
+        if (event.type == 'mouseover') {
+            $('li.' + id).css('background-color', '#e0e6f2');
+            $('#marker-' + id).show();
+        } else {
+            $('li.' + id).css('background-color', 'transparent');
+            $('#marker-' + id).hide();
+        }
+        
+    });
     var map = $("#map").geomap({
         center: [ 121.750488, 12.698865],
         // [123.5, 12.902712695115516]
@@ -85,6 +98,8 @@ $(document).ready(function(){
     }
     );
     
+    
+    
     function plotLocations($stationsArray) {
         // This loop maps the stations from the $stations fetched from getStations
         //console.log($stationsArray);
@@ -97,7 +112,7 @@ $(document).ready(function(){
             }, {
                 height : "0",
                 width : "0"
-            }, '<div class="plot" id="plot-' + $currentStation.id + '"></div>',true);
+            }, '<div class="plot ' + $currentStation.id + '" id="plot-' + $currentStation.id + '"></div>',true);
         }
     }
     
