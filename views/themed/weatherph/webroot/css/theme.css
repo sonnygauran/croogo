@@ -535,7 +535,18 @@ span.daytime {
     margin-bottom: 10px;
 }
 
-.inner-left{
+.inner-condition-temp-reading-only{
+    float: left;
+    position: relative;
+    width: 60%;
+    background-color: #fafafa;
+    border-radius: 5px;
+    color: #365283;
+    margin-bottom: 10px;
+    margin-left: 100px;
+}
+
+.left-temp-reading{
     width: 50%;
     float: left;
     border-right: 1px #3E4F76 solid;
@@ -545,7 +556,17 @@ span.daytime {
     font-size: 3em;
 }
 
-.inner-right{
+.reading-temperature-only{
+    width: 100%;
+    float: left;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+    font-size: 3em;
+    text-align: center;
+}
+
+.right-sy-reading{
     width: 50%;
     float: left;
     margin-top: 10px;
