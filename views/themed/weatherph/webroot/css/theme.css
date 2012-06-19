@@ -659,7 +659,8 @@ dd {
 
 .search-results li {
     padding: 10px;
-    border: 1px solid #f1f1f1;
+    background: #fafafa;
+    border: 1px solid #d3d3d3;
 }
 
 .search-results li:hover {
@@ -1015,11 +1016,16 @@ span.sunset { background-position: -60px 5px; }
 
 span.wind-description { font-size: .875em; }
 
-.legend { display: block; margin-left: 30px; vertical-align: middle; font-size: 10px; }
-.legend span { display: inline-block; height: 5px; margin: 0 5px 0 0; padding: 0; width: 10px; }
+.color-legend { display: block; margin-left: 30px; vertical-align: middle; font-size: 10px; }
+.color-legend span { display: inline-block; margin: 0 5px 0 0; vertical-align: middle; padding: 0; width: 10px; }
 
-.legend .red-line { background-color: red; }
-.legend .green-line { background-color: green; } 
+.red-line { background-color: red; height: 2px;}
+.green-line { background-color: green; height: 2px;}
+.orange-line { background-color: orange; height: 2px;}
+.olive-line { background-color: olive; height: 2px;}
+.red-dot { background-color: red; height: 10px; width: 2px; border-radius: 8px;}
+.blue-dot { background-color: blue; height: 10px; width: 2px; border-radius: 8px;}
+.blue-bar { background-color: blue; height: 5px;}
 
 /* RIBBON  STYLE CSS */
 .ribbon-wrapper {
