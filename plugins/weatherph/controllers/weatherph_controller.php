@@ -282,59 +282,49 @@ class WeatherphController extends WeatherphAppController {
    
    public function getAllStation($provider = 'pagasa'){
        
-       $this->layout = 'plain';
+        $this->layout = 'plain';
        
-       App::import('Model', 'Weatherph.WeatherphStation');
-       App::import('Lib', 'Meteomedia.Abfrage');
+        App::import('Model', 'Weatherph.WeatherphStation');
+        App::import('Lib', 'Meteomedia.Abfrage');
         App::import('Lib', 'Meteomedia.Curl');
         
-       $WeatherphStation = new WeatherphStation();
-       $stations = $WeatherphStation->find('all', array('conditions' => array(
-       'provider' => $provider,
-       )));
+        $WeatherphStation = new WeatherphStation();
+        $stations = $WeatherphStation->find('all', array('conditions' => array(
+        'provider' => $provider,
+        )));
        
-       $stationsId = Set::extract($stations, '{n}.id');
-       //$stationsId = implode(',', $stationsId);
+        $stationsId = Set::extract($stations, '{n}.id');
        
-       $Abfrage = new Abfrage($stationsId);
+        $Abfrage = new Abfrage($stationsId);
         
         //Grab stations readings  
         $url = $Abfrage->generateURL($WeatherphStation->generateDate('reading', '10m'), array(
-            'Temperature' => array(
-                'low'
-            ),
-            'Wind' => array(
-                'speed', 'direction'
-            ),
-            'Gust' => array(
-                '3 hours'
-            ),
-            'Rainfall' => array(
-                'Period'
-            ),
-            'Weather Symbols' => array(
-                'Set 1', 'Set 2'
-            ),
-            'Humidity'
+        'Temperature' => array(
+            'low'
+        ),
+        'Wind' => array(
+            'speed', 'direction'
+        ),
+        'Gust' => array(
+            '3 hours'
+        ),
+        'Rainfall' => array(
+            'Period'
+        ),
+        'Weather Symbols' => array(
+            'Set 1', 'Set 2'
+        ),
+        'Humidity'
         ));
-        
-        debug($url);exit;
-        
-        // Get the string after the question-mark sign
-        //$gum = $stationId.'_reading_'.sha1(end(explode('?',$url)));
+
+        //debug($url);exit;
+
         $curlResults = NULL;
-        //if (!Cache::read($gum, '3hour')) {
-            $curlResults = Curl::getData($url);
-        //    Cache::write($gum, $curlResults, '3hour');
-        //} else {
-        //    $curlResults = Cache::read($gum, '3hour');
-        //}
-            
-            //$this->log($curlResults);
-       
-       
-       
-       debug($curlResults);
+        $curlResults = Curl::getData($url, 60);
+        
+        $curlResults = file_get_contents(Configure::read('Data.readings').'/readings.csv');
+        
+        debug($curlResults); exit;
         
    }
    
