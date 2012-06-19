@@ -484,6 +484,22 @@ ECHO
             precipitation: precipContent
         };
         
+        //Temperature unit toggle
+        
+        $('.scale-fahrenheit').hide();
+        
+        $('#fahrenheit-switch').on('click', function(){
+            $('.scale-celsius').hide(0, function(){
+                $('.scale-fahrenheit').show();
+            });
+        });
+        
+        $('#celsius-switch').on('click', function(){
+            $('.scale-fahrenheit').hide(0, function(){
+                $('.scale-celsius').show();
+            });
+        });
+        
         // Layer selector toggle
 
         $('#link-map').on('click', function(){
