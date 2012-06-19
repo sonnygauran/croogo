@@ -1,91 +1,91 @@
 $(document).ready(function(){
-var map = $("#map").geomap({
-    center: [123.5, 12.902712695115516], //to fit weather animations
+    var map = $("#map").geomap({
+        center: [123.5, 12.902712695115516], //to fit weather animations
         // was[ 121.750488, 12.698865 ],
-    zoom: 5,
-    scroll: 'off',
-    cursors: {
-        static: "default",
-        pan: "default",
-        zoom: "default",
-        drawPoint: "default",
-        drawLineString: "default",
-        drawPolygon: "default",
-        measureLength: "default",
-        measureArea: "default"
-    },
-    //http://a.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/56590/256/5/15/12.png
-
-    //Tiledrawer Maps
-
-    services: [
-    {
-        id: "OSM",
-        type: "tiled",
-        src: function (view) {
-        return "http://c.tiles.mapbox.com/v3/mapbox.mapbox-streets/"
-        + view.zoom + "/"
-        + view.tile.column + "/"
-        + view.tile.row
-        + ".png";
+        zoom: 5,
+        scroll: 'off',
+        cursors: {
+            static: "default",
+            pan: "default",
+            zoom: "default",
+            drawPoint: "default",
+            drawLineString: "default",
+            drawPolygon: "default",
+            measureLength: "default",
+            measureArea: "default"
         },
-        attr: "¬© OpenStreetMap & contributors, CC-BY-SA"
-        
-//          return "http://192.168.1.34:8888/convert.php?zoom="
-//          + view.zoom + "&column="
-//          + view.tile.column + "&row="
-//          + view.tile.row
-//          + "&mode=1";
-//          },
-//          attr: "¬© OpenStreetMap & contributors, CC-BY-SA"
-    }
-    ],
-    tilingScheme: {
-    tileWidth: 256,
-    tileHeight: 256,
-    levels: 18,
-    basePixelSize: 156543.03392799936,
-    origin: [-20037508.342787, 20037508.342787]
-    }
-    
-});
-//map.geomap( "option", "cursors", {
-//  static: "crosshair",
-//  pan: "crosshair",
-//  zoom: "crosshair",
-//  drawPoint: "crosshair",
-//  drawLineString: "crosshair",
-//  drawPolygon: "crosshair",
-//  measureLength: "crosshair",
-//  measureArea: "crosshair"
-//} );
-map.geomap({
-    //Find mode
-    mode: "find",
-    click: function(e, geo) {
-        var outputHtml = "";
-    result = $('#map').geomap("find", geo, 6);
-//    console.log(result);
-//    console.log(e);
-    
-    console.log(JSON.stringify(result));
-    $.each(result, function () {
-        outputHtml += ("<p>Found a " + this.type + " at " + this.coordinates + "</p>");
-        console.error(this.id);
-        
-        $stations = new Array();
-        $('.loader').fadeIn();
-        getForecast(this.id);
-        return;
-    });
-    }
-});
+        //http://a.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/56590/256/5/15/12.png
 
-function getForecast(id) {
-    console.error('<?php Router::url($this->webroot) ?>');
-    console.error('<?= $this->webroot ?>weatherph/weatherph/getForecast/'+id+'/3/3h');
+        //Tiledrawer Maps
+
+        services: [
+            {
+                id: "OSM",
+                type: "tiled",
+                src: function (view) {
+                    return "http://c.tiles.mapbox.com/v3/mapbox.mapbox-streets/"
+                        + view.zoom + "/"
+                        + view.tile.column + "/"
+                        + view.tile.row
+                        + ".png";
+                },
+                attr: "¬© OpenStreetMap & contributors, CC-BY-SA"
+        
+                //          return "http://192.168.1.34:8888/convert.php?zoom="
+                //          + view.zoom + "&column="
+                //          + view.tile.column + "&row="
+                //          + view.tile.row
+                //          + "&mode=1";
+                //          },
+                //          attr: "¬© OpenStreetMap & contributors, CC-BY-SA"
+            }
+        ],
+        tilingScheme: {
+            tileWidth: 256,
+            tileHeight: 256,
+            levels: 18,
+            basePixelSize: 156543.03392799936,
+            origin: [-20037508.342787, 20037508.342787]
+        }
     
-$.ajax({
+    });
+    //map.geomap( "option", "cursors", {
+    //  static: "crosshair",
+    //  pan: "crosshair",
+    //  zoom: "crosshair",
+    //  drawPoint: "crosshair",
+    //  drawLineString: "crosshair",
+    //  drawPolygon: "crosshair",
+    //  measureLength: "crosshair",
+    //  measureArea: "crosshair"
+    //} );
+    map.geomap({
+        //Find mode
+        mode: "find",
+        click: function(e, geo) {
+            var outputHtml = "";
+            result = $('#map').geomap("find", geo, 6);
+            //    console.log(result);
+            //    console.log(e);
+    
+            console.log(JSON.stringify(result));
+            $.each(result, function () {
+                outputHtml += ("<p>Found a " + this.type + " at " + this.coordinates + "</p>");
+                console.error(this.id);
+        
+                $stations = new Array();
+                $('.loader').fadeIn();
+                getForecast(this.id);
+                return;
+            });
+        }
+    });
+
+    function getForecast(id) {
+        console.error('<?php Router::url($this->webroot) ?>');
+        console.error('<?= $this->webroot ?>weatherph/weatherph/getForecast/'+id+'/3/3h');
+    
+        $.ajax({
             type:     'GET',
             url:      '<?= $this->webroot ?>weatherph/weatherph/getForecast/'+id+'/3/3h',
             cache:    true,
@@ -151,212 +151,212 @@ $.ajax({
             }
         });
      
-//        $('.loader').fadeOut();
-//        $('.detail-page-link a').attr({href: '<?= $this->webroot ?>view/'+id});
-//        console.error('DOne fading out');
-}
+        //        $('.loader').fadeOut();
+        //        $('.detail-page-link a').attr({href: '<?= $this->webroot ?>view/'+id});
+        //        console.error('DOne fading out');
+    }
 
-// Show/hide forecasts depending on availability
+    // Show/hide forecasts depending on availability
 
-function hideForecast(){
-    $('.day-forecast').fadeOut(function(){
-        $('.no-forecast').fadeIn();
-    });
-}
+    function hideForecast(){
+        $('.day-forecast').fadeOut(function(){
+            $('.no-forecast').fadeIn();
+        });
+    }
 
-function showForecast(){
-    $('.day-forecast').fadeIn(function(){
-        $('.no-forecast').fadeOut();
-    });
-}
+    function showForecast(){
+        $('.day-forecast').fadeIn(function(){
+            $('.no-forecast').fadeOut();
+        });
+    }
 
-function hideReadings(){
-    $('.readings.shadow').fadeOut(function(){
-        $('.no-readings').fadeIn();
-    });
-}
+    function hideReadings(){
+        $('.readings.shadow').fadeOut(function(){
+            $('.no-readings').fadeIn();
+        });
+    }
 
-function showReadings(){
-    $('.readings.shadow').fadeIn(function(){
-        $('.no-readings').fadeOut();
-    });
-}
+    function showReadings(){
+        $('.readings.shadow').fadeIn(function(){
+            $('.no-readings').fadeOut();
+        });
+    }
 
-//Stations
-//var $data = {
-//stations : [
-//	{
-//		id: 26481,
-//		name: 'Iloilo',
-//		coordinates: [122.5667, 10.7]
-//	},
-//	{
-//		id: 26437,
-//		name: 'Alabat',
-//		coordinates: [122.0167, 14.0833]
-//	},
-//		{
-//		id: 26395,
-//		name: 'Aparri',
-//		coordinates: [121.6333, 18.3667]
-//	},
-//		{
-//		id: 26409,
-//		name: 'Baguio',
-//		coordinates: [120.6, 16.4167]
-//	},
-//		{
-//		id: 26412,
-//		name: 'Cabanatuan',
-//		coordinates: [120.9667, 15.4833]
-//	},
-//		{
-//		id: 26390,
-//		name: 'Vigan',
-//		coordinates: [120.3833, 17.5667]
-//	},
-//		{
-//		id: 26527,
-//		name: 'Surallah/Allah Valley',
-//		coordinates: [124.75, 6.3667]
-//	},
-//		{
-//		id: 26426,
-//		name: 'Sangley Point',
-//		coordinates: [120.9167, 14.5]
-//	},
-//		{
-//		id: 26456,
-//		name: 'Romblon',
-//		coordinates: [122.2667, 12.5833]
-//	},
-//		{
-//		id: 26499,
-//		name: 'Pagadian',
-//		coordinates: [123.4667, 7.8333]
-//	},
-//]
-//}
+    //Stations
+    //var $data = {
+    //stations : [
+    //	{
+    //		id: 26481,
+    //		name: 'Iloilo',
+    //		coordinates: [122.5667, 10.7]
+    //	},
+    //	{
+    //		id: 26437,
+    //		name: 'Alabat',
+    //		coordinates: [122.0167, 14.0833]
+    //	},
+    //		{
+    //		id: 26395,
+    //		name: 'Aparri',
+    //		coordinates: [121.6333, 18.3667]
+    //	},
+    //		{
+    //		id: 26409,
+    //		name: 'Baguio',
+    //		coordinates: [120.6, 16.4167]
+    //	},
+    //		{
+    //		id: 26412,
+    //		name: 'Cabanatuan',
+    //		coordinates: [120.9667, 15.4833]
+    //	},
+    //		{
+    //		id: 26390,
+    //		name: 'Vigan',
+    //		coordinates: [120.3833, 17.5667]
+    //	},
+    //		{
+    //		id: 26527,
+    //		name: 'Surallah/Allah Valley',
+    //		coordinates: [124.75, 6.3667]
+    //	},
+    //		{
+    //		id: 26426,
+    //		name: 'Sangley Point',
+    //		coordinates: [120.9167, 14.5]
+    //	},
+    //		{
+    //		id: 26456,
+    //		name: 'Romblon',
+    //		coordinates: [122.2667, 12.5833]
+    //	},
+    //		{
+    //		id: 26499,
+    //		name: 'Pagadian',
+    //		coordinates: [123.4667, 7.8333]
+    //	},
+    //]
+    //}
 
-$stationsPagasa = new Array();
-$.ajax({
-    type:     'GET',
-    url :     '<?= $this->webroot ?>weatherph/weatherph/getStations/pagasa',
-    cache:    false,
-    success: function(data) {
-        var $retrievedStations = data; // the complete retrieved stations
-        for (var key in $retrievedStations) {
-            var $currentRetrievedStation = $retrievedStations[key]; // current station on the loop
-            //console.log($currentRetrievedStation);
-            $stationsPagasa.push({ // create a json object, and then save it to stations array
-            	id: $currentRetrievedStation.id,
-            	name: $currentRetrievedStation.name,
-            	type:'Point',
-            	coordinates: [
-            	   $currentRetrievedStation.coordinates.longitude,
-            	   $currentRetrievedStation.coordinates.latitude
-        	   ]
-            });
-        }
-        
-        mapStationsPagasa($stationsPagasa); // now the stations are complete
-        
-        $stations = new Array();
-        $.ajax({
-            type:     'GET',
-            url :     '<?= $this->webroot ?>weatherph/weatherph/getStations/meteomedia',
-            cache:    false,
-            success: function(data) {
-                var $retrievedStations = data; // the complete retrieved stations
-                for (var key in $retrievedStations) {
-                    var $currentRetrievedStation = $retrievedStations[key]; // current station on the loop
-                    $stations.push({ // create a json object, and then save it to stations array
-                        id: $currentRetrievedStation.id,
-                        name: $currentRetrievedStation.name,
-                        type:'Point',
-                        coordinates: [
+    $stationsPagasa = new Array();
+    $.ajax({
+        type:     'GET',
+        url :     '<?= $this->webroot ?>weatherph/weatherph/getStations/pagasa',
+        cache:    false,
+        success: function(data) {
+            var $retrievedStations = data; // the complete retrieved stations
+            for (var key in $retrievedStations) {
+                var $currentRetrievedStation = $retrievedStations[key]; // current station on the loop
+                //console.log($currentRetrievedStation);
+                $stationsPagasa.push({ // create a json object, and then save it to stations array
+                    id: $currentRetrievedStation.id,
+                    name: $currentRetrievedStation.name,
+                    type:'Point',
+                    coordinates: [
                         $currentRetrievedStation.coordinates.longitude,
                         $currentRetrievedStation.coordinates.latitude
-                        ]
-                    });
-                }
-
-                mapStations($stations); // now the stations are complete
+                    ]
+                });
             }
-        });
+        
+            mapStationsPagasa($stationsPagasa); // now the stations are complete
+        
+            $stations = new Array();
+            $.ajax({
+                type:     'GET',
+                url :     '<?= $this->webroot ?>weatherph/weatherph/getStations/meteomedia',
+                cache:    false,
+                success: function(data) {
+                    var $retrievedStations = data; // the complete retrieved stations
+                    for (var key in $retrievedStations) {
+                        var $currentRetrievedStation = $retrievedStations[key]; // current station on the loop
+                        $stations.push({ // create a json object, and then save it to stations array
+                            id: $currentRetrievedStation.id,
+                            name: $currentRetrievedStation.name,
+                            type:'Point',
+                            coordinates: [
+                                $currentRetrievedStation.coordinates.longitude,
+                                $currentRetrievedStation.coordinates.latitude
+                            ]
+                        });
+                    }
 
-    }
+                    mapStations($stations); // now the stations are complete
+                }
+            });
+
+        }
     
     
-});
+    });
 
 
-//Station output
+    //Station output
 
 
 
-// Uncomment this to see stations hard-coded on javascript
-//for (var key in $data.stations) {
-//    map.geomap("append", {
-//    	id: $data.stations[key].id,
-//    	name: $data.stations[key].name,
-//    	type:'Point', coordinates: $data.stations[key].coordinates
-//    }, true);
-//}
-//$('#map').geomap({
-//    click: function(e, geo) {
-//    	var outputHtml = "";
-//        result = map.geomap("find", geo, 8);
-//        $.each(result, function () {
-//        	outputHtml += ("<p>Found a " + this.type + " at " + this.coordinates + "</p>");
-//        	$('.details dt').html(this.name); 
-//        	$('.details dd').html("Some readings here"); 
-//        });
-//        
-//        $('.ad').append(outputHtml);
-//    }
-//
-//});
+    // Uncomment this to see stations hard-coded on javascript
+    //for (var key in $data.stations) {
+    //    map.geomap("append", {
+    //    	id: $data.stations[key].id,
+    //    	name: $data.stations[key].name,
+    //    	type:'Point', coordinates: $data.stations[key].coordinates
+    //    }, true);
+    //}
+    //$('#map').geomap({
+    //    click: function(e, geo) {
+    //    	var outputHtml = "";
+    //        result = map.geomap("find", geo, 8);
+    //        $.each(result, function () {
+    //        	outputHtml += ("<p>Found a " + this.type + " at " + this.coordinates + "</p>");
+    //        	$('.details dt').html(this.name); 
+    //        	$('.details dd').html("Some readings here"); 
+    //        });
+    //        
+    //        $('.ad').append(outputHtml);
+    //    }
+    //
+    //});
 
-//mapStations($data.stations);
+    //mapStations($data.stations);
 
-function mapStationsPagasa($stationsArray) {
-    // This loop maps the stations from the $stations fetched from getStations
-    //console.log($stationsArray);
-    for (var key in $stationsArray) {
-        $currentStation = $stationsArray[key];
-        $('#map').geomap("append", {
+    function mapStationsPagasa($stationsArray) {
+        // This loop maps the stations from the $stations fetched from getStations
+        //console.log($stationsArray);
+        for (var key in $stationsArray) {
+            $currentStation = $stationsArray[key];
+            $('#map').geomap("append", {
         	id: $currentStation.id,
         	name: $currentStation.name,
         	type:'Point',                
         	coordinates: $currentStation.coordinates
-        }, {strokeWidth: "1px", height: "6px", width: "6px", radius: "8px", color: "#dd2222", fillOpacity: "0", strokeOpacity: "1"},true);
+            }, {strokeWidth: "1px", height: "6px", width: "6px", radius: "8px", color: "#dd2222", fillOpacity: "0", strokeOpacity: "1"},true);
+        }
     }
-}
 
-function mapStations($stationsArray) {
-    // This loop maps the stations from the $stations fetched from getStations
+    function mapStations($stationsArray) {
+        // This loop maps the stations from the $stations fetched from getStations
     
-    for (var key in $stationsArray) {
-        $currentStation = $stationsArray[key];
-        $('#map').geomap("append", {
+        for (var key in $stationsArray) {
+            $currentStation = $stationsArray[key];
+            $('#map').geomap("append", {
         	id: $currentStation.id,
         	name: $currentStation.name,
         	type:'Point',                
         	coordinates: $currentStation.coordinates
-        }, {strokeWidth: "1px", height: "7px", width: "7px", radius: "8px", color: "#2E4771", fillOpacity: "0", strokeOpacity: "1"},true);
+            }, {strokeWidth: "1px", height: "7px", width: "7px", radius: "8px", color: "#2E4771", fillOpacity: "0", strokeOpacity: "1"},true);
+        }
+
     }
 
-}
+    //Region selector
+    //var $centerMap = [
+    //	{id: 'NCR', center: [ 121.030884, 14.539721 ], zoom: 11},
+    //	{id: 'VI', center: [ 122.563477, 10.719984 ], zoom: 8},
+    //	{id: 'ARMM', center: [ 121.981201, 6.489983 ], zoom: 7},
+    //];
 
-//Region selector
-//var $centerMap = [
-//	{id: 'NCR', center: [ 121.030884, 14.539721 ], zoom: 11},
-//	{id: 'VI', center: [ 122.563477, 10.719984 ], zoom: 8},
-//	{id: 'ARMM', center: [ 121.981201, 6.489983 ], zoom: 7},
-//];
-
-var $boxMap = [
+    var $boxMap = [
     
         //MAJOR AREAS
         //These values were just taken directly from wetter4. No conversion.
@@ -388,43 +388,43 @@ var $boxMap = [
 	{id: 'XIII', box: [123.73352011718801, 7.525873210799716, 127.74352988281196, 10.779348910314807]},
 	{id: 'ARMM', box: [117.97119123437608, 3.206332652787861, 125.99121076562393, 9.752369809194555]},
 
-];
+    ];
 
-	$('select[name=philippine-regions]').change(function(){
+    $('select[name=philippine-regions]').change(function(){
 		
-			$("select[name=philippine-regions] option:selected").each(function () {
+        $("select[name=philippine-regions] option:selected").each(function () {
                 
-                if ($(this).attr('selected')) { // Is the current <option> selected?
-                	$region = $(this).attr('data-region-id'); // the region id
+            if ($(this).attr('selected')) { // Is the current <option> selected?
+                $region = $(this).attr('data-region-id'); // the region id
                 	
-                	for (var key in $boxMap) { // let's traverse the $boxMap
-						if ($boxMap[key].id == $region) {  // Initially matches 'data-region-id' with 'NCR'
-							$current = $boxMap[key]; // the current $boxMap record
+                for (var key in $boxMap) { // let's traverse the $boxMap
+                    if ($boxMap[key].id == $region) {  // Initially matches 'data-region-id' with 'NCR'
+                        $current = $boxMap[key]; // the current $boxMap record
 
-							console.log($current.box);
-							$('#map').geomap({ // Then set the value from the $boxMap
-								bbox: $current.box
-							});
-						}
-					}
-                } // END IF
-              });
-	});
+                        console.log($current.box);
+                        $('#map').geomap({ // Then set the value from the $boxMap
+                            bbox: $current.box
+                        });
+                    }
+                }
+            } // END IF
+        });
+    });
 
-//			$('#upak').click(function(){
-//				$(".geo-map").geomap("opacity", 70/100);
-//				$("#map").css({opacity: 1});
-//				//.append();
-//				
-//          });
-//			$('#reupak').click(function(){
-//				$(".geo-map").geomap("opacity", 100/100);
-//				$("#map").css({opacity: 1});
-//				//.append();
-//				
-//          });
+    //			$('#upak').click(function(){
+    //				$(".geo-map").geomap("opacity", 70/100);
+    //				$("#map").css({opacity: 1});
+    //				//.append();
+    //				
+    //          });
+    //			$('#reupak').click(function(){
+    //				$(".geo-map").geomap("opacity", 100/100);
+    //				$("#map").css({opacity: 1});
+    //				//.append();
+    //				
+    //          });
 
-/*
+    /*
         var $widther = 220;    
         var resizeTimer;
         
@@ -456,52 +456,67 @@ var $boxMap = [
     
         });
 //widther has been commented out for the meanwhile as it breaks the layout upon initial load.
-*/	  
-getForecast(984290);
+     */	  
+    getForecast(984290);
 });
 $(function(){
-        $('.loader').css('opacity', 0.8);
-        var windContent = '<?php echo str_replace("\n", "\\", (<<<ECHO
-<video id="video-wind" width="554" height="554" controls="controls" style="display: none;">
-    <source src="{$this->webroot}assets/theme/weatherph/vid/wind.mp4" type="video/mp4" />
-    <source src="{$this->webroot}assets/theme/weatherph/vid/wind.webm" type="video/webm" />
-    Your browser does not support the video tag.
-</video>
-ECHO
+    $('.loader').css('opacity', 0.8);
+    var windContent = '<?php echo str_replace("\n", "\\", (<<<ECHO
+        <video id="video-wind" width="554" height="554" controls="controls" style="display: none;">
+        <source src="{$this->webroot}assets/theme/weatherph/vid/wind.mp4" type="video/mp4" />
+        <source src="{$this->webroot}assets/theme/weatherph/vid/wind.webm" type="video/webm" />
+        Your browser does not support the video tag.
+        </video>
+        ECHO
 ));
-    ?>';
-        var precipContent = '<?php echo str_replace("\n", "\\", (<<<ECHO
-<video id="video-precipitation" width="554" height="554" controls="controls" style="display: none;">
-    <source src="{$this->webroot}assets/theme/weatherph/vid/precip.mp4" type="video/mp4" />
-    <source src="{$this->webroot}assets/theme/weatherph/vid/precip.webm" type="video/webm" />
-    Your browser does not support the video tag.
-</video>
-ECHO
+        ?>';
+    var precipContent = '<?php echo str_replace("\n", "\\", (<<<ECHO
+        <video id="video-precipitation" width="554" height="554" controls="controls" style="display: none;">
+        <source src="{$this->webroot}assets/theme/weatherph/vid/precip.mp4" type="video/mp4" />
+        <source src="{$this->webroot}assets/theme/weatherph/vid/precip.webm" type="video/webm" />
+        Your browser does not support the video tag.
+        </video>
+        ECHO
 )); ?>';
         
-        var content = {
-            wind:          windContent,
-            precipitation: precipContent
-        };
+    var content = {
+        wind:          windContent,
+        precipitation: precipContent
+    };
         
-        // Layer selector toggle
+    // Layer selector toggle
 
-        $('#link-map').on('click', function(){
-            //event.preventDefault();
-            $('.video-viewport').hide(1, function(){
-                $('.map-viewport').show();
-            });
-            
-            
+    $('#link-map').on('click', function(){
+        //event.preventDefault();
+        $('.video-viewport').hide(1, function(){
+            $('.map-viewport').show();
         });
-
-        $('.movies.dropdown a').on('click', function(){
-            var _name = $(this).attr('data-name');
-            var _content = eval('content.'+_name);
             
-            $('.video-viewport').show().html(_content);
-            event.preventDefault();
-            $('.map-viewport').hide();
-            $('#video-'+_name).show();
+            
+    });
+
+    $('.movies.dropdown a').on('click', function(){
+        var _name = $(this).attr('data-name');
+        var _content = eval('content.'+_name);
+            
+        $('.video-viewport').show().html(_content);
+        event.preventDefault();
+        $('.map-viewport').hide();
+        $('#video-'+_name).show();
+    });
+        
+    // Temperature toggle
+
+    $('#celsius-switch').on('click', function(){
+        //event.preventDefault();
+        $('.scale-fahrenheit').hide(1, function(){
+            $('.scale.celsius').show();
+        });     
+    });
+    $('#fahrenheit-switch').on('click', function(){
+        //event.preventDefault();
+        $('.scale-celsius').hide(1, function(){
+            $('.scale.fahrenheit').show();
         });
     });
+});
