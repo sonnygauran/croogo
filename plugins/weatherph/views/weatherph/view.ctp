@@ -1,4 +1,4 @@
-<?php //echo $this->Html->script('AnyChart.js');   ?>
+<?php //echo $this->Html->script('AnyChart.js');      ?>
 
 <?php
 //echo $this->Html->script(array(
@@ -21,25 +21,42 @@ echo $this->Html->script(array(
 
             <div id="station">
                 <h1><?= $dataSets['stationName']; ?></h1>
-                <!--                <a href="#">change station</a>-->
+
+                <!-- <a href="#">change station</a>-->
             </div> <!--END STATION-->
 
             <?php if ($dataSets['reading']['status'] == 'ok'): ?>
+
+                
+
+
                 <div id="condition">
+
+                    <div class="inner-condition">
+                        
+                        <div class="inner-left">
+                        <?= $dataSets['reading']['tl']; ?>&deg;C
+                        </div>
+                        
+                        <div class="inner-right">
+                        <span class="symbol <?= $dataSets['reading']['sy']['symbol']; ?>" title="<?= $dataSets['reading']['sy']['description']; ?>" ></span>
+                        </div>
+                        
+                    </div>
                     <table>
                         <tbody>
                             <tr>
                                 <td><span class="symbol sunrise"></span></td>
                                 <td>Sunrise: <?= date("h:iA", strtotime($dataSets['reading']['sunrise'])); ?></td>
-                            </tr>
-                            <tr>
+
                                 <td><span class="symbol sunset"></span></td>
                                 <td>Sunset: <?= date("h:iA", strtotime($dataSets['reading']['sunset'])); ?></td>
-                            </tr>
-                            <tr>
+
                                 <td><span class="symbol moonphase_<?= $dataSets['reading']['moonphase']['phase_code']; ?>"></span></td>
                                 <td>Moon Phase: <?= $dataSets['reading']['moonphase']['phase']; ?></td>
                             </tr>
+
+
                         </tbody>
                     </table>
                 </div> <!--END CONDITION-->
@@ -47,6 +64,7 @@ echo $this->Html->script(array(
                 <div id="conditionTable">
                     <table>
                         <tbody>
+
                             <tr>
                                 <td class="caption">Avg. Wind Speed</td>
                                 <td class="output"><?= $dataSets['reading']['ff']; ?>km/h</td>
@@ -59,9 +77,15 @@ echo $this->Html->script(array(
                                 <td class="caption">Relative Humidity</td>
                                 <td class="output"><?= $dataSets['reading']['rh']; ?>%</td>
                             </tr>
+                            <tr>
+                                <td class="caption">Wind Direction</td>
+                                <td class="output"><?= $dataSets['reading']['dir2']['eng']; ?></td>                        
+                            </tr>
                         </tbody>
                     </table>
                 </div> <!--END CONDITION TABLE-->
+
+
                 <?php endIf; ?>
 
         </div> <!--END CURRENT WEATHER-->
@@ -80,12 +104,12 @@ echo $this->Html->script(array(
                     $today = date("Ymd");
                     $tab_class = ($key == $today) ? 'current-tab' : 'tab';
                     $div_id = ($key == $today) ? "Today" : date('l', strtotime($key));
-                    
-                    $date = date('F j, Y');
-                    $divdate = ($key == $date) ? date('F j, Y') : date('F j, Y', strtotime($key)); 
-                   ?>
 
-                    <div class ="daydate"><span class="daytime"><?= $div_id ?></span><?= ', '.$divdate?></div>
+                    $date = date('F j, Y');
+                    $divdate = ($key == $date) ? date('F j, Y') : date('F j, Y', strtotime($key));
+                    ?>
+
+                    <div class ="daydate"><span class="daytime"><?= $div_id ?></span><?= ', ' . $divdate ?></div>
                     <table class="week-forecast" cellspacing="0">
                         <tr>
                             <th class="columnheader"> Time </th>
@@ -108,9 +132,9 @@ echo $this->Html->script(array(
                         <?php } ?>   
 
                     </table>
-                    <?php } ?>
-                </div>
-            
+                <?php } ?>
+            </div>
+
         </div><!--END WEEK WEATHER-->
 
     </section> <!--MAIN CONTENT-->

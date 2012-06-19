@@ -504,7 +504,7 @@ span.daytime {
 }
 
 #station {
-    max-width: 240px;
+    max-width: 100%;
 }
 
 #station h1 {
@@ -516,14 +516,46 @@ span.daytime {
     padding: 3px;
 }
 
+#condition{
+    width: 59%;
+}
+
 #conditionTable td {
     padding: 5px 8px;
+}
+
+.inner-condition {
+    float: left;
+    position: relative;
+    width: 100%;
+    background-color: #fafafa;
+    border-radius: 5px;
+    color: #365283;
+    margin-bottom: 10px;
+}
+
+.inner-left{
+    width: 50%;
+    float: left;
+    border-right: 1px #3E4F76 solid;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+    font-size: 3em;
+}
+
+.inner-right{
+    width: 50%;
+    float: left;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-top: 5px;
 }
 
 .output {
     text-align: center;
     vertical-align: middle;
-    font-size: 2em;
+    font-size: 1.3em;
     font-weight: bold;
 }
 
