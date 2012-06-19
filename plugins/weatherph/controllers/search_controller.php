@@ -11,6 +11,7 @@ class SearchController extends WeatherphAppController {
         
         if(!empty($this->params['pass'])){
             $keyword = $this->params['pass'][0];
+            $keyword = rawurldecode($keyword);
             $this->paginate['NimaName'] = array (
                 'limit' => 15,
                 'conditions' => array(
@@ -32,9 +33,9 @@ class SearchController extends WeatherphAppController {
             }
             
         } else {
-            $termStr = '/^([A-Za-z0-9]+)$/';
+            $termStr = '/^([A-Za-z0-9 ]+)$/';
             
-            if (preg_match($termStr, $terms)) {
+            if (preg_match($termStr, rawurldecode($terms))) {
                 $this->log('MATCH!');
 //                debug($this->data);
 //                debug();
