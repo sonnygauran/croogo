@@ -5,7 +5,7 @@ App::import('Lib', 'Meteomedia.AnyChart');
 
 class WeatherphAppModel extends AppModel {
         
-    protected function generateDate($type, $time_resolution = '1h', $hasUTC = true){
+    public function generateDate($type, $time_resolution = '1h', $hasUTC = true){
 
         // Adjust our time so that the data we get can match theirs
         $theirTime = strtotime(($type == 'charts' || $type == 'forecast') ? '-16 hours' : '-8 hours', strtotime(date('Ymd'))); 
