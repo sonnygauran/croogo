@@ -421,7 +421,7 @@ class WeatherphStationReading extends WeatherphAppModel
     }
     
     
-    private function getAllReadings($stationId){
+    private function getAllReadings($stationId = arr){
         
         
         $Abfrage = new Abfrage($stationId);

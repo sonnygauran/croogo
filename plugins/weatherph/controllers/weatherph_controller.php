@@ -324,6 +324,46 @@ class WeatherphController extends WeatherphAppController {
         
         //$curlResults = file_get_contents(Configure::read('Data.readings').'/readings.csv');
         
+        $rows = explode("\n", $curlResults);
+        $headers = explode(';', $rows[0]);
+        
+        //$this->log(print_r($rows, TRUE));exit;
+
+        unset($rows[0]);
+
+        $arrayResults = array();
+        foreach ($rows as $key => $row) {
+            if (trim($row) != '') {
+                $params = explode(';', $row);
+                $this->log(print_r($params, TRUE));
+                foreach ($params as $key2 => $param) {
+                    if ($headers[$key2] != '') {
+                        $fieldName = $headers[$key2];
+                        $uniqueKey = $key;
+                        $arrayResults[$uniqueKey][$fieldName] = trim($param);
+                    }
+                }
+            }
+        }
+        
+        exit;
+        //$this->log(print_r($arrayResults, TRUE));exit;
+        
+        App::import('Model', 'Weatherph.Reading');
+        $Reading = new Reading();
+        
+//        foreach ($curlReadingsAsArray as $curlArray) {
+//            
+//            $Reading->create();
+//
+//            $data = array(
+//            'datum' => $curlArray['Datum'],
+//            'utc' => $curlArray['utc']
+//            );
+//
+//            $Reading->save($data);
+//          }
+
         debug($curlResults); exit;
         
    }
