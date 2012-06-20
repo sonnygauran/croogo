@@ -4,6 +4,7 @@ plugins/debug_kit/
 plugins/migrations/
 vendors/simpletest/
 webroot/uploads/
+data/*
 
 # Cake cache
 tmp/
