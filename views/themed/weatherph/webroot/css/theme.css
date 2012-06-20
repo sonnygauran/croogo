@@ -705,11 +705,17 @@ dd {
     margin: 1em 0 2em 0;
 }
 
+.search-results h2 {
+    text-align: center;
+    padding: 15px 10px;
+}
+
 .search-results ul {
-    margin-top: 1em;
+    border: 1px solid #f1f1f1;
 }
 
 .search-results li {
+    text-align: center;
     padding: 20px;
     background: #fafafa;
 }
@@ -839,7 +845,7 @@ nav, .layerSelector, .promo, #info, .output {
     color: #fafafa;
 }
 
-#current-readings-panel, #info > .readings, #currentWeather, .tabs li {
+#current-readings-panel, #info > .readings, #currentWeather, .tabs li, .search-results h2 {
     background-color: #3e5e95;
     color: #fafafa;
 }
@@ -848,7 +854,7 @@ nav, .layerSelector, .promo, #info, .output {
     background-color: white;
 }
 
-.current.readings-location, nav li {
+.current.readings-location, nav li, .search-results h2 {
     text-shadow: 0px 1px 3px #333;
 }
 
