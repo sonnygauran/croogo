@@ -53,7 +53,7 @@ ECHO
                         <a href="#">Weather movies</a>
                         <ul>
                             <li><a href="#map" data-type="movie" data-name="wind"          data-target="movie-wind">Wind</a></li>
-                            <li><a href="#map" data-type="movie" data-name="precipitation" data-target="movie-precip">Precipitation</a></li>
+                            <li><a href="#map" data-type="movie" data-name="precipitation" data-target="movie-precip">Rain</a></li>
                         </ul>
                     </li>
                     <li><a data-target="data-layer" data-name="temperature">Temperature</a></li>
@@ -222,7 +222,7 @@ ECHO
                                 <td class="current wind"><span>&nbsp;</span>km/h</td>
                             </tr>
                             <tr>
-                                <td>Precip.</td>
+                                <td>Rain</td>
                                 <td class="current precipitation"><span>&nbsp;</span>mm</td>
                             </tr>
                             <tr>
@@ -256,7 +256,7 @@ ECHO
                                             <td class="3-hour wind"><span>&nbsp;</span>km/h</td>
                                         </tr>
                                         <tr>
-                                            <td>Precip.</td>
+                                            <td>Rain</td>
                                             <td class="precipitation"><span>&nbsp;</span>mm</td>
                                         </tr>
                                         <tr>
@@ -279,7 +279,7 @@ ECHO
                                             <td class="wind"><span>&nbsp;</span>km/h</td>
                                         </tr>
                                         <tr>
-                                            <td>Precip.</td>
+                                            <td>Rain</td>
                                             <td class="precipitation"><span>&nbsp;</span>mm</td>
                                         </tr>
                                         <tr>
@@ -302,7 +302,7 @@ ECHO
                                             <td class="wind"><span>&nbsp;</span>km/h</td>
                                         </tr>
                                         <tr>
-                                            <td>Precip.</td>
+                                            <td>Rain</td>
                                             <td class="precipitation"><span>&nbsp;</span>mm</td>
                                         </tr>
                                         <tr>
@@ -325,7 +325,7 @@ ECHO
                                             <td class="wind"><span>&nbsp;</span>km/h</td>
                                         </tr>
                                         <tr>
-                                            <td>Precip.</td>
+                                            <td>Rain</td>
                                             <td class="precipitation"><span>&nbsp;</span>mm</td>
                                         </tr>
                                         <tr>
@@ -348,7 +348,7 @@ ECHO
                                             <td class="wind"><span>&nbsp;</span>km/h</td>
                                         </tr>
                                         <tr>
-                                            <td>Precip.</td>
+                                            <td>Rain</td>
                                             <td class="precipitation"><span>&nbsp;</span>mm</td>
                                         </tr>
                                         <tr>
@@ -371,7 +371,7 @@ ECHO
                                             <td class="wind"><span>&nbsp;</span>km/h</td>
                                         </tr>
                                         <tr>
-                                            <td>Precip.</td>
+                                            <td>Rain</td>
                                             <td class="precipitation"><span>&nbsp;</span>mm</td>
                                         </tr>
                                         <tr>
@@ -394,7 +394,7 @@ ECHO
                                             <td class="wind"><span>&nbsp;</span>km/h</td>
                                         </tr>
                                         <tr>
-                                            <td>Precip.</td>
+                                            <td>Rain</td>
                                             <td class="precipitation"><span>&nbsp;</span>mm</td>
                                         </tr>
                                         <tr>
