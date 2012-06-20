@@ -53,7 +53,7 @@ ECHO
                         <a href="#">Weather movies</a>
                         <ul>
                             <li><a href="#map" data-type="movie" data-name="wind"          data-target="movie-wind">Wind</a></li>
-                            <li><a href="#map" data-type="movie" data-name="precipitation" data-target="movie-precip">Precipitation</a></li>
+                            <li><a href="#map" data-type="movie" data-name="precipitation" data-target="movie-precip">Rain</a></li>
                         </ul>
                     </li>
                     <li><a data-target="data-layer" data-name="temperature">Temperature</a></li>
@@ -73,90 +73,89 @@ ECHO
             </div>
             <div id="legend" class="shadow">
                 <div class="scale-celsius">
-                    <ul class="scale-upper">
-                        <li style="background-color: #FFC8C8;">46</li>
-                        <li style="background-color: #FFA0A0;">44</li>
-                        <li style="background-color: #FF82B4;">42</li>
-                        <li style="background-color: #FF5096;">40</li>
-                        <li style="background-color: #FF0064;">38</li>
-                        <li style="background-color: #D2005A;">36</li>
-                        <li style="background-color: #A50041;">34</li>
-                        <li style="background-color: #780000;">32</li>
-                        <li style="background-color: #A00000;">30</li>
-                        <li style="background-color: #C30000;">28</li>
-                        <li style="background-color: #E60000;">26</li>
-                        <li style="background-color: #FF5A00;">24</li>
-                        <li style="background-color: #FF8200;">22</li>
-                        <li style="background-color: #FFA000;">20</li>
-                        <li style="background-color: #FFBE00;">18</li>
-                        <li style="background-color: #FFD200;">16</li>
-                        <li style="background-color: #FFE600;">14</li>
-                        <li style="background-color: #FFFF14;">12</li>
-                        <li style="background-color: #C8FF00;">10</li>
-                        <li style="background-color: #96FF00;">8&nbsp;</li>
-                        <li style="background-color: #64FF00;">6&nbsp;</li>
-                        <li style="background-color: #00EB00;">4&nbsp;</li>
-                        <li style="background-color: #00DC8C;">2&nbsp;</li>
-                    </ul>
                     <ul class="scale-lower">
-                        <li style="background-color: #00DCFF;">0&nbsp;</li>
-                        <li style="background-color: #00AFFF;">-2</li>
-                        <li style="background-color: #007DFF;">-4</li>
-                        <li style="background-color: #0046F5;">-6</li>
-                        <li style="background-color: #0014B4;">-8</li>
-                        <li style="background-color: #6E0A6E;">-10</li>
-                        <li style="background-color: #8C008C;">-12</li>
-                        <li style="background-color: #B400B4;">-15</li>
-                        <li style="background-color: #D200D2;">-20</li>
-                        <li style="background-color: #FF00FF;">-25</li>
-                        <li style="background-color: #FF78FF;">-30</li>
-                        <li style="background-color: #FFAAFF;">-35</li>
-                        <li style="background-color: #FFD2FF;">-40</li>
                         <li style="background-color: #EAE9F9;">-45</li>
+                        <li style="background-color: #FFD2FF;">-40</li>
+                        <li style="background-color: #FFAAFF;">-35</li>
+                        <li style="background-color: #FF78FF;">-30</li>
+                        <li style="background-color: #FF00FF;">-25</li>
+                        <li style="background-color: #D200D2;">-20</li>
+                        <li style="background-color: #B400B4;">-15</li>
+                        <li style="background-color: #8C008C;">-12</li>
+                        <li style="background-color: #6E0A6E;">-10</li>
+                        <li style="background-color: #0014B4;">-8</li>
+                        <li style="background-color: #0046F5;">-6</li>
+                        <li style="background-color: #007DFF;">-4</li>
+                        <li style="background-color: #00AFFF;">-2</li>
+                        <li style="background-color: #00DCFF;">0&nbsp;</li>
+                        <li style="background-color: #00DC8C;">2&nbsp;</li>
+                        <li style="background-color: #00EB00;">4&nbsp;</li>
+                        <li style="background-color: #64FF00;">6&nbsp;</li>
+                        <li style="background-color: #96FF00;">8&nbsp;</li>
+                    </ul>
+                    <ul class="scale-upper">
+                        <li style="background-color: #C8FF00;">10</li>
+                        <li style="background-color: #FFFF14;">12</li>
+                        <li style="background-color: #FFE600;">14</li>
+                        <li style="background-color: #FFD200;">16</li>
+                        <li style="background-color: #FFBE00;">18</li>
+                        <li style="background-color: #FFA000;">20</li>
+                        <li style="background-color: #FF8200;">22</li>
+                        <li style="background-color: #FF5A00;">24</li>
+                        <li style="background-color: #E60000;">26</li>
+                        <li style="background-color: #C30000;">28</li>
+                        <li style="background-color: #A00000;">30</li>
+                        <li style="background-color: #780000;">32</li>
+                        <li style="background-color: #A50041;">34</li>
+                        <li style="background-color: #D2005A;">36</li>
+                        <li style="background-color: #FF0064;">38</li>
+                        <li style="background-color: #FF5096;">40</li>
+                        <li style="background-color: #FF82B4;">42</li>
+                        <li style="background-color: #FFA0A0;">44</li>
+                        <li style="background-color: #FFC8C8;">46</li>
                     </ul>
                 </div>
                 <div class="scale-fahrenheit">
-                    <ul class="scale-upper">
-                        <li style="background-color: #FFC8C8;">114.8</li>
-                        <li style="background-color: #FFA0A0;">111.2</li>
-                        <li style="background-color: #FF82B4;">107.6</li>
-                        <li style="background-color: #FF5096;">104</li>
-                        <li style="background-color: #FF0064;">100.4</li>
-                        <li style="background-color: #D2005A;">96.8</li>
-                        <li style="background-color: #A50041;">93.2</li>
-                        <li style="background-color: #780000;">89.6</li>
-                        <li style="background-color: #A00000;">86</li>
-                        <li style="background-color: #C30000;">82.4</li>
-                        <li style="background-color: #E60000;">78.8</li>
-                        <li style="background-color: #FF5A00;">75.2</li>
-                        <li style="background-color: #FF8200;">71.6</li>
-                        <li style="background-color: #FFA000;">68</li>
-                        <li style="background-color: #FFBE00;">64.4</li>
-                        <li style="background-color: #FFD200;">60.8</li>
-                        <li style="background-color: #FFE600;">57.2</li>
-                        <li style="background-color: #FFFF14;">53.6</li>
-                    </ul>
                     <ul class="scale-lower">
-                        <li style="background-color: #C8FF00;">50</li>
-                        <li style="background-color: #96FF00;">46.4</li>
-                        <li style="background-color: #64FF00;">42.8</li>
-                        <li style="background-color: #00EB00;">39.2</li>
-                        <li style="background-color: #00DC8C;">35.6</li>
-                        <li style="background-color: #00DCFF;">32</li>
-                        <li style="background-color: #00DCFF;">32</li>
-                        <li style="background-color: #00AFFF;">28.4</li>
-                        <li style="background-color: #007DFF;">24.8</li>
-                        <li style="background-color: #0046F5;">21.2</li>
-                        <li style="background-color: #0014B4;">17.6</li>
-                        <li style="background-color: #6E0A6E;">14</li>
-                        <li style="background-color: #8C008C;">10.4</li>
-                        <li style="background-color: #B400B4;">5&nbsp;</li>
-                        <li style="background-color: #D200D2;">-4</li>
-                        <li style="background-color: #FF00FF;">-13</li>
-                        <li style="background-color: #FF78FF;">-22</li>
-                        <li style="background-color: #FFAAFF;">-31</li>
-                        <li style="background-color: #FFD2FF;">-40</li>
                         <li style="background-color: #EAE9F9;">-49</li>
+                        <li style="background-color: #FFD2FF;">-40</li>
+                        <li style="background-color: #FFAAFF;">-31</li>
+                        <li style="background-color: #FF78FF;">-22</li>
+                        <li style="background-color: #FF00FF;">-13</li>
+                        <li style="background-color: #D200D2;">-4</li>
+                        <li style="background-color: #B400B4;">5&nbsp;</li>
+                        <li style="background-color: #8C008C;">10</li>
+                        <li style="background-color: #6E0A6E;">14</li>
+                        <li style="background-color: #0014B4;">18</li>
+                        <li style="background-color: #0046F5;">21</li>
+                        <li style="background-color: #007DFF;">25</li>
+                        <li style="background-color: #00AFFF;">28</li>
+                        <li style="background-color: #00DCFF;">32</li>
+                        <li style="background-color: #00DC8C;">36</li>
+                        <li style="background-color: #00EB00;">39</li>
+                        <li style="background-color: #64FF00;">43</li>
+                        <li style="background-color: #96FF00;">46</li>
+                        <li style="background-color: #C8FF00;">50</li>
+                    </ul>
+                    <ul class="scale-upper">
+                        <li style="background-color: #FFFF14;">54</li>
+                        <li style="background-color: #FFE600;">57</li>
+                        <li style="background-color: #FFD200;">61</li>
+                        <li style="background-color: #FFBE00;">64</li>
+                        <li style="background-color: #FFA000;">68</li>
+                        <li style="background-color: #FF8200;">72</li>
+                        <li style="background-color: #FF5A00;">75</li>
+                        <li style="background-color: #E60000;">79</li>
+                        <li style="background-color: #C30000;">82</li>
+                        <li style="background-color: #A00000;">86</li>
+                        <li style="background-color: #780000;">90</li>
+                        <li style="background-color: #A50041;">93</li>
+                        <li style="background-color: #D2005A;">97</li>
+                        <li style="background-color: #FF0064;">100</li>
+                        <li style="background-color: #FF5096;">104</li>
+                        <li style="background-color: #FF82B4;">108</li>
+                        <li style="background-color: #FFA0A0;">111</li>
+                        <li style="background-color: #FFC8C8;">115</li>
                     </ul>
                 </div>
                 <div class="unit-buttons">
@@ -223,7 +222,7 @@ ECHO
                                 <td class="current wind"><span>&nbsp;</span>km/h</td>
                             </tr>
                             <tr>
-                                <td>Precip.</td>
+                                <td>Rain</td>
                                 <td class="current precipitation"><span>&nbsp;</span>mm</td>
                             </tr>
                             <tr>
@@ -257,7 +256,7 @@ ECHO
                                             <td class="3-hour wind"><span>&nbsp;</span>km/h</td>
                                         </tr>
                                         <tr>
-                                            <td>Precip.</td>
+                                            <td>Rain</td>
                                             <td class="precipitation"><span>&nbsp;</span>mm</td>
                                         </tr>
                                         <tr>
@@ -280,7 +279,7 @@ ECHO
                                             <td class="wind"><span>&nbsp;</span>km/h</td>
                                         </tr>
                                         <tr>
-                                            <td>Precip.</td>
+                                            <td>Rain</td>
                                             <td class="precipitation"><span>&nbsp;</span>mm</td>
                                         </tr>
                                         <tr>
@@ -303,7 +302,7 @@ ECHO
                                             <td class="wind"><span>&nbsp;</span>km/h</td>
                                         </tr>
                                         <tr>
-                                            <td>Precip.</td>
+                                            <td>Rain</td>
                                             <td class="precipitation"><span>&nbsp;</span>mm</td>
                                         </tr>
                                         <tr>
@@ -326,7 +325,7 @@ ECHO
                                             <td class="wind"><span>&nbsp;</span>km/h</td>
                                         </tr>
                                         <tr>
-                                            <td>Precip.</td>
+                                            <td>Rain</td>
                                             <td class="precipitation"><span>&nbsp;</span>mm</td>
                                         </tr>
                                         <tr>
@@ -349,7 +348,7 @@ ECHO
                                             <td class="wind"><span>&nbsp;</span>km/h</td>
                                         </tr>
                                         <tr>
-                                            <td>Precip.</td>
+                                            <td>Rain</td>
                                             <td class="precipitation"><span>&nbsp;</span>mm</td>
                                         </tr>
                                         <tr>
@@ -372,7 +371,7 @@ ECHO
                                             <td class="wind"><span>&nbsp;</span>km/h</td>
                                         </tr>
                                         <tr>
-                                            <td>Precip.</td>
+                                            <td>Rain</td>
                                             <td class="precipitation"><span>&nbsp;</span>mm</td>
                                         </tr>
                                         <tr>
@@ -395,7 +394,7 @@ ECHO
                                             <td class="wind"><span>&nbsp;</span>km/h</td>
                                         </tr>
                                         <tr>
-                                            <td>Precip.</td>
+                                            <td>Rain</td>
                                             <td class="precipitation"><span>&nbsp;</span>mm</td>
                                         </tr>
                                         <tr>
