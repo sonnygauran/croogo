@@ -246,10 +246,14 @@ nav li > a {
     float:left; 
 }
 
+.scale-temperature, .scale-fahrenheit {
+    display: none;
+}
 .scale-fahrenheit, .scale-celsius {
     float:left;
     margin-left: 10px;
     width: 100%;
+    visibility: none;
 }
 
 .unit-buttons {
