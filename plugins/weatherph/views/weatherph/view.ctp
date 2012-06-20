@@ -80,7 +80,7 @@ echo $this->Html->script(array(
                                 <td class="output"><?= $dataSets['reading']['ff']; ?>km/h</td>
                             </tr>
                             <tr>
-                                <td class="caption">Precipitation</td>
+                                <td class="caption">Rain</td>
                                 <td class="output"><?= $dataSets['reading']['rr']; ?>mm</td>
                             </tr>
                             <tr>
@@ -125,7 +125,7 @@ echo $this->Html->script(array(
                             <th class="columnheader"> Time </th>
                             <th class="columnheader">Condition</th>
                             <th class="columnheader"> Temperature </th>
-                            <th class="columnheader"> Precipitation </th>
+                            <th class="columnheader"> Rain</th>
                             <th class="columnheader"> Wind Speed </th>
                             <th class="columnheader"> Wind Direction </th>
                         </tr>
@@ -153,10 +153,10 @@ echo $this->Html->script(array(
         <div id="charts">
             <h4>Detailed Forecasts</h4>
             <ul class="tabs">
-                <li class="temperature flip current-tab"><a href="#">Temperature</a></li>
-                <li class="precipitation flip"><a href="#">Precipitation</a></li>
-                <li class="wind flip"><a href="#">Wind</a></li>
-                <li class="humidity flip"><a href="#">Humidity</a></li>
+                <li class="temperature flip current-tab"><a href="#charts">Temperature</a></li>
+                <li class="precipitation flip"><a href="#charts">Rain</a></li>
+                <li class="wind flip"><a href="#charts">Wind</a></li>
+                <li class="humidity flip"><a href="#charts">Humidity</a></li>
             </ul>
             <div class="divider"></div>
             <div class="tab-container">

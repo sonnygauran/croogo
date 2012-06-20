@@ -266,8 +266,8 @@ nav li > a {
     vertical-align: middle;
     margin: 1px -2px;
     padding: 3px;
-    color: #333333;
-    text-shadow: 1px 1px #999999; 
+    color: #fafafa;
+    text-shadow: 1px 1px #111111; 
 }
 
 #province-select {
