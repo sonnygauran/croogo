@@ -153,10 +153,10 @@ echo $this->Html->script(array(
         <div id="charts">
             <h4>Detailed Forecasts</h4>
             <ul class="tabs">
-                <li class="temperature flip current-tab"><a href="#">Temperature</a></li>
-                <li class="precipitation flip"><a href="#">Precipitation</a></li>
-                <li class="wind flip"><a href="#">Wind</a></li>
-                <li class="humidity flip"><a href="#">Humidity</a></li>
+                <li class="temperature flip current-tab"><a href="#charts">Temperature</a></li>
+                <li class="precipitation flip"><a href="#charts">Precipitation</a></li>
+                <li class="wind flip"><a href="#charts">Wind</a></li>
+                <li class="humidity flip"><a href="#charts">Humidity</a></li>
             </ul>
             <div class="divider"></div>
             <div class="tab-container">
