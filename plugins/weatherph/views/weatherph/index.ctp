@@ -1,4 +1,38 @@
+<?php
+/**
+ * index.js requires the following variable:
+ *      - resource - contains an array of (data-layer => (temperature, pressure)) for retreiving the image key. 
+ */
+?>
+<script type="text/javascript">
+    window["DATA_LAYER"] = null;
+    window["DATA_LAYERS"] = <?= json_encode($resources['data-layers']); ?>;
+
+    var windContent = '<?= str_replace("\n", "\\", (<<<ECHO
+        <video id="movie-wind" width="554" height="554" controls="controls">
+        <source src="{$this->webroot}assets/theme/weatherph/vid/wind.mp4" type="video/mp4" />
+        <source src="{$this->webroot}assets/theme/weatherph/vid/wind.webm" type="video/webm" />
+        Your browser does not support the video tag.
+        </video>
+ECHO
+));
+        ?>';
+    var precipContent = '<?= str_replace("\n", "\\", (<<<ECHO
+        <video id="movie-precipitation" width="554" height="554" controls="controls">
+        <source src="{$this->webroot}assets/theme/weatherph/vid/precip.mp4" type="video/mp4" />
+        <source src="{$this->webroot}assets/theme/weatherph/vid/precip.webm" type="video/webm" />
+        Your browser does not support the video tag.
+        </video>
+ECHO
+)); ?>';
+        
+    window['MOVIE_CONTENT'] = {
+        wind:          windContent,
+        precipitation: precipContent
+    };
+</script>
 <script type="text/javascript" src="<?= $this->webroot ?>weatherph/js/weatherph/index.js"></script>
+
 <style type="text/css">
     .loader {
         background: white url('<?= $this->webroot ?>theme/weatherph/img/loader-twirl.gif') no-repeat center center;
@@ -13,21 +47,25 @@
     <section class="main cf">
         <div id="map-container">
             <div class="layerSelector cf">
-                <ul class="movies dropdown">
-                    <li><a href="#" id="link-map">Weather stations</a></li>
+                <ul class="movies data-layers dropdown">
+                    <li><a href="#" data-target="data-layer" data-name="stations">Weather stations</a></li>
                     <li>
                         <a href="#">Weather movies</a>
                         <ul>
-                            <li><a href="#map" id="link-video-wind"   data-name="wind"          data-target="video-wind">Wind</a></li>
-                            <li><a href="#map" id="link-video-precip" data-name="precipitation" data-target="video-precip">Precipitation</a></li>
+                            <li><a href="#map" data-type="movie" data-name="wind"          data-target="movie-wind">Wind</a></li>
+                            <li><a href="#map" data-type="movie" data-name="precipitation" data-target="movie-precip">Precipitation</a></li>
                         </ul>
                     </li>
+                    <li><a data-target="data-layer" data-name="temperature">Temperature</a></li>
+                    <li><a data-target="data-layer" data-name="pressure">Pressure</a></li>
                 </ul>
             </div> <!--LAYER SELECTOR-->
             <div class="video-viewport">
 
             </div>
             <div class="map-viewport">
+                <div class="data-layer" style="width: 554px; height: 554px; float:left" data-bbox="">
+                </div>
                 <div id="map">
                     <div class="loader">
                     </div>
@@ -378,7 +416,7 @@
         <div class="blog">
             <h4>Blog</h4>
             <div class="posts">
-                <?php foreach ($featuredBlog as $blog) { ?>
+                <?php foreach ($blogEntries as $blog) { ?>
                     <div class="blog-preview">
                         <?php $createdTime = strtotime($blog['Node']['created']); ?>
 

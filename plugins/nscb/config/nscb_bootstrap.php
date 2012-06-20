@@ -1,2 +1,2 @@
 <?php
-Croogo::hookRoutes('Nima');
+Croogo::hookRoutes('Nscb');

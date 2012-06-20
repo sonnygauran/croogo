@@ -5,7 +5,7 @@ App::import('Lib', 'Meteomedia.AnyChart');
 
 class WeatherphAppModel extends AppModel {
         
-    protected function generateDate($type, $time_resolution = '1h', $hasUTC = true){
+    public function generateDate($type, $time_resolution = '1h', $hasUTC = true){
 
         // Adjust our time so that the data we get can match theirs
         $theirTime = strtotime(($type == 'charts' || $type == 'forecast') ? '-16 hours' : '-8 hours', strtotime(date('Ymd'))); 
@@ -369,7 +369,7 @@ class WeatherphAppModel extends AppModel {
         }
     }
 
-    public function showWindDescription($windDirRaw = NULL, $windSpeed = NULL) {
+    public function showWindDescription($windDirRaw = NULL, $windSpeed = NULL, $windGust = NULL) {
 
         //Creates an array for Beufort Scale(http://en.wikipedia.org/wiki/Beaufort_scale)
         $beaufort = array(
@@ -388,11 +388,14 @@ class WeatherphAppModel extends AppModel {
             "Hurricane Force",
         );
         
-        $windDir = $this->windDirection($windDirRaw);
+        if($windDirRaw != NULL){
+            $windDir = $this->windDirection($windDirRaw);
+        }else{
+            $windDir = '-';
+        }
         
-        if ($windDirRaw == NULL && $windSpeed == NULL) {
-            return NULL;
-        } elseif ($windSpeed < 1) {
+        
+        if ($windSpeed < 1 and $windSpeed >= 0) {
             $windDirDesc = $beaufort[0];
         } elseif ($windSpeed <= 5.5 and $windSpeed >= 1.1){
             $windDirDesc = $beaufort[1];
@@ -418,9 +421,14 @@ class WeatherphAppModel extends AppModel {
             $windDirDesc = $beaufort[11];
         } elseif ($windSpeed >= 118){
             $windDirDesc = $beaufort[12];
+        } else {
+            $windDirDesc = '';
         }
         
-        return $windDirDesc . ', from ' . $windDir['eng'];
+        $windGustTxt = '';
+        if((int)$windGust > 0) $windGustTxt = $windGust . 'km/h ';
+         
+        return $windDirDesc . ', <br />' . $windGustTxt .'from ' . $windDir['eng'];
         
         
     }

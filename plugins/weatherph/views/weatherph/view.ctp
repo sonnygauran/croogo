@@ -158,6 +158,7 @@ echo $this->Html->script(array(
                 <li class="wind flip"><a href="#">Wind</a></li>
                 <li class="humidity flip"><a href="#">Humidity</a></li>
             </ul>
+            <div class="divider"></div>
             <div class="tab-container">
                 <div class="temperature panel current-tab">
                     <script type="text/javascript" language="javascript">

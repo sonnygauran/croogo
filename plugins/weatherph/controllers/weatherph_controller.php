@@ -33,24 +33,43 @@ class WeatherphController extends WeatherphAppController {
 
     public function index() {
         $this->set('title_for_layout', __('Weatherph', true));
-        $this->set('weatherphVariable', 'value here');
         
-        $featuredBlog = $this->Node->find('all', array(
+        $blogEntries = $this->Node->find('all', array(
             'order' => 'Node.created DESC',
             'conditions' => array('Node.type' => 'blog'),
             'limit' => 5,
         ));
         
-//        App::import('Model', 'Resource');
-//        $Resource = new Resource();
-//        $key = $Resource->generateKey('wetter4', '');
-//        
-        $wetter4 = 'http://alpha.meteomedia-portal.com/services/wetter4.php?';
-        $temperature = 'api_key=portal-efd339395c80ad957acb695bb9758399&p=QFF&q=meh_ifm&leg=nil&a=image&x=554&y=554&srs=EPSG:900913&';
+          
+        // $time = date('YmdHis');
+        $everyHour = date('YmdH0000');
+        
+        $wetter4 = 'http://alpha.meteomedia-portal.com/services/wetter4.php?dt='.$everyHour.'&';
+        $temperature = 'api_key=portal-efd339395c80ad957acb695bb9758399&q=meh_ifm&leg=nil&a=image&x=554&y=554&srs=EPSG:900913&';
+        $pressure    = $temperature.'p=QFF&';
+        
         // x1=111.32714843750325&x2=135.67285156249676&y2=24.41201768480203&y1=0.8402895756535625
         
+        App::import('Model', 'Weatherph.Resource');
+        $Resource = new Resource();
         
-        $this->set('featuredBlog', $featuredBlog);
+        $keyTemperature = $Resource->generateKey('data-layer', 'temperature', $wetter4.$temperature);
+        $keyPressure    = $Resource->generateKey('data-layer', 'pressure', $wetter4.$pressure);
+        
+        $resources = array(
+            'data-layers' => array(
+                'temperature' => $keyTemperature,
+                'pressure'    => $keyPressure,
+            ),
+        );
+        /**
+         * Note:
+         * 
+         * index.js requires the following variable:
+         *      - resource - contains an array of (data-layer => (temperature, pressure)) for retreiving the image key. 
+         *      - featureBlog - to display the featured blogs
+         */
+        $this->set(compact('blogEntries', 'resources'));
         
     }
 
@@ -249,7 +268,130 @@ class WeatherphController extends WeatherphAppController {
     }
 
    public function getDmoForecast($id){
-       debug($id);
+       //debug($id);
+       App::import('Model', 'Weatherph.WeatherphStationForecast');
+       
+       $DmoForecast = new WeatherphStationForecast();
+       $dataSets = $DmoForecast->dmoForecast('all', array('conditions' => array(
+           'id' => $id,
+       )));
+       
+       $this->set(compact('dataSets'));
        
    }
+   
+   public function getAllStation($provider = 'pagasa'){
+       
+        $this->layout = 'plain';
+       
+        App::import('Model', 'Weatherph.WeatherphStation');
+        App::import('Lib', 'Meteomedia.Abfrage');
+        App::import('Lib', 'Meteomedia.Curl');
+        
+        $WeatherphStation = new WeatherphStation();
+        $stations = $WeatherphStation->find('all', array('conditions' => array(
+        'provider' => $provider,
+        )));
+       
+        $stationsId = Set::extract($stations, '{n}.id');
+       
+        $Abfrage = new Abfrage($stationsId);
+        
+        //Grab stations readings  
+        $url = $Abfrage->generateURL($WeatherphStation->generateDate('reading', '10m'), array(
+        'Temperature' => array(
+            'low'
+        ),
+        'Wind' => array(
+            'speed', 'direction'
+        ),
+        'Gust' => array(
+            '3 hours', '6 hours'
+        ),
+        'Rainfall' => array(
+            'Period', '3 hours', '6 hours'
+        ),
+        'Weather Symbols' => array(
+            'Set 1', 'Set 2'
+        ),
+        'Humidity'
+        ));
+
+        //debug($url);exit;
+
+        $curlResults = NULL;
+        $curlResults = Curl::getData($url, 60);
+        
+        //$curlResults = file_get_contents(Configure::read('Data.readings').'/readings.csv');
+        
+        $rows = explode("\n", $curlResults);
+        $headers = explode(';', $rows[0]);
+        
+        //$this->log(print_r($rows, TRUE));exit;
+
+        unset($rows[0]);
+        
+        ini_set('memory_limit', '512M');
+
+        $arrayResults = array();
+        foreach ($rows as $key => $row) {
+            if (trim($row) != '') {
+                $params = explode(';', $row);
+                //$this->log(print_r($params, TRUE));
+                foreach ($params as $key2 => $param) {
+                    if ($headers[$key2] != '') {
+                        $fieldName = $headers[$key2];
+                        $uniqueKey = $key;
+                        $arrayResults[$uniqueKey][$fieldName] = trim($param);
+                    }
+                }
+            }
+        }
+        
+        //exit;
+        //$this->log(print_r($arrayResults, TRUE));exit;
+        
+        App::import('Model', 'Weatherph.Reading');
+        $Reading = new Reading();
+        
+        foreach($arrayResults as $result){
+            $Reading->create();
+            $data = array(
+                'datum' => $result['Datum'],
+                'utc' => $result['utc'],
+                'min' => $result['min'],
+                'ort1' => $result['ort1'],
+                'dir' => $result['dir'],
+                'ff' => $result['ff'],
+                'g3h' => $result['g3h'],
+                'tl' => $result['tl'],
+                'rr' => $result['rr'],
+                'sy' => $result['sy'],
+                'rain6' =>$result['rain6'],
+                'rh' => $result['rh'],
+                'sy2' => $result['sy2'],
+                'rain3' =>$result['rain3'],
+                'g6h' => '',
+            );
+            $Reading->save($data);
+            
+        }
+        
+//        foreach ($curlReadingsAsArray as $curlArray) {
+//            
+//            $Reading->create();
+//
+//            $data = array(
+//            'datum' => $curlArray['Datum'],
+//            'utc' => $curlArray['utc']
+//            );
+//
+//            $Reading->save($data);
+//          }
+
+        //debug($curlResults); exit;
+        exit;
+        
+   }
+   
 }

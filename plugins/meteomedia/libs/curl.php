@@ -23,7 +23,7 @@ class Curl{
      * @param type $url
      * @return type 
      */
-    public static function getData($url){
+    public static function getData($url, $timeout = 10){
         $curlResults = array();
         
         $ch = curl_init();
@@ -31,7 +31,7 @@ class Curl{
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_USERPWD, self::$username . ':' . self::$password);
         curl_setopt($ch, CURLOPT_USERAGENT, "Weather.com.ph Curl Client 1.0");
-        curl_setopt($ch, CURLOPT_TIMEOUT, 10); //times out after 10s 
+        curl_setopt($ch, CURLOPT_TIMEOUT, $timeout); //times out after 10s 
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
 
         $curlResults = curl_exec($ch);

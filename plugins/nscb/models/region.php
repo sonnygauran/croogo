@@ -2,6 +2,7 @@
 class Region extends AppModel {
 	var $name = 'Region';
     var $useDbConfig = 'nscb';
+    
 	var $validate = array(
 		'name' => array(
 			'notempty' => array(
@@ -38,7 +39,7 @@ class Region extends AppModel {
 
 	var $hasMany = array(
 		'Province' => array(
-			'className' => 'Province',
+			'className' => 'Nscb.Province',
 			'foreignKey' => 'region_id',
 			'dependent' => false,
 			'conditions' => '',
