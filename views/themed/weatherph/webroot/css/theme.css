@@ -160,7 +160,8 @@ nav li > a {
 }
 
 .layerSelector {
-    width: 100%;
+    width: 534px;
+    padding: 5px 10px;
     border-bottom: 1px solid #555;
     -webkit-border-top-left-radius: 5px;
     -webkit-border-top-right-radius: 5px;
@@ -186,7 +187,7 @@ nav li > a {
 
 .dropdown li{
     float:left;
-    padding: 5px 1em;
+    padding: 0 1em;
     position:relative;
 }
 
@@ -246,17 +247,19 @@ nav li > a {
     float:left; 
 }
 
-.scale-fahrenheit, .scale-celsius {
+.scale-fahrenheit, .scale-celsius, .scale-pressure {
     float:left;
     margin-left: 10px;
     width: 100%;
+    display:none;
 }
 
 .unit-buttons {
     float: left;
+    display:none;
 }
 
-.scale-fahrenheit li, .scale-celsius li {
+.scale-fahrenheit li, .scale-celsius li, .scale-pressure li {
     display: inline-block;
     text-align: center;
     vertical-align: middle;
@@ -493,23 +496,28 @@ span.daytime {
 }
 
 #currentWeather {
-    width: 802px;
+    width: 770px;
     overflow: auto;
     border: 1px solid #365283;
+    padding: 1em;
 }
 
-#station, #condition, #conditionTable {
+#station, #condition {
     float:left;
-    margin: 5px 10px;
-    padding: 5px 10px;
 }
 
 #station {
-    max-width: 100%;
+    text-align: center;
+    width: 100%;
+    padding-bottom:2em;
 }
 
 #station h1 {
     text-shadow: 0px 2px 3px #555;
+}
+
+#condition{
+    width: 60%;
 }
 
 #condition td {
@@ -517,8 +525,9 @@ span.daytime {
     padding: 3px;
 }
 
-#condition{
-    width: 59%;
+#conditionTable {
+    float: right;
+    width: 30%;
 }
 
 #conditionTable td {
@@ -567,8 +576,8 @@ span.daytime {
 }
 
 .right-sy-reading{
-    width: 50%;
-    float: left;
+    width: 49%;
+    float: right;
     margin-top: 10px;
     margin-bottom: 10px;
     padding-top: 5px;
@@ -692,8 +701,12 @@ dd {
     margin: 1em 0 2em 0;
 }
 
+.search-results ul {
+    margin-top: 1em;
+}
+
 .search-results li {
-    padding: 10px;
+    padding: 20px;
     background: #fafafa;
     border: 1px solid #d3d3d3;
 }
@@ -705,6 +718,10 @@ dd {
 .names.index {
     width: 240px;
     float: left;
+}
+
+.paging {
+    text-align: center;
 }
 
 /*====================

@@ -52,7 +52,7 @@ ECHO
                     <li>
                         <a href="#">Weather movies</a>
                         <ul>
-                            <li><a href="#map" data-type="movie" data-name="wind"          data-target="movie-wind">Wind</a></li>
+                            <li><a href="#map" data-type="movie" data-name="wind" data-target="movie-wind">Wind</a></li>
                             <li><a href="#map" data-type="movie" data-name="precipitation" data-target="movie-precip">Rain</a></li>
                         </ul>
                     </li>
@@ -156,6 +156,28 @@ ECHO
                         <li style="background-color: #FF82B4;">108</li>
                         <li style="background-color: #FFA0A0;">111</li>
                         <li style="background-color: #FFC8C8;">115</li>
+                    </ul>
+                </div>
+                <div class="scale-pressure">
+                    <ul>
+                        <li style="background-color: #5A2623;">1045</li>
+                        <li style="background-color: #823C35;">1040</li>
+                        <li style="background-color: #9F4141;">1035</li>
+                        <li style="background-color: #B74D4D;">1030</li>
+                        <li style="background-color: #D06464;">1025</li>
+                        <li style="background-color: #F09292;">1020</li>
+                        <li style="background-color: #FFC0C0;">1015</li>
+                        <li style="background-color: #DCDCDC;">1010</li>
+                        <li style="background-color: #DAEDEA;">1005</li>
+                        <li style="background-color: #BADCD6;">1000</li>
+                        <li style="background-color: #95C0B8;">995</li>
+                        <li style="background-color: #74A49C;">990</li>
+                        <li style="background-color: #588980;">985</li>
+                        <li style="background-color: #416E66;">980</li>
+                        <li style="background-color: #2A5A52;">975</li>
+                        <li style="background-color: #15463C;">970</li>
+                        <li style="background-color: #003228;">965</li>
+                        <li style="background-color: #001E14;">960</li>
                     </ul>
                 </div>
                 <div class="unit-buttons">
