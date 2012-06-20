@@ -247,7 +247,11 @@ nav li > a {
     float:left; 
 }
 
-.scale-fahrenheit, .scale-celsius, .scale-pressure {
+.scale-temperature {
+    display: none;
+}
+
+.scale-celsius, .scale-fahrenheit, .scale-pressure {
     float:left;
     margin-left: 10px;
     width: 100%;
@@ -708,7 +712,6 @@ dd {
 .search-results li {
     padding: 20px;
     background: #fafafa;
-    border: 1px solid #d3d3d3;
 }
 
 .search-results li:hover {

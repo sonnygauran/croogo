@@ -37,6 +37,7 @@ $(document).ready(function(){
                         + view.tile.row
                         + ".png";}}]
     }
+    window['UNIT_TEMPERATURE'] = 'celsius';
         
     
     
@@ -435,14 +436,28 @@ function redrawMap(){
         switch (dataLayer) {
             case 'temperature':
                 serviceName = 'transparent';
+                $('.scale-celsius').show();
+                $('.scale-fahrenheit').hide();
+                $('.scale-temperature').show();
+                $('.unit-buttons').show();
+                $('.scale-pressure').hide();
                 removeStations();
                 break;
             case 'pressure':
                 removeStations();
+                $('.scale-temperature').hide();
+                $('.unit-buttons').hide();
+                $('.scale-pressure').show();
                 serviceName = 'outline';
                 break;
             case 'stations':
+                $('.scale-temperature').hide();
+                $('.scale-pressure').hide();
+                $('.unit-buttons').hide();
                 remapStations();
+                break;
+            default:
+                $('.scale-temperature').hide();
                 break;
         }
     }
@@ -492,15 +507,15 @@ $(function(){
 
         //Temperature unit toggle
         
-        $('.scale-fahrenheit').hide();
-        
         $('#fahrenheit-switch').on('click', function(){
+            window['UNIT_TEMPERATURE'] = 'fahrenheit';
             $('.scale-celsius').hide(0, function(){
                 $('.scale-fahrenheit').show();
             });
         });
         
         $('#celsius-switch').on('click', function(){
+            window['UNIT_TEMPERATURE'] = 'celsius';
             $('.scale-fahrenheit').hide(0, function(){
                 $('.scale-celsius').show();
             });
@@ -510,6 +525,7 @@ $(function(){
 
 
         if ($(this).attr('data-type') == 'movie') {
+            $('.scale-temperature').hide();
             var $movie = $('#movie-'+_name); // The markup
             var _content = eval("window['MOVIE_CONTENT']."+_name);
             

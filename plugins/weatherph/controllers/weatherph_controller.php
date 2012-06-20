@@ -78,23 +78,50 @@ class WeatherphController extends WeatherphAppController {
 
         $this->set('title_for_layout', __('Weatherph', true));
         App::import('Model', 'Weatherph.WeatherphStation');
+        App::import('Model', 'Weatherph.Station');
 
-        $WeatherphStation = new WeatherphStation();
-        $stations = $WeatherphStation->find('all', array('conditions' => array(
-        'provider' => $provider,
-        )));
+        $WeatherphStation = new Station();
+        
+        $fields = array('wmo1', 'lon', 'lat', 'name');
+        if ($provider == 'pagasa') {
+            $stations = $WeatherphStation->find('all', array(
+                'conditions' => array('NOT' => array('org' => 'JRG')),
+                'fields' => $fields,
+            ));
+        } else {
+            $stations = $WeatherphStation->find('all', array(
+                'conditions' => array('org' => 'JRG'),
+                'fields' => $fields,
+            ));
+        }
+        
+        $return = array();
+        foreach ($stations as $station) {
+            $station = $station['Station'];
+            $current = array(
+                'id' => $station['wmo1'],
+                'name' => $station['name'],
+                'coordinates' => array(
+                    'longitude' => $station['lon'],
+                    'latitude' => $station['lat'],
+                )
+            );
+            $return[] = $current;
+        }
+        
+        
         Configure::write('debug', 0);
-        $this->set('stations', json_encode($stations));
+        $this->set('stations', json_encode($return));
     }
 
     public function getReadings($stationID = '920001') {
         $this->layout = 'json/ajax';
 
-        App::import('Model', 'Weatherph.WeatherphStationReading');
+        App::import('Model', 'Weatherph.Reading');
 
-        $WeatherphStationReading = new WeatherphStationReading();
+        $WeatherphStationReading = new Reading();
         $currentReading = $WeatherphStationReading->find('all', array('conditions' => array(
-        'id' => $stationID,
+            'ort1 LIKE' => $stationID.'%',
         )));
         //       Configure::write('debug', 0);
         $this->set('readings', json_encode($currentReading));
