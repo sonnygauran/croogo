@@ -236,11 +236,12 @@ class WeatherphStationForecast extends WeatherphAppModel
                 
                 //if(date('Ymd', strtotime($today)) == $new_key){
                     
-                    if(strtotime($data['localtime_range_end']) >= strtotime($today)){
+                //Temporary DMO fix
+//                    if(strtotime($data['localtime_range_end']) >= strtotime($today)){
                         
                         $new_datasets[$new_key][] = $data;
                         
-                    }
+//                    }
                     
                 //}else{
                     
@@ -825,7 +826,7 @@ class WeatherphStationForecast extends WeatherphAppModel
         $csvString = file_get_contents($dmo_forecast);
         
         $forecasts = $this->csvToArray($csvString);
-        
+
         //$this->log(print_r($forecasts, TRUE));
         
         // Get sunrise and sunset using current latituted and longtitude station
@@ -872,16 +873,16 @@ class WeatherphStationForecast extends WeatherphAppModel
                     
                     // Translate raw data to wind direction image value
                     $new_forecast['wind_direction'] = $this->showWindDirection($forecast['dir']);
-                    
-                    $dmoResults['forecast'][$forecast['Datum']][] = $new_forecast;
+
+                    $dmoResults['forecast'][$new_forecast['Datum']][] = $new_forecast;
                 
             }
         }
-        
+
         //$this->log(print_r($dmoResults, TRUE));
         
         $dmoResults['forecast'] = $this->localTimeForecast($dmoResults['forecast']);
-        
+             
         $dmoResults['stationId'] = $station_id;
         $dmoResults['stationName'] = $stationInfo['full_name_ro'];
         
