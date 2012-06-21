@@ -13,7 +13,7 @@ $(document).ready(function(){
                 id: "OSM", type: "tiled",
                 attr: "<?= Configure::read('Tile.attr') ?>",
                 src: function (view) {
-                    return "<?= Configure::read('Tile.tiles') ?>/transparent/"
+                    return "https://tiles.mapbox.com/v3/meteomedia.weatherph-temperature/"
                         + view.zoom + "/"
                         + view.tile.column + "/"
                         + view.tile.row
@@ -526,6 +526,7 @@ $(function(){
 
         if ($(this).attr('data-type') == 'movie') {
             $('.scale-temperature').hide();
+            $('.scale-pressure').hide();
             var $movie = $('#movie-'+_name); // The markup
             var _content = eval("window['MOVIE_CONTENT']."+_name);
             
