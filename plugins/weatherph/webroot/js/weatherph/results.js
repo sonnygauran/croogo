@@ -89,7 +89,8 @@ $(document).ready(function(){
     
     $('.location').hover(function(event){
         event.preventDefault();
-        id = $(this).attr('id');
+        attributes = $(this).attr('class').split(" ");
+        id = attributes[0];
         
         $details = getObjects($locationResults, 'id', id);
         $('#plot-' + $details[0].id).addClass('marker').removeClass('plot');
@@ -97,8 +98,6 @@ $(document).ready(function(){
         $('#plot-' + $details[0].id).addClass('plot').removeClass('marker');
     }
     );
-    
-    
     
     function plotLocations($stationsArray) {
         // This loop maps the stations from the $stations fetched from getStations
