@@ -393,6 +393,7 @@ span.temperature {
 .blog-posts{
     position: relative;
     margin: 2px;
+    padding-left: 69px;
 }
 
 .date .day {
