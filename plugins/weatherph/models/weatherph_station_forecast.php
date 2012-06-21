@@ -165,7 +165,7 @@ class WeatherphStationForecast extends WeatherphAppModel
                 
         }
         
-        if(key_exists('forecast', $abfrageResults) AND count($abfrageResults['forecast'])>0){
+    if(key_exists('forecast', $abfrageResults) AND count($abfrageResults['forecast'])>0){
            $abfrageResults['forecast']['status'] = 'ok'; 
         } else {
            $abfrageResults['forecast']['status'] = 'none'; 
