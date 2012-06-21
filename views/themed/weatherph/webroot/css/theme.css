@@ -160,7 +160,8 @@ nav li > a {
 }
 
 .layerSelector {
-    width: 100%;
+    width: 534px;
+    padding: 5px 10px;
     border-bottom: 1px solid #555;
     -webkit-border-top-left-radius: 5px;
     -webkit-border-top-right-radius: 5px;
@@ -186,7 +187,7 @@ nav li > a {
 
 .dropdown li{
     float:left;
-    padding: 5px 1em;
+    padding: 0 1em;
     position:relative;
 }
 
@@ -246,21 +247,23 @@ nav li > a {
     float:left; 
 }
 
-.scale-temperature, .scale-fahrenheit {
+.scale-temperature {
     display: none;
 }
-.scale-fahrenheit, .scale-celsius {
+
+.scale-celsius, .scale-fahrenheit, .scale-pressure {
     float:left;
     margin-left: 10px;
     width: 100%;
-    visibility: none;
+    display:none;
 }
 
 .unit-buttons {
     float: left;
+    display:none;
 }
 
-.scale-fahrenheit li, .scale-celsius li {
+.scale-fahrenheit li, .scale-celsius li, .scale-pressure li {
     display: inline-block;
     text-align: center;
     vertical-align: middle;
@@ -497,23 +500,28 @@ span.daytime {
 }
 
 #currentWeather {
-    width: 802px;
+    width: 770px;
     overflow: auto;
     border: 1px solid #365283;
+    padding: 1em;
 }
 
-#station, #condition, #conditionTable {
+#station, #condition {
     float:left;
-    margin: 5px 10px;
-    padding: 5px 10px;
 }
 
 #station {
-    max-width: 100%;
+    text-align: center;
+    width: 100%;
+    padding-bottom:2em;
 }
 
 #station h1 {
     text-shadow: 0px 2px 3px #555;
+}
+
+#condition{
+    width: 60%;
 }
 
 #condition td {
@@ -521,8 +529,9 @@ span.daytime {
     padding: 3px;
 }
 
-#condition{
-    width: 59%;
+#conditionTable {
+    float: right;
+    width: 30%;
 }
 
 #conditionTable td {
@@ -571,8 +580,8 @@ span.daytime {
 }
 
 .right-sy-reading{
-    width: 50%;
-    float: left;
+    width: 49%;
+    float: right;
     margin-top: 10px;
     margin-bottom: 10px;
     padding-top: 5px;
@@ -696,10 +705,19 @@ dd {
     margin: 1em 0 2em 0;
 }
 
+.search-results h2 {
+    text-align: center;
+    padding: 15px 10px;
+}
+
+.search-results ul {
+    border: 1px solid #f1f1f1;
+}
+
 .search-results li {
-    padding: 10px;
+    text-align: center;
+    padding: 20px;
     background: #fafafa;
-    border: 1px solid #d3d3d3;
 }
 
 .search-results li:hover {
@@ -709,6 +727,10 @@ dd {
 .names.index {
     width: 240px;
     float: left;
+}
+
+.paging {
+    text-align: center;
 }
 
 /*====================
@@ -823,7 +845,7 @@ nav, .layerSelector, .promo, #info, .output {
     color: #fafafa;
 }
 
-#current-readings-panel, #info > .readings, #currentWeather, .tabs li {
+#current-readings-panel, #info > .readings, #currentWeather, .tabs li, .search-results h2 {
     background-color: #3e5e95;
     color: #fafafa;
 }
@@ -832,7 +854,7 @@ nav, .layerSelector, .promo, #info, .output {
     background-color: white;
 }
 
-.current.readings-location, nav li {
+.current.readings-location, nav li, .search-results h2 {
     text-shadow: 0px 1px 3px #333;
 }
 

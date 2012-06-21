@@ -198,7 +198,7 @@ $(document).ready(function(){
         {id: 'I', box: [118.44909711718802, 15.347761824788998, 122.45910688281198, 18.500447360569783]},
         {id: 'II', box: [119.61914111718802, 15.538376429558836, 123.62915088281197, 18.687879180851954]},
         {id: 'III', box: [119.14123511718803, 14.038008352438528, 123.151244882812, 17.211640744046566]},
-        {id: 'IVa', box: [119.14123511718803, 14.038008352438528, 123.151244882812, 17.211640744046566]},
+        {id: 'IVa', box: [119.14123511718803, 14.038008352438528, 123.151244882812, 14.211640744046566]},
         {id: 'IVb', box: [115.45532223437608, 7.961317655755968, 123.47534176562394, 14.424040675692801]},
         {id: 'V', box: [121.40991211718803, 11.813588529774567, 125.41992188281199, 15.019075443311895]},
 	
@@ -436,16 +436,24 @@ function redrawMap(){
         switch (dataLayer) {
             case 'temperature':
                 serviceName = 'transparent';
+                $('.scale-celsius').show();
+                $('.scale-fahrenheit').hide();
                 $('.scale-temperature').show();
+                $('.unit-buttons').show();
+                $('.scale-pressure').hide();
                 removeStations();
                 break;
             case 'pressure':
                 removeStations();
                 $('.scale-temperature').hide();
+                $('.unit-buttons').hide();
+                $('.scale-pressure').show();
                 serviceName = 'outline';
                 break;
             case 'stations':
                 $('.scale-temperature').hide();
+                $('.scale-pressure').hide();
+                $('.unit-buttons').hide();
                 remapStations();
                 break;
             default:
