@@ -455,10 +455,7 @@ ECHO
                                     <div class="year"><?= date('Y', $createdTime) ?></div>
                                 </div>
                             </div>
-                            <div class="ribbon-edge-topleft"></div>
-                            <div class="ribbon-edge-topright"></div>
                             <div class="ribbon-edge-bottomleft"></div>
-                            <div class="ribbon-edge-bottomright"></div>
                         </div>
 
                         <h4><?= $html->link($blog['Node']['title'], $blog['Node']['url'], array('class' => 'link')) ?></h4>  
