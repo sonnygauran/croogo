@@ -295,6 +295,12 @@
  *
  */
 	Cache::config('default', array('engine' => 'File'));
+    Cache::config('daily', array(  
+        'engine' => 'File',  
+        'duration'=> '+1 day',  
+        'path' => CACHE.DS.'models',
+        'prefix' => 'daily_'
+    ));
     Cache::config('hourly', array(  
         'engine' => 'File',  
         'duration'=> '+1 hour',  
