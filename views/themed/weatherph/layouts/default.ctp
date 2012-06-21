@@ -15,10 +15,7 @@
         <?php
         echo $this->Layout->meta();
         echo $this->Layout->feed();
-        echo $this->Html->css(array(
-            'reset',
-            'theme',
-        ));
+        echo $this->Html->css(array('theme'));
         echo $this->Layout->js();
         echo $this->Html->script(array(
             'jquery/jquery.min',
@@ -40,6 +37,9 @@
                     generatePagination: false,
                     generateNextPrev: false
                 });
+                $("nav li").click(function(){
+                window.location=$(this).find("a").attr("href"); return false;
+                });
             });
 	</script>
         <!--[if lt IE 9]>
@@ -50,7 +50,6 @@
         <section id="container">
             <header class="banner clear shadow">    
                 <h1 class="logo"><a href="<?= $this->webroot ?>">weather | philippines</a></h1>
-                
                 <div id="slides">
                     <div class="slides_container">
                         <img src="<?= $this->webroot ?>theme/weatherph/img/mm.png" alt="Meteomedia">
@@ -65,10 +64,9 @@
                         <label for="search-field">Search:</label><input id="search-field" type="text" name="terms" size="15" />
                         <img src="<?= $this->webroot ?>theme/weatherph/img/search.png" alt="" />
                     </form>
-                    
                 </div>
             </header> <!--BANNER-->
-
+            
             <nav class="shadow">
                 <ul>
                     <li><a href="<?= $this->webroot ?>">Home</a></li>
@@ -76,10 +74,9 @@
                     <li><a href="<?= $this->webroot ?>typhoon-glossary">Typhoon Glossary</a></li>
                     <li><a href="<?= $this->webroot ?>typhoon-climatology">Typhoon Climatology</a></li>
                     <li><a href="/about">About</a></li>
-<!--                    <li><a href="#">Impressum</a></li>-->
                 </ul>
             </nav>
-
+            
             <div class="severe-warning shadow">
                 <p><strong>Alert:</strong> Typhoon Dador is approaching the NCR. No classes in all levels. Stay at home!</p>
             </div>
@@ -96,7 +93,6 @@
                         <li><?php echo $this->Html->image('sponsor-tyk-mod.png'); ?></li>
                     </ul>
                 </div>
-                
                 <!-- AddThis Button BEGIN -->
                 <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
                 <a class="addthis_button_facebook"></a>
@@ -107,31 +103,30 @@
                 </div>
                 <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4f94bc453ecffca4"></script>
                 <!-- AddThis Button END -->
-
-                <div class="ads">
+                <!--<div class="ads">
                     <div class="promo">
                         <h4>Visit Boracay!</h4>
                         <img src="<?= $this->webroot ?>theme/weatherph/img/boracay.jpg" alt="Boracay!"/>
                         <p>Boracay is an island of the Philippines located approximately 315 km (196 mi) south of Manila.
 							Boracay Island and its beaches have received awards numerous times.</p>
                     </div>
-
                     <div class="promo">
                         <h4>Discover Pamalican.</h4>
                         <img src="<?= $this->webroot ?>theme/weatherph/img/pamalican.jpg" alt="Pamalican!"/>
                         <p>Pamalican Island is a small island of the Cuyo Islands in the Sulu Sea.</p>
                     </div>
-                </div>
-
-            </div>
-<?php
+                </div>-->
+            </div><!--END SIDEBAR-->
+            
+            <?php
             echo $this->Layout->sessionFlash();
             echo $content_for_layout;
-?>
+            ?>
+            
             <footer>
                 <small>&copy; 2012 Meteomedia A.G.</small>
             </footer>
-
+            
         </section><!-- #container -->
     </body>
 </html>
