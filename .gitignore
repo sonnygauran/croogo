@@ -11,3 +11,4 @@ tmp/
 
 .DS_Store
 /nbproject/private/
+config/settings.private.yml
