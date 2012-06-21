@@ -102,8 +102,24 @@
                 <a class="addthis_button_print"></a>
                 </div>
                 <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4f94bc453ecffca4"></script>
+                <div class="sponsored" style="margin-top: 10px;">
+                    <?php
+                    $images = array(
+                        'quasha.jpeg',
+                        'ocean_adventure.png',
+                        'syngenta.png',
+                    );
+                    
+                    $hat = rand(1, count($images)) - 1;
+                    
+                    ?>
+                    <h6>Gold sponsors:</h6>
+                    <ul>
+                        <li><?php echo $this->Html->image($images[$hat], array('width' => '120px')); ?></li>
+                    </ul>
+                </div>
                 <!-- AddThis Button END -->
-                <!--<div class="ads">
+                <div class="ads">
                     <div class="promo">
                         <h4>Visit Boracay!</h4>
                         <img src="<?= $this->webroot ?>theme/weatherph/img/boracay.jpg" alt="Boracay!"/>
@@ -115,7 +131,7 @@
                         <img src="<?= $this->webroot ?>theme/weatherph/img/pamalican.jpg" alt="Pamalican!"/>
                         <p>Pamalican Island is a small island of the Cuyo Islands in the Sulu Sea.</p>
                     </div>
-                </div>-->
+                </div>
             </div><!--END SIDEBAR-->
             
             <?php
