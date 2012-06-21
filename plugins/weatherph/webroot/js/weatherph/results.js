@@ -8,9 +8,9 @@ $(document).ready(function(){
         var id = attributes[1];
         console.error(id);
         if (event.type == 'mouseover') {
-            $('#' + id).css('background-color', '#e0e6f2');
+            $('li.' + id).css('background-color', '#e0e6f2');
         } else {
-            $('#' + id).css('background-color', 'transparent');
+            $('li.' + id).css('background-color', 'transparent');
         }
         
     });
