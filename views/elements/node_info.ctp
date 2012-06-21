@@ -24,8 +24,8 @@
         $createdTime = strtotime($this->Layout->node('created'));
         ?>
 
-        <div class="ribbon-wrapper-blogs">
-            <div class="ribbon-front-blogs">
+        <div class="ribbon-wrapper blog-page">
+            <div class="ribbon-front blog-page">
                 <div class="ribbon-top-bar"></div>
                 <div class="date">
                     <div class="day"><?= date('d', $createdTime) ?></div>
@@ -33,10 +33,7 @@
                     <div class="year"><?= date('Y', $createdTime) ?></div>
                 </div>
             </div>
-            <div class="ribbon-edge-topleft-blogs"></div>
-            <div class="ribbon-edge-topright-blogs"></div>
-            <div class="ribbon-edge-bottomleft-blogs"></div>
-            <div class="ribbon-edge-bottomright-blogs"></div>
+            <div class="ribbon-edge-bottomleft blog-page"></div>
         </div>
     
         <?php

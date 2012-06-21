@@ -242,7 +242,7 @@ $(document).ready(function(){
 	});
     $('#map ul').css({
         'position': 'absolute',
-        'background-color': 'black',
+        'background-color': '#333333',
         'bottom': 0,
         'left': 0,
         'list-style-type': 'none',

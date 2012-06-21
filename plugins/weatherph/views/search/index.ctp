@@ -63,7 +63,7 @@
                 <h2><?php __('Search results'); ?></h2>
                 <ul>
                     <?php foreach ($names as $name): ?>
-                        <li class="<?php echo $name['NimaName']['id']; ?>"><a href ="/dmoForecast/<?php echo $name['NimaName']['id']; ?>" class="location" id="<?php echo $name['NimaName']['id']; ?>"><?php echo trim($name['NimaName']['full_name_ro']); ?></a></li>
+                        <li class="<?php echo $name['NimaName']['id']; ?>"><a href ="/dmoForecast/<?php echo $name['NimaName']['id']; ?>" class="<?php echo $name['NimaName']['id']; ?> location"><br /><?php echo trim($name['NimaName']['full_name_ro']); ?></a></li>
                     <?php endforeach; ?>
                 </ul>
             </div>
