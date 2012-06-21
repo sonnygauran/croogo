@@ -234,19 +234,12 @@ class WeatherphStationForecast extends WeatherphAppModel
                 
                 $new_key = date('Ymd', strtotime($data['localtime']));
                 
-                //if(date('Ymd', strtotime($today)) == $new_key){
-                    
                     if(strtotime($data['localtime_range_end']) >= strtotime($today)){
                         
                         $new_datasets[$new_key][] = $data;
                         
                     }
-                    
-                //}else{
-                    
-                //    $new_datasets[$new_key][] = $data;
-                  
-                //}
+                
             }
             
         }
