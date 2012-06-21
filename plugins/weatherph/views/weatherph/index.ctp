@@ -56,8 +56,8 @@ ECHO
                             <li><a href="#map" data-type="movie" data-name="precipitation" data-target="movie-precip">Rain</a></li>
                         </ul>
                     </li>
-                    <li><a data-target="data-layer" data-name="temperature">Temperature</a></li>
-                    <li><a data-target="data-layer" data-name="pressure">Pressure</a></li>
+                    <li><a data-target="data-layer" data-name="temperature" href="#map">Temperature</a></li>
+                    <li><a data-target="data-layer" data-name="pressure" href="#map">Pressure</a></li>
                 </ul>
             </div> <!--LAYER SELECTOR-->
             <div class="video-viewport">

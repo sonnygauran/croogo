@@ -1,8 +1,4 @@
 $(document).ready(function(){
-    $(".search-results ul li").click(function(){
-    window.location=$(this).find("a").attr("href"); return false;
-    });
-    
     $(document).on('mouseover mouseout', 'div.plot', function(){
         var attributes = $(this).attr('class').split(' ');
         var id = attributes[1];
