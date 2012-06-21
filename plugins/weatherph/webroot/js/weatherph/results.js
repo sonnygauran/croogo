@@ -1,4 +1,8 @@
 $(document).ready(function(){
+    $(".search-results ul li").click(function(){
+    window.location=$(this).find("a").attr("href"); return false;
+    });
+    
     $(document).on('mouseover mouseout', 'div.plot', function(){
         var attributes = $(this).attr('class').split(' ');
         var id = attributes[1];
@@ -85,7 +89,8 @@ $(document).ready(function(){
     
     $('.location').hover(function(event){
         event.preventDefault();
-        id = $(this).attr('id');
+        attributes = $(this).attr('class').split(" ");
+        id = attributes[0];
         
         $details = getObjects($locationResults, 'id', id);
         $('#plot-' + $details[0].id).addClass('marker').removeClass('plot');
@@ -93,8 +98,6 @@ $(document).ready(function(){
         $('#plot-' + $details[0].id).addClass('plot').removeClass('marker');
     }
     );
-    
-    
     
     function plotLocations($stationsArray) {
         // This loop maps the stations from the $stations fetched from getStations
