@@ -52,7 +52,7 @@ ECHO
                     <li>
                         <a href="#">Weather movies</a>
                         <ul>
-                            <li><a href="#map" data-type="movie" data-name="wind"          data-target="movie-wind">Wind</a></li>
+                            <li><a href="#map" data-type="movie" data-name="wind" data-target="movie-wind">Wind</a></li>
                             <li><a href="#map" data-type="movie" data-name="precipitation" data-target="movie-precip">Rain</a></li>
                         </ul>
                     </li>
@@ -74,96 +74,117 @@ ECHO
             <div id="legend" class="shadow">
                 <div class="scale-temperature">
                     <div class="scale-celsius">
-                        <ul class="scale-upper">
-                            <li style="background-color: #FFC8C8;">46</li>
-                            <li style="background-color: #FFA0A0;">44</li>
-                            <li style="background-color: #FF82B4;">42</li>
-                            <li style="background-color: #FF5096;">40</li>
-                            <li style="background-color: #FF0064;">38</li>
-                            <li style="background-color: #D2005A;">36</li>
-                            <li style="background-color: #A50041;">34</li>
-                            <li style="background-color: #780000;">32</li>
-                            <li style="background-color: #A00000;">30</li>
-                            <li style="background-color: #C30000;">28</li>
-                            <li style="background-color: #E60000;">26</li>
-                            <li style="background-color: #FF5A00;">24</li>
-                            <li style="background-color: #FF8200;">22</li>
-                            <li style="background-color: #FFA000;">20</li>
-                            <li style="background-color: #FFBE00;">18</li>
-                            <li style="background-color: #FFD200;">16</li>
-                            <li style="background-color: #FFE600;">14</li>
-                            <li style="background-color: #FFFF14;">12</li>
-                            <li style="background-color: #C8FF00;">10</li>
-                            <li style="background-color: #96FF00;">8&nbsp;</li>
-                            <li style="background-color: #64FF00;">6&nbsp;</li>
-                            <li style="background-color: #00EB00;">4&nbsp;</li>
-                            <li style="background-color: #00DC8C;">2&nbsp;</li>
-                        </ul>
-                        <ul class="scale-lower">
-                            <li style="background-color: #00DCFF;">0&nbsp;</li>
-                            <li style="background-color: #00AFFF;">-2</li>
-                            <li style="background-color: #007DFF;">-4</li>
-                            <li style="background-color: #0046F5;">-6</li>
-                            <li style="background-color: #0014B4;">-8</li>
-                            <li style="background-color: #6E0A6E;">-10</li>
-                            <li style="background-color: #8C008C;">-12</li>
-                            <li style="background-color: #B400B4;">-15</li>
-                            <li style="background-color: #D200D2;">-20</li>
-                            <li style="background-color: #FF00FF;">-25</li>
-                            <li style="background-color: #FF78FF;">-30</li>
-                            <li style="background-color: #FFAAFF;">-35</li>
-                            <li style="background-color: #FFD2FF;">-40</li>
+                        <ul>
                             <li style="background-color: #EAE9F9;">-45</li>
+                            <li style="background-color: #FFD2FF;">-40</li>
+                            <li style="background-color: #FFAAFF;">-35</li>
+                            <li style="background-color: #FF78FF;">-30</li>
+                            <li style="background-color: #FF00FF;">-25</li>
+                            <li style="background-color: #D200D2;">-20</li>
+                            <li style="background-color: #B400B4;">-15</li>
+                            <li style="background-color: #8C008C;">-12</li>
+                            <li style="background-color: #6E0A6E;">-10</li>
+                            <li style="background-color: #0014B4;">-8</li>
+                            <li style="background-color: #0046F5;">-6</li>
+                            <li style="background-color: #007DFF;">-4</li>
+                            <li style="background-color: #00AFFF;">-2</li>
+                            <li style="background-color: #00DCFF;">0&nbsp;</li>
+                            <li style="background-color: #00DC8C;">2&nbsp;</li>
+                            <li style="background-color: #00EB00;">4&nbsp;</li>
+                            <li style="background-color: #64FF00;">6&nbsp;</li>
+                            <li style="background-color: #96FF00;">8&nbsp;</li>
+                        </ul>
+                        <ul>
+                            <li style="background-color: #C8FF00;">10</li>
+                            <li style="background-color: #FFFF14;">12</li>
+                            <li style="background-color: #FFE600;">14</li>
+                            <li style="background-color: #FFD200;">16</li>
+                            <li style="background-color: #FFBE00;">18</li>
+                            <li style="background-color: #FFA000;">20</li>
+                            <li style="background-color: #FF8200;">22</li>
+                            <li style="background-color: #FF5A00;">24</li>
+                            <li style="background-color: #E60000;">26</li>
+                            <li style="background-color: #C30000;">28</li>
+                            <li style="background-color: #A00000;">30</li>
+                            <li style="background-color: #780000;">32</li>
+                            <li style="background-color: #A50041;">34</li>
+                            <li style="background-color: #D2005A;">36</li>
+                            <li style="background-color: #FF0064;">38</li>
+                            <li style="background-color: #FF5096;">40</li>
+                            <li style="background-color: #FF82B4;">42</li>
+                            <li style="background-color: #FFA0A0;">44</li>
+                            <li style="background-color: #FFC8C8;">46</li>
                         </ul>
                     </div>
                     <div class="scale-fahrenheit">
-                        <ul class="scale-upper">
-                            <li style="background-color: #FFC8C8;">114.8</li>
-                            <li style="background-color: #FFA0A0;">111.2</li>
-                            <li style="background-color: #FF82B4;">107.6</li>
-                            <li style="background-color: #FF5096;">104</li>
-                            <li style="background-color: #FF0064;">100.4</li>
-                            <li style="background-color: #D2005A;">96.8</li>
-                            <li style="background-color: #A50041;">93.2</li>
-                            <li style="background-color: #780000;">89.6</li>
-                            <li style="background-color: #A00000;">86</li>
-                            <li style="background-color: #C30000;">82.4</li>
-                            <li style="background-color: #E60000;">78.8</li>
-                            <li style="background-color: #FF5A00;">75.2</li>
-                            <li style="background-color: #FF8200;">71.6</li>
-                            <li style="background-color: #FFA000;">68</li>
-                            <li style="background-color: #FFBE00;">64.4</li>
-                            <li style="background-color: #FFD200;">60.8</li>
-                            <li style="background-color: #FFE600;">57.2</li>
-                            <li style="background-color: #FFFF14;">53.6</li>
-                        </ul>
-                        <ul class="scale-lower">
-                            <li style="background-color: #C8FF00;">50</li>
-                            <li style="background-color: #96FF00;">46.4</li>
-                            <li style="background-color: #64FF00;">42.8</li>
-                            <li style="background-color: #00EB00;">39.2</li>
-                            <li style="background-color: #00DC8C;">35.6</li>
-                            <li style="background-color: #00DCFF;">32</li>
-                            <li style="background-color: #00DCFF;">32</li>
-                            <li style="background-color: #00AFFF;">28.4</li>
-                            <li style="background-color: #007DFF;">24.8</li>
-                            <li style="background-color: #0046F5;">21.2</li>
-                            <li style="background-color: #0014B4;">17.6</li>
-                            <li style="background-color: #6E0A6E;">14</li>
-                            <li style="background-color: #8C008C;">10.4</li>
-                            <li style="background-color: #B400B4;">5&nbsp;</li>
-                            <li style="background-color: #D200D2;">-4</li>
-                            <li style="background-color: #FF00FF;">-13</li>
-                            <li style="background-color: #FF78FF;">-22</li>
-                            <li style="background-color: #FFAAFF;">-31</li>
-                            <li style="background-color: #FFD2FF;">-40</li>
+                        <ul>
                             <li style="background-color: #EAE9F9;">-49</li>
+                            <li style="background-color: #FFD2FF;">-40</li>
+                            <li style="background-color: #FFAAFF;">-31</li>
+                            <li style="background-color: #FF78FF;">-22</li>
+                            <li style="background-color: #FF00FF;">-13</li>
+                            <li style="background-color: #D200D2;">-4</li>
+                            <li style="background-color: #B400B4;">5&nbsp;</li>
+                            <li style="background-color: #8C008C;">10</li>
+                            <li style="background-color: #6E0A6E;">14</li>
+                            <li style="background-color: #0014B4;">18</li>
+                            <li style="background-color: #0046F5;">21</li>
+                            <li style="background-color: #007DFF;">25</li>
+                            <li style="background-color: #00AFFF;">28</li>
+                            <li style="background-color: #00DCFF;">32</li>
+                            <li style="background-color: #00DC8C;">36</li>
+                            <li style="background-color: #00EB00;">39</li>
+                            <li style="background-color: #64FF00;">43</li>
+                            <li style="background-color: #96FF00;">46</li>
+                            <li style="background-color: #C8FF00;">50</li>
+                        </ul>
+                        <ul>
+                            <li style="background-color: #FFFF14;">54</li>
+                            <li style="background-color: #FFE600;">57</li>
+                            <li style="background-color: #FFD200;">61</li>
+                            <li style="background-color: #FFBE00;">64</li>
+                            <li style="background-color: #FFA000;">68</li>
+                            <li style="background-color: #FF8200;">72</li>
+                            <li style="background-color: #FF5A00;">75</li>
+                            <li style="background-color: #E60000;">79</li>
+                            <li style="background-color: #C30000;">82</li>
+                            <li style="background-color: #A00000;">86</li>
+                            <li style="background-color: #780000;">90</li>
+                            <li style="background-color: #A50041;">93</li>
+                            <li style="background-color: #D2005A;">97</li>
+                            <li style="background-color: #FF0064;">100</li>
+                            <li style="background-color: #FF5096;">104</li>
+                            <li style="background-color: #FF82B4;">108</li>
+                            <li style="background-color: #FFA0A0;">111</li>
+                            <li style="background-color: #FFC8C8;">115</li>
                         </ul>
                     </div>
-                    <div class="unit-buttons">
-                        <button type="button" id="celsius-switch">°C</button>
-                        <button type="button" id="fahrenheit-switch">°F</button>
-                    </div>
+                </div>
+                <div class="scale-pressure">
+                    <ul>
+                        <li style="background-color: #5A2623;">1045</li>
+                        <li style="background-color: #823C35;">1040</li>
+                        <li style="background-color: #9F4141;">1035</li>
+                        <li style="background-color: #B74D4D;">1030</li>
+                        <li style="background-color: #D06464;">1025</li>
+                        <li style="background-color: #F09292;">1020</li>
+                        <li style="background-color: #FFC0C0;">1015</li>
+                        <li style="background-color: #DCDCDC;">1010</li>
+                        <li style="background-color: #DAEDEA;">1005</li>
+                        <li style="background-color: #BADCD6;">1000</li>
+                        <li style="background-color: #95C0B8;">995</li>
+                        <li style="background-color: #74A49C;">990</li>
+                        <li style="background-color: #588980;">985</li>
+                        <li style="background-color: #416E66;">980</li>
+                        <li style="background-color: #2A5A52;">975</li>
+                        <li style="background-color: #15463C;">970</li>
+                        <li style="background-color: #003228;">965</li>
+                        <li style="background-color: #001E14;">960</li>
+                    </ul>
+                </div>
+                <div class="unit-buttons">
+                    <button type="button" id="celsius-switch">°C</button>
+                    <button type="button" id="fahrenheit-switch">°F</button>
                 </div>
                 
                 
@@ -425,8 +446,6 @@ ECHO
                     <div class="blog-preview">
                         <?php $createdTime = strtotime($blog['Node']['created']); ?>
 
-
-
                         <div class="ribbon-wrapper">
                             <div class="ribbon-front">
                             <div class="ribbon-top-bar"></div>
@@ -436,13 +455,9 @@ ECHO
                                     <div class="year"><?= date('Y', $createdTime) ?></div>
                                 </div>
                             </div>
-                            <div class="ribbon-edge-topleft"></div>
-                            <div class="ribbon-edge-topright"></div>
                             <div class="ribbon-edge-bottomleft"></div>
-                            <div class="ribbon-edge-bottomright"></div>
-
                         </div>
-                        
+
                         <h4><?= $html->link($blog['Node']['title'], $blog['Node']['url'], array('class' => 'link')) ?></h4>  
                         <div class="blog-posts">
                         <p><?= $text->excerpt(strip_tags($blog['Node']['body']), 'method', 200, '...' . $html->link('Read More...', $blog['Node']['url'])) ?><?= '<hr>'; ?></p>
