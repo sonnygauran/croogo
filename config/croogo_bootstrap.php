@@ -79,7 +79,8 @@
 	if (file_exists(CONFIGS.'settings.private.yml')) {
 		$settings = Spyc::YAMLLoad(file_get_contents(CONFIGS.'settings.private.yml'));
 		foreach ($settings AS $settingKey => $settingValue) {
-            if (strstr($settingValue, 'APP_PATH')) { $settingValue = str_replace('APP_PATH/', APP_PATH, $settingValue); }
+            if (defined('APP_PATH') AND strstr($settingValue, 'APP_PATH')) {
+                $settingValue = str_replace('APP_PATH/', APP_PATH, $settingValue); }
 			Configure::write($settingKey, $settingValue);
 		}
 	}
