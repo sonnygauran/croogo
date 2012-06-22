@@ -95,9 +95,7 @@ class WeatherphAppModel extends AppModel {
 
     protected function dayOrNightSymbol($symbol = NULL, $utc = NULL, $meridiem = array()) {
         
-        $this->log('symbol'.$symbol);
-
-        if($symbol != NULL && $symbol <= 18) {
+        if($symbol != NULL) {
             
         $symbol = number_format($symbol, 0);
         
@@ -200,7 +198,7 @@ class WeatherphAppModel extends AppModel {
                 'fields' => $fields,
             ));
             
-            $station = $station[0];
+            $station = $station[0]['Station'];
              
         }
         return $station;
