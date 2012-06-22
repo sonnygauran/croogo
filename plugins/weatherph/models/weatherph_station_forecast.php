@@ -23,7 +23,7 @@ class WeatherphStationForecast extends WeatherphAppModel
         $Date = new DateTime(null, new DateTimeZone($siteTimezone)); 
         
         $stationInfo = $this->getStationInfo($stationId);
-        $stationInfo = $stationInfo['Station'];
+        //$stationInfo = $stationInfo['Station'];
         
         $abfrageResults['station_name'] = $stationInfo['name'];
         
@@ -280,6 +280,8 @@ class WeatherphStationForecast extends WeatherphAppModel
         
         // Get station info based on id
         $stationInfo = $this->getStationInfo($stationId, array("name","lat","lon"));
+        
+        $this->log('Station Info:'.print_r($stationInfo, TRUE));
         
         // STATION READINGS
         
