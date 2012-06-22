@@ -1,6 +1,6 @@
 <?php
 
-class ImportTask extends Shell{
+class StationImportTask extends Shell{
     
     function execute(){
         App::import('Model', 'Weatherph.WeatherphStation');

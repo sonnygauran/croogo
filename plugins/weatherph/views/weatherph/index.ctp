@@ -469,12 +469,13 @@ ECHO
         </div>
 
         <div class="news">
-            <h4>Breaking News</h4>
+            <h4>Learn More</h4>
             <ul>
                 <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail.png"/><p>Breaking News</p></li>
                 <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail2.png"/><p>Weather TV</p></li>
-                <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail3.png"/><p>Mike Padua: Typhoons, Explained</p></li>
-                <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail.png"/><p>Meteomedia Weather Shop</p></li>
+                <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail3.png"/><p>Mike Padua Blog</p></li>
+                <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail.png"/><p>Dictionary: English</p></li>
+                <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail.png"/><p>Dictionary: Tagalog</p></li>
                 <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail2.png"/><p>Webcams</p></li>
             </ul>
         </div>

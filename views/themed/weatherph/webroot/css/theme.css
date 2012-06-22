@@ -238,7 +238,7 @@ nav li > a {
     float:left; 
 }
 
-.scale-temperature {
+.scale-temperature, .scale-pressure {
     display: none;
 }
 

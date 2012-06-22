@@ -3,10 +3,10 @@
 class StationFinderShell extends Shell {
  
 
-	public $uses = array('Weatherph.NearestStation');
+    public $uses = array('Weatherph.NearestStation');
 
     function main() {
-		echo date('H:i:s') . "\n";
+	echo microtime() . "\n";
 
         $counter = 0;
         App::import('Model', 'Weatherph.Station');
@@ -57,7 +57,7 @@ class StationFinderShell extends Shell {
     
         }
 
-		echo date('H:i:s') . "\n";
+	echo microtime() . "\n";
     }
     
     function computeDistance($lon1, $lon2, $lat1, $lat2){

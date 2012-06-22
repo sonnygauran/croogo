@@ -1,11 +1,10 @@
 <?php
-
 App::import('Lib', 'Meteomedia.Curl');
-class GenerateTask extends Shell{
-    
-    function execute(){
 
-        $file_name = "data/stations/". date('Ydm') . '.csv';
+class StationGenerateTask extends Shell{
+    
+    public function execute(){
+        $file_name = Configure::read('Data.stations'). date('Ydm') . '.csv';
         $url = "http://abfrage.meteomedia.ch/manila.php?land=PHL&ortsinfo=ja&output=csv2&ortoutput=wmo6,name&aufruf=auto";
         
         $result = NULL;

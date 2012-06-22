@@ -1,6 +1,6 @@
 $(document).ready(function(){
     $(".search-results ul li").click(function(){
-    window.location=$(this).find("a").attr("href"); return false;
+        window.location=$(this).find("a").attr("href");return false;
     });
     
     $(document).on('mouseover mouseout', 'div.plot', function(){
@@ -8,9 +8,9 @@ $(document).ready(function(){
         var id = attributes[1];
         console.error(id);
         if (event.type == 'mouseover') {
-            $('#' + id).css('background-color', '#e0e6f2');
+            $('li.' + id).css('background-color', '#e0e6f2');
         } else {
-            $('#' + id).css('background-color', 'transparent');
+            $('li.' + id).css('background-color', 'transparent');
         }
         
     });

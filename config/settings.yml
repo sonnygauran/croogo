@@ -25,13 +25,13 @@ Site.forecast_range: 3
 Site.title: Weather | Philippines
 Writing.wysiwyg: 1
 Site.timezone: Asia/Manila
-Data.dmo: /Users/juliuslagutan/weather.com.ph/data/dmo/
-Data.stations: /Users/juliuslagutan/weather.com.ph/data/stations/
+Data.dmo: /data/dmo/temp
+Data.stations: /data/stations/
 
 Abfrage.username: wget
 Abfrage.password: p09tM20
 
-Tile.main.url: http://c.tiles.mapbox.com/v3/mapbox.mapbox-streets
+Tile.main.url: https://tiles.mapbox.com/v3/meteomedia.WeatherPH-Default
 Tile.main.ext: png
 # Tile.main.url: http://tile.stamen.com/toner
 # Tile.main.ext: jpg

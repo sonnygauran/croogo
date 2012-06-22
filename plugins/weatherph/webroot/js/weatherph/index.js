@@ -13,7 +13,7 @@ $(document).ready(function(){
                 id: "OSM", type: "tiled",
                 attr: "<?= Configure::read('Tile.attr') ?>",
                 src: function (view) {
-                    return "<?= Configure::read('Tile.tiles') ?>/transparent/"
+                    return "https://tiles.mapbox.com/v3/meteomedia.weatherph-temperature/"
                         + view.zoom + "/"
                         + view.tile.column + "/"
                         + view.tile.row
@@ -134,7 +134,12 @@ $(document).ready(function(){
                     $('.current.wind span').html(cr_wind);
                     $('.current.precipitation span').html(cr_precip);
                     $('.current.humidity span').html(cr_humidity);
-                    $('#info .readings .symbol:eq(0)').addClass($station_readings.reading.weather_symbol);
+                    
+                    var weather_symbol = $station_readings.reading.weather_symbol;
+                    
+//                    console.error(weather_symbol);
+                    
+                    if(weather_symbol.hasOwnProperty('symbol')) $('#info .readings .symbol:eq(0)').addClass(weather_symbol.symbol);
                     $('.current.time').html($station_readings.reading.update);
                     
                 }else{
@@ -144,19 +149,33 @@ $(document).ready(function(){
                 if($station_readings.forecast.status == 'ok'){
                     
                     showForecast();
-                
+                    
+//                    console.error($station_readings.forecast);
+                    
                     for (var key in $station_readings.forecast) {
-                        sr_temperature = $station_readings.forecast[key].temperature;
-                        sr_wind = $station_readings.forecast[key].wind_speed;
-                        sr_precip = $station_readings.forecast[key].precipitation;
-                        sr_humidity = $station_readings.forecast[key].relative_humidity;
+                        
+                        if(key != 'status'){
+                        
+                            sr_temperature = $station_readings.forecast[key].temperature;
+                            sr_wind = $station_readings.forecast[key].wind_speed;
+                            sr_precip = $station_readings.forecast[key].precipitation;
+                            sr_humidity = $station_readings.forecast[key].relative_humidity;
 
-                        $('.' + key + '-hour .symbol').addClass($station_readings.forecast[key].weather_symbol);
-                        $('.' + key + '-hour.time').html($station_readings.forecast[key].localtime_range);
-                        $('.' + key + '-hour .temperature span').html(sr_temperature);
-                        $('.' + key + '-hour .wind span').html(sr_wind);
-                        $('.' + key + '-hour .precipitation span').html(sr_precip);
-                        $('.' + key + '-hour .humidity span').html(sr_humidity);
+//                            console.error(key);
+
+                            var weather_symbol = $station_readings.forecast[key].weather_symbol;
+                            
+//                            console.error(weather_symbol);
+                            
+                            if(weather_symbol.hasOwnProperty('symbol')) $('.' + key + '-hour .symbol').addClass(weather_symbol.symbol);
+                            
+                            $('.' + key + '-hour.time').html($station_readings.forecast[key].localtime_range);
+                            $('.' + key + '-hour .temperature span').html(sr_temperature);
+                            $('.' + key + '-hour .wind span').html(sr_wind);
+                            $('.' + key + '-hour .precipitation span').html(sr_precip);
+                            $('.' + key + '-hour .humidity span').html(sr_humidity);
+
+                        }
 
                     } 
                     
@@ -526,6 +545,7 @@ $(function(){
 
         if ($(this).attr('data-type') == 'movie') {
             $('.scale-temperature').hide();
+            $('.scale-pressure').hide();
             var $movie = $('#movie-'+_name); // The markup
             var _content = eval("window['MOVIE_CONTENT']."+_name);
             
