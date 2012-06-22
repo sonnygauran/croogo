@@ -269,7 +269,7 @@ $(document).ready(function(){
         'padding': '4px 0 4px 0',
         'margin': 0,
         'width': '100%',
-        'opacity': 1,
+//        'opacity': 1,
         'font-size': '6.5pt',
         'text-transform': 'uppercase'
     });
@@ -437,7 +437,7 @@ function removeStations(){
             $('.data-layer').animate({opacity: 0}, 600, function(){
                 $('.data-layer').css('background-image', 'url('+url+')');
                 $('.data-layer').animate({opacity: 1}, 600, function(){
-                    $('#map').css('opacity', 0.7);
+                    //
                 });
             });
             
@@ -493,10 +493,8 @@ function onionSkinMap() {
     if (dataLayer != null) {
         switch (dataLayer) {
             case 'temperature':
-                mapOpacity = 0.7;
                 break;
             case 'pressure':
-                mapOpacity = 0.7;
                 break;
         }
     }
