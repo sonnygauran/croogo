@@ -94,12 +94,14 @@ class WeatherphAppModel extends AppModel {
     }
 
     protected function dayOrNightSymbol($symbol = NULL, $utc = NULL, $meridiem = array()) {
-
+        
+        if($symbol != NULL) {
+            
         $symbol = number_format($symbol, 0);
         
         $weather_description = array(
-            'Clear Sky',
-            'Sunny',
+            'Could not be determined',
+            'Sunny', // Clear Sky(Night)
             'Light Cloudy',
             'Partly Cloudy',
             'Cloudy',
@@ -115,15 +117,10 @@ class WeatherphAppModel extends AppModel {
             'Slipperiness',
             'Thunderstorms',
             'Drizzle',
-            'Sandstorm'
+            'Sandstorm',
+            'Could not be determined'
         );
         
-        if ($symbol == NULL || trim($symbol) == '') {
-
-            return NULL;
-            
-        } else {
-            
             $utc = (int) $utc + 3;
 
             $sunrise = date('H', strtotime($meridiem['sunrise']));
@@ -142,7 +139,7 @@ class WeatherphAppModel extends AppModel {
                     $description = $weather_description[$symbol];
                     break;
                 case 'night':
-                    $description = ( $symbol == 1 )? $weather_description[0] : $weather_description[$symbol]; 
+                    $description = ( $symbol == 1 )? 'Clear Sky' : $weather_description[$symbol]; 
                     break;
             }
             
@@ -152,6 +149,9 @@ class WeatherphAppModel extends AppModel {
             );
 
             return $weather_condition;
+            
+        }else{
+            return NULL;
         }
     }
 
@@ -179,59 +179,29 @@ class WeatherphAppModel extends AppModel {
         return $arrayResults;
     }
 
-    public function getStationInfo($stationID = NULL, $keys = NULL) {
+    public function getStationInfo($stationID = NULL, $fields = NULL) {
+        
+        App::import('Model', 'Weatherph.Station');
+        
         if ($stationID == NULL) {
             $error = 'Station ID is required';
             $this->log($error);
             return NULL;
         } else {
-            include dirname(__FILE__) . '/models/auth.php';
-            $url = "http://192.168.20.89/abfrage.php?stationidstring=$stationID&ortsinfo=ja&paramtyp=mos_mix_mm&output=html&aufruf=auto";
+           
+            $WeatherphStation = new Station();
 
-            $gum = $stationID . '_info_' . sha1(end(explode('?', $url)));
-            $curlResults = NULL;
-            if (!Cache::read($gum, '3hour')) {
-                $ch = curl_init();
-                curl_setopt($ch, CURLOPT_URL, $url);
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-                curl_setopt($ch, CURLOPT_USERPWD, "{$karten['username']}:{$karten['password']}");
-                curl_setopt($ch, CURLOPT_USERAGENT, "Weather.com.ph Curl Client 1.0");
-                curl_setopt($ch, CURLOPT_TIMEOUT, 10); //times out after 10s 
-                curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+            $fields = ($fields == NULL)? array('wmo1', 'lon', 'lat', 'name') : $fields;
 
-                $curlResults = curl_exec($ch);
-                curl_close($ch);
-                Cache::write($gum, $curlResults, '3hour');
-            } else {
-                $curlResults = Cache::read($gum, '3hour');
-            }
-
-            $headersSpecimen = "id;name;typ;locator;wmo;reg;wmo1;wmo2;wmo3;icao;iat;aktiv;mos_gfs_kn;mos_ez_kn;mos_ez_mm;mos_preferred;lat;lon;alt;altp;xxx;spezial;org;land;bundesland;von;bis;wmoalt;wmoaltbis;metrilognummer;stationstyp;webname;webaktiv;dlat;dlon;ersatzstation;zeitzone;olsontimezone;webnosponsor;";
-
-            $results = $this->csvToArray($curlResults, $headersSpecimen);
-
-            if (count($results) > 1) {
-                unset($results[2]);
-            }
+            $station = $WeatherphStation->find('all', array(
+                'conditions' => array('wmo1' => $stationID),
+                'fields' => $fields,
+            ));
+            
+            $station = $station[0]['Station'];
+             
         }
-        
-        $results = $results[1];
-        $return = array();
-        
-        if ($keys == NULL) {
-            return $results;
-        } else {
-            if (is_array($keys)) {
-
-                
-                foreach ($keys as $key) {
-                    $return[$key] = $results[$key];
-                }
-            } else {
-                $return = $results[$keys];
-            }
-        }
-        return $return;
+        return $station;
     }
 
     protected function popValArray($array, $val, $xdata = NULL, $ydata = NULL) {
