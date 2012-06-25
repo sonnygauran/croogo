@@ -107,12 +107,13 @@
                 <div class="sponsored">
                     <h6>Platinum sponsors:</h6>
                     <ul>
-                        <li><?php echo $this->Html->image('sponsor-sm.gif'); ?></li>
+                        <li><?php echo $this->Html->image('sponsor-nac.png'); ?></li>
+                        <li><?php echo $this->Html->image('sponsor-icts.jpg'); ?></li>
                         <li><?php echo $this->Html->image('sponsor-ngcp.png'); ?></li>
                         <li><?php echo $this->Html->image('sponsor-vistaland.png'); ?></li>
-                        <li><?php echo $this->Html->image('sponsor-icts.jpg'); ?></li>
-                        <li><?php echo $this->Html->image('sponsor-nac.png'); ?></li>
                         <li><?php echo $this->Html->image('sponsor-tyk-mod.png'); ?></li>
+                        <li><?php echo $this->Html->image('sponsor-sm.gif'); ?></li>
+                                
                     </ul>
                 </div>
                 <!-- AddThis Button BEGIN -->
