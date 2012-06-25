@@ -73,29 +73,29 @@
                         <li>
                             <a href="#">Founders</a>
                             <ul>
-                                <li><a href="#">Meteomedia</a></li>
-                                <li><a href="#">Aboitiz</a></li>
-                                <li><a href="#">UnionBank</a></li>
+                                <li><a href="<?= $this->webroot ?>founders/meteomedia">MeteoMedia</a></li>
+                                <li><a href="<?= $this->webroot ?>founders/aboitiz">Aboitiz</a></li>
+                                <li><a href="<?= $this->webroot ?>founders/unionbank">UnionBank</a></li>
                             </ul>
                         </li>
                         <li>
                             <a href="#">Learn More</a>
                             <ul>
-                                <li><a href="<?= $this->webroot ?>typhoon-preparedness">Typhoon Preparedness</a></li>
-                                <li><a href="<?= $this->webroot ?>typhoon-glossary">Typhoon Glossary</a></li>
-                                <li><a href="<?= $this->webroot ?>typhoon-climatology">Typhoon Climatology</a></li>
+                                <li><a href="<?= $this->webroot ?>typhoon/preparedness">Typhoon Preparedness</a></li>
+                                <li><a href="<?= $this->webroot ?>typhoon/climatology">Typhoon Climatology</a></li>
                             </ul>
                         </li>
                         <li>
                             <a href="#">Dictionary</a>
                             <ul>
-                                <li><a href="#">English</a></li>
-                                <li><a href="#">Tagalog</a></li>
+                                <li><a href="<?= $this->webroot ?>dictionaries/english">English</a></li>
+                                <li><a href="<?= $this->webroot ?>dictionaries/tagalog">Tagalog</a></li>
                             </ul>
                         </li>
                     <li><a href="#">Mike Padua Blog</a></li>
                     <li><a href="#">Webcams</a></li>
-                    <li><a href="#">About</a></li>
+                    <li><a href="<?= $this->webroot ?>about">About</a></li>
+                    
                 </ul>
             </nav>
             

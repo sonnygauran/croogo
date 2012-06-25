@@ -16,8 +16,8 @@
     CroogoRouter::connect('/founders/meteomedia', array('plugin' => 'weatherph', 'controller' => 'founders', 'action' => 'meteomedia'));
     CroogoRouter::connect('/founders/aboitiz', array('plugin' => 'weatherph', 'controller' => 'founders', 'action' => 'aboitiz'));
     CroogoRouter::connect('/founders/unionbank', array('plugin' => 'weatherph', 'controller' => 'founders', 'action' => 'unionbank'));
+    CroogoRouter::connect('/founders/about', array('plugin' => 'weatherph', 'controller' => 'founders', 'action' => 'about'));
     
-    CroogoRouter::connect('/dictionaries/english', array('plugin' => 'weatherph', 'controller' => 'dictionaries', 'action' => 'english'));
     CroogoRouter::connect('/dictionaries/tagalog', array('plugin' => 'weatherph', 'controller' => 'dictionaries', 'action' => 'tagalog'));
     
     
