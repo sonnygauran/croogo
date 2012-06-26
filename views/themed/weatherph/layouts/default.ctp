@@ -71,7 +71,7 @@
                 <ul class="dropdown">
                     <li><a href="<?= $this->webroot ?>">Home</a></li>
                         <li>
-                            <a href="#">Founders</a>
+                            <a href="#">Founders &#9663;</a>
                             <ul>
                                 <li><a href="<?= $this->webroot ?>founders/meteomedia">MeteoMedia</a></li>
                                 <li><a href="<?= $this->webroot ?>founders/aboitiz">Aboitiz</a></li>
@@ -79,14 +79,14 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="#">Learn More</a>
+                            <a href="#">Learn More &#9663;</a>
                             <ul>
                                 <li><a href="<?= $this->webroot ?>typhoon/preparedness">Typhoon Preparedness</a></li>
                                 <li><a href="<?= $this->webroot ?>typhoon/climatology">Typhoon Climatology</a></li>
                             </ul>
                         </li>
                         <li>
-                            <a href="#">Dictionary</a>
+                            <a href="#">Dictionary &#9663;</a>
                             <ul>
                                 <li><a href="<?= $this->webroot ?>dictionaries/english">English</a></li>
                                 <li><a href="<?= $this->webroot ?>dictionaries/tagalog">Tagalog</a></li>
