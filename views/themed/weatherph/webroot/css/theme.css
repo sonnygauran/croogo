@@ -44,6 +44,12 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
     margin-bottom: 1em;
 }
 
+.secondary{
+    width: 794px;
+    margin-top: 1em;
+    float: left;
+}
+
 /*====================
     HEADER
 ====================*/
@@ -128,6 +134,7 @@ nav {
 ===============*/
 
 .dropdown{
+    height: 100%;
     width:100%;
     position:relative;
     text-align: center;
@@ -139,13 +146,15 @@ nav {
     padding: 0 1em;
 }
 
-.dropdown a{
+.dropdown a {
     display:inline-block;
     padding:5px;
+    text-decoration: none;
 }
 
 .dropdown ul{
     background-color: #20304d;
+    background-color: rgba(32,48,77,.9);
     position:absolute;
     left:-9999px;
     margin:0;
@@ -344,11 +353,6 @@ span.temperature {
 /*====================
     POSTS, NEWS, BLOG
 ====================*/
-.secondary{
-    width: 794px;
-    margin-top: 1em;
-    float: left;
-}
 
 .secondary h4, h6 {
     padding-bottom: 1em;
@@ -360,9 +364,9 @@ span.temperature {
     padding: 2em;
     background-color: #fafafa;
     border: 1px solid #e1e1e1;
-    -webkit-box-shadow: 0 1px 2px #CCC;
-    -moz-box-shadow   : 0 1px 2px #CCC;
-    box-shadow        : 0 1px 2px #CCC;
+    -webkit-box-shadow: 0 1px 2px #cccccc;
+    -moz-box-shadow   : 0 1px 2px #cccccc;
+    box-shadow        : 0 1px 2px #cccccc;
 }
 
 .blog {
@@ -935,7 +939,7 @@ nav li, .dropdown li, .dropdown a, .detail-page-link {
     transition: all .1s ease;
 }
 
-nav li:hover {
+nav a:hover {
     background-color: #3e5e95;
 }
 
