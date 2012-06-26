@@ -66,7 +66,7 @@ $(document).ready(function(){
     });
     
         $(".flip a").each(function() {
-            $(this).click(function(){
+            $(this).click(function(evt){
                 evt.preventDefault();
                 loader();
             });
