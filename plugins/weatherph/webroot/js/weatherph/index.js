@@ -13,7 +13,7 @@ $(document).ready(function(){
                 id: "OSM", type: "tiled",
                 attr: "<?= Configure::read('Tile.attr') ?>",
                 src: function (view) {
-                    return "https://tiles.mapbox.com/v3/meteomedia.weatherph-temperature/"
+                    return "http://a.tiles.mapbox.com/v3/meteomedia.weatherph-temperature/"
                         + view.zoom + "/"
                         + view.tile.column + "/"
                         + view.tile.row
@@ -357,8 +357,9 @@ function remapStations() {
                     });
                 }
                 window['STATIONS'].pagasa = $stationsPagasa;
-
-                mapStationsPagasa($stationsPagasa); // now the stations are complete
+                
+                //Gets all the stations from pagasa
+                //mapStationsPagasa($stationsPagasa); // now the stations are complete
 
                 $stations = new Array();
                 $.ajax({
@@ -509,8 +510,8 @@ $(function(){
     $('.video-viewport').hide();
     // Layer selector toggle
 
-    $('.data-layers a').on('click', function(){
-        event.preventDefault();
+    $('.data-layers a').on('click', function(evt){
+        evt.preventDefault();
         
         var $video = $('.video-viewport');
         var $map = $('.map-viewport');

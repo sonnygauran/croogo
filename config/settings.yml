@@ -25,8 +25,9 @@ Site.forecast_range: 3
 Site.title: Weather | Philippines
 Writing.wysiwyg: 1
 Site.timezone: Asia/Manila
-Data.dmo: /data/dmo/temp
+Data.dmo: /data/dmo/temp/
 Data.stations: /data/stations/
+Data.readings: /data/readings/
 
 Abfrage.username: wget
 Abfrage.password: p09tM20

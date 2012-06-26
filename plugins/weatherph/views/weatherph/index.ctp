@@ -50,14 +50,14 @@ ECHO
                 <ul class="movies data-layers dropdown">
                     <li><a href="#" data-target="data-layer" data-name="stations">Weather stations</a></li>
                     <li>
-                        <a href="#">Weather movies</a>
+                        <a href="#">Weather movies &#9663;</a>
                         <ul>
                             <li><a href="#map" data-type="movie" data-name="wind" data-target="movie-wind">Wind</a></li>
                             <li><a href="#map" data-type="movie" data-name="precipitation" data-target="movie-precip">Rain</a></li>
                         </ul>
                     </li>
-                    <li><a data-target="data-layer" data-name="temperature">Temperature</a></li>
-                    <li><a data-target="data-layer" data-name="pressure">Pressure</a></li>
+                    <li><a data-target="data-layer" data-name="temperature" href="#map">Temperature</a></li>
+                    <li><a data-target="data-layer" data-name="pressure" href="#map">Pressure</a></li>
                 </ul>
             </div> <!--LAYER SELECTOR-->
             <div class="video-viewport">
