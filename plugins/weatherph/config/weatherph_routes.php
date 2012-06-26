@@ -19,6 +19,7 @@
     CroogoRouter::connect('/founders/about', array('plugin' => 'weatherph', 'controller' => 'founders', 'action' => 'about'));
     
     CroogoRouter::connect('/dictionaries/tagalog', array('plugin' => 'weatherph', 'controller' => 'dictionaries', 'action' => 'tagalog'));
+    CroogoRouter::connect('/dictionaries/english', array('plugin' => 'weatherph', 'controller' => 'dictionaries', 'action' => 'english'));
     
     
     
