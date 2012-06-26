@@ -93,7 +93,7 @@ echo $this->Html->script(array(
             <?php endIf; ?>
 
         <div id="weekWeather">
-
+            <!-- CSV FILE: <?= $dataSets['forecast_dmo_file_csv']; ?> -->
             <div class="tab-container">
                 <?php
                 foreach ($dataSets['forecast'] as $key => $dayForecast) {
@@ -117,7 +117,7 @@ echo $this->Html->script(array(
                             <th class="columnheader"> Wind Direction </th>
                         </tr>
 
-                        <?php foreach ($dayForecast as $forecasts2) { ?>
+                        <?php foreach ($dayForecast as $forecasts2) { ?><!-- <?= $forecasts2['their_time'];?> -->
                             <tr>
                                 <td class="time"><?= $forecasts2['localtime_range']; ?></td>
                                 <td class="condition"><span class="symbol <?= $forecasts2['weather_symbol']['symbol']; ?>" title="<?= $forecasts2['weather_symbol']['description']; ?>"></span></td>
