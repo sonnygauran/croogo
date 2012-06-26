@@ -66,8 +66,8 @@ $(document).ready(function(){
     });
     
         $(".flip a").each(function() {
-            $(this).click(function(){
-                event.preventDefault();
+            $(this).click(function(evt){
+                evt.preventDefault();
                 loader();
             });
         });

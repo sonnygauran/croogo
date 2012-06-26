@@ -509,8 +509,8 @@ $(function(){
     $('.video-viewport').hide();
     // Layer selector toggle
 
-    $('.data-layers a').on('click', function(){
-        event.preventDefault();
+    $('.data-layers a').on('click', function(evt){
+        evt.preventDefault();
         
         var $video = $('.video-viewport');
         var $map = $('.map-viewport');
