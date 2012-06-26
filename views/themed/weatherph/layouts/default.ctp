@@ -73,28 +73,29 @@
                         <li>
                             <a href="#">Founders &#9663;</a>
                             <ul>
-                                <li><a href="#">Meteomedia</a></li>
-                                <li><a href="#">Aboitiz</a></li>
-                                <li><a href="#">UnionBank</a></li>
+                                <li><a href="<?= $this->webroot ?>founders/meteomedia">MeteoMedia</a></li>
+                                <li><a href="<?= $this->webroot ?>founders/aboitiz">Aboitiz</a></li>
+                                <li><a href="<?= $this->webroot ?>founders/unionbank">UnionBank</a></li>
                             </ul>
                         </li>
                         <li>
                             <a href="#">Learn More &#9663;</a>
                             <ul>
-                                <li><a href="<?= $this->webroot ?>typhoon-preparedness">Typhoon Preparedness</a></li>
-                                <li><a href="<?= $this->webroot ?>typhoon-climatology">Typhoon Climatology</a></li>
+                                <li><a href="<?= $this->webroot ?>typhoon/preparedness">Typhoon Preparedness</a></li>
+                                <li><a href="<?= $this->webroot ?>typhoon/climatology">Typhoon Climatology</a></li>
                             </ul>
                         </li>
                         <li>
                             <a href="#">Dictionary &#9663;</a>
                             <ul>
-                                <li><a href="<?= $this->webroot ?>typhoon-glossary">Typhoon Glossary</a></li>
-                                <li><a href="#">Tagalog</a></li>
+                                <li><a href="<?= $this->webroot ?>dictionaries/english">English</a></li>
+                                <li><a href="<?= $this->webroot ?>dictionaries/tagalog">Tagalog</a></li>
                             </ul>
                         </li>
                     <li><a href="#">Mike Padua Blog</a></li>
                     <li><a href="#">Webcams</a></li>
-                    <li><a href="#">About</a></li>
+                    <li><a href="<?= $this->webroot ?>about">About</a></li>
+                    
                 </ul>
             </nav>
             
@@ -145,8 +146,7 @@
                     <div class="promo">
                         <h4>Visit Boracay!</h4>
                         <img src="<?= $this->webroot ?>theme/weatherph/img/boracay.jpg" alt="Boracay!"/>
-                        <p>Boracay is an island of the Philippines located approximately 315 km (196 mi) south of Manila.
-							Boracay Island and its beaches have received awards numerous times.</p>
+                        <p>Boracay is an island of the Philippines located approximately 315 km (196 mi) south of Manila. Boracay Island and its beaches have received awards numerous times.</p>
                     </div>
                     <div class="promo">
                         <h4>Discover Pamalican.</h4>

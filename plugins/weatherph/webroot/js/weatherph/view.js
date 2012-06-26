@@ -67,7 +67,7 @@ $(document).ready(function(){
     
         $(".flip a").each(function() {
             $(this).click(function(){
-                event.preventDefault();
+                evt.preventDefault();
                 loader();
             });
         });

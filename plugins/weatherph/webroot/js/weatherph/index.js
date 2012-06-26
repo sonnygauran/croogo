@@ -510,7 +510,7 @@ $(function(){
     // Layer selector toggle
 
     $('.data-layers a').on('click', function(){
-        event.preventDefault();
+        evt.preventDefault();
         
         var $video = $('.video-viewport');
         var $map = $('.map-viewport');
