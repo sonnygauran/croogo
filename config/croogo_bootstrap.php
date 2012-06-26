@@ -76,11 +76,20 @@
 /**
  * Private Settings
  */
-	if (file_exists(CONFIGS.'settings.private.yml')) {
+	if (file_exists(CONFIGS.'settings.private.yml')) {        
 		$settings = Spyc::YAMLLoad(file_get_contents(CONFIGS.'settings.private.yml'));
+        
+        $path = '';
+        if (defined('APP_PATH')) {
+            $path = APP_PATH;
+        } else {
+            $path = dirname(dirname(__FILE__)).'/';
+        }
+        
 		foreach ($settings AS $settingKey => $settingValue) {
-            if (defined('APP_PATH') AND strstr($settingValue, 'APP_PATH')) {
-                $settingValue = str_replace('APP_PATH/', APP_PATH, $settingValue); }
+            
+            if (strstr($settingValue, 'APP_PATH/')) {
+                $settingValue = str_replace('APP_PATH/', $path, $settingValue); }
 			Configure::write($settingKey, $settingValue);
 		}
 	}
