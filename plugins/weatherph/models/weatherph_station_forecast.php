@@ -397,7 +397,7 @@ class WeatherphStationForecast extends WeatherphAppModel
                     // Translate raw date to 3 hourly range value
                     $thierTime = strtotime($forecast['Datum'].' '.$forecast['utc'].':'.$forecast['min']);
                     
-                    $new_forecast['their_time'] = date('Ymd H:i:s', $thierTime);
+                    $new_forecast['their_time'] = date('Y-m-d H:i:s', $thierTime);
                     
                     $new_forecast['localtime'] = date('Ymd H:i:s', $thierTime + $Date->getOffset());
                     
@@ -423,6 +423,8 @@ class WeatherphStationForecast extends WeatherphAppModel
              
         $abfrageResults['stationId'] = $stationId;
         $abfrageResults['stationName'] = $stationInfo['name'];
+        
+        $this->log(print_r($abfrageResults, TRUE));
         
         return $abfrageResults;
         
@@ -764,7 +766,7 @@ class WeatherphStationForecast extends WeatherphAppModel
                     // Translate raw date to 3 hourly range value
                     $thierTime = strtotime($forecast['Datum'].' '.$forecast['utc'].':'.$forecast['min']);
                     
-                    $new_forecast['their_time'] = date('Ymd H:i:s', $thierTime);
+                    $new_forecast['their_time'] = date('Y-m-d H:i:s', $thierTime);
                     
                     $new_forecast['localtime'] = date('Ymd H:i:s', $thierTime + $Date->getOffset());
                     
