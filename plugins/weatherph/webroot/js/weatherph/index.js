@@ -357,8 +357,9 @@ function remapStations() {
                     });
                 }
                 window['STATIONS'].pagasa = $stationsPagasa;
-
-                mapStationsPagasa($stationsPagasa); // now the stations are complete
+                
+                //Gets all the stations from pagasa
+                //mapStationsPagasa($stationsPagasa); // now the stations are complete
 
                 $stations = new Array();
                 $.ajax({
