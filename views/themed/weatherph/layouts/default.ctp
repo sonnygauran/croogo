@@ -146,8 +146,7 @@
                     <div class="promo">
                         <h4>Visit Boracay!</h4>
                         <img src="<?= $this->webroot ?>theme/weatherph/img/boracay.jpg" alt="Boracay!"/>
-                        <p>Boracay is an island of the Philippines located approximately 315 km (196 mi) south of Manila.
-							Boracay Island and its beaches have received awards numerous times.</p>
+                        <p>Boracay is an island of the Philippines located approximately 315 km (196 mi) south of Manila. Boracay Island and its beaches have received awards numerous times.</p>
                     </div>
                     <div class="promo">
                         <h4>Discover Pamalican.</h4>
