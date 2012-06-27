@@ -149,7 +149,8 @@ echo $this->Html->script(array(
 
     </section> <!--MAIN CONTENT-->
 
-    <section class="secondary">
+<!-- DISABLED DETAILED FORECAST    -->
+<!--    <section class="secondary">
         <div id="charts">
             <h4>Detailed Forecasts</h4>
             <ul class="tabs">
@@ -228,17 +229,18 @@ echo $this->Html->script(array(
                     <div class="color-legend">
                         <span class="green-line"></span>Humidity
                     </div>
-                    </div>
                 </div>
             </div>
-        </div> <!--END CHARTS-->
-        <!--        <div id="outlook">
-                    <h4>15-Day Outlook</h4>
-                    <ul class="tabs">
-                        <li class="current-tab"><a href="javascript: void(0);">Temperature</a></li>
-                        <li><a href="javascript: void(0);">Precipitation</a></li>
-                        <li><a href="javascript: void(0);">Wind</a></li>
-                    </ul>
-                </div> END OUTLOOK-->
-    </section> <!--SECONDARY-->
+        </div>
+</div> END CHARTS
+        <div id="outlook">
+            <h4>15-Day Outlook</h4>
+            <ul class="tabs">
+                <li class="current-tab"><a href="javascript: void(0);">Temperature</a></li>
+                <li><a href="javascript: void(0);">Precipitation</a></li>
+                <li><a href="javascript: void(0);">Wind</a></li>
+            </ul>
+        </div> END OUTLOOK
+</section> SECONDARY-->
+<!-- END DISABLED DETAILED FORECAST -->
 </div> <!--CONTENT-->
