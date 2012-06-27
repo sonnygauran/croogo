@@ -72,8 +72,10 @@ class WeatherphController extends WeatherphAppController {
         $this->set(compact('blogEntries', 'resources'));
         
     }
-
-    public function getStations($provider = 'pagasa') {
+    
+    
+    //changed $provider ='pagasa' to $provider = 'meteomedia' for filtering of pagasa stations
+    public function getStations($provider = 'meteomedia') {
         $this->layout = 'json/ajax';
 
         $this->set('title_for_layout', __('Weatherph', true));
