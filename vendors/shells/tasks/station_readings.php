@@ -58,7 +58,7 @@ class StationReadingsTask extends Shell{
                     'Set 1','Set 2'
                 ),
                 'Humidity'
-            ), true);
+            ), false);
             $curlResults = NULL;
             $curlResults = Curl::getData($url);
             

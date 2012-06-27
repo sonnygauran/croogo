@@ -277,7 +277,8 @@ $(document).ready(function(){
         'margin-left': '6px',
         'color': 'white'
     });
-    getForecast(984290);
+    //getForecast(984290); //Manila
+    getForecast(980002); //Amanpulo
 });
 
     // Show/hide forecasts depending on availability

@@ -28,18 +28,28 @@ echo $this->Html->script(array(
             <?php if ($dataSets['reading']['status'] == 'ok'): ?>
             
                 <div id="condition">
-
-                    <div class="inner-condition">
-                        
-                        <div class="inner-left">
-                        <?= $dataSets['reading']['tl']; ?>&deg;C
+                      
+                        <?php if (!empty($dataSets['reading']['sy']['symbol'])) { ?>
+                        <div class="inner-condition">
+                        <div class="left-temp-reading">
+                        <?= $dataSets['reading']['temperature']; ?>&deg;C
                         </div>
                         
-                        <div class="inner-right">
+                        <div class="right-sy-reading">
                         <span class="symbol <?= $dataSets['reading']['sy']['symbol']; ?>" title="<?= $dataSets['reading']['sy']['description']; ?>" ></span>
                         </div>
+                        </div>    
+                        <?php } else { ?>
+                        <div class="inner-condition-temp-reading-only">
+                        <div class="reading-temperature-only">
+                            
+                        <?= $dataSets['reading']['temperature']; ?>&deg;C
+                        </div>
+                        </div>
+                        <?php } ?>
                         
-                    </div>
+                    
+                                        
                     <table>
                         <tbody>
                             <tr>
@@ -64,19 +74,19 @@ echo $this->Html->script(array(
 
                             <tr>
                                 <td class="caption">Avg. Wind Speed</td>
-                                <td class="output"><?= $dataSets['reading']['ff']; ?>km/h</td>
+                                <td class="output"><?= $dataSets['reading']['wind_speed']; ?>km/h</td>
                             </tr>
                             <tr>
                                 <td class="caption">Precipitation</td>
-                                <td class="output"><?= $dataSets['reading']['rr']; ?>mm</td>
+                                <td class="output"><?= $dataSets['reading']['precipitation']; ?>mm</td>
                             </tr>
                             <tr>
                                 <td class="caption">Relative Humidity</td>
-                                <td class="output"><?= $dataSets['reading']['rh']; ?>%</td>
+                                <td class="output"><?= $dataSets['reading']['relative_humidity']; ?>%</td>
                             </tr>
                             <tr>
                                 <td class="caption">Wind Direction</td>
-                                <td class="output"><?= $dataSets['reading']['dir2']['eng']; ?></td>                        
+                                <td class="output"><?= $dataSets['reading']['wind_direction']['eng']; ?></td>                        
                             </tr>
                         </tbody>
                     </table>

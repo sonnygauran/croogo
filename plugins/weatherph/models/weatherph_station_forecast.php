@@ -657,15 +657,80 @@ class WeatherphStationForecast extends WeatherphAppModel
         $Date = new DateTime(null, new DateTimeZone($siteTimezone));
         
         $NimaName = new NimaName();
-        $station_id = $fields['conditions']['id']; 
-        $stationInfo = $NimaName->find('all', array('fields' => array('id' ,'lat', 'long', 'full_name_ro'),  'conditions' => array( 'id =' => $station_id)));
-        $stationInfo = $stationInfo[0]['Name'];
+        $location_id = $fields['conditions']['id']; 
+        $locationInfo = $NimaName->find('all', array('fields' => array('id' ,'lat', 'long', 'full_name_ro'),  'conditions' => array( 'id =' => $location_id)));
+        $locationInfo = $locationInfo[0]['Name'];
         
-//        $this->log(print_r($stationInfo, TRUE));
+        $nearestGP = $this->nearestGridPoint($locationInfo['long'],$locationInfo['lat']);
         
-        $nearestGP = $this->nearestGridPoint($stationInfo['long'],$stationInfo['lat']);
+        $station_temp = $this->findStationByGP($nearestGP['lon'], $nearestGP['lat']);
         
-//        $this->log(print_r($nearestGP, TRUE));
+        // Get sunrise and sunset using current latituted and longtitude station
+        $sunrise = $this->sunInfo($locationInfo['lat'], $locationInfo['long'], 'sunrise');
+        $sunset = $this->sunInfo($locationInfo['lat'], $locationInfo['long'], 'sunset');
+        
+        // Readings
+        $dmo_readings_dir = Configure::read('Data.readings');
+        $dmo_readings_file = $dmo_readings_dir . date('Ydm') . '.csv';
+        
+        if(file_exists($dmo_readings_file)){ 
+            $csvString = file_get_contents($dmo_readings_file);
+        }else{
+            $this->log('File not found - ' . $dmo_readings_file);
+            exit;
+        }
+        
+        $dmo_readings = array();
+        $dmo_readings = $this->csvToArray($csvString);
+        $dmo_readings = $this->cleanDmoReadings($dmo_readings);
+        
+        //$this->log(print_r($dmo_readings, TRUE));
+        
+        $today_Readings = $current_readings = array();
+        
+        foreach($dmo_readings as $dmo_reading){
+            
+            if(in_array($station_temp[0]['station_id'], $dmo_reading)){
+                
+                
+                $current_readings['moonphase'] = $this->moon_phase(date('Y', strtotime($dmo_reading['Datum'])), date('m', strtotime($dmo_reading['Datum'])), date('d', strtotime($dmo_reading['Datum'])));
+                
+                $current_readings['weather_symbol'] = (trim($dmo_reading['sy']) == '')? '0' : $this->dayOrNightSymbol($dmo_reading['sy'], $dmo_reading['utc'], array("sunrise"=>$sunrise,"sunset"=>$sunset));
+//                           
+//                // Replace the null values with hypen character and round it off to the nearest tenths
+                $current_readings['temperature'] = ($dmo_reading['tl'] == '')? '0' : number_format($dmo_reading['tl'],0);
+                $current_readings['precipitation'] = ($dmo_reading['rr'] == '')? '0' : round($dmo_reading['rr'],0);
+                $current_readings['relative_humidity'] = ($dmo_reading['rh'] == '')? '0' : round($dmo_reading['rh'],0);
+                $current_readings['wind_speed'] = ($dmo_reading['ff'] == '')? '0' : floor($dmo_reading['ff'] * 1.852 + 0.5);
+                $current_readings['wind_gust'] = ($dmo_reading['g3h'] == '')? '0' : round($dmo_reading['g3h'],0);
+                $current_readings['wind_direction'] = $this->windDirection($dmo_reading['dir']);
+//                
+//                
+                $theirTime = strtotime($dmo_reading['Datum'] . $dmo_reading['utc'] . ':' .$dmo_reading['min']);
+//                //$current_time = strtotime(date('Ymd H:i:s')) + $Date->getOffset();
+                $current_readings['local_time'] = date('Ymd H:i:s', $theirTime + $Date->getOffset());
+                $current_readings['update'] = date('h:iA', $theirTime + $Date->getOffset());
+//                
+//                //if(strtotime($dmo_reading['local_time']) > $current_time ) 
+                $today_Readings[] = $current_readings;
+//                
+            }
+            
+        }
+//        
+        $current_reading = array_pop($today_Readings);
+        
+        // Check if the last/current reading exist, and set status
+        if(count($current_reading)>0){
+            $dmoResults['reading'] = $current_reading;
+            $dmoResults['reading']['status'] = 'ok';
+            $dmoResults['reading']['sunrise'] = $sunrise;
+            $dmoResults['reading']['sunset'] = $sunset;
+        }else{
+            $dmoResults['reading']['status'] = 'none';
+        }
+        
+        $this->log(print_r($current_reading, TRUE));
         
         $dmo_forecast_dir = Configure::read('Data.dmo');
         $dmo_forecast_file = $dmo_forecast_dir . $nearestGP['lon'] . '_' . $nearestGP['lat'] . '.csv';
@@ -679,15 +744,6 @@ class WeatherphStationForecast extends WeatherphAppModel
         
         $forecasts = $this->csvToArray($csvString);
 
-        // Get sunrise and sunset using current latituted and longtitude station
-        $sunrise = $this->sunInfo($stationInfo['lat'], $stationInfo['long'], 'sunrise');
-        $sunset = $this->sunInfo($stationInfo['lat'], $stationInfo['long'], 'sunset');
-        
-        $dmoResults['reading'] = '';
-        $dmoResults['reading']['status'] = 'none';
-        $dmoResults['reading']['sunrise'] = $sunrise;
-        $dmoResults['reading']['sunset'] = $sunset;
-        
         foreach($forecasts as $forecast){
             
             $new_forecast = array();
@@ -733,26 +789,16 @@ class WeatherphStationForecast extends WeatherphAppModel
         
         $dmoResults['forecast_dmo_file_csv'] = $nearestGP['lon'] . '_' . $nearestGP['lat'] . '.csv';
              
-        $dmoResults['stationId'] = $station_id;
-        $dmoResults['stationName'] = $stationInfo['full_name_ro'];
+        $dmoResults['location_id'] = $location_id;
+        $dmoResults['stationId'] = $station_temp[0]['station_id'];
+        $dmoResults['stationName'] = $locationInfo['full_name_ro'];
+        
+        //$this->log(print_r($dmoResults, TRUE));
         
         return $dmoResults;
         
     }
     
-    private function nearestGridPoint($lon, $lat){
-        
-        $schrittx = 0.125;
-        $schritty = 0.125;
-        
-        $nearest_lon = round($lon/$schrittx)*$schrittx;
-        $nearest_lat = round($lat/$schritty)*$schritty;
-        
-        return array(
-            'lon' => $nearest_lon,
-            'lat' => $nearest_lat
-        );
-        
-    }
+    
     
 }
