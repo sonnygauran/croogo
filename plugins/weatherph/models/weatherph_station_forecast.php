@@ -19,11 +19,17 @@ class WeatherphStationForecast extends WeatherphAppModel
         
         $stationId = $fields['conditions']['id'];
         
-        $dmo_forecast_dir = Configure::read('Data.readings');
-        $dmo_forecast = $dmo_forecast_dir . date('Ydm') . '.csv';
-        $csvString = file_get_contents($dmo_forecast);
-        $dmo_readings = $this->csvToArray($csvString);
+        $dmo_readings_dir = Configure::read('Data.readings');
+        $dmo_readings_file = $dmo_readings_dir . date('Ydm') . '.csv';
         
+        if(file_exists($dmo_readings_file)){ 
+            $csvString = file_get_contents($dmo_readings_file);
+        }else{
+            $this->log('File not found - ' . $dmo_readings_file);
+            exit;
+        }
+        
+        $dmo_readings = $this->csvToArray($csvString);
         $dmo_readings = $this->cleanDmoReadings($dmo_readings);
         
         // Get the default timestamp timezone
@@ -82,8 +88,15 @@ class WeatherphStationForecast extends WeatherphAppModel
         $nearestGP = $this->nearestGridPoint($stationInfo['lon'],$stationInfo['lat']);
         
         $dmo_forecast_dir = Configure::read('Data.dmo');
-        $dmo_forecast = $dmo_forecast_dir . $nearestGP['lon'] . '_' . $nearestGP['lat'] . '.csv';
-        $csvString = file_get_contents($dmo_forecast);
+        $dmo_forecast_file = $dmo_forecast_dir . $nearestGP['lon'] . '_' . $nearestGP['lat'] . '.csv';
+        
+        if(file_exists($dmo_forecast_file)){ 
+            $csvString = file_get_contents($dmo_forecast_file);
+        }else{
+            $this->log('File not found - ' . $dmo_forecast_file);
+            exit;
+        }
+        
         $resultsForecasts = $this->csvToArray($csvString);
         
         foreach($resultsForecasts as $forecast){
@@ -216,11 +229,17 @@ class WeatherphStationForecast extends WeatherphAppModel
         
         ini_set('memory_limit','128M');
         
-        $dmo_forecast_dir = Configure::read('Data.readings');
-        $dmo_forecast = $dmo_forecast_dir . date('Ydm') . '.csv';
-        $csvString = file_get_contents($dmo_forecast);
-        $dmo_readings = $this->csvToArray($csvString);
+        $dmo_readings_dir = Configure::read('Data.readings');
+        $dmo_readings_file = $dmo_readings_dir . date('Ydm') . '.csv';
         
+        if(file_exists($dmo_readings_file)){ 
+            $csvString = file_get_contents($dmo_readings_file);
+        }else{
+            $this->log('File not found - ' . $dmo_readings_file);
+            exit;
+        }
+        
+        $dmo_readings = $this->csvToArray($csvString);
         $dmo_readings = $this->cleanDmoReadings($dmo_readings);
         
         // Get station info based on id
@@ -279,8 +298,15 @@ class WeatherphStationForecast extends WeatherphAppModel
         $nearestGP = $this->nearestGridPoint($stationInfo['lon'],$stationInfo['lat']);
         
         $dmo_forecast_dir = Configure::read('Data.dmo');
-        $dmo_forecast = $dmo_forecast_dir . $nearestGP['lon'] . '_' . $nearestGP['lat'] . '.csv';
-        $csvString = file_get_contents($dmo_forecast);
+        $dmo_forecast_file = $dmo_forecast_dir . $nearestGP['lon'] . '_' . $nearestGP['lat'] . '.csv';
+        
+        if(file_exists($dmo_forecast_file)){ 
+            $csvString = file_get_contents($dmo_forecast_file);
+        }else{
+            $this->log('File not found - ' . $dmo_forecast_file);
+            exit;
+        }
+        
         $forecasts = $this->csvToArray($csvString);
         
         // Get sunrise and sunset using current latituted and longtitude station
@@ -642,8 +668,15 @@ class WeatherphStationForecast extends WeatherphAppModel
 //        $this->log(print_r($nearestGP, TRUE));
         
         $dmo_forecast_dir = Configure::read('Data.dmo');
-        $dmo_forecast = $dmo_forecast_dir . $nearestGP['lon'] . '_' . $nearestGP['lat'] . '.csv';
-        $csvString = file_get_contents($dmo_forecast);
+        $dmo_forecast_file = $dmo_forecast_dir . $nearestGP['lon'] . '_' . $nearestGP['lat'] . '.csv';
+        
+        if(file_exists($dmo_forecast_file)){ 
+            $csvString = file_get_contents($dmo_forecast_file);
+        }else{
+            $this->log('File not found - ' . $dmo_forecast_file);
+            exit;
+        }
+        
         $forecasts = $this->csvToArray($csvString);
 
         // Get sunrise and sunset using current latituted and longtitude station
