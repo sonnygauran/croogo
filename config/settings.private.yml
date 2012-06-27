@@ -1,40 +1,5 @@
----
-Comment.date_time_format: M d, Y
-Comment.feed_limit: 10
-Comment.level: 1
-Hook.bootstraps: tinymce,weatherph,nscb
-Meta.description: 'Croogo - A CakePHP powered Content Management System'
-Meta.generator: 'Croogo - Content Management System'
-Meta.keywords: croogo, Croogo
-Meta.robots: index, follow
-Reading.date_time_format: D, M d Y H:i:s
-Reading.nodes_per_page: 5
-Service.akismet_key: your-key
-Service.akismet_url: http://your-blog.com
-Service.recaptcha_private_key: your-private-key
-Service.recaptcha_public_key: your-public-key
-Site.email: sgauran@meteomedia.com.ph
-Site.feed_url: 
-Site.locale: eng
-Site.status: 1
-Site.tagline: A CakePHP powered Content Management System.
-Site.theme: weatherph
-Site.offset: 8
-Site.time_overlap: 3
-Site.forecast_range: 3
-Site.title: Weather | Philippines
-Writing.wysiwyg: 1
-Site.timezone: Asia/Manila
-Data.dmo: /data/dmo/temp/
-Data.stations: /data/stations/
-Data.readings: /data/readings/
+Data.dmo: /Users/juliuslagutan/Desktop/dmo/
+#Data.stations: /data/stations/
+Data.readings: /Users/juliuslagutan/weather.com.ph/data/readings/
 
-Abfrage.username: wget
-Abfrage.password: p09tM20
-
-Tile.main.url: https://tiles.mapbox.com/v3/meteomedia.WeatherPH-Default
-Tile.main.ext: png
-# Tile.main.url: http://tile.stamen.com/toner
-# Tile.main.ext: jpg
-Tile.tiles: http://tiles.alpha.weather.com.ph
-Tile.attr: Meteomedia, © OpenStreetMap & contributors, CC-BY-SA
+Tile.main.url: http://a.tiles.mapbox.com/v3/meteomedia.WeatherPH-Default
