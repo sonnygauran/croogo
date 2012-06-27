@@ -35,7 +35,7 @@ echo $this->Html->script(array(
                         <?php if (!empty($dataSets['reading']['sy']['symbol'])) { ?>
                         <div class="inner-condition">
                         <div class="left-temp-reading">
-                        <?= $dataSets['reading']['tl']; ?>&deg;C
+                        <?= $dataSets['reading']['temperature']; ?>&deg;C
                         </div>
                         
                         <div class="right-sy-reading">
@@ -46,7 +46,7 @@ echo $this->Html->script(array(
                         <div class="inner-condition-temp-reading-only">
                         <div class="reading-temperature-only">
                             
-                        <?= $dataSets['reading']['tl']; ?>&deg;C
+                        <?= $dataSets['reading']['temperature']; ?>&deg;C
                         </div>
                         </div>
                         <?php } ?>
@@ -77,19 +77,19 @@ echo $this->Html->script(array(
 
                             <tr>
                                 <td class="caption">Avg. Wind Speed</td>
-                                <td class="output"><?= $dataSets['reading']['ff']; ?>km/h</td>
+                                <td class="output"><?= $dataSets['reading']['wind_speed']; ?>km/h</td>
                             </tr>
                             <tr>
                                 <td class="caption">Rain</td>
-                                <td class="output"><?= $dataSets['reading']['rr']; ?>mm</td>
+                                <td class="output"><?= $dataSets['reading']['precipitation']; ?>mm</td>
                             </tr>
                             <tr>
                                 <td class="caption">Relative Humidity</td>
-                                <td class="output"><?= $dataSets['reading']['rh']; ?>%</td>
+                                <td class="output"><?= $dataSets['reading']['relative_humidity']; ?>%</td>
                             </tr>
                             <tr>
                                 <td class="caption">Wind Direction</td>
-                                <td class="output"><?= $dataSets['reading']['dir2']['eng']; ?></td>                        
+                                <td class="output"><?= $dataSets['reading']['wind_direction']['eng']; ?></td>                        
                             </tr>
                         </tbody>
                     </table>
@@ -126,8 +126,8 @@ echo $this->Html->script(array(
                             <th class="columnheader">Condition</th>
                             <th class="columnheader"> Temperature </th>
                             <th class="columnheader"> Rain</th>
-                            <th class="columnheader"> Wind Speed </th>
-                            <th class="columnheader"> Wind Direction </th>
+                            <th class="columnheader"> Humidity</th>
+                            <th class="columnheader"> Wind</th>
                         </tr>
 
                         <?php foreach ($dayForecast as $forecasts2) { ?><!-- <?= $forecasts2['their_time'];?> -->
@@ -136,8 +136,8 @@ echo $this->Html->script(array(
                                 <td class="condition"><span class="symbol <?= $forecasts2['weather_symbol']['symbol']; ?>" title="<?= $forecasts2['weather_symbol']['description']; ?>"></span></td>
                                 <td class="temperature"><?= $forecasts2['temperature']; ?>&deg;C</td>
                                 <td class="precipitation"><?= $forecasts2['precipitation']; ?>mm</td>
-                                <td class ="wind"><?= $forecasts2['wind_speed']; ?>km/h</td>
-                                <td class="direction"><span class="symbol <?= $forecasts2['wind_direction']; ?>"></span><span class="wind-description"><?= $forecasts2['wind_description']; ?></span></td>
+                                <td class="relative-humidity"><?= $forecasts2['relative_humidity']; ?>%</td>
+                                <td class="direction"><?php if(trim($forecasts2['wind_direction'])!=''){ ?><span class="symbol <?= $forecasts2['wind_direction']; ?>"></span><?php }?><span class="wind-description"><?= $forecasts2['wind_description']; ?></span></td>
                             </tr>
                         <?php } ?>   
 

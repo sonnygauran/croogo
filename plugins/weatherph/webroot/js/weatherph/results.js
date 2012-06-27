@@ -87,8 +87,8 @@ $(document).ready(function(){
     
     $('.marker').hide();
     
-    $('.location').hover(function(event){
-        event.preventDefault();
+    $('.location').hover(function(evt){
+        evt.preventDefault();
         attributes = $(this).attr('class').split(" ");
         id = attributes[0];
         

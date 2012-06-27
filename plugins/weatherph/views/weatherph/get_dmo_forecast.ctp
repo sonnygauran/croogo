@@ -113,8 +113,8 @@ echo $this->Html->script(array(
                             <th class="columnheader">Condition</th>
                             <th class="columnheader"> Temperature </th>
                             <th class="columnheader"> Precipitation </th>
-                            <th class="columnheader"> Wind Speed </th>
-                            <th class="columnheader"> Wind Direction </th>
+                            <th class="columnheader"> Humidity</th>
+                            <th class="columnheader"> Wind</th>
                         </tr>
 
                         <?php foreach ($dayForecast as $forecasts2) { ?><!-- <?= $forecasts2['their_time'];?> -->
@@ -123,8 +123,8 @@ echo $this->Html->script(array(
                                 <td class="condition"><span class="symbol <?= $forecasts2['weather_symbol']['symbol']; ?>" title="<?= $forecasts2['weather_symbol']['description']; ?>"></span></td>
                                 <td class="temperature"><?= $forecasts2['temperature']; ?>&deg;C</td>
                                 <td class="precipitation"><?= $forecasts2['precipitation']; ?>mm</td>
-                                <td class ="wind"><?= $forecasts2['wind_speed']; ?>km/h</td>
-                                <td class="direction"><span class="symbol <?= $forecasts2['wind_direction']; ?>"></span><span class="wind-description"><?= $forecasts2['wind_description']; ?></span></td>
+                                <td class="relative-humidity"><?= $forecasts2['relative_humidity']; ?>%</td>
+                                <td class="direction"><?php if(trim($forecasts2['wind_direction'])!=''){ ?><span class="symbol <?= $forecasts2['wind_direction']; ?>"></span><?php }?><span class="wind-description"><?= $forecasts2['wind_description']; ?></span></td>
                             </tr>
                         <?php } ?>   
 

@@ -121,7 +121,7 @@ label[for="search-field"] {
 nav {
     width: 980px;
     margin: 15px 0;
-    padding: 5px;
+    padding: 5px 10px;
     font-size: .875em;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
@@ -963,7 +963,7 @@ nav li:active, .detail-page-link:active {
 }
 
 /*====================
-    ERROR STATES
+    ERROR/WARNING STATES
 ====================*/
 
 /* Severe weather warning show up below the nav */

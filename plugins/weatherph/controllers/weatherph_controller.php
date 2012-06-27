@@ -72,8 +72,10 @@ class WeatherphController extends WeatherphAppController {
         $this->set(compact('blogEntries', 'resources'));
         
     }
-
-    public function getStations($provider = 'pagasa') {
+    
+    
+    //changed $provider ='pagasa' to $provider = 'meteomedia' for filtering of pagasa stations
+    public function getStations($provider = 'meteomedia') {
         $this->layout = 'json/ajax';
 
         $this->set('title_for_layout', __('Weatherph', true));
@@ -127,37 +129,6 @@ class WeatherphController extends WeatherphAppController {
         $this->set('readings', json_encode($currentReading));
     }
     
-//    
-//    public function admin_getTwoWeekReadings($date = null) {
-//        //$this->layout = 'json/ajax';
-//
-//        App::import('Model', 'Weatherph.WeatherphStationReading');
-//
-//        $WeatherphStationReading = new WeatherphStationReading();
-//        $TwoWeekReadings = $WeatherphStationReading->get('all', array('conditions' => array(
-//        'days_target' => 1,
-//        )));
-//        //       Configure::write('debug', 0);
-//        //debug($TwoWeekReadings);
-//        $this->set('two_week_readings', $TwoWeekReadings);
-//    }
-//
-//    public function admin_getReadings($date = null) {
-//        //$this->layout = 'json/ajax';
-//
-//        $date = ($date == null) ? date('Ymd') : $date;
-//
-//        App::import('Model', 'Weatherph.WeatherphStationReading');
-//
-//        $WeatherphStationReading = new WeatherphStationReading();
-//        $DateReadings = $WeatherphStationReading->get('all', array('conditions' => array(
-//        'date' => $date,
-//        )));
-//        //       Configure::write('debug', 0);
-//        //debug($TwoWeekReadings);
-//        $this->set('date_readings', $DateReadings);
-//    }
-
     public function getForecast($stationID = '984290', $numDays = 1, $utch = '3h') {
         
         //For Index
