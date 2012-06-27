@@ -6,7 +6,11 @@ class StationFinderShell extends Shell {
     public $uses = array('Weatherph.NearestStation');
 
     function main() {
+        ini_set('memory_limit', '4096M');
+        $insert_count = 0;
+        
 	echo microtime() . "\n";
+        echo date('Y-m-d G:i:s:a'). "\n";
 
         $counter = 0;
         App::import('Model', 'Weatherph.Station');
@@ -19,19 +23,17 @@ class StationFinderShell extends Shell {
         $shortest = array();
         $shortest_counter = 0;
         $stations = $Station->find('all', array(
-            'fields' => array('id','tag','lon','lat')
+            'fields' => array('wmo1','lon','lat')
             
         ));
         $names = $NimaName->find('all', array(
-            'limit' => 1,
             'fields' => array('id','long','lat')
-            
-            
         ));
-       
+
+        echo "Starting...\n";
         foreach($names as $name){
             foreach($stations as $station){
-                $values[$counter]['station_id'] = $station['Station']['id'];
+                $values[$counter]['station_id'] = $station['Station']['wmo1'];
                 $values[$counter]['reference'] = $name['Name']['id'];
                 $sampdistance= $this->computeDistance($name['Name']['long'], $station['Station']['lon'], $name['Name']['lat'], $station['Station']['lat']);
                 $values[$counter]['distance'] = $sampdistance;
@@ -54,10 +56,13 @@ class StationFinderShell extends Shell {
             $counter = 0;
             $query .= ");";
 			$NearestStation->query($query);
-    
+                        $insert_count++;
+                        if($insert_count % 10 == 0) echo "$insert_count \n";
+                        
         }
 
 	echo microtime() . "\n";
+        echo date('Y-m-d G:i:s:a'). "\n";
     }
     
     function computeDistance($lon1, $lon2, $lat1, $lat2){

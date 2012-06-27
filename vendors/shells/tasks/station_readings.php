@@ -12,6 +12,14 @@ class StationReadingsTask extends Shell{
         $counter = 1;
         $file_name = Configure::read('Data.readings'). date('Ydm') . '.csv';
         
+        echo "Path: " . Configure::read('Data.readings') . "\n";
+        
+        if(!is_dir(Configure::read('Data.readings'))){
+            echo "Cannot find " . Configure::read('Data.readings') . "\n";
+            echo "Create the directory or change the location on your settings.private.yml\n";
+            exit;
+        }
+        
         echo "Start Date [yyyymmdd]:";
         $startdate = trim(fgets(STDIN));
         echo "End Date [yyyymmdd]: ";
@@ -50,7 +58,7 @@ class StationReadingsTask extends Shell{
                     'Set 1','Set 2'
                 ),
                 'Humidity'
-            ));
+            ), true);
             $curlResults = NULL;
             $curlResults = Curl::getData($url);
             
