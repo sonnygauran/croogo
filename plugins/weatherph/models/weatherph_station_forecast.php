@@ -13,10 +13,24 @@ class WeatherphStationForecast extends WeatherphAppModel
     
     public function get($conditions = null, $fields = array(), $order = null, $recursive = null){
         
+        ini_set('memory_limit','128M');
+        
         $abfrageResults = array();
         
         $stationId = $fields['conditions']['id'];
-        $Abfrage = new Abfrage($stationId);
+        
+        $dmo_readings_dir = Configure::read('Data.readings');
+        $dmo_readings_file = $dmo_readings_dir . date('Ydm') . '.csv';
+        
+        if(file_exists($dmo_readings_file)){ 
+            $csvString = file_get_contents($dmo_readings_file);
+        }else{
+            $this->log('File not found - ' . $dmo_readings_file);
+            exit;
+        }
+        
+        $dmo_readings = $this->csvToArray($csvString);
+        $dmo_readings = $this->cleanDmoReadings($dmo_readings);
         
         // Get the default timestamp timezone
         $siteTimezone = Configure::read('Site.timezone');
@@ -26,74 +40,42 @@ class WeatherphStationForecast extends WeatherphAppModel
         
         $abfrageResults['station_name'] = $stationInfo['name'];
         
-        //Grab stations readings  
-        $url = $Abfrage->generateURL($this->generateDate('reading', '10m'), array(
-            'Temperature' => array(
-                'low'
-            ),
-            'Wind' => array(
-                'speed', 'direction'
-            ),
-            'Gust' => array(
-                '3 hours'
-            ),
-            'Rainfall' => array(
-                'Period'
-            ),
-            'Weather Symbols' => array(
-                'Set 1', 'Set 2'
-            ),
-            'Humidity'
-        ));
-        
-        // Get the string after the question-mark sign
-        $gum = $stationId.'_reading_'.sha1(end(explode('?',$url)));
-        $curlResults = NULL;
-        if (!Cache::read($gum, '3hour')) {
-            $curlResults = Curl::getData($url);
-            Cache::write($gum, $curlResults, '3hour');
-        } else {
-            $curlResults = Cache::read($gum, '3hour');
-        }
-
-        // Convert cURL CSV to Array 
-        $resultsReadings = $this->csvToArray($curlResults);
-        
         // Get sunrise and sunset using current latituted and longtitude station
         $sunrise = $this->sunInfo($stationInfo['lat'], $stationInfo['lon'], 'sunrise');
         $sunset = $this->sunInfo($stationInfo['lat'], $stationInfo['lon'], 'sunset');
         
         $today_Readings = $current_readings = array();
         
-        foreach($resultsReadings as $readings){
-            if($readings['tl']!=''){
+        foreach($dmo_readings as $dmo_reading){
+            
+            if(in_array($stationId, $dmo_reading)){
                 
-                $current_readings['weather_symbol'] = (trim($readings['sy']) == '')? '0' : $this->dayOrNightSymbol($readings['sy'], $readings['utc'], array("sunrise"=>$sunrise,"sunset"=>$sunset));
-                             
+                $current_readings['weather_symbol'] = (trim($dmo_reading['sy']) == '')? '0' : $this->dayOrNightSymbol($dmo_reading['sy'], $dmo_reading['utc'], array("sunrise"=>$sunrise,"sunset"=>$sunset));
+                           
                 // Replace the null values with hypen character and round it off to the nearest tenths
-                $current_readings['temperature'] = ($readings['tl'] == '')? '0' : number_format($readings['tl'],0);
-                $current_readings['precipitation'] = ($readings['rr'] == '')? '0' : round($readings['rr'],0);
-                $current_readings['relative_humidity'] = ($readings['rh'] == '')? '0' : round($readings['rh'],0);
-                $current_readings['wind_speed'] = ($readings['ff'] == '')? '0' : floor($readings['ff'] * 1.852 + 0.5);
-                $current_readings['wind_gust'] = ($readings['g3h'] == '')? '0' : round($readings['g3h'],0);
+                $current_readings['temperature'] = ($dmo_reading['tl'] == '')? '0' : number_format($dmo_reading['tl'],0);
+                $current_readings['precipitation'] = ($dmo_reading['rr'] == '')? '0' : round($dmo_reading['rr'],0);
+                $current_readings['relative_humidity'] = ($dmo_reading['rh'] == '')? '0' : round($dmo_reading['rh'],0);
+                $current_readings['wind_speed'] = ($dmo_reading['ff'] == '')? '0' : floor($dmo_reading['ff'] * 1.852 + 0.5);
+                $current_readings['wind_gust'] = ($dmo_reading['g3h'] == '')? '0' : round($dmo_reading['g3h'],0);
                 
-                // Set the local utc time
-                $theirTime = strtotime($readings['Datum'] . $readings['utc'] . ':' .$readings['min']);
                 
-                $current_readings['Datum'] = date('Ymd', $theirTime + $Date->getOffset());
-                $current_readings['utc'] = date('H', $theirTime + $Date->getOffset());
-                $current_readings['min'] = date('m', $theirTime + $Date->getOffset());
-                
+                $theirTime = strtotime($dmo_reading['Datum'] . $dmo_reading['utc'] . ':' .$dmo_reading['min']);
+                //$current_time = strtotime(date('Ymd H:i:s')) + $Date->getOffset();
+                $current_readings['local_time'] = date('Ymd H:i:s', $theirTime + $Date->getOffset());
                 $current_readings['update'] = date('h:iA', $theirTime + $Date->getOffset());
                 
+                //if(strtotime($dmo_reading['local_time']) > $current_time ) 
                 $today_Readings[] = $current_readings;
                 
             }
+            
         }
         
-        // Get the last/current reading from the array set 
         $current_reading = array_pop($today_Readings);
         
+//        $this->log(print_r($current_reading, TRUE));
+     
         if(count($current_reading)>0){
             $abfrageResults['reading'] = $current_reading;
             $abfrageResults['reading']['status'] = 'ok';
@@ -106,8 +88,15 @@ class WeatherphStationForecast extends WeatherphAppModel
         $nearestGP = $this->nearestGridPoint($stationInfo['lon'],$stationInfo['lat']);
         
         $dmo_forecast_dir = Configure::read('Data.dmo');
-        $dmo_forecast = $dmo_forecast_dir . $nearestGP['lon'] . '_' . $nearestGP['lat'] . '.csv';
-        $csvString = file_get_contents($dmo_forecast);
+        $dmo_forecast_file = $dmo_forecast_dir . $nearestGP['lon'] . '_' . $nearestGP['lat'] . '.csv';
+        
+        if(file_exists($dmo_forecast_file)){ 
+            $csvString = file_get_contents($dmo_forecast_file);
+        }else{
+            $this->log('File not found - ' . $dmo_forecast_file);
+            exit;
+        }
+        
         $resultsForecasts = $this->csvToArray($csvString);
         
         foreach($resultsForecasts as $forecast){
@@ -143,8 +132,6 @@ class WeatherphStationForecast extends WeatherphAppModel
                     // Generate the wind description
                     $current_forecast['wind_description'] = $this->showWindDescription($forecast['dir'], $current_forecast['wind_speed'], $current_forecast['wind_gust']);
                     
-                    //$readingTime = (!isset($current_reading['update']))? date('Ymd H:i:s', strtotime(date('Ymd H:i:s')) + $Date->getOffset()) : $current_reading['update'];
-                    
                     $readingTime = date('Ymd H:i:s', strtotime(date('Ymd H:i:s')) + $Date->getOffset());
                     
                     if (strtotime($current_forecast['localtime']) > strtotime($readingTime)) $abfrageResults['forecast'][] = $current_forecast;
@@ -166,11 +153,8 @@ class WeatherphStationForecast extends WeatherphAppModel
     
     private function forecastsDateOffsets(){
         
-        //$date = strtotime('-'. Configure::read('Site.offset') + Configure::read('Site.time_overlap') . ' hours', strtotime(date('Ymd')));
         $date = strtotime('-'. Configure::read('Site.time_overlap') . ' hours');
         $start = date('Ymd H:i:s', $date);
-        
-        //$this->log(date('Ymd H:i:s', strtotime(date('Ymd H:i:s'))));
         
         $date = strtotime('+'. Configure::read('Site.offset'));
         $end = date('Ymd H:i:s', strtotime('+' . Configure::read('Site.forecast_range') . ' Days', $date));
@@ -185,7 +169,7 @@ class WeatherphStationForecast extends WeatherphAppModel
         $siteTimezone = Configure::read('Site.timezone');
         $Date = new DateTime(null, new DateTimeZone($siteTimezone)); 
         
-        //$this->log('Localtime' . print_r($datasets, TRUE));
+//        $this->log('Localtime' . print_r($datasets, TRUE));
         
         $new_datasets = array();
         
@@ -238,102 +222,71 @@ class WeatherphStationForecast extends WeatherphAppModel
     public function getWeeklyForecast($conditions = null, $fields = array(), $order = null, $recursive = null){
         
         $stationId = $fields['conditions']['id'];
-        $Abfrage = new Abfrage($stationId);
         
         // Get the default timestamp timezone
         $siteTimezone = Configure::read('Site.timezone');
         $Date = new DateTime(null, new DateTimeZone($siteTimezone)); 
         
-        // Set local UTC time based on the default timestamp timezone
-        $dateOffsets = $this->forecastsDateOffsets();
+        ini_set('memory_limit','128M');
         
-        $this->log($dateOffsets);
+        $dmo_readings_dir = Configure::read('Data.readings');
+        $dmo_readings_file = $dmo_readings_dir . date('Ydm') . '.csv';
+        
+        if(file_exists($dmo_readings_file)){ 
+            $csvString = file_get_contents($dmo_readings_file);
+        }else{
+            $this->log('File not found - ' . $dmo_readings_file);
+            exit;
+        }
+        
+        $dmo_readings = $this->csvToArray($csvString);
+        $dmo_readings = $this->cleanDmoReadings($dmo_readings);
         
         // Get station info based on id
         $stationInfo = $this->getStationInfo($stationId, array("name","lat","lon"));
-        
-        $this->log('Station Info:'.print_r($stationInfo, TRUE));
-        
-        // STATION READINGS
-        
-        //Grab stations readings  
-        $url = $Abfrage->generateURL($this->generateDate('reading', '10m'), array(
-            'Temperature' => array(
-                'low'
-            ),
-            'Wind' => array(
-                'speed', 'direction'
-            ),
-            'Gust' => array(
-                '3 hours'
-            ),
-            'Rainfall' => array(
-                'Period','6 hours'
-            ),
-            'Weather Symbols' => array(
-                'Set 1', 'Set 2'
-            ),
-            'Humidity'
-        ));
-        
-        $this->log('Readings:'.$url);
-        
-        // Get the string after the question-mark sign
-        $gum = $stationId.'_reading_weekly_'.sha1(end(explode('?',$url)));
-        
-        // Run the cURL
-        $curlResults = NULL;
-        if (!Cache::read($gum, '3hour')) {
-            $e = new Exception();
-            $curlResults = Curl::getData($url);
-            Cache::write($gum, $curlResults, '3hour');
-        } else {
-            $curlResults = Cache::read($gum, '3hour');
-        }
-        
-        // Convert cURL CSV to Array 
-        $resultsReadings = $this->csvToArray($curlResults );
         
         // Get sunrise and sunset using current latituted and longtitude station
         $sunrise = $this->sunInfo($stationInfo['lat'], $stationInfo['lon'], 'sunrise');
         $sunset = $this->sunInfo($stationInfo['lat'], $stationInfo['lon'], 'sunset');
         
-        $currentReadings = array();
-        foreach($resultsReadings as $readings){
-            if($readings['tl']!=''){
+        $today_Readings = $current_readings = array();
+        
+        foreach($dmo_readings as $dmo_reading){
+            
+            if(in_array($stationId, $dmo_reading)){
                 
-                //Determine weather symbol for certain utc time
-                $readings['sy'] = $this->dayOrNightSymbol($readings['sy'], $readings['utc'], array("sunrise"=>$sunrise,"sunset"=>$sunset));
+                $current_readings['moonphase'] = $this->moon_phase(date('Y', strtotime($dmo_reading['Datum'])), date('m', strtotime($dmo_reading['Datum'])), date('d', strtotime($dmo_reading['Datum'])));
                 
+                $current_readings['weather_symbol'] = (trim($dmo_reading['sy']) == '')? '0' : $this->dayOrNightSymbol($dmo_reading['sy'], $dmo_reading['utc'], array("sunrise"=>$sunrise,"sunset"=>$sunset));
+                           
                 // Replace the null values with hypen character and round it off to the nearest tenths
-                $readings['tl'] = ($readings['tl'] == '')? '0' : number_format($readings['tl'],0);
-                $readings['rr'] = ($readings['rr'] == '')? '0' : round($readings['rr'],0);
-                $readings['rh'] = ($readings['rh'] == '')? '0' : round($readings['rh'],0);
-                $readings['ff'] = ($readings['ff'] == '')? '0' : floor($readings['ff'] * 1.852 + 0.5);
-                $readings['g3h'] = ($readings['g3h'] == '')? '0' : round($readings['g3h'],0);
+                $current_readings['temperature'] = ($dmo_reading['tl'] == '')? '0' : number_format($dmo_reading['tl'],0);
+                $current_readings['precipitation'] = ($dmo_reading['rr'] == '')? '0' : round($dmo_reading['rr'],0);
+                $current_readings['relative_humidity'] = ($dmo_reading['rh'] == '')? '0' : round($dmo_reading['rh'],0);
+                $current_readings['wind_speed'] = ($dmo_reading['ff'] == '')? '0' : floor($dmo_reading['ff'] * 1.852 + 0.5);
+                $current_readings['wind_gust'] = ($dmo_reading['g3h'] == '')? '0' : round($dmo_reading['g3h'],0);
+                $current_readings['wind_direction'] = $this->windDirection($dmo_reading['dir']);
                 
-                $theirTimestamp = strtotime($readings['Datum'] . $readings['utc'] . ':' . $readings['min']);
                 
-                $readings['moonphase'] = $this->moon_phase(date('Y', strtotime($readings['Datum'])), date('m', strtotime($readings['Datum'])), date('d', strtotime($readings['Datum'])));
+                $theirTime = strtotime($dmo_reading['Datum'] . $dmo_reading['utc'] . ':' .$dmo_reading['min']);
+                //$current_time = strtotime(date('Ymd H:i:s')) + $Date->getOffset();
+                $current_readings['local_time'] = date('Ymd H:i:s', $theirTime + $Date->getOffset());
+                $current_readings['update'] = date('h:iA', $theirTime + $Date->getOffset());
                 
-                $readings['dir2'] = $this->windDirection($readings['dir']);
-                
-                // Translate raw data to wind direction image value
-                $readings['dir'] = $this->showWindDirection($readings['dir']);
-                
-                $readings['localtime'] = date('Ymd H:i:s', $theirTimestamp + $Date->getOffset());
-
-                $currentReadings[] = $readings;
+                //if(strtotime($dmo_reading['local_time']) > $current_time ) 
+                $today_Readings[] = $current_readings;
                 
             }
+            
         }
         
-        // Get the last/current reading from the array set
-        $currentReading = array_pop($currentReadings);
+        $current_reading = array_pop($today_Readings);
+        
+//        $this->log(print_r($current_reading, TRUE));
         
         // Check if the last/current reading exist, and set status
-        if(count($currentReading)>0){
-            $abfrageResults['reading'] = $currentReading;
+        if(count($current_reading)>0){
+            $abfrageResults['reading'] = $current_reading;
             $abfrageResults['reading']['status'] = 'ok';
             $abfrageResults['reading']['sunrise'] = $sunrise;
             $abfrageResults['reading']['sunset'] = $sunset;
@@ -342,34 +295,18 @@ class WeatherphStationForecast extends WeatherphAppModel
             $abfrageResults['reading']['status'] = 'none';
         }
         
-        // STATION FORECAST
-        
-        // Generate cURL for stations forecast  
-        $url = $Abfrage->generateURL($this->generateDate('forecast', '1h'), array(
-            'Temperature' => array(
-                'low'
-            ),
-            'Wind' => array(
-                'speed', 'direction'
-            ),
-            'Gust' => array(
-                '3 hours'
-            ),
-            'Rainfall' => array(
-                'Period','1 hour', '3 hours', '6 hours'
-            ),
-            'Weather Symbols' => array(
-                'Set 1', 'Set 2'
-            ),
-            'Humidity'
-        ));
-        
-        
         $nearestGP = $this->nearestGridPoint($stationInfo['lon'],$stationInfo['lat']);
         
         $dmo_forecast_dir = Configure::read('Data.dmo');
-        $dmo_forecast = $dmo_forecast_dir . $nearestGP['lon'] . '_' . $nearestGP['lat'] . '.csv';
-        $csvString = file_get_contents($dmo_forecast);
+        $dmo_forecast_file = $dmo_forecast_dir . $nearestGP['lon'] . '_' . $nearestGP['lat'] . '.csv';
+        
+        if(file_exists($dmo_forecast_file)){ 
+            $csvString = file_get_contents($dmo_forecast_file);
+        }else{
+            $this->log('File not found - ' . $dmo_forecast_file);
+            exit;
+        }
+        
         $forecasts = $this->csvToArray($csvString);
         
         // Get sunrise and sunset using current latituted and longtitude station
@@ -424,7 +361,7 @@ class WeatherphStationForecast extends WeatherphAppModel
         $abfrageResults['stationId'] = $stationId;
         $abfrageResults['stationName'] = $stationInfo['name'];
         
-        $this->log(print_r($abfrageResults, TRUE));
+//        $this->log(print_r($abfrageResults, TRUE));
         
         return $abfrageResults;
         
@@ -724,15 +661,21 @@ class WeatherphStationForecast extends WeatherphAppModel
         $stationInfo = $NimaName->find('all', array('fields' => array('id' ,'lat', 'long', 'full_name_ro'),  'conditions' => array( 'id =' => $station_id)));
         $stationInfo = $stationInfo[0]['Name'];
         
+//        $this->log(print_r($stationInfo, TRUE));
+        
         $nearestGP = $this->nearestGridPoint($stationInfo['long'],$stationInfo['lat']);
         
-        $this->log(print_r($nearestGP, TRUE));
+//        $this->log(print_r($nearestGP, TRUE));
         
         $dmo_forecast_dir = Configure::read('Data.dmo');
+        $dmo_forecast_file = $dmo_forecast_dir . $nearestGP['lon'] . '_' . $nearestGP['lat'] . '.csv';
         
-        $dmo_forecast = $dmo_forecast_dir . $nearestGP['lon'] . '_' . $nearestGP['lat'] . '.csv';
-        
-        $csvString = file_get_contents($dmo_forecast);
+        if(file_exists($dmo_forecast_file)){ 
+            $csvString = file_get_contents($dmo_forecast_file);
+        }else{
+            $this->log('File not found - ' . $dmo_forecast_file);
+            exit;
+        }
         
         $forecasts = $this->csvToArray($csvString);
 

@@ -178,6 +178,28 @@ class WeatherphAppModel extends AppModel {
 
         return $arrayResults;
     }
+    
+    protected function cleanDmoReadings($arrays) {
+
+        if(!is_array($arrays)){
+            $this->log('Error: Parameter must be an array.');
+            return FALSE;
+        }else{
+            
+            $new_array = array();
+            foreach($arrays as $array){
+                if($array['tl'] != 'tl'){
+                    if(trim($array['tl'])!=''){
+                        $station_ort = explode('/', $array['ort1']);
+                        $array['station_id'] = $station_ort[0];
+                        $new_array[] = $array; 
+                    }
+                }
+            }
+        }
+        
+        return $new_array;
+    }
 
     public function getStationInfo($stationID = NULL, $fields = NULL) {
         
