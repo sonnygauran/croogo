@@ -919,11 +919,11 @@ a:hover {
     text-shadow: white 0 0 1px;
 }
 
-.paging a:link, .posts a:link, .names a:link {
+.paging a:link, .posts a:link, .names a:link, .news a:link {
     color: #20304d;
 }
 
-.paging a:visited, .posts a:visited, .names a:visited {
+.paging a:visited, .posts a:visited, .names a:visited, .news a:visited  {
     color: #3e5e95;
 }
 
