@@ -26,16 +26,13 @@ echo $this->Html->script(array(
             </div> <!--END STATION-->
 
             <?php if ($dataSets['reading']['status'] == 'ok'): ?>
-
-                
-
-
+            
                 <div id="condition">
                       
                         <?php if (!empty($dataSets['reading']['sy']['symbol'])) { ?>
                         <div class="inner-condition">
                         <div class="left-temp-reading">
-                        <?= $dataSets['reading']['tl']; ?>&deg;C
+                        <?= $dataSets['reading']['temperature']; ?>&deg;C
                         </div>
                         
                         <div class="right-sy-reading">
@@ -46,12 +43,10 @@ echo $this->Html->script(array(
                         <div class="inner-condition-temp-reading-only">
                         <div class="reading-temperature-only">
                             
-                        <?= $dataSets['reading']['tl']; ?>&deg;C
+                        <?= $dataSets['reading']['temperature']; ?>&deg;C
                         </div>
                         </div>
                         <?php } ?>
-                        
-                    
                                         
                     <table>
                         <tbody>
@@ -77,19 +72,19 @@ echo $this->Html->script(array(
 
                             <tr>
                                 <td class="caption">Avg. Wind Speed</td>
-                                <td class="output"><?= $dataSets['reading']['ff']; ?>km/h</td>
+                                <td class="output"><?= $dataSets['reading']['wind_speed']; ?>km/h</td>
                             </tr>
                             <tr>
                                 <td class="caption">Rain</td>
-                                <td class="output"><?= $dataSets['reading']['rr']; ?>mm</td>
+                                <td class="output"><?= $dataSets['reading']['precipitation']; ?>mm</td>
                             </tr>
                             <tr>
                                 <td class="caption">Relative Humidity</td>
-                                <td class="output"><?= $dataSets['reading']['rh']; ?>%</td>
+                                <td class="output"><?= $dataSets['reading']['relative_humidity']; ?>%</td>
                             </tr>
                             <tr>
                                 <td class="caption">Wind Direction</td>
-                                <td class="output"><?= $dataSets['reading']['dir2']['eng']; ?></td>                        
+                                <td class="output"><?= $dataSets['reading']['wind_direction']['eng']; ?></td>                        
                             </tr>
                         </tbody>
                     </table>
@@ -103,14 +98,15 @@ echo $this->Html->script(array(
             <div class="no-readings" style="display: block;">
                 <p>Sorry, there are no readings available for this station.</p>
             </div>
-            <?php endIf; ?>
+        <?php endif; ?>
 
         <div id="weekWeather">
+            <? if($dataSets['forecast_status'] == 'ok'): ?>
             <!-- CSV FILE <?php echo $dataSets['forecast_dmo_file_csv'];?>-->    
             <div class="tab-container">
                 <?php
                 foreach ($dataSets['forecast'] as $key => $dayForecast) {
-
+                    
                     $today = date("Ymd");
                     $tab_class = ($key == $today) ? 'current-tab' : 'tab';
                     $div_id = ($key == $today) ? "Today" : date('l', strtotime($key));
@@ -133,7 +129,7 @@ echo $this->Html->script(array(
                         <?php foreach ($dayForecast as $forecasts2) { ?><!-- <?= $forecasts2['their_time'];?> -->
                             <tr>
                                 <td class="time"><?= $forecasts2['localtime_range']; ?></td>
-                                <td class="condition"><span class="symbol <?= $forecasts2['weather_symbol']['symbol']; ?>" title="<?= $forecasts2['weather_symbol']['description']; ?>"></span></td>
+                                <td class="condition"><span class="symbol <?= $forecasts2['weather_condition']['symbol']; ?>" title="<?= $forecasts2['weather_condition']['description']; ?>"></span></td>
                                 <td class="temperature"><?= $forecasts2['temperature']; ?>&deg;C</td>
                                 <td class="precipitation"><?= $forecasts2['precipitation']; ?>mm</td>
                                 <td class="relative-humidity"><?= $forecasts2['relative_humidity']; ?>%</td>
@@ -144,12 +140,17 @@ echo $this->Html->script(array(
                     </table>
                 <?php } ?>
             </div>
-
+            <? else: ?>
+            <div class="no-readings" style="display: block;">
+                <p>Sorry, there are no forecast available for this station.</p>
+            </div>
+            <? endif; ?>    
         </div><!--END WEEK WEATHER-->
 
     </section> <!--MAIN CONTENT-->
 
-    <section class="secondary">
+<!-- DISABLED DETAILED FORECAST    -->
+<!--    <section class="secondary">
         <div id="charts">
             <h4>Detailed Forecasts</h4>
             <ul class="tabs">
@@ -228,17 +229,18 @@ echo $this->Html->script(array(
                     <div class="color-legend">
                         <span class="green-line"></span>Humidity
                     </div>
-                    </div>
                 </div>
             </div>
-        </div> <!--END CHARTS-->
-        <!--        <div id="outlook">
-                    <h4>15-Day Outlook</h4>
-                    <ul class="tabs">
-                        <li class="current-tab"><a href="javascript: void(0);">Temperature</a></li>
-                        <li><a href="javascript: void(0);">Precipitation</a></li>
-                        <li><a href="javascript: void(0);">Wind</a></li>
-                    </ul>
-                </div> END OUTLOOK-->
-    </section> <!--SECONDARY-->
+        </div>
+</div> END CHARTS
+        <div id="outlook">
+            <h4>15-Day Outlook</h4>
+            <ul class="tabs">
+                <li class="current-tab"><a href="javascript: void(0);">Temperature</a></li>
+                <li><a href="javascript: void(0);">Precipitation</a></li>
+                <li><a href="javascript: void(0);">Wind</a></li>
+            </ul>
+        </div> END OUTLOOK
+</section> SECONDARY-->
+<!-- END DISABLED DETAILED FORECAST -->
 </div> <!--CONTENT-->

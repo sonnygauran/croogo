@@ -31,7 +31,8 @@ $(document).ready(function(){
                 id: "OSM", type: "tiled",
                 attr: "<?= Configure::read('Tile.attr') ?>",
                 src: function (view) {
-                    return "<?= Configure::read('Tile.tiles') ?>/outline/"
+                    //return "<?= Configure::read('Tile.tiles') ?>/outline/"
+                    return "http://a.tiles.mapbox.com/v3/meteomedia.WeatherPH-Pressure/"
                         + view.zoom + "/"
                         + view.tile.column + "/"
                         + view.tile.row
@@ -277,7 +278,8 @@ $(document).ready(function(){
         'margin-left': '6px',
         'color': 'white'
     });
-    getForecast(984290);
+    //getForecast(984290); //Manila
+    getForecast(980001); //Amanpulo/Pamalican
 });
 
     // Show/hide forecasts depending on availability
@@ -330,7 +332,7 @@ $(document).ready(function(){
                 name: $currentStation.name,
                 type:'Point',                
                 coordinates: $currentStation.coordinates
-            }, {strokeWidth: "1px", height: "7px", width: "7px", radius: "8px", color: "#2E4771", fillOpacity: "0", strokeOpacity: "1"},true);
+            }, {strokeWidth: "2px", height: "8px", width: "8px", radius: "8px", color: "#dd2222", fillOpacity: "0", strokeOpacity: "1"},true);
         }
 
     }
@@ -356,7 +358,8 @@ function remapStations() {
                         ]
                     });
                 }
-                window['STATIONS'].pagasa = $stationsPagasa;
+                // Temporary Hidden
+                //window['STATIONS'].pagasa = $stationsPagasa;
                 
                 //Gets all the stations from pagasa
                 //mapStationsPagasa($stationsPagasa); // now the stations are complete

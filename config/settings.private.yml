@@ -1,0 +1,5 @@
+Data.dmo: /Users/juliuslagutan/Desktop/dmo/
+Data.stations: /Users/juliuslagutan/Desktop/data/stations/
+Data.readings: /Users/juliuslagutan/Desktop/data/readings/
+
+Tile.main.url: http://a.tiles.mapbox.com/v3/meteomedia.WeatherPH-Default

@@ -118,7 +118,8 @@ class WeatherphAppModel extends AppModel {
             'Thunderstorms',
             'Drizzle',
             'Sandstorm',
-            'Could not be determined'
+            'Could not be determined',
+            'Could not be determined',
         );
         
             $utc = (int) $utc + 3;
@@ -156,6 +157,8 @@ class WeatherphAppModel extends AppModel {
     }
 
     protected function csvToArray($csv) {
+        
+        ini_set('memory_limit','128M');
 
         $rows = explode("\n", $csv);
         $headers = explode(';', $rows[0]);
@@ -177,6 +180,30 @@ class WeatherphAppModel extends AppModel {
         }
 
         return $arrayResults;
+    }
+    
+    protected function cleanDmoReadings($arrays) {
+
+        if(!is_array($arrays)){
+            $this->log('Error: Parameter must be an array.');
+            return FALSE;
+        }else{
+            
+            $new_array = array();
+            foreach($arrays as $array){
+                if($array['tl'] != 'tl'){
+                    if(trim($array['tl'])!=''){
+                        $station_ort = explode('/', $array['ort1']);
+                        $array['station_id'] = $station_ort[0];
+                        $array['station_id'] = $station_ort[0];
+                        $array['station_id'] = $station_ort[0];
+                        $new_array[] = $array; 
+                    }
+                }
+            }
+        }
+        
+        return $new_array;
     }
 
     public function getStationInfo($stationID = NULL, $fields = NULL) {
@@ -484,6 +511,47 @@ class WeatherphAppModel extends AppModel {
             return $sunInfo;
         }
         
+    }
+    
+    public function nearestGridPoint($lon, $lat){
+        
+        $schrittx = 0.125;
+        $schritty = 0.125;
+        
+        $nearest_lon = round($lon/$schrittx)*$schrittx;
+        $nearest_lat = round($lat/$schritty)*$schritty;
+        
+        return array(
+            'lon' => $nearest_lon,
+            'lat' => $nearest_lat
+        );
+        
+    }
+    
+    public function findStationByGP($lon = NULL, $lat = NULL){
+        
+        App::import('Model', 'Weatherph.Station');
+
+        $WeatherphStation = new Station();
+        $stations = $WeatherphStation->find('all', array( 'fields' => array('lat', 'lon', 'wmo1', 'name')));
+        
+        //$this->log($lon . $lat);
+        
+        $station_match = array();
+        foreach($stations as $station){
+            $ngp = $this->nearestGridPoint($station['Station']['lon'], $station['Station']['lat']);
+            
+            //$this->log(print_r($ngp, TRUE));
+            
+            if($ngp['lat'] == $lat && $ngp['lon'] == $lon){
+                $station_match[] = array(
+                    'station_id' => $station['Station']['wmo1'],
+                    'name' => $station['Station']['name']
+                    ); 
+            }
+        }
+       
+        return array_unique($station_match);
     }
 
 }

@@ -134,7 +134,7 @@ class Abfrage{
     /**
      * Dynamically Generate URLs using given parameters 
      */
-    public function generateURL($format, $parameters){
+    public function generateURL($format, $parameters, $coordinates = false){
        $counter = 0;
        
        /**
@@ -160,9 +160,11 @@ class Abfrage{
         * aufruf=auto
         *  
         */
+        $ortouput = ($coordinates) ? 'wmo6,koords' : 'wmo6,name';
+       
         $url['defaults'] = array(
             'output' => 'csv2', // comma separated values
-            'ortoutput' => 'wmo6,name',
+            'ortoutput' => $ortouput,
             'call' => 'auto', // aufruf 
         );
         

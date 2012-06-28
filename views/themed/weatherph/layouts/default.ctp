@@ -19,10 +19,7 @@
         echo $this->Layout->js();
         echo $this->Html->script(array(
             'jquery/jquery.min',
-            'jquery/jquery.hoverIntent.minified',
-            'jquery/superfish',
-            'jquery/supersubs',
-            'libs/jquery.geo-1.0a4',
+            'libs/jquery.geo-1.0a4.min',
             'slides.min.jquery',
         ));
         echo $scripts_for_layout;
@@ -116,6 +113,7 @@
                                 
                     </ul>
                 </div>
+                
                 <!-- AddThis Button BEGIN -->
                 <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
                 <a class="addthis_button_facebook"></a>
@@ -123,8 +121,10 @@
                 <a class="addthis_button_linkedin"></a>
                 <a class="addthis_button_email"></a>
                 <a class="addthis_button_print"></a>
-                </div>
                 <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4f94bc453ecffca4"></script>
+                </div>
+                <!-- AddThis Button END -->
+                
                 <div class="sponsored" style="margin-top: 10px;">
                     <?php
                     $images = array(
@@ -141,7 +141,6 @@
                         <li><?php echo $this->Html->image($images[$hat], array('width' => '120px')); ?></li>
                     </ul>
                 </div>
-                <!-- AddThis Button END -->
                 <div class="ads">
                     <div class="promo">
                         <h4>Visit Boracay!</h4>
