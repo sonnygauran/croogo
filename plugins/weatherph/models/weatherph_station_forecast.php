@@ -24,7 +24,9 @@ class WeatherphStationForecast extends WeatherphAppModel
         
         $stationInfo = $this->getStationInfo($stationId);
         
-        if(file_exists($dmo_readings_file)){ 
+        if(file_exists($dmo_readings_file)){
+            
+            $this->log('File found - ' . $dmo_readings_file);
             
             $csvString = file_get_contents($dmo_readings_file);
             $dmo_readings = $this->csvToArray($csvString);
@@ -93,6 +95,8 @@ class WeatherphStationForecast extends WeatherphAppModel
         $dmo_forecast_file = $dmo_forecast_dir . $nearestGP['lon'] . '_' . $nearestGP['lat'] . '.csv';
         
         if(file_exists($dmo_forecast_file)){ 
+            
+            $this->log('File found - ' . $dmo_forecast_file);
             
             $csvString = file_get_contents($dmo_forecast_file);
             
@@ -242,6 +246,8 @@ class WeatherphStationForecast extends WeatherphAppModel
         
         if(file_exists($dmo_readings_file)){ 
             
+            $this->log('File found - ' . $dmo_readings_file);
+            
             $csvString = file_get_contents($dmo_readings_file);
             $dmo_readings = $this->csvToArray($csvString);
             $dmo_readings = $this->cleanDmoReadings($dmo_readings);
@@ -306,7 +312,9 @@ class WeatherphStationForecast extends WeatherphAppModel
         $dmo_forecast_dir = Configure::read('Data.dmo');
         $dmo_forecast_file = $dmo_forecast_dir . $nearestGP['lon'] . '_' . $nearestGP['lat'] . '.csv';
         
-        if(file_exists($dmo_forecast_file)){ 
+        if(file_exists($dmo_forecast_file)){
+            
+            $this->log('File found - ' . $dmo_forecast_file);
             
             $csvString = file_get_contents($dmo_forecast_file);
             $forecasts = $this->csvToArray($csvString);
@@ -689,10 +697,11 @@ class WeatherphStationForecast extends WeatherphAppModel
         $dmo_readings_file = $dmo_readings_dir . date('Ydm') . '.csv';
         
         if(file_exists($dmo_readings_file)){ 
+            $this->log('File found - ' . $dmo_readings_file);
             $csvString = file_get_contents($dmo_readings_file);
         }else{
             $this->log('File not found - ' . $dmo_readings_file);
-            exit;
+            //exit;
         }
         
         $dmo_readings = array();
@@ -755,12 +764,14 @@ class WeatherphStationForecast extends WeatherphAppModel
             $dmoResults['reading']['status'] = 'none';
         }
         
-        $this->log(print_r($current_reading, TRUE));
+        //$this->log(print_r($current_reading, TRUE));
         
         $dmo_forecast_dir = Configure::read('Data.dmo');
         $dmo_forecast_file = $dmo_forecast_dir . $nearestGP['lon'] . '_' . $nearestGP['lat'] . '.csv';
         
-        if(file_exists($dmo_forecast_file)){ 
+        if(file_exists($dmo_forecast_file)){
+            
+            $this->log('File found - ' . $dmo_forecast_file);
             
             $csvString = file_get_contents($dmo_forecast_file);
             $forecasts = $this->csvToArray($csvString);
