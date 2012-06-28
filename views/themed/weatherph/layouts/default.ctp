@@ -58,7 +58,7 @@
                 <div id="options">
                     <img src="<?= $this->webroot ?>theme/weatherph/img/flag.png" alt="Philippines" />
                     <form class="search" action="/search" method="POST">
-                        <label for="search-field">Search:</label><input id="search-field" type="text" name="terms" size="15" />
+                        <label for="search-field">Search:&nbsp;</label><input id="search-field" type="text" name="terms" size="12" />
                         <img src="<?= $this->webroot ?>theme/weatherph/img/search.png" alt="" />
                     </form>
                 </div>

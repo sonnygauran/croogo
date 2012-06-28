@@ -468,8 +468,8 @@ ECHO
             </div>
         </div>
 
+        <h4>Learn More</h4>
         <div class="news">
-            <h4>Learn More</h4>
             <ul>
                 <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail.png"/><p>Breaking News</p></li>
                 <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail2.png"/><p><a href="<?= $this->webroot ?>weathertv">Weather TV</a></p></li>
