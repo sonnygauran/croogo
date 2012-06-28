@@ -104,6 +104,7 @@ class AssetsController extends AppController {
                 header('Content-type: ' . $contentType);
                 header("Expires: " . gmdate("D, j M Y H:i:s", time() + DAY) . " GMT");
                 header("Cache-Control: cache");
+                header("Cache-Length: ".  filesize($assetFile));
                 header("Pragma: cache");
 
                 readfile($assetFile);
