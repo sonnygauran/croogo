@@ -103,6 +103,7 @@ echo $this->Html->script(array(
             <?php endIf; ?>
 
         <div id="weekWeather">
+            <? if($dataSets['forecast_status'] == 'ok'): ?>
             <!-- CSV FILE: <?= $dataSets['forecast_dmo_file_csv']; ?> -->
             <div class="tab-container">
                 <?php
@@ -141,7 +142,11 @@ echo $this->Html->script(array(
                     </table>
                 <?php } ?>
             </div>
-
+            <? else: ?>
+            <div class="no-readings" style="display: block;">
+                <p>Sorry, there are no forecast available for this station.</p>
+            </div>
+            <? endif; ?>
         </div><!--END WEEK WEATHER-->
 
     </section> <!--MAIN CONTENT-->
