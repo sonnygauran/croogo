@@ -90,7 +90,7 @@
                             </ul>
                         </li>
                     <li><a href="#">Mike Padua Blog</a></li>
-                    <li><a href="#">Webcams</a></li>
+                    <li><a href="<?= $this->webroot ?>webcam">Webcams</a></li>
                     <li><a href="<?= $this->webroot ?>about">About</a></li>
                     
                 </ul>
