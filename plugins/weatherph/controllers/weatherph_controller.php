@@ -402,4 +402,7 @@ class WeatherphController extends WeatherphAppController {
         
    }
    
+   
+   function weathertv(){}
+   function webcam(){}
 }
