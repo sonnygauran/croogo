@@ -118,7 +118,8 @@ class WeatherphAppModel extends AppModel {
             'Thunderstorms',
             'Drizzle',
             'Sandstorm',
-            'Could not be determined'
+            'Could not be determined',
+            'Could not be determined',
         );
         
             $utc = (int) $utc + 3;
