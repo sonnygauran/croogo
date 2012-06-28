@@ -278,8 +278,8 @@ $(document).ready(function(){
         'margin-left': '6px',
         'color': 'white'
     });
-    //getForecast(984290); //Manila
-    getForecast(980002); //Amanpulo
+    getForecast(984290); //Manila
+    //getForecast(980002); //Amanpulo
 });
 
     // Show/hide forecasts depending on availability
@@ -359,10 +359,10 @@ function remapStations() {
                     });
                 }
                 // Temporary Hidden
-                //window['STATIONS'].pagasa = $stationsPagasa;
+                window['STATIONS'].pagasa = $stationsPagasa;
                 
                 //Gets all the stations from pagasa
-                //mapStationsPagasa($stationsPagasa); // now the stations are complete
+                mapStationsPagasa($stationsPagasa); // now the stations are complete
 
                 $stations = new Array();
                 $.ajax({
