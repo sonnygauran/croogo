@@ -803,7 +803,7 @@ class WeatherphStationForecast extends WeatherphAppModel
                         
                         $readingTime = date('Ymd H:i:s', strtotime(date('Ymd H:i:s')) + $Date->getOffset());
                     
-                        if (strtotime($new_forecast['localtime']) > strtotime($readingTime)) $abfrageResults['forecast'][$new_forecast['Datum']][] = $new_forecast;
+                        if (strtotime($new_forecast['localtime']) > strtotime($readingTime)) $dmoResults['forecast'][$new_forecast['Datum']][] = $new_forecast;
 
                         //$dmoResults['forecast'][$new_forecast['Datum']][] = $new_forecast;
 
