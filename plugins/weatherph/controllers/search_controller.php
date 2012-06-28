@@ -87,9 +87,19 @@ class SearchController extends WeatherphAppController {
     public function getResultCoordinates($keyword) {
         $this->layout = 'json/ajax';
 
-        $NimaName = new NimaName();
-        $keyword = $this->params['pass'][0];
-        $locations = $NimaName->find('all', array('fields' => array('id' ,'lat', 'long', 'full_name_ro'),  'conditions' => array( 'full_name_ro LIKE' => '%'.$keyword.'%')));
+        $gum = 'search.nima.name.coordinates';
+        $locations = array();
+        if (!Cache::read($gum, 'daily')) {
+            
+            $NimaName = new NimaName();
+            $keyword = $this->params['pass'][0];
+            $locations = $NimaName->find('all', array('fields' => array('id' ,'lat', 'long', 'full_name_ro'),  'conditions' => array( 'full_name_ro LIKE' => '%'.$keyword.'%')));
+            
+            Cache::write($gum, $locations, 'daily');
+        } else {
+            $locations = Cache::read($gum, 'daily');
+        }
+        
         $this->set('locations', json_encode($locations));
     }
 }
