@@ -33,86 +33,86 @@ class WeatherphStationForecast extends WeatherphAppModel
         
         $abfrageResults['station_name'] = $stationInfo['name'];
         
-//        App::import('Model', 'Weatherph.Reading');
-//        $reading_temp = new Reading();
+        //FROM DATABASE
+        App::import('Model', 'Weatherph.Reading');
+        $reading_temp = new Reading();
         
-//        $station_id = $fields['conditions']['id']; 
-//        $station_readings = $reading_temp->find('all', array(
-//           // 'fields' => array('id' ,'datum', 'ort1', 'dir'),  
-//            'conditions' => array( 
-//                'ort1 LIKE' => "%".$station_id ."%", 
-//                'tl !=' => ''),
-//            'order' => 'utc ASC'
-//            ));
-//        
-//        if(count($station_readings) > 0){
-//            
-//            $current_reading = array_pop($station_readings);
-//            $current_reading = $current_reading['Reading'];
-//            
-//            $this->log(print_r($current_reading, TRUE));
-//            
-//            //$current_reading = $current_reading['Reading'];
-//            
-//            $current_readings['weather_symbol'] = (trim($current_reading['sy']) == '')? '0' : $this->dayOrNightSymbol($current_reading['sy'], $current_reading['utc'], array("sunrise"=>$sunrise,"sunset"=>$sunset));
-//
-//            // Replace the null values with hypen character and round it off to the nearest tenths
-//            $current_readings['temperature'] = ($current_reading['tl'] == '')? '0' : number_format($current_reading['tl'],0);
-//            $current_readings['precipitation'] = ($current_reading['rr'] == '')? '0' : round($current_reading['rr'],0);
-//            $current_readings['relative_humidity'] = ($current_reading['rh'] == '')? '0' : round($current_reading['rh'],0);
-//            $current_readings['wind_speed'] = ($current_reading['ff'] == '')? '0' : floor($current_reading['ff'] * 1.852 + 0.5);
-//            $current_readings['wind_gust'] = ($current_reading['g3h'] == '')? '0' : round($current_reading['g3h'],0);
-//
-//
-//            $theirTime = strtotime($current_reading['datum'] . $current_reading['utc'] . ':' .$current_reading['min']);
-//            //$current_time = strtotime(date('Ymd H:i:s')) + $Date->getOffset();
-//            $current_readings['local_time'] = date('Ymd H:i:s', $theirTime + $Date->getOffset());
-//            $current_readings['update'] = date('h:iA', $theirTime + $Date->getOffset());
-//            
-//        }
+        $station_id = $fields['conditions']['id']; 
+        $station_readings = $reading_temp->find('all', array(
+           // 'fields' => array('id' ,'datum', 'ort1', 'dir'),  
+            'conditions' => array( 
+                'ort1 LIKE' => "%".$station_id ."%", 
+                'tl !=' => ''),
+            'order' => 'utc ASC'
+            ));
         
-        $dmo_readings_dir = Configure::read('Data.readings');
-        $dmo_readings_file = $dmo_readings_dir . date('Ydm') . '.csv';
-        
-        if(file_exists($dmo_readings_file)){
+        if(count($station_readings) > 0){
             
-            $this->log('File found - ' . $dmo_readings_file);
+            $current_reading = array_pop($station_readings);
+            $current_reading = $current_reading['Reading'];
             
-            $csvString = file_get_contents($dmo_readings_file);
-            $dmo_readings = $this->csvToArray($csvString);
-            $dmo_readings = $this->cleanDmoReadings($dmo_readings);
-
-            foreach($dmo_readings as $dmo_reading){
-
-                if(in_array($stationId, $dmo_reading)){
-
-                    $current_readings['weather_symbol'] = (trim($dmo_reading['sy']) == '')? '0' : $this->dayOrNightSymbol($dmo_reading['sy'], $dmo_reading['utc'], array("sunrise"=>$sunrise,"sunset"=>$sunset));
-
-                    // Replace the null values with hypen character and round it off to the nearest tenths
-                    $current_readings['temperature'] = ($dmo_reading['tl'] == '')? '0' : number_format($dmo_reading['tl'],0);
-                    $current_readings['precipitation'] = ($dmo_reading['rr'] == '')? '0' : round($dmo_reading['rr'],0);
-                    $current_readings['relative_humidity'] = ($dmo_reading['rh'] == '')? '0' : round($dmo_reading['rh'],0);
-                    $current_readings['wind_speed'] = ($dmo_reading['ff'] == '')? '0' : floor($dmo_reading['ff'] * 1.852 + 0.5);
-                    $current_readings['wind_gust'] = ($dmo_reading['g3h'] == '')? '0' : round($dmo_reading['g3h'],0);
-
-
-                    $theirTime = strtotime($dmo_reading['Datum'] . $dmo_reading['utc'] . ':' .$dmo_reading['min']);
-                    //$current_time = strtotime(date('Ymd H:i:s')) + $Date->getOffset();
-                    $current_readings['local_time'] = date('Ymd H:i:s', $theirTime + $Date->getOffset());
-                    $current_readings['update'] = date('h:iA', $theirTime + $Date->getOffset());
-
-                    //if(strtotime($dmo_reading['local_time']) > $current_time ) 
-                    $today_Readings[] = $current_readings;
-
-                }
-
-            }
-
-            $current_reading = array_pop($today_Readings);
+            $this->log("Current Readings:".print_r($current_reading, TRUE));
             
-        }else{
-            $this->log('File not found - ' . $dmo_readings_file);
+            $current_readings['weather_symbol'] = (trim($current_reading['sy']) == '')? '0' : $this->dayOrNightSymbol($current_reading['sy'], $current_reading['utc'], array("sunrise"=>$sunrise,"sunset"=>$sunset));
+
+            // Replace the null values with hypen character and round it off to the nearest tenths
+            $current_readings['temperature'] = ($current_reading['tl'] == '')? '0' : number_format($current_reading['tl'],0);
+            $current_readings['precipitation'] = ($current_reading['rr'] == '')? '0' : round($current_reading['rr'],0);
+            $current_readings['relative_humidity'] = ($current_reading['rh'] == '')? '0' : round($current_reading['rh'],0);
+            $current_readings['wind_speed'] = ($current_reading['ff'] == '')? '0' : floor($current_reading['ff'] * 1.852 + 0.5);
+            $current_readings['wind_gust'] = ($current_reading['g3h'] == '')? '0' : round($current_reading['g3h'],0);
+
+
+            $theirTime = strtotime($current_reading['datum'] . $current_reading['utc'] . ':' .$current_reading['min']);
+            //$current_time = strtotime(date('Ymd H:i:s')) + $Date->getOffset();
+            $current_readings['local_time'] = date('Ymd H:i:s', $theirTime + $Date->getOffset());
+            $current_readings['update'] = date('h:iA', $theirTime + $Date->getOffset());
+            
         }
+        
+//        //FROM CSV File
+//        $dmo_readings_dir = Configure::read('Data.readings');
+//        $dmo_readings_file = $dmo_readings_dir . date('Ydm') . '.csv';
+//        
+//        if(file_exists($dmo_readings_file)){
+//            
+//            $this->log('File found - ' . $dmo_readings_file);
+//            
+//            $csvString = file_get_contents($dmo_readings_file);
+//            $dmo_readings = $this->csvToArray($csvString);
+//            $dmo_readings = $this->cleanDmoReadings($dmo_readings);
+//
+//            foreach($dmo_readings as $dmo_reading){
+//
+//                if(in_array($stationId, $dmo_reading)){
+//
+//                    $current_readings['weather_symbol'] = (trim($dmo_reading['sy']) == '')? '0' : $this->dayOrNightSymbol($dmo_reading['sy'], $dmo_reading['utc'], array("sunrise"=>$sunrise,"sunset"=>$sunset));
+//
+//                    // Replace the null values with hypen character and round it off to the nearest tenths
+//                    $current_readings['temperature'] = ($dmo_reading['tl'] == '')? '0' : number_format($dmo_reading['tl'],0);
+//                    $current_readings['precipitation'] = ($dmo_reading['rr'] == '')? '0' : round($dmo_reading['rr'],0);
+//                    $current_readings['relative_humidity'] = ($dmo_reading['rh'] == '')? '0' : round($dmo_reading['rh'],0);
+//                    $current_readings['wind_speed'] = ($dmo_reading['ff'] == '')? '0' : floor($dmo_reading['ff'] * 1.852 + 0.5);
+//                    $current_readings['wind_gust'] = ($dmo_reading['g3h'] == '')? '0' : round($dmo_reading['g3h'],0);
+//
+//
+//                    $theirTime = strtotime($dmo_reading['Datum'] . $dmo_reading['utc'] . ':' .$dmo_reading['min']);
+//                    //$current_time = strtotime(date('Ymd H:i:s')) + $Date->getOffset();
+//                    $current_readings['local_time'] = date('Ymd H:i:s', $theirTime + $Date->getOffset());
+//                    $current_readings['update'] = date('h:iA', $theirTime + $Date->getOffset());
+//
+//                    //if(strtotime($dmo_reading['local_time']) > $current_time ) 
+//                    $today_Readings[] = $current_readings;
+//
+//                }
+//
+//            }
+//
+//            $current_reading = array_pop($today_Readings);
+//            
+//        }else{
+//            $this->log('File not found - ' . $dmo_readings_file);
+//        }
         
         if(count($current_readings)>0){
             $abfrageResults['reading'] = $current_readings;
@@ -279,95 +279,99 @@ class WeatherphStationForecast extends WeatherphAppModel
         $sunrise = $this->sunInfo($stationInfo['lat'], $stationInfo['lon'], 'sunrise');
         $sunset = $this->sunInfo($stationInfo['lat'], $stationInfo['lon'], 'sunset');
         
-        //        App::import('Model', 'Weatherph.Reading');
-//        $reading_temp = new Reading();
+        //FROM DATABASE
+        App::import('Model', 'Weatherph.Reading');
+        $reading_temp = new Reading();
         
-//        $station_id = $fields['conditions']['id']; 
-//        $station_readings = $reading_temp->find('all', array(
-//           // 'fields' => array('id' ,'datum', 'ort1', 'dir'),  
-//            'conditions' => array( 
-//                'ort1 LIKE' => "%".$station_id ."%", 
-//                'tl !=' => ''),
-//            'order' => 'utc ASC'
-//            ));
-//        
-//        if(count($station_readings) > 0){
-//            
-//            $current_reading = array_pop($station_readings);
-//            $current_reading = $current_reading['Reading'];
-//            
-//            $this->log(print_r($current_reading, TRUE));
-//            
-//            //$current_reading = $current_reading['Reading'];
-//            
-//            $current_readings['weather_symbol'] = (trim($current_reading['sy']) == '')? '0' : $this->dayOrNightSymbol($current_reading['sy'], $current_reading['utc'], array("sunrise"=>$sunrise,"sunset"=>$sunset));
-//
-//            // Replace the null values with hypen character and round it off to the nearest tenths
-//            $current_readings['temperature'] = ($current_reading['tl'] == '')? '0' : number_format($current_reading['tl'],0);
-//            $current_readings['precipitation'] = ($current_reading['rr'] == '')? '0' : round($current_reading['rr'],0);
-//            $current_readings['relative_humidity'] = ($current_reading['rh'] == '')? '0' : round($current_reading['rh'],0);
-//            $current_readings['wind_speed'] = ($current_reading['ff'] == '')? '0' : floor($current_reading['ff'] * 1.852 + 0.5);
-//            $current_readings['wind_gust'] = ($current_reading['g3h'] == '')? '0' : round($current_reading['g3h'],0);
-//
-//
-//            $theirTime = strtotime($current_reading['datum'] . $current_reading['utc'] . ':' .$current_reading['min']);
-//            //$current_time = strtotime(date('Ymd H:i:s')) + $Date->getOffset();
-//            $current_readings['local_time'] = date('Ymd H:i:s', $theirTime + $Date->getOffset());
-//            $current_readings['update'] = date('h:iA', $theirTime + $Date->getOffset());
-//            
-//        }
+        $station_id = $fields['conditions']['id']; 
+        $station_readings = $reading_temp->find('all', array(
+           // 'fields' => array('id' ,'datum', 'ort1', 'dir'),  
+            'conditions' => array( 
+                'ort1 LIKE' => "%".$station_id ."%", 
+                'tl !=' => ''),
+            'order' => 'utc ASC'
+            ));
         
-        $dmo_readings_dir = Configure::read('Data.readings');
-        $dmo_readings_file = $dmo_readings_dir . date('Ydm') . '.csv';
-        
-        if(file_exists($dmo_readings_file)){ 
+        if(count($station_readings) > 0){
             
-            $this->log('File found - ' . $dmo_readings_file);
+            $current_reading = array_pop($station_readings);
+            $current_reading = $current_reading['Reading'];
             
-            $csvString = file_get_contents($dmo_readings_file);
-            $dmo_readings = $this->csvToArray($csvString);
-            $dmo_readings = $this->cleanDmoReadings($dmo_readings);
+            $current_readings['moonphase'] = $this->moon_phase(date('Y', strtotime($current_reading['datum'])), date('m', strtotime($current_reading['datum'])), date('d', strtotime($current_reading['datum'])));
             
-            foreach($dmo_readings as $dmo_reading){
-
-                if(in_array($stationId, $dmo_reading)){
-
-                    $current_readings['moonphase'] = $this->moon_phase(date('Y', strtotime($dmo_reading['Datum'])), date('m', strtotime($dmo_reading['Datum'])), date('d', strtotime($dmo_reading['Datum'])));
-
-                    $current_readings['weather_symbol'] = (trim($dmo_reading['sy']) == '')? '0' : $this->dayOrNightSymbol($dmo_reading['sy'], $dmo_reading['utc'], array("sunrise"=>$sunrise,"sunset"=>$sunset));
-
-                    // Replace the null values with hypen character and round it off to the nearest tenths
-                    $current_readings['temperature'] = ($dmo_reading['tl'] == '')? '0' : number_format($dmo_reading['tl'],0);
-                    $current_readings['precipitation'] = ($dmo_reading['rr'] == '')? '0' : round($dmo_reading['rr'],0);
-                    $current_readings['relative_humidity'] = ($dmo_reading['rh'] == '')? '0' : round($dmo_reading['rh'],0);
-                    $current_readings['wind_speed'] = ($dmo_reading['ff'] == '')? '0' : floor($dmo_reading['ff'] * 1.852 + 0.5);
-                    $current_readings['wind_gust'] = ($dmo_reading['g3h'] == '')? '0' : round($dmo_reading['g3h'],0);
-                    $current_readings['wind_direction'] = $this->windDirection($dmo_reading['dir']);
-
-
-                    $theirTime = strtotime($dmo_reading['Datum'] . $dmo_reading['utc'] . ':' .$dmo_reading['min']);
-                    //$current_time = strtotime(date('Ymd H:i:s')) + $Date->getOffset();
-                    $current_readings['local_time'] = date('Ymd H:i:s', $theirTime + $Date->getOffset());
-                    $current_readings['update'] = date('h:iA', $theirTime + $Date->getOffset());
-
-                    //if(strtotime($dmo_reading['local_time']) > $current_time ) 
-                    $today_Readings[] = $current_readings;
-
-                }
-
-            }
-
-            $current_reading = array_pop($today_Readings);
+            $current_reading = array_pop($station_readings);
+            $current_reading = $current_reading['Reading'];
             
-        }else{
-            $this->log('File not found - ' . $dmo_readings_file);
+            $this->log("Current Readings:".print_r($current_reading, TRUE));
+            
+            $current_readings['weather_symbol'] = (trim($current_reading['sy']) == '')? '0' : $this->dayOrNightSymbol($current_reading['sy'], $current_reading['utc'], array("sunrise"=>$sunrise,"sunset"=>$sunset));
+
+            // Replace the null values with hypen character and round it off to the nearest tenths
+            $current_readings['temperature'] = ($current_reading['tl'] == '')? '0' : number_format($current_reading['tl'],0);
+            $current_readings['precipitation'] = ($current_reading['rr'] == '')? '0' : round($current_reading['rr'],0);
+            $current_readings['relative_humidity'] = ($current_reading['rh'] == '')? '0' : round($current_reading['rh'],0);
+            $current_readings['wind_speed'] = ($current_reading['ff'] == '')? '0' : floor($current_reading['ff'] * 1.852 + 0.5);
+            $current_readings['wind_gust'] = ($current_reading['g3h'] == '')? '0' : round($current_reading['g3h'],0);
+            $current_readings['wind_direction'] = $this->windDirection($current_reading['dir']);
+
+            $theirTime = strtotime($current_reading['datum'] . $current_reading['utc'] . ':' .$current_reading['min']);
+            
+            //$current_time = strtotime(date('Ymd H:i:s')) + $Date->getOffset();
+            $current_readings['local_time'] = date('Ymd H:i:s', $theirTime + $Date->getOffset());
+            $current_readings['update'] = date('h:iA', $theirTime + $Date->getOffset());
+            
         }
         
-//        $this->log(print_r($current_reading, TRUE));
+//        //FROM CSV FILE
+//        $dmo_readings_dir = Configure::read('Data.readings');
+//        $dmo_readings_file = $dmo_readings_dir . date('Ydm') . '.csv';
+//        
+//        if(file_exists($dmo_readings_file)){ 
+//            
+//            $this->log('File found - ' . $dmo_readings_file);
+//            
+//            $csvString = file_get_contents($dmo_readings_file);
+//            $dmo_readings = $this->csvToArray($csvString);
+//            $dmo_readings = $this->cleanDmoReadings($dmo_readings);
+//            
+//            foreach($dmo_readings as $dmo_reading){
+//
+//                if(in_array($stationId, $dmo_reading)){
+//
+//                    $current_readings['moonphase'] = $this->moon_phase(date('Y', strtotime($dmo_reading['Datum'])), date('m', strtotime($dmo_reading['Datum'])), date('d', strtotime($dmo_reading['Datum'])));
+//
+//                    $current_readings['weather_symbol'] = (trim($dmo_reading['sy']) == '')? '0' : $this->dayOrNightSymbol($dmo_reading['sy'], $dmo_reading['utc'], array("sunrise"=>$sunrise,"sunset"=>$sunset));
+//
+//                    // Replace the null values with hypen character and round it off to the nearest tenths
+//                    $current_readings['temperature'] = ($dmo_reading['tl'] == '')? '0' : number_format($dmo_reading['tl'],0);
+//                    $current_readings['precipitation'] = ($dmo_reading['rr'] == '')? '0' : round($dmo_reading['rr'],0);
+//                    $current_readings['relative_humidity'] = ($dmo_reading['rh'] == '')? '0' : round($dmo_reading['rh'],0);
+//                    $current_readings['wind_speed'] = ($dmo_reading['ff'] == '')? '0' : floor($dmo_reading['ff'] * 1.852 + 0.5);
+//                    $current_readings['wind_gust'] = ($dmo_reading['g3h'] == '')? '0' : round($dmo_reading['g3h'],0);
+//                    $current_readings['wind_direction'] = $this->windDirection($dmo_reading['dir']);
+//
+//
+//                    $theirTime = strtotime($dmo_reading['Datum'] . $dmo_reading['utc'] . ':' .$dmo_reading['min']);
+//                    //$current_time = strtotime(date('Ymd H:i:s')) + $Date->getOffset();
+//                    $current_readings['local_time'] = date('Ymd H:i:s', $theirTime + $Date->getOffset());
+//                    $current_readings['update'] = date('h:iA', $theirTime + $Date->getOffset());
+//
+//                    //if(strtotime($dmo_reading['local_time']) > $current_time ) 
+//                    $today_Readings[] = $current_readings;
+//
+//                }
+//
+//            }
+//
+//            $current_reading = array_pop($today_Readings);
+//            
+//        }else{
+//            $this->log('File not found - ' . $dmo_readings_file);
+//        }
         
         // Check if the last/current reading exist, and set status
-        if(count($current_reading)>0){
-            $abfrageResults['reading'] = $current_reading;
+        if(count($current_readings)>0){
+            $abfrageResults['reading'] = $current_readings;
             $abfrageResults['reading']['status'] = 'ok';
             $abfrageResults['reading']['sunrise'] = $sunrise;
             $abfrageResults['reading']['sunset'] = $sunset;
@@ -428,12 +432,9 @@ class WeatherphStationForecast extends WeatherphAppModel
                     
                     if (strtotime($new_forecast['localtime']) > strtotime($readingTime)) $abfrageResults['forecast'][$new_forecast['Datum']][] = $new_forecast;
 
-                    //$abfrageResults['forecast'][$new_forecast['Datum']][] = $new_forecast;
-
                 }
             }
 
-            //$abfrageResults['forecast'] = $this->localTimeForecast($abfrageResults['forecast']);
             $abfrageResults['forecast_dmo_file_csv'] = $nearestGP['lon'] . '_' . $nearestGP['lat'] . '.csv';
             
         }else{
@@ -759,70 +760,120 @@ class WeatherphStationForecast extends WeatherphAppModel
         $sunrise = $this->sunInfo($locationInfo['lat'], $locationInfo['long'], 'sunrise');
         $sunset = $this->sunInfo($locationInfo['lat'], $locationInfo['long'], 'sunset');
         
-        // Readings
-        $dmo_readings_dir = Configure::read('Data.readings');
-        $dmo_readings_file = $dmo_readings_dir . date('Ydm') . '.csv';
-        
-        if(file_exists($dmo_readings_file)){ 
-            
-            $this->log('File found - ' . $dmo_readings_file);
-            $csvString = file_get_contents($dmo_readings_file);
-            
-        }else{
-            $this->log('File not found - ' . $dmo_readings_file);
-            //exit;
-        }
-        
-        $dmo_readings = $this->csvToArray($csvString);
-        $dmo_readings = $this->cleanDmoReadings($dmo_readings);
-        
         if(isset($station_temp[0]['station_id'])) {
         
-            foreach($dmo_readings as $dmo_reading){
+            //FROM DATABASE
+            App::import('Model', 'Weatherph.Reading');
+            $reading_temp = new Reading();
 
-                if(in_array($station_temp[0]['station_id'], $dmo_reading)){
+            $station_id = $station_temp[0]['station_id']; 
+            $station_readings = $reading_temp->find('all', array(
+            // 'fields' => array('id' ,'datum', 'ort1', 'dir'),  
+                'conditions' => array( 
+                    'ort1 LIKE' => "%".$station_id ."%", 
+                    'tl !=' => ''),
+                'order' => 'utc ASC'
+                ));
+
+            if(count($station_readings) > 0){
+                
+                $current_reading = array_pop($station_readings);
+                $current_reading = $current_reading['Reading'];
+                
+                $current_readings['moonphase'] = $this->moon_phase(date('Y', strtotime($current_reading['datum'])), date('m', strtotime($current_reading['datum'])), date('d', strtotime($current_reading['datum'])));
+
+                $current_reading = array_pop($station_readings);
+                $current_reading = $current_reading['Reading'];
+
+                $this->log("Current Readings:".print_r($current_reading, TRUE));
+
+                $current_readings['weather_symbol'] = (trim($current_reading['sy']) == '')? '0' : $this->dayOrNightSymbol($current_reading['sy'], $current_reading['utc'], array("sunrise"=>$sunrise,"sunset"=>$sunset));
+
+                // Replace the null values with hypen character and round it off to the nearest tenths
+                $current_readings['temperature'] = ($current_reading['tl'] == '')? '0' : number_format($current_reading['tl'],0);
+                $current_readings['precipitation'] = ($current_reading['rr'] == '')? '0' : round($current_reading['rr'],0);
+                $current_readings['relative_humidity'] = ($current_reading['rh'] == '')? '0' : round($current_reading['rh'],0);
+                $current_readings['wind_speed'] = ($current_reading['ff'] == '')? '0' : floor($current_reading['ff'] * 1.852 + 0.5);
+                $current_readings['wind_gust'] = ($current_reading['g3h'] == '')? '0' : round($current_reading['g3h'],0);
+                $current_readings['wind_direction'] = $this->windDirection($current_reading['dir']);
 
 
-                    $current_readings['moonphase'] = $this->moon_phase(date('Y', strtotime($dmo_reading['Datum'])), date('m', strtotime($dmo_reading['Datum'])), date('d', strtotime($dmo_reading['Datum'])));
-
-                    $current_readings['weather_symbol'] = (trim($dmo_reading['sy']) == '')? '0' : $this->dayOrNightSymbol($dmo_reading['sy'], $dmo_reading['utc'], array("sunrise"=>$sunrise,"sunset"=>$sunset));
-    //                           
-    //                // Replace the null values with hypen character and round it off to the nearest tenths
-                    $current_readings['temperature'] = ($dmo_reading['tl'] == '')? '0' : number_format($dmo_reading['tl'],0);
-                    $current_readings['precipitation'] = ($dmo_reading['rr'] == '')? '0' : round($dmo_reading['rr'],0);
-                    $current_readings['relative_humidity'] = ($dmo_reading['rh'] == '')? '0' : round($dmo_reading['rh'],0);
-                    $current_readings['wind_speed'] = ($dmo_reading['ff'] == '')? '0' : floor($dmo_reading['ff'] * 1.852 + 0.5);
-                    $current_readings['wind_gust'] = ($dmo_reading['g3h'] == '')? '0' : round($dmo_reading['g3h'],0);
-                    $current_readings['wind_direction'] = $this->windDirection($dmo_reading['dir']);
-    //                
-    //                
-                    $theirTime = strtotime($dmo_reading['Datum'] . $dmo_reading['utc'] . ':' .$dmo_reading['min']);
-    //                //$current_time = strtotime(date('Ymd H:i:s')) + $Date->getOffset();
-                    $current_readings['local_time'] = date('Ymd H:i:s', $theirTime + $Date->getOffset());
-                    $current_readings['update'] = date('h:iA', $theirTime + $Date->getOffset());
-    //                
-    //                //if(strtotime($dmo_reading['local_time']) > $current_time ) 
-                    $today_Readings[] = $current_readings;
-    //                
-                }
+                $theirTime = strtotime($current_reading['datum'] . $current_reading['utc'] . ':' .$current_reading['min']);
+                //$current_time = strtotime(date('Ymd H:i:s')) + $Date->getOffset();
+                $current_readings['local_time'] = date('Ymd H:i:s', $theirTime + $Date->getOffset());
+                $current_readings['update'] = date('h:iA', $theirTime + $Date->getOffset());
 
             }
-            
-            $current_reading = array_pop($today_Readings);
             
             $dmoResults['stationId'] = $station_temp[0]['station_id'];
         
         }
         
+        
+//        //FROM CSV FILE
+//        $dmo_readings_dir = Configure::read('Data.readings');
+//        $dmo_readings_file = $dmo_readings_dir . date('Ydm') . '.csv';
+//        
+//        if(file_exists($dmo_readings_file)){ 
+//            
+//            $this->log('File found - ' . $dmo_readings_file);
+//            $csvString = file_get_contents($dmo_readings_file);
+//            
+//        }else{
+//            $this->log('File not found - ' . $dmo_readings_file);
+//            //exit;
+//        }
+//        
+//        $dmo_readings = $this->csvToArray($csvString);
+//        $dmo_readings = $this->cleanDmoReadings($dmo_readings);
+//        
+//        if(isset($station_temp[0]['station_id'])) {
+//        
+//            foreach($dmo_readings as $dmo_reading){
+//
+//                if(in_array($station_temp[0]['station_id'], $dmo_reading)){
+//
+//
+//                    $current_readings['moonphase'] = $this->moon_phase(date('Y', strtotime($dmo_reading['Datum'])), date('m', strtotime($dmo_reading['Datum'])), date('d', strtotime($dmo_reading['Datum'])));
+//
+//                    $current_readings['weather_symbol'] = (trim($dmo_reading['sy']) == '')? '0' : $this->dayOrNightSymbol($dmo_reading['sy'], $dmo_reading['utc'], array("sunrise"=>$sunrise,"sunset"=>$sunset));
+//                               
+//                    // Replace the null values with hypen character and round it off to the nearest tenths
+//                    $current_readings['temperature'] = ($dmo_reading['tl'] == '')? '0' : number_format($dmo_reading['tl'],0);
+//                    $current_readings['precipitation'] = ($dmo_reading['rr'] == '')? '0' : round($dmo_reading['rr'],0);
+//                    $current_readings['relative_humidity'] = ($dmo_reading['rh'] == '')? '0' : round($dmo_reading['rh'],0);
+//                    $current_readings['wind_speed'] = ($dmo_reading['ff'] == '')? '0' : floor($dmo_reading['ff'] * 1.852 + 0.5);
+//                    $current_readings['wind_gust'] = ($dmo_reading['g3h'] == '')? '0' : round($dmo_reading['g3h'],0);
+//                    $current_readings['wind_direction'] = $this->windDirection($dmo_reading['dir']);
+//                    
+//                    
+//                    $theirTime = strtotime($dmo_reading['Datum'] . $dmo_reading['utc'] . ':' .$dmo_reading['min']);
+//                    //$current_time = strtotime(date('Ymd H:i:s')) + $Date->getOffset();
+//                    $current_readings['local_time'] = date('Ymd H:i:s', $theirTime + $Date->getOffset());
+//                    $current_readings['update'] = date('h:iA', $theirTime + $Date->getOffset());
+//                    
+//                    $today_Readings[] = $current_readings;
+//                    
+//                }
+//
+//            }
+//            
+//            $current_reading = array_pop($today_Readings);
+//            
+//            $dmoResults['stationId'] = $station_temp[0]['station_id'];
+//        
+//        }
+        
         // Check if the last/current reading exist, and set status
-        if(count($current_reading)>0){
-            $dmoResults['reading'] = $current_reading;
+        if(count($current_readings)>0){
+            $dmoResults['reading'] = $current_readings;
             $dmoResults['reading']['status'] = 'ok';
-            $dmoResults['reading']['sunrise'] = $sunrise;
-            $dmoResults['reading']['sunset'] = $sunset;
         }else{
             $dmoResults['reading']['status'] = 'none';
         }
+        
+        $dmoResults['reading']['sunrise'] = $sunrise;
+        $dmoResults['reading']['sunset'] = $sunset;
         
         //$this->log(print_r($current_reading, TRUE));
         
@@ -875,8 +926,6 @@ class WeatherphStationForecast extends WeatherphAppModel
                         $readingTime = date('Ymd H:i:s', strtotime(date('Ymd H:i:s')) + $Date->getOffset());
                     
                         if (strtotime($new_forecast['localtime']) > strtotime($readingTime)) $dmoResults['forecast'][$new_forecast['Datum']][] = $new_forecast;
-
-                        //$dmoResults['forecast'][$new_forecast['Datum']][] = $new_forecast;
 
                 }
             }
