@@ -332,7 +332,7 @@ $(document).ready(function(){
                 name: $currentStation.name,
                 type:'Point',                
                 coordinates: $currentStation.coordinates
-            }, {strokeWidth: "2px", height: "8px", width: "8px", radius: "8px", color: "#dd2222", fillOpacity: "0", strokeOpacity: "1"},true);
+            }, {strokeWidth: "2px", height: "8px", width: "8px", radius: "8px", color: "#20304d", fillOpacity: "0", strokeOpacity: "1"},true);
         }
 
     }

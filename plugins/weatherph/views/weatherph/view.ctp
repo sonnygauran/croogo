@@ -71,8 +71,9 @@ echo $this->Html->script(array(
                         <tbody>
 
                             <tr>
-                                <td class="caption">Avg. Wind Speed</td>
-                                <td class="output"><?= $dataSets['reading']['wind_speed']; ?>km/h</td>
+                                <td class="caption">Wind</td>
+                                <td class="output"><?= $dataSets['reading']['wind_speed']; ?>km/h, <br/>
+                                <?= $dataSets['reading']['wind_direction']['eng']; ?></td>
                             </tr>
                             <tr>
                                 <td class="caption">Rain</td>
@@ -82,10 +83,10 @@ echo $this->Html->script(array(
                                 <td class="caption">Relative Humidity</td>
                                 <td class="output"><?= $dataSets['reading']['relative_humidity']; ?>%</td>
                             </tr>
-                            <tr>
+                            <!--<tr>
                                 <td class="caption">Wind Direction</td>
-                                <td class="output"><?= $dataSets['reading']['wind_direction']['eng']; ?></td>                        
-                            </tr>
+                                <td class="output"><?= $dataSets['reading']['wind_direction']['eng']; ?></td>
+                            </tr>-->
                         </tbody>
                     </table>
                 </div> <!--END CONDITION TABLE-->
@@ -103,7 +104,6 @@ echo $this->Html->script(array(
         <div id="weekWeather">
             <? if($dataSets['forecast_status'] == 'ok'): ?>
             <!-- CSV FILE <?php echo $dataSets['forecast_dmo_file_csv'];?>-->    
-            <div class="tab-container">
                 <?php
                 foreach ($dataSets['forecast'] as $key => $dayForecast) {
                     
@@ -116,7 +116,7 @@ echo $this->Html->script(array(
                     ?>
                     
                     <div class ="daydate"><span class="daytime"><?= $div_id ?></span><?= ', ' . $divdate ?></div>
-                    <table class="week-forecast" cellspacing="0">
+                    <table class="forecast-table" cellspacing="0">
                         <tr>
                             <th class="columnheader"> Time </th>
                             <th class="columnheader">Condition</th>
@@ -139,7 +139,6 @@ echo $this->Html->script(array(
 
                     </table>
                 <?php } ?>
-            </div>
             <? else: ?>
             <div class="no-readings" style="display: block;">
                 <p>Sorry, there are no forecast available for this station.</p>
