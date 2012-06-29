@@ -3,11 +3,12 @@ class ReadingsImportTask extends Shell {
     
     function execute(){
         
+        $execution_time_start = microtime(TRUE);
+        
         App::import('Model', 'Weatherph.Reading');
         $Reading = new Reading();
         
-        //echo 'CSV Readings Date [yyyyddmm]:';
-        //$csv_filename = trim(fgets(STDIN));
+        $csv_filename = date('Ydm');
         
         $readings_csv_file = Configure::read('Data.readings') . $csv_filename . '.csv';;
         
@@ -20,7 +21,7 @@ class ReadingsImportTask extends Shell {
             
             unset($rows[0]);
             
-            $cntr = 0;
+            $cntr_inserted = $cntr_updated = 0;
             
             foreach($rows as $num => $row){
                 
@@ -32,37 +33,75 @@ class ReadingsImportTask extends Shell {
                     
                     if(trim($data[7]) != '' && trim($data[5]) != '' && trim(strtolower($data[0])) != 'datum'){ //Check data if not NULL/EMPTY
                         
-                        $cntr++;
+                        // Check database if this readings already exist
+                        $readings = $Reading->find('all', array(
+                        'fields' => array('id', 'datum', 'utc', 'min', 'ort1'),  
+                        'conditions' => array( 
+                            'datum =' => $data[0],
+                            'utc =' => $data[1],
+                            'min =' => $data[2],
+                            'ort1 =' => $data[3],
+                            ),
+                        'order' => 'utc ASC',
+                        'limit' => 1,
+                        ));
                         
-                        $data = array(
-                            'datum' => $data[0],
-                            'utc' => $data[1],
-                            'min' => $data[2],
-                            'ort1' => $data[3],
-                            'dir' => $data[4],
-                            'ff' => $data[5],
-                            'g3h' => $data[6],
-                            'tl' => $data[7],
-                            'tn' => $data[8],
-                            'rr' => $data[9],
-                            'sy' => $data[10],
-                            'rain3' => $data[11],
-                            'rain6' => $data[12],
-                            'rh' =>$data[13],
-                            'sy2' => $data[14],
-                        );
+                        if(count($readings)>0){
+                            
+                            $cntr_updated++;
+                            
+                            // If exist overwrite to update
+                            $Reading->id = $readings[0]['Reading']['id'];
+                           
+                            $Reading->save($data);
+                           
+                            echo "Updated count [$cntr_updated]\n";
+                           
+                        }else{
+                            
+                            // If not exist insert it to database
+                            $cntr_inserted++;
                         
-                        $Reading->save($data);
-                    
-                        echo "Data inserted count [$cntr]\n";
+                            $data = array(
+                                'datum' => $data[0],
+                                'utc' => $data[1],
+                                'min' => $data[2],
+                                'ort1' => $data[3],
+                                'dir' => $data[4],
+                                'ff' => $data[5],
+                                'g3h' => $data[6],
+                                'tl' => $data[7],
+                                'tn' => $data[8],
+                                'rr' => $data[9],
+                                'sy' => $data[10],
+                                'rain3' => $data[11],
+                                'rain6' => $data[12],
+                                'rh' =>$data[13],
+                                'sy2' => $data[14],
+                            );
+
+                            $Reading->save($data);
+
+                            echo "Inserted count [$cntr_inserted]\n";
+                            
+                        } 
+//                        
                     }
                     
                 }                
             }
 
         }else{
-            echo "File not found: $readings_csv_file\n";
+            
+            echo "File not found: $readings_csv_file, run the script to generate the csv file first.\n";
+            
         }
+        
+        $execution_time_end = microtime(TRUE);
+        
+        $total_execution_time = $execution_time_end - $execution_time_start;
+        
+        $this->out("Execution Time: " . date('H:i:s', $total_execution_time));
         
     }
    
