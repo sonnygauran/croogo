@@ -119,7 +119,7 @@ echo $this->Html->script(array(
                             <th class="columnheader"> Time </th>
                             <th class="columnheader">Condition</th>
                             <th class="columnheader"> Temperature </th>
-                            <th class="columnheader"> Precipitation </th>
+                            <th class="columnheader"> Rain </th>
                             <th class="columnheader"> Humidity</th>
                             <th class="columnheader"> Wind</th>
                         </tr>
