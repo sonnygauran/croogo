@@ -11,7 +11,9 @@ class StationReadingsTask extends Shell{
         $csv = "";
         $counter = 1;
         $file_name = Configure::read('Data.readings'). date('Ydm') . '.csv';
-        
+        $date = date('Ymd');
+        $start_hour = date('H') - 2;
+        $end_hour = date('H');
         echo "Path: " . Configure::read('Data.readings') . "\n";
         
         if(!is_dir(Configure::read('Data.readings'))){
@@ -20,17 +22,14 @@ class StationReadingsTask extends Shell{
             exit;
         }
         
-        echo "Start Date [yyyymmdd]:";
-        $startdate = trim(fgets(STDIN));
-        echo "End Date [yyyymmdd]: ";
-        $enddate = trim(fgets(STDIN));
-        
+        echo $date . "\n";
+
         $time_format = array(
             'time_resolution' => "10m",
-            'start_date'      => $startdate,
-            'end_date'        => $enddate,
-            'start_hour'      => 00,
-            'end_hour'        => 00,
+            'start_date'      => $date,
+            'end_date'        => $date,
+            'start_hour'      => $start_hour,
+            'end_hour'        => $end_hour,
         );
         
         
