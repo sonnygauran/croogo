@@ -411,7 +411,7 @@ ECHO
                                 </table>
                             </div>
                         </li>
-                        <li class="forecast-highlight">
+<!--                        <li class="forecast-highlight">
                             <h6 class="6-hour time">--:--</h6>
                             <div class="6-hour readings">
                                 <span class="temperature"><span>&nbsp;</span>&deg;C</span>
@@ -433,7 +433,7 @@ ECHO
                                     </tbody>
                                 </table>
                             </div>
-                        </li>
+                        </li>-->
                     </ul>
                 </div>
                 <div class="no-forecast">
