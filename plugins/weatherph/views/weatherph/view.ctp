@@ -69,7 +69,6 @@ echo $this->Html->script(array(
                 <div id="conditionTable">
                     <table>
                         <tbody>
-
                             <tr>
                                 <td class="caption">Wind</td>
                                 <td class="output"><?= $dataSets['reading']['wind_speed']; ?>km/h, <br/>
@@ -83,10 +82,6 @@ echo $this->Html->script(array(
                                 <td class="caption">Relative Humidity</td>
                                 <td class="output"><?= $dataSets['reading']['relative_humidity']; ?>%</td>
                             </tr>
-                            <!--<tr>
-                                <td class="caption">Wind Direction</td>
-                                <td class="output"><?= $dataSets['reading']['wind_direction']['eng']; ?></td>
-                            </tr>-->
                         </tbody>
                     </table>
                 </div> <!--END CONDITION TABLE-->
