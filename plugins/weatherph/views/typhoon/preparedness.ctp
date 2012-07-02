@@ -1,6 +1,6 @@
 <div class="content">
     <section class="main">
-        <div class="posts">
+        <div class="text">
             <h2>Typhoon Preparedness Guide</h2>
             <hr/>
             <h3>What To Do <em>Before</em> A Typhoon</h3>

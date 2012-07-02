@@ -21,14 +21,14 @@ echo $this->Html->script(array(
 
             <div id="station">
                 <h1><?= $dataSets['stationName']; ?></h1>
-
+                <h6>Current readings</h6>
                 <!-- <a href="#">change station</a>-->
             </div> <!--END STATION-->
 
             <?php if ($dataSets['reading']['status'] == 'ok'): ?>
             
                 <div id="condition">
-                      
+
                         <?php if (!empty($dataSets['reading']['sy']['symbol'])) { ?>
                         <div class="inner-condition">
                         <div class="left-temp-reading">
@@ -66,25 +66,23 @@ echo $this->Html->script(array(
                     </table>
                 </div> <!--END CONDITION-->
 
-                <div id="conditionTable">
+                <div id="current-reading-table">
                     <table>
                         <tbody>
-
                             <tr>
-                                <td class="caption">Wind</td>
-                                <td class="output"><?= $dataSets['reading']['wind_speed']; ?>km/h, <br/>
-                                <?= $dataSets['reading']['wind_direction']['eng']; ?></td>
+                                <th>Wind Speed/Direction</th>
+                                <td class="output"><?= $dataSets['reading']['wind_speed']; ?>km/h, <?= $dataSets['reading']['wind_direction']['eng']; ?></td>
                             </tr>
                             <tr>
-                                <td class="caption">Rain</td>
+                                <th>Rain (hourly)</th>
                                 <td class="output"><?= $dataSets['reading']['precipitation']; ?>mm</td>
                             </tr>
                             <tr>
-                                <td class="caption">Relative Humidity</td>
+                                <th>Relative Humidity</th>
                                 <td class="output"><?= $dataSets['reading']['relative_humidity']; ?>%</td>
                             </tr>
                             <!--<tr>
-                                <td class="caption">Wind Direction</td>
+                                <th>Wind Direction</th>
                                 <td class="output"><?= $dataSets['reading']['wind_direction']['eng']; ?></td>
                             </tr>-->
                         </tbody>
@@ -115,15 +113,15 @@ echo $this->Html->script(array(
                     $divdate = ($key == $date) ? date('F j, Y') : date('F j, Y', strtotime($key));
                     ?>
                     
-                    <div class ="daydate"><span class="daytime"><?= $div_id ?></span><?= ', ' . $divdate ?></div>
+                    <div class ="forecast-date"><strong><?= $div_id ?></strong><?= ', ' . $divdate ?></div>
                     <table class="forecast-table" cellspacing="0">
                         <tr>
-                            <th class="columnheader"> Time </th>
-                            <th class="columnheader">Condition</th>
-                            <th class="columnheader"> Temperature </th>
-                            <th class="columnheader"> Rain</th>
-                            <th class="columnheader"> Humidity</th>
-                            <th class="columnheader"> Wind</th>
+                            <th> Time </th>
+                            <th>Condition</th>
+                            <th> Temperature </th>
+                            <th> Rain</th>
+                            <th> Humidity</th>
+                            <th> Wind</th>
                         </tr>
 
                         <?php foreach ($dayForecast as $forecasts2) { ?><!-- <?= $forecasts2['their_time'];?> -->
@@ -170,11 +168,11 @@ echo $this->Html->script(array(
                         chart.write();
                         //]]>
                     </script>
-                    <div class="color-legend">
-                        <span class="red-line"></span>Temperature
-                        <span class="green-line"></span>Dewpoint
-                        <span class="red-dot"></span>Highest Temperature
-                        <span class="blue-dot"></span>Lowest Temperature
+                    <div class="chart-legend">
+                        <span style="background-color: red; height: 2px;"></span>Temperature
+                        <span style="background-color: green; height: 2px;"></span>Dewpoint
+                        <span style="background-color: red; height: 10px; width: 2px; border-radius: 8px;"></span>Highest Temperature
+                        <span style="background-color: blue; height: 10px; width: 2px; border-radius: 8px;"></span>Lowest Temperature
                     </div>
                 </div>
                 <div class="precipitation panel">
@@ -187,8 +185,8 @@ echo $this->Html->script(array(
                         chart.write();
                         //]]>
                     </script>
-                    <div class="color-legend">
-                        <span class="blue-bar"></span>Humidity
+                    <div class="chart-legend">
+                        <span style="background-color: blue; height: 5px;"></span>Humidity
                     </div>
                 </div>
                 <div class="wind panel">
@@ -201,9 +199,9 @@ echo $this->Html->script(array(
                         chart.write();
                         //]]>
                     </script>
-                    <div class="color-legend">
-                        <span class="orange-line"></span>Wind Gust
-                        <span class="olive-line"></span>Wind Speed
+                    <div class="chart-legend">
+                        <span style="background-color: orange; height: 2px;"></span>Wind Gust
+                        <span style="background-color: olive; height: 2px;"></span>Wind Speed
                     </div>
                     <script type="text/javascript" language="javascript">
                         //<![CDATA[
@@ -225,8 +223,8 @@ echo $this->Html->script(array(
                         chart.write();
                         //]]>
                     </script>
-                    <div class="color-legend">
-                        <span class="green-line"></span>Humidity
+                    <div class="chart-legend">
+                        <span style="background-color: green; height: 2px;"></span>Humidity
                     </div>
                 </div>
             </div>
