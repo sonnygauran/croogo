@@ -4,14 +4,17 @@
  *      - resource - contains an array of (data-layer => (temperature, pressure)) for retreiving the image key. 
  */
 ?>
+<?php
+    $movie_location = Configure::read('Data.movies');
+?>
 <script type="text/javascript">
     window["DATA_LAYER"] = null;
     window["DATA_LAYERS"] = <?= json_encode($resources['data-layers']); ?>;
 
     var windContent = '<?= str_replace("\n", "\\", (<<<ECHO
         <video id="movie-wind" width="554" height="554" controls="controls">
-        <source src="{$this->webroot}assets/theme/weatherph/vid/wind.mp4" type="video/mp4" />
-        <source src="{$this->webroot}assets/theme/weatherph/vid/wind.webm" type="video/webm" />
+        <source src="{$movie_location}Philippines_All_niwofi.mp4" type="video/mp4" />
+        <source src="{$movie_location}Philippines_All_niwofi.webm" type="video/webm" />
         Your browser does not support the video tag.
         </video>
 ECHO
@@ -19,8 +22,8 @@ ECHO
         ?>';
     var precipContent = '<?= str_replace("\n", "\\", (<<<ECHO
         <video id="movie-precipitation" width="554" height="554" controls="controls">
-        <source src="{$this->webroot}assets/theme/weatherph/vid/precip.mp4" type="video/mp4" />
-        <source src="{$this->webroot}assets/theme/weatherph/vid/precip.webm" type="video/webm" />
+        <source src="{$movie_location}Philippines_All_stfi.mp4" type="video/mp4" />
+        <source src="{$movie_location}Philippines_All_stfi.webm" type="video/webm" />
         Your browser does not support the video tag.
         </video>
 ECHO
@@ -189,7 +192,7 @@ ECHO
                 
                 
                 <div id="province-select">
-                    <h6>Province:</h6>
+                    <p>Province:</p>
                     <select name="philippine-regions">
                         <option>Choose one...</option>
 
@@ -263,11 +266,11 @@ ECHO
                 </div>
                 <div class="day-forecast">
                     <div class="detail-page-link">
-                        <h2 style="height: 21px; text-align: center; width: 195px;">
+                        <h3 style="height: 21px; text-align: center; width: 195px;">
                             <a href="<?= $this->webroot ?>view" style="background: url('<?= $this->webroot ?>theme/weatherph/img/arrow.png') no-repeat left center; padding-left: 40px; margin: 0 auto;">
                                 More Details
                             </a>
-                        </h2>
+                        </h3>
                     </div>
                     <ul>
                         <li class="forecast-highlight">
@@ -408,7 +411,7 @@ ECHO
                                 </table>
                             </div>
                         </li>
-                        <li class="forecast-highlight">
+<!--                        <li class="forecast-highlight">
                             <h6 class="6-hour time">--:--</h6>
                             <div class="6-hour readings">
                                 <span class="temperature"><span>&nbsp;</span>&deg;C</span>
@@ -430,7 +433,7 @@ ECHO
                                     </tbody>
                                 </table>
                             </div>
-                        </li>
+                        </li>-->
                     </ul>
                 </div>
                 <div class="no-forecast">
@@ -443,12 +446,9 @@ ECHO
             <h4>Blog</h4>
             <div class="posts">
                 <?php foreach ($blogEntries as $blog) { ?>
-                    <div class="blog-preview">
                         <?php $createdTime = strtotime($blog['Node']['created']); ?>
-
                         <div class="ribbon-wrapper">
                             <div class="ribbon-front">
-                            <div class="ribbon-top-bar"></div>
                                 <div class="date">
                                     <div class="month"><?= date('M', $createdTime) ?></div>
                                     <div class="day"><?= date('d', $createdTime) ?></div>
@@ -462,8 +462,6 @@ ECHO
                         <div class="blog-posts">
                         <p><?= $text->excerpt(strip_tags($blog['Node']['body']), 'method', 200, '...' . $html->link('Read More...', $blog['Node']['url'])) ?><?= '<hr>'; ?></p>
                         </div>
-
-                    </div>
                 <?php } ?>
             </div>
         </div>

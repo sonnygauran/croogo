@@ -66,10 +66,6 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
     margin: 60px 10px;
 }
 
-/* OPTIONS
-Contains language selector (none yet), and search bar
-*/
-
 #options {
     float: right;
     margin: 85px 10px 10px 10px;
@@ -122,7 +118,6 @@ nav {
     width: 980px;
     margin: 15px 0;
     padding: 5px 10px;
-    font-size: .875em;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
@@ -191,14 +186,13 @@ nav {
     MAP
 ====================*/
 #map-container {
-    width: 554px;
     margin-right: 10px;
     float:left;
+    background-color: #fafafa;
 }
 
 #map {
     height: 554px;
-    /*    display:none;*/
 }
 
 #map-container video {
@@ -206,9 +200,7 @@ nav {
 }
 
 .layerSelector {
-    width: 534px;
     padding: 5px 10px;
-    border-bottom: 1px solid #555;
     -webkit-border-top-left-radius: 5px;
     -webkit-border-top-right-radius: 5px;
     -moz-border-radius-topleft: 5px;
@@ -221,9 +213,7 @@ nav {
 }
 
 #legend {
-    width: 548px;
     padding: 3px;
-    border-top: 1px solid #ddd;
     -webkit-border-bottom-right-radius: 5px;
     -webkit-border-bottom-left-radius: 5px;
     -moz-border-radius-bottomright: 5px;
@@ -269,7 +259,8 @@ nav {
     overflow: auto;
 }
 
-#province-select > h6, #province-select > select {
+#province-select > p,
+#province-select > select {
     display: inline;
     padding: 0 5px;
     vertical-align: middle;
@@ -288,7 +279,7 @@ nav {
 }
 
 #current-readings-panel {
-    padding: 15px 10px 5px;
+    padding: 16px 10px 6px;
     -moz-box-shadow:    inset 0 2px 1px #333;
     -webkit-box-shadow: inset 0 2px 1px #333;
     box-shadow:         inset 0 2px 1px #333;
@@ -358,19 +349,8 @@ span.temperature {
     POSTS, NEWS
 ====================*/
 
-.secondary h4, h6 {
+.secondary h4 {
     padding-bottom: 1em;
-}
-
-.posts {
-    position: relative;
-    margin: 0 auto;
-    padding: 2em;
-    background-color: #fafafa;
-    border: 1px solid #e1e1e1;
-    -webkit-box-shadow: 0 4px 3px -3px black;
-    -moz-box-shadow: 0 4px 3px -3px black;
-    box-shadow: 0 4px 3px -3px black;
 }
 
 .blog {
@@ -400,23 +380,6 @@ span.temperature {
     font-weight: 700;
 }
 
-.daydate{
-    background-color: #3E5E95;
-    border-radius: 5px 5px 0px 0;
-    color: #fff;
-    padding-top: 8px;
-    margin-top: 5px;
-    padding-bottom: 5px;
-    font-size: 15px;
-    width: 20em;
-    text-align: center;
-    box-shadow: 2px 0 0 0 #555;
-}
-
-span.daytime {
-    font-weight: bold;
-}
-
 .date .month, .date .year {
     font-size: 1.2em;
     text-transform: uppercase;
@@ -432,39 +395,10 @@ span.daytime {
     box-shadow: 0 4px 3px -3px black;
 }
 
-.posts p {
-    padding-bottom: 1em;
-    line-height: 1.4;
-}
-
-.posts li {
-    list-style: disc;
-    margin: 1em 0;
-}
-
-.posts h2 {
-    text-align: center;
-}
-
-.posts h2, .posts h3 {
-    margin-bottom: 1em;
-}
-
-.posts .read-more-link {
-    text-align: right;
-    margin-bottom: 0;
-    padding-bottom: 0;
-}
-
-.posts .read-more-link a {
-    text-decoration: none;
-}
-
 .news li {
     float:left;
-    width: 100%;
-    font-weight: 500;
-    padding: 5px;
+    width: 97%;
+    padding: 3%;
 }
 
 .news img {
@@ -475,6 +409,33 @@ span.daytime {
 .news p {
     padding: 1em;
     vertical-align: middle;
+}
+
+.posts {
+    line-height: 1.618em;
+    position: relative;
+    margin: 0 auto;
+    padding: 2em;
+    background-color: #fafafa;
+    border: 1px solid #e1e1e1;
+    -webkit-box-shadow: 0 4px 3px -3px black;
+    -moz-box-shadow: 0 4px 3px -3px black;
+    box-shadow: 0 4px 3px -3px black;
+}
+
+.posts p {
+    margin-bottom: 1.5em;
+}
+
+.posts li {
+    list-style: disc;
+    margin: 1em 0;
+}
+
+.posts h2 {
+    text-align: center;
+    line-height: 1.333333333333333em;
+    margin-bottom: .6666666666666667em;
 }
 
 /*====================
@@ -583,9 +544,32 @@ span.daytime {
     width: 100%;
 }
 
+.forecast-table td {
+    padding: 4px;
+    text-align: center;
+    border: 1px solid #d6dfeb;
+}
+
+.daydate{
+    background-color: #3E5E95;
+    border-radius: 5px 5px 0px 0;
+    color: #fff;
+    padding-top: 8px;
+    margin-top: 5px;
+    padding-bottom: 5px;
+    font-size: 15px;
+    width: 20em;
+    text-align: center;
+    box-shadow: 2px 0 0 0 #555;
+}
+
+span.daytime {
+    font-weight: bold;
+}
+
 /*===============
     TABS
-===============*/
+===============
 
 ul.tabs {
     margin-top: 1em;
@@ -625,15 +609,7 @@ div.current-tab {
     display: block;
 }
 
-/*===============
-    WEEK
-===============*/
-
-.forecast-table td {
-    padding: 4px;
-    text-align: center;
-    border: 1px solid #d6dfeb;
-}
+*/
 
 /*====================
     SIDEBAR
@@ -646,31 +622,19 @@ div.current-tab {
 
 .sponsored {
     padding: 10px;
-    margin-bottom: 15px;
+    margin-bottom: 1em;
     border-radius: 5px;
     text-align: center;
 }
 
-.ads {
-    margin-top: 10px;
-}
-
 .promo {
-    padding: 10px;
-    margin-bottom: 10px;
+    padding: .5em;
+    margin-bottom: 1em;
     border-radius: 5px;
     text-align: center;
     -webkit-box-shadow: 0 4px 3px -3px black;
     -moz-box-shadow: 0 4px 3px -3px black;
     box-shadow: 0 4px 3px -3px black;
-}
-
-.promo p {
-    text-align: left;
-}
-
-.promo img {
-    margin: 5px;
 }
 
 /* Glossary */
@@ -691,6 +655,13 @@ dt {
 
 dd {
     margin: 1em 0 2em 0;
+}
+
+/* Search Results*/
+
+.names.index {
+    width: 240px;
+    float: left;
 }
 
 .search-results h2 {
@@ -721,11 +692,6 @@ dd {
     background-color: #e0e6f2;
 }
 
-.names.index {
-    width: 240px;
-    float: left;
-}
-
 .paging {
     text-align: center;
 }
@@ -753,30 +719,26 @@ footer {
 ========================================*/
 
 html {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: .875em;
-    font-weight: 400;
-    line-height: 1.5;
+    font: 87.5%/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 h1 {
     font-size: 3em;
-    font-weight: 600;
 }
-
 h2 {
-    font-size: 1.875em;
-    font-weight: 600;
+    font-size: 2.25em;
 }
-
-h3, h4 {
-    font-size: 1.143em;
-    font-weight: 600;
+h3 {
+    font-size: 1.5em;
 }
-
-h5, h6 {
+h4 {
+    font-size: 1.3125em;
+}
+h5 {
+    font-size: 1.125em;
+}
+h6 {
     font-size: 1em;
-    font-weight: 600;
 }
 
 #info {
@@ -819,11 +781,8 @@ So much blue.
 
 */
 
-html {
-    color: #365283;
-}
-
 body {
+    color: #365283;
     background: #fafafa url('<?= $this->webroot ?>theme/weatherph/img/bg.png');
 }
 
@@ -847,12 +806,12 @@ nav, .layerSelector, .promo, #info, .output {
     color: #fafafa;
 }
 
-#legend {
-    background-color: white;
-}
-
 .current.readings-location, nav li, .search-results h2 {
     text-shadow: 0px 1px 3px #333;
+}
+
+.news li {
+    background-color: #fafafa;
 }
 
 .news li:nth-child(odd) {
@@ -881,23 +840,9 @@ nav, .layerSelector, .promo, #info, .output {
     box-shadow:         inset 0 2px 2px #aaa;
 }
 
-hr {
-    width: 65%;
-    margin: 1.3em auto;
-    border: 0;
-    height: 1px;
-    background-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(54,82,121,.75), rgba(0,0,0,0)); 
-    background-image:    -moz-linear-gradient(left, rgba(0,0,0,0), rgba(54,82,121,.75), rgba(0,0,0,0)); 
-    background-image:     -ms-linear-gradient(left, rgba(0,0,0,0), rgba(54,82,121,.75), rgba(0,0,0,0)); 
-    background-image:      -o-linear-gradient(left, rgba(0,0,0,0), rgba(54,82,121,.75), rgba(0,0,0,0)); 
-}
-
 /*========================================
 5.	States
 ========================================*/
-.center {
-    text-align: center;
-}
 
 .clear {
     clear: both;
@@ -991,7 +936,7 @@ nav li:active, .detail-page-link:active {
 
 .no-readings, .no-forecast {
     display: none;
-    padding: 25px 15px;
+    padding: 26px 16px;
     text-align: center;
     background-color: #20304d;
     color: #fafafa;
@@ -1068,6 +1013,17 @@ span.sunset { background-position: -60px 5px; }
 
 span.wind-description { font-size: .875em; }
 
+hr {
+    width: 65%;
+    margin: 1em auto;
+    border: 0;
+    height: 1px;
+    background-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(54,82,121,.75), rgba(0,0,0,0)); 
+    background-image:    -moz-linear-gradient(left, rgba(0,0,0,0), rgba(54,82,121,.75), rgba(0,0,0,0)); 
+    background-image:     -ms-linear-gradient(left, rgba(0,0,0,0), rgba(54,82,121,.75), rgba(0,0,0,0)); 
+    background-image:      -o-linear-gradient(left, rgba(0,0,0,0), rgba(54,82,121,.75), rgba(0,0,0,0)); 
+}
+
 .shadow {
     -webkit-box-shadow: 0 4px 3px -3px black;
     -moz-box-shadow: 0 4px 3px -3px black;
@@ -1113,40 +1069,35 @@ span.wind-description { font-size: .875em; }
 
 .ribbon-wrapper.blog-page{
     position: absolute;
-    top: 0;
-}
-
-.ribbon-top-bar {
-    position:relative;
-    background-color:#3990BD;
-    height: 10px;
-    width: 70px;
+    top: .5em;
 }
 
 .ribbon-front {
-    background-color: #fafafa;
+    background-color: #ffffff;
     height: 80px;
+    width: 70px;
     position: relative;
-    left:-35px;
+    left:-25px;
     z-index: 2;
-    border: 1px solid #e1e1e1;
+    border-top: 5px solid #3990BD;
+    border-bottom: 1px solid #e1e1e1;
 }
 
 .ribbon-front.blog-page {
-    left:-50px;
+    left:-38px;
 }
 
 .ribbon-edge-bottomleft {
     position: absolute;
-    left: -35px;
+    left: -25px;
     border-color: transparent #9393A4 transparent transparent;
     z-index: 1;
     border-style:solid;
     height:0px;
     width:0px;
-    border-width: 0 20px 10px 0;
+    border-width: 0 10px 5px 0;
 }
 
 .ribbon-edge-bottomleft.blog-page {
-    left: -48px;
+    left: -38px;
 }

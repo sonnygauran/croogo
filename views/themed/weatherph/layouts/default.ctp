@@ -115,7 +115,7 @@
                 </div>
                 
                 <!-- AddThis Button BEGIN -->
-                <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+                <div class="addthis_toolbox addthis_default_style addthis_32x32_style" style="margin-bottom: 10px;">
                 <a class="addthis_button_facebook"></a>
                 <a class="addthis_button_twitter"></a>
                 <a class="addthis_button_linkedin"></a>
@@ -125,7 +125,7 @@
                 </div>
                 <!-- AddThis Button END -->
                 
-                <div class="sponsored" style="margin-top: 10px;">
+                <div class="sponsored">
                     <?php
                     $images = array(
                         'quasha.jpeg',
