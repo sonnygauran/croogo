@@ -49,7 +49,7 @@ ECHO
 <div class="content">
     <section class="main cf">
         <div id="map-container">
-            <div class="layerSelector cf">
+            <div class="layer-selector cf">
                 <ul class="movies data-layers dropdown">
                     <li><a href="#" data-target="data-layer" data-name="stations">Weather stations</a></li>
                     <li>
@@ -186,8 +186,8 @@ ECHO
                     </ul>
                 </div>
                 <div class="unit-buttons">
-                    <button type="button" id="celsius-switch">°C</button>
-                    <button type="button" id="fahrenheit-switch">°F</button>
+                    <button type="button" id="celsius-switch">¬∞C</button>
+                    <button type="button" id="fahrenheit-switch">¬∞F</button>
                 </div>
                 
                 
@@ -235,11 +235,9 @@ ECHO
         <div id="info" class="shadow">
             <div id="current-readings-panel">
                 <h2 class="current readings-location">&nbsp;</h2>
-                <!--                <a href="#" >change station</a>-->
                 <p>Current Readings:</p>
             </div>
             <div id="current-readings-box">
-
                 <div class="readings shadow">
                     <p>last updated: <span class="last-update">--:--</span></p>
                     <span class="current temperature"><span>&nbsp;</span>&deg;C</span>
@@ -251,7 +249,7 @@ ECHO
                                 <td class="current wind"><span>&nbsp;</span>km/h</td>
                             </tr>
                             <tr>
-                                <td>Rain</td>
+                                <td>Rain (hourly)</td>
                                 <td class="current precipitation"><span>&nbsp;</span>mm</td>
                             </tr>
                             <tr>
@@ -285,7 +283,7 @@ ECHO
                                             <td class="3-hour wind"><span>&nbsp;</span>km/h</td>
                                         </tr>
                                         <tr>
-                                            <td>Rain</td>
+                                            <td>Rain (Hourly)</td>
                                             <td class="precipitation"><span>&nbsp;</span>mm</td>
                                         </tr>
                                         <tr>
@@ -308,7 +306,7 @@ ECHO
                                             <td class="wind"><span>&nbsp;</span>km/h</td>
                                         </tr>
                                         <tr>
-                                            <td>Rain</td>
+                                            <td>Rain (Hourly)</td>
                                             <td class="precipitation"><span>&nbsp;</span>mm</td>
                                         </tr>
                                         <tr>
@@ -331,7 +329,7 @@ ECHO
                                             <td class="wind"><span>&nbsp;</span>km/h</td>
                                         </tr>
                                         <tr>
-                                            <td>Rain</td>
+                                            <td>Rain (Hourly)</td>
                                             <td class="precipitation"><span>&nbsp;</span>mm</td>
                                         </tr>
                                         <tr>
@@ -354,7 +352,7 @@ ECHO
                                             <td class="wind"><span>&nbsp;</span>km/h</td>
                                         </tr>
                                         <tr>
-                                            <td>Rain</td>
+                                            <td>Rain (Hourly)</td>
                                             <td class="precipitation"><span>&nbsp;</span>mm</td>
                                         </tr>
                                         <tr>
@@ -377,7 +375,7 @@ ECHO
                                             <td class="wind"><span>&nbsp;</span>km/h</td>
                                         </tr>
                                         <tr>
-                                            <td>Rain</td>
+                                            <td>Rain (Hourly)</td>
                                             <td class="precipitation"><span>&nbsp;</span>mm</td>
                                         </tr>
                                         <tr>
@@ -400,7 +398,7 @@ ECHO
                                             <td class="wind"><span>&nbsp;</span>km/h</td>
                                         </tr>
                                         <tr>
-                                            <td>Rain</td>
+                                            <td>Rain (Hourly)</td>
                                             <td class="precipitation"><span>&nbsp;</span>mm</td>
                                         </tr>
                                         <tr>
@@ -423,7 +421,7 @@ ECHO
                                             <td class="wind"><span>&nbsp;</span>km/h</td>
                                         </tr>
                                         <tr>
-                                            <td>Rain</td>
+                                            <td>Rain (Hourly)</td>
                                             <td class="precipitation"><span>&nbsp;</span>mm</td>
                                         </tr>
                                         <tr>
@@ -444,12 +442,12 @@ ECHO
     <section class="secondary">
         <div class="blog">
             <h4>Blog</h4>
-            <div class="posts">
+            <div class="text">
                 <?php foreach ($blogEntries as $blog) { ?>
                         <?php $createdTime = strtotime($blog['Node']['created']); ?>
                         <div class="ribbon-wrapper">
                             <div class="ribbon-front">
-                                <div class="date">
+                                <div class="post-date">
                                     <div class="month"><?= date('M', $createdTime) ?></div>
                                     <div class="day"><?= date('d', $createdTime) ?></div>
                                     <div class="year"><?= date('Y', $createdTime) ?></div>
@@ -459,8 +457,8 @@ ECHO
                         </div>
 
                         <h4><?= $html->link($blog['Node']['title'], $blog['Node']['url'], array('class' => 'link')) ?></h4>  
-                        <div class="blog-posts">
-                        <p><?= $text->excerpt(strip_tags($blog['Node']['body']), 'method', 200, '...' . $html->link('Read More...', $blog['Node']['url'])) ?><?= '<hr>'; ?></p>
+                        <div class="blog-excerpt">
+                        <p><?= $text->excerpt(strip_tags($blog['Node']['body']), 'method', 200, '...' . $html->link('Read More', $blog['Node']['url'])) ?><?= '<hr>'; ?></p>
                         </div>
                 <?php } ?>
             </div>

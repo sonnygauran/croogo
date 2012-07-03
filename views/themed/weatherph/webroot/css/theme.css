@@ -4,55 +4,103 @@ WEATHER PHILIPPINES - Frontpage
 
 Table of contents:
 
-1.Reset
+1.Base
 2.Layout
-3.Typography
-4.Color Scheme
-5.States
+3.Modules
+4.States
+5.Themes
 
 */
 
 /*========================================
-1.	Reset
+1.	Base
 ========================================*/
 
+/* Reset */
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outline:0}ins{text-decoration:none}del{text-decoration:line-through}
+
+html {
+    font: 87.5%/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+body {
+    color: #365283;
+    background: #fafafa url('<?= $this->webroot ?>theme/weatherph/img/bg.png');
+}
+
+h1 {
+    font-size: 3em;
+}
+
+h2 {
+    font-size: 2.25em;
+}
+
+h3 {
+    font-size: 1.5em;
+}
+
+h4 {
+    font-size: 1.3125em;
+}
+
+h5 {
+    font-size: 1.125em;
+}
+
+h6 {
+    font-size: 1em;
+}
+
+dl {
+    margin-top: 2em;
+}
+
+dt {
+    font-weight: bold;
+}
+
+dd {
+    margin: 1em 0 2em 0;
+}
+
+hr {
+    width: 65%;
+    margin: 1em auto;
+    border: 0;
+    height: 1px;
+    background-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(54,82,121,.75), rgba(0,0,0,0)); 
+    background-image:    -moz-linear-gradient(left, rgba(0,0,0,0), rgba(54,82,121,.75), rgba(0,0,0,0)); 
+    background-image:     -ms-linear-gradient(left, rgba(0,0,0,0), rgba(54,82,121,.75), rgba(0,0,0,0)); 
+    background-image:      -o-linear-gradient(left, rgba(0,0,0,0), rgba(54,82,121,.75), rgba(0,0,0,0)); 
+}
+
+.cf:before,
+.cf:after {
+    content:"";
+    display:table;
+}
+
+.cf:after {
+    clear:both;
+}
+
+/* For IE 6/7 (trigger hasLayout) */
+.cf {
+    *zoom:1;
+}
 
 /*========================================
 2.	Layout
 ========================================*/
 
-/*====================
-    CONTAINERS
-====================*/
+/* Containers */
 
 #container {
     width: 1000px;
     margin: 0 auto;
 }
 
-.content {
-    float: left;
-    width: 804px;
-}
-
-#sidebar {
-    float:right;
-}
-
-.main {
-    margin-bottom: 1em;
-}
-
-.secondary{
-    width: 794px;
-    margin-top: 1em;
-    float: left;
-}
-
-/*====================
-    HEADER
-====================*/
 .banner {
     height: 155px;
     margin-top: 10px;
@@ -61,61 +109,9 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
     border-radius: 8px;
 }
 
-.logo {
-    float:left;
-    margin: 60px 10px;
-}
-
-#options {
-    float: right;
-    margin: 85px 10px 10px 10px;
-}
-
-#options > img, #options > form {
-    float: right;
-    display: inline;
-    clear:both;
-    margin-bottom: 10px;
-}
-
-#options > img {
-    margin-right: 20px;
-}
-
-#options > form > img {
-    vertical-align: middle;
-}
-
-label[for="search-field"] {
-    font-size: 8pt;
-    text-transform: uppercase;
-}
-
-/* SPONSOR SLIDER */
-
-#slides {
-    width: 240px;
-    float: left;
-    margin-left: 30px;
-}
-
-.slidesContainer {
-    width: 240px;
-    display: none;
-}
-
-.slides_container img {
-    width:240px;
-    height:150px;
-    display:block;
-}
-
-/*====================
-    NAV
-====================*/
-
 nav {
     width: 980px;
+    text-align: center;
     margin: 15px 0;
     padding: 5px 10px;
     -webkit-border-radius: 5px;
@@ -124,151 +120,173 @@ nav {
     z-index: 1;
 }
 
-/*===============
-    DROPDOWN
-===============*/
-
-.dropdown{
-    height: 100%;
-    width:100%;
-    position:relative;
-    text-align: center;
+.content {
+    float: left;
+    width: 804px;
 }
 
-.dropdown li{
-    position:relative;
-    display: inline;
-    padding: 0 1em;
+	.main {
+	    margin-bottom: 1em;
+	}
+
+	.secondary{
+	    width: 794px;
+	    margin-top: 1em;
+	    float: left;
+	}
+
+#sidebar {
+    float:right;
+    width: 186px;
+    margin-left: 10px;
 }
 
-.dropdown a {
-    display:inline-block;
-    padding:5px;
+footer {
+    float: left;
+    clear: both;
+    width: 100%;
+    margin-top: 15em;
+    padding: 10px;
+    font-size: .75em;
+    background-color: #e1e6f3;
+    -webkit-box-shadow: 0 -4px 4px -4px #555;
+    -moz-box-shadow:    0 -4px 4px -4px #555;
+    box-shadow:         0 -4px 4px -4px #555;
+}
+
+/* Header, nav */
+
+.logo {
+    float:left;
+    margin: 60px 10px;
+    font-size: 2.875em;
+    font-weight: 200;
+    text-shadow: #fafafa 0 0 20px;
+}
+
+.logo a,
+.logo a:link,
+.logo a:visited,
+.logo a:focus,
+.logo a:hover {
+    color:#365283;
     text-decoration: none;
 }
 
-.dropdown ul{
-    background-color: #20304d;
-    background-color: rgba(32,48,77,.9);
-    position:absolute;
-    left:-9999px;
-    margin:0;
-    padding:0;
-    text-align:left;
+#options {
+    float: right;
+    margin: 85px 10px 10px 10px;
 }
 
-.dropdown ul li {
-    display:block;
-}
+	#options > img,
+	#options > form {
+	    float: right;
+	    display: inline;
+	    clear:both;
+	    margin-bottom: 10px;
+	}
 
-.dropdown ul a{
-    white-space:nowrap;
-}
+	label[for="search-field"] {
+	    font-size: 8pt;
+	    text-transform: uppercase;
+	}
 
-.dropdown li:hover ul{
-    left:1em;
-    z-index: 1;
-}
+	#options > img {
+	    margin-right: 20px;
+	}
 
-.dropdown li:hover a{
-    text-decoration: none;
-}
+	#options > form > img {
+	    vertical-align: middle;
+	}
 
-.dropdown li:hover ul a{ /* The persistent hover state does however create a global style for links even before they're hovered. Here we undo these effects. */
-    text-decoration: none;
-}
+/* Map */
 
-.dropdown li:hover ul li:hover{ /* Here we define the most explicit hover states--what happens when you hover each individual link. */
-    background-color:#3e5e95;
-}
-
-/*====================
-    MAP
-====================*/
 #map-container {
     margin-right: 10px;
     float:left;
     background-color: #fafafa;
 }
 
-#map {
-    height: 554px;
-}
+	.layer-selector {
+	    padding: 5px 10px;
+	    -webkit-border-top-left-radius: 5px;
+	    -webkit-border-top-right-radius: 5px;
+	    -moz-border-radius-topleft: 5px;
+	    -moz-border-radius-topright: 5px;
+	    border-top-left-radius: 5px;
+	    border-top-right-radius: 5px;
+	    -moz-box-shadow:    inset 0 2px 1px #333;
+	    -webkit-box-shadow: inset 0 2px 1px #333;
+	    box-shadow:         inset 0 2px 1px #333;
+	}
 
-#map-container video {
-    display:none;
-}
+	#map {
+	    height: 554px;
+	}
 
-.layerSelector {
-    padding: 5px 10px;
-    -webkit-border-top-left-radius: 5px;
-    -webkit-border-top-right-radius: 5px;
-    -moz-border-radius-topleft: 5px;
-    -moz-border-radius-topright: 5px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    -moz-box-shadow:    inset 0 2px 1px #333;
-    -webkit-box-shadow: inset 0 2px 1px #333;
-    box-shadow:         inset 0 2px 1px #333;
-}
+		#map-container video {
+		    display:none;
+		}
 
-#legend {
-    padding: 3px;
-    -webkit-border-bottom-right-radius: 5px;
-    -webkit-border-bottom-left-radius: 5px;
-    -moz-border-radius-bottomright: 5px;
-    -moz-border-radius-bottomleft: 5px;
-    border-bottom-right-radius: 5px;
-    border-bottom-left-radius: 5px;
-    overflow: auto;
-    position:relative; /* IE 7 Scrollbar fix */
-}
+	#legend {
+	    padding: 3px;
+	    -webkit-border-bottom-right-radius: 5px;
+	    -webkit-border-bottom-left-radius: 5px;
+	    -moz-border-radius-bottomright: 5px;
+	    -moz-border-radius-bottomleft: 5px;
+	    border-bottom-right-radius: 5px;
+	    border-bottom-left-radius: 5px;
+	    overflow: auto;
+	    position:relative; /* IE 7 Scrollbar fix */
+	}
 
-#legend > img {
-    float:left; 
-}
+		#legend > img {
+		    float:left; 
+		}
 
-.scale-temperature, .scale-pressure {
-    display: none;
-}
+		.scale-temperature,
+		.scale-pressure {
+		    display: none;
+		}
 
-.scale-celsius, .scale-fahrenheit, .scale-pressure {
-    float:left;
-    margin-left: 10px;
-    width: 100%;
-    display:none;
-}
+		.scale-celsius,
+		.scale-fahrenheit,
+		.scale-pressure {
+		    float:left;
+		    margin-left: 10px;
+		    width: 100%;
+		}
 
-.unit-buttons {
-    float: left;
-    display:none;
-}
+		.scale-fahrenheit li,
+		.scale-celsius li,
+		.scale-pressure li {
+		    display: inline-block;
+		    text-align: center;
+		    vertical-align: middle;
+		    margin: 1px -2px;
+		    padding: 3px;
+		    color: #fafafa;
+		    text-shadow: 1px 1px #111111; 
+		}
 
-.scale-fahrenheit li, .scale-celsius li, .scale-pressure li {
-    display: inline-block;
-    text-align: center;
-    vertical-align: middle;
-    margin: 1px -2px;
-    padding: 3px;
-    color: #fafafa;
-    text-shadow: 1px 1px #111111; 
-}
+		.unit-buttons {
+		    float: left;
+		    display:none;
+		}
 
-#province-select {
-    float: left;
-    overflow: auto;
-}
+		#province-select {
+		    float: left;
+		    overflow: auto;
+		}
 
-#province-select > p,
-#province-select > select {
-    display: inline;
-    padding: 0 5px;
-    vertical-align: middle;
-}
+			#province-select > p,
+			#province-select > select {
+			    display: inline;
+			    padding: 0 5px;
+			    vertical-align: middle;
+			}
 
-/*====================
-    INFO
-====================*/
+/* Info pane */
 
 #info {
     width: 240px;
@@ -278,19 +296,16 @@ nav {
     border-radius: 5px;
 }
 
-#current-readings-panel {
-    padding: 16px 10px 6px;
-    -moz-box-shadow:    inset 0 2px 1px #333;
-    -webkit-box-shadow: inset 0 2px 1px #333;
-    box-shadow:         inset 0 2px 1px #333;
-    border-radius: 5px;
-}
+	#current-readings-panel {
+	    padding: 16px 10px 6px;
+	    -moz-box-shadow:    inset 0 2px 1px #333;
+	    -webkit-box-shadow: inset 0 2px 1px #333;
+	    box-shadow:         inset 0 2px 1px #333;
+	    border-radius: 5px;
+	}
 
-h6.time {
-    padding: 1px 5px;
-}
+/* Readings */
 
-/*READINGS*/
 .readings {
     clear: both;
     padding: 5px 10px;
@@ -298,56 +313,57 @@ h6.time {
     vertical-align: middle;
 }
 
-readings > p {
-    margin: 1px 3px 3px;
-}
-
-span.temperature {
-    font-weight: 600;
-    font-size: 1.875em;
-}
-
-.readings > span {
-    margin: auto 2px;
-    float: left;
-}
-
-.readings > table {
-    float: left;
-}
-
-.readings >table td {
-    padding-left: 5px;
-}
-/*END READINGS*/
-
-.detail-page-link {
+	.detail-page-link {
     padding: 10px;
     text-align: center;
-}
+	}
 
-.detail-page-link > h2 {
-    text-shadow: 0px 2px 3px #555;
-}
+		.detail-page-link > h2 {
+		    text-shadow: 0px 2px 3px #555;
+		}
 
-.detail-page-link > img {
-    display: inline;
-}
+		.detail-page-link > img {
+		    display: inline;
+		}
 
-.detail-page-link > a {
-    font-size: 2em;
-    font-weight: 600;
-    display: inline;
-}
+		.detail-page-link > a {
+		    font-size: 2em;
+		    font-weight: 600;
+		    display: inline;
+		}
 
-.forecast-highlight {
-    background-color: #f1f1f1;
+	h6.time {
+	    padding: 1px 5px;
+	}
+
+	readings > p {
+	    margin: 1px 3px 3px;
+	}
+
+	span.temperature {
+	    font-weight: 600;
+	    font-size: 1.875em;
+	}
+
+	.readings > span {
+	    margin: auto 2px;
+	    float: left;
+	}
+
+	.readings > table {
+	    float: left;
+	}
+
+	.readings >table td {
+	    padding-left: 5px;
+	}
+
+	.forecast-highlight {
+    background-color: #fafafa;
     color: #365283;
-}
+	}
 
-/*====================
-    POSTS, NEWS
-====================*/
+/* Posts, news */
 
 .secondary h4 {
     padding-bottom: 1em;
@@ -359,89 +375,69 @@ span.temperature {
     margin-right: 10px;
 }
 
-.blog > .posts {
-    padding: 1.5em 1em;
-}
+	.blog > .text {
+	    padding: 1.5em 1em;
+	}
 
-.date {
+	.blog-excerpt {
+    position: relative;
+    margin: 2px;
+    padding-left: 69px;
+	}
+
+.post-date {
     color:#3990BD;
     padding: 0.3em;  
     text-align: center;
 }
 
-.blog-posts{
-    position: relative;
-    margin: 2px;
-    padding-left: 69px;
-}
+	.post-date .day {
+	    font-size: 1.75em;
+	    font-weight: 700;
+	}
 
-.date .day {
-    font-size: 1.75em;
-    font-weight: 700;
-}
+	.post-date .month,
+	.post-date .year {
+	    font-size: 1.2em;
+	    text-transform: uppercase;
+	}
 
-.date .month, .date .year {
-    font-size: 1.2em;
-    text-transform: uppercase;
-}
-
-.secondary > .news {
+.news {
     width: 228px;
     float: left;
     overflow: hidden;
+    background-color: #fafafa;
     border: 1px solid #dddddd;
     -webkit-box-shadow: 0 4px 3px -3px black;
     -moz-box-shadow: 0 4px 3px -3px black;
     box-shadow: 0 4px 3px -3px black;
 }
 
-.news li {
-    float:left;
-    width: 97%;
-    padding: 3%;
-}
+    .news li {
+        float:left;
+        width: 97%;
+        padding: 3%;
+    }
+    
+    .news li:nth-child(odd) {
+        background-color: #e1e6f3;
+    }
 
-.news img {
-    float:left;
-    margin-right: 5px;
-}
+    .news img {
+        float:left;
+        margin-right: 5px;
+    }
 
-.news p {
-    padding: 1em;
-    vertical-align: middle;
-}
+    .news p {
+        padding: 1em;
+        vertical-align: middle;
+    }
 
-.posts {
-    line-height: 1.618em;
-    position: relative;
-    margin: 0 auto;
-    padding: 2em;
-    background-color: #fafafa;
-    border: 1px solid #e1e1e1;
-    -webkit-box-shadow: 0 4px 3px -3px black;
-    -moz-box-shadow: 0 4px 3px -3px black;
-    box-shadow: 0 4px 3px -3px black;
-}
+/* Detail page */
 
-.posts p {
-    margin-bottom: 1.5em;
-}
-
-.posts li {
-    list-style: disc;
-    margin: 1em 0;
-}
-
-.posts h2 {
-    text-align: center;
-    line-height: 1.333333333333333em;
-    margin-bottom: .6666666666666667em;
-}
-
-/*====================
-    DETAIL
-====================*/
-#weekWeather, #charts, #outlook {
+#weekWeather,
+#charts,
+#outlook {
     margin: 10px auto;
 }
 
@@ -452,37 +448,44 @@ span.temperature {
     padding: 1em;
 }
 
-#station, #condition {
-    float:left;
-}
+    #station,
+    #condition {
+        float:left;
+    }
 
-#station {
-    text-align: center;
-    width: 100%;
-    padding-bottom:2em;
-}
+    #station {
+        text-align: center;
+        width: 100%;
+        padding-bottom:2em;
+    }
 
-#station h1 {
-    text-shadow: 0px 2px 3px #555;
-}
+        #station h1 {
+            text-shadow: 0px 2px 3px #555;
+        }
 
-#condition{
-    width: 60%;
-}
+    #condition {
+        width: 60%;
+    }
 
-#condition td {
-    vertical-align: middle;
-    padding: 3px;
-}
+        #condition td {
+            vertical-align: middle;
+            padding: 3px;
+        }
 
-#conditionTable {
-    float: right;
-    width: 30%;
-}
+        #current-reading-table {
+            float: right;
+            width: 30%;
+        }
 
-#conditionTable td {
-    padding: 5px 8px;
-}
+            #current-reading-table th {
+                background-color: #fafafa;
+                color: #365283;
+                vertical-align: middle;
+            }
+
+            #current-reading-table td {
+                padding: 5px 8px;
+            }
 
 .inner-condition {
     float: left;
@@ -544,87 +547,45 @@ span.temperature {
     width: 100%;
 }
 
-.forecast-table td {
-    padding: 4px;
-    text-align: center;
-    border: 1px solid #d6dfeb;
-}
-
-.daydate{
-    background-color: #3E5E95;
-    border-radius: 5px 5px 0px 0;
+    .forecast-table th {
     color: #fff;
-    padding-top: 8px;
-    margin-top: 5px;
-    padding-bottom: 5px;
-    font-size: 15px;
+    vertical-align: middle;
+    background: #4f75b6;
+    padding: 6px;
+    font-weight: normal;
+    }
+
+    .forecast-table td {
+        padding: 4px;
+        text-align: center;
+        border: 1px solid #d6dfeb;
+    }
+
+.forecast-date {
     width: 20em;
     text-align: center;
+    margin-top: 1em;
+    padding: .5em 0;
+    background-color: #3E5E95;
+    color: #fafafa;
+    border-radius: 5px 5px 0 0;
     box-shadow: 2px 0 0 0 #555;
 }
 
-span.daytime {
-    font-weight: bold;
-}
+.chart-legend { display: block; margin-left: 30px; vertical-align: middle; font-size: 10px; }
+.chart-legend span { display: inline-block; margin: 0 5px 0 0; vertical-align: middle; padding: 0; width: 10px; }
 
-/*===============
-    TABS
-===============
-
-ul.tabs {
-    margin-top: 1em;
-    border-bottom: 15px solid #3e5e95;
-}
-
-.divider{
-    position: relative;
-    width: 100%;
-    background: #3e5e95;
-}
-
-.tabs li {
-    display: inline;
-    padding: 10px 30px 0px 30px;
-    cursor: pointer;
-    border-radius: 5px 5px 0 0;
-    -moz-box-shadow: 0 -2px 2px #888;
-    -webkit-box-shadow: 0 -2px 2px #888;
-    box-shadow: 0 -2px 2px #888;
-}
-
-.tabs li > a {
-    text-decoration: none;
-}
-
-.tabs li a{
-    padding-bottom:10px;
-    padding-top: 10px;
-}
-
-div.tab{
-    display: none;
-}
-
-div.current-tab {
-    display: block;
-}
-
-*/
-
-/*====================
-    SIDEBAR
-====================*/
-
-#sidebar{
-    width: 186px;
-    margin-left: 10px;
-}
+/* Sidebar */
 
 .sponsored {
     padding: 10px;
     margin-bottom: 1em;
     border-radius: 5px;
     text-align: center;
+    background-color: #fafafa;
+    -moz-box-shadow:    inset 0 2px 2px #aaa;
+    -webkit-box-shadow: inset 0 2px 2px #aaa;
+    box-shadow:         inset 0 2px 2px #aaa;
 }
 
 .promo {
@@ -637,27 +598,7 @@ div.current-tab {
     box-shadow: 0 4px 3px -3px black;
 }
 
-/* Glossary */
-
-.figure {
-    max-width: 554px;
-    margin: 2em auto;
-    display:block;
-}
-
-dl {
-    margin-top: 2em;
-}
-
-dt {
-    font-weight: bold;
-}
-
-dd {
-    margin: 1em 0 2em 0;
-}
-
-/* Search Results*/
+/* Search Results */
 
 .names.index {
     width: 240px;
@@ -680,6 +621,10 @@ dd {
     background: #fafafa;
 }
 
+.search-results li:hover {
+    background-color: #e0e6f2;
+}
+
 .search-results a {
     position: absolute;
     top: 0;
@@ -688,223 +633,165 @@ dd {
     height: 100%;
 }
 
-.search-results li:hover {
-    background-color: #e0e6f2;
+.plot {   
+    width: 16px;
+    height: 16px;
+    background-image: url('<?= $this->webroot ?>theme/weatherph/img/marker-small.png') !important;
+    position: relative;
+    left: -8px;
+    top: -16px;
+    z-index: 1 !important;
+}
+
+.marker {   
+    width: 32px;
+    height: 32px;
+    background-image: url('<?= $this->webroot ?>theme/weatherph/img/marker.png') !important;
+    position: relative;
+    left: -16px;
+    top: -32px;
+    z-index: 1 !important;
 }
 
 .paging {
     text-align: center;
 }
 
-/*====================
-    FOOTER
-====================*/
+/*========================================
+3.	Module
+========================================*/
 
-footer {
+/* Text */
+
+.text {
+    line-height: 1.618em;
+    position: relative;
+    margin: 0 auto;
+    padding: 2em;
+    background-color: #fafafa;
+    border: 1px solid #e1e1e1;
+    -webkit-box-shadow: 0 4px 3px -3px black;
+    -moz-box-shadow: 0 4px 3px -3px black;
+    box-shadow: 0 4px 3px -3px black;
+}
+
+.text p {
+    margin-bottom: 1.5em;
+}
+
+.text li {
+    list-style: disc;
+    margin: 1em 0;
+}
+
+.text h2 {
+    text-align: center;
+    line-height: 1.333333333333333em;
+    margin-bottom: .6666666666666667em;
+}
+
+.figure {
+    max-width: 554px;
+    margin: 2em auto;
+    display:block;
+}
+
+/* Slider */
+
+#slides {
+    width: 240px;
     float: left;
-    clear: both;
-    width: 100%;
-    margin-top: 15em;
-    padding: 10px;
-    font-size: .75em;
-    background-color: #e1e6f3;
-    background-color: rgba(225,230,243,.3);
-    -webkit-box-shadow: 0 -4px 4px -4px #555;
-    -moz-box-shadow:    0 -4px 4px -4px #555;
-    box-shadow:         0 -4px 4px -4px #555;
+    margin-left: 30px;
 }
 
-/*========================================
-3.	Typography
-========================================*/
-
-html {
-    font: 87.5%/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif;
+.slidesContainer {
+    width: 240px;
+    display: none;
 }
 
-h1 {
-    font-size: 3em;
-}
-h2 {
-    font-size: 2.25em;
-}
-h3 {
-    font-size: 1.5em;
-}
-h4 {
-    font-size: 1.3125em;
-}
-h5 {
-    font-size: 1.125em;
-}
-h6 {
-    font-size: 1em;
+.slides_container img {
+    width:240px;
+    height:150px;
+    display:block;
 }
 
-#info {
-    font-size: .85em;
-}
+/* Dropdown menu */
 
-.logo {
-    color:#3E4F76;
-    font-size: 2.875em;
-    font-weight: 200;
-    text-shadow: #fafafa 0 0 20px;
-}
-.logo a,
-.logo a:link,
-.logo a:visited,
-.logo a:focus,
-.logo a:hover
-{
-    color:#3E4F76;
-    text-decoration: none;
-}
-.layerSelector, #legend {
-    font-size: .875em;
-}
-
-/*========================================
-4.	Color Scheme
-========================================*/
-
-/*
-
-So much blue.
-
-    Main blue: #365283
-    Lighter blue: #3e5e95
-    Darker blue: #365283
-    Darkest blue: #20304d
-    Off-white: #fafafa
-    Warning red: #aa1111
-
-*/
-
-body {
-    color: #365283;
-    background: #fafafa url('<?= $this->webroot ?>theme/weatherph/img/bg.png');
-}
-
-.banner {
-    color: #fafafa;
-    background:#3e5e95 url('<?= $this->webroot ?>theme/weatherph/img/banner-plain.png') top left no-repeat;
-    border: 1px solid #365283;
-}
-
-#container > nav {
+.dropdown{
+    height: 100%;
+    width:100%;
+    position:relative;
     text-align: center;
 }
 
-nav, .layerSelector, .promo, #info, .output {
-    background-color: #365283;
-    color: #fafafa;
+.dropdown li{
+    position:relative;
+    display: inline;
+    padding: 0 1em;
 }
 
-#current-readings-panel, #info > .readings, #currentWeather, .tabs li, .search-results h2 {
-    background-color: #3e5e95;
-    color: #fafafa;
+.dropdown a {
+    display:inline-block;
+    padding:5px;
+    text-decoration: none;
 }
 
-.current.readings-location, nav li, .search-results h2 {
-    text-shadow: 0px 1px 3px #333;
-}
-
-.news li {
-    background-color: #fafafa;
-}
-
-.news li:nth-child(odd) {
-    background-color: #e1e6f3;
-    background-color: rgba(225,230,243,.7);
-}
-
-.caption {
-    background-color: #fafafa;
-    color: #365283;
-    vertical-align: middle;
-}
-
-.columnheader{
-    color: #fff;
-    vertical-align: middle;
-    background: #4f75b6;
-    padding: 6px;
-    font-weight: normal;
-}
-
-.sponsored {
-    background-color: #fafafa;
-    -moz-box-shadow:    inset 0 2px 2px #aaa;
-    -webkit-box-shadow: inset 0 2px 2px #aaa;
-    box-shadow:         inset 0 2px 2px #aaa;
-}
-
-/*========================================
-5.	States
-========================================*/
-
-.clear {
-    clear: both;
-}
-
-.cf:before,
-.cf:after {
-    content:"";
-    display:table;
-}
-
-.cf:after {
-    clear:both;
-}
-
-/* For IE 6/7 (trigger hasLayout) */
-.cf {
-    *zoom:1;
-}
-
-a {
-    -webkit-transition: all .2s ease;
-    -moz-transition: all .2s ease;
-    -o-transition: all .2s ease;
-    -ms-transition: all .2s ease;
-    transition: all .2s ease;
-}
-
-a:hover {
-    text-shadow: white 0 0 1px;
-}
-
-.paging a:link, .posts a:link, .names a:link, .news a:link {
-    color: #20304d;
-}
-
-.paging a:visited, .posts a:visited, .names a:visited, .news a:visited  {
-    color: #3e5e95;
-}
-
-a:link, a:visited {
-    color: #fafafa;
-}
-
-nav li, .dropdown li, .dropdown a, .detail-page-link {
-    -webkit-transition: all .1s ease;
-    -moz-transition: all .1s ease;
-    -o-transition: all .1s ease;
-    -ms-transition: all .1s ease;
-    transition: all .1s ease;
-}
-
-nav a:hover {
-    background-color: #3e5e95;
-}
-
-nav li:active, .detail-page-link:active {
+.dropdown ul{
     background-color: #20304d;
+    background-color: rgba(32,48,77,.9);
+    position:absolute;
+    left:-9999px;
+    margin:0;
+    padding:0;
+    text-align:left;
 }
 
-.layerSelector a:link, .layerSelector a:visited {
-    color: #fafafa;
+.dropdown ul li {
+    display:block;
+}
+
+.dropdown ul a{
+    white-space:nowrap;
+}
+
+.dropdown li:hover ul{
+    left:1em;
+    z-index: 1;
+}
+
+.dropdown li:hover a{
+    text-decoration: none;
+}
+
+.dropdown li:hover ul a{ /* The persistent hover state does however create a global style for links even before they're hovered. Here we undo these effects. */
+    text-decoration: none;
+}
+
+.dropdown li:hover ul li:hover{ /* Here we define the most explicit hover states--what happens when you hover each individual link. */
+    background-color:#3e5e95;
+}
+
+/* Tabs
+
+ul.tabs {
+    margin-top: 1em;
+    border-bottom: 15px solid #3e5e95;
+}
+
+.divider{
+    position: relative;
+    width: 100%;
+    background: #3e5e95;
+}
+
+.tabs li {
+    display: inline;
+    padding: 10px 30px 0px 30px;
+    cursor: pointer;
+    border-radius: 5px 5px 0 0;
+    -moz-box-shadow: 0 -2px 2px #888;
+    -webkit-box-shadow: 0 -2px 2px #888;
+    box-shadow: 0 -2px 2px #888;
 }
 
 .tabs li.current-tab {
@@ -912,11 +799,27 @@ nav li:active, .detail-page-link:active {
     background-color: #3e5e95;
 }
 
-/*====================
-    ERROR/WARNING STATES
-====================*/
+.tabs li > a {
+    text-decoration: none;
+}
 
-/* Severe weather warning show up below the nav */
+.tabs li a{
+    padding-bottom:10px;
+    padding-top: 10px;
+}
+
+div.tab{
+    display: none;
+}
+
+div.current-tab {
+    display: block;
+}
+
+*/
+
+/* Error/warning block */
+
 .severe-warning {
     display: none;
     width: 75%;
@@ -943,9 +846,7 @@ nav li:active, .detail-page-link:active {
     border: 1px solid #365283;
 }
 
-/*====================
-    SPRITEMAP
-====================*/
+/* Spritemap */
 
 span.symbol { background: url('<?= $this->webroot ?>theme/weatherph/img/warning-sprites.png') -5px -65px no-repeat; height: 30px; width: 40px; display: block; margin: auto; cursor: pointer;}
 
@@ -1011,54 +912,14 @@ span.moonphase_7 { background-position: -540px 5px; }
 span.sunrise { background-position: 0px 5px; }
 span.sunset { background-position: -60px 5px; }
 
-span.wind-description { font-size: .875em; }
+/* End spritemap */
 
-hr {
-    width: 65%;
-    margin: 1em auto;
-    border: 0;
-    height: 1px;
-    background-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(54,82,121,.75), rgba(0,0,0,0)); 
-    background-image:    -moz-linear-gradient(left, rgba(0,0,0,0), rgba(54,82,121,.75), rgba(0,0,0,0)); 
-    background-image:     -ms-linear-gradient(left, rgba(0,0,0,0), rgba(54,82,121,.75), rgba(0,0,0,0)); 
-    background-image:      -o-linear-gradient(left, rgba(0,0,0,0), rgba(54,82,121,.75), rgba(0,0,0,0)); 
-}
+/*.wind-description { font-size: .875em; }*/
 
 .shadow {
     -webkit-box-shadow: 0 4px 3px -3px black;
     -moz-box-shadow: 0 4px 3px -3px black;
     box-shadow: 0 4px 3px -3px black;
-}
-
-.color-legend { display: block; margin-left: 30px; vertical-align: middle; font-size: 10px; }
-.color-legend span { display: inline-block; margin: 0 5px 0 0; vertical-align: middle; padding: 0; width: 10px; }
-
-.red-line { background-color: red; height: 2px;}
-.green-line { background-color: green; height: 2px;}
-.orange-line { background-color: orange; height: 2px;}
-.olive-line { background-color: olive; height: 2px;}
-.red-dot { background-color: red; height: 10px; width: 2px; border-radius: 8px;}
-.blue-dot { background-color: blue; height: 10px; width: 2px; border-radius: 8px;}
-.blue-bar { background-color: blue; height: 5px;}
-
-.plot {   
-    width: 16px;
-    height: 16px;
-    background-image: url('<?= $this->webroot ?>theme/weatherph/img/marker-small.png') !important;
-    position: relative;
-    left: -8px;
-    top: -16px;
-    z-index: 1 !important;
-}
-
-.marker {   
-    width: 32px;
-    height: 32px;
-    background-image: url('<?= $this->webroot ?>theme/weatherph/img/marker.png') !important;
-    position: relative;
-    left: -16px;
-    top: -32px;
-    z-index: 1 !important;
 }
 
 /* RIBBON  STYLE CSS */
@@ -1100,4 +961,110 @@ hr {
 
 .ribbon-edge-bottomleft.blog-page {
     left: -38px;
+}
+
+/*========================================
+4.	States
+========================================*/
+
+a {
+    -webkit-transition: all .2s ease;
+    -moz-transition: all .2s ease;
+    -o-transition: all .2s ease;
+    -ms-transition: all .2s ease;
+    transition: all .2s ease;
+}
+
+a:hover {
+    text-shadow: white 0 0 1px;
+}
+
+.paging a:link,
+.text a:link,
+.names a:link,
+.news a:link {
+    color: #20304d;
+}
+
+.paging a:visited,
+.text a:visited,
+.names a:visited,
+.news a:visited  {
+    color: #3e5e95;
+}
+
+a:link,
+a:visited {
+    color: #fafafa;
+}
+
+nav li,
+.dropdown li,
+.dropdown a,
+.detail-page-link {
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    -ms-transition: all .1s ease;
+    transition: all .1s ease;
+}
+
+nav a:hover {
+    background-color: #3e5e95;
+}
+
+.layer-selector a:link,
+.layer-selector a:visited {
+    color: #fafafa;
+}
+
+/*========================================
+5.	Themes
+========================================*/
+
+#info,
+.layer-selector,
+#legend {
+    font-size: .875em;
+}
+
+
+/* Color scheme
+
+Main blue: #365283
+Lighter blue: #3e5e95
+Darker blue: #20304d
+Off-white: #fafafa
+Warning red: #aa1111
+
+*/
+
+.banner {
+    color: #fafafa;
+    background:#3e5e95 url('<?= $this->webroot ?>theme/weatherph/img/banner-plain.png') top left no-repeat;
+    border: 1px solid #365283;
+}
+
+nav,
+.layer-selector,
+.promo,
+#info,
+.output {
+    background-color: #365283;
+    color: #fafafa;
+}
+
+#current-readings-panel,
+#info > .readings,
+#currentWeather,
+.tabs li,
+.search-results h2 {
+    background-color: #3e5e95;
+    color: #fafafa;
+}
+
+nav li,
+.current.readings-location,
+.search-results h2 {
+    text-shadow: 0px 1px 3px #333;
 }

@@ -1,6 +1,6 @@
 <div class="content">
     <section class="main">
-        <div class="posts">
+        <div class="text">
             <h2>Legal</h2>
             <h3>Terms and Conditions</h3>
             <p>
