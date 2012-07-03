@@ -10,6 +10,12 @@ Table of contents:
 4.States
 5.Themes
 
+Categorization is loosely based on SMACSS (http://smacss.com/book/categorizing)
+
+TODO:
+- consolidate color rules
+- edit view page css (reduce rules/classes)
+
 */
 
 /*========================================
@@ -125,20 +131,21 @@ nav {
     width: 804px;
 }
 
-	.main {
-	    margin-bottom: 1em;
-	}
+.main {
+    margin-bottom: 1em;
+}
 
-	.secondary{
-	    width: 794px;
-	    margin-top: 1em;
-	    float: left;
-	}
+.secondary{
+    width: 794px;
+    margin-top: 1em;
+    float: left;
+}
 
 #sidebar {
     float:right;
     width: 186px;
     margin-left: 10px;
+    text-align: center;
 }
 
 footer {
@@ -178,113 +185,114 @@ footer {
     margin: 85px 10px 10px 10px;
 }
 
-	#options > img,
-	#options > form {
-	    float: right;
-	    display: inline;
-	    clear:both;
-	    margin-bottom: 10px;
-	}
+#options > img,
+#options > form {
+    float: right;
+    display: inline;
+    clear:both;
+    margin-bottom: 10px;
+}
 
-	label[for="search-field"] {
-	    font-size: 8pt;
-	    text-transform: uppercase;
-	}
+label[for="search-field"] {
+    font-size: 8pt;
+    text-transform: uppercase;
+}
 
-	#options > img {
-	    margin-right: 20px;
-	}
+#options > img {
+    margin-right: 20px;
+}
 
-	#options > form > img {
-	    vertical-align: middle;
-	}
+#options > form > img {
+    vertical-align: middle;
+}
 
 /* Map */
 
 #map-container {
+    width: 554px;
     margin-right: 10px;
     float:left;
     background-color: #fafafa;
 }
 
-	.layer-selector {
-	    padding: 5px 10px;
-	    -webkit-border-top-left-radius: 5px;
-	    -webkit-border-top-right-radius: 5px;
-	    -moz-border-radius-topleft: 5px;
-	    -moz-border-radius-topright: 5px;
-	    border-top-left-radius: 5px;
-	    border-top-right-radius: 5px;
-	    -moz-box-shadow:    inset 0 2px 1px #333;
-	    -webkit-box-shadow: inset 0 2px 1px #333;
-	    box-shadow:         inset 0 2px 1px #333;
-	}
+.layer-selector {
+    padding: 5px 10px;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    -moz-box-shadow:    inset 0 2px 1px #333;
+    -webkit-box-shadow: inset 0 2px 1px #333;
+    box-shadow:         inset 0 2px 1px #333;
+}
 
-	#map {
-	    height: 554px;
-	}
+#map {
+    height: 554px;
+}
 
-		#map-container video {
-		    display:none;
-		}
+#map-container video {
+    display:none;
+}
 
-	#legend {
-	    padding: 3px;
-	    -webkit-border-bottom-right-radius: 5px;
-	    -webkit-border-bottom-left-radius: 5px;
-	    -moz-border-radius-bottomright: 5px;
-	    -moz-border-radius-bottomleft: 5px;
-	    border-bottom-right-radius: 5px;
-	    border-bottom-left-radius: 5px;
-	    overflow: auto;
-	    position:relative; /* IE 7 Scrollbar fix */
-	}
+#legend {
+    padding: 3px;
+    -webkit-border-bottom-right-radius: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+    -moz-border-radius-bottomright: 5px;
+    -moz-border-radius-bottomleft: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    overflow: auto;
+    position:relative; /* IE 7 Scrollbar fix */
+}
 
-		#legend > img {
-		    float:left; 
-		}
+#legend > img {
+    float:left; 
+}
 
-		.scale-temperature,
-		.scale-pressure {
-		    display: none;
-		}
+.scale-temperature,
+.scale-pressure {
+    display: none;
+}
 
-		.scale-celsius,
-		.scale-fahrenheit,
-		.scale-pressure {
-		    float:left;
-		    margin-left: 10px;
-		    width: 100%;
-		}
+.scale-celsius,
+.scale-fahrenheit,
+.scale-pressure {
+    float:left;
+    margin-left: 10px;
+    width: 100%;
+}
 
-		.scale-fahrenheit li,
-		.scale-celsius li,
-		.scale-pressure li {
-		    display: inline-block;
-		    text-align: center;
-		    vertical-align: middle;
-		    margin: 1px -2px;
-		    padding: 3px;
-		    color: #fafafa;
-		    text-shadow: 1px 1px #111111; 
-		}
+.scale-fahrenheit li,
+.scale-celsius li,
+.scale-pressure li {
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    margin: 1px -2px;
+    padding: 3px;
+    color: #fafafa;
+    text-shadow: 1px 1px #111111; 
+}
 
-		.unit-buttons {
-		    float: left;
-		    display:none;
-		}
+.unit-buttons {
+    float: left;
+    display:none;
+}
 
-		#province-select {
-		    float: left;
-		    overflow: auto;
-		}
+#province-select {
+    float: left;
+    overflow: auto;
+}
 
-			#province-select > p,
-			#province-select > select {
-			    display: inline;
-			    padding: 0 5px;
-			    vertical-align: middle;
-			}
+#province-select > p,
+#province-select > select {
+    display: inline;
+    padding: 0 5px;
+    vertical-align: middle;
+}
 
 /* Info pane */
 
@@ -296,13 +304,13 @@ footer {
     border-radius: 5px;
 }
 
-	#current-readings-panel {
-	    padding: 16px 10px 6px;
-	    -moz-box-shadow:    inset 0 2px 1px #333;
-	    -webkit-box-shadow: inset 0 2px 1px #333;
-	    box-shadow:         inset 0 2px 1px #333;
-	    border-radius: 5px;
-	}
+#current-readings-panel {
+    padding: 16px 10px 6px;
+    -moz-box-shadow:    inset 0 2px 1px #333;
+    -webkit-box-shadow: inset 0 2px 1px #333;
+    box-shadow:         inset 0 2px 1px #333;
+    border-radius: 5px;
+}
 
 /* Readings */
 
@@ -313,55 +321,55 @@ footer {
     vertical-align: middle;
 }
 
-	.detail-page-link {
+.detail-page-link {
     padding: 10px;
     text-align: center;
-	}
+}
 
-		.detail-page-link > h2 {
-		    text-shadow: 0px 2px 3px #555;
-		}
+.detail-page-link > h2 {
+    text-shadow: 0px 2px 3px #555;
+}
 
-		.detail-page-link > img {
-		    display: inline;
-		}
+.detail-page-link > img {
+    display: inline;
+}
 
-		.detail-page-link > a {
-		    font-size: 2em;
-		    font-weight: 600;
-		    display: inline;
-		}
+.detail-page-link > a {
+    font-size: 2em;
+    font-weight: 600;
+    display: inline;
+}
 
-	h6.time {
-	    padding: 1px 5px;
-	}
+h6.time {
+    padding: 1px 5px;
+}
 
-	readings > p {
-	    margin: 1px 3px 3px;
-	}
+readings > p {
+    margin: 1px 3px 3px;
+}
 
-	span.temperature {
-	    font-weight: 600;
-	    font-size: 1.875em;
-	}
+span.temperature {
+    font-weight: 600;
+    font-size: 1.875em;
+}
 
-	.readings > span {
-	    margin: auto 2px;
-	    float: left;
-	}
+.readings > span {
+    margin: auto 2px;
+    float: left;
+}
 
-	.readings > table {
-	    float: left;
-	}
+.readings > table {
+    float: left;
+}
 
-	.readings >table td {
-	    padding-left: 5px;
-	}
+.readings >table td {
+    padding-left: 5px;
+}
 
-	.forecast-highlight {
+.forecast-highlight {
     background-color: #fafafa;
     color: #365283;
-	}
+}
 
 /* Posts, news */
 
@@ -375,15 +383,15 @@ footer {
     margin-right: 10px;
 }
 
-	.blog > .text {
-	    padding: 1.5em 1em;
-	}
+.blog > .text {
+    padding: 1.5em 1em;
+}
 
-	.blog-excerpt {
+.blog-excerpt {
     position: relative;
     margin: 2px;
     padding-left: 69px;
-	}
+}
 
 .post-date {
     color:#3990BD;
@@ -391,16 +399,16 @@ footer {
     text-align: center;
 }
 
-	.post-date .day {
-	    font-size: 1.75em;
-	    font-weight: 700;
-	}
+.post-date .day {
+    font-size: 1.75em;
+    font-weight: 700;
+}
 
-	.post-date .month,
-	.post-date .year {
-	    font-size: 1.2em;
-	    text-transform: uppercase;
-	}
+.post-date .month,
+.post-date .year {
+    font-size: 1.2em;
+    text-transform: uppercase;
+}
 
 .news {
     width: 228px;
@@ -413,25 +421,25 @@ footer {
     box-shadow: 0 4px 3px -3px black;
 }
 
-    .news li {
-        float:left;
-        width: 97%;
-        padding: 3%;
-    }
-    
-    .news li:nth-child(odd) {
-        background-color: #e1e6f3;
-    }
+.news li {
+    float:left;
+    width: 97%;
+    padding: 3%;
+}
 
-    .news img {
-        float:left;
-        margin-right: 5px;
-    }
+.news li:nth-child(odd) {
+    background-color: #e1e6f3;
+}
 
-    .news p {
-        padding: 1em;
-        vertical-align: middle;
-    }
+.news img {
+    float:left;
+    margin-right: 5px;
+}
+
+.news p {
+    padding: 1em;
+    vertical-align: middle;
+}
 
 /* Detail page */
 
@@ -448,44 +456,44 @@ footer {
     padding: 1em;
 }
 
-    #station,
-    #condition {
-        float:left;
-    }
+#station,
+#condition {
+    float:left;
+}
 
-    #station {
-        text-align: center;
-        width: 100%;
-        padding-bottom:2em;
-    }
+#station {
+    text-align: center;
+    width: 100%;
+    padding-bottom:2em;
+}
 
-        #station h1 {
-            text-shadow: 0px 2px 3px #555;
-        }
+#station h1 {
+    text-shadow: 0px 2px 3px #555;
+}
 
-    #condition {
-        width: 60%;
-    }
+#condition {
+    width: 60%;
+}
 
-        #condition td {
-            vertical-align: middle;
-            padding: 3px;
-        }
+#condition td {
+    vertical-align: middle;
+    padding: 3px;
+}
 
-        #current-reading-table {
-            float: right;
-            width: 30%;
-        }
+#current-reading-table {
+    float: right;
+    width: 30%;
+}
 
-            #current-reading-table th {
-                background-color: #fafafa;
-                color: #365283;
-                vertical-align: middle;
-            }
+#current-reading-table th {
+    background-color: #fafafa;
+    color: #365283;
+    vertical-align: middle;
+}
 
-            #current-reading-table td {
-                padding: 5px 8px;
-            }
+#current-reading-table td {
+    padding: 5px 8px;
+}
 
 .inner-condition {
     float: left;
@@ -547,19 +555,19 @@ footer {
     width: 100%;
 }
 
-    .forecast-table th {
+.forecast-table th {
     color: #fff;
     vertical-align: middle;
     background: #4f75b6;
     padding: 6px;
     font-weight: normal;
-    }
+}
 
-    .forecast-table td {
-        padding: 4px;
-        text-align: center;
-        border: 1px solid #d6dfeb;
-    }
+.forecast-table td {
+    padding: 4px;
+    text-align: center;
+    border: 1px solid #d6dfeb;
+}
 
 .forecast-date {
     width: 20em;
@@ -581,7 +589,6 @@ footer {
     padding: 10px;
     margin-bottom: 1em;
     border-radius: 5px;
-    text-align: center;
     background-color: #fafafa;
     -moz-box-shadow:    inset 0 2px 2px #aaa;
     -webkit-box-shadow: inset 0 2px 2px #aaa;
@@ -592,7 +599,6 @@ footer {
     padding: .5em;
     margin-bottom: 1em;
     border-radius: 5px;
-    text-align: center;
     -webkit-box-shadow: 0 4px 3px -3px black;
     -moz-box-shadow: 0 4px 3px -3px black;
     box-shadow: 0 4px 3px -3px black;
@@ -658,7 +664,7 @@ footer {
 }
 
 /*========================================
-3.	Module
+3.	Modules
 ========================================*/
 
 /* Text */
@@ -914,8 +920,6 @@ span.sunset { background-position: -60px 5px; }
 
 /* End spritemap */
 
-/*.wind-description { font-size: .875em; }*/
-
 .shadow {
     -webkit-box-shadow: 0 4px 3px -3px black;
     -moz-box-shadow: 0 4px 3px -3px black;
@@ -961,6 +965,76 @@ span.sunset { background-position: -60px 5px; }
 
 .ribbon-edge-bottomleft.blog-page {
     left: -38px;
+}
+
+/* Share buttons*/
+
+.social {
+    padding: 5px;
+    margin-bottom: .5em;
+    background: #fafafa;
+    border: 1px solid #e1e6f3;
+    border-radius: 5px;
+}
+
+.social h6 {
+    margin-bottom: .5em;
+}
+
+.social ul {
+    text-align: left;
+    margin-left: 2em; 
+}
+
+a.sb,
+.sb a {
+    width: 32px;
+    height: 32px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    text-indent: -900em;
+    color: #333;
+    text-decoration: none;
+    line-height: 100%;
+    white-space: nowrap;
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    margin: 0 2px 5px 0;
+    background-color: #eaeaea;
+    border: solid 1px #b8b8b9;
+    -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.3), 0 1px 0 rgba(0,0,0,.1);
+    -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,.3), 0 1px 0 rgba(0,0,0,.1);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.3), 0 1px 0 rgba(0,0,0,.1);
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+
+}
+/* for IE */
+*:first-child+html a.sb,
+*:first-child+html .sb a {
+    text-indent: 0;
+    line-height: 0;
+    font-size: 0;
+    overflow: hidden;
+}
+
+a.sb:hover,
+.sb a:hover,
+a.sb:hover:after,
+.sb a:hover:after {
+    background-color: #f3f3f3;
+}
+
+a.sb.twitter,
+.sb a.twitter {
+    background-image: url('<?= $this->webroot ?>theme/weatherph/img/twitter.png');
+}
+
+a.sb.facebook,
+.sb a.facebook {
+    background-image: url('<?= $this->webroot ?>theme/weatherph/img/facebook.png');
 }
 
 /*========================================
