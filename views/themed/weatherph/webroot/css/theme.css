@@ -469,6 +469,7 @@ span.temperature {
 
 #station h1 {
     text-shadow: 0px 2px 3px #555;
+    margin-bottom: 10px;
 }
 
 #condition {
@@ -604,6 +605,10 @@ span.temperature {
     box-shadow: 0 4px 3px -3px black;
 }
 
+.promo a {
+    text-decoration: none;
+}
+
 /* Search Results */
 
 .names.index {
@@ -700,6 +705,33 @@ span.temperature {
     max-width: 554px;
     margin: 2em auto;
     display:block;
+}
+
+/* Video pages */
+
+.video-block {
+    margin: 0 auto;
+    padding: 2em;
+    text-align: center;
+    background-color: #333333;
+    color: #fafafa;
+    border: 1px solid #e1e1e1;
+}
+
+.video-block h2 {
+    margin-bottom: 1em;
+}
+
+.video-block p {
+    text-align: left;
+    margin-bottom: 1em;
+}
+
+.video-block iframe {
+    margin: 1em;
+    -moz-box-shadow:    0 0 10px #fff;
+    -webkit-box-shadow: 0 0 10px #fff;
+    box-shadow:         0 0 10px #fff;
 }
 
 /* Slider */
@@ -981,11 +1013,6 @@ span.sunset { background-position: -60px 5px; }
     margin-bottom: .5em;
 }
 
-.social ul {
-    text-align: left;
-    margin-left: 2em; 
-}
-
 a.sb,
 .sb a {
     width: 32px;
@@ -1011,6 +1038,7 @@ a.sb,
     border-radius: 5px;
 
 }
+
 /* for IE */
 *:first-child+html a.sb,
 *:first-child+html .sb a {

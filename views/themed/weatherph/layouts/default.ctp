@@ -115,11 +115,9 @@
                 </div>
 
                 <div class="social">
-                    <h6>Share the weather!</h6>
-                    <ul>
-                        <li><a class="sb facebook"></a>  Facebook</li>
-                        <li><a class="sb twitter" href="http://twitter.com/weatherph"></a>  Twitter</li>
-                    </ul>
+                    <h6>Follow us on Facebook and Twitter</h6>
+                    <a class="sb facebook"></a>
+                    <a class="sb twitter"></a>
                 </div>
 
                 <div class="sponsored">
@@ -139,13 +137,17 @@
                     </ul>
                 </div>
                 <div class="promo">
+                    <a href="http://en.wikipedia.org/wiki/Boracay">
                     <h4>Visit Boracay!</h4>
                     <img src="<?= $this->webroot ?>theme/weatherph/img/boracay.jpg" alt="Boracay!"/>
+                    </a>
                     <p>Boracay is an island of the Philippines located approximately 315 km (196 mi) south of Manila. Boracay Island and its beaches have received awards numerous times.</p>
                 </div>
                 <div class="promo">
+                    <a href="http://en.wikipedia.org/wiki/Pamalican">
                     <h4>Discover Pamalican.</h4>
                     <img src="<?= $this->webroot ?>theme/weatherph/img/pamalican.jpg" alt="Pamalican!"/>
+                    </a>
                     <p>Pamalican Island is a small island of the Cuyo Islands in the Sulu Sea.</p>
                 </div>
             </div><!--END SIDEBAR-->
