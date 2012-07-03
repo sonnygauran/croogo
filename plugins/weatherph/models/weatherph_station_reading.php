@@ -2,6 +2,9 @@
 App::import('Lib', 'Meteomedia.Abfrage');
 App::import('Lib', 'Meteomedia.Curl');
 
+App::import('Module', 'Meteomedia.Reading');
+
+
 include 'weatherph_station_forecast.php';
 /**
  * Acquires the measurements of Weather Stations
@@ -462,5 +465,53 @@ class WeatherphStationReading extends WeatherphAppModel
         
     } 
     
+    public function fetch($conditions = null, $fields = array()){
+        
+        $reading_temp = new Reading();
+        
+        $station_id = $fields['conditions']['id'];
+        
+        $start_date = date("Y-m-d", strtotime($fields['conditions']['start_date']));
+        $end_date = date("Y-m-d", strtotime($fields['conditions']['end_date']));
+        
+        $stationInfo = $this->getStationInfo($station_id);
+        
+        // Get sunrise and sunset using current latituted and longtitude station
+        $sunrise = $this->sunInfo($stationInfo['lat'], $stationInfo['lon'], 'sunrise');
+        $sunset = $this->sunInfo($stationInfo['lat'], $stationInfo['lon'], 'sunset');
+        
+        $station_readings = $reading_temp->find('all', array(
+           // 'fields' => array('id' ,'datum', 'ort1', 'dir'),  
+            'conditions' => array( 
+                'ort1 LIKE' => "%".$station_id ."%", 
+                'date(datum) BETWEEN ? AND ?' => array($start_date, $end_date),
+                'tl !=' => ''),
+            'order' => 'datum, utc, min ASC'
+            ));
+        
+        $query_readings = array();
+        
+        foreach($station_readings as $readings){
+            
+            $clean_readings[] = array(
+                'date_time' => date('Y-m-d H:i', strtotime($readings['Reading']['datum'] . $readings['Reading']['utc'] . ":" . $readings['Reading']['min'])),
+                'temperature' => (trim($readings['Reading']['tl']) !='')? number_format($readings['Reading']['tl'],0) . "&deg;C" : "-",
+                'temperature_min' => (trim($readings['Reading']['tn']) != '')? $readings['Reading']['tn'] : "-",
+                'temperature_max' => (trim($readings['Reading']['tx']) !='')? $readings['Reading']['tx'] : "-",
+                'weather_condition' => $this->dayOrNightSymbol($readings['Reading']['sy'], $readings['Reading']['utc'], array("sunrise"=>$sunrise,"sunset"=>$sunset)),
+                'rain' => $readings['Reading']['rr1h'],
+                'humidity' => (trim($readings['Reading']['rh']) !='')? $readings['Reading']['rh'] : "-",
+                'wind_speed' => floor($readings['Reading']['ff'] * 1.852 + 0.5),
+                'wind_gust' => floor($readings['Reading']['g1h'] * 1.852 + 0.5),
+                'wind_direction' => $readings['Reading']['dir'],
+                'global_radiation' => $readings['Reading']['gl1h'],
+            );
+            
+            
+        }
+        
+        return $clean_readings;
+        
+    }
 }
 
