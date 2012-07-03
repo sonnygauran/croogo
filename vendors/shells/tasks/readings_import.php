@@ -8,9 +8,10 @@ class ReadingsImportTask extends Shell {
         App::import('Model', 'Weatherph.Reading');
         $Reading = new Reading();
         
-        $csv_filename = date('Ydm');
+        //$csv_filename = date('Ydm');
+        $csv_filename = 'temp/measurements.csv';
         
-        $readings_csv_file = Configure::read('Data.readings') . $csv_filename . '.csv';;
+        $readings_csv_file = Configure::read('Data.readings') . $csv_filename;
         
         if(file_exists($readings_csv_file)){
             
@@ -18,6 +19,8 @@ class ReadingsImportTask extends Shell {
             
             $rows = explode("\n", $csvContent);
             $headers = explode(';', $rows[0]);
+            
+//            echo print_r($headers, TRUE);
             
             unset($rows[0]);
             
@@ -63,21 +66,23 @@ class ReadingsImportTask extends Shell {
                             $cntr_inserted++;
                         
                             $data = array(
-                                'datum' => $data[0],
+                                'datum' => date('Ymd', strtotime($data[0])),
                                 'utc' => $data[1],
                                 'min' => $data[2],
                                 'ort1' => $data[3],
                                 'dir' => $data[4],
                                 'ff' => $data[5],
-                                'g3h' => $data[6],
+                                'g1h' => $data[6],
                                 'tl' => $data[7],
-                                'tn' => $data[8],
-                                'rr' => $data[9],
-                                'sy' => $data[10],
-                                'rain3' => $data[11],
-                                'rain6' => $data[12],
-                                'rh' =>$data[13],
-                                'sy2' => $data[14],
+                                'td' => $data[8],
+                                'tx' => $data[9],
+                                'tn' => $data[10],
+                                'rr1h' => $data[11],
+                                'gl1h' => $data[12],
+                                'sy' => $data[13],
+                                'rain6' => $data[14],
+                                'rh' =>$data[15],
+                                'sy2' => $data[16],
                             );
 
                             $Reading->save($data);
@@ -85,7 +90,7 @@ class ReadingsImportTask extends Shell {
                             echo "Inserted count [$cntr_inserted]\n";
                             
                         } 
-//                        
+                        
                     }
                     
                 }                
@@ -101,7 +106,7 @@ class ReadingsImportTask extends Shell {
         
         $total_execution_time = $execution_time_end - $execution_time_start;
         
-        $this->out("Execution Time: " . date('H:i:s', $total_execution_time));
+        echo "Execution Time (microseconds): " . $total_execution_time . "\n";
         
     }
    
