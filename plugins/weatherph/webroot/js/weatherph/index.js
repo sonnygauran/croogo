@@ -112,11 +112,12 @@ $(document).ready(function(){
             url:      '<?= $this->webroot ?>weatherph/weatherph/getForecast/'+id+'/3/3h',
             cache:    true,
             success:  function(readings) {
-                
+//                console.log(readings);
                 var $station_readings = readings; // the complete retrieved stations
-                //console.log($stationReadings);
+//                console.log($station_readings);
                 var cr_temperature, cr_wind, cr_precip, cr_humidity, cr_symbol;
-                var sr_temperature, sr_wind, sr_precip, sr_humidity, sr_symbol;                
+                var sr_temperature, sr_wind, sr_precip, sr_humidity, sr_symbol;
+                var current_readings, cr_precip_hr_range;
                 
                 $('.current.readings-location').html($station_readings.station_name);
                 
@@ -124,17 +125,21 @@ $(document).ready(function(){
                     
                     showReadings();
                     
-                    $('.last-update').html($station_readings.reading.update);
+                    current_readings = $station_readings.reading;
+                    
+                    $('.last-update').html(current_readings.update);
 
-                    cr_temperature = $station_readings.reading.temperature;
-                    cr_wind = $station_readings.reading.wind_speed;
-                    cr_precip = $station_readings.reading.precipitation;
-                    cr_humidity = $station_readings.reading.relative_humidity;
+                    cr_temperature = current_readings.temperature;
+                    cr_wind = current_readings.wind_speed;
+                    cr_precip = (current_readings.precipitation != '-')? current_readings.precipitation + 'mm' : current_readings.precipitation;
+                    cr_precip_hr_range = current_readings.precipitation_hr_range;
+                    cr_humidity = current_readings.relative_humidity;
 
-                    $('.current.temperature span').html(cr_temperature);
-                    $('.current.wind span').html(cr_wind);
+                    $('.current.temperature span').html(cr_temperature + '&deg;C');
+                    $('.current.wind span').html(cr_wind + 'km/h');
                     $('.current.precipitation span').html(cr_precip);
-                    $('.current.humidity span').html(cr_humidity);
+                    $('.precipitation_hr_range').html(cr_precip_hr_range);
+                    $('.current.humidity span').html(cr_humidity + '%');
                     
                     var weather_symbol = $station_readings.reading.weather_symbol;
                     

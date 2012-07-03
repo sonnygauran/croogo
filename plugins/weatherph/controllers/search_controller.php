@@ -56,8 +56,19 @@ class SearchController extends WeatherphAppController {
                 
                 $this->paginate['NimaName'] = array(
                     'limit' => 15,
+                    'fields' => array('id', 'full_name_ro'),
                     'conditions' => array(
-                        'full_name_ro LIKE' => '%'.$keyword.'%'
+                        "AND" => array(
+                            "OR" => array(
+                                'dsg' => "adm1",
+                                'dsg' => "ppl",
+                            )
+                        ),
+                        "OR" => array(
+                            'full_name_ro' => "$keyword",
+                            'full_name_ro LIKE' => "$keyword %",
+                            'full_name_ro LIKE' => "% $keyword",
+                        ),
                     ),
                     'order' => array(
                         'FIELD(NimaName.id, '.$idStrings.') DESC',
@@ -93,7 +104,23 @@ class SearchController extends WeatherphAppController {
             
             $NimaName = new NimaName();
             $keyword = $this->params['pass'][0];
-            $locations = $NimaName->find('all', array('fields' => array('id' ,'lat', 'long', 'full_name_ro'),  'conditions' => array( 'full_name_ro LIKE' => '%'.$keyword.'%')));
+            $locations = $NimaName->find('all', array(
+                    'limit' => 15,
+                    'fields' => array('full_name_ro', 'long', 'lat', 'id'),
+                    'conditions' => array(
+                        "AND" => array(
+                            "OR" => array(
+                                'dsg' => "adm1",
+                                'dsg' => "ppl",
+                            )
+                        ),
+                        "OR" => array(
+                            'full_name_ro' => "$keyword",
+                            'full_name_ro LIKE' => "$keyword %",
+                            'full_name_ro LIKE' => "% $keyword",
+                        ),
+                    ),
+                ));
             
             Cache::write($gum, $locations, 'daily');
         } else {

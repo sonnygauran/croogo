@@ -240,21 +240,21 @@ ECHO
             <div id="current-readings-box">
                 <div class="readings shadow">
                     <p>last updated: <span class="last-update">--:--</span></p>
-                    <span class="current temperature"><span>&nbsp;</span>&deg;C</span>
+                    <span class="current temperature"><span>&nbsp;</span></span>
                     <span class="symbol"></span>
                     <table>
                         <tbody>
                             <tr>
                                 <td>Wind</td>
-                                <td class="current wind"><span>&nbsp;</span>km/h</td>
+                                <td class="current wind"><span>&nbsp;</span></td>
                             </tr>
                             <tr>
-                                <td>Rain (hourly)</td>
-                                <td class="current precipitation"><span>&nbsp;</span>mm</td>
+                                <td>Rain<span class="precipitation_hr_range"></span></td>
+                                <td class="current precipitation"><span>&nbsp;</span></td>
                             </tr>
                             <tr>
                                 <td>Humidity</td>
-                                <td class="current humidity"><span>&nbsp;</span>%</td>
+                                <td class="current humidity"><span>&nbsp;</span></td>
                             </tr>
                         </tbody>
                     </table>

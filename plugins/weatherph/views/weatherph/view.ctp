@@ -81,10 +81,6 @@ echo $this->Html->script(array(
                                 <th>Relative Humidity</th>
                                 <td class="output"><?= $dataSets['reading']['relative_humidity']; ?>%</td>
                             </tr>
-                            <!--<tr>
-                                <th>Wind Direction</th>
-                                <td class="output"><?= $dataSets['reading']['wind_direction']['eng']; ?></td>
-                            </tr>-->
                         </tbody>
                     </table>
                 </div> <!--END CONDITION TABLE-->
