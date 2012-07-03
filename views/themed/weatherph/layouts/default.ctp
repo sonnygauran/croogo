@@ -113,18 +113,15 @@
                                 
                     </ul>
                 </div>
-                
-                <!-- AddThis Button BEGIN -->
-                <div class="addthis_toolbox addthis_default_style addthis_32x32_style" style="margin-bottom: 10px;">
-                <a class="addthis_button_facebook"></a>
-                <a class="addthis_button_twitter"></a>
-                <a class="addthis_button_linkedin"></a>
-                <a class="addthis_button_email"></a>
-                <a class="addthis_button_print"></a>
-                <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4f94bc453ecffca4"></script>
+
+                <div class="social">
+                    <h6>Share the weather!</h6>
+                    <ul>
+                        <li><a class="sb facebook"></a>  Facebook</li>
+                        <li><a class="sb twitter" href="http://twitter.com/weatherph"></a>  Twitter</li>
+                    </ul>
                 </div>
-                <!-- AddThis Button END -->
-                
+
                 <div class="sponsored">
                     <?php
                     $images = array(
