@@ -45,7 +45,7 @@
     </head>
     <body>
         <section id="container">
-            <header class="banner clear shadow">    
+            <header class="banner shadow">    
                 <h1 class="logo"><a href="<?= $this->webroot ?>">weather | philippines</a></h1>
                 <div id="slides">
                     <div class="slides_container">
@@ -113,18 +113,15 @@
                                 
                     </ul>
                 </div>
-                
-                <!-- AddThis Button BEGIN -->
-                <div class="addthis_toolbox addthis_default_style addthis_32x32_style" style="margin-bottom: 10px;">
-                <a class="addthis_button_facebook"></a>
-                <a class="addthis_button_twitter"></a>
-                <a class="addthis_button_linkedin"></a>
-                <a class="addthis_button_email"></a>
-                <a class="addthis_button_print"></a>
-                <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4f94bc453ecffca4"></script>
+
+                <div class="social">
+                    <h6>Share the weather!</h6>
+                    <ul>
+                        <li><a class="sb facebook"></a>  Facebook</li>
+                        <li><a class="sb twitter" href="http://twitter.com/weatherph"></a>  Twitter</li>
+                    </ul>
                 </div>
-                <!-- AddThis Button END -->
-                
+
                 <div class="sponsored">
                     <?php
                     $images = array(
@@ -141,17 +138,15 @@
                         <li><?php echo $this->Html->image($images[$hat], array('width' => '120px')); ?></li>
                     </ul>
                 </div>
-                <div class="ads">
-                    <div class="promo">
-                        <h4>Visit Boracay!</h4>
-                        <img src="<?= $this->webroot ?>theme/weatherph/img/boracay.jpg" alt="Boracay!"/>
-                        <p>Boracay is an island of the Philippines located approximately 315 km (196 mi) south of Manila. Boracay Island and its beaches have received awards numerous times.</p>
-                    </div>
-                    <div class="promo">
-                        <h4>Discover Pamalican.</h4>
-                        <img src="<?= $this->webroot ?>theme/weatherph/img/pamalican.jpg" alt="Pamalican!"/>
-                        <p>Pamalican Island is a small island of the Cuyo Islands in the Sulu Sea.</p>
-                    </div>
+                <div class="promo">
+                    <h4>Visit Boracay!</h4>
+                    <img src="<?= $this->webroot ?>theme/weatherph/img/boracay.jpg" alt="Boracay!"/>
+                    <p>Boracay is an island of the Philippines located approximately 315 km (196 mi) south of Manila. Boracay Island and its beaches have received awards numerous times.</p>
+                </div>
+                <div class="promo">
+                    <h4>Discover Pamalican.</h4>
+                    <img src="<?= $this->webroot ?>theme/weatherph/img/pamalican.jpg" alt="Pamalican!"/>
+                    <p>Pamalican Island is a small island of the Cuyo Islands in the Sulu Sea.</p>
                 </div>
             </div><!--END SIDEBAR-->
             

@@ -28,7 +28,7 @@ Site.timezone: Asia/Manila
 Data.dmo: /data/dmo/temp/
 Data.stations: /data/stations/
 Data.readings: /data/readings/
-Data.movies: /data/movies/live/
+Data.movies: /theme/weatherph/webroot/videos/
 
 Abfrage.username: wget
 Abfrage.password: p09tM20
@@ -38,4 +38,4 @@ Tile.main.ext: png
 # Tile.main.url: http://tile.stamen.com/toner
 # Tile.main.ext: jpg
 Tile.tiles: http://tiles.alpha.weather.com.ph
-Tile.attr: Meteomedia, © OpenStreetMap & contributors, CC-BY-SA
+Tile.attr: Meteomedia, ¬© OpenStreetMap & contributors, CC-BY-SA

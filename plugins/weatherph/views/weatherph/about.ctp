@@ -1,6 +1,6 @@
 <div class="content">
     <section class="main">
-        <div class="posts">
+        <div class="text">
             <h2>About Weather Philippines Foundation</h2>
             <p>Die Unwetterzentrale warnt in einem mehrstufigen Warnsystem vor den Unwetterarten Sturm/Orkan, Starkregen, Starkschneefall, Glatteisregen, Gewitter (mit Starkregen, Hagel, Sturmböen und ggf. Tornados). Ergänzt werden diese Warnungen um Wetterhinweise zu Extremtemperaturen (Hitzebelastung und Extremfrost) sowie Glättegefahren. Unwetter und deren mögliche Folgeschäden können das öffentliche Leben nachhaltig beeinflussen. Um sich rechtzeitig auf das Eintreten dieser ungewöhnlichen, nicht alltäglichen Wettersituation vorbereiten zu können, ist eine erhöhte Aufmerksamkeit seitens der Öffentlichkeit wichtig.</p>
             <h2>About Meteomedia</h2>

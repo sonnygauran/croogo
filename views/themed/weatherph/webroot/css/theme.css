@@ -4,40 +4,131 @@ WEATHER PHILIPPINES - Frontpage
 
 Table of contents:
 
-1.Reset
+1.Base
 2.Layout
-3.Typography
-4.Color Scheme
-5.States
+3.Modules
+4.States
+5.Themes
+
+Categorization is loosely based on SMACSS (http://smacss.com/book/categorizing)
+
+TODO:
+- consolidate color rules
+- edit view page css (reduce rules/classes)
 
 */
 
 /*========================================
-1.	Reset
+1.	Base
 ========================================*/
 
+/* Reset */
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outline:0}ins{text-decoration:none}del{text-decoration:line-through}
+
+html {
+    font: 87.5%/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+body {
+    color: #365283;
+    background: #fafafa url('<?= $this->webroot ?>theme/weatherph/img/bg.png');
+}
+
+h1 {
+    font-size: 3em;
+}
+
+h2 {
+    font-size: 2.25em;
+}
+
+h3 {
+    font-size: 1.5em;
+}
+
+h4 {
+    font-size: 1.3125em;
+}
+
+h5 {
+    font-size: 1.125em;
+}
+
+h6 {
+    font-size: 1em;
+}
+
+dl {
+    margin-top: 2em;
+}
+
+dt {
+    font-weight: bold;
+}
+
+dd {
+    margin: 1em 0 2em 0;
+}
+
+hr {
+    width: 65%;
+    margin: 1em auto;
+    border: 0;
+    height: 1px;
+    background-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(54,82,121,.75), rgba(0,0,0,0)); 
+    background-image:    -moz-linear-gradient(left, rgba(0,0,0,0), rgba(54,82,121,.75), rgba(0,0,0,0)); 
+    background-image:     -ms-linear-gradient(left, rgba(0,0,0,0), rgba(54,82,121,.75), rgba(0,0,0,0)); 
+    background-image:      -o-linear-gradient(left, rgba(0,0,0,0), rgba(54,82,121,.75), rgba(0,0,0,0)); 
+}
+
+.cf:before,
+.cf:after {
+    content:"";
+    display:table;
+}
+
+.cf:after {
+    clear:both;
+}
+
+/* For IE 6/7 (trigger hasLayout) */
+.cf {
+    *zoom:1;
+}
 
 /*========================================
 2.	Layout
 ========================================*/
 
-/*====================
-    CONTAINERS
-====================*/
+/* Containers */
 
 #container {
     width: 1000px;
     margin: 0 auto;
 }
 
+.banner {
+    height: 155px;
+    margin-top: 10px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 8px;
+}
+
+nav {
+    width: 980px;
+    text-align: center;
+    margin: 15px 0;
+    padding: 5px 10px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    z-index: 1;
+}
+
 .content {
     float: left;
     width: 804px;
-}
-
-#sidebar {
-    float:right;
 }
 
 .main {
@@ -50,20 +141,43 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
     float: left;
 }
 
-/*====================
-    HEADER
-====================*/
-.banner {
-    height: 155px;
-    margin-top: 10px;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 8px;
+#sidebar {
+    float:right;
+    width: 186px;
+    margin-left: 10px;
+    text-align: center;
 }
+
+footer {
+    float: left;
+    clear: both;
+    width: 100%;
+    margin-top: 15em;
+    padding: 10px;
+    font-size: .75em;
+    background-color: #e1e6f3;
+    -webkit-box-shadow: 0 -4px 4px -4px #555;
+    -moz-box-shadow:    0 -4px 4px -4px #555;
+    box-shadow:         0 -4px 4px -4px #555;
+}
+
+/* Header, nav */
 
 .logo {
     float:left;
     margin: 60px 10px;
+    font-size: 2.875em;
+    font-weight: 200;
+    text-shadow: #fafafa 0 0 20px;
+}
+
+.logo a,
+.logo a:link,
+.logo a:visited,
+.logo a:focus,
+.logo a:hover {
+    color:#365283;
+    text-decoration: none;
 }
 
 #options {
@@ -71,11 +185,17 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
     margin: 85px 10px 10px 10px;
 }
 
-#options > img, #options > form {
+#options > img,
+#options > form {
     float: right;
     display: inline;
     clear:both;
     margin-bottom: 10px;
+}
+
+label[for="search-field"] {
+    font-size: 8pt;
+    text-transform: uppercase;
 }
 
 #options > img {
@@ -86,120 +206,16 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
     vertical-align: middle;
 }
 
-label[for="search-field"] {
-    font-size: 8pt;
-    text-transform: uppercase;
-}
+/* Map */
 
-/* SPONSOR SLIDER */
-
-#slides {
-    width: 240px;
-    float: left;
-    margin-left: 30px;
-}
-
-.slidesContainer {
-    width: 240px;
-    display: none;
-}
-
-.slides_container img {
-    width:240px;
-    height:150px;
-    display:block;
-}
-
-/*====================
-    NAV
-====================*/
-
-nav {
-    width: 980px;
-    margin: 15px 0;
-    padding: 5px 10px;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    z-index: 1;
-}
-
-/*===============
-    DROPDOWN
-===============*/
-
-.dropdown{
-    height: 100%;
-    width:100%;
-    position:relative;
-    text-align: center;
-}
-
-.dropdown li{
-    position:relative;
-    display: inline;
-    padding: 0 1em;
-}
-
-.dropdown a {
-    display:inline-block;
-    padding:5px;
-    text-decoration: none;
-}
-
-.dropdown ul{
-    background-color: #20304d;
-    background-color: rgba(32,48,77,.9);
-    position:absolute;
-    left:-9999px;
-    margin:0;
-    padding:0;
-    text-align:left;
-}
-
-.dropdown ul li {
-    display:block;
-}
-
-.dropdown ul a{
-    white-space:nowrap;
-}
-
-.dropdown li:hover ul{
-    left:1em;
-    z-index: 1;
-}
-
-.dropdown li:hover a{
-    text-decoration: none;
-}
-
-.dropdown li:hover ul a{ /* The persistent hover state does however create a global style for links even before they're hovered. Here we undo these effects. */
-    text-decoration: none;
-}
-
-.dropdown li:hover ul li:hover{ /* Here we define the most explicit hover states--what happens when you hover each individual link. */
-    background-color:#3e5e95;
-}
-
-/*====================
-    MAP
-====================*/
 #map-container {
+    width: 554px;
     margin-right: 10px;
     float:left;
     background-color: #fafafa;
 }
 
-#map {
-    height: 554px;
-}
-
-#map-container video {
-    display:none;
-}
-
-.layerSelector {
+.layer-selector {
     padding: 5px 10px;
     -webkit-border-top-left-radius: 5px;
     -webkit-border-top-right-radius: 5px;
@@ -210,6 +226,14 @@ nav {
     -moz-box-shadow:    inset 0 2px 1px #333;
     -webkit-box-shadow: inset 0 2px 1px #333;
     box-shadow:         inset 0 2px 1px #333;
+}
+
+#map {
+    height: 554px;
+}
+
+#map-container video {
+    display:none;
 }
 
 #legend {
@@ -228,23 +252,22 @@ nav {
     float:left; 
 }
 
-.scale-temperature, .scale-pressure {
+.scale-temperature,
+.scale-pressure {
     display: none;
 }
 
-.scale-celsius, .scale-fahrenheit, .scale-pressure {
+.scale-celsius,
+.scale-fahrenheit,
+.scale-pressure {
     float:left;
     margin-left: 10px;
     width: 100%;
-    display:none;
 }
 
-.unit-buttons {
-    float: left;
-    display:none;
-}
-
-.scale-fahrenheit li, .scale-celsius li, .scale-pressure li {
+.scale-fahrenheit li,
+.scale-celsius li,
+.scale-pressure li {
     display: inline-block;
     text-align: center;
     vertical-align: middle;
@@ -252,6 +275,11 @@ nav {
     padding: 3px;
     color: #fafafa;
     text-shadow: 1px 1px #111111; 
+}
+
+.unit-buttons {
+    float: left;
+    display:none;
 }
 
 #province-select {
@@ -266,9 +294,7 @@ nav {
     vertical-align: middle;
 }
 
-/*====================
-    INFO
-====================*/
+/* Info pane */
 
 #info {
     width: 240px;
@@ -286,16 +312,36 @@ nav {
     border-radius: 5px;
 }
 
-h6.time {
-    padding: 1px 5px;
-}
+/* Readings */
 
-/*READINGS*/
 .readings {
     clear: both;
     padding: 5px 10px;
     overflow: hidden;
     vertical-align: middle;
+}
+
+.detail-page-link {
+    padding: 10px;
+    text-align: center;
+}
+
+.detail-page-link > h2 {
+    text-shadow: 0px 2px 3px #555;
+}
+
+.detail-page-link > img {
+    display: inline;
+}
+
+.detail-page-link > a {
+    font-size: 2em;
+    font-weight: 600;
+    display: inline;
+}
+
+h6.time {
+    padding: 1px 5px;
 }
 
 readings > p {
@@ -319,35 +365,13 @@ span.temperature {
 .readings >table td {
     padding-left: 5px;
 }
-/*END READINGS*/
-
-.detail-page-link {
-    padding: 10px;
-    text-align: center;
-}
-
-.detail-page-link > h2 {
-    text-shadow: 0px 2px 3px #555;
-}
-
-.detail-page-link > img {
-    display: inline;
-}
-
-.detail-page-link > a {
-    font-size: 2em;
-    font-weight: 600;
-    display: inline;
-}
 
 .forecast-highlight {
-    background-color: #f1f1f1;
+    background-color: #fafafa;
     color: #365283;
 }
 
-/*====================
-    POSTS, NEWS
-====================*/
+/* Posts, news */
 
 .secondary h4 {
     padding-bottom: 1em;
@@ -359,36 +383,38 @@ span.temperature {
     margin-right: 10px;
 }
 
-.blog > .posts {
+.blog > .text {
     padding: 1.5em 1em;
 }
 
-.date {
-    color:#3990BD;
-    padding: 0.3em;  
-    text-align: center;
-}
-
-.blog-posts{
+.blog-excerpt {
     position: relative;
     margin: 2px;
     padding-left: 69px;
 }
 
-.date .day {
+.post-date {
+    color:#3990BD;
+    padding: 0.3em;  
+    text-align: center;
+}
+
+.post-date .day {
     font-size: 1.75em;
     font-weight: 700;
 }
 
-.date .month, .date .year {
+.post-date .month,
+.post-date .year {
     font-size: 1.2em;
     text-transform: uppercase;
 }
 
-.secondary > .news {
+.news {
     width: 228px;
     float: left;
     overflow: hidden;
+    background-color: #fafafa;
     border: 1px solid #dddddd;
     -webkit-box-shadow: 0 4px 3px -3px black;
     -moz-box-shadow: 0 4px 3px -3px black;
@@ -401,6 +427,10 @@ span.temperature {
     padding: 3%;
 }
 
+.news li:nth-child(odd) {
+    background-color: #e1e6f3;
+}
+
 .news img {
     float:left;
     margin-right: 5px;
@@ -411,37 +441,11 @@ span.temperature {
     vertical-align: middle;
 }
 
-.posts {
-    line-height: 1.618em;
-    position: relative;
-    margin: 0 auto;
-    padding: 2em;
-    background-color: #fafafa;
-    border: 1px solid #e1e1e1;
-    -webkit-box-shadow: 0 4px 3px -3px black;
-    -moz-box-shadow: 0 4px 3px -3px black;
-    box-shadow: 0 4px 3px -3px black;
-}
+/* Detail page */
 
-.posts p {
-    margin-bottom: 1.5em;
-}
-
-.posts li {
-    list-style: disc;
-    margin: 1em 0;
-}
-
-.posts h2 {
-    text-align: center;
-    line-height: 1.333333333333333em;
-    margin-bottom: .6666666666666667em;
-}
-
-/*====================
-    DETAIL
-====================*/
-#weekWeather, #charts, #outlook {
+#weekWeather,
+#charts,
+#outlook {
     margin: 10px auto;
 }
 
@@ -452,7 +456,8 @@ span.temperature {
     padding: 1em;
 }
 
-#station, #condition {
+#station,
+#condition {
     float:left;
 }
 
@@ -466,7 +471,7 @@ span.temperature {
     text-shadow: 0px 2px 3px #555;
 }
 
-#condition{
+#condition {
     width: 60%;
 }
 
@@ -475,12 +480,18 @@ span.temperature {
     padding: 3px;
 }
 
-#conditionTable {
+#current-reading-table {
     float: right;
     width: 30%;
 }
 
-#conditionTable td {
+#current-reading-table th {
+    background-color: #fafafa;
+    color: #365283;
+    vertical-align: middle;
+}
+
+#current-reading-table td {
     padding: 5px 8px;
 }
 
@@ -544,120 +555,56 @@ span.temperature {
     width: 100%;
 }
 
+.forecast-table th {
+    color: #fff;
+    vertical-align: middle;
+    background: #4f75b6;
+    padding: 6px;
+    font-weight: normal;
+}
+
 .forecast-table td {
     padding: 4px;
     text-align: center;
     border: 1px solid #d6dfeb;
 }
 
-.daydate{
-    background-color: #3E5E95;
-    border-radius: 5px 5px 0px 0;
-    color: #fff;
-    padding-top: 8px;
-    margin-top: 5px;
-    padding-bottom: 5px;
-    font-size: 15px;
+.forecast-date {
     width: 20em;
     text-align: center;
+    margin-top: 1em;
+    padding: .5em 0;
+    background-color: #3E5E95;
+    color: #fafafa;
+    border-radius: 5px 5px 0 0;
     box-shadow: 2px 0 0 0 #555;
 }
 
-span.daytime {
-    font-weight: bold;
-}
+.chart-legend { display: block; margin-left: 30px; vertical-align: middle; font-size: 10px; }
+.chart-legend span { display: inline-block; margin: 0 5px 0 0; vertical-align: middle; padding: 0; width: 10px; }
 
-/*===============
-    TABS
-===============
-
-ul.tabs {
-    margin-top: 1em;
-    border-bottom: 15px solid #3e5e95;
-}
-
-.divider{
-    position: relative;
-    width: 100%;
-    background: #3e5e95;
-}
-
-.tabs li {
-    display: inline;
-    padding: 10px 30px 0px 30px;
-    cursor: pointer;
-    border-radius: 5px 5px 0 0;
-    -moz-box-shadow: 0 -2px 2px #888;
-    -webkit-box-shadow: 0 -2px 2px #888;
-    box-shadow: 0 -2px 2px #888;
-}
-
-.tabs li > a {
-    text-decoration: none;
-}
-
-.tabs li a{
-    padding-bottom:10px;
-    padding-top: 10px;
-}
-
-div.tab{
-    display: none;
-}
-
-div.current-tab {
-    display: block;
-}
-
-*/
-
-/*====================
-    SIDEBAR
-====================*/
-
-#sidebar{
-    width: 186px;
-    margin-left: 10px;
-}
+/* Sidebar */
 
 .sponsored {
     padding: 10px;
     margin-bottom: 1em;
     border-radius: 5px;
-    text-align: center;
+    background-color: #fafafa;
+    -moz-box-shadow:    inset 0 2px 2px #aaa;
+    -webkit-box-shadow: inset 0 2px 2px #aaa;
+    box-shadow:         inset 0 2px 2px #aaa;
 }
 
 .promo {
     padding: .5em;
     margin-bottom: 1em;
     border-radius: 5px;
-    text-align: center;
     -webkit-box-shadow: 0 4px 3px -3px black;
     -moz-box-shadow: 0 4px 3px -3px black;
     box-shadow: 0 4px 3px -3px black;
 }
 
-/* Glossary */
-
-.figure {
-    max-width: 554px;
-    margin: 2em auto;
-    display:block;
-}
-
-dl {
-    margin-top: 2em;
-}
-
-dt {
-    font-weight: bold;
-}
-
-dd {
-    margin: 1em 0 2em 0;
-}
-
-/* Search Results*/
+/* Search Results */
 
 .names.index {
     width: 240px;
@@ -680,6 +627,10 @@ dd {
     background: #fafafa;
 }
 
+.search-results li:hover {
+    background-color: #e0e6f2;
+}
+
 .search-results a {
     position: absolute;
     top: 0;
@@ -688,223 +639,165 @@ dd {
     height: 100%;
 }
 
-.search-results li:hover {
-    background-color: #e0e6f2;
+.plot {   
+    width: 16px;
+    height: 16px;
+    background-image: url('<?= $this->webroot ?>theme/weatherph/img/marker-small.png') !important;
+    position: relative;
+    left: -8px;
+    top: -16px;
+    z-index: 1 !important;
+}
+
+.marker {   
+    width: 32px;
+    height: 32px;
+    background-image: url('<?= $this->webroot ?>theme/weatherph/img/marker.png') !important;
+    position: relative;
+    left: -16px;
+    top: -32px;
+    z-index: 1 !important;
 }
 
 .paging {
     text-align: center;
 }
 
-/*====================
-    FOOTER
-====================*/
+/*========================================
+3.	Modules
+========================================*/
 
-footer {
+/* Text */
+
+.text {
+    line-height: 1.618em;
+    position: relative;
+    margin: 0 auto;
+    padding: 2em;
+    background-color: #fafafa;
+    border: 1px solid #e1e1e1;
+    -webkit-box-shadow: 0 4px 3px -3px black;
+    -moz-box-shadow: 0 4px 3px -3px black;
+    box-shadow: 0 4px 3px -3px black;
+}
+
+.text p {
+    margin-bottom: 1.5em;
+}
+
+.text li {
+    list-style: disc;
+    margin: 1em 0;
+}
+
+.text h2 {
+    text-align: center;
+    line-height: 1.333333333333333em;
+    margin-bottom: .6666666666666667em;
+}
+
+.figure {
+    max-width: 554px;
+    margin: 2em auto;
+    display:block;
+}
+
+/* Slider */
+
+#slides {
+    width: 240px;
     float: left;
-    clear: both;
-    width: 100%;
-    margin-top: 15em;
-    padding: 10px;
-    font-size: .75em;
-    background-color: #e1e6f3;
-    background-color: rgba(225,230,243,.3);
-    -webkit-box-shadow: 0 -4px 4px -4px #555;
-    -moz-box-shadow:    0 -4px 4px -4px #555;
-    box-shadow:         0 -4px 4px -4px #555;
+    margin-left: 30px;
 }
 
-/*========================================
-3.	Typography
-========================================*/
-
-html {
-    font: 87.5%/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif;
+.slidesContainer {
+    width: 240px;
+    display: none;
 }
 
-h1 {
-    font-size: 3em;
-}
-h2 {
-    font-size: 2.25em;
-}
-h3 {
-    font-size: 1.5em;
-}
-h4 {
-    font-size: 1.3125em;
-}
-h5 {
-    font-size: 1.125em;
-}
-h6 {
-    font-size: 1em;
+.slides_container img {
+    width:240px;
+    height:150px;
+    display:block;
 }
 
-#info {
-    font-size: .85em;
-}
+/* Dropdown menu */
 
-.logo {
-    color:#3E4F76;
-    font-size: 2.875em;
-    font-weight: 200;
-    text-shadow: #fafafa 0 0 20px;
-}
-.logo a,
-.logo a:link,
-.logo a:visited,
-.logo a:focus,
-.logo a:hover
-{
-    color:#3E4F76;
-    text-decoration: none;
-}
-.layerSelector, #legend {
-    font-size: .875em;
-}
-
-/*========================================
-4.	Color Scheme
-========================================*/
-
-/*
-
-So much blue.
-
-    Main blue: #365283
-    Lighter blue: #3e5e95
-    Darker blue: #365283
-    Darkest blue: #20304d
-    Off-white: #fafafa
-    Warning red: #aa1111
-
-*/
-
-body {
-    color: #365283;
-    background: #fafafa url('<?= $this->webroot ?>theme/weatherph/img/bg.png');
-}
-
-.banner {
-    color: #fafafa;
-    background:#3e5e95 url('<?= $this->webroot ?>theme/weatherph/img/banner-plain.png') top left no-repeat;
-    border: 1px solid #365283;
-}
-
-#container > nav {
+.dropdown{
+    height: 100%;
+    width:100%;
+    position:relative;
     text-align: center;
 }
 
-nav, .layerSelector, .promo, #info, .output {
-    background-color: #365283;
-    color: #fafafa;
+.dropdown li{
+    position:relative;
+    display: inline;
+    padding: 0 1em;
 }
 
-#current-readings-panel, #info > .readings, #currentWeather, .tabs li, .search-results h2 {
-    background-color: #3e5e95;
-    color: #fafafa;
+.dropdown a {
+    display:inline-block;
+    padding:5px;
+    text-decoration: none;
 }
 
-.current.readings-location, nav li, .search-results h2 {
-    text-shadow: 0px 1px 3px #333;
-}
-
-.news li {
-    background-color: #fafafa;
-}
-
-.news li:nth-child(odd) {
-    background-color: #e1e6f3;
-    background-color: rgba(225,230,243,.7);
-}
-
-.caption {
-    background-color: #fafafa;
-    color: #365283;
-    vertical-align: middle;
-}
-
-.columnheader{
-    color: #fff;
-    vertical-align: middle;
-    background: #4f75b6;
-    padding: 6px;
-    font-weight: normal;
-}
-
-.sponsored {
-    background-color: #fafafa;
-    -moz-box-shadow:    inset 0 2px 2px #aaa;
-    -webkit-box-shadow: inset 0 2px 2px #aaa;
-    box-shadow:         inset 0 2px 2px #aaa;
-}
-
-/*========================================
-5.	States
-========================================*/
-
-.clear {
-    clear: both;
-}
-
-.cf:before,
-.cf:after {
-    content:"";
-    display:table;
-}
-
-.cf:after {
-    clear:both;
-}
-
-/* For IE 6/7 (trigger hasLayout) */
-.cf {
-    *zoom:1;
-}
-
-a {
-    -webkit-transition: all .2s ease;
-    -moz-transition: all .2s ease;
-    -o-transition: all .2s ease;
-    -ms-transition: all .2s ease;
-    transition: all .2s ease;
-}
-
-a:hover {
-    text-shadow: white 0 0 1px;
-}
-
-.paging a:link, .posts a:link, .names a:link, .news a:link {
-    color: #20304d;
-}
-
-.paging a:visited, .posts a:visited, .names a:visited, .news a:visited  {
-    color: #3e5e95;
-}
-
-a:link, a:visited {
-    color: #fafafa;
-}
-
-nav li, .dropdown li, .dropdown a, .detail-page-link {
-    -webkit-transition: all .1s ease;
-    -moz-transition: all .1s ease;
-    -o-transition: all .1s ease;
-    -ms-transition: all .1s ease;
-    transition: all .1s ease;
-}
-
-nav a:hover {
-    background-color: #3e5e95;
-}
-
-nav li:active, .detail-page-link:active {
+.dropdown ul{
     background-color: #20304d;
+    background-color: rgba(32,48,77,.9);
+    position:absolute;
+    left:-9999px;
+    margin:0;
+    padding:0;
+    text-align:left;
 }
 
-.layerSelector a:link, .layerSelector a:visited {
-    color: #fafafa;
+.dropdown ul li {
+    display:block;
+}
+
+.dropdown ul a{
+    white-space:nowrap;
+}
+
+.dropdown li:hover ul{
+    left:1em;
+    z-index: 1;
+}
+
+.dropdown li:hover a{
+    text-decoration: none;
+}
+
+.dropdown li:hover ul a{ /* The persistent hover state does however create a global style for links even before they're hovered. Here we undo these effects. */
+    text-decoration: none;
+}
+
+.dropdown li:hover ul li:hover{ /* Here we define the most explicit hover states--what happens when you hover each individual link. */
+    background-color:#3e5e95;
+}
+
+/* Tabs
+
+ul.tabs {
+    margin-top: 1em;
+    border-bottom: 15px solid #3e5e95;
+}
+
+.divider{
+    position: relative;
+    width: 100%;
+    background: #3e5e95;
+}
+
+.tabs li {
+    display: inline;
+    padding: 10px 30px 0px 30px;
+    cursor: pointer;
+    border-radius: 5px 5px 0 0;
+    -moz-box-shadow: 0 -2px 2px #888;
+    -webkit-box-shadow: 0 -2px 2px #888;
+    box-shadow: 0 -2px 2px #888;
 }
 
 .tabs li.current-tab {
@@ -912,11 +805,27 @@ nav li:active, .detail-page-link:active {
     background-color: #3e5e95;
 }
 
-/*====================
-    ERROR/WARNING STATES
-====================*/
+.tabs li > a {
+    text-decoration: none;
+}
 
-/* Severe weather warning show up below the nav */
+.tabs li a{
+    padding-bottom:10px;
+    padding-top: 10px;
+}
+
+div.tab{
+    display: none;
+}
+
+div.current-tab {
+    display: block;
+}
+
+*/
+
+/* Error/warning block */
+
 .severe-warning {
     display: none;
     width: 75%;
@@ -943,9 +852,7 @@ nav li:active, .detail-page-link:active {
     border: 1px solid #365283;
 }
 
-/*====================
-    SPRITEMAP
-====================*/
+/* Spritemap */
 
 span.symbol { background: url('<?= $this->webroot ?>theme/weatherph/img/warning-sprites.png') -5px -65px no-repeat; height: 30px; width: 40px; display: block; margin: auto; cursor: pointer;}
 
@@ -1011,54 +918,12 @@ span.moonphase_7 { background-position: -540px 5px; }
 span.sunrise { background-position: 0px 5px; }
 span.sunset { background-position: -60px 5px; }
 
-span.wind-description { font-size: .875em; }
-
-hr {
-    width: 65%;
-    margin: 1em auto;
-    border: 0;
-    height: 1px;
-    background-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(54,82,121,.75), rgba(0,0,0,0)); 
-    background-image:    -moz-linear-gradient(left, rgba(0,0,0,0), rgba(54,82,121,.75), rgba(0,0,0,0)); 
-    background-image:     -ms-linear-gradient(left, rgba(0,0,0,0), rgba(54,82,121,.75), rgba(0,0,0,0)); 
-    background-image:      -o-linear-gradient(left, rgba(0,0,0,0), rgba(54,82,121,.75), rgba(0,0,0,0)); 
-}
+/* End spritemap */
 
 .shadow {
     -webkit-box-shadow: 0 4px 3px -3px black;
     -moz-box-shadow: 0 4px 3px -3px black;
     box-shadow: 0 4px 3px -3px black;
-}
-
-.color-legend { display: block; margin-left: 30px; vertical-align: middle; font-size: 10px; }
-.color-legend span { display: inline-block; margin: 0 5px 0 0; vertical-align: middle; padding: 0; width: 10px; }
-
-.red-line { background-color: red; height: 2px;}
-.green-line { background-color: green; height: 2px;}
-.orange-line { background-color: orange; height: 2px;}
-.olive-line { background-color: olive; height: 2px;}
-.red-dot { background-color: red; height: 10px; width: 2px; border-radius: 8px;}
-.blue-dot { background-color: blue; height: 10px; width: 2px; border-radius: 8px;}
-.blue-bar { background-color: blue; height: 5px;}
-
-.plot {   
-    width: 16px;
-    height: 16px;
-    background-image: url('<?= $this->webroot ?>theme/weatherph/img/marker-small.png') !important;
-    position: relative;
-    left: -8px;
-    top: -16px;
-    z-index: 1 !important;
-}
-
-.marker {   
-    width: 32px;
-    height: 32px;
-    background-image: url('<?= $this->webroot ?>theme/weatherph/img/marker.png') !important;
-    position: relative;
-    left: -16px;
-    top: -32px;
-    z-index: 1 !important;
 }
 
 /* RIBBON  STYLE CSS */
@@ -1100,4 +965,180 @@ hr {
 
 .ribbon-edge-bottomleft.blog-page {
     left: -38px;
+}
+
+/* Share buttons*/
+
+.social {
+    padding: 5px;
+    margin-bottom: .5em;
+    background: #fafafa;
+    border: 1px solid #e1e6f3;
+    border-radius: 5px;
+}
+
+.social h6 {
+    margin-bottom: .5em;
+}
+
+.social ul {
+    text-align: left;
+    margin-left: 2em; 
+}
+
+a.sb,
+.sb a {
+    width: 32px;
+    height: 32px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    text-indent: -900em;
+    color: #333;
+    text-decoration: none;
+    line-height: 100%;
+    white-space: nowrap;
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    margin: 0 2px 5px 0;
+    background-color: #eaeaea;
+    border: solid 1px #b8b8b9;
+    -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.3), 0 1px 0 rgba(0,0,0,.1);
+    -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,.3), 0 1px 0 rgba(0,0,0,.1);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.3), 0 1px 0 rgba(0,0,0,.1);
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+
+}
+/* for IE */
+*:first-child+html a.sb,
+*:first-child+html .sb a {
+    text-indent: 0;
+    line-height: 0;
+    font-size: 0;
+    overflow: hidden;
+}
+
+a.sb:hover,
+.sb a:hover,
+a.sb:hover:after,
+.sb a:hover:after {
+    background-color: #f3f3f3;
+}
+
+a.sb.twitter,
+.sb a.twitter {
+    background-image: url('<?= $this->webroot ?>theme/weatherph/img/twitter.png');
+}
+
+a.sb.facebook,
+.sb a.facebook {
+    background-image: url('<?= $this->webroot ?>theme/weatherph/img/facebook.png');
+}
+
+/*========================================
+4.	States
+========================================*/
+
+a {
+    -webkit-transition: all .2s ease;
+    -moz-transition: all .2s ease;
+    -o-transition: all .2s ease;
+    -ms-transition: all .2s ease;
+    transition: all .2s ease;
+}
+
+a:hover {
+    text-shadow: white 0 0 1px;
+}
+
+.paging a:link,
+.text a:link,
+.names a:link,
+.news a:link {
+    color: #20304d;
+}
+
+.paging a:visited,
+.text a:visited,
+.names a:visited,
+.news a:visited  {
+    color: #3e5e95;
+}
+
+a:link,
+a:visited {
+    color: #fafafa;
+}
+
+nav li,
+.dropdown li,
+.dropdown a,
+.detail-page-link {
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    -ms-transition: all .1s ease;
+    transition: all .1s ease;
+}
+
+nav a:hover {
+    background-color: #3e5e95;
+}
+
+.layer-selector a:link,
+.layer-selector a:visited {
+    color: #fafafa;
+}
+
+/*========================================
+5.	Themes
+========================================*/
+
+#info,
+.layer-selector,
+#legend {
+    font-size: .875em;
+}
+
+
+/* Color scheme
+
+Main blue: #365283
+Lighter blue: #3e5e95
+Darker blue: #20304d
+Off-white: #fafafa
+Warning red: #aa1111
+
+*/
+
+.banner {
+    color: #fafafa;
+    background:#3e5e95 url('<?= $this->webroot ?>theme/weatherph/img/banner-plain.png') top left no-repeat;
+    border: 1px solid #365283;
+}
+
+nav,
+.layer-selector,
+.promo,
+#info,
+.output {
+    background-color: #365283;
+    color: #fafafa;
+}
+
+#current-readings-panel,
+#info > .readings,
+#currentWeather,
+.tabs li,
+.search-results h2 {
+    background-color: #3e5e95;
+    color: #fafafa;
+}
+
+nav li,
+.current.readings-location,
+.search-results h2 {
+    text-shadow: 0px 1px 3px #333;
 }

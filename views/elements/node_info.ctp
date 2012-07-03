@@ -7,7 +7,7 @@
         <div class="ribbon-wrapper blog-page">
             <div class="ribbon-front blog-page">
                 <div class="ribbon-top-bar"></div>
-                <div class="date">
+                <div class="post-date">
                     <div class="day"><?= date('d', $createdTime) ?></div>
                     <div class="month"><?= date('M', $createdTime) ?></div>
                     <div class="year"><?= date('Y', $createdTime) ?></div>

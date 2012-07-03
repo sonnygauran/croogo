@@ -1,6 +1,6 @@
 <div class="content">
     <section class="main">
-        <div class="posts">
+        <div class="text">
         <h2>Glossary</h2>
         <hr/>
         <dl>
