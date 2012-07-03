@@ -28,7 +28,7 @@ Site.timezone: Asia/Manila
 Data.dmo: /data/dmo/temp/
 Data.stations: /data/stations/
 Data.readings: /data/readings/
-Data.movies: /themed/weatherph/webroot/videos/
+Data.movies: /theme/weatherph/webroot/videos/
 
 Abfrage.username: wget
 Abfrage.password: p09tM20
