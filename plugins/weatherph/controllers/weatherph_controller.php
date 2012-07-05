@@ -288,6 +288,26 @@ class WeatherphController extends WeatherphAppController {
        
    }
    
+    public function getStationReadings($station_id = NULL, $start_date = NULL, $end_date = NULL, $time_interval = "10m"){
+
+        $this->layout = "plain";
+
+        App::import('Model', 'Weatherph.WeatherphStationReading');
+
+        $WeatherphStationReading = new WeatherphStationReading();
+        $readings = $WeatherphStationReading->fetch('all', array('conditions' => array(
+        'id' => $station_id,
+        'start_date' => $start_date,
+        'end_date' => $end_date,
+        'time_interval' => $time_interval,
+        )));
+
+        $this->log($readings);
+        
+        $this->set(compact('readings'));
+
+    }
+   
    public function getAllStation($provider = 'pagasa'){
        
         $this->layout = 'plain';

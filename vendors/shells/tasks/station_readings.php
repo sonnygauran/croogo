@@ -8,12 +8,16 @@ class StationReadingsTask extends Shell{
     public $uses = array('Station');
     
     function execute(){
+        
+        $execution_time_start = microtime(TRUE);
+        
         $csv = "";
         $counter = 1;
         $file_name = Configure::read('Data.readings'). date('Ydm') . '.csv';
         $date = date('Ymd');
         $start_hour = date('H') - 2;
         $end_hour = date('H');
+        
         echo "Path: " . Configure::read('Data.readings') . "\n";
         
         if(!is_dir(Configure::read('Data.readings'))){
@@ -71,9 +75,13 @@ class StationReadingsTask extends Shell{
         fwrite($file, $csv);
         fclose($file);
         
-         $this->out("Generated Stations CSV: [$file_name]");
+        $execution_time_end = microtime(TRUE);
         
+        $this->out("Generated Stations CSV: [$file_name]");
         
+        $total_execution_time = $execution_time_end - $execution_time_start;
+        
+        $this->out("Execution Time: " . date('H:i:s', $total_execution_time));
         
         
     }

@@ -71,10 +71,10 @@ echo $this->Html->script(array(
                 <div id="conditionTable">
                     <table>
                         <tbody>
-
                             <tr>
-                                <td class="caption">Avg. Wind Speed</td>
-                                <td class="output"><?= $dataSets['reading']['wind_speed']; ?>km/h</td>
+                                <td class="caption">Wind</td>
+                                <td class="output"><?= $dataSets['reading']['wind_speed']; ?>km/h, <br/>
+                                <?= $dataSets['reading']['wind_direction']['symbol']; ?></td>
                             </tr>
                             <tr>
                                 <td class="caption">Rain</td>
@@ -83,10 +83,6 @@ echo $this->Html->script(array(
                             <tr>
                                 <td class="caption">Relative Humidity</td>
                                 <td class="output"><?= $dataSets['reading']['relative_humidity']; ?>%</td>
-                            </tr>
-                            <tr>
-                                <td class="caption">Wind Direction</td>
-                                <td class="output"><?= $dataSets['reading']['wind_direction']['eng']; ?></td>                        
                             </tr>
                         </tbody>
                     </table>
@@ -118,7 +114,7 @@ echo $this->Html->script(array(
                     ?>
 
                     <div class ="daydate"><span class="daytime"><?= $div_id ?></span><?= ', ' . $divdate ?></div>
-                    <table class="week-forecast" cellspacing="0">
+                    <table class="forecast-table" cellspacing="0">
                         <tr>
                             <th class="columnheader"> Time </th>
                             <th class="columnheader">Condition</th>
