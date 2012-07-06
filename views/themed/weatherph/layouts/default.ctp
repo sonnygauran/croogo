@@ -46,7 +46,8 @@
 <body>
     <section id="container">
         <header class="banner shadow">
-            <h1 class="logo"><a href="<?= $this->webroot ?>">weather | philippines</a></h1>
+            <div class="logo"><?php echo $this->Html->image('logo.png'); ?></div>
+            <!--<h1 class="logo"><a href="<?= $this->webroot ?>">weather | philippines</a></h1>-->
             <div id="slides">
                 <div class="slides_container">
                     <img src="<?= $this->webroot ?>theme/weatherph/img/mm.png" alt="Meteomedia">
