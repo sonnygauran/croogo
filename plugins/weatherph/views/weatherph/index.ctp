@@ -283,7 +283,7 @@ ECHO
                                             <td class="3-hour wind"><span>&nbsp;</span>km/h</td>
                                         </tr>
                                         <tr>
-                                            <td>Rain (Hourly)</td>
+                                            <td>Rain</td>
                                             <td class="precipitation"><span>&nbsp;</span>mm</td>
                                         </tr>
                                         <tr>
@@ -306,7 +306,7 @@ ECHO
                                             <td class="wind"><span>&nbsp;</span>km/h</td>
                                         </tr>
                                         <tr>
-                                            <td>Rain (Hourly)</td>
+                                            <td>Rain</td>
                                             <td class="precipitation"><span>&nbsp;</span>mm</td>
                                         </tr>
                                         <tr>
@@ -329,7 +329,7 @@ ECHO
                                             <td class="wind"><span>&nbsp;</span>km/h</td>
                                         </tr>
                                         <tr>
-                                            <td>Rain (Hourly)</td>
+                                            <td>Rain</td>
                                             <td class="precipitation"><span>&nbsp;</span>mm</td>
                                         </tr>
                                         <tr>
@@ -352,7 +352,7 @@ ECHO
                                             <td class="wind"><span>&nbsp;</span>km/h</td>
                                         </tr>
                                         <tr>
-                                            <td>Rain (Hourly)</td>
+                                            <td>Rain</td>
                                             <td class="precipitation"><span>&nbsp;</span>mm</td>
                                         </tr>
                                         <tr>
@@ -375,7 +375,7 @@ ECHO
                                             <td class="wind"><span>&nbsp;</span>km/h</td>
                                         </tr>
                                         <tr>
-                                            <td>Rain (Hourly)</td>
+                                            <td>Rain</td>
                                             <td class="precipitation"><span>&nbsp;</span>mm</td>
                                         </tr>
                                         <tr>
@@ -398,7 +398,7 @@ ECHO
                                             <td class="wind"><span>&nbsp;</span>km/h</td>
                                         </tr>
                                         <tr>
-                                            <td>Rain (Hourly)</td>
+                                            <td>Rain</td>
                                             <td class="precipitation"><span>&nbsp;</span>mm</td>
                                         </tr>
                                         <tr>
@@ -409,29 +409,6 @@ ECHO
                                 </table>
                             </div>
                         </li>
-<!--                        <li class="forecast-highlight">
-                            <h6 class="6-hour time">--:--</h6>
-                            <div class="6-hour readings">
-                                <span class="temperature"><span>&nbsp;</span>&deg;C</span>
-                                <span class="symbol"></span>
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <td>Wind</td>
-                                            <td class="wind"><span>&nbsp;</span>km/h</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Rain (Hourly)</td>
-                                            <td class="precipitation"><span>&nbsp;</span>mm</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Humidity</td>
-                                            <td class="humidity"><span>&nbsp;</span>%</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </li>-->
                     </ul>
                 </div>
                 <div class="no-forecast">
