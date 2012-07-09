@@ -402,7 +402,7 @@ span.temperature {
     margin-right: 10px;
 }
 
-.blog > .text {
+.blog > .page {
     padding: 1.5em 1em;
 }
 
@@ -562,8 +562,14 @@ span.temperature {
     font-weight: bold;
 }
 
-#week-forecast h2 {
-    margin: .5em 0;
+.forecast-date {
+    background-color: #3E5E95;
+    border-radius: 5px 5px 0 0;
+    color: #FAFAFA;
+    margin-top: 2em;
+    padding: 0.5em 0;
+    text-align: center;
+    width: 20em;
 }
 
 #week-forecast table {
@@ -583,7 +589,7 @@ span.temperature {
 
 #week-forecast td {
     padding: 4px;
-    border: 1px solid #f3f3f3;
+    border: 1px solid #e9e9e9;
 }
 
 .chart-legend { display: block; margin-left: 30px; vertical-align: middle; font-size: 10px; }
@@ -677,9 +683,9 @@ span.temperature {
 3.	Modules
 ========================================*/
 
-/* Text */
+/* Page */
 
-.text {
+.page {
     line-height: 1.618em;
     position: relative;
     margin: 0 auto;
@@ -691,16 +697,16 @@ span.temperature {
     box-shadow: 0 4px 3px -3px black;
 }
 
-.text p {
-    margin-bottom: 1.5em;
+.page p {
+    margin-bottom: 1em;
 }
 
-.text li {
+.page li {
     list-style: disc;
     margin: 1em 0;
 }
 
-.text h2 {
+.page h2 {
     text-align: center;
     line-height: 1.333333333333333em;
     margin-bottom: .6666666666666667em;
@@ -712,41 +718,18 @@ span.temperature {
     display:block;
 }
 
-.text dt {
+.page dt {
     margin: .5em 0;
     font-weight: bold;
     font-size: 1.5em;
 }
 
-.text dd {
+.page dd {
     margin-bottom: 1em;
 }
 
-/* Video pages */
-
-.video-block {
-    margin: 0 auto;
-    padding: 2em;
-    text-align: center;
-    background-color: #333333;
-    color: #fafafa;
-    border: 1px solid #e1e1e1;
-}
-
-.video-block h2 {
-    margin-bottom: 1em;
-}
-
-.video-block p {
-    text-align: left;
-    margin-bottom: 1em;
-}
-
-.video-block video {
-    margin: 1em;
-    -moz-box-shadow:    0 0 10px #fff;
-    -webkit-box-shadow: 0 0 10px #fff;
-    box-shadow:         0 0 10px #fff;
+.page video {
+    margin: .5em 1em .5em 53px;
 }
 
 /* Slider */
@@ -1025,58 +1008,6 @@ span.sunset { background-position: -60px 5px; }
 
 .social h6 {
     margin-bottom: .5em;
-}
-
-a.sb,
-.sb a {
-    width: 32px;
-    height: 32px;
-    background-repeat: no-repeat;
-    background-position: center center;
-    text-indent: -900em;
-    color: #333;
-    text-decoration: none;
-    line-height: 100%;
-    white-space: nowrap;
-    display: inline-block;
-    position: relative;
-    vertical-align: middle;
-    margin: 0 2px 5px 0;
-    background-color: #eaeaea;
-    border: solid 1px #b8b8b9;
-    -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.3), 0 1px 0 rgba(0,0,0,.1);
-    -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,.3), 0 1px 0 rgba(0,0,0,.1);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,.3), 0 1px 0 rgba(0,0,0,.1);
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-
-}
-
-/* for IE */
-*:first-child+html a.sb,
-*:first-child+html .sb a {
-    text-indent: 0;
-    line-height: 0;
-    font-size: 0;
-    overflow: hidden;
-}
-
-a.sb:hover,
-.sb a:hover,
-a.sb:hover:after,
-.sb a:hover:after {
-    background-color: #f3f3f3;
-}
-
-a.sb.twitter,
-.sb a.twitter {
-    background-image: url('<?= $this->webroot ?>theme/weatherph/img/twitter.png');
-}
-
-a.sb.facebook,
-.sb a.facebook {
-    background-image: url('<?= $this->webroot ?>theme/weatherph/img/facebook.png');
 }
 
 /*========================================
