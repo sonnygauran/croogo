@@ -425,4 +425,86 @@ class WeatherphController extends WeatherphAppController {
    
    function weathertv(){}
    function webcam(){}
+   
+   //JETT
+   
+    public function measurements($startdate = NULL, $enddate = NULL, $stationID = '984290', $timeinterval = '10m') {
+        
+        $this->layout = 'plain';
+        
+        App::import('Model', 'Weatherph.WeatherphStationReading');
+        
+        $startdate = ($startdate == NULL)? date('Y-m-d') : date('Y-m-d', strtotime($startdate));
+        $enddate = ($enddate == NULL)? date('Y-m-d', strtotime('-1 day')) : date('Y-m-d', strtotime($startdate));
+
+        $WeatherphStationMeasurement = new WeatherphStationReading();
+        $dataSets = $WeatherphStationMeasurement->getStationReadings(array('conditions' => array(
+        'id' => $stationID,
+        'startdate' => $startdate,
+        'enddate' => $enddate,
+        'timeinterval' =>$timeinterval,
+        )));
+        
+        $this->set(compact('dataSets'));
+    }
+    
+    
+    public function getMeasurements($stationID = '920001') {
+        $this->layout = 'json/ajax';
+
+        App::import('Model', 'Weatherph.Measurement');
+
+        $WeatherphStationMeasurement = new Measurement();
+        $currentMeasurement = $WeatherphStationMeasurement->find('all', array('conditions' => array(
+            'ort1 LIKE' => $stationID.'%',
+        )));
+        //       Configure::write('debug', 0);
+        $this->set('measurements', json_encode($currentMeasurement));
+    }
+    
+    public function getDetailedMeasurement($stationID = '984290', $type = NULL, $timeRes = '3h', $startDatum = NULL, $endDatum = NULL) {
+        App::import('Model', 'Weatherph.WeatherphStationMeasurement');
+
+        $WeatherphStationMeasurement = new WeatherphStationMeasurement();
+        $detailedMeasurement = $WeatherphStationMeasurement->getDetailedMeasurement('all', array('conditions' => array(
+        'id' => $stationID,
+        'type' => $type,
+        'timeRes' => $timeRes,
+        'startDatum' => $startDatum,
+        'endDatum' => $endDatum,
+        )));
+
+        if ($type != NULL) {
+            $WeatherphStationMeasurement = new WeatherphStationMeasurement();
+            $anyChartXML = $WeatherphStationMeasurement->arrayToAnyChartXML('all', array('conditions' => array(
+            'arrData' => $detailedMeasurement,
+            'type' => $type,
+            )));
+
+            $this->layout = 'xml';
+            $this->set('outputData', $anyChartXML);
+        } else {
+            $this->layout = 'plain';
+            $this->set('outputData', $detailedMeasurement);
+        }
+    }
+
+    public function detailedMeasurement($stationID = '984290', $startDate = NULL, $endDate = NULL) {
+
+        $this->layout = 'plain';
+
+        $startDate = ($startDate == NULL) ? date('Ymd', strtotime('-3 Days', strtotime(date('Ymd')))) : $startDate;
+        $endDate = ($endDate == NULL) ? date('Ymd') : $endDate;
+
+        $set = array(
+        'stationID' => $stationID,
+        'startDate' => $startDate,
+        'endDate' => $endDate,
+        );
+
+        $this->set('set', $set);
+    }
+    
+    
+    
 }
