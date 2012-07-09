@@ -1,51 +1,3 @@
-<?php
-/**
- * index.js requires the following variable:
- *      - resource - contains an array of (data-layer => (temperature, pressure)) for retreiving the image key. 
- */
-?>
-<?php
-    $movie_location = Configure::read('Data.movies');
-?>
-<script type="text/javascript">
-    window["DATA_LAYER"] = null;
-    window["DATA_LAYERS"] = <?= json_encode($resources['data-layers']); ?>;
-
-    var windContent = '<?= str_replace("\n", "\\", (<<<ECHO
-        <video id="movie-wind" width="554" height="554" controls="controls">
-        <source src="{$movie_location}Philippines_All_stfi.mp4" type="video/mp4" />
-        <source src="{$movie_location}Philippines_All_stfi.webm" type="video/webm" />
-        Your browser does not support the video tag.
-        </video>
-ECHO
-));
-        ?>';
-    var precipContent = '<?= str_replace("\n", "\\", (<<<ECHO
-        <video id="movie-precipitation" width="554" height="554" controls="controls">
-        <source src="{$movie_location}Philippines_All_niwofi.mp4" type="video/mp4" />
-        <source src="{$movie_location}Philippines_All_niwofi.webm" type="video/webm" />
-        Your browser does not support the video tag.
-        </video>
-ECHO
-)); ?>';
-        
-    window['MOVIE_CONTENT'] = {
-        wind:          windContent,
-        precipitation: precipContent
-    };
-</script>
-<script type="text/javascript" src="<?= $this->webroot ?>weatherph/js/weatherph/index.js"></script>
-
-<style type="text/css">
-    .loader {
-        background: white url('<?= $this->webroot ?>theme/weatherph/img/loader-twirl.gif') no-repeat center center;
-        width: 100%; height: 100%; display: block; visibility: none;
-    }
-    .loader-img {
-        margin-top: 275px;
-        margin-left: 275px;
-    }
-</style>
 <div class="content">
     <section class="main cf">
         <div id="map-container">
@@ -76,6 +28,10 @@ ECHO
             </div>
             <div id="legend" class="shadow">
                 <div class="scale-temperature">
+                    <div class="unit-buttons">
+                        <button type="button" id="celsius-switch">C</button>
+                        <button type="button" id="fahrenheit-switch">F</button>
+                    </div>
                     <div class="scale-celsius">
                         <ul>
                             <li style="background-color: #EAE9F9;">-45</li>
@@ -185,12 +141,7 @@ ECHO
                         <li style="background-color: #001E14;">960</li>
                     </ul>
                 </div>
-                <div class="unit-buttons">
-                    <button type="button" id="celsius-switch">¬∞C</button>
-                    <button type="button" id="fahrenheit-switch">¬∞F</button>
-                </div>
-                
-                
+
                 <div id="province-select">
                     <p>Province:</p>
                     <select name="philippine-regions">
@@ -433,7 +384,7 @@ ECHO
                             <div class="ribbon-edge-bottomleft"></div>
                         </div>
 
-                        <h4><?= $html->link($blog['Node']['title'], $blog['Node']['url'], array('class' => 'link')) ?></h4>  
+                        <h4><?= $html->link($blog['Node']['title'], $blog['Node']['url'], array('class' => 'link')) ?></h4>
                         <div class="blog-excerpt">
                         <p><?= $text->excerpt(strip_tags($blog['Node']['body']), 'method', 200, '...' . $html->link('Read More', $blog['Node']['url'])) ?><?= '<hr>'; ?></p>
                         </div>
@@ -455,3 +406,40 @@ ECHO
 
     </section> <!--SECONDARY-->
 </div> <!--CONTENT-->
+<?php
+/**
+ * index.js requires the following variable:
+ *      - resource - contains an array of (data-layer => (temperature, pressure)) for retreiving the image key.
+ */
+?>
+<?php
+    $movie_location = Configure::read('Data.movies');
+?>
+<script type="text/javascript">
+    window["DATA_LAYER"] = null;
+    window["DATA_LAYERS"] = <?= json_encode($resources['data-layers']); ?>;
+
+    var windContent = '<?= str_replace("\n", "\\", (<<<ECHO
+        <video id="movie-wind" width="554" height="554" controls="controls">
+        <source src="{$movie_location}Philippines_All_stfi.mp4" type="video/mp4" />
+        <source src="{$movie_location}Philippines_All_stfi.webm" type="video/webm" />
+        Your browser does not support the video tag.
+        </video>
+ECHO
+));
+        ?>';
+    var precipContent = '<?= str_replace("\n", "\\", (<<<ECHO
+        <video id="movie-precipitation" width="554" height="554" controls="controls">
+        <source src="{$movie_location}Philippines_All_niwofi.mp4" type="video/mp4" />
+        <source src="{$movie_location}Philippines_All_niwofi.webm" type="video/webm" />
+        Your browser does not support the video tag.
+        </video>
+ECHO
+)); ?>';
+
+    window['MOVIE_CONTENT'] = {
+        wind:          windContent,
+        precipitation: precipContent
+    };
+</script>
+<script type="text/javascript" src="<?= $this->webroot ?>weatherph/js/weatherph/index.js"></script>
