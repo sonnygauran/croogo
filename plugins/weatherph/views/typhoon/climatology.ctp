@@ -1,6 +1,6 @@
 <div class="content">
     <section class="main">
-        <div class="text">
+        <div class="page">
             <h2>Typhoon Climatology</h2>
             
             <hr/>
