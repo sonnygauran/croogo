@@ -321,9 +321,13 @@ $('#map ul').css({
                 name: $currentStation.name,
                 type:'Point',
                 coordinates: $currentStation.coordinates
-            }, {strokeWidth: "1px", height: "6px", width: "6px", radius: "8px", color: "#dd2222", fillOpacity: "0", strokeOpacity: "1"},true);
+            }, {
+                height : "0",
+                width : "0"
+                },
+                '<div class="plot ' + $currentStation.id + '" id="plot-' + $currentStation.id + '"></div>',true);
+            }
         }
-    }
 
     function mapStations($stationsArray) {
         // This loop maps the stations from the $stations fetched from getStations
@@ -335,10 +339,13 @@ $('#map ul').css({
                 name: $currentStation.name,
                 type:'Point',
                 coordinates: $currentStation.coordinates
-            }, {strokeWidth: "2px", height: "8px", width: "8px", radius: "8px", color: "#20304d", fillOpacity: "0", strokeOpacity: "1"},true);
+            }, {
+                height : "0",
+                width : "0"
+                },
+                '<div class="plot-alt ' + $currentStation.id + '" id="plot-' + $currentStation.id + '"></div>',true);
+            }
         }
-
-    }
 
 function remapStations() {
     if (window['STATIONS'].pagasa == null) {
