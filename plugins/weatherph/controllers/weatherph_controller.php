@@ -268,20 +268,21 @@ class WeatherphController extends WeatherphAppController {
    public function getDmoForecast($id){
        //debug($id);
        App::import('Model', 'Weatherph.WeatherphStationForecast');
-//       App::import('Model', 'Weatherph.NearestStation');
+       App::import('Model', 'Weatherph.NearestStation');
        
-//       $NearestStation = new NearestStation();
+       $NearestStation = new NearestStation();
        $DmoForecast = new WeatherphStationForecast();
        
-//       $result = $NearestStation->find('all', array(
-//           'conditions' => array(
-//               'reference' => $id
-//           ))
-//        );
-////       debug($result);
-//       $station_id = $result[0]['NearestStation']['station_id'];
+       $result = $NearestStation->find('all', array(
+           'conditions' => array(
+               'reference' => $id
+           ))
+        );
+       
+       //debug($result);
+       $station_id = $result[0]['NearestStation']['station_id'];
        $dataSets = $DmoForecast->dmoForecast('all', array('conditions' => array(
-           'id' => $id,
+           'id' => $station_id,
        )));
        
        $this->set(compact('dataSets'));
