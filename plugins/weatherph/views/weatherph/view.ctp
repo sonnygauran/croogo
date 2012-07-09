@@ -100,7 +100,7 @@ echo $this->Html->script(array(
                     $divdate = ($key == $date) ? date('F j, Y') : date('F j, Y', strtotime($key));
                     ?>
 
-                    <h2><strong><?= $div_id ?></strong><?= ', ' . $divdate ?></h2>
+                    <div class="forecast-date"><strong><?= $div_id ?></strong><?= ', ' . $divdate ?></div>
                     <table>
                         <tr>
                             <th>Time</th>

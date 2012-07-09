@@ -2,7 +2,7 @@
 <div class="content">
     <section class="main">
         <div id="map-container">
-            <div class="layerSelector cf">
+            <div class="layer-selector cf">
                 <?php
                 echo $this->Paginator->counter(array(
                         'format' => __('Showing %count% locations from your search', true)

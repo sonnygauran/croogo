@@ -46,7 +46,7 @@
 <body>
     <section id="container">
         <header class="banner shadow">
-            <div class="logo"><?php echo $this->Html->image('logo.png'); ?></div>
+            <div class="logo"><a href="<?= $this->webroot ?>"><?php echo $this->Html->image('logo.png'); ?></a></div>
             <!--<h1 class="logo"><a href="<?= $this->webroot ?>">weather | philippines</a></h1>-->
             <div id="slides">
                 <div class="slides_container">
@@ -113,8 +113,8 @@
             </div>
             <div class="social">
                 <h6>Follow us on Facebook and Twitter</h6>
-                <a class="sb facebook"></a>
-                <a class="sb twitter" href="http://twitter.com/weatherph"></a>
+                <a><?php echo $this->Html->image('facebook.png'); ?></a>
+                <a href="http://twitter.com/weatherph"><?php echo $this->Html->image('twitter.png'); ?></a>
             </div>
             <div class="sponsored">
                 <?php

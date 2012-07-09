@@ -370,7 +370,7 @@
     <section class="secondary">
         <div class="blog">
             <h4>Blog</h4>
-            <div class="text">
+            <div class="page">
                 <?php foreach ($blogEntries as $blog) { ?>
                         <?php $createdTime = strtotime($blog['Node']['created']); ?>
                         <div class="ribbon-wrapper">
