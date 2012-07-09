@@ -665,6 +665,16 @@ span.temperature {
     z-index: 1 !important;
 }
 
+.plot-alt {
+    width: 16px;
+    height: 16px;
+    background-image: url('<?= $this->webroot ?>theme/weatherph/img/marker-red-small.png') !important;
+    position: relative;
+    left: -8px;
+    top: -16px;
+    z-index: 1 !important;
+}
+
 .marker {
     width: 32px;
     height: 32px;
@@ -1027,14 +1037,14 @@ a:hover {
 }
 
 .paging a:link,
-.text a:link,
+.page a:link,
 .names a:link,
 .news a:link {
     color: #20304d;
 }
 
 .paging a:visited,
-.text a:visited,
+.page a:visited,
 .names a:visited,
 .news a:visited  {
     color: #3e5e95;

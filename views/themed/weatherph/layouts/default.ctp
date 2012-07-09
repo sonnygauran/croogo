@@ -86,7 +86,7 @@
                         <a href="#">Dictionary &#9663;</a>
                         <ul>
                             <li><a href="<?= $this->webroot ?>dictionaries/english">English</a></li>
-                            <li><a href="<?= $this->webroot ?>dictionaries/tagalog">Tagalog</a></li>
+                            <li><a href="<?= $this->webroot ?>dictionaries/filipino">Filipino</a></li>
                         </ul>
                     </li>
                 <li><a href="#">Mike Padua Blog</a></li>
