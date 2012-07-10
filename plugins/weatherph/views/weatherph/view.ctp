@@ -47,13 +47,13 @@ echo $this->Html->script(array(
                         <tbody>
                             <tr>
                                 <td><span class="symbol sunrise"></span></td>
-                                <td>Sunrise: <?= date("h:iA", strtotime($dataSets['reading']['sunrise'])); ?></td>
+                                <td>Sunrise: <?= date("h:iA", strtotime($dataSets['sunrise'])); ?></td>
 
                                 <td><span class="symbol sunset"></span></td>
-                                <td>Sunset: <?= date("h:iA", strtotime($dataSets['reading']['sunset'])); ?></td>
+                                <td>Sunset: <?= date("h:iA", strtotime($dataSets['sunset'])); ?></td>
 
-                                <td><span class="symbol moonphase_<?= $dataSets['reading']['moonphase']['phase_code']; ?>"></span></td>
-                                <td>Moon Phase: <?= $dataSets['reading']['moonphase']['phase']; ?></td>
+                                <td><span class="symbol moonphase_<?= $dataSets['moonphase']['phase_code']; ?>"></span></td>
+                                <td>Moon Phase: <?= $dataSets['moonphase']['phase']; ?></td>
                             </tr>
                         </tbody>
                     </table>
