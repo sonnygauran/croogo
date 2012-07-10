@@ -419,23 +419,23 @@
     window["DATA_LAYER"] = null;
     window["DATA_LAYERS"] = <?= json_encode($resources['data-layers']); ?>;
 
-    var windContent = '<?= str_replace("\n", "\\", (<<<ECHO
+    var windContent = '<?= addslashes(str_replace("\n", "\\", (<<<ECHO
         <video id="movie-wind" width="554" height="554" controls="controls">
-        <source src="{$movie_location}Philippines_All_stfi.mp4" type='video/mp4 codecs="avc1.42E01E"'/>
-        <source src="{$movie_location}Philippines_All_stfi.webm" type='video/webm codecs="vp8"'/>
+        <source src="{$movie_location}Philippines_All_stfi.mp4" type='video/mp4; codecs="avc1.42E01E"'/>
+        <source src="{$movie_location}Philippines_All_stfi.webm" type='video/webm; codecs="vp8"'/>
         Your browser does not support the video tag.
         </video>
 ECHO
-));
+)));
         ?>';
-    var precipContent = '<?= str_replace("\n", "\\", (<<<ECHO
+            var precipContent = '<?= addslashes(str_replace("\n", "\\", (<<<ECHO
         <video id="movie-precipitation" width="554" height="554" controls="controls">
-        <source src="{$movie_location}Philippines_All_niwofi.mp4" type='video/mp4 codecs="avc1.42E01E"'/>
-        <source src="{$movie_location}Philippines_All_niwofi.webm" type='video/webm codecs="vp8"'/>
+        <source src="{$movie_location}Philippines_All_niwofi.mp4" type='video/mp4; codecs="avc1.42E01E"'/>
+        <source src="{$movie_location}Philippines_All_niwofi.webm" type='video/webm; codecs="vp8"'/>
         Your browser does not support the video tag.
-        </video>
+        </video>    
 ECHO
-)); ?>';
+))); ?>';
 
     window['MOVIE_CONTENT'] = {
         wind         : windContent,

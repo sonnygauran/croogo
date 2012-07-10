@@ -26,12 +26,12 @@ Site.timezone: Asia/Manila
 Data.dmo: /data/dmo/temp/
 Data.stations: /data/stations/
 Data.readings: /data/readings/
-Data.movies: /theme/weatherph/webroot/videos/
+Data.movies: /assets/theme/weatherph/webroot/videos/
 
 Abfrage.username: wget
 Abfrage.password: p09tM20
 
-Tile.main.url: https://tiles.mapbox.com/v3/meteomedia.WeatherPH-Default
+Tile.main.url: http://a.tiles.mapbox.com/v3/meteomedia.WeatherPH-Default
 Tile.main.ext: png
 # Tile.main.url: http://tile.stamen.com/toner
 # Tile.main.ext: jpg
