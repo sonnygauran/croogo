@@ -234,7 +234,7 @@
                                             <td class="3-hour wind"><span>&nbsp;</span>km/h</td>
                                         </tr>
                                         <tr>
-                                            <td>Rain (Hourly)</td>
+                                            <td>Rain</td>
                                             <td class="precipitation"><span>&nbsp;</span>mm</td>
                                         </tr>
                                         <tr>
@@ -257,7 +257,7 @@
                                             <td class="wind"><span>&nbsp;</span>km/h</td>
                                         </tr>
                                         <tr>
-                                            <td>Rain (Hourly)</td>
+                                            <td>Rain</td>
                                             <td class="precipitation"><span>&nbsp;</span>mm</td>
                                         </tr>
                                         <tr>
@@ -280,7 +280,7 @@
                                             <td class="wind"><span>&nbsp;</span>km/h</td>
                                         </tr>
                                         <tr>
-                                            <td>Rain (Hourly)</td>
+                                            <td>Rain</td>
                                             <td class="precipitation"><span>&nbsp;</span>mm</td>
                                         </tr>
                                         <tr>
@@ -303,7 +303,7 @@
                                             <td class="wind"><span>&nbsp;</span>km/h</td>
                                         </tr>
                                         <tr>
-                                            <td>Rain (Hourly)</td>
+                                            <td>Rain</td>
                                             <td class="precipitation"><span>&nbsp;</span>mm</td>
                                         </tr>
                                         <tr>
@@ -326,7 +326,7 @@
                                             <td class="wind"><span>&nbsp;</span>km/h</td>
                                         </tr>
                                         <tr>
-                                            <td>Rain (Hourly)</td>
+                                            <td>Rain</td>
                                             <td class="precipitation"><span>&nbsp;</span>mm</td>
                                         </tr>
                                         <tr>
@@ -349,7 +349,7 @@
                                             <td class="wind"><span>&nbsp;</span>km/h</td>
                                         </tr>
                                         <tr>
-                                            <td>Rain (Hourly)</td>
+                                            <td>Rain</td>
                                             <td class="precipitation"><span>&nbsp;</span>mm</td>
                                         </tr>
                                         <tr>
@@ -360,29 +360,6 @@
                                 </table>
                             </div>
                         </li>
-<!--                        <li class="forecast-highlight">
-                            <h6 class="6-hour time">--:--</h6>
-                            <div class="6-hour readings">
-                                <span class="temperature"><span>&nbsp;</span>&deg;C</span>
-                                <span class="symbol"></span>
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <td>Wind</td>
-                                            <td class="wind"><span>&nbsp;</span>km/h</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Rain (Hourly)</td>
-                                            <td class="precipitation"><span>&nbsp;</span>mm</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Humidity</td>
-                                            <td class="humidity"><span>&nbsp;</span>%</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </li>-->
                     </ul>
                 </div>
                 <div class="no-forecast">
@@ -393,7 +370,7 @@
     <section class="secondary">
         <div class="blog">
             <h4>Blog</h4>
-            <div class="text">
+            <div class="page">
                 <?php foreach ($blogEntries as $blog) { ?>
                         <?php $createdTime = strtotime($blog['Node']['created']); ?>
                         <div class="ribbon-wrapper">
@@ -422,7 +399,7 @@
                 <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail2.png"/><p><a href="<?= $this->webroot ?>weathertv">Weather TV</a></p></li>
                 <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail3.png"/><p>Mike Padua Blog</p></li>
                 <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail.png"/><p><a href="<?= $this->webroot ?>dictionaries/english">Dictionary: English</a></p></li>
-                <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail.png"/><p><a href="<?= $this->webroot ?>dictionaries/tagalog">Dictionary: Tagalog</a></p></li>
+                <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail.png"/><p><a href="<?= $this->webroot ?>dictionaries/filipino">Dictionary: Filipino</a></p></li>
                 <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail2.png"/><p><a href="<?= $this->webroot ?>webcam">Webcams</a></p></li>
             </ul>
         </div>
@@ -444,8 +421,8 @@
 
     var windContent = '<?= str_replace("\n", "\\", (<<<ECHO
         <video id="movie-wind" width="554" height="554" controls="controls">
-        <source src="{$movie_location}Philippines_All_stfi.mp4" type="video/mp4" />
-        <source src="{$movie_location}Philippines_All_stfi.webm" type="video/webm" />
+        <source src="{$movie_location}Philippines_All_stfi.mp4" type='video/mp4 codecs="avc1.42E01E"'/>
+        <source src="{$movie_location}Philippines_All_stfi.webm" type='video/webm codecs="vp8"'/>
         Your browser does not support the video tag.
         </video>
 ECHO
@@ -453,15 +430,15 @@ ECHO
         ?>';
     var precipContent = '<?= str_replace("\n", "\\", (<<<ECHO
         <video id="movie-precipitation" width="554" height="554" controls="controls">
-        <source src="{$movie_location}Philippines_All_niwofi.mp4" type="video/mp4" />
-        <source src="{$movie_location}Philippines_All_niwofi.webm" type="video/webm" />
+        <source src="{$movie_location}Philippines_All_niwofi.mp4" type='video/mp4 codecs="avc1.42E01E"'/>
+        <source src="{$movie_location}Philippines_All_niwofi.webm" type='video/webm codecs="vp8"'/>
         Your browser does not support the video tag.
         </video>
 ECHO
 )); ?>';
 
     window['MOVIE_CONTENT'] = {
-        wind:          windContent,
+        wind         : windContent,
         precipitation: precipContent
     };
 </script>

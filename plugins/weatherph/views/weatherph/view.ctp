@@ -67,7 +67,7 @@ echo $this->Html->script(array(
                                 <td><?= $dataSets['reading']['wind_speed']; ?>km/h, <?= $dataSets['reading']['wind_direction']['eng']; ?></td>
                             </tr>
                             <tr>
-                                <th>Rain (hourly)</th>
+                                <th>Rain</th>
                                 <td><?= $dataSets['reading']['precipitation']; ?>mm</td>
                             </tr>
                             <tr>
@@ -100,7 +100,7 @@ echo $this->Html->script(array(
                     $divdate = ($key == $date) ? date('F j, Y') : date('F j, Y', strtotime($key));
                     ?>
 
-                    <h2><strong><?= $div_id ?></strong><?= ', ' . $divdate ?></h2>
+                    <div class="forecast-date"><strong><?= $div_id ?></strong><?= ', ' . $divdate ?></div>
                     <table>
                         <tr>
                             <th>Time</th>

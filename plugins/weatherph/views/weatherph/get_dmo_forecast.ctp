@@ -1,4 +1,4 @@
-<?php //echo $this->Html->script('AnyChart.js');      ?>
+<?php //echo $this->Html->script('AnyChart.js');       ?>
 
 <?php
 //echo $this->Html->script(array(
@@ -17,39 +17,39 @@ echo $this->Html->script(array(
 
 <div class="content">
     <section class="main">
-        <div id="currentWeather" class="shadow">
+        <div id="current-weather" class="shadow">
 
             <div id="station">
                 <h1><?= $dataSets['stationName']; ?></h1>
-
+                <h6>Current readings</h6>
                 <!-- <a href="#">change station</a>-->
             </div> <!--END STATION-->
 
             <?php if ($dataSets['reading']['status'] == 'ok'): ?>
-            
+
                 <div id="condition">
-                      
-                        <?php if (!empty($dataSets['reading']['sy']['symbol'])) { ?>
+
+                    <?php if (!empty($dataSets['reading']['sy']['symbol'])) { ?>
                         <div class="inner-condition">
-                        <div class="left-temp-reading">
-                        <?= $dataSets['reading']['temperature']; ?>&deg;C
-                        </div>
-                        
-                        <div class="right-sy-reading">
-                        <span class="symbol <?= $dataSets['reading']['sy']['symbol']; ?>" title="<?= $dataSets['reading']['sy']['description']; ?>" ></span>
-                        </div>
+                            <div class="left-temp-reading">
+                                <?= $dataSets['reading']['temperature']; ?>&deg;C
+                            </div>
+
+                            <div class="right-sy-reading">
+                                <span class="symbol <?= $dataSets['reading']['sy']['symbol']; ?>" title="<?= $dataSets['reading']['sy']['description']; ?>" ></span>
+                            </div>
                         </div>    
-                        <?php } else { ?>
+                    <?php } else { ?>
                         <div class="inner-condition-temp-reading-only">
-                        <div class="reading-temperature-only">
-                            
-                        <?= $dataSets['reading']['temperature']; ?>&deg;C
+                            <div class="reading-temperature-only">
+
+                                <?= $dataSets['reading']['temperature']; ?>&deg;C
+                            </div>
                         </div>
-                        </div>
-                        <?php } ?>
-                        
-                    
-                                        
+                    <?php } ?>
+
+
+
                     <table>
                         <tbody>
                             <tr>
@@ -68,21 +68,20 @@ echo $this->Html->script(array(
                     </table>
                 </div> <!--END CONDITION-->
 
-                <div id="conditionTable">
+                <div id="current-reading-table">
                     <table>
                         <tbody>
                             <tr>
-                                <td class="caption">Wind</td>
-                                <td class="output"><?= $dataSets['reading']['wind_speed']; ?>km/h, <br/>
-                                <?= $dataSets['reading']['wind_direction']['symbol']; ?></td>
+                                <th>Wind Speed/Direction</th>
+                                <td><?= $dataSets['reading']['wind_speed']; ?>km/h, <?= $dataSets['reading']['wind_direction']['eng']; ?></td>
                             </tr>
                             <tr>
-                                <td class="caption">Rain</td>
-                                <td class="output"><?= $dataSets['reading']['precipitation']; ?>mm</td>
+                                <th>Rain</th>
+                                <td><?= $dataSets['reading']['precipitation']; ?>mm</td>
                             </tr>
                             <tr>
-                                <td class="caption">Relative Humidity</td>
-                                <td class="output"><?= $dataSets['reading']['relative_humidity']; ?>%</td>
+                                <th>Relative Humidity</th>
+                                <td><?= $dataSets['reading']['relative_humidity']; ?>%</td>
                             </tr>
                         </tbody>
                     </table>
@@ -98,50 +97,50 @@ echo $this->Html->script(array(
             </div>
             <?php endIf; ?>
 
-        <div id="weekWeather">
-            <? if($dataSets['forecast_status'] == 'ok'): ?>
-            <!-- CSV FILE: <?= $dataSets['forecast_dmo_file_csv']; ?> -->
-            <div class="tab-container">
-                <?php
-                foreach ($dataSets['forecast'] as $key => $dayForecast) {
+        <div id="week-forecast">
+            <? if ($dataSets['forecast_status'] == 'ok'): ?>
+                <!-- CSV FILE: <?= $dataSets['forecast_dmo_file_csv']; ?> -->
+                <div class="tab-container">
+                    <?php
+                    foreach ($dataSets['forecast'] as $key => $dayForecast) {
 
-                    $today = date("Ymd");
-                    $tab_class = ($key == $today) ? 'current-tab' : 'tab';
-                    $div_id = ($key == $today) ? "Today" : date('l', strtotime($key));
+                        $today = date("Ymd");
+                        $tab_class = ($key == $today) ? 'current-tab' : 'tab';
+                        $div_id = ($key == $today) ? "Today" : date('l', strtotime($key));
 
-                    $date = date('F j, Y');
-                    $divdate = ($key == $date) ? date('F j, Y') : date('F j, Y', strtotime($key));
-                    ?>
+                        $date = date('F j, Y');
+                        $divdate = ($key == $date) ? date('F j, Y') : date('F j, Y', strtotime($key));
+                        ?>
 
-                    <div class ="daydate"><span class="daytime"><?= $div_id ?></span><?= ', ' . $divdate ?></div>
-                    <table class="forecast-table" cellspacing="0">
-                        <tr>
-                            <th class="columnheader"> Time </th>
-                            <th class="columnheader">Condition</th>
-                            <th class="columnheader"> Temperature </th>
-                            <th class="columnheader"> Rain </th>
-                            <th class="columnheader"> Humidity</th>
-                            <th class="columnheader"> Wind</th>
-                        </tr>
-
-                        <?php foreach ($dayForecast as $forecasts2) { ?><!-- <?= $forecasts2['their_time'];?> -->
+                        <div class ="forecast-date"><span class="daytime"><?= $div_id ?></span><?= ', ' . $divdate ?></div>
+                        <table class="forecast-table" cellspacing="0">
                             <tr>
-                                <td class="time"><?= $forecasts2['localtime_range']; ?></td>
-                                <td class="condition"><span class="symbol <?= $forecasts2['weather_symbol']['symbol']; ?>" title="<?= $forecasts2['weather_symbol']['description']; ?>"></span></td>
-                                <td class="temperature"><?= $forecasts2['temperature']; ?>&deg;C</td>
-                                <td class="precipitation"><?= $forecasts2['precipitation']; ?>mm</td>
-                                <td class="relative-humidity"><?= $forecasts2['relative_humidity']; ?>%</td>
-                                <td class="direction"><?php if(trim($forecasts2['wind_direction'])!=''){ ?><span class="symbol <?= $forecasts2['wind_direction']; ?>"></span><?php }?><span class="wind-description"><?= $forecasts2['wind_description']; ?></span></td>
+                                <th class="columnheader"> Time </th>
+                                <th class="columnheader">Condition</th>
+                                <th class="columnheader"> Temperature </th>
+                                <th class="columnheader"> Rain </th>
+                                <th class="columnheader"> Humidity</th>
+                                <th class="columnheader"> Wind</th>
                             </tr>
-                        <?php } ?>   
 
-                    </table>
-                <?php } ?>
-            </div>
+                            <?php foreach ($dayForecast as $forecasts2) { ?><!-- <?= $forecasts2['their_time']; ?> -->
+                                <tr>
+                                    <td class="time"><?= $forecasts2['localtime_range']; ?></td>
+                                    <td class="condition"><span class="symbol <?= $forecasts2['weather_symbol']['symbol']; ?>" title="<?= $forecasts2['weather_symbol']['description']; ?>"></span></td>
+                                    <td class="temperature"><?= $forecasts2['temperature']; ?>&deg;C</td>
+                                    <td class="precipitation"><?= $forecasts2['precipitation']; ?>mm</td>
+                                    <td class="relative-humidity"><?= $forecasts2['relative_humidity']; ?>%</td>
+                                    <td class="direction"><?php if (trim($forecasts2['wind_direction']) != '') { ?><span class="symbol <?= $forecasts2['wind_direction']; ?>"></span><?php } ?><span class="wind-description"><?= $forecasts2['wind_description']; ?></span></td>
+                                </tr>
+                            <?php } ?>   
+
+                        </table>
+                    <?php } ?>
+                </div>
             <? else: ?>
-            <div class="no-readings" style="display: block;">
-                <p>Sorry, there are no forecast available for this station.</p>
-            </div>
+                <div class="no-readings" style="display: block;">
+                    <p>Sorry, there are no forecast available for this station.</p>
+                </div>
             <? endif; ?>
         </div><!--END WEEK WEATHER-->
 

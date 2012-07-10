@@ -46,7 +46,8 @@
 <body>
     <section id="container">
         <header class="banner shadow">
-            <h1 class="logo"><a href="<?= $this->webroot ?>">weather | philippines</a></h1>
+            <div class="logo"><a href="<?= $this->webroot ?>"><?php echo $this->Html->image('logo.png'); ?></a></div>
+            <!--<h1 class="logo"><a href="<?= $this->webroot ?>">weather | philippines</a></h1>-->
             <div id="slides">
                 <div class="slides_container">
                     <img src="<?= $this->webroot ?>theme/weatherph/img/mm.png" alt="Meteomedia">
@@ -85,7 +86,7 @@
                         <a href="#">Dictionary &#9663;</a>
                         <ul>
                             <li><a href="<?= $this->webroot ?>dictionaries/english">English</a></li>
-                            <li><a href="<?= $this->webroot ?>dictionaries/tagalog">Tagalog</a></li>
+                            <li><a href="<?= $this->webroot ?>dictionaries/filipino">Filipino</a></li>
                         </ul>
                     </li>
                 <li><a href="#">Mike Padua Blog</a></li>
@@ -112,8 +113,8 @@
             </div>
             <div class="social">
                 <h6>Follow us on Facebook and Twitter</h6>
-                <a class="sb facebook"></a>
-                <a class="sb twitter" href="http://twitter.com/weatherph"></a>
+                <a><?php echo $this->Html->image('facebook.png'); ?></a>
+                <a href="http://twitter.com/weatherph"><?php echo $this->Html->image('twitter.png'); ?></a>
             </div>
             <div class="sponsored">
                 <?php

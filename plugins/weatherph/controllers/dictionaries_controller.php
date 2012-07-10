@@ -16,7 +16,7 @@ class DictionariesController extends WeatherphAppController {
     }
     
     
-    public function tagalog() {
+    public function filipino() {
         
     }
 
