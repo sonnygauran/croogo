@@ -288,7 +288,7 @@ class WeatherphController extends WeatherphAppController {
        
    }
    
-    public function getStationReadings($station_id = NULL, $start_date = NULL, $end_date = NULL, $time_interval = "10m"){
+    public function getStationReadings($station_id = NULL, $target_date = NULL, $days_range = NULL, $time_interval = "10m"){
 
         $this->layout = "plain";
 
@@ -297,12 +297,12 @@ class WeatherphController extends WeatherphAppController {
         $WeatherphStationReading = new WeatherphStationReading();
         $readings = $WeatherphStationReading->fetch('all', array('conditions' => array(
         'id' => $station_id,
-        'start_date' => $start_date,
-        'end_date' => $end_date,
+        'target_date' => $target_date,
+        'days_range' => $days_range,
         'time_interval' => $time_interval,
         )));
 
-        $this->log($readings);
+       // $this->log($readings);
         
         $this->set(compact('readings'));
 
