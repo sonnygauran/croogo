@@ -99,6 +99,8 @@ class WeatherphAppModel extends AppModel {
             
         $symbol = number_format($symbol, 0);
         
+//        $this->log('symbol ' . $symbol);
+        
         $weather_description = array(
             'Could not be determined',
             'Sunny', // Clear Sky(Night)
@@ -225,7 +227,12 @@ class WeatherphAppModel extends AppModel {
                 'fields' => $fields,
             ));
             
-            $station = $station[0]['Station'];
+            if(count($station)>0){
+                $station = $station[0]['Station'];
+            }else{
+                $station = array();
+            }
+            
              
         }
         return $station;
