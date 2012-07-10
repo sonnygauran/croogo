@@ -62,12 +62,25 @@ class AssetsController extends AppController {
                 }
                 $themeName = $parts[1];
                 unset($parts[0], $parts[1]);
-                $fileFragment = implode(DS, $parts);
+                
+                $fileFragment = array();
+                $fileFramentStart = FALSE;
+                foreach ($parts as $part) {
+                    if ($part == 'webroot') {
+                        $fileFramentStart = TRUE;
+                    }
+                    
+                    if ($fileFramentStart and ($part != 'webroot')) {
+                        $fileFragment[] = $part;
+                    }
+                }
+                $fileFragment = implode(DS, $fileFragment);
                 $path = App::themePath($themeName) . 'webroot' . DS;
+//                $this->log(compact('path','fileFragment'));
                 if (file_exists($path . $fileFragment)) {
                     $assetFile = $path . $fileFragment;
                 }
-                
+//                $this->log(compact('assetFile'));
                 $options = array(
                     'id' => end($parts),
                     'name' => reset(explode('.', end($parts))),
@@ -91,6 +104,8 @@ class AssetsController extends AppController {
                 } else {
                     if (in_array($ext, array('webm','mp4'))) {
                         $contentType = 'video/'.$ext;
+                        header('Accept-Ranges: bytes');
+                        header('Keep-Alive: timeout=3, max=100');
                     } else {
                         $contentType = 'application/octet-stream';
                         $agent = env('HTTP_USER_AGENT');
@@ -99,13 +114,14 @@ class AssetsController extends AppController {
                         }
                     }
                 }
-
+//                $this->log(compact('contentType','ext'));
                 header("Date: " . date("D, j M Y G:i:s ", filemtime($assetFile)) . 'GMT');
                 header('Content-type: ' . $contentType);
-                header("Expires: " . gmdate("D, j M Y H:i:s", time() + DAY) . " GMT");
-                header("Cache-Control: cache");
-                header("Cache-Length: ".  filesize($assetFile));
-                header("Pragma: cache");
+//                header("Expires: " . gmdate("D, j M Y H:i:s", time() + DAY) . " GMT");
+//                header("Cache-Control: cache");
+//                //header("Cache-Length: ".  filesize($assetFile));
+                header("Content-Length: ". (string) filesize($assetFile));
+//                header("Pragma: cache");
 
                 readfile($assetFile);
                 exit;
