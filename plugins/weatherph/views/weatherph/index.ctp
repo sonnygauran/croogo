@@ -24,6 +24,8 @@
                 <div id="map">
                     <div class="loader">
                     </div>
+                    <div class="hovered-station">
+                    </div>
                 </div>
             </div>
             <div id="legend" class="shadow">
@@ -399,7 +401,7 @@
                 <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail2.png"/><p><a href="<?= $this->webroot ?>weathertv">Weather TV</a></p></li>
                 <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail3.png"/><p>Mike Padua Blog</p></li>
                 <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail.png"/><p><a href="<?= $this->webroot ?>dictionaries/english">Dictionary: English</a></p></li>
-                <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail.png"/><p><a href="<?= $this->webroot ?>dictionaries/tagalog">Dictionary: Tagalog</a></p></li>
+                <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail.png"/><p><a href="<?= $this->webroot ?>dictionaries/filipino">Dictionary: Filipino</a></p></li>
                 <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail2.png"/><p><a href="<?= $this->webroot ?>webcam">Webcams</a></p></li>
             </ul>
         </div>
@@ -421,8 +423,8 @@
 
     var windContent = '<?= str_replace("\n", "\\", (<<<ECHO
         <video id="movie-wind" width="554" height="554" controls="controls">
-        <source src="{$movie_location}Philippines_All_stfi.mp4" type="video/mp4" />
-        <source src="{$movie_location}Philippines_All_stfi.webm" type="video/webm" />
+        <source src="{$movie_location}Philippines_All_stfi.mp4" type='video/mp4 codecs="avc1.42E01E"'/>
+        <source src="{$movie_location}Philippines_All_stfi.webm" type='video/webm codecs="vp8"'/>
         Your browser does not support the video tag.
         </video>
 ECHO
@@ -430,15 +432,15 @@ ECHO
         ?>';
     var precipContent = '<?= str_replace("\n", "\\", (<<<ECHO
         <video id="movie-precipitation" width="554" height="554" controls="controls">
-        <source src="{$movie_location}Philippines_All_niwofi.mp4" type="video/mp4" />
-        <source src="{$movie_location}Philippines_All_niwofi.webm" type="video/webm" />
+        <source src="{$movie_location}Philippines_All_niwofi.mp4" type='video/mp4 codecs="avc1.42E01E"'/>
+        <source src="{$movie_location}Philippines_All_niwofi.webm" type='video/webm codecs="vp8"'/>
         Your browser does not support the video tag.
         </video>
 ECHO
 )); ?>';
 
     window['MOVIE_CONTENT'] = {
-        wind:          windContent,
+        wind         : windContent,
         precipitation: precipContent
     };
 </script>

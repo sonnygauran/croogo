@@ -2,7 +2,7 @@
 Comment.date_time_format: M d, Y
 Comment.feed_limit: 10
 Comment.level: 1
-Hook.bootstraps: tinymce,weatherph,nscb
+Hook.bootstraps: tinymce,weatherph
 Meta.description: 'Croogo - A CakePHP powered Content Management System'
 Meta.generator: 'Croogo - Content Management System'
 Meta.keywords: croogo, Croogo
@@ -19,9 +19,7 @@ Site.locale: eng
 Site.status: 1
 Site.tagline: A CakePHP powered Content Management System.
 Site.theme: weatherph
-Site.offset: 8
-Site.time_overlap: 3
-Site.forecast_range: 3
+Site.timezone: 8
 Site.title: Weather | Philippines
 Writing.wysiwyg: 1
 Site.timezone: Asia/Manila

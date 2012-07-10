@@ -57,31 +57,15 @@ class SearchController extends WeatherphAppController {
                 $this->paginate['NimaName'] = array(
                     'limit' => 15,
                     'fields' => array('id', 'full_name_ro'),
-                    'conditions' => array(
-                        "AND" => array(
-                            "OR" => array(
-                                'dsg' => "adm1",
-                                'dsg' => "ppl",
-                            )
-                        ),
-                        "OR" => array(
-                            'full_name_ro' => "$keyword",
-                            'full_name_ro LIKE' => "$keyword %",
-                            'full_name_ro LIKE' => "% $keyword",
-                        ),
-                    ),
-                    'order' => array(
-                        'FIELD(NimaName.id, '.$idStrings.') DESC',
-                        'FIELD(NimaName.dsg, "ADM1", "PPL") DESC'
+                    'conditions' => array( 
+                        'keyword' => $keyword,
                     )
                 );
-                
                 $gum = 'search.'.rawurlencode($keyword)
                     .'.limit'.$this->paginate['limit']
                     .'.page'.$this->paginate['page'];
                 
                 $names = $this->paginate();
-                
                 
                 
                 $this->set(compact('names'));
@@ -97,30 +81,15 @@ class SearchController extends WeatherphAppController {
     
     public function getResultCoordinates($keyword) {
         $this->layout = 'json/ajax';
-
+        
+        $query = "select `Name`.`id`, `Name`.`long`, `Name`.`lat`, `Name`.`full_name_ro` from `names` as `Name`, `fips_codes` as `FipsCode`, `provinces` as `Province`, `regions` as `Region` where ( `FipsCode`.adm1 = `Name`.adm1  and `FipsCode`.cc1  = `Name`.cc1 ) and ( `Name`.`dsg` = 'ppl' or `Name`.`dsg` = 'adm1' or `Name`.`dsg` = 'adm2' ) and (`Province`.`name` = `FipsCode`.`name`  and `Province`.`region_id` = `Region`.id) and ( `Name`.`full_name_ro` = '$keyword' or `Name`.`full_name_ro` like '$keyword %' or `Name`.`full_name_ro` like '% $keyword' );";
         $gum = 'search.nima.name.coordinates';
         $locations = array();
         if (!Cache::read($gum, 'daily')) {
             
             $NimaName = new NimaName();
             $keyword = $this->params['pass'][0];
-            $locations = $NimaName->find('all', array(
-                    'limit' => 15,
-                    'fields' => array('full_name_ro', 'long', 'lat', 'id'),
-                    'conditions' => array(
-                        "AND" => array(
-                            "OR" => array(
-                                'dsg' => "adm1",
-                                'dsg' => "ppl",
-                            )
-                        ),
-                        "OR" => array(
-                            'full_name_ro' => "$keyword",
-                            'full_name_ro LIKE' => "$keyword %",
-                            'full_name_ro LIKE' => "% $keyword",
-                        ),
-                    ),
-                ));
+            $locations = $NimaName->query($query);
             
             Cache::write($gum, $locations, 'daily');
         } else {
