@@ -24,6 +24,8 @@
                 <div id="map">
                     <div class="loader">
                     </div>
+                    <div class="hovered-station">
+                    </div>
                 </div>
             </div>
             <div id="legend" class="shadow">
