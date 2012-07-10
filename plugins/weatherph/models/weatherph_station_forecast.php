@@ -13,8 +13,6 @@ class WeatherphStationForecast extends WeatherphAppModel
     
     public function get($conditions = null, $fields = array(), $order = null, $recursive = null){
         
-        ini_set('memory_limit','128M');
-        
         $today_Readings = $current_readings = array();
 
         $dmo_readings_file = '';
@@ -53,31 +51,42 @@ class WeatherphStationForecast extends WeatherphAppModel
             
             $this->log("Current Readings:".print_r($current_reading, TRUE));
             
-            $current_readings['weather_symbol'] = (trim($current_reading['sy']) == '')? '0' : $this->dayOrNightSymbol($current_reading['sy'], $current_reading['utc'], array("sunrise"=>$sunrise,"sunset"=>$sunset));
-
-            // Replace the null values with hypen character and round it off to the nearest tenths
-            $current_readings['temperature'] = ($current_reading['tl'] == '')? '-' : number_format($current_reading['tl'],0);
-            
-            if($current_reading['rr1h'] == ''){
-                if($current_reading['rain6'] == ''){
-                    $current_readings['precipitation'] = "-";
-                    $current_readings['precipitation_hr_range'] = "";
-                }else{
-                    $current_readings['precipitation'] = round($current_reading['rain6'],0);
-                    $current_readings['precipitation_hr_range'] = "(6H)"; 
-                }
-            }else{
-                $current_readings['precipitation'] = round($current_reading['rr1h'],0);    
-                $current_readings['precipitation_hr_range'] = "(1H)";
+            if(array_key_exists('sy', $current_reading)){
+                $current_readings['weather_symbol'] = (trim($current_reading['sy']) == '')? '-' : $this->dayOrNightSymbol($current_reading['sy'], $current_reading['utc'], array("sunrise"=>$sunrise,"sunset"=>$sunset));
             }
             
-            $current_readings['relative_humidity'] = ($current_reading['rh'] == '')? '-' : round($current_reading['rh'],0);
-            $current_readings['wind_speed'] = ($current_reading['ff'] == '')? '-' : floor($current_reading['ff'] * 1.852 + 0.5);
-            $current_readings['wind_gust'] = ($current_reading['g1h'] == '')? '-' : round($current_reading['g1h'],0);
-
+            if(array_key_exists('tl', $current_reading)){
+                $current_readings['temperature'] = ($current_reading['tl'] == '')? '-' : number_format($current_reading['tl'],0);    
+            }
+            
+            if(array_key_exists('rr1h', $current_reading)){
+                if($current_reading['rr1h'] == ''){
+                    if($current_reading['rain6'] == ''){
+                        $current_readings['precipitation'] = "-";
+                        $current_readings['precipitation_hr_range'] = "";
+                    }else{
+                        $current_readings['precipitation'] = round($current_reading['rain6'],0);
+                        $current_readings['precipitation_hr_range'] = "(6H)"; 
+                    }
+                }else{
+                    $current_readings['precipitation'] = round($current_reading['rr1h'],0);    
+                    $current_readings['precipitation_hr_range'] = "(1H)";
+                }
+            }
+            
+            if(array_key_exists('rh', $current_reading)){
+                $current_readings['relative_humidity'] = ($current_reading['rh'] == '')? '-' : round($current_reading['rh'],0);
+            }
+            
+            if(array_key_exists('ff', $current_reading)){
+                $current_readings['wind_speed'] = ($current_reading['ff'] == '')? '-' : floor($current_reading['ff'] * 1.852 + 0.5);
+            }
+            
+            if(array_key_exists('g1h', $current_reading)){
+                $current_readings['wind_gust'] = ($current_reading['g1h'] == '')? '-' : round($current_reading['g1h'],0);
+            }
 
             $theirTime = strtotime($current_reading['datum'] . $current_reading['utc'] . ':' .$current_reading['min']);
-            //$current_time = strtotime(date('Ymd H:i:s')) + $Date->getOffset();
             $current_readings['local_time'] = date('Ymd H:i:s', $theirTime + $Date->getOffset());
             $current_readings['update'] = date('h:iA', $theirTime + $Date->getOffset());
             
@@ -89,8 +98,6 @@ class WeatherphStationForecast extends WeatherphAppModel
         }else{
             $abfrageResults['reading']['status'] = 'none';
         }
-                
-        $headersSpecimen = "Datum;utc;min;ort1;dir;ff;g3h;tl;rr;rr1h;sy;rain3;rh;sy2;";
         
         $nearestGP = $this->nearestGridPoint($stationInfo['lon'],$stationInfo['lat']);
         
@@ -113,33 +120,47 @@ class WeatherphStationForecast extends WeatherphAppModel
                         $current_forecast['Datum'] = $forecast['Datum'];
                         $current_forecast['utc'] = $forecast['utc'];
                         $current_forecast['min'] = $forecast['min'];
-
-                        $current_forecast['weather_symbol'] = (trim($forecast['sy']) == '')? '0' : $this->dayOrNightSymbol($forecast['sy'], $forecast['utc'], array("sunrise"=>$sunrise,"sunset"=>$sunset));
-
-                        $current_forecast['precipitation'] = ($forecast['rain3'] == '')? '0' : number_format($forecast['rain3'],1);
-                        $current_forecast['relative_humidity'] = ($forecast['rh'] == '')? '0' : round($forecast['rh'],0);
-                        $current_forecast['wind_speed'] = ($forecast['ff'] == '')? '0' : floor($forecast['ff'] * 1.852 + 0.5);
-                        $current_forecast['wind_gust'] = ($forecast['g6h'] == '')? '0' : floor($forecast['g6h'] * 1.852 + 0.5);
-                        $current_forecast['temperature'] = ($forecast['tl'] == '')? '0' : number_format($forecast['tl'],0); 
-
+                        
+                        if(array_key_exists('sy', $forecast)){
+                            $current_forecast['weather_symbol'] = (trim($forecast['sy']) == '')? '-' : $this->dayOrNightSymbol($forecast['sy'], $forecast['utc'], array("sunrise"=>$sunrise,"sunset"=>$sunset));
+                        }
+                        
+                        if(array_key_exists('rain3', $forecast)){
+                            $current_forecast['precipitation'] = (trim($forecast['rain3']) == '')? '-' : number_format($forecast['rain3'],1);
+                        }
+                        
+                        if(array_key_exists('rh', $forecast)){
+                            $current_forecast['relative_humidity'] = (trim($forecast['rh']) == '')? '-' : round($forecast['rh'],0);
+                        }
+                        
+                        if(array_key_exists('ff', $forecast)){
+                            $current_forecast['wind_speed'] = (trim($forecast['ff']) == '')? '-' : floor($forecast['ff'] * 1.852 + 0.5);
+                        }
+                        
+                        if(array_key_exists('g6h', $forecast)){
+                            $current_forecast['wind_gust'] = (trim($forecast['g6h']) == '')? '-' : floor($forecast['g6h'] * 1.852 + 0.5);
+                        }
+                        
+                        if(array_key_exists('tl', $forecast)){
+                            $current_forecast['temperature'] = (trim($forecast['tl']) == '')? '-' : number_format($forecast['tl'],0); 
+                        }
+                        
+                        if(array_key_exists('dir', $forecast)){
+                            $current_forecast['wind_description'] = $this->showWindDescription($forecast['dir'], $current_forecast['wind_speed'], $current_forecast['wind_gust']);
+                        }
+                        
                         // Translate raw date to 3 hourly range value
                         $thierTime = strtotime($forecast['Datum'].' '.$forecast['utc'].':'.$forecast['min']);
-
                         $current_forecast['their_time'] = date('Ymd H:i:s', $thierTime);
-
                         $current_forecast['localtime'] = date('Ymd H:i:s', $thierTime + $Date->getOffset());
 
                         $current_forecast['localtime_range_start'] = date('Ymd H:i:s', strtotime('-3 hours', $thierTime) + $Date->getOffset()); 
                         $current_forecast['localtime_range_end'] = date('Ymd H:i:s', $thierTime + $Date->getOffset());
-
                         $current_forecast['localtime_range'] = date('hA', strtotime($current_forecast['localtime_range_start'])) . '-' . date('hA', strtotime($current_forecast['localtime_range_end']));
-
-                        // Generate the wind description
-                        $current_forecast['wind_description'] = $this->showWindDescription($forecast['dir'], $current_forecast['wind_speed'], $current_forecast['wind_gust']);
 
                         $readingTime = date('Ymd H:i:s', strtotime(date('Ymd H:i:s')) + $Date->getOffset());
 
-                        if (strtotime($current_forecast['localtime']) > strtotime($readingTime)) $abfrageResults['forecast'][] = $current_forecast;
+                        if(strtotime($current_forecast['localtime']) > strtotime($readingTime)) $abfrageResults['forecast'][] = $current_forecast;
 
                 }
 
@@ -156,8 +177,6 @@ class WeatherphStationForecast extends WeatherphAppModel
         } else {
            $abfrageResults['forecast']['status'] = 'none'; 
         }
-        
-        $this->log($abfrageResults);
         
         return $abfrageResults;
         
@@ -233,8 +252,6 @@ class WeatherphStationForecast extends WeatherphAppModel
     
     public function getWeeklyForecast($conditions = null, $fields = array(), $order = null, $recursive = null){
         
-        ini_set('memory_limit','128M');
-        
         $stationId = $fields['conditions']['id'];
         
         $today_Readings = $current_readings = array();
@@ -256,7 +273,6 @@ class WeatherphStationForecast extends WeatherphAppModel
         
         $station_id = $fields['conditions']['id']; 
         $station_readings = $reading_temp->find('all', array(
-           // 'fields' => array('id' ,'datum', 'ort1', 'dir'),  
             'conditions' => array( 
                 'ort1 LIKE' => "%".$station_id ."%", 
                 'tl !=' => ''),
@@ -268,54 +284,63 @@ class WeatherphStationForecast extends WeatherphAppModel
             $current_reading = array_pop($station_readings);
             $current_reading = $current_reading['Reading'];
             
-            $current_readings['moonphase'] = $this->moon_phase(date('Y', strtotime($current_reading['datum'])), date('m', strtotime($current_reading['datum'])), date('d', strtotime($current_reading['datum'])));
+//            $this->log("Current Readings:".print_r($current_reading, TRUE));
             
-            $current_reading = array_pop($station_readings);
-            $current_reading = $current_reading['Reading'];
-            
-            $this->log("Current Readings:".print_r($current_reading, TRUE));
-            
-            $current_readings['weather_symbol'] = (trim($current_reading['sy']) == '')? '0' : $this->dayOrNightSymbol($current_reading['sy'], $current_reading['utc'], array("sunrise"=>$sunrise,"sunset"=>$sunset));
-
-            // Replace the null values with hypen character and round it off to the nearest tenths
-            $current_readings['temperature'] = ($current_reading['tl'] == '')? '0' : number_format($current_reading['tl'],0);
-            
-            if($current_reading['rr1h'] == ''){
-                if($current_reading['rain6'] == ''){
-                    $current_readings['precipitation'] = "-";
-                    $current_readings['precipitation_hr_range'] = "";
-                }else{
-                    $current_readings['precipitation'] = round($current_reading['rain6'],0);
-                    $current_readings['precipitation_hr_range'] = "(6H)"; 
-                }
-            }else{
-                $current_readings['precipitation'] = round($current_reading['rr1h'],0);    
-                $current_readings['precipitation_hr_range'] = "(1H)";
+            if(array_key_exists('sy', $current_reading)){
+                $current_readings['weather_symbol'] = (trim($current_reading['sy']) == '')? '-' : $this->dayOrNightSymbol($current_reading['sy'], $current_reading['utc'], array("sunrise"=>$sunrise,"sunset"=>$sunset));
             }
             
-            $current_readings['relative_humidity'] = ($current_reading['rh'] == '')? '0' : round($current_reading['rh'],0);
-            $current_readings['wind_speed'] = ($current_reading['ff'] == '')? '0' : floor($current_reading['ff'] * 1.852 + 0.5);
-            $current_readings['wind_gust'] = ($current_reading['g1h'] == '')? '0' : round($current_reading['g1h'],0);
-            $current_readings['wind_direction'] = $this->windDirection($current_reading['dir']);
+            if(array_key_exists('tl', $current_reading)){
+                $current_readings['temperature'] = ($current_reading['tl'] == '')? '-' : number_format($current_reading['tl'],0);
+            }
+            
+            if(array_key_exists('rr1h', $current_reading)){
+                if($current_reading['rr1h'] == ''){
+                    if($current_reading['rain6'] == ''){
+                        $current_readings['precipitation'] = "-";
+                        $current_readings['precipitation_hr_range'] = "";
+                    }else{
+                        $current_readings['precipitation'] = round($current_reading['rain6'],0);
+                        $current_readings['precipitation_hr_range'] = "(6H)"; 
+                    }
+                }else{
+                    $current_readings['precipitation'] = round($current_reading['rr1h'],0);    
+                    $current_readings['precipitation_hr_range'] = "(1H)";
+                }
+            }
+            
+            if(array_key_exists('rh', $current_reading)){
+                $current_readings['relative_humidity'] = ($current_reading['rh'] == '')? '-' : round($current_reading['rh'],0);
+            }
+            
+            if(array_key_exists('ff', $current_reading)){
+                $current_readings['wind_speed'] = ($current_reading['ff'] == '')? '-' : floor($current_reading['ff'] * 1.852 + 0.5);
+            }
+            
+            if(array_key_exists('g1h', $current_reading)){
+                $current_readings['wind_gust'] = ($current_reading['g1h'] == '')? '-' : round($current_reading['g1h'],0);
+            }
+            
+            if(array_key_exists('dir', $current_reading)){
+                $current_readings['wind_direction'] = (trim($current_reading['dir']) == '')? '-' : $this->windDirection($current_reading['dir']);
+            }
 
             $theirTime = strtotime($current_reading['datum'] . $current_reading['utc'] . ':' .$current_reading['min']);
-            
-            //$current_time = strtotime(date('Ymd H:i:s')) + $Date->getOffset();
             $current_readings['local_time'] = date('Ymd H:i:s', $theirTime + $Date->getOffset());
             $current_readings['update'] = date('h:iA', $theirTime + $Date->getOffset());
             
         }
         
-        // Check if the last/current reading exist, and set status
         if(count($current_readings)>0){
             $abfrageResults['reading'] = $current_readings;
             $abfrageResults['reading']['status'] = 'ok';
-            $abfrageResults['reading']['sunrise'] = $sunrise;
-            $abfrageResults['reading']['sunset'] = $sunset;
-            
         }else{
             $abfrageResults['reading']['status'] = 'none';
         }
+        
+        $abfrageResults['sunrise'] = $sunrise;
+        $abfrageResults['sunset'] = $sunset;
+        $abfrageResults['moonphase'] = $this->moon_phase(date('Y'), date('m'), date('d'));
         
         $nearestGP = $this->nearestGridPoint($stationInfo['lon'],$stationInfo['lat']);
         
@@ -338,33 +363,43 @@ class WeatherphStationForecast extends WeatherphAppModel
                     $new_forecast['Datum'] = $forecast['Datum'];
                     $new_forecast['utc'] = $forecast['utc'];
                     $new_forecast['min'] = $forecast['min'];
+                    
+                    if(array_key_exists('sy', $forecast)){
+                        $new_forecast['weather_condition'] = (trim($forecast['sy']) == '')? '-' : $this->dayOrNightSymbol($forecast['sy'], $forecast['utc'], array("sunrise"=>$sunrise,"sunset"=>$sunset));
+                    }
+                    
+                    if(array_key_exists('rain3', $forecast)){
+                        $new_forecast['precipitation'] = ($forecast['rain3'] == '')? '-' : number_format($forecast['rain3'],1);
+                    }    
+                    
+                    if(array_key_exists('rh', $forecast)){
+                        $new_forecast['relative_humidity'] = ($forecast['rh'] == '')? '-' : round($forecast['rh'],0);
+                    }
+                    
+                    if(array_key_exists('ff', $forecast)){
+                        $new_forecast['wind_speed'] = ($forecast['ff'] == '')? '-' : floor($forecast['ff'] * 1.852 + 0.5);
+                    }
+                    
+                    if(array_key_exists('g6h', $forecast)){
+                        $new_forecast['wind_gust'] = ($forecast['g6h'] == '')? '-' : floor($forecast['g6h'] * 1.852 + 0.5);
+                    }
+                    
+                    if(array_key_exists('tl', $forecast)){
+                        $new_forecast['temperature'] = ($forecast['tl'] == '')? '-' : number_format($forecast['tl'],0); 
+                    }
+                    
+                    if(array_key_exists('dir', $forecast)){
+                        $new_forecast['wind_description'] = $this->showWindDescription($forecast['dir'], $new_forecast['wind_speed'], $new_forecast['wind_gust']);
+                        $new_forecast['wind_direction'] = (trim($forecast['dir']) == '')? '-' : $this->showWindDirection($forecast['dir']);
+                    }
 
-                    $new_forecast['weather_condition'] = (trim($forecast['sy']) == '')? '0' : $this->dayOrNightSymbol($forecast['sy'], $forecast['utc'], array("sunrise"=>$sunrise,"sunset"=>$sunset));
-
-                    $new_forecast['precipitation'] = ($forecast['rain3'] == '')? '0' : number_format($forecast['rain3'],1);
-                    $new_forecast['relative_humidity'] = ($forecast['rh'] == '')? '0' : round($forecast['rh'],0);
-                    $new_forecast['wind_speed'] = ($forecast['ff'] == '')? '0' : floor($forecast['ff'] * 1.852 + 0.5);
-                    $new_forecast['wind_gust'] = ($forecast['g6h'] == '')? '0' : floor($forecast['g6h'] * 1.852 + 0.5);
-                    $new_forecast['temperature'] = ($forecast['tl'] == '')? '0' : number_format($forecast['tl'],0); 
-
-                    // Translate raw date to 3 hourly range value
                     $thierTime = strtotime($forecast['Datum'].' '.$forecast['utc'].':'.$forecast['min']);
-
                     $new_forecast['their_time'] = date('Y-m-d H:i:s', $thierTime);
-
                     $new_forecast['localtime'] = date('Ymd H:i:s', $thierTime + $Date->getOffset());
-
                     $new_forecast['localtime_range_start'] = date('Ymd H:i:s', strtotime('-3 hours', $thierTime) + $Date->getOffset()); 
                     $new_forecast['localtime_range_end'] = date('Ymd H:i:s', $thierTime + $Date->getOffset());
-
                     $new_forecast['localtime_range'] = date('hA', strtotime($new_forecast['localtime_range_start'])) . '-' . date('hA', strtotime($new_forecast['localtime_range_end']));
 
-                    // Generate the wind description
-                    $new_forecast['wind_description'] = $this->showWindDescription($forecast['dir'], $new_forecast['wind_speed'], $new_forecast['wind_gust']);
-
-                    // Translate raw data to wind direction image value
-                    $new_forecast['wind_direction'] = $this->showWindDirection($forecast['dir']);
-                    
                     $readingTime = date('Ymd H:i:s', strtotime(date('Ymd H:i:s')) + $Date->getOffset());
                     
                     if (strtotime($new_forecast['localtime']) > strtotime($readingTime)) $abfrageResults['forecast'][$new_forecast['Datum']][] = $new_forecast;
@@ -387,7 +422,7 @@ class WeatherphStationForecast extends WeatherphAppModel
         $abfrageResults['stationId'] = $stationId;
         $abfrageResults['stationName'] = $stationInfo['name'];
         
-//        $this->log(print_r($abfrageResults, TRUE));
+        $this->log(print_r($abfrageResults, TRUE));
         
         return $abfrageResults;
         
