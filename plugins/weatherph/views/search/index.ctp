@@ -64,7 +64,7 @@
                 <ul>
                     <?php foreach ($names as $name): ?>
                         <li class="<?php echo $name['NimaName']['id']; ?>">
-                            <a href ="/<?php echo Inflector::slug($name['NimaName']['full_name_ro'], '_') .'-'.$name['NimaName']['id']; ?>" class="<?php echo $name['NimaName']['id']; ?> location"><br /><?php echo trim($name['NimaName']['full_name_ro']); ?></a>
+                            <a href ="/<?php echo Inflector::slug($name['NimaName']['full_name_ro'], '_') .'-'.$name['NimaName']['id']; ?>" class="<?php echo $name['NimaName']['id']; ?> location"><br /><?php echo trim($name['NimaName']['full_name_ro']); ?><br /> <span><?= trim($name['FipsCode']['name']);?> <?= trim($name['Region']['code'])?></span><br /><br /></a>
                         </li>
                     <?php endforeach; ?>
                 </ul>
