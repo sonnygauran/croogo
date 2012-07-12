@@ -715,8 +715,7 @@ class WeatherphStationForecast extends WeatherphAppModel {
         //debug($e->getTraceAsString());
         //debug($nearestGP);
         //print_r($stationInfo);
-
-
+        
         //FROM DATABASE
         App::import('Model', 'Weatherph.Reading');
         $reading_temp = new Reading();
