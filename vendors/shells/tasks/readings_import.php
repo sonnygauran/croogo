@@ -8,9 +8,7 @@ class ReadingsImportTask extends Shell {
         App::import('Model', 'Weatherph.Reading');
         $Reading = new Reading();
         
-        //$csv_filename = date('Ydm');
-        $directory = "/data/readings/temp/";
-        $csv_filename = $directory . "measurements.csv";
+        $csv_filename = date('Ymd') . ".csv";
         
         $readings_csv_file = Configure::read('Data.readings') . $csv_filename;
         
@@ -59,8 +57,6 @@ class ReadingsImportTask extends Shell {
                            
                             $Reading->save($data);
                            
-                            echo "Updated count [$cntr_updated]\n";
-                           
                         }else{
                             
                             // If not exist insert it to database
@@ -88,7 +84,6 @@ class ReadingsImportTask extends Shell {
 
                             $Reading->save($data);
 
-                            echo "Inserted count [$cntr_inserted]\n";
                             
                         } 
                         
@@ -96,6 +91,8 @@ class ReadingsImportTask extends Shell {
                     
                 }                
             }
+            
+            echo "Updated [$cntr_updated] / Inserted [$cntr_inserted]\n";
 
         }else{
             

@@ -30,14 +30,14 @@ echo $this->Html->script(array(
 
                 <div id="condition">
 
-                    <?php if (!empty($dataSets['reading']['sy']['symbol'])) { ?>
+                    <?php if (!empty($dataSets['reading']['weather_symbol']['symbol'])) { ?>
                         <div class="inner-condition">
                             <div class="left-temp-reading">
                                 <?= $dataSets['reading']['temperature']; ?>&deg;C
                             </div>
 
                             <div class="right-sy-reading">
-                                <span class="symbol <?= $dataSets['reading']['sy']['symbol']; ?>" title="<?= $dataSets['reading']['sy']['description']; ?>" ></span>
+                                <span class="symbol <?= $dataSets['reading']['weather_symbol']['symbol']; ?>" title="<?= $dataSets['reading']['weather_symbol']['description']; ?>" ></span>
                             </div>
                         </div>    
                     <?php } else { ?>
@@ -74,7 +74,7 @@ echo $this->Html->script(array(
                         <tbody>
                             <tr>
                                 <th>Wind Speed/Direction</th>
-                                <td><?= $dataSets['reading']['wind_speed']; ?>km/h, <?= $dataSets['reading']['wind_direction']['eng']; ?></td>
+                                <td><span class="symbolwind <?= $dataSets['reading']['wind_direction']; ?>" title="<?= $dataSets['reading']['wind_speed']; ?>km/h, <?= $dataSets['reading']['wind_description']['eng']; ?>"></span><?= $dataSets['reading']['wind_speed']; ?>km/h, <?= $dataSets['reading']['wind_description']['eng']; ?></td>
                             </tr>
                             <tr>
                                 <th>Rain</th>
