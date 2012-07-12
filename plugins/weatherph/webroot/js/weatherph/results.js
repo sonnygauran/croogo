@@ -36,7 +36,7 @@ $(document).ready(function(){
             id: "OSM",
             type: "tiled",
             src: function (view) {
-                return "http://c.tiles.mapbox.com/v3/mapbox.mapbox-streets/"
+                return "<?= Configure::read('Tile.main.url') ?>/"
                 + view.zoom + "/"
                 + view.tile.column + "/"
                 + view.tile.row

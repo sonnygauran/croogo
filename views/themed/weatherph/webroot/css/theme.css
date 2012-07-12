@@ -279,19 +279,16 @@ label[for="search-field"] {
 }
 
 #legend {
-    padding: 3px;
+    position:relative; /* IE 7 Scrollbar fix */
+    overflow: auto;
+    vertical-align: middle;
+    padding: 5px;
     -webkit-border-bottom-right-radius: 5px;
     -webkit-border-bottom-left-radius: 5px;
     -moz-border-radius-bottomright: 5px;
     -moz-border-radius-bottomleft: 5px;
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
-    overflow: auto;
-    position:relative; /* IE 7 Scrollbar fix */
-}
-
-#legend > img {
-    float:left;
 }
 
 .scale-temperature,
@@ -302,7 +299,6 @@ label[for="search-field"] {
     text-align: center;
     border-bottom: 1px #e1e1e1 solid;
 }
-
 
 .scale-fahrenheit li,
 .scale-celsius li,
@@ -337,16 +333,19 @@ label[for="search-field"] {
     border-radius: 5px;
 }
 
-#province-select {
+.province-select, .station-legend {
     float: left;
-    overflow: auto;
 }
 
-#province-select > p,
-#province-select > select {
-    display: inline;
-    padding: 0 5px;
-    vertical-align: middle;
+.station-legend {
+    margin-top: 4px;
+}
+
+.station-legend > div {
+    display: inline-block;
+    height: 1em;
+    width: 1em; 
+    margin: 0 6px;
 }
 
 /* Info pane */
