@@ -3,14 +3,14 @@
 class SearchController extends WeatherphAppController {
     
     public $name = 'Search';
-    public $uses = array('Nima.NimaName');
+    public $uses = array('Nima.NimaName', 'Nima.FipsCode', 'Nima.Region');
     public $helpers = array('Cache');
     var $cacheAction = array(
         'index' => array('duration' => 86400),
         'getResultCoordinates' => array('duration' => 86400),
     );
 
-    public function index($terms = '') {
+    public function index($terms = '') { 
         $this->log('INDEX!!!');
         $termStr = '/^([A-Za-z0-9 ]+)$/';
         
@@ -57,9 +57,9 @@ class SearchController extends WeatherphAppController {
                 $this->paginate['NimaName'] = array(
                     'limit' => 15,
                     'fields' => array('id', 'full_name_ro'),
-                    'conditions' => array( 
+                    'conditions' => array(
                         'keyword' => $keyword,
-                    )
+                            )
                 );
                 $gum = 'search.'.rawurlencode($keyword)
                     .'.limit'.$this->paginate['limit']
@@ -82,19 +82,19 @@ class SearchController extends WeatherphAppController {
     public function getResultCoordinates($keyword) {
         $this->layout = 'json/ajax';
         
-        $query = "select `Name`.`id`, `Name`.`long`, `Name`.`lat`, `Name`.`full_name_ro` from `names` as `Name`, `fips_codes` as `FipsCode`, `provinces` as `Province`, `regions` as `Region` where ( `FipsCode`.adm1 = `Name`.adm1  and `FipsCode`.cc1  = `Name`.cc1 ) and ( `Name`.`dsg` = 'ppl' or `Name`.`dsg` = 'adm1' or `Name`.`dsg` = 'adm2' ) and (`Province`.`name` = `FipsCode`.`name`  and `Province`.`region_id` = `Region`.id) and ( `Name`.`full_name_ro` = '$keyword' or `Name`.`full_name_ro` like '$keyword %' or `Name`.`full_name_ro` like '% $keyword' );";
-        $gum = 'search.nima.name.coordinates';
+        $query = "select `Name`.`id`, `Name`.`long`, `Name`.`lat`, `Name`.`full_name_ro`, `FipsCode`.name, `Region`.`name`, `Region`.`code`, `FipsCode`.`type` from `names` as `Name`, `fips_codes` as `FipsCode`, `regions` as `Region`  where ( `Name`.`fips_code_id` = `FIpsCode`.`id` ) and ( `FipsCode`.`region_id` = `Region`.`id` ) and ( `Name`.`nt` = 'N' ) and ( `Name`.`dsg` = 'ppl'  or `Name`.`dsg` = 'adm1' or `Name`.`dsg` = 'adm2' ) and ( `Name`.`full_name_ro` = '$keyword' 	or `Name`.`full_name_ro` like '$keyword %'  or `Name`.`full_name_ro` like '% $keyword'  ) order by `FipsCode`.`type` desc, FIELD(`Region`.`code`, 'CAR', 'NCR') desc, `Name`.`id` desc, FIELD(`Name`.`dsg`, 'adm1', 'ppl') desc";
+//        $gum = 'search.nima.name.coordinates';
         $locations = array();
-        if (!Cache::read($gum, 'daily')) {
+//        if (!Cache::read($gum, 'daily')) {
             
             $NimaName = new NimaName();
             $keyword = $this->params['pass'][0];
             $locations = $NimaName->query($query);
-            
-            Cache::write($gum, $locations, 'daily');
-        } else {
-            $locations = Cache::read($gum, 'daily');
-        }
+                        
+//            Cache::write($gum, $locations, 'daily');
+//        } else {
+//            $locations = Cache::read($gum, 'daily');
+//        }
         
         $this->set('locations', json_encode($locations));
     }
