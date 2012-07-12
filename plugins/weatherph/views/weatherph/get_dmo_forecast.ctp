@@ -74,7 +74,7 @@ echo $this->Html->script(array(
                         <tbody>
                             <tr>
                                 <th>Wind Speed/Direction</th>
-                                <td><?= $dataSets['reading']['wind_speed']; ?>km/h, <?= $dataSets['reading']['wind_direction']['eng']; ?></td>
+                                <td><span class="symbolwind <?= $dataSets['reading']['wind_direction']; ?>" title="<?= $dataSets['reading']['wind_speed']; ?>km/h, <?= $dataSets['reading']['wind_description']['eng']; ?>"></span><?= $dataSets['reading']['wind_speed']; ?>km/h, <?= $dataSets['reading']['wind_description']['eng']; ?></td>
                             </tr>
                             <tr>
                                 <th>Rain</th>

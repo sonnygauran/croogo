@@ -767,8 +767,11 @@ class WeatherphStationForecast extends WeatherphAppModel {
             $current_readings['relative_humidity'] = ($current_reading['rh'] == '') ? '0' : round($current_reading['rh'], 0);
             $current_readings['wind_speed'] = ($current_reading['ff'] == '') ? '0' : floor($current_reading['ff'] * 1.852 + 0.5);
             $current_readings['wind_gust'] = ($current_reading['g1h'] == '') ? '0' : round($current_reading['g1h'], 0);
-            $current_readings['wind_direction'] = $this->windDirection($current_reading['dir']);
+            //$current_readings['wind_direction'] = $this->windDirection($current_reading['dir']);
 
+            $current_readings['wind_direction'] = (trim($current_reading['dir']) == '')? '-' : $this->showWindDirection($current_reading['dir']);
+            $current_readings['wind_description'] = (trim($current_reading['dir']) == '')? '-' : $this->WindDirection($current_reading['dir']);
+            
 
             $theirTime = strtotime($current_reading['datum'] . $current_reading['utc'] . ':' . $current_reading['min']);
             //$current_time = strtotime(date('Ymd H:i:s')) + $Date->getOffset();
