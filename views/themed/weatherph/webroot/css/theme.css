@@ -534,7 +534,7 @@ span.temperature {
 .inner-condition {
     float: left;
     position: relative;
-    width: 100%;
+    width: 98%;
     background-color: #fafafa;
     border-radius: 5px;
     color: #365283;

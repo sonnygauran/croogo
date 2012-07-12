@@ -30,14 +30,14 @@ echo $this->Html->script(array(
 
                 <div id="condition">
 
-                    <?php if (!empty($dataSets['reading']['sy']['symbol'])) { ?>
+                    <?php if (!empty($dataSets['reading']['weather_symbol']['symbol'])) { ?>
                         <div class="inner-condition">
                             <div class="left-temp-reading">
                                 <?= $dataSets['reading']['temperature']; ?>&deg;C
                             </div>
 
                             <div class="right-sy-reading">
-                                <span class="symbol <?= $dataSets['reading']['sy']['symbol']; ?>" title="<?= $dataSets['reading']['sy']['description']; ?>" ></span>
+                                <span class="symbol <?= $dataSets['reading']['weather_symbol']['symbol']; ?>" title="<?= $dataSets['reading']['weather_symbol']['description']; ?>" ></span>
                             </div>
                         </div>    
                     <?php } else { ?>
