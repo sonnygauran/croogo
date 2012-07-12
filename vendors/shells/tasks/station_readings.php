@@ -13,7 +13,7 @@ class StationReadingsTask extends Shell{
         
         $csv = "";
         $counter = 1;
-        $file_name = Configure::read('Data.readings'). date('Ydm') . '.csv';
+        $file_name = Configure::read('Data.readings'). date('Ymd') . '.csv';
         $date = date('Ymd');
         $start_hour = date('H') - 2;
         $end_hour = date('H');
