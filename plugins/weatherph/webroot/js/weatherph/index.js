@@ -162,15 +162,15 @@ $(document).ready(function(){
 
                     cr_temperature = current_readings.temperature;
                     cr_wind = current_readings.wind_speed;
-                    cr_precip = (current_readings.precipitation != '-')? current_readings.precipitation + 'mm' : current_readings.precipitation;
+                    cr_precip = current_readings.precipitation;
                     cr_precip_hr_range = current_readings.precipitation_hr_range;
                     cr_humidity = current_readings.relative_humidity;
 
-                    $('.current.temperature span').html(cr_temperature + '&deg;C');
-                    $('.current.wind span').html(cr_wind + 'km/h');
+                    $('.current.temperature span').html(cr_temperature);
+                    $('.current.wind span').html(cr_wind);
                     $('.current.precipitation span').html(cr_precip);
                     $('.precipitation_hr_range').html(cr_precip_hr_range);
-                    $('.current.humidity span').html(cr_humidity + '%');
+                    $('.current.humidity span').html(cr_humidity);
 
                     var weather_symbol = $station_readings.reading.weather_symbol;
 
