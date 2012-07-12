@@ -269,23 +269,34 @@ class WeatherphController extends WeatherphAppController {
        //debug($id);
        App::import('Model', 'Weatherph.WeatherphStationForecast');
        App::import('Model', 'Weatherph.NearestStation');
+       App::import('Model','Nima.NimaName');
        
        $NearestStation = new NearestStation();
        $DmoForecast = new WeatherphStationForecast();
+       $search_location = new NimaName();
        
        $result = $NearestStation->find('all', array(
            'conditions' => array(
                'reference' => $id
            ))
         );
-       
+        
        //debug($result);
        $station_id = $result[0]['NearestStation']['station_id'];
        $dataSets = $DmoForecast->dmoForecast('all', array('conditions' => array(
            'id' => $station_id,
        )));
        
-       $this->set(compact('dataSets'));
+       $location = $search_location->find('all', array(
+        'conditions' => array(
+            'id =' => $id,
+            )));
+       
+       $location = $location[0];
+       
+//       $this->log(print_r($location, TRUE));
+       
+       $this->set(compact('dataSets','location'));
        
    }
    
