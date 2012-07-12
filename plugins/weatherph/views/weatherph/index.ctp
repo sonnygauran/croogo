@@ -144,8 +144,8 @@
                     </ul>
                 </div>
 
-                <div id="province-select">
-                    <p>Province:</p>
+                <div class="province-select">
+                    <span>Province:</span>
                     <select name="philippine-regions">
                         <option>Choose one...</option>
 
@@ -183,6 +183,12 @@
                         </optgroup>
                     </select>
                 </div> <!--END PROVINCE SELECT-->
+                <div class="station-legend">
+                    <div style="background-color: #4762ff;"></div>
+                    <span>Meteomedia stations</span>
+                    <div style="background-color: #fd7567;"></div>
+                    <span>PAGASA stations</span>
+                </div>
             </div> <!--END LEGEND-->
         </div>
         <div id="info" class="shadow">
