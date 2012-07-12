@@ -431,9 +431,9 @@ class WeatherphAppModel extends AppModel {
         
         $windGustTxt = $windDirTxt = $windSpeedTxt = '';
         
-        if((int)$windGust > 0) $windGustTxt = ', gusting up to ' . $windGust . 'km/h ';
+        if((int)$windGust > 0) $windGustTxt = ', gusting up to ' . $windGust . ' ';
         
-        $windSpeedTxt = ($windSpeed != NULL)? $windSpeed . 'km/h, '. $windDirDesc : '-';
+        $windSpeedTxt = ($windSpeed != NULL)? $windSpeed . ', '. $windDirDesc : '-';
         
         if(is_array($windDir)) $windDirTxt = 'from ' . $windDir['eng']; 
          
