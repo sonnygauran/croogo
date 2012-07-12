@@ -279,19 +279,16 @@ label[for="search-field"] {
 }
 
 #legend {
-    padding: 3px;
+    position:relative; /* IE 7 Scrollbar fix */
+    overflow: auto;
+    vertical-align: middle;
+    padding: 5px;
     -webkit-border-bottom-right-radius: 5px;
     -webkit-border-bottom-left-radius: 5px;
     -moz-border-radius-bottomright: 5px;
     -moz-border-radius-bottomleft: 5px;
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
-    overflow: auto;
-    position:relative; /* IE 7 Scrollbar fix */
-}
-
-#legend > img {
-    float:left;
 }
 
 .scale-temperature,
@@ -302,7 +299,6 @@ label[for="search-field"] {
     text-align: center;
     border-bottom: 1px #e1e1e1 solid;
 }
-
 
 .scale-fahrenheit li,
 .scale-celsius li,
@@ -337,16 +333,15 @@ label[for="search-field"] {
     border-radius: 5px;
 }
 
-#province-select {
+.province-select, .station-legend {
     float: left;
-    overflow: auto;
 }
 
-#province-select > p,
-#province-select > select {
-    display: inline;
-    padding: 0 5px;
-    vertical-align: middle;
+.station-legend > div {
+    display: inline-block;
+    height: 1em;
+    width: 1em; 
+    margin: 0 6px;
 }
 
 /* Info pane */
@@ -527,7 +522,7 @@ span.temperature {
 }
 
 #condition {
-    width: 60%;
+    width: 55%;
     float: left;
 }
 
@@ -539,7 +534,7 @@ span.temperature {
 .inner-condition {
     float: left;
     position: relative;
-    width: 100%;
+    width: 98%;
     background-color: #fafafa;
     border-radius: 5px;
     color: #365283;
@@ -587,20 +582,27 @@ span.temperature {
 
 #current-reading-table {
     float: right;
-    width: 40%;
+    width: 45%;
     vertical-align: middle;
+    
 }
 
 #current-reading-table th {
-    background-color: #fafafa;
-    color: #365283;
+    background-color: #365283;
+    color: #fafafa;
+    vertical-align: middle;
+    width: 45%;
+    font-weight: normal;
 }
 
 #current-reading-table td {
     padding: 5px 8px;
     text-align: center;
-    font-size: 1.3em;
-    font-weight: bold;
+    font-size: 1.2em;
+    color: #365283;
+    font-weight: normal;
+    background-color: #fafafa;
+    vertical-align: middle;
 }
 
 .forecast-date {
@@ -906,6 +908,8 @@ div.current-tab {
 /* Spritemap */
 
 span.symbol { background: url('<?= $this->webroot ?>theme/weatherph/img/warning-sprites.png') -5px -65px no-repeat; height: 30px; width: 40px; display: block; margin: auto; cursor: pointer;}
+span.symbolwind { background: url('<?= $this->webroot ?>theme/weatherph/img/warning-sprites.png') -5px -65px no-repeat; height: 30px; width: 40px; display: block; margin: auto; cursor: pointer; float: left;}
+
 
 span.day_1 { background-position: -70px -180px; }
 span.day_2 { background-position: -125px -180px; }

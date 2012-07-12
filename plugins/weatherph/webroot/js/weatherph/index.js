@@ -13,11 +13,9 @@ $(document).on( 'mouseover mouseout', 'div.plot, div.plot-alt', function(event){
         $('.hovered-station').stop();
         $('.hovered-station').css('opacity', '1');
         $('.hovered-station').text(name);
-        console.log(name);
 
     } else {
         $('.hovered-station').animate("opacity", '1').delay(5000).fadeOut(400);
-        console.log(name);
     }
 });
 

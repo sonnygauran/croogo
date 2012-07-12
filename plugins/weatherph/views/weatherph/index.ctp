@@ -144,8 +144,8 @@
                     </ul>
                 </div>
 
-                <div id="province-select">
-                    <p>Province:</p>
+                <div class="province-select">
+                    <span>Province:</span>
                     <select name="philippine-regions">
                         <option>Choose one...</option>
 
@@ -183,6 +183,12 @@
                         </optgroup>
                     </select>
                 </div> <!--END PROVINCE SELECT-->
+                <div class="station-legend">
+                    <div style="background-color: #4762ff;"></div>
+                    <span>Meteomedia stations</span>
+                    <div style="background-color: #fd7567;"></div>
+                    <span>PAGASA stations</span>
+                </div>
             </div> <!--END LEGEND-->
         </div>
         <div id="info" class="shadow">
@@ -399,7 +405,7 @@
             <ul>
                 <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail.png"/><p>Breaking News</p></li>
                 <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail2.png"/><p><a href="<?= $this->webroot ?>weathertv">Weather TV</a></p></li>
-                <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail3.png"/><p>Mike Padua Blog</p></li>
+                <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail3.png"/><p>Payong Panahon</p></li>
                 <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail.png"/><p><a href="<?= $this->webroot ?>dictionaries/english">Dictionary: English</a></p></li>
                 <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail.png"/><p><a href="<?= $this->webroot ?>dictionaries/filipino">Dictionary: Filipino</a></p></li>
                 <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail2.png"/><p><a href="<?= $this->webroot ?>webcam">Webcams</a></p></li>
