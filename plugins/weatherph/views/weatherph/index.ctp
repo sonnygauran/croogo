@@ -405,7 +405,9 @@
             <ul>
                 <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail.png"/><p>Breaking News</p></li>
                 <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail2.png"/><p><a href="<?= $this->webroot ?>weathertv">Weather TV</a></p></li>
-                <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail3.png"/><p>Payong Panahon</p></li>
+                <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail.png"/><a href="<?= $this->webroot ?>typhoon/preparedness">Typhoon Preparedness</a></li>
+                <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail.png"/><a href="<?= $this->webroot ?>typhoon/climatology">Typhoon Climatology</a></li>
+<!--                <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail3.png"/><p>Payong Panahon</p></li>-->
                 <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail.png"/><p><a href="<?= $this->webroot ?>dictionaries/english">Dictionary: English</a></p></li>
                 <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail.png"/><p><a href="<?= $this->webroot ?>dictionaries/filipino">Dictionary: Filipino</a></p></li>
                 <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail2.png"/><p><a href="<?= $this->webroot ?>webcam">Webcams</a></p></li>
