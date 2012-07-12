@@ -10,17 +10,17 @@
     div.readings { display: none; }
     div.readings.current { display: block; }
     
-    ul.tabs-menu { displa: block; clear: both;}
-    ul.tabs-menu li.current { background-color: #88dddd; }
+    ul.tabs-menu { display: block; clear: both;}
+    ul.tabs-menu li.current { background-color: #393A3B; color: #FFF; }
     ul.tabs-menu li { 
             display: inline-block; 
-            background-color: #bbeeff; 
+            background-color: #7A7C7D; 
             margin: 0; 
             padding: 10px 20px; 
             font-size: 14px; 
             font-weight: bold; 
             cursor: pointer;
-            font-color: #A39EA0;
+            color: #BEC1C4;
             -moz-border-radius-topright: 10px;
             border-top-right-radius: 10px;
             -moz-border-radius-topleft: 10px;
@@ -42,9 +42,9 @@ if(array_key_exists('readings', $readings)){
 $cntr = 0;
 foreach($readings['readings'] as $day=>$reading){
     $cntr++;
-    $current_class = ($cntr == 1)? 'current' : '';
+    $current_class = ($cntr == 1)? 'current' : 'tabs';
 ?>
-    <li id="<?= strtotime($day);?>" class="tabs <?= $current_class; ?>" ><?= date('Ymd', strtotime($day)); ?></li>
+    <li id="<?= strtotime($day);?>" class="<?= $current_class; ?>" ><?= date('Ymd', strtotime($day)); ?></li>
 <?php    
 }
 ?>
@@ -56,7 +56,7 @@ foreach($readings['readings'] as $day=>$reading){
         $current_class = ($cntr == 1)? 'current' : '';
 ?>
 
-<div id="<?= strtotime($day); ?>" class="readings <?= $current_class; ?>">
+<div id="mtbl-<?= strtotime($day); ?>" class="readings <?= $current_class; ?>">
     <table id="measurements-tbl">
         <thead>
             <tr>
