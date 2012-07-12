@@ -57,8 +57,6 @@ class ReadingsImportTask extends Shell {
                            
                             $Reading->save($data);
                            
-                            echo "Updated count [$cntr_updated]\n";
-                           
                         }else{
                             
                             // If not exist insert it to database
@@ -86,7 +84,6 @@ class ReadingsImportTask extends Shell {
 
                             $Reading->save($data);
 
-                            echo "Inserted count [$cntr_inserted]\n";
                             
                         } 
                         
@@ -94,6 +91,8 @@ class ReadingsImportTask extends Shell {
                     
                 }                
             }
+            
+            echo "Updated [$cntr_updated] / Inserted [$cntr_inserted]\n";
 
         }else{
             
