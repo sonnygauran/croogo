@@ -471,6 +471,7 @@ class WeatherphStationReading extends WeatherphAppModel
         
         $station_id = $fields['conditions']['id'];
         $days_range = $fields['conditions']['days_range'];
+        $time_frame = $fields['conditions']['time_frame'];
         
         $return = array();
         
@@ -488,13 +489,21 @@ class WeatherphStationReading extends WeatherphAppModel
 
         $return['station_info'] = $station_info;
         
-        $station_readings = $reading_temp->find('all', array(
-            'conditions' => array( 
+        $sql_conditions = array( 
                 'ort1 LIKE' => "%".$station_id ."%", 
                 'date(datum) BETWEEN ? AND ?' => array($end_date, $start_date),
-                'tl !=' => ''),
+                'tl !=' => '',
+                );
+        
+        if($time_frame == '1h'){
+            $sql_conditions['min ='] = "00";
+        }
+        
+        $station_readings = $reading_temp->find('all', array(
+            'conditions' => $sql_conditions,
             'order' => "DATE(datum) , utc, min DESC",
             ));
+        
         
         if(count($station_readings) > 0){
             
