@@ -269,27 +269,38 @@ class WeatherphController extends WeatherphAppController {
        //debug($id);
        App::import('Model', 'Weatherph.WeatherphStationForecast');
        App::import('Model', 'Weatherph.NearestStation');
+       App::import('Model','Nima.NimaName');
        
        $NearestStation = new NearestStation();
        $DmoForecast = new WeatherphStationForecast();
+       $search_location = new NimaName();
        
        $result = $NearestStation->find('all', array(
            'conditions' => array(
                'reference' => $id
            ))
         );
-       
+        
        //debug($result);
        $station_id = $result[0]['NearestStation']['station_id'];
        $dataSets = $DmoForecast->dmoForecast('all', array('conditions' => array(
            'id' => $station_id,
        )));
        
-       $this->set(compact('dataSets'));
+       $location = $search_location->find('all', array(
+        'conditions' => array(
+            'id =' => $id,
+            )));
+       
+       $location = $location[0];
+       
+//       $this->log(print_r($location, TRUE));
+       
+       $this->set(compact('dataSets','location'));
        
    }
    
-    public function getStationReadings($station_id = NULL, $start_date = NULL, $end_date = NULL, $time_interval = "10m"){
+    public function getStationReadings($station_id = NULL, $target_date = NULL, $days_range = NULL, $time_interval = "10m"){
 
         $this->layout = "plain";
 
@@ -298,12 +309,12 @@ class WeatherphController extends WeatherphAppController {
         $WeatherphStationReading = new WeatherphStationReading();
         $readings = $WeatherphStationReading->fetch('all', array('conditions' => array(
         'id' => $station_id,
-        'start_date' => $start_date,
-        'end_date' => $end_date,
+        'target_date' => $target_date,
+        'days_range' => $days_range,
         'time_interval' => $time_interval,
         )));
 
-        $this->log($readings);
+       // $this->log($readings);
         
         $this->set(compact('readings'));
 

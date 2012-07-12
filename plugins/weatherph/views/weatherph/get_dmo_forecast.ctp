@@ -20,9 +20,10 @@ echo $this->Html->script(array(
         <div id="current-weather" class="shadow">
 
             <div id="station">
-                <h1><?= $dataSets['stationName']; ?></h1>
+                <h1><?= $location['Name']['full_name_ro']; ?></h1>
                 <h6>Current readings</h6>
                 <!-- <a href="#">change station</a>-->
+                <div id="nearest-station">Nearest Station: <?= $dataSets['stationName']; ?></div>
             </div> <!--END STATION-->
 
             <?php if ($dataSets['reading']['status'] == 'ok'): ?>
