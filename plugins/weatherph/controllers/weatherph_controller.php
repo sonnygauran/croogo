@@ -289,7 +289,7 @@ class WeatherphController extends WeatherphAppController {
        
        $location = $search_location->find('all', array(
         'conditions' => array(
-            'id =' => $id,
+            'Name.id =' => $id,
             )));
        
        $location = $location[0];
