@@ -310,9 +310,20 @@ class WeatherphStationForecast extends WeatherphAppModel {
                 $current_readings['wind_gust'] = ($current_reading['g1h'] == '')? '-' : round($current_reading['g1h'],0);
             }
             
+//            if(array_key_exists('dir', $current_reading)){
+//                $current_readings['wind_direction'] = (trim($current_reading['dir']) == '')? '-' : $this->WindDirection($current_reading['dir']);
+//            }
+            
             if(array_key_exists('dir', $current_reading)){
-                $current_readings['wind_direction'] = (trim($current_reading['dir']) == '')? '-' : $this->windDirection($current_reading['dir']);
+                $current_readings['wind_direction'] = (trim($current_reading['dir']) == '')? '-' : $this->showWindDirection($current_reading['dir']);
+                $current_readings['wind_description'] = (trim($current_reading['dir']) == '')? '-' : $this->WindDirection($current_reading['dir']);
+                //$current_readings['wind_description'] = $this->showWindDescription($current_readings['dir'], $current_readings['wind_speed'], $current_readings['wind_gust']);
             }
+            //jett
+            //if(array_key_exists('dir', $current_readings)){
+              //          $current_readings['wind_description'] = $this->showWindDescription($current_readings['dir'], $current_readings['wind_speed'], $current_readings['wind_gust']);
+                        //$new_forecast['wind_direction'] = (trim($current_readings['dir']) == '')? '-' : $this->showWindDirection($forecast['dir']);
+            //}
 
             $theirTime = strtotime($current_reading['datum'] . $current_reading['utc'] . ':' .$current_reading['min']);
             $current_readings['local_time'] = date('Ymd H:i:s', $theirTime + $Date->getOffset());

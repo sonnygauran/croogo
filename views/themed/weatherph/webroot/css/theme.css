@@ -522,7 +522,7 @@ span.temperature {
 }
 
 #condition {
-    width: 60%;
+    width: 55%;
     float: left;
 }
 
@@ -582,20 +582,27 @@ span.temperature {
 
 #current-reading-table {
     float: right;
-    width: 40%;
+    width: 45%;
     vertical-align: middle;
+    
 }
 
 #current-reading-table th {
-    background-color: #fafafa;
-    color: #365283;
+    background-color: #365283;
+    color: #fafafa;
+    vertical-align: middle;
+    width: 45%;
+    font-weight: normal;
 }
 
 #current-reading-table td {
     padding: 5px 8px;
     text-align: center;
-    font-size: 1.3em;
-    font-weight: bold;
+    font-size: 1.2em;
+    color: #365283;
+    font-weight: normal;
+    background-color: #fafafa;
+    vertical-align: middle;
 }
 
 .forecast-date {
@@ -901,6 +908,8 @@ div.current-tab {
 /* Spritemap */
 
 span.symbol { background: url('<?= $this->webroot ?>theme/weatherph/img/warning-sprites.png') -5px -65px no-repeat; height: 30px; width: 40px; display: block; margin: auto; cursor: pointer;}
+span.symbolwind { background: url('<?= $this->webroot ?>theme/weatherph/img/warning-sprites.png') -5px -65px no-repeat; height: 30px; width: 40px; display: block; margin: auto; cursor: pointer; float: left;}
+
 
 span.day_1 { background-position: -70px -180px; }
 span.day_2 { background-position: -125px -180px; }
