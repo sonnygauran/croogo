@@ -337,10 +337,6 @@ label[for="search-field"] {
     float: left;
 }
 
-.station-legend {
-    margin-top: 4px;
-}
-
 .station-legend > div {
     display: inline-block;
     height: 1em;
