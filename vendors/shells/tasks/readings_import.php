@@ -9,7 +9,8 @@ class ReadingsImportTask extends Shell {
         $Reading = new Reading();
         
         //$csv_filename = date('Ydm');
-        $csv_filename = 'temp/measurements.csv';
+        $directory = "/data/readings/temp/";
+        $csv_filename = $directory . "measurements.csv";
         
         $readings_csv_file = Configure::read('Data.readings') . $csv_filename;
         

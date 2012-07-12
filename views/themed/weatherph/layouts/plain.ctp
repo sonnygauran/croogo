@@ -5,6 +5,10 @@
     echo $this->Html->css(array(
             'forecast',
         ));
+    echo $this->Layout->js();
+    echo $this->Html->script(array(
+        'jquery/jquery.min',
+    ));
 ?>
 </head>
 <body>
