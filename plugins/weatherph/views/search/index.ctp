@@ -92,3 +92,6 @@
         </div>
     </section>
 </div>
+<?php
+    echo $this->Html->script('libs/jquery.geo-1.0a4.min');
+?>
