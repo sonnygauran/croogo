@@ -63,16 +63,20 @@ echo $this->Html->script(array(
                     <table>
                         <tbody>
                             <tr>
+                                <th>Dew Point</th>
+                                <td><?= $dataSets['reading']['dew_point']; ?></td>
+                            </tr>
+                            <tr>
                                 <th>Wind Speed/Direction</th>
-                                <td><span class="symbolwind <?= $dataSets['reading']['wind_direction']; ?>" title="<?= $dataSets['reading']['wind_speed']; ?>km/h, <?= $dataSets['reading']['wind_description']['eng']; ?>"></span><?= $dataSets['reading']['wind_speed']; ?>km/h, <?= $dataSets['reading']['wind_description']['eng']; ?></td>
+                                <td><span class="symbolwind <?= $dataSets['reading']['wind_direction']; ?>"></span><?= $dataSets['reading']['wind_speed_direction']; ?></td>
                             </tr>
                             <tr>
                                 <th>Rain</th>
-                                <td><?= $dataSets['reading']['precipitation']; ?>mm</td>
+                                <td><?= $dataSets['reading']['precipitation']; ?></td>
                             </tr>
                             <tr>
                                 <th>Relative Humidity</th>
-                                <td><?= $dataSets['reading']['relative_humidity']; ?>%</td>
+                                <td><?= $dataSets['reading']['relative_humidity']; ?></td>
                             </tr>
                         </tbody>
                     </table>
@@ -106,6 +110,7 @@ echo $this->Html->script(array(
                             <th>Time</th>
                             <th>Condition</th>
                             <th>Temperature</th>
+                            <th>Dew Point</th>
                             <th>Rain</th>
                             <th>Humidity</th>
                             <th>Wind</th>
@@ -115,9 +120,10 @@ echo $this->Html->script(array(
                             <tr>
                                 <td><?= $forecasts2['localtime_range']; ?></td>
                                 <td><span class="symbol <?= $forecasts2['weather_condition']['symbol']; ?>" title="<?= $forecasts2['weather_condition']['description']; ?>"></span></td>
-                                <td><?= $forecasts2['temperature']; ?>&deg;C</td>
-                                <td><?= $forecasts2['precipitation']; ?>mm</td>
-                                <td><?= $forecasts2['relative_humidity']; ?>%</td>
+                                <td><?= $forecasts2['temperature']; ?></td>
+                                <td><?= $forecasts2['dew_point']; ?></td>
+                                <td><?= $forecasts2['precipitation']; ?></td>
+                                <td><?= $forecasts2['relative_humidity']; ?></td>
                                 <td><?php if (trim($forecasts2['wind_direction']) != '') { ?><span class="symbol <?= $forecasts2['wind_direction']; ?>"></span><?php } ?><span class="wind-description"><?= $forecasts2['wind_description']; ?></span></td>
                             </tr>
                         <?php } ?>
