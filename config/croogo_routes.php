@@ -35,3 +35,6 @@
 
 	// Contact
 	CroogoRouter::connect('/contact', array('controller' => 'contacts', 'action' => 'view', 'contact'));
+        
+        CroogoRouter::connect('/getStationReadings/*', array('plugin' => 'weatherph', 'controller' => 'weatherph', 'action' => 'getStationReadings'));
+        

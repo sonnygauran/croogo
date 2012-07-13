@@ -7,7 +7,7 @@ class NimaName extends NimaAppModel {
 
     function paginate($conditions, $fields, $order, $limit, $page = 1, $recursive = null, $extra = array()) {
         $keyword = $conditions['keyword'];
-        $sql = "select `NimaName`.`id`, `NimaName`.`long`, `NimaName`.`lat`, `NimaName`.`full_name_ro`, `FipsCode`.name, `Region`.`name`, `Region`.`code`, if(`FipsCode`.`type` = 2, 'City', 'Province') as `charter_type` from `names` as `NimaName`, `fips_codes` as `FipsCode`, `provinces` as `Province`, `regions` as `Region` where ( `FipsCode`.adm1 = `NimaName`.adm1  and `FipsCode`.cc1  = `NimaName`.cc1 ) and ( `NimaName`.`nt` = 'N' ) and ( `NimaName`.`dsg` = 'ppl' or `NimaName`.`dsg` = 'adm1'  or `NimaName`.`dsg` = 'adm2' ) and ( `Province`.`name` = `FipsCode`.`name`  and `Province`.`region_id` = `Region`.id ) and ( `NimaName`.`full_name_ro` = '$keyword' or `NimaName`.`full_name_ro` like '$keyword %' or `NimaName`.`full_name_ro` like '% $keyword' ) order by `charter_type`,`NimaName`.`id` desc, FIELD(`NimaName`.`dsg`, 'adm1', 'ppl') desc";
+        $sql = "select `NimaName`.`id`, `NimaName`.`long`, `NimaName`.`lat`, `NimaName`.`full_name_ro`, `FipsCode`.name, `Region`.`name`, `Region`.`code`, `FipsCode`.`type` from `names` as `NimaName`, `fips_codes` as `FipsCode`, `regions` as `Region`  where ( `NimaName`.`fips_code_id` = `FIpsCode`.`id` ) and ( `FipsCode`.`region_id` = `Region`.`id` ) and ( `NimaName`.`nt` = 'N' ) and ( `NimaName`.`dsg` = 'ppl'  or `NimaName`.`dsg` = 'adm1' or `NimaName`.`dsg` = 'adm2' ) and ( `NimaName`.`full_name_ro` = '$keyword' 	or `NimaName`.`full_name_ro` like '$keyword %'  or `NimaName`.`full_name_ro` like '% $keyword'  ) order by `FipsCode`.`type` desc, FIELD(`Region`.`code`, 'CAR', 'NCR') desc, `NimaName`.`id` desc, FIELD(`NimaName`.`dsg`, 'adm1', 'ppl') desc";
         $this->recursive = $recursive;
         $results = $this->query($sql);
 //        if (!empty($extra['contain'])) {
@@ -23,11 +23,11 @@ class NimaName extends NimaAppModel {
 //        }
 //        return $pagination;
         return $results;
-    }
+        }
 //
     function paginateCount($conditions = null, $recursive = 0, $extra = array()) {
         $keyword = $conditions['keyword'];
-        $sql = "select `NimaName`.`id`, `NimaName`.`long`, `NimaName`.`lat`, `NimaName`.`full_name_ro`, `FipsCode`.name, `Region`.`name`, `Region`.`code`, if(`FipsCode`.`type` = 2, 'City', 'Province') as `charter_type` from `names` as `NimaName`, `fips_codes` as `FipsCode`, `provinces` as `Province`, `regions` as `Region` where ( `FipsCode`.adm1 = `NimaName`.adm1  and `FipsCode`.cc1  = `NimaName`.cc1 ) and ( `NimaName`.`nt` = 'N' ) and ( `NimaName`.`dsg` = 'ppl' or `NimaName`.`dsg` = 'adm1'  or `NimaName`.`dsg` = 'adm2' ) and ( `Province`.`name` = `FipsCode`.`name`  and `Province`.`region_id` = `Region`.id ) and ( `NimaName`.`full_name_ro` = '$keyword' or `NimaName`.`full_name_ro` like '$keyword %' or `NimaName`.`full_name_ro` like '% $keyword' ) order by `charter_type`,`NimaName`.`id` desc, FIELD(`NimaName`.`dsg`, 'adm1', 'ppl') desc";
+        $sql = "select `NimaName`.`id`, `NimaName`.`long`, `NimaName`.`lat`, `NimaName`.`full_name_ro`, `FipsCode`.name, `Region`.`name`, `Region`.`code`, `FipsCode`.`type` from `names` as `NimaName`, `fips_codes` as `FipsCode`, `regions` as `Region`  where ( `NimaName`.`fips_code_id` = `FIpsCode`.`id` ) and ( `FipsCode`.`region_id` = `Region`.`id` ) and ( `NimaName`.`nt` = 'N' ) and ( `NimaName`.`dsg` = 'ppl'  or `NimaName`.`dsg` = 'adm1' or `NimaName`.`dsg` = 'adm2' ) and ( `NimaName`.`full_name_ro` = '$keyword' 	or `NimaName`.`full_name_ro` like '$keyword %'  or `NimaName`.`full_name_ro` like '% $keyword'  ) order by `FipsCode`.`type` desc, FIELD(`Region`.`code`, 'CAR', 'NCR') desc, `NimaName`.`id` desc, FIELD(`NimaName`.`dsg`, 'adm1', 'ppl') desc";
         $this->recursive = $recursive;
         $results = $this->query($sql);
 //        if (!empty($extra['contain'])) {
@@ -42,8 +42,8 @@ class NimaName extends NimaAppModel {
 //        }
 //        return $paginationcount;
         return count($results);
-    }
-    
+        }
+
     public function getGum($args) {
         $conditions = reset($args);
         
@@ -57,4 +57,14 @@ class NimaName extends NimaAppModel {
         $uniqueCacheId = str_replace('%', '', $uniqueCacheId);
         return $uniqueCacheId.'_'.$argsCacheId;
     }
+    
+    var $belongsTo = array(
+            'FipsCode' => array(
+                    'className' => 'Nima.FipsCode',
+                    'foreignKey' => 'fips_code_id',
+                    'conditions' => '',
+                    'fields' => '',
+                    'order' => ''
+            )
+    );
 }

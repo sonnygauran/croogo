@@ -75,13 +75,13 @@
                             <li><a href="<?= $this->webroot ?>founders/unionbank">UnionBank</a></li>
                         </ul>
                     </li>
-                    <li>
+<!--                    <li>
                         <a href="#">Learn More &#9663;</a>
                         <ul>
                             <li><a href="<?= $this->webroot ?>typhoon/preparedness">Typhoon Preparedness</a></li>
                             <li><a href="<?= $this->webroot ?>typhoon/climatology">Typhoon Climatology</a></li>
                         </ul>
-                    </li>
+                    </li>-->
                     <li>
                         <a href="#">Dictionary &#9663;</a>
                         <ul>
@@ -89,7 +89,7 @@
                             <li><a href="<?= $this->webroot ?>dictionaries/filipino">Filipino</a></li>
                         </ul>
                     </li>
-                <li><a href="#">Mike Padua Blog</a></li>
+                <li><a href="#">Payong Panahon</a></li>
                 <li><a href="<?= $this->webroot ?>webcam">Webcams</a></li>
                 <li><a href="<?= $this->webroot ?>about">About</a></li>
             </ul>

@@ -13,7 +13,7 @@ class StationReadingsTask extends Shell{
         
         $csv = "";
         $counter = 1;
-        $file_name = Configure::read('Data.readings'). date('Ydm') . '.csv';
+        $file_name = Configure::read('Data.readings'). date('Ymd') . '.csv';
         $date = date('Ymd');
         $start_hour = date('H') - 2;
         $end_hour = date('H');
@@ -46,19 +46,22 @@ class StationReadingsTask extends Shell{
             
             $url = $Abfrage->generateURL($time_format, array(
                 'Temperature' => array(
-                    'low', 'min'
+                    'dew point', 'low', 'min', 'max'
                 ),
                 'Wind' => array(
                     'speed', 'direction'
                 ),
                 'Gust' => array(
-                    '3 hours'
+                    '1 hour'
                 ),
                 'Rainfall' => array(
-                    'Period', '3 hours', '6 hours'
+                    '1 hour', '6 hours'
                 ),
                 'Weather Symbols' => array(
                     'Set 1','Set 2'
+                ),
+                'Global Radiation' => array(
+                    '1 hour'
                 ),
                 'Humidity'
             ), false);

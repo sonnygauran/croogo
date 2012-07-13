@@ -289,7 +289,7 @@ class WeatherphController extends WeatherphAppController {
        
        $location = $search_location->find('all', array(
         'conditions' => array(
-            'id =' => $id,
+            'Name.id =' => $id,
             )));
        
        $location = $location[0];
@@ -300,7 +300,7 @@ class WeatherphController extends WeatherphAppController {
        
    }
    
-    public function getStationReadings($station_id = NULL, $target_date = NULL, $days_range = NULL, $time_interval = "10m"){
+    public function getStationReadings($station_id = NULL, $time_frame = "10m", $target_date = NULL, $days_range = NULL){
 
         $this->layout = "plain";
 
@@ -311,7 +311,7 @@ class WeatherphController extends WeatherphAppController {
         'id' => $station_id,
         'target_date' => $target_date,
         'days_range' => $days_range,
-        'time_interval' => $time_interval,
+        'time_frame' => $time_frame,
         )));
 
        // $this->log($readings);
