@@ -15,13 +15,9 @@
     <?php
     echo $this->Layout->meta();
     echo $this->Layout->feed();
-    echo $this->Html->css(array('theme'));
+    echo $this->Html->css('theme');
     echo $this->Layout->js();
-    echo $this->Html->script(array(
-        'jquery/jquery.min',
-        'slides.min.jquery',
-        'libs/jquery.geo-1.0a4.min',
-    ));
+    echo $this->Html->script('jquery/jquery.min');
     echo $scripts_for_layout;
     ?>
     <script type="text/javascript">
@@ -158,4 +154,5 @@
         </footer>
     </section><!-- #container -->
 </body>
+<?php echo $this->Html->script('slides.min.jquery');?>
 </html>
