@@ -62,18 +62,22 @@ echo $this->Html->script(array(
                 <div id="current-reading-table">
                     <table>
                         <tbody>
+                            <?php if (array_key_exists('dew_point', $dataSets['reading'])): ?>
                             <tr>
                                 <th>Dew Point</th>
                                 <td><?= $dataSets['reading']['dew_point']; ?></td>
                             </tr>
+                            <?php endif; // dew point ?>
                             <tr>
                                 <th>Wind Speed/Direction</th>
                                 <td><span class="symbolwind <?= $dataSets['reading']['wind_direction']; ?>"></span><?= $dataSets['reading']['wind_speed_direction']; ?></td>
                             </tr>
+                            <?php if (array_key_exists('precipitation', $dataSets['reading'])): ?>
                             <tr>
                                 <th>Rain</th>
                                 <td><?= $dataSets['reading']['precipitation']; ?></td>
                             </tr>
+                            <?php endif; // dew point ?>
                             <tr>
                                 <th>Relative Humidity</th>
                                 <td><?= $dataSets['reading']['relative_humidity']; ?></td>

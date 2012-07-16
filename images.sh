@@ -3,6 +3,7 @@
 #DATE="$1"
 DATE=`(date +%Y%m%d-%H:%M:%S)`
 DATE2=`(date +%Y%m%d%H%M%S)`
+TO="`pwd`/data/images/"
 
 #pilipinas [111.32714843750325, 0.8402895756535752, 135.67285156249676, 24.41201768480203]
 COORDS="&x1=111.32714843750325&x2=135.67285156249676&y2=24.41201768480203&y1=0.8402895756535625"
@@ -25,15 +26,15 @@ PRESSURE="http://alpha.meteomedia-portal.com/services/wetter4.php?dt=20120712120
 wget -O $DATE.satellite_vis.png "$SATELLITE_VIS$COORDS"
 
 echo "Done with satellite_vis"
-wget -O $DATE.temperature_Philippines.png "$TEMP$COORDS"
-wget -O $DATE.temperature_Luzon.png "$TEMP$COORDS_LZN"
-wget -O $DATE.temperature_VisayasMindanao.png "$TEMP$COORDS_VZMD"
-wget -O $DATE.temperature_PalawanSulu.png "$TEMP$COORDS_PLSLU"
+wget -O "${TO}${DATE}.temperature_Philippines.png" "$TEMP$COORDS"
+wget -O "${TO}${DATE}.temperature_Luzon.png" "$TEMP$COORDS_LZN"
+wget -O "${TO}${DATE}.temperature_VisayasMindanao.png" "$TEMP$COORDS_VZMD"
+wget -O "${TO}${DATE}.temperature_PalawanSulu.png" "$TEMP$COORDS_PLSLU"
 echo "Done with Temperature"
-wget -O $DATE.pressure_Philippines.png "$PRESSURE$COORDS"
-wget -O $DATE.pressure_Luzon.png "$PRESSURE$COORDS_LZN"
-wget -O $DATE.pressure_VisayasMindanao.png "$PRESSURE$COORDS_VZMD"
-wget -O $DATE.pressure_PalawanSulu.png "$PRESSURE$COORDS_PLSLU"
+wget -O "${TO}${DATE}.pressure_Philippines.png" "$PRESSURE$COORDS"
+wget -O "${TO}${DATE}.pressure_Luzon.png" "$PRESSURE$COORDS_LZN"
+wget -O "${TO}${DATE}.pressure_VisayasMindanao.png" "$PRESSURE$COORDS_VZMD"
+wget -O "${TO}${DATE}.pressure_PalawanSulu.png" "$PRESSURE$COORDS_PLSLU"
 echo "Done with Pressure"
 
 echo $DATE2
