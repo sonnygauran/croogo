@@ -65,7 +65,6 @@ hr {
     height: 1px;
     background-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(54,82,121,.75), rgba(0,0,0,0));
     background-image:    -moz-linear-gradient(left, rgba(0,0,0,0), rgba(54,82,121,.75), rgba(0,0,0,0));
-    background-image:     -ms-linear-gradient(left, rgba(0,0,0,0), rgba(54,82,121,.75), rgba(0,0,0,0));
     background-image:      -o-linear-gradient(left, rgba(0,0,0,0), rgba(54,82,121,.75), rgba(0,0,0,0));
 }
 
@@ -98,8 +97,6 @@ hr {
 .banner {
     height: 155px;
     margin-top: 10px;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
     border-radius: 8px;
 }
 
@@ -108,8 +105,6 @@ nav {
     text-align: center;
     margin: 15px 0;
     padding: 5px 10px;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
     border-radius: 5px;
     z-index: 1;
 }
@@ -144,9 +139,7 @@ footer {
     padding: 10px;
     font-size: .75em;
     background-color: #f3f3f3;
-    -webkit-box-shadow: 0 -4px 4px -4px #555;
-    -moz-box-shadow:    0 -4px 4px -4px #555;
-    box-shadow:         0 -4px 4px -4px #555;
+    box-shadow: 0 -4px 4px -4px #555;
 }
 
 /* Header, nav */
@@ -198,39 +191,49 @@ label[for="search-field"] {
 /* Map */
 
 #map-container {
+    font-size: .875em;
     float:left;
     width: 554px;
     margin-right: 10px;
     background-color: #fafafa;
 }
 
-.loader {
+#loader {
     display: block;
     width: 100%;
     height: 100%;
     background: white url('<?= $this->webroot ?>theme/weatherph/img/loader-twirl.gif') no-repeat center center;
+    opacity: 0.8;
 }
 
-.loader-img {
+#loader-img {
     margin-top: 275px;
     margin-left: 275px;
 }
 
 .layer-selector {
     padding: 5px 10px;
-    -webkit-border-top-left-radius: 5px;
-    -webkit-border-top-right-radius: 5px;
-    -moz-border-radius-topleft: 5px;
-    -moz-border-radius-topright: 5px;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-    -moz-box-shadow:    inset 0 2px 1px #333;
-    -webkit-box-shadow: inset 0 2px 1px #333;
-    box-shadow:         inset 0 2px 1px #333;
+    box-shadow: inset 0 2px 1px #333;
 }
 
 #map {
     height: 554px;
+}
+
+#map ul {
+    position: absolute;
+    bottom: 0 !important;
+    left: 0 !important;
+    list-style: none;
+    width: 100%;
+    max-width: 100% !important;
+    padding: 4px !important;
+    font-size: 10px;
+    background-color: #333333;
+    color: white;
+    text-transform: uppercase;
 }
 
 #map-container video {
@@ -259,12 +262,12 @@ label[for="search-field"] {
 }
 
 .plot-alt {
-    width: 16px;
-    height: 16px;
-    background-image: url('<?= $this->webroot ?>theme/weatherph/img/marker-red-small.png') !important;
+    width: 12px;
+    height: 12px;
+    background-image: url('<?= $this->webroot ?>theme/weatherph/img/marker-red-smaller.png') !important;
     position: relative;
-    left: -8px;
-    top: -16px;
+    left: -6px;
+    top: -12px;
     z-index: 1 !important;
 }
 
@@ -283,10 +286,6 @@ label[for="search-field"] {
     overflow: auto;
     vertical-align: middle;
     padding: 5px;
-    -webkit-border-bottom-right-radius: 5px;
-    -webkit-border-bottom-left-radius: 5px;
-    -moz-border-radius-bottomright: 5px;
-    -moz-border-radius-bottomleft: 5px;
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
 }
@@ -328,8 +327,6 @@ label[for="search-field"] {
     color: #333333;
     background-color: #e1e1e1;
     border: solid 1px #d3d3d3;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
     border-radius: 5px;
 }
 
@@ -347,23 +344,20 @@ label[for="search-field"] {
 /* Info pane */
 
 #info {
+    font-size: .875em;
     width: 240px;
     float:left;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
     border-radius: 5px;
 }
 
 #current-readings-panel {
     text-align: center;
     padding: 1em;
-    -moz-box-shadow   : inset 0 2px 1px #333;
-    -webkit-box-shadow: inset 0 2px 1px #333;
-    box-shadow        : inset 0 2px 1px #333;
+    box-shadow : inset 0 2px 1px #333;
     border-radius: 5px;
 }
 
-.readings-location {
+#readings-location {
     margin-bottom: 8px;
 }
 
@@ -471,8 +465,6 @@ span.temperature {
     overflow: hidden;
     background-color: #fafafa;
     border: 1px solid #dddddd;
-    -webkit-box-shadow: 0 4px 3px -3px black;
-    -moz-box-shadow: 0 4px 3px -3px black;
     box-shadow: 0 4px 3px -3px black;
 }
 
@@ -645,17 +637,13 @@ span.temperature {
     margin-bottom: 1em;
     border-radius: 5px;
     background-color: #fafafa;
-    -moz-box-shadow:    inset 0 2px 2px #aaa;
-    -webkit-box-shadow: inset 0 2px 2px #aaa;
-    box-shadow:         inset 0 2px 2px #aaa;
+    box-shadow: inset 0 2px 2px #aaa;
 }
 
 .promo {
     padding: .5em;
     margin-bottom: 1em;
     border-radius: 5px;
-    -webkit-box-shadow: 0 4px 3px -3px black;
-    -moz-box-shadow: 0 4px 3px -3px black;
     box-shadow: 0 4px 3px -3px black;
 }
 
@@ -716,8 +704,6 @@ span.temperature {
     padding: 2em;
     background-color: #fafafa;
     border: 1px solid #e1e1e1;
-    -webkit-box-shadow: 0 4px 3px -3px black;
-    -moz-box-shadow: 0 4px 3px -3px black;
     box-shadow: 0 4px 3px -3px black;
 }
 
@@ -849,8 +835,6 @@ ul.tabs {
     padding: 10px 30px 0px 30px;
     cursor: pointer;
     border-radius: 5px 5px 0 0;
-    -moz-box-shadow: 0 -2px 2px #888;
-    -webkit-box-shadow: 0 -2px 2px #888;
     box-shadow: 0 -2px 2px #888;
 }
 
@@ -889,10 +873,6 @@ div.current-tab {
     text-align: center;
     background-color: #aa1111;
     color: #f1f1f1;
-    -webkit-border-bottom-right-radius: 5px;
-    -webkit-border-bottom-left-radius: 5px;
-    -moz-border-radius-bottomright: 5px;
-    -moz-border-radius-bottomleft: 5px;
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
 }
@@ -976,8 +956,6 @@ span.sunset { background-position: -60px 5px; }
 /* End spritemap */
 
 .shadow {
-    -webkit-box-shadow: 0 4px 3px -3px black;
-    -moz-box-shadow: 0 4px 3px -3px black;
     box-shadow: 0 4px 3px -3px black;
 }
 
@@ -1044,7 +1022,6 @@ a {
     -webkit-transition: all .2s ease;
     -moz-transition: all .2s ease;
     -o-transition: all .2s ease;
-    -ms-transition: all .2s ease;
     transition: all .2s ease;
 }
 
@@ -1078,7 +1055,6 @@ nav li,
     -webkit-transition: all .1s ease;
     -moz-transition: all .1s ease;
     -o-transition: all .1s ease;
-    -ms-transition: all .1s ease;
     transition: all .1s ease;
 }
 
@@ -1094,11 +1070,6 @@ nav a:hover {
 /*========================================
 5.	Themes
 ========================================*/
-
-#info,
-#map-container {
-    font-size: .875em;
-}
 
 /* Color scheme
 

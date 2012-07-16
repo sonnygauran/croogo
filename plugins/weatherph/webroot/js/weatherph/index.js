@@ -1,22 +1,28 @@
-$(document).on( 'mouseover mouseout', 'div.plot, div.plot-alt', function(event){
-    if (event.type == 'mouseover') {
-        
-        var attributes = $(this).attr('class').split(' ');
-        var id = attributes[1];
-        var name ="";
-        var $allStations = $stations.concat($stationsPagasa);
-        
-        $info = getObjects($allStations, 'id', id);
-        name = $info[0].name;
+$(window).load(function() {
+    $(document).on( 'mouseover mouseout', 'div.plot, div.plot-alt', function(event){
+        if (event.type == 'mouseover') {
 
-        $('.hovered-station').show();
-        $('.hovered-station').stop();
-        $('.hovered-station').css('opacity', '1');
-        $('.hovered-station').text(name);
+            var attributes = $(this).attr('class').split(' ');
+            var id = attributes[1];
+            var name ="";
+            var $allStations = $stations.concat($stationsPagasa);
 
-    } else {
-        $('.hovered-station').animate("opacity", '1').delay(5000).fadeOut(400);
-    }
+            $info = getObjects($allStations, 'id', id);
+            name = $info[0].name;
+
+            $('.hovered-station')
+            .show()
+            .stop()
+            .css('opacity', '1')
+            .text(name);
+
+        } else {
+            $('.hovered-station')
+            .animate("opacity", '1') //This is to get the delay working
+            .delay(5000)
+            .fadeOut(400);
+        }
+    });
 });
 
 $(document).ready(function(){
@@ -74,8 +80,7 @@ $(document).ready(function(){
     window['UNIT_TEMPERATURE'] = 'celsius';
 
     var map = $("#map").geomap({
-        center: [123.5, 12.902712695115516], //to fit weather animations
-        // was[ 121.750488, 12.698865 ],
+        center: [123.5, 12.902712695115516], //to fit weather animations, was[ 121.750488, 12.698865 ],
         zoom: 5,
         scroll: 'off',
         cursors: {
@@ -88,9 +93,6 @@ $(document).ready(function(){
             measureLength: "default",
             measureArea: "default"
         },
-        //http://a.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/56590/256/5/15/12.png
-
-        //Tiledrawer Maps
 
         services: window['GEOMAP_SERVICES'].standard,
         tilingScheme: {
@@ -102,16 +104,7 @@ $(document).ready(function(){
         }
 
     });
-    //map.geomap( "option", "cursors", {
-    //  static: "crosshair",
-    //  pan: "crosshair",
-    //  zoom: "crosshair",
-    //  drawPoint: "crosshair",
-    //  drawLineString: "crosshair",
-    //  drawPolygon: "crosshair",
-    //  measureLength: "crosshair",
-    //  measureArea: "crosshair"
-    //} );
+
     map.geomap({
         //Find mode
         mode: "find",
@@ -127,7 +120,7 @@ $(document).ready(function(){
                 console.error(this.id);
 
                 $stations = new Array();
-                $('.loader').fadeIn();
+                $('#loader').fadeIn();
                 getForecast(this.id);
                 return;
             });
@@ -139,10 +132,10 @@ $(document).ready(function(){
         console.error('<?= $this->webroot ?>weatherph/weatherph/getForecast/'+id+'/3/3h');
 
         $.ajax({
-            type:     'GET',
-            url:      '<?= $this->webroot ?>weatherph/weatherph/getForecast/'+id+'/3/3h',
-            cache:    true,
-            success:  function(readings) {
+            type   : 'GET',
+            url    : '<?= $this->webroot ?>weatherph/weatherph/getForecast/'+id+'/3/3h',
+            cache  : true,
+            success: function(readings) {
                 //                console.log(readings);
                 var $station_readings = readings; // the complete retrieved stations
                 //                console.log($station_readings);
@@ -150,7 +143,7 @@ $(document).ready(function(){
                 var sr_temperature, sr_wind, sr_precip, sr_humidity, sr_symbol;
                 var current_readings, cr_precip_hr_range;
 
-                $('.current.readings-location').html($station_readings.station_name);
+                $('#readings-location').html($station_readings.station_name);
 
                 if($station_readings.reading.status == 'ok'){
 
@@ -158,19 +151,19 @@ $(document).ready(function(){
 
                     current_readings = $station_readings.reading;
 
-                    $('.last-update').html(current_readings.update);
+                    $('#last-update').html(current_readings.update);
 
                     cr_temperature = current_readings.temperature;
                     cr_wind = current_readings.wind_speed;
-                    cr_precip = (current_readings.precipitation != '-')? current_readings.precipitation + 'mm' : current_readings.precipitation;
+                    cr_precip = current_readings.precipitation;
                     cr_precip_hr_range = current_readings.precipitation_hr_range;
                     cr_humidity = current_readings.relative_humidity;
 
-                    $('.current.temperature span').html(cr_temperature + '&deg;C');
-                    $('.current.wind span').html(cr_wind + 'km/h');
+                    $('.current.temperature span').html(cr_temperature);
+                    $('.current.wind span').html(cr_wind);
                     $('.current.precipitation span').html(cr_precip);
                     $('.precipitation_hr_range').html(cr_precip_hr_range);
-                    $('.current.humidity span').html(cr_humidity + '%');
+                    $('.current.humidity span').html(cr_humidity);
 
                     var weather_symbol = $station_readings.reading.weather_symbol;
 
@@ -187,7 +180,7 @@ $(document).ready(function(){
 
                     showForecast();
 
-                    //                    console.error($station_readings.forecast);
+                    //console.error($station_readings.forecast);
 
                     for (var key in $station_readings.forecast) {
 
@@ -198,11 +191,11 @@ $(document).ready(function(){
                             sr_precip = $station_readings.forecast[key].precipitation;
                             sr_humidity = $station_readings.forecast[key].relative_humidity;
 
-                            //                            console.error(key);
+                            //console.error(key);
 
                             var weather_symbol = $station_readings.forecast[key].weather_symbol;
 
-                            //                            console.error(weather_symbol);
+                            //console.error(weather_symbol);
 
                             if(weather_symbol.hasOwnProperty('symbol')) $('.' + key + '-hour .symbol').addClass(weather_symbol.symbol);
 
@@ -217,7 +210,7 @@ $(document).ready(function(){
                     hideForecast();
                 }
 
-                $('.loader').fadeOut();
+                $('#loader').fadeOut();
                 $('.detail-page-link a').attr({
                     href: '<?= $this->webroot ?>view/'+id
                 });
@@ -330,48 +323,34 @@ $(document).ready(function(){
 
     ];
 
-    $('select[name=philippine-regions]').change(function(){
-        $("select[name=philippine-regions] option:selected").each(function () {
+    $(window).load(function() {
+        setTimeout(function() {
+            $('select[name=philippine-regions]').change(function(){
+                $("select[name=philippine-regions] option:selected").each(function () {
 
-            if ($(this).attr('selected')) { // Is the current <option> selected?
-                $region = $(this).attr('data-region-id'); // the region id
+                    if ($(this).attr('selected')) { // Is the current <option> selected?
+                        $region = $(this).attr('data-region-id'); // the region id
 
-                for (var key in $boxMap) { // let's traverse the $boxMap
-                    if ($boxMap[key].id == $region) {  // Initially matches 'data-region-id' with 'NCR'
-                        $current = $boxMap[key]; // the current $boxMap record
+                        for (var key in $boxMap) { // let's traverse the $boxMap
+                            if ($boxMap[key].id == $region) {  // Initially matches 'data-region-id' with 'NCR'
+                                $current = $boxMap[key]; // the current $boxMap record
 
-                        console.log($current.box);
-                        $('#map').geomap({ // Then set the value from the $boxMap
-                            bbox: $current.box
-                        });
+                                console.log($current.box);
+                                $('#map').geomap({ // Then set the value from the $boxMap
+                                    bbox: $current.box
+                                });
 
-                        console.error($current.box);
-                        setTimeout(getDataLayer, 1000);
-                    }
-                }
-            } // END IF
-        });
+                                console.error($current.box);
+                                setTimeout(getDataLayer, 1000);
+                            }
+                        }
+                    } // END IF
+                });
+            });
+        }, 300);
     });
-
-    $('#map ul').css({
-        'position': 'absolute',
-        'background-color': '#333333',
-        'bottom': 0,
-        'left': 0,
-        'list-style-type': 'none',
-        'max-width': '100%',
-        'padding': '4px 0 4px 0',
-        'margin': 0,
-        'width': '100%',
-        //        'opacity': 1,
-        'font-size': '6.5pt',
-        'text-transform': 'uppercase'
-    });
-    $('#map ul li').css({
-        'margin-left': '6px',
-        'color': 'white'
-    });
-    getForecast(984290); //Manila
+    
+getForecast(984290); //Manila
 //getForecast(980002); //Amanpulo
 });
 
@@ -403,7 +382,6 @@ function showReadings(){
 
 function mapStationsPagasa($stationsArray) {
     // This loop maps the stations from the $stations fetched from getStations
-    //console.log($stationsArray);
     for (var key in $stationsArray) {
         $currentStation = $stationsArray[key];
         $('#map').geomap("append", {
@@ -421,7 +399,6 @@ function mapStationsPagasa($stationsArray) {
 
 function mapStations($stationsArray) {
     // This loop maps the stations from the $stations fetched from getStations
-
     for (var key in $stationsArray) {
         $currentStation = $stationsArray[key];
         $('#map').geomap("append", {
@@ -440,9 +417,9 @@ function mapStations($stationsArray) {
 function remapStations() {
     if (window['STATIONS'].pagasa == null) {
         $.ajax({
-            type:     'GET',
-            url :     '<?= $this->webroot ?>weatherph/weatherph/getStations/pagasa',
-            cache:    false,
+            type   : 'GET',
+            url    : '<?= $this->webroot ?>weatherph/weatherph/getStations/pagasa',
+            cache  : false,
             success: function(data) {
                 var $retrievedStations = data; // the complete retrieved stations
                 for (var key in $retrievedStations) {
@@ -466,9 +443,9 @@ function remapStations() {
 
                 $stations = new Array();
                 $.ajax({
-                    type:     'GET',
-                    url :     '<?= $this->webroot ?>weatherph/weatherph/getStations/meteomedia',
-                    cache:    false,
+                    type   : 'GET',
+                    url    : '<?= $this->webroot ?>weatherph/weatherph/getStations/meteomedia',
+                    cache  : false,
                     success: function(data) {
                         var $retrievedStations = data; // the complete retrieved stations
                         for (var key in $retrievedStations) {
@@ -618,8 +595,7 @@ function onionSkinMap() {
 }
 
 $(function(){
-    $('.loader').css('opacity', 0.8);
-    $('.video-viewport').hide();
+    $('#video-viewport').hide();
     // Layer selector toggle
 
     $('.data-layers a').on('click', function(evt){
