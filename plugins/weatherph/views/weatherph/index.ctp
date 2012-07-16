@@ -452,7 +452,3 @@ ECHO
         precipitation: precipContent
     };
 </script>
-<?php
-    echo $this->Html->script('libs/jquery.geo-1.0a4.min');
-?>
-<script type="text/javascript" src="<?= $this->webroot ?>weatherph/js/weatherph/index.js"></script>
