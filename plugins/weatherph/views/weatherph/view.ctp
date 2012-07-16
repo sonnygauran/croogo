@@ -20,7 +20,7 @@ echo $this->Html->script(array(
         <div id="current-weather" class="shadow">
 
             <div id="station">
-                <h1><?= $dataSets['stationName']; ?></h1>
+                <h1><?= $dataSets['station_name']; ?></h1>
                 <h6>Current readings</h6>
             </div> <!--END STATION-->
 
@@ -29,7 +29,7 @@ echo $this->Html->script(array(
                     <?php if (!empty($dataSets['reading']['weather_symbol']['symbol'])) { ?>
                         <div class="inner-condition">
                             <div class="left-temp-reading">
-                                <?= $dataSets['reading']['temperature']; ?>&deg;C
+                                <?= $dataSets['reading']['temperature']; ?>
                             </div>
                             <div class="right-sy-reading">
                                 <span class="symbol <?= $dataSets['reading']['weather_symbol']['symbol']; ?>" title="<?= $dataSets['reading']['weather_symbol']['description']; ?>" ></span>
@@ -38,7 +38,7 @@ echo $this->Html->script(array(
                     <?php } else { ?>
                         <div class="inner-condition-temp-reading-only">
                             <div class="reading-temperature-only">
-                                <?= $dataSets['reading']['temperature']; ?>&deg;C
+                                <?= $dataSets['reading']['temperature']; ?>
                             </div>
                         </div>
                     <?php } ?>
