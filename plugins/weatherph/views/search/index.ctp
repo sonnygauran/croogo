@@ -1,4 +1,3 @@
-<script type="text/javascript" src="<?= $this->webroot ?>weatherph/js/weatherph/results.js"></script>
 <div class="content">
     <section class="main">
         <div id="map-container">

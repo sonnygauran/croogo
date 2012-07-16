@@ -10,35 +10,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title><?php echo $title_for_layout; ?> &raquo; <?php echo Configure::read('Site.title'); ?></title>
+    <title><?php echo Configure::read('Site.title'); ?></title>
+    <meta name="viewport" content="width=device-width" />
     <?php
     echo $this->Layout->meta();
     echo $this->Layout->feed();
-    echo $this->Html->css(array('theme'));
+    echo $this->Html->css('theme');
     echo $this->Layout->js();
-    echo $this->Html->script(array(
-        'jquery/jquery.min',
-        'slides.min.jquery',
-        'libs/jquery.geo-1.0a4.min',
-    ));
     echo $scripts_for_layout;
     ?>
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $('#slides').slides({
-                preload: false,
-                effect: 'fade',
-                play: 5000,
-                pagination: false,
-                generatePagination: false,
-                generateNextPrev: false
-            });
-            $("nav li").click(function(){
-            window.location=$(this).find("a").attr("href"); return false;
-            });
-        });
-    </script>
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -75,13 +55,6 @@
                             <li><a href="<?= $this->webroot ?>founders/unionbank">UnionBank</a></li>
                         </ul>
                     </li>
-<!--                    <li>
-                        <a href="#">Learn More &#9663;</a>
-                        <ul>
-                            <li><a href="<?= $this->webroot ?>typhoon/preparedness">Typhoon Preparedness</a></li>
-                            <li><a href="<?= $this->webroot ?>typhoon/climatology">Typhoon Climatology</a></li>
-                        </ul>
-                    </li>-->
                     <li>
                         <a href="#">Dictionary &#9663;</a>
                         <ul>
@@ -157,5 +130,38 @@
             <small>&copy; 2012 Meteomedia A.G.</small>
         </footer>
     </section><!-- #container -->
+
+<?php
+    echo $this->Html->script('jquery/jquery.min');
+
+    if (($this->name == 'Weatherph') && ($this->action == 'index') || ($this->name == 'Search') && ($this->action == 'index')){
+        echo $this->Html->script('libs/jquery.geo-1.0a4.min');
+    }
+    
+    if (($this->name == 'Weatherph') && ($this->action == 'index')){
+        echo "<script type='text/javascript' src='" . $this->webroot . "weatherph/js/weatherph/index.js'></script>";
+    } else if (($this->name == 'Search') && ($this->action == 'index')){           
+        echo "<script type='text/javascript' src='" . $this->webroot . "weatherph/js/weatherph/results.js'></script>";
+    }
+    
+    echo $this->Html->script('slides.min.jquery');
+?>
+
+<script type="text/javascript">
+    $(window).load(function(){
+        $('#slides').slides({
+            preload: false,
+            effect: 'fade',
+            play: 5000,
+            pagination: false,
+            generatePagination: false,
+            generateNextPrev: false
+        });
+        $("nav li").click(function(){
+        window.location=$(this).find("a").attr("href"); return false;
+        });
+    });
+</script>
+
 </body>
 </html>

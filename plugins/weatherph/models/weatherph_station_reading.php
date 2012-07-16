@@ -516,10 +516,12 @@ class WeatherphStationReading extends WeatherphAppModel
                 
                 $readings_dummy['date_time'] = date('Y-m-d H:i', strtotime($reading['datum'] . $reading['utc'] . ":" . $reading['min']));
                 
+                $wind_direction = '-';
                 if(array_key_exists('dir', $reading)){
                     $wind_direction = $this->windDirection($reading['dir']);
                 }
                 
+                $readings_dummy['temperature'] = '-';
                 if(array_key_exists('tl', $reading)){
                     $readings_dummy['temperature'] = (trim($reading['tl']) !='')? number_format($reading['tl'],0) . "&deg;C" : "-";
                 }
@@ -541,6 +543,7 @@ class WeatherphStationReading extends WeatherphAppModel
                     $readings_dummy['weather_condition'] = (trim($weather_condition['description']) !='')? $weather_condition['description'] : "-";
                 }
                 
+                $readings_dummy['rain'] = '-';
                 if(array_key_exists('rr1h', $reading)){
                     $readings_dummy['rain'] = (trim($reading['rr1h']) !='')? $reading['rr1h'] . "mm" : "-";
                 }
@@ -553,6 +556,7 @@ class WeatherphStationReading extends WeatherphAppModel
                     $readings_dummy['wind_speed'] = (trim($reading['ff']) !='')? floor($reading['ff'] * 1.852 + 0.5) ."km/h" : "-";
                 }
                 
+                $readings_dummy['wind_gust'] = '-';
                 if(array_key_exists('g1h', $reading)){
                     $readings_dummy['wind_gust'] = (trim($reading['g1h']) !='')? floor($reading['g1h'] * 1.852 + 0.5) . "km/h" : "-";
                 }
