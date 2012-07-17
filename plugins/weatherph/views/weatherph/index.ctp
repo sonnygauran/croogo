@@ -15,14 +15,14 @@
                     <li><a data-target="data-layer" data-name="pressure" href="#map">Pressure</a></li>
                 </ul>
             </div> <!--LAYER SELECTOR-->
-            <div class="video-viewport">
+            <div id="video-viewport">
 
             </div>
             <div class="map-viewport">
                 <div class="data-layer" style="width: 554px; height: 554px; float:left" data-bbox="">
                 </div>
                 <div id="map">
-                    <div class="loader">
+                    <div id="loader">
                     </div>
                     <div class="hovered-station">
                     </div>
@@ -193,12 +193,12 @@
         </div>
         <div id="info" class="shadow">
             <div id="current-readings-panel">
-                <h2 class="current readings-location">&nbsp;</h2>
+                <h2 id="readings-location">&nbsp;</h2>
                 <p>Current Readings:</p>
             </div>
             <div id="current-readings-box">
                 <div class="readings shadow">
-                    <p>last updated: <span class="last-update">--:--</span></p>
+                    <p>last updated: <span id="last-update">--:--</span></p>
                     <span class="current temperature"><span>&nbsp;</span></span>
                     <span class="symbol"></span>
                     <table>
@@ -233,21 +233,21 @@
                         <li class="forecast-highlight">
                             <h6 class="0-hour time">--:--</h6>
                             <div class="0-hour readings">
-                                <span class="temperature"><span>&nbsp;</span>&deg;C</span>
+                                <span class="temperature"><span>&nbsp;</span></span>
                                 <span class="symbol"></span>
                                 <table>
                                     <tbody>
                                         <tr>
                                             <td>Wind</td>
-                                            <td class="3-hour wind"><span>&nbsp;</span>km/h</td>
+                                            <td class="3-hour wind"><span>&nbsp;</span></td>
                                         </tr>
                                         <tr>
                                             <td>Rain</td>
-                                            <td class="precipitation"><span>&nbsp;</span>mm</td>
+                                            <td class="precipitation"><span>&nbsp;</span></td>
                                         </tr>
                                         <tr>
                                             <td>Humidity</td>
-                                            <td class="humidity"><span>&nbsp;</span>%</td>
+                                            <td class="humidity"><span>&nbsp;</span></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -256,21 +256,21 @@
                         <li>
                             <h6 class="1-hour time">--:--</h6>
                             <div class="1-hour readings">
-                                <span class="temperature"><span>&nbsp;</span>&deg;C</span>
+                                <span class="temperature"><span>&nbsp;</span></span>
                                 <span class="symbol"></span>
                                 <table>
                                     <tbody>
                                         <tr>
                                             <td>Wind</td>
-                                            <td class="wind"><span>&nbsp;</span>km/h</td>
+                                            <td class="wind"><span>&nbsp;</span></td>
                                         </tr>
                                         <tr>
                                             <td>Rain</td>
-                                            <td class="precipitation"><span>&nbsp;</span>mm</td>
+                                            <td class="precipitation"><span>&nbsp;</span></td>
                                         </tr>
                                         <tr>
                                             <td>Humidity</td>
-                                            <td class="humidity"><span>&nbsp;</span>%</td>
+                                            <td class="humidity"><span>&nbsp;</span></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -279,21 +279,21 @@
                         <li class="forecast-highlight">
                             <h6 class="2-hour time">--:--</h6>
                             <div class="2-hour readings">
-                                <span class="temperature"><span>&nbsp;</span>&deg;C</span>
+                                <span class="temperature"><span>&nbsp;</span></span>
                                 <span class="symbol"></span>
                                 <table>
                                     <tbody>
                                         <tr>
                                             <td>Wind</td>
-                                            <td class="wind"><span>&nbsp;</span>km/h</td>
+                                            <td class="wind"><span>&nbsp;</span></td>
                                         </tr>
                                         <tr>
                                             <td>Rain</td>
-                                            <td class="precipitation"><span>&nbsp;</span>mm</td>
+                                            <td class="precipitation"><span>&nbsp;</span></td>
                                         </tr>
                                         <tr>
                                             <td>Humidity</td>
-                                            <td class="humidity"><span>&nbsp;</span>%</td>
+                                            <td class="humidity"><span>&nbsp;</span></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -302,21 +302,21 @@
                         <li>
                             <h6 class="3-hour time">--:--</h6>
                             <div class="3-hour readings">
-                                <span class="temperature"><span>&nbsp;</span>&deg;C</span>
+                                <span class="temperature"><span>&nbsp;</span></span>
                                 <span class="symbol"></span>
                                 <table>
                                     <tbody>
                                         <tr>
                                             <td>Wind</td>
-                                            <td class="wind"><span>&nbsp;</span>km/h</td>
+                                            <td class="wind"><span>&nbsp;</span></td>
                                         </tr>
                                         <tr>
                                             <td>Rain</td>
-                                            <td class="precipitation"><span>&nbsp;</span>mm</td>
+                                            <td class="precipitation"><span>&nbsp;</span></td>
                                         </tr>
                                         <tr>
                                             <td>Humidity</td>
-                                            <td class="humidity"><span>&nbsp;</span>%</td>
+                                            <td class="humidity"><span>&nbsp;</span></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -325,21 +325,21 @@
                         <li class="forecast-highlight">
                             <h6 class="4-hour time">--:--</h6>
                             <div class="4-hour readings">
-                                <span class="temperature"><span>&nbsp;</span>&deg;C</span>
+                                <span class="temperature"><span>&nbsp;</span></span>
                                 <span class="symbol"></span>
                                 <table>
                                     <tbody>
                                         <tr>
                                             <td>Wind</td>
-                                            <td class="wind"><span>&nbsp;</span>km/h</td>
+                                            <td class="wind"><span>&nbsp;</span></td>
                                         </tr>
                                         <tr>
                                             <td>Rain</td>
-                                            <td class="precipitation"><span>&nbsp;</span>mm</td>
+                                            <td class="precipitation"><span>&nbsp;</span></td>
                                         </tr>
                                         <tr>
                                             <td>Humidity</td>
-                                            <td class="humidity"><span>&nbsp;</span>%</td>
+                                            <td class="humidity"><span>&nbsp;</span></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -348,21 +348,21 @@
                         <li>
                             <h6 class="5-hour time">--:--</h6>
                             <div class="5-hour readings">
-                                <span class="temperature"><span>&nbsp;</span>&deg;C</span>
+                                <span class="temperature"><span>&nbsp;</span></span>
                                 <span class="symbol"></span>
                                 <table>
                                     <tbody>
                                         <tr>
                                             <td>Wind</td>
-                                            <td class="wind"><span>&nbsp;</span>km/h</td>
+                                            <td class="wind"><span>&nbsp;</span></td>
                                         </tr>
                                         <tr>
                                             <td>Rain</td>
-                                            <td class="precipitation"><span>&nbsp;</span>mm</td>
+                                            <td class="precipitation"><span>&nbsp;</span></td>
                                         </tr>
                                         <tr>
                                             <td>Humidity</td>
-                                            <td class="humidity"><span>&nbsp;</span>%</td>
+                                            <td class="humidity"><span>&nbsp;</span></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -404,13 +404,13 @@
         <div class="news">
             <ul>
                 <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail.png"/><p>Breaking News</p></li>
-                <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail2.png"/><p><a href="<?= $this->webroot ?>weathertv">Weather TV</a></p></li>
-                <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail.png"/><a href="<?= $this->webroot ?>typhoon/preparedness">Typhoon Preparedness</a></li>
-                <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail.png"/><a href="<?= $this->webroot ?>typhoon/climatology">Typhoon Climatology</a></li>
+                <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail.png"/><p><a href="<?= $this->webroot ?>weathertv">Weather TV</a></p></li>
+                <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail.png"/><p><a href="<?= $this->webroot ?>typhoon/preparedness">Typhoon Preparedness</a></p></li>
+                <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail.png"/><p><a href="<?= $this->webroot ?>typhoon/climatology">Typhoon Climatology</a></p></li>
 <!--                <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail3.png"/><p>Payong Panahon</p></li>-->
                 <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail.png"/><p><a href="<?= $this->webroot ?>dictionaries/english">Dictionary: English</a></p></li>
                 <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail.png"/><p><a href="<?= $this->webroot ?>dictionaries/filipino">Dictionary: Filipino</a></p></li>
-                <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail2.png"/><p><a href="<?= $this->webroot ?>webcam">Webcams</a></p></li>
+                <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail.png"/><p><a href="<?= $this->webroot ?>webcam">Webcams</a></p></li>
             </ul>
         </div>
 
@@ -452,4 +452,3 @@ ECHO
         precipitation: precipContent
     };
 </script>
-<script type="text/javascript" src="<?= $this->webroot ?>weatherph/js/weatherph/index.js"></script>

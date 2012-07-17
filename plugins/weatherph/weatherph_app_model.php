@@ -95,11 +95,13 @@ class WeatherphAppModel extends AppModel {
 
     protected function dayOrNightSymbol($symbol = NULL, $utc = NULL, $meridiem = array()) {
         
+        // Get the default timestamp timezone
+        $siteTimezone = Configure::read('Site.timezone');
+        $Date = new DateTime(null, new DateTimeZone($siteTimezone));
+        
         if($symbol != NULL) {
             
         $symbol = number_format($symbol, 0);
-        
-//        $this->log('symbol ' . $symbol);
         
         $weather_description = array(
             'Could not be determined',
@@ -124,7 +126,11 @@ class WeatherphAppModel extends AppModel {
             'Could not be determined',
         );
         
-            $utc = (int) $utc + 3;
+        if (!key_exists($symbol, $weather_description)) {
+            $this->log("The weather symbol with index {$symbol} does not exist");
+            return NULL;
+        }
+            $utc = date('H', strtotime($utc) + $Date->getOffset());
 
             $sunrise = date('H', strtotime($meridiem['sunrise']));
             $sunset = date('H', strtotime($meridiem['sunset']));
@@ -431,9 +437,9 @@ class WeatherphAppModel extends AppModel {
         
         $windGustTxt = $windDirTxt = $windSpeedTxt = '';
         
-        if((int)$windGust > 0) $windGustTxt = ', gusting up to ' . $windGust . 'km/h ';
+        if((int)$windGust > 0) $windGustTxt = ', gusting up to ' . $windGust . ' ';
         
-        $windSpeedTxt = ($windSpeed != NULL)? $windSpeed . 'km/h, '. $windDirDesc : '-';
+        $windSpeedTxt = ($windSpeed != NULL)? $windSpeed . ', '. $windDirDesc : '-';
         
         if(is_array($windDir)) $windDirTxt = 'from ' . $windDir['eng']; 
          

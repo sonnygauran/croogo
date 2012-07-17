@@ -20,7 +20,7 @@ echo $this->Html->script(array(
         <div id="current-weather" class="shadow">
 
             <div id="station">
-                <h1><?= $dataSets['stationName']; ?></h1>
+                <h1><?= $dataSets['station_name']; ?></h1>
                 <h6>Current readings</h6>
             </div> <!--END STATION-->
 
@@ -29,7 +29,7 @@ echo $this->Html->script(array(
                     <?php if (!empty($dataSets['reading']['weather_symbol']['symbol'])) { ?>
                         <div class="inner-condition">
                             <div class="left-temp-reading">
-                                <?= $dataSets['reading']['temperature']; ?>&deg;C
+                                <?= $dataSets['reading']['temperature']; ?>
                             </div>
                             <div class="right-sy-reading">
                                 <span class="symbol <?= $dataSets['reading']['weather_symbol']['symbol']; ?>" title="<?= $dataSets['reading']['weather_symbol']['description']; ?>" ></span>
@@ -38,7 +38,7 @@ echo $this->Html->script(array(
                     <?php } else { ?>
                         <div class="inner-condition-temp-reading-only">
                             <div class="reading-temperature-only">
-                                <?= $dataSets['reading']['temperature']; ?>&deg;C
+                                <?= $dataSets['reading']['temperature']; ?>
                             </div>
                         </div>
                     <?php } ?>
@@ -62,17 +62,25 @@ echo $this->Html->script(array(
                 <div id="current-reading-table">
                     <table>
                         <tbody>
+                            <?php if (array_key_exists('dew_point', $dataSets['reading'])): ?>
+                            <tr>
+                                <th>Dew Point</th>
+                                <td><?= $dataSets['reading']['dew_point']; ?></td>
+                            </tr>
+                            <?php endif; // dew point ?>
                             <tr>
                                 <th>Wind Speed/Direction</th>
-                                <td><span class="symbolwind <?= $dataSets['reading']['wind_direction']; ?>" title="<?= $dataSets['reading']['wind_speed']; ?>km/h, <?= $dataSets['reading']['wind_description']['eng']; ?>"></span><?= $dataSets['reading']['wind_speed']; ?>km/h, <?= $dataSets['reading']['wind_description']['eng']; ?></td>
+                                <td><span class="symbolwind <?= $dataSets['reading']['wind_direction']; ?>"></span><?= $dataSets['reading']['wind_speed_direction']; ?></td>
                             </tr>
+                            <?php if (array_key_exists('precipitation', $dataSets['reading'])): ?>
                             <tr>
                                 <th>Rain</th>
-                                <td><?= $dataSets['reading']['precipitation']; ?>mm</td>
+                                <td><?= $dataSets['reading']['precipitation']; ?></td>
                             </tr>
+                            <?php endif; // dew point ?>
                             <tr>
                                 <th>Relative Humidity</th>
-                                <td><?= $dataSets['reading']['relative_humidity']; ?>%</td>
+                                <td><?= $dataSets['reading']['relative_humidity']; ?></td>
                             </tr>
                         </tbody>
                     </table>
@@ -106,6 +114,7 @@ echo $this->Html->script(array(
                             <th>Time</th>
                             <th>Condition</th>
                             <th>Temperature</th>
+                            <th>Dew Point</th>
                             <th>Rain</th>
                             <th>Humidity</th>
                             <th>Wind</th>
@@ -115,9 +124,10 @@ echo $this->Html->script(array(
                             <tr>
                                 <td><?= $forecasts2['localtime_range']; ?></td>
                                 <td><span class="symbol <?= $forecasts2['weather_condition']['symbol']; ?>" title="<?= $forecasts2['weather_condition']['description']; ?>"></span></td>
-                                <td><?= $forecasts2['temperature']; ?>&deg;C</td>
-                                <td><?= $forecasts2['precipitation']; ?>mm</td>
-                                <td><?= $forecasts2['relative_humidity']; ?>%</td>
+                                <td><?= $forecasts2['temperature']; ?></td>
+                                <td><?= $forecasts2['dew_point']; ?></td>
+                                <td><?= $forecasts2['precipitation']; ?></td>
+                                <td><?= $forecasts2['relative_humidity']; ?></td>
                                 <td><?php if (trim($forecasts2['wind_direction']) != '') { ?><span class="symbol <?= $forecasts2['wind_direction']; ?>"></span><?php } ?><span class="wind-description"><?= $forecasts2['wind_description']; ?></span></td>
                             </tr>
                         <?php } ?>
@@ -150,7 +160,7 @@ echo $this->Html->script(array(
                             var chart = new AnyChart('<?= $this->webroot ?>swf/AnyChart.swf');
                             chart.width = 794;
                             chart.height = 200;
-                            chart.setXMLFile('<?= $this->webroot ?>getDetailedForecast/<?= $dataSets['stationId']; ?>/temperature/3h');
+                            chart.setXMLFile('<?= $this->webroot ?>getDetailedForecast/<?= $dataSets['station_id']; ?>/temperature/3h');
                             chart.write();
                             //]]>
                         </script>
@@ -167,7 +177,7 @@ echo $this->Html->script(array(
                             var chart = new AnyChart('<?= $this->webroot ?>swf/AnyChart.swf');
                             chart.width = 794;
                             chart.height = 200;
-                            chart.setXMLFile('<?= $this->webroot ?>getDetailedForecast/<?= $dataSets['stationId']; ?>/precip/6h');
+                            chart.setXMLFile('<?= $this->webroot ?>getDetailedForecast/<?= $dataSets['station_id']; ?>/precip/6h');
                             chart.write();
                             //]]>
                         </script>
@@ -181,7 +191,7 @@ echo $this->Html->script(array(
                             var chart = new AnyChart('<?= $this->webroot ?>swf/AnyChart.swf');
                             chart.width = 794;
                             chart.height = 200;
-                            chart.setXMLFile('<?= $this->webroot ?>getDetailedForecast/<?= $dataSets['stationId']; ?>/wind/3h');
+                            chart.setXMLFile('<?= $this->webroot ?>getDetailedForecast/<?= $dataSets['station_id']; ?>/wind/3h');
                             chart.write();
                             //]]>
                         </script>
@@ -194,7 +204,7 @@ echo $this->Html->script(array(
                             var chart = new AnyChart('<?= $this->webroot ?>swf/AnyChart.swf');
                             chart.width = 794;
                             chart.height = 70;
-                            chart.setXMLFile('<?= $this->webroot ?>getDetailedForecast/<?= $dataSets['stationId']; ?>/winddir/6h');
+                            chart.setXMLFile('<?= $this->webroot ?>getDetailedForecast/<?= $dataSets['station_id']; ?>/winddir/6h');
                             chart.write();
                             //]]>
                         </script>
@@ -205,7 +215,7 @@ echo $this->Html->script(array(
                             var chart = new AnyChart('<?= $this->webroot ?>swf/AnyChart.swf');
                             chart.width = 794;
                             chart.height = 200;
-                            chart.setXMLFile('<?= $this->webroot ?>getDetailedForecast/<?= $dataSets['stationId']; ?>/humidity/3h');
+                            chart.setXMLFile('<?= $this->webroot ?>getDetailedForecast/<?= $dataSets['station_id']; ?>/humidity/3h');
                             chart.write();
                             //]]>
                         </script>

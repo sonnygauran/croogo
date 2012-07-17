@@ -473,6 +473,8 @@ class WeatherphStationReading extends WeatherphAppModel
         $days_range = $fields['conditions']['days_range'];
         $time_frame = $fields['conditions']['time_frame'];
         
+//        $this->log(print_r($fields['conditions'], TRUE));
+        
         $return = array();
         
         $days_str = ($days_range > 1)? 'Days' : 'Day';
@@ -481,101 +483,131 @@ class WeatherphStationReading extends WeatherphAppModel
         
         $end_date = ($days_range == NULL)? $start_date : date("Y-m-d", strtotime('-'.$days_range . $days_str, strtotime($start_date)));
         
-        $station_info = $this->getStationInfo($station_id);
+//        $this->log('START DATE: '.$start_date);
+//        $this->log('END DATE: '.$end_date);
         
-        // Get sunrise and sunset using current latituted and longtitude station
-        $sunrise = $this->sunInfo($station_info['lat'], $station_info['lon'], 'sunrise');
-        $sunset = $this->sunInfo($station_info['lat'], $station_info['lon'], 'sunset');
-
-        $return['station_info'] = $station_info;
-        
-        $sql_conditions = array( 
-                'ort1 LIKE' => "%".$station_id ."%", 
-                'date(datum) BETWEEN ? AND ?' => array($end_date, $start_date),
-                'tl !=' => '',
-                );
-        
-        if($time_frame == '1h'){
-            $sql_conditions['min ='] = "00";
-        }
-        
-        $station_readings = $reading_temp->find('all', array(
-            'conditions' => $sql_conditions,
-            'order' => "DATE(datum) , utc, min DESC",
-            ));
-        
-        
-        if(count($station_readings) > 0){
+        if($station_id != NULL){
             
-        
-            $readings_dummy = array();
+            $station_info = $this->getStationInfo($station_id);
+            
+            if(count($station_info) > 0){
+                
+                // Get sunrise and sunset using current latituted and longtitude station
+                $sunrise = $this->sunInfo($station_info['lat'], $station_info['lon'], 'sunrise');
+                $sunset = $this->sunInfo($station_info['lat'], $station_info['lon'], 'sunset');
 
-            foreach($station_readings as $readings){
-                
-                $reading = $readings['Reading'];
-                
-                $readings_dummy['date_time'] = date('Y-m-d H:i', strtotime($reading['datum'] . $reading['utc'] . ":" . $reading['min']));
-                
-                if(array_key_exists('dir', $reading)){
-                    $wind_direction = $this->windDirection($reading['dir']);
-                }
-                
-                if(array_key_exists('tl', $reading)){
-                    $readings_dummy['temperature'] = (trim($reading['tl']) !='')? number_format($reading['tl'],0) . "&deg;C" : "-";
-                }
-                
-                if(array_key_exists('td', $reading)){
-                    $readings_dummy['dew_point'] = (trim($reading['td']) !='')? number_format($reading['td'],0) . "&deg;C" : "-";
-                }
-                
-                if(array_key_exists('tn', $reading)){
-                    $readings_dummy['temperature_min'] = (trim($reading['tn']) != '')? number_format($reading['tn'],0) : "-";
-                }
-                
-                if(array_key_exists('tx', $reading)){
-                    $readings_dummy['temperature_max'] = (trim($reading['tx']) !='')? number_format($reading['tx'],0) : "-";
-                }
-                
-                if(array_key_exists('sy', $reading)){
-                    $weather_condition = $this->dayOrNightSymbol($reading['sy'], $reading['utc'], array("sunrise"=>$sunrise,"sunset"=>$sunset));
-                    $readings_dummy['weather_condition'] = (trim($weather_condition['description']) !='')? $weather_condition['description'] : "-";
-                }
-                
-                if(array_key_exists('rr1h', $reading)){
-                    $readings_dummy['rain'] = (trim($reading['rr1h']) !='')? $reading['rr1h'] . "mm" : "-";
-                }
-                
-                if(array_key_exists('rh', $reading)){
-                    $readings_dummy['humidity'] = (trim($reading['rh']) !='')? number_format($reading['rh'], 0) . "%" : "-";
-                }
-                
-                if(array_key_exists('ff', $reading)){
-                    $readings_dummy['wind_speed'] = (trim($reading['ff']) !='')? floor($reading['ff'] * 1.852 + 0.5) ."km/h" : "-";
-                }
-                
-                if(array_key_exists('g1h', $reading)){
-                    $readings_dummy['wind_gust'] = (trim($reading['g1h']) !='')? floor($reading['g1h'] * 1.852 + 0.5) . "km/h" : "-";
-                }
-                
-                if(array_key_exists('dir', $reading)){
-                    $readings_dummy['wind_direction'] = (trim($reading['dir']) !='')? $wind_direction['eng'] : "-";
-                }
-                
-                if(array_key_exists('gl1h', $reading)){
-                    $readings_dummy['global_radiation'] = (trim($reading['gl1h']) !='')? $reading['gl1h'] : "-";
-                }
-                
-                $clean_readings[$reading['datum']][] = $readings_dummy;
+                $return['station_info'] = $station_info;
 
+                $sql_conditions = array( 
+                        'ort1 LIKE' => "%".$station_id ."%", 
+                        'date(datum) BETWEEN ? AND ?' => array($end_date, $start_date),
+                        'tl !=' => '',
+                        );
+
+                if($time_frame == '1h'){
+                    $sql_conditions['min ='] = "00";
+                }
+
+                $station_readings = $reading_temp->find('all', array(
+                    'conditions' => $sql_conditions,
+                    'order' => "DATE(datum) , utc, min DESC",
+                    ));
+
+        //        $this->log(print_r($station_readings, TRUE));
+
+                if(count($station_readings) > 0){
+
+                    $readings_dummy = array();
+
+                    foreach($station_readings as $readings){
+
+                        $reading = $readings['Reading'];
+
+                        $readings_dummy['date_time'] = date('Y-m-d H:i', strtotime($reading['datum'] . $reading['utc'] . ":" . $reading['min']));
+
+                        $wind_direction = '-';
+                        if(key_exists('dir', $reading)){
+                            $wind_direction = $this->windDirection($reading['dir']);
+                        }
+
+                        $readings_dummy['temperature'] = '-';
+                        if(key_exists('tl', $reading)){
+                            $readings_dummy['temperature'] = (trim($reading['tl']) !='')? number_format($reading['tl'],0) . "&deg;C" : "-";
+                        }
+
+                        if(key_exists('td', $reading)){
+                            $readings_dummy['dew_point'] = (trim($reading['td']) !='')? number_format($reading['td'],0) . "&deg;C" : "-";
+                        }
+
+                        if(key_exists('tn', $reading)){
+                            $readings_dummy['temperature_min'] = (trim($reading['tn']) != '')? number_format($reading['tn'],0) : "-";
+                        }
+
+                        if(key_exists('tx', $reading)){
+                            $readings_dummy['temperature_max'] = (trim($reading['tx']) !='')? number_format($reading['tx'],0) : "-";
+                        }
+
+                        if(key_exists('sy', $reading)){
+                            $weather_condition = $this->dayOrNightSymbol($reading['sy'], $reading['utc'], array("sunrise"=>$sunrise,"sunset"=>$sunset));
+                            $readings_dummy['weather_condition'] = (trim($weather_condition['description']) !='')? $weather_condition['description'] : "-";
+                        }
+
+                        $readings_dummy['rain1h'] = '-';
+                        if(key_exists('rr1h', $reading)){
+                            if(trim($reading['rr1h']) !=''){
+                                $readings_dummy['rain1h'] = ((int)$reading['rr1h'] <= 0) ? round($reading['rr1h']) . "mm" : number_format($reading['rr1h'],1) . "mm";
+                            }else{
+                                $readings_dummy['rain1h'] = "-";
+                            }
+                            
+                        }
+                        
+                        $readings_dummy['rain6h'] = '-';
+                        if(key_exists('rain6', $reading)){
+                            if(trim($reading['rain6']) !=''){
+                                $readings_dummy['rain6h'] = ((int)$reading['rain6'] <= 0) ? round($reading['rain6']) . "mm" : number_format($reading['rain6'],1) . "mm";
+                            }else{
+                                $readings_dummy['rain6h'] = "-";
+                            }
+                            
+                        }
+
+                        if(key_exists('rh', $reading)){
+                            $readings_dummy['humidity'] = (trim($reading['rh']) !='')? number_format($reading['rh'], 0) . "%" : "-";
+                        }
+
+                        if(key_exists('ff', $reading)){
+                            $readings_dummy['wind_speed'] = (trim($reading['ff']) !='')? floor($reading['ff'] * 1.852 + 0.5) ."km/h" : "-";
+                        }
+
+                        $readings_dummy['wind_gust'] = '-';
+                        if(key_exists('g1h', $reading)){
+                            $readings_dummy['wind_gust'] = (trim($reading['g1h']) !='')? floor($reading['g1h'] * 1.852 + 0.5) . "km/h" : "-";
+                        }
+
+                        if(key_exists('dir', $reading)){
+                            $readings_dummy['wind_direction'] = (trim($reading['dir']) !='')? $wind_direction['eng'] : "-";
+                        }
+
+                        if(key_exists('gl1h', $reading)){
+                            $readings_dummy['global_radiation'] = (trim($reading['gl1h']) !='')? $reading['gl1h'] : "-";
+                        }
+
+                        $clean_readings[$reading['datum']][] = $readings_dummy;
+
+                    }
+
+                    krsort($clean_readings);
+
+                    $return['readings'] = $clean_readings;
+
+                }
+
+                $this->log(print_r($return, TRUE));
+                
             }
             
-            krsort($clean_readings);
-
-            $return['readings'] = $clean_readings;
-        
         }
-        
-        $this->log(print_r($return, TRUE));
         
         return $return;
         
