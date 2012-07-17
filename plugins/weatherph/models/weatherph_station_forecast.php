@@ -47,7 +47,7 @@ class WeatherphStationForecast extends WeatherphAppModel {
                 'weather_symbol' => '-',
                 'temperature' => '-',
                 'precipitation' => '-',
-                'precipitation_hr_range' => '-',
+                'precipitation_hr_range' => '',
                 'relative_humidity' => '-',
                 'wind_direction' => '-',
                 'wind_description' => '-',
