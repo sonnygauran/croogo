@@ -93,17 +93,32 @@ echo $this->Html->script(array(
                         </tbody>
                     </table>
                 </div> <!--END CONDITION TABLE-->
+            <?php endif; ?>
+                
+            <?php if ($dataSets['reading']['status'] == 'none'): ?>
+                <div id="sun-moon-info">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td><span class="symbol sunrise"></span></td>
+                                <td class="right-10px">Sunrise: <?= date("h:iA", strtotime($dataSets['sunrise'])); ?></td>
 
+                                <td><span class="symbol sunset"></span></td>
+                                <td class="right-10px">Sunset: <?= date("h:iA", strtotime($dataSets['sunset'])); ?></td>
 
-                <?php endIf; ?>
-
-        </div> <!--END CURRENT WEATHER-->
-        <?php if ($dataSets['reading']['status'] == 'none'): ?>
-            <div class="no-readings" style="display: block;">
-                <p>Sorry, there are no readings available for this station.</p>
-            </div>
+                                <td><span class="symbol moonphase_<?= $dataSets['moonphase']['phase_code']; ?>"></span></td>
+                                <td class="right-10px">Moon Phase: <?= $dataSets['moonphase']['phase']; ?></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="no-readings" style="display: block;">
+                    <p>Sorry, there are no readings available for this station.</p>
+                </div>
             <?php endIf; ?>
 
+        </div> <!--END CURRENT WEATHER-->
+            
         <div id="week-forecast">
             <? if ($dataSets['forecast_status'] == 'ok'): ?>
                 <!-- CSV FILE: <?= $dataSets['forecast_dmo_file_csv']; ?> -->
