@@ -39,22 +39,24 @@ class WeatherphStationForecast extends WeatherphAppModel {
             'limit' => 1
                 ));
         
-        $current_readings = array(
-            'weather_symbol' => '-',
-            'temperature' => '-',
-            'precipitation' => '-',
-            'precipitation_hr_range' => '-',
-            'relative_humidity' => '-',
-            'wind_direction' => '-',
-            'wind_description' => '-',
-            'wind_speed_direction' => '-',
-            'wind_speed' => '-',
-            'wind_gust' => '-',
-            'dew_point' => '-',
-//            '' => '-',
-        );
+        $current_readings = array();
         
         if (count($station_readings) > 0) {
+            
+            $current_readings = array(
+                'weather_symbol' => '-',
+                'temperature' => '-',
+                'precipitation' => '-',
+                'precipitation_hr_range' => '-',
+                'relative_humidity' => '-',
+                'wind_direction' => '-',
+                'wind_description' => '-',
+                'wind_speed_direction' => '-',
+                'wind_speed' => '-',
+                'wind_gust' => '-',
+                'dew_point' => '-',
+    //            '' => '-',
+            );
 
             $current_reading = $station_readings[0]['Reading'];
             
@@ -269,22 +271,24 @@ class WeatherphStationForecast extends WeatherphAppModel {
             'limit' => '1'
                 ));
         
-        $current_readings = array(
-            'weather_symbol' => '-',
-            'temperature' => '-',
-            'precipitation' => '-',
-            'precipitation_hr_range' => '-',
-            'relative_humidity' => '-',
-            'wind_direction' => '-',
-            'wind_description' => '-',
-            'wind_speed_direction' => '-',
-            'wind_speed' => '-',
-            'wind_gust' => '-',
-            'dew_point' => '-',
-//            '' => '-',
-        );
+        $current_readings = array();
 
         if (count($station_readings) > 0) {
+            
+            $current_readings = array(
+                'weather_symbol' => '-',
+                'temperature' => '-',
+                'precipitation' => '-',
+                'precipitation_hr_range' => '-',
+                'relative_humidity' => '-',
+                'wind_direction' => '-',
+                'wind_description' => '-',
+                'wind_speed_direction' => '-',
+                'wind_speed' => '-',
+                'wind_gust' => '-',
+                'dew_point' => '-',
+    //            '' => '-',
+            );
 
             $current_reading = $station_readings[0]['Reading'];
             
@@ -752,22 +756,24 @@ class WeatherphStationForecast extends WeatherphAppModel {
             'limit' => 1,
                 ));
         
-        $current_readings = array(
-            'weather_symbol' => '-',
-            'temperature' => '-',
-            'precipitation' => '-',
-            'precipitation_hr_range' => '-',
-            'relative_humidity' => '-',
-            'wind_direction' => '-',
-            'wind_description' => '-',
-            'wind_speed_direction' => '-',
-            'wind_speed' => '-',
-            'wind_gust' => '-',
-            'dew_point' => '-',
-//            '' => '-',
-        );
+        $current_readings = array();
 
         if (count($station_readings) > 0) {
+            
+            $current_readings = array(
+                'weather_symbol' => '-',
+                'temperature' => '-',
+                'precipitation' => '-',
+                'precipitation_hr_range' => '-',
+                'relative_humidity' => '-',
+                'wind_direction' => '-',
+                'wind_description' => '-',
+                'wind_speed_direction' => '-',
+                'wind_speed' => '-',
+                'wind_gust' => '-',
+                'dew_point' => '-',
+    //            '' => '-',
+            );
 
             $current_reading = $station_readings[0]['Reading'];
 
