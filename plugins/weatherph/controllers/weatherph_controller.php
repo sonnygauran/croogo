@@ -260,6 +260,24 @@ class WeatherphController extends WeatherphAppController {
     public function about() {
         $this->layout = 'default';
     }
+    
+    public function payongpanahon() {
+        $this->set('title_for_layout',__('Weatherph',true));
+        
+        //$this->layout = 'default';
+        
+        $blogLists = $this->Node->find('all', array(
+           'order' => 'Node.created DESC',
+           'conditions' => array(
+               'Node.type' => 'blog',
+               'Node.terms' => json_encode(array('4'=>'payong-panahon')),
+               ),
+        ));
+        
+    //debug($blogLists);
+        
+        $this->set(compact('blogLists'));        
+    }
 
     public function impressum() {
         $this->layout = 'default';
@@ -516,6 +534,9 @@ class WeatherphController extends WeatherphAppController {
 
         $this->set('set', $set);
     }
+    
+    
+    
     
     
     

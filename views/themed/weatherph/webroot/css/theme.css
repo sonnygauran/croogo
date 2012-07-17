@@ -432,6 +432,14 @@ span.temperature {
     padding-bottom: 1em;
 }
 
+/* Payong Panahon */
+
+.blog-payong-panahon {
+    width: 790px;
+    float:left;
+    margin-right: 10px;
+}
+
 .blog {
     width: 554px;
     float:left;
@@ -1022,6 +1030,52 @@ span.sunset { background-position: -60px 5px; }
     left: -38px;
 }
 
+/* PAYONG PANAHON RIBBON STYLE CSS */
+.ribbon-wrapper-payong {
+    position: relative;
+    float: left;
+}
+
+.ribbon-wrapper-payong.blog-page{
+    position: absolute;
+    top: .5em;
+}
+
+.ribbon-front-payong {
+    background-color: #ffffff;
+    height: 80px;
+    width: 70px;
+    position: relative;
+    left:-35px;
+    z-index: 2;
+    border-top: 5px solid #3990BD;
+    border-bottom: 1px solid #e1e1e1;
+}
+
+.ribbon-front-payong.blog-page {
+    left:-38px;
+}
+
+.ribbon-edge-bottomleft-payong {
+    position: absolute;
+    left: -35px;
+    border-color: transparent #9393A4 transparent transparent;
+    z-index: 1;
+    border-style:solid;
+    height:0px;
+    width:0px;
+    border-width: 0 10px 5px 0;
+}
+
+.ribbon-edge-bottomleft-payong.blog-page {
+    left: -38px;
+}
+
+.blog-title{
+    width: 25%;
+    margin: 0px auto;
+}
+
 /* Share buttons*/
 
 .social {
@@ -1140,3 +1194,5 @@ nav li,
 }
 
 #nearest-station{ margin-top: 3px; }
+
+
