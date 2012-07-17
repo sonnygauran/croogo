@@ -62,17 +62,17 @@ echo $this->Html->script(array(
                 <div id="current-reading-table">
                     <table>
                         <tbody>
-                            <?php if (array_key_exists('dew_point', $dataSets['reading'])): ?>
-                            <tr>
+                            <?php // if (key_exists('dew_point', $dataSets['reading'])): ?>
+                            <!--tr>
                                 <th>Dew Point</th>
-                                <td><?= $dataSets['reading']['dew_point']; ?></td>
-                            </tr>
-                            <?php endif; // dew point ?>
+                                <td><?php // echo $dataSets['reading']['dew_point']; ?></td>
+                            </tr-->
+                            <?php // endif; // dew point ?>
                             <tr>
                                 <th>Wind Speed/Direction</th>
                                 <td><span class="symbolwind <?= $dataSets['reading']['wind_direction']; ?>"></span><?= $dataSets['reading']['wind_speed_direction']; ?></td>
                             </tr>
-                            <?php if (array_key_exists('precipitation', $dataSets['reading'])): ?>
+                            <?php if (key_exists('precipitation', $dataSets['reading'])): ?>
                             <tr>
                                 <th>Rain</th>
                                 <td><?= $dataSets['reading']['precipitation']; ?></td>
@@ -85,14 +85,31 @@ echo $this->Html->script(array(
                         </tbody>
                     </table>
                 </div>
-                <?php endIf; ?>
-        </div> <!--END CURRENT WEATHER-->
+                <?php endif; ?>
+                
+                <?php if ($dataSets['reading']['status'] == 'none'): ?>
+                    <div id="sun-moon-info">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td><span class="symbol sunrise"></span></td>
+                                    <td class="right-10px">Sunrise: <?= date("h:iA", strtotime($dataSets['sunrise'])); ?></td>
 
-        <?php if ($dataSets['reading']['status'] == 'none'): ?>
-            <div class="no-readings" style="display: block;">
-                <p>Sorry, there are no readings available for this station.</p>
-            </div>
-        <?php endif; ?>
+                                    <td><span class="symbol sunset"></span></td>
+                                    <td class="right-10px">Sunset: <?= date("h:iA", strtotime($dataSets['sunset'])); ?></td>
+
+                                    <td><span class="symbol moonphase_<?= $dataSets['moonphase']['phase_code']; ?>"></span></td>
+                                    <td class="right-10px">Moon Phase: <?= $dataSets['moonphase']['phase']; ?></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="no-readings" style="display: block;">
+                        <p>Sorry, there are no readings available for this station.</p>
+                    </div>
+                <?php endif; ?>
+                
+        </div> <!--END CURRENT WEATHER-->
 
         <div id="week-forecast">
             <? if ($dataSets['forecast_status'] == 'ok'): ?>
