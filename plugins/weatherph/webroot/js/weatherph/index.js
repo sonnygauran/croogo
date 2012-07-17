@@ -150,7 +150,6 @@ $(document).ready(function(){
                     showReadings();
 
                     current_readings = $station_readings.reading;
-
                     $('#last-update').html(current_readings.update);
 
                     cr_temperature = current_readings.temperature;
@@ -165,12 +164,14 @@ $(document).ready(function(){
                     $('.precipitation_hr_range').html(cr_precip_hr_range);
                     $('.current.humidity span').html(cr_humidity);
 
-                    var weather_symbol = $station_readings.reading.weather_symbol;
+                    if ($station_readings.reading.weather_symbol) {
+                        var weather_symbol = $station_readings.reading.weather_symbol;
 
-                    //                    console.error(weather_symbol);
+//                        console.error(weather_symbol);
 
-                    if(weather_symbol.hasOwnProperty('symbol')) $('#info .readings .symbol:eq(0)').addClass(weather_symbol.symbol);
-                    $('.current.time').html($station_readings.reading.update);
+                        if(weather_symbol.hasOwnProperty('symbol')) $('#info .readings .symbol:eq(0)').addClass(weather_symbol.symbol);
+                        $('.current.time').html($station_readings.reading.update);
+                    }
 
                 }else{
                     hideReadings();
@@ -195,7 +196,7 @@ $(document).ready(function(){
 
                             var weather_symbol = $station_readings.forecast[key].weather_symbol;
 
-                            //console.error(weather_symbol);
+//                            console.error(weather_symbol);
 
                             if(weather_symbol.hasOwnProperty('symbol')) $('.' + key + '-hour .symbol').addClass(weather_symbol.symbol);
 
@@ -350,7 +351,7 @@ $(document).ready(function(){
         }, 300);
     });
     
-getForecast(984290); //Manila
+    getForecast(984290); //Manila
 //getForecast(980002); //Amanpulo
 });
 

@@ -20,7 +20,7 @@ echo $this->Html->script(array(
         <div id="current-weather" class="shadow">
 
             <div id="station">
-                <h1><?= $dataSets['stationName']; ?></h1>
+                <h1><?= $dataSets['station_name']; ?></h1>
                 <h6>Current readings</h6>
             </div> <!--END STATION-->
 
@@ -29,7 +29,7 @@ echo $this->Html->script(array(
                     <?php if (!empty($dataSets['reading']['weather_symbol']['symbol'])) { ?>
                         <div class="inner-condition">
                             <div class="left-temp-reading">
-                                <?= $dataSets['reading']['temperature']; ?>&deg;C
+                                <?= $dataSets['reading']['temperature']; ?>
                             </div>
                             <div class="right-sy-reading">
                                 <span class="symbol <?= $dataSets['reading']['weather_symbol']['symbol']; ?>" title="<?= $dataSets['reading']['weather_symbol']['description']; ?>" ></span>
@@ -38,7 +38,7 @@ echo $this->Html->script(array(
                     <?php } else { ?>
                         <div class="inner-condition-temp-reading-only">
                             <div class="reading-temperature-only">
-                                <?= $dataSets['reading']['temperature']; ?>&deg;C
+                                <?= $dataSets['reading']['temperature']; ?>
                             </div>
                         </div>
                     <?php } ?>
@@ -62,18 +62,22 @@ echo $this->Html->script(array(
                 <div id="current-reading-table">
                     <table>
                         <tbody>
+                            <?php if (array_key_exists('dew_point', $dataSets['reading'])): ?>
                             <tr>
                                 <th>Dew Point</th>
                                 <td><?= $dataSets['reading']['dew_point']; ?></td>
                             </tr>
+                            <?php endif; // dew point ?>
                             <tr>
                                 <th>Wind Speed/Direction</th>
                                 <td><span class="symbolwind <?= $dataSets['reading']['wind_direction']; ?>"></span><?= $dataSets['reading']['wind_speed_direction']; ?></td>
                             </tr>
+                            <?php if (array_key_exists('precipitation', $dataSets['reading'])): ?>
                             <tr>
                                 <th>Rain</th>
                                 <td><?= $dataSets['reading']['precipitation']; ?></td>
                             </tr>
+                            <?php endif; // dew point ?>
                             <tr>
                                 <th>Relative Humidity</th>
                                 <td><?= $dataSets['reading']['relative_humidity']; ?></td>

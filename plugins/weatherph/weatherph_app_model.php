@@ -94,7 +94,6 @@ class WeatherphAppModel extends AppModel {
     }
 
     protected function dayOrNightSymbol($symbol = NULL, $utc = NULL, $meridiem = array()) {
-        
         if($symbol != NULL) {
             
         $symbol = number_format($symbol, 0);
@@ -123,7 +122,10 @@ class WeatherphAppModel extends AppModel {
             'Could not be determined',
             'Could not be determined',
         );
-        
+        if (!key_exists($symbol, $weather_description)) {
+            $this->log("The weather symbol with index {$symbol} does not exist");
+            return NULL;
+        }
             $utc = (int) $utc + 3;
 
             $sunrise = date('H', strtotime($meridiem['sunrise']));

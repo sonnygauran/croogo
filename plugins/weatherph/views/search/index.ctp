@@ -1,4 +1,3 @@
-<script type="text/javascript" src="<?= $this->webroot ?>weatherph/js/weatherph/results.js"></script>
 <div class="content">
     <section class="main">
         <div id="map-container">
@@ -92,6 +91,3 @@
         </div>
     </section>
 </div>
-<?php
-    echo $this->Html->script('libs/jquery.geo-1.0a4.min');
-?>

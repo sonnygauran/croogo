@@ -13,3 +13,4 @@ tmp/
 /nbproject/private/
 config/settings.private.yml
 nbproject/
+views/themed/weatherph/webroot/videos
