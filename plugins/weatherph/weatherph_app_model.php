@@ -94,11 +94,14 @@ class WeatherphAppModel extends AppModel {
     }
 
     protected function dayOrNightSymbol($symbol = NULL, $utc = NULL, $meridiem = array()) {
+        
+        // Get the default timestamp timezone
+        $siteTimezone = Configure::read('Site.timezone');
+        $Date = new DateTime(null, new DateTimeZone($siteTimezone));
+        
         if($symbol != NULL) {
             
         $symbol = number_format($symbol, 0);
-        
-//        $this->log('symbol ' . $symbol);
         
         $weather_description = array(
             'Could not be determined',
@@ -122,11 +125,12 @@ class WeatherphAppModel extends AppModel {
             'Could not be determined',
             'Could not be determined',
         );
+        
         if (!key_exists($symbol, $weather_description)) {
             $this->log("The weather symbol with index {$symbol} does not exist");
             return NULL;
         }
-            $utc = (int) $utc + 3;
+            $utc = date('H', strtotime($utc) + $Date->getOffset());
 
             $sunrise = date('H', strtotime($meridiem['sunrise']));
             $sunset = date('H', strtotime($meridiem['sunset']));
