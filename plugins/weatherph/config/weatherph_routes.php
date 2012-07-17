@@ -6,7 +6,7 @@
     
     CroogoRouter::connect('/typhoon/preparedness', array('plugin' => 'weatherph', 'controller' => 'typhoon', 'action' => 'preparedness'));
     CroogoRouter::connect('/typhoon/climatology', array('plugin' => 'weatherph', 'controller' => 'typhoon', 'action' => 'climatology'));
- //   CroogoRouter::connect('/typhoon-glossary', array('plugin' => 'weatherph', 'controller' => 'typhoon', 'action' => 'glossary'));
+ // CroogoRouter::connect('/typhoon-glossary', array('plugin' => 'weatherph', 'controller' => 'typhoon', 'action' => 'glossary'));
     
     CroogoRouter::connect('/:city-:id', array('plugin' => 'weatherph', 'controller' => 'weatherph', 'action' => 'getDmoForecast'), array(
         'pass' => array('id','city'),
@@ -26,9 +26,6 @@
     
     CroogoRouter::connect('/dictionaries/filipino', array('plugin' => 'weatherph', 'controller' => 'dictionaries', 'action' => 'filipino'));
     CroogoRouter::connect('/dictionaries/english', array('plugin' => 'weatherph', 'controller' => 'dictionaries', 'action' => 'english'));
-    
-    
-    
 //    CroogoRouter::connect('/impressum', array('plugin' => 'weatherph', 'controller' => 'weatherph', 'action' => 'impressum'));
     
     CroogoRouter::connect('/getForecast', array('plugin' => 'weatherph', 'controller' => 'weatherph', 'action' => 'getForecast'));
@@ -46,3 +43,4 @@
     
     CroogoRouter::connect('/weathertv', array('plugin' => 'weatherph', 'controller' => 'weatherph', 'action' => 'weathertv'));
     CroogoRouter::connect('/webcam', array('plugin' => 'weatherph', 'controller' => 'weatherph', 'action' => 'webcam'));
+    CroogoRouter::connect('/payongpanahon', array('plugin' => 'weatherph', 'controller' => 'weatherph', 'action' => 'payongpanahon'));

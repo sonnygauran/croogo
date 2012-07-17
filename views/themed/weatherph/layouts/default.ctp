@@ -62,7 +62,7 @@
                             <li><a href="<?= $this->webroot ?>dictionaries/filipino">Filipino</a></li>
                         </ul>
                     </li>
-                <li><a href="#">Payong Panahon</a></li>
+                <li><a href="<?= $this->webroot ?>payongpanahon">Payong Panahon</a></li>
                 <li><a href="<?= $this->webroot ?>webcam">Webcams</a></li>
                 <li><a href="<?= $this->webroot ?>about">About</a></li>
             </ul>
