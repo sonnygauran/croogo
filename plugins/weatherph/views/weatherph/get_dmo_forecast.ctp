@@ -23,7 +23,7 @@ echo $this->Html->script(array(
                 <h1><?= $location['Name']['full_name_ro']; ?></h1>
                 <h6>Current readings</h6>
                 <!-- <a href="#">change station</a>-->
-                <div id="nearest-station">Nearest Station: <?= $dataSets['station_name']; ?></div>
+                <div id="nearest-station">Nearest Station: <?= $dataSets['station_name']; ?> (<?= $distance ?>)</div>
             </div> <!--END STATION-->
 
             <?php if ($dataSets['reading']['status'] == 'ok'): ?>
