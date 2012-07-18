@@ -17,27 +17,27 @@ echo $this->Html->script(array(
 
 <div class="content">
     <section class="main">
-        <div id="current-weather" class="shadow">
+        <div class="current-detail-panel shadow">
 
-            <div id="station">
+            <div class="station">
                 <h1><?= $dataSets['station_name']; ?></h1>
                 <h6>Current readings</h6>
             </div> <!--END STATION-->
 
             <?php if ($dataSets['reading']['status'] == 'ok'): ?>
-                <div id="condition">
+                <div class="current-detail-condition ">
                     <?php if (!empty($dataSets['reading']['weather_symbol']['symbol'])) { ?>
-                        <div class="inner-condition">
-                            <div class="left-temp-reading">
+                        <div class="detail-highlight">
+                            <div class="temp-highlight">
                                 <?= $dataSets['reading']['temperature']; ?>
                             </div>
-                            <div class="right-sy-reading">
+                            <div class="condition-highlight">
                                 <span class="symbol <?= $dataSets['reading']['weather_symbol']['symbol']; ?>" title="<?= $dataSets['reading']['weather_symbol']['description']; ?>" ></span>
                             </div>
                         </div>
                     <?php } else { ?>
-                        <div class="inner-condition-temp-reading-only">
-                            <div class="reading-temperature-only">
+                        <div class="detail-highlight-alt">
+                            <div class="temp-highlight-alt">
                                 <?= $dataSets['reading']['temperature']; ?>
                             </div>
                         </div>
@@ -59,7 +59,7 @@ echo $this->Html->script(array(
                     </table>
                 </div> <!--END CONDITION-->
 
-                <div id="current-reading-table">
+                <div class="current-detail-table">
                     <table>
                         <tbody>
                             <?php // if (key_exists('dew_point', $dataSets['reading'])): ?>
@@ -88,7 +88,7 @@ echo $this->Html->script(array(
                 <?php endif; ?>
                 
                 <?php if ($dataSets['reading']['status'] == 'none'): ?>
-                    <div id="sun-moon-info">
+                    <div class="sun-moon-info">
                         <table>
                             <tbody>
                                 <tr>
@@ -111,7 +111,7 @@ echo $this->Html->script(array(
                 
         </div> <!--END CURRENT WEATHER-->
 
-        <div id="week-forecast">
+        <div class="week-forecast">
             <? if ($dataSets['forecast_status'] == 'ok'): ?>
                 <!-- CSV FILE <?php echo $dataSets['forecast_dmo_file_csv']; ?>-->
                 <?php
@@ -131,9 +131,9 @@ echo $this->Html->script(array(
                             <th>Time</th>
                             <th>Condition</th>
                             <th>Temperature</th>
-                            <th>Dew Point</th>
                             <th>Rain</th>
                             <th>Humidity</th>
+                            <th>Dew Point</th>
                             <th>Wind</th>
                         </tr>
 
@@ -142,9 +142,9 @@ echo $this->Html->script(array(
                                 <td><?= $forecasts2['localtime_range']; ?></td>
                                 <td><span class="symbol <?= $forecasts2['weather_condition']['symbol']; ?>" title="<?= $forecasts2['weather_condition']['description']; ?>"></span></td>
                                 <td><?= $forecasts2['temperature']; ?></td>
-                                <td><?= $forecasts2['dew_point']; ?></td>
                                 <td><?= $forecasts2['precipitation']; ?></td>
                                 <td><?= $forecasts2['relative_humidity']; ?></td>
+                                <td><?= $forecasts2['dew_point']; ?></td>
                                 <td><?php if (trim($forecasts2['wind_direction']) != '') { ?><span class="symbol <?= $forecasts2['wind_direction']; ?>"></span><?php } ?><span class="wind-description"><?= $forecasts2['wind_description']; ?></span></td>
                             </tr>
                         <?php } ?>

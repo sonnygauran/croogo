@@ -498,40 +498,40 @@ span.temperature {
 
 /* Detail page */
 
-#week-forecast,
+.week-forecast,
 #charts,
 #outlook {
     margin: 10px auto;
 }
 
-#current-weather {
+.current-detail-panel {
     width: 772px;
     overflow: auto;
     padding: 16px;
 }
 
-#station {
+.station {
     text-align: center;
     width: 100%;
-    padding-bottom:1em;
+    margin-bottom: 2em;
 }
 
-#station h1 {
+.station h1 {
     text-shadow: 0px 2px 3px #555;
     margin-bottom: 8px;
 }
 
-#condition {
+.current-detail-condition {
     width: 55%;
     float: left;
 }
 
-#condition td {
+.current-detail-condition td {
     vertical-align: middle;
     padding: 3px;
 }
 
-.inner-condition {
+.detail-highlight {
     float: left;
     position: relative;
     width: 98%;
@@ -541,7 +541,7 @@ span.temperature {
     margin-bottom: 10px;
 }
 
-.inner-condition-temp-reading-only{
+.detail-highlight-alt {
     float: left;
     position: relative;
     width: 60%;
@@ -552,7 +552,7 @@ span.temperature {
     margin-left: 100px;
 }
 
-.left-temp-reading{
+.temp-highlight {
     width: 50%;
     float: left;
     border-right: 1px #3E4F76 solid;
@@ -562,7 +562,7 @@ span.temperature {
     font-size: 3em;
 }
 
-.reading-temperature-only{
+.temp-highlight-alt {
     width: 100%;
     float: left;
     margin-top: 10px;
@@ -572,7 +572,7 @@ span.temperature {
     text-align: center;
 }
 
-.right-sy-reading{
+.condition-highlight {
     width: 49%;
     float: right;
     margin-top: 10px;
@@ -580,14 +580,14 @@ span.temperature {
     padding-top: 5px;
 }
 
-#current-reading-table {
+.current-detail-table {
     float: right;
     width: 45%;
     vertical-align: middle;
     
 }
 
-#current-reading-table th {
+.current-detail-table th {
     background-color: #365283;
     color: #fafafa;
     vertical-align: middle;
@@ -595,11 +595,11 @@ span.temperature {
     font-weight: normal;
 }
 
-#current-reading-table td {
+.current-detail-table td {
     padding: 5px 8px;
     text-align: center;
     font-size: 1.2em;
-    color: #365283;
+    color: #3e5e95;
     font-weight: normal;
     background-color: #fafafa;
     vertical-align: middle;
@@ -615,7 +615,7 @@ span.temperature {
     width: 20em;
 }
 
-#week-forecast table {
+.week-forecast table {
     width: 100%;
     border-collapse: collapse;
     text-align: center;
@@ -623,36 +623,38 @@ span.temperature {
     background: #fafafa;
 }
 
-#week-forecast th {
+.week-forecast th {
     color: #fafafa;
-    background: #4f75b6;
+    background: #365283;
     padding: 6px;
     font-weight: normal;
 }
 
-#week-forecast td {
+.week-forecast td {
     padding: 4px;
     border: 1px solid #e9e9e9;
 }
 
-#sun-moon-info {
+.sun-moon-info {
     margin: 0 10px 0 0;
 }
 
-#sun-moon-info table {
+.sun-moon-info table {
     margin: 0 auto 10px;
 }
 
-#sun-moon-info table td{
+.sun-moon-info td{
     vertical-align: middle;
 }
 
-#sun-moon-info table td.right-10px{
+.right-10px{
     padding-right: 20px
 }
 
+/*
 .chart-legend { display: block; margin-left: 30px; vertical-align: middle; font-size: 10px; }
 .chart-legend span { display: inline-block; margin: 0 5px 0 0; vertical-align: middle; padding: 0; width: 10px; }
+*/
 
 /* Sidebar */
 
@@ -1167,7 +1169,7 @@ nav,
 
 #current-readings-panel,
 #info > .readings,
-#current-weather,
+.current-detail-panel,
 .tabs li,
 .search-results h2 {
     background-color: #3e5e95;
@@ -1181,5 +1183,3 @@ nav li,
 }
 
 #nearest-station{ margin-top: 3px; }
-
-

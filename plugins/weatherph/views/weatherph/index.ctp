@@ -185,7 +185,7 @@
                 </div> <!--END PROVINCE SELECT-->
                 <div class="station-legend">
                     <div style="background-color: #4762ff;"></div>
-                    <span>Meteomedia stations</span>
+                    <span>Weather Philippines stations</span>
                     <div style="background-color: #fd7567;"></div>
                     <span>PAGASA stations</span>
                 </div>
@@ -416,12 +416,7 @@
 
     </section> <!--SECONDARY-->
 </div> <!--CONTENT-->
-<?php
-/**
- * index.js requires the following variable:
- *      - resource - contains an array of (data-layer => (temperature, pressure)) for retreiving the image key.
- */
-?>
+
 <?php
     $movie_location = Configure::read('Data.movies');
 ?>
