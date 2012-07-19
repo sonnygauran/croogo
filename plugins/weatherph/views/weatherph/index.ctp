@@ -188,12 +188,15 @@
                 </div> <!--END PROVINCE SELECT-->
                 
                 
-                <div class="station-legend">
-                    <div style="background-color: #4762ff;"></div>
-                    <span>Weather Philippines stations</span>
-                    <? //<div style="background-color: #fd7567;"></div>
-                    //<span>PAGASA stations</span>?>
-                </div>
+                <?
+                    //<div class="station-legend">
+                    //<div style="background-color: #4762ff;"></div>
+                    //<span>Weather Philippines stations</span>
+                    //<div style="background-color: #fd7567;"></div>
+                    //<span>PAGASA stations</span>
+                    //</div>
+                ?>
+                
             </div> <!--END LEGEND-->
         </div>
         <div id="info" class="shadow">
