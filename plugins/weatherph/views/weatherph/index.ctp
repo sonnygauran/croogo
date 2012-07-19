@@ -158,30 +158,30 @@
                             <option data-region-id="Palawan">Palawan/Sulu Sea</option>
                         </optgroup>
                         
-                        <optgroup label="Luzon" class="minor_areas">
-                            <option data-region-id="NCR" class="minor_areas">NCR</option>
-                            <option data-region-id="CAR" class="minor_areas">CAR</option>
-                            <option data-region-id="I" class="minor_areas">Ilocos</option>
-                            <option data-region-id="II" class="minor_areas">Cagayan Valley</option>
-                            <option data-region-id="III" class="minor_areas">Central Luzon</option>
-                            <option data-region-id="IVa" class="minor_areas">CALABARZON</option>
-                            <option data-region-id="IVb" class="minor_areas">MIMAROPA</option>
-                            <option data-region-id="V" class="minor_areas">Bicol</option>
+                        <optgroup label="Luzon" class="minor-area">
+                            <option data-region-id="NCR">NCR</option>
+                            <option data-region-id="CAR">CAR</option>
+                            <option data-region-id="I">Ilocos</option>
+                            <option data-region-id="II">Cagayan Valley</option>
+                            <option data-region-id="III">Central Luzon</option>
+                            <option data-region-id="IVa">CALABARZON</option>
+                            <option data-region-id="IVb">MIMAROPA</option>
+                            <option data-region-id="V">Bicol</option>
                         </optgroup>
                             
-                        <optgroup label="Visayas" class="minor_areas">
-                            <option data-region-id="VI" class="minor_areas">Western Visayas</option>
-                            <option data-region-id="VII" class="minor_areas">Central Visayas</option>
-                            <option data-region-id="VIII" class="minor_areas">Eastern Visayas</option>
+                        <optgroup label="Visayas" class="minor-area">
+                            <option data-region-id="VI">Western Visayas</option>
+                            <option data-region-id="VII">Central Visayas</option>
+                            <option data-region-id="VIII">Eastern Visayas</option>
                         </optgroup>
                             
-                        <optgroup label="Mindanao" class="minor_areas">
-                            <option data-region-id="IX" class="minor_areas">Zamboanga Peninsula</option>
-                            <option data-region-id="X" class="minor_areas">Northern Mindanao</option>
-                            <option data-region-id="XI" class="minor_areas">Davao</option>
-                            <option data-region-id="XII" class="minor_areas">SOCCSKSARGEN</option>
-                            <option data-region-id="XIII" class="minor_areas">CARAGA</option>
-                            <option data-region-id="ARMM" class="minor_areas">ARMM</option>
+                        <optgroup label="Mindanao" class="minor-area">
+                            <option data-region-id="IX">Zamboanga Peninsula</option>
+                            <option data-region-id="X">Northern Mindanao</option>
+                            <option data-region-id="XI">Davao</option>
+                            <option data-region-id="XII">SOCCSKSARGEN</option>
+                            <option data-region-id="XIII">CARAGA</option>
+                            <option data-region-id="ARMM">ARMM</option>
                         </optgroup>                              
                         
                     </select>
@@ -191,8 +191,8 @@
                 <div class="station-legend">
                     <div style="background-color: #4762ff;"></div>
                     <span>Weather Philippines stations</span>
-                    <div style="background-color: #fd7567;"></div>
-                    <span>PAGASA stations</span>
+                    <? //<div style="background-color: #fd7567;"></div>
+                    //<span>PAGASA stations</span>?>
                 </div>
             </div> <!--END LEGEND-->
         </div>

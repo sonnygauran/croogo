@@ -1,29 +1,32 @@
-$(window).load(function() {
-    $(document).on( 'mouseover mouseout', 'div.plot, div.plot-alt', function(event){
-        if (event.type == 'mouseover') {
 
-            var attributes = $(this).attr('class').split(' ');
-            var id = attributes[1];
-            var name ="";
-            var $allStations = $stations.concat($stationsPagasa);
-
-            $info = getObjects($allStations, 'id', id);
-            name = $info[0].name;
-
-            $('.hovered-station')
-            .show()
-            .stop()
-            .css('opacity', '1')
-            .text(name);
-
-        } else {
-            $('.hovered-station')
-            .animate("opacity", '1') //This is to get the delay working
-            .delay(5000)
-            .fadeOut(400);
-        }
-    });
-});
+// Station hover has been disabled by request.
+//
+//$(window).load(function() {
+//    $(document).on( 'mouseover mouseout', 'div.plot, div.plot-alt', function(event){
+//        if (event.type == 'mouseover') {
+//
+//            var attributes = $(this).attr('class').split(' ');
+//            var id = attributes[1];
+//            var name ="";
+//            var $allStations = $stations.concat($stationsPagasa);
+//
+//            $info = getObjects($allStations, 'id', id);
+//            name = $info[0].name;
+//
+//            $('.hovered-station')
+//            .show()
+//            .stop()
+//            .css('opacity', '1')
+//            .text(name);
+//
+//        } else {
+//            $('.hovered-station')
+//            .animate("opacity", '1') //This is to get the delay working
+//            .delay(5000)
+//            .fadeOut(400);
+//        }
+//    });
+//});
 
 $(document).ready(function(){
     window['GEOMAP_SERVICES'] = {
@@ -566,7 +569,7 @@ function redrawMap(){
                 $('.scale-fahrenheit').hide();
                 $('.scale-temperature').show();
                 $('.scale-pressure').hide();
-                $('.minor_areas').hide();
+                $('.minor-area').attr('disabled','true');
                 removeStations();
                 break;
           
@@ -574,19 +577,17 @@ function redrawMap(){
                 removeStations();
                 $('.scale-temperature').hide();
                 $('.scale-pressure').show();
-                $('.minor_areas').hide();
+                $('.minor-area').attr('disabled','true');
                 serviceName = 'outline';
                 break;
             case 'stations':
                 $('.scale-temperature').hide();
                 $('.scale-pressure').hide();
-                $('.minor_areas').hide();
-                $('.minor_areas').show();
+                $('.minor-area').removeAttr('disabled');
                 remapStations();
                 break;
             default:
                 $('.scale-temperature').hide();
-                $('.minor_areas').hide();
                 break;
         }
     }
