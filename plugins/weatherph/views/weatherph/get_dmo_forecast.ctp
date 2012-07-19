@@ -140,7 +140,7 @@ echo $this->Html->script(array(
                         <?php foreach ($dayForecast as $forecasts2) { ?><!-- <?= $forecasts2['their_time']; ?> -->
                             <tr>
                                 <td><?= $forecasts2['localtime_range']; ?></td>
-                                <td><span class="symbol <?= $forecasts2['weather_condition']['symbol']; ?>" title="<?= $forecasts2['weather_condition']['description']; ?>"></span></td>
+                                <td><span class="symbol <?= $forecasts2['weather_symbol']['symbol']; ?>" title="<?= $forecasts2['weather_symbol']['description']; ?>"></span></td>
                                 <td><?= $forecasts2['temperature']; ?></td>
                                 <td><?= $forecasts2['precipitation']; ?></td>
                                 <td><?= $forecasts2['relative_humidity']; ?></td>
