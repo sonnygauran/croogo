@@ -356,7 +356,22 @@ $(document).ready(function(){
 });
 
 // Show/hide forecasts depending on availability
-
+//function hideDiv() { 
+//    if (document.getElementById) { F
+//            document.getElementById('stations_only').style.visibility = 'hidden'; 
+//    } 
+//} 
+////
+////function showDiv() { 
+////    if (document.getElementById) { 
+////            document.getElementById('stations_only').style.visibility = 'visible'; 
+////        } 
+////}
+function hideSelect(){
+    $('.stations-only').fadeOut(function(){
+       $('.stations-only').fadeIn();     
+    });
+}
 function hideForecast(){
     $('.day-forecast').fadeOut(function(){
         $('.no-forecast').fadeIn();
@@ -551,21 +566,27 @@ function redrawMap(){
                 $('.scale-fahrenheit').hide();
                 $('.scale-temperature').show();
                 $('.scale-pressure').hide();
+                $('.minor_areas').hide();
                 removeStations();
                 break;
+          
             case 'pressure':
                 removeStations();
                 $('.scale-temperature').hide();
                 $('.scale-pressure').show();
+                $('.minor_areas').hide();
                 serviceName = 'outline';
                 break;
             case 'stations':
                 $('.scale-temperature').hide();
                 $('.scale-pressure').hide();
+                $('.minor_areas').hide();
+                $('.minor_areas').show();
                 remapStations();
                 break;
             default:
                 $('.scale-temperature').hide();
+                $('.minor_areas').hide();
                 break;
         }
     }
