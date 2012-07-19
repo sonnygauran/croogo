@@ -1,7 +1,7 @@
 <div class="blog-payong-panahon">
-    <div class="blog-title">
-        <h3>Payong Panahon</h3>
-    </div>
+<!--    <div class="blog-title">-->
+        <h3>Mata ng Bagyo (Eye of the Storm)</h3>
+<!--    </div>-->
     <div class="page">
         <?php foreach ($blogLists as $blog) { ?>
             <?php $createdTime = strtotime($blog['Node']['created']); ?>
@@ -18,7 +18,7 @@
 
             <h4><?= $html->link($blog['Node']['title'], $blog['Node']['url'], array('class' => 'link')) ?></h4>
             <div class="blog-excerpt">
-                <p><?= $text->excerpt(strip_tags($blog['Node']['body']), 'method', 200, '...' . $html->link('Read More', $blog['Node']['url'])) ?><?= '<hr>'; ?></p>
+                <p><?= $blog['Node']['body'];?></p>
             </div>
         <?php } ?>
     </div>

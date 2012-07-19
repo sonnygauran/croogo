@@ -278,6 +278,24 @@ class WeatherphController extends WeatherphAppController {
         
         $this->set(compact('blogLists'));        
     }
+    
+    public function mataNgBagyo(){
+        $this->layout = 'default';
+        
+        $blogLists = $this->Node->find('all', array(
+           'order' => 'Node.created DESC',
+           'conditions' => array(
+               'Node.type' => 'blog',
+               'Node.terms' => json_encode(array('5'=>'mata-ng-bagyo-eye-of-the-storm')),
+               ),
+        ));
+        
+    //debug($blogLists);
+        
+        $this->set(compact('blogLists'));        
+        
+        
+    }
 
     public function impressum() {
         $this->layout = 'default';

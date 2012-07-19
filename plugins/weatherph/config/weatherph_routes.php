@@ -44,3 +44,4 @@
     CroogoRouter::connect('/weathertv', array('plugin' => 'weatherph', 'controller' => 'weatherph', 'action' => 'weathertv'));
     CroogoRouter::connect('/webcam', array('plugin' => 'weatherph', 'controller' => 'weatherph', 'action' => 'webcam'));
     CroogoRouter::connect('/payongpanahon', array('plugin' => 'weatherph', 'controller' => 'weatherph', 'action' => 'payongpanahon'));
+    CroogoRouter::connect('/mataNgBagyo', array('plugin' => 'weatherph', 'controller' => 'weatherph', 'action' => 'matangbagyo'));
