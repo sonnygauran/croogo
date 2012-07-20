@@ -779,7 +779,7 @@ class WeatherphStationForecast extends WeatherphAppModel {
 
             $current_reading = $station_readings[0]['Reading'];
 
-//            $this->log("Current Readings:" . print_r($current_reading, TRUE));
+            $this->log("Current Readings:" . print_r($current_reading, TRUE));
             
             if(key_exists('sy', $current_reading) && trim($current_reading['sy']) != ''){
                 $current_readings['weather_symbol'] = $this->dayOrNightSymbol($current_reading['sy'], $current_reading['utc'], array("sunrise" => $sunrise, "sunset" => $sunset));
@@ -791,11 +791,11 @@ class WeatherphStationForecast extends WeatherphAppModel {
             
             if(key_exists('rr1h', $current_reading) && key_exists('rain6', $current_reading)){
                 if(trim($current_reading['rr1h']) != ''){
-                    $current_readings['precipitation'] = ((int)$forecast['rr1h'] <= 0)? "0mm" : round($forecast['rr1h']) . "mm";    
+                    $current_readings['precipitation'] = ((int)$current_reading['rr1h'] <= 0)? "0mm" : round($current_reading['rr1h']) . "mm";    
                     $current_readings['precipitation_hr_range'] = "(1H)";
                 }else{
                     if(trim($current_reading['rain6']) != ''){
-                        $current_readings['precipitation'] = ((int)$forecast['rain6'] <= 0)? "0mm" : round($forecast['rain6']) . "mm";
+                        $current_readings['precipitation'] = ((int)$current_reading['rain6'] <= 0)? "0mm" : round($current_reading['rain6']) . "mm";
                         $current_readings['precipitation_hr_range'] = "(6H)"; 
                     }
                 }
