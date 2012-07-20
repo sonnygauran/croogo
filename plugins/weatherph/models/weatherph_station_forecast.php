@@ -39,22 +39,24 @@ class WeatherphStationForecast extends WeatherphAppModel {
             'limit' => 1
                 ));
         
-        $current_readings = array(
-            'weather_symbol' => '-',
-            'temperature' => '-',
-            'precipitation' => '-',
-            'precipitation_hr_range' => '-',
-            'relative_humidity' => '-',
-            'wind_direction' => '-',
-            'wind_description' => '-',
-            'wind_speed_direction' => '-',
-            'wind_speed' => '-',
-            'wind_gust' => '-',
-            'dew_point' => '-',
-//            '' => '-',
-        );
+        $current_readings = array();
         
         if (count($station_readings) > 0) {
+            
+            $current_readings = array(
+                'weather_symbol' => '-',
+                'temperature' => '-',
+                'precipitation' => '-',
+                'precipitation_hr_range' => '',
+                'relative_humidity' => '-',
+                'wind_direction' => '-',
+                'wind_description' => '-',
+                'wind_speed_direction' => '-',
+                'wind_speed' => '-',
+                'wind_gust' => '-',
+                'dew_point' => '-',
+    //            '' => '-',
+            );
 
             $current_reading = $station_readings[0]['Reading'];
             
@@ -68,11 +70,11 @@ class WeatherphStationForecast extends WeatherphAppModel {
             
             if(key_exists('rr1h', $current_reading) && key_exists('rain6', $current_reading)){
                 if(trim($current_reading['rr1h']) != ''){
-                    $current_readings['precipitation'] = ((int)$forecast['rr1h'] <= 0)? round($forecast['rr1h']) . "mm" : number_format($forecast['rr1h'],1) . "mm";    
+                    $current_readings['precipitation'] = ((int)$forecast['rr1h'] <= 0)? "0mm" : round($forecast['rr1h']) . "mm";    
                     $current_readings['precipitation_hr_range'] = "(1H)";
                 }else{
                     if(trim($current_reading['rain6']) != ''){
-                        $current_readings['precipitation'] = ((int)$forecast['rain6'] <= 0)? round($forecast['rain6']) . "mm" : number_format($forecast['rain6'],1) . "mm";  
+                        $current_readings['precipitation'] = ((int)$forecast['rain6'] <= 0)? "0mm" : round($forecast['rain6']) . "mm";  
                         $current_readings['precipitation_hr_range'] = "(6H)"; 
                     }
                 }
@@ -131,11 +133,12 @@ class WeatherphStationForecast extends WeatherphAppModel {
                 );
 
                 if(key_exists('sy', $forecast) && trim($forecast['sy']) != ''){
+                    $this->log("forecast_utc ".$forecast['utc']);
                     $current_forecast['weather_symbol'] = $this->dayOrNightSymbol($forecast['sy'], $forecast['utc'], array("sunrise"=>$sunrise,"sunset"=>$sunset));
                 }
 
                 if(key_exists('rain3', $forecast) && trim($forecast['rain3']) != ''){
-                    $current_forecast['precipitation'] = ((int)$forecast['rain3'] <= 0)? round($forecast['rain3']) . "mm" : number_format($forecast['rain3']) . "mm";
+                    $current_forecast['precipitation'] = ((int)$forecast['rain3'] <= 0)? "0mm" : round($forecast['rain3']) . "mm";
                 }
 
                 if(key_exists('rh', $forecast) && trim($forecast['rh']) != ''){
@@ -269,22 +272,24 @@ class WeatherphStationForecast extends WeatherphAppModel {
             'limit' => '1'
                 ));
         
-        $current_readings = array(
-            'weather_symbol' => '-',
-            'temperature' => '-',
-            'precipitation' => '-',
-            'precipitation_hr_range' => '-',
-            'relative_humidity' => '-',
-            'wind_direction' => '-',
-            'wind_description' => '-',
-            'wind_speed_direction' => '-',
-            'wind_speed' => '-',
-            'wind_gust' => '-',
-            'dew_point' => '-',
-//            '' => '-',
-        );
+        $current_readings = array();
 
         if (count($station_readings) > 0) {
+            
+            $current_readings = array(
+                'weather_symbol' => '-',
+                'temperature' => '-',
+                'precipitation' => '-',
+                'precipitation_hr_range' => '-',
+                'relative_humidity' => '-',
+                'wind_direction' => '-',
+                'wind_description' => '-',
+                'wind_speed_direction' => '-',
+                'wind_speed' => '-',
+                'wind_gust' => '-',
+                'dew_point' => '-',
+    //            '' => '-',
+            );
 
             $current_reading = $station_readings[0]['Reading'];
             
@@ -302,11 +307,11 @@ class WeatherphStationForecast extends WeatherphAppModel {
             
             if(key_exists('rr1h', $current_reading) && key_exists('rain6', $current_reading)){
                 if(trim($current_reading['rr1h']) != ''){
-                    $current_readings['precipitation'] = ((int)$forecast['rr1h'] <= 0)? round($forecast['rr1h']) . "mm" : number_format($forecast['rr1h'],1) . "mm";    
+                    $current_readings['precipitation'] = ((int)$forecast['rr1h'] <= 0)? "0mm" : round($forecast['rr1h']) . "mm";    
                     $current_readings['precipitation_hr_range'] = "(1H)";
                 }else{
                     if(trim($current_reading['rain6']) != ''){
-                        $current_readings['precipitation'] = ((int)$forecast['rain6'] <= 0)? round($forecast['rain6']) . "mm" : number_format($forecast['rain6'],1) . "mm"; 
+                        $current_readings['precipitation'] = ((int)$forecast['rain6'] <= 0)? "0mm" : round($forecast['rain6']) . "mm"; 
                         $current_readings['precipitation_hr_range'] = "(6H)"; 
                     }
                 }
@@ -378,11 +383,12 @@ class WeatherphStationForecast extends WeatherphAppModel {
                     );
                     
                     if(key_exists('sy', $forecast) && trim($forecast['sy']) != ''){
+                        $this->log('forecastutc'.$forecast['utc']);
                         $current_forecast['weather_condition'] = $this->dayOrNightSymbol($forecast['sy'], $forecast['utc'], array("sunrise"=>$sunrise,"sunset"=>$sunset));
                     }
                     
                     if(key_exists('rain3', $forecast) && trim($forecast['rain3']) != ''){
-                        $current_forecast['precipitation'] = ((int)$forecast['rain3'] <= 0)? round($forecast['rain3']) . "mm" : number_format($forecast['rain3'],1) . "mm";
+                        $current_forecast['precipitation'] = ((int)$forecast['rain3'] <= 0)? "0mm" : round($forecast['rain3']) . "mm";
                     }    
                     
                     if(key_exists('rh', $forecast) && trim($forecast['rh']) != ''){
@@ -438,7 +444,7 @@ class WeatherphStationForecast extends WeatherphAppModel {
         $abfrageResults['station_id'] = $station_id;
         $abfrageResults['station_name'] = $station_info['name'];
         
-        $this->log(print_r($abfrageResults, TRUE));
+//        $this->log(print_r($abfrageResults, TRUE));
         
         return $abfrageResults;
     }
@@ -752,26 +758,28 @@ class WeatherphStationForecast extends WeatherphAppModel {
             'limit' => 1,
                 ));
         
-        $current_readings = array(
-            'weather_symbol' => '-',
-            'temperature' => '-',
-            'precipitation' => '-',
-            'precipitation_hr_range' => '-',
-            'relative_humidity' => '-',
-            'wind_direction' => '-',
-            'wind_description' => '-',
-            'wind_speed_direction' => '-',
-            'wind_speed' => '-',
-            'wind_gust' => '-',
-            'dew_point' => '-',
-//            '' => '-',
-        );
+        $current_readings = array();
 
         if (count($station_readings) > 0) {
+            
+            $current_readings = array(
+                'weather_symbol' => '-',
+                'temperature' => '-',
+                'precipitation' => '-',
+                'precipitation_hr_range' => '-',
+                'relative_humidity' => '-',
+                'wind_direction' => '-',
+                'wind_description' => '-',
+                'wind_speed_direction' => '-',
+                'wind_speed' => '-',
+                'wind_gust' => '-',
+                'dew_point' => '-',
+    //            '' => '-',
+            );
 
             $current_reading = $station_readings[0]['Reading'];
 
-//            $this->log("Current Readings:" . print_r($current_reading, TRUE));
+            $this->log("Current Readings:" . print_r($current_reading, TRUE));
             
             if(key_exists('sy', $current_reading) && trim($current_reading['sy']) != ''){
                 $current_readings['weather_symbol'] = $this->dayOrNightSymbol($current_reading['sy'], $current_reading['utc'], array("sunrise" => $sunrise, "sunset" => $sunset));
@@ -783,11 +791,11 @@ class WeatherphStationForecast extends WeatherphAppModel {
             
             if(key_exists('rr1h', $current_reading) && key_exists('rain6', $current_reading)){
                 if(trim($current_reading['rr1h']) != ''){
-                    $current_readings['precipitation'] = ((int)$forecast['rr1h'] <= 0)? round($forecast['rr1h']) . "mm" : number_format($forecast['rr1h'],1) . "mm";    
+                    $current_readings['precipitation'] = ((int)$current_reading['rr1h'] <= 0)? "0mm" : round($current_reading['rr1h']) . "mm";    
                     $current_readings['precipitation_hr_range'] = "(1H)";
                 }else{
                     if(trim($current_reading['rain6']) != ''){
-                        $current_readings['precipitation'] = ((int)$forecast['rain6'] <= 0)? round($forecast['rain6']) . "mm" : number_format($forecast['rain6'],1) . "mm";
+                        $current_readings['precipitation'] = ((int)$current_reading['rain6'] <= 0)? "0mm" : round($current_reading['rain6']) . "mm";
                         $current_readings['precipitation_hr_range'] = "(6H)"; 
                     }
                 }
@@ -863,7 +871,7 @@ class WeatherphStationForecast extends WeatherphAppModel {
                     }
                     
                     if(key_exists('rain3', $forecast) && trim($forecast['rain3']) != ''){
-                        $current_forecast['precipitation'] = ((int)$forecast['rain3'] <= 0)? round($forecast['rain3']) . "mm" : number_format($forecast['rain3'],1) . "mm";
+                        $current_forecast['precipitation'] = ((int)$forecast['rain3'] <= 0)? "0mm" : round($forecast['rain3']) . "mm";
                     }
                     
                     if(key_exists('rh', $forecast) && trim($forecast['rh']) != ''){

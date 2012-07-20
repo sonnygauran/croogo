@@ -260,6 +260,42 @@ class WeatherphController extends WeatherphAppController {
     public function about() {
         $this->layout = 'default';
     }
+    
+    public function payongpanahon() {
+        $this->set('title_for_layout',__('Weatherph',true));
+        
+        //$this->layout = 'default';
+        
+        $blogLists = $this->Node->find('all', array(
+           'order' => 'Node.created DESC',
+           'conditions' => array(
+               'Node.type' => 'blog',
+               'Node.terms' => json_encode(array('4'=>'payong-panahon')),
+               ),
+        ));
+        
+    //debug($blogLists);
+        
+        $this->set(compact('blogLists'));        
+    }
+    
+    public function mataNgBagyo(){
+        $this->layout = 'default';
+        
+        $blogLists = $this->Node->find('all', array(
+           'order' => 'Node.created DESC',
+           'conditions' => array(
+               'Node.type' => 'blog',
+               'Node.terms' => json_encode(array('5'=>'mata-ng-bagyo-eye-of-the-storm')),
+               ),
+        ));
+        
+    //debug($blogLists);
+        
+        $this->set(compact('blogLists'));        
+        
+        
+    }
 
     public function impressum() {
         $this->layout = 'default';
@@ -281,8 +317,10 @@ class WeatherphController extends WeatherphAppController {
            ))
         );
         
-       //debug($result);
+       //debug($result);= number_format($distance,1,'.','')
        $station_id = $result[0]['NearestStation']['station_id'];
+       $distance = $result[0]['NearestStation']['distance'];
+       $distance = number_format($distance,1,'.','').'km';
        $dataSets = $DmoForecast->dmoForecast('all', array('conditions' => array(
            'id' => $station_id,
        )));
@@ -296,7 +334,7 @@ class WeatherphController extends WeatherphAppController {
        
 //       $this->log(print_r($location, TRUE));
        
-       $this->set(compact('dataSets','location'));
+       $this->set(compact('dataSets','location', 'distance'));
        
    }
    
@@ -516,6 +554,9 @@ class WeatherphController extends WeatherphAppController {
 
         $this->set('set', $set);
     }
+    
+    
+    
     
     
     

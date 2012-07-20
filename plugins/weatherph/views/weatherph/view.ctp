@@ -17,27 +17,27 @@ echo $this->Html->script(array(
 
 <div class="content">
     <section class="main">
-        <div id="current-weather" class="shadow">
+        <div class="current-detail-panel shadow">
 
-            <div id="station">
+            <div class="station">
                 <h1><?= $dataSets['station_name']; ?></h1>
                 <h6>Current readings</h6>
             </div> <!--END STATION-->
 
             <?php if ($dataSets['reading']['status'] == 'ok'): ?>
-                <div id="condition">
+                <div class="current-detail-condition ">
                     <?php if (!empty($dataSets['reading']['weather_symbol']['symbol'])) { ?>
-                        <div class="inner-condition">
-                            <div class="left-temp-reading">
+                        <div class="detail-highlight">
+                            <div class="temp-highlight">
                                 <?= $dataSets['reading']['temperature']; ?>
                             </div>
-                            <div class="right-sy-reading">
+                            <div class="condition-highlight">
                                 <span class="symbol <?= $dataSets['reading']['weather_symbol']['symbol']; ?>" title="<?= $dataSets['reading']['weather_symbol']['description']; ?>" ></span>
                             </div>
                         </div>
                     <?php } else { ?>
-                        <div class="inner-condition-temp-reading-only">
-                            <div class="reading-temperature-only">
+                        <div class="detail-highlight-alt">
+                            <div class="temp-highlight-alt">
                                 <?= $dataSets['reading']['temperature']; ?>
                             </div>
                         </div>
@@ -59,20 +59,20 @@ echo $this->Html->script(array(
                     </table>
                 </div> <!--END CONDITION-->
 
-                <div id="current-reading-table">
+                <div class="current-detail-table">
                     <table>
                         <tbody>
-                            <?php if (array_key_exists('dew_point', $dataSets['reading'])): ?>
-                            <tr>
+                            <?php // if (key_exists('dew_point', $dataSets['reading'])): ?>
+                            <!--tr>
                                 <th>Dew Point</th>
-                                <td><?= $dataSets['reading']['dew_point']; ?></td>
-                            </tr>
-                            <?php endif; // dew point ?>
+                                <td><?php // echo $dataSets['reading']['dew_point']; ?></td>
+                            </tr-->
+                            <?php // endif; // dew point ?>
                             <tr>
                                 <th>Wind Speed/Direction</th>
                                 <td><span class="symbolwind <?= $dataSets['reading']['wind_direction']; ?>"></span><?= $dataSets['reading']['wind_speed_direction']; ?></td>
                             </tr>
-                            <?php if (array_key_exists('precipitation', $dataSets['reading'])): ?>
+                            <?php if (key_exists('precipitation', $dataSets['reading'])): ?>
                             <tr>
                                 <th>Rain</th>
                                 <td><?= $dataSets['reading']['precipitation']; ?></td>
@@ -85,16 +85,33 @@ echo $this->Html->script(array(
                         </tbody>
                     </table>
                 </div>
-                <?php endIf; ?>
+                <?php endif; ?>
+                
+                <?php if ($dataSets['reading']['status'] == 'none'): ?>
+                    <div class="sun-moon-info">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td><span class="symbol sunrise"></span></td>
+                                    <td class="right-10px">Sunrise: <?= date("h:iA", strtotime($dataSets['sunrise'])); ?></td>
+
+                                    <td><span class="symbol sunset"></span></td>
+                                    <td class="right-10px">Sunset: <?= date("h:iA", strtotime($dataSets['sunset'])); ?></td>
+
+                                    <td><span class="symbol moonphase_<?= $dataSets['moonphase']['phase_code']; ?>"></span></td>
+                                    <td class="right-10px">Moon Phase: <?= $dataSets['moonphase']['phase']; ?></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="no-readings" style="display: block;">
+                        <p>Sorry, there are no readings available for this station.</p>
+                    </div>
+                <?php endif; ?>
+                
         </div> <!--END CURRENT WEATHER-->
 
-        <?php if ($dataSets['reading']['status'] == 'none'): ?>
-            <div class="no-readings" style="display: block;">
-                <p>Sorry, there are no readings available for this station.</p>
-            </div>
-        <?php endif; ?>
-
-        <div id="week-forecast">
+        <div class="week-forecast">
             <? if ($dataSets['forecast_status'] == 'ok'): ?>
                 <!-- CSV FILE <?php echo $dataSets['forecast_dmo_file_csv']; ?>-->
                 <?php
@@ -114,9 +131,9 @@ echo $this->Html->script(array(
                             <th>Time</th>
                             <th>Condition</th>
                             <th>Temperature</th>
-                            <th>Dew Point</th>
                             <th>Rain</th>
                             <th>Humidity</th>
+                            <th>Dew Point</th>
                             <th>Wind</th>
                         </tr>
 
@@ -125,9 +142,9 @@ echo $this->Html->script(array(
                                 <td><?= $forecasts2['localtime_range']; ?></td>
                                 <td><span class="symbol <?= $forecasts2['weather_condition']['symbol']; ?>" title="<?= $forecasts2['weather_condition']['description']; ?>"></span></td>
                                 <td><?= $forecasts2['temperature']; ?></td>
-                                <td><?= $forecasts2['dew_point']; ?></td>
                                 <td><?= $forecasts2['precipitation']; ?></td>
                                 <td><?= $forecasts2['relative_humidity']; ?></td>
+                                <td><?= $forecasts2['dew_point']; ?></td>
                                 <td><?php if (trim($forecasts2['wind_direction']) != '') { ?><span class="symbol <?= $forecasts2['wind_direction']; ?>"></span><?php } ?><span class="wind-description"><?= $forecasts2['wind_description']; ?></span></td>
                             </tr>
                         <?php } ?>
@@ -160,7 +177,7 @@ echo $this->Html->script(array(
                             var chart = new AnyChart('<?= $this->webroot ?>swf/AnyChart.swf');
                             chart.width = 794;
                             chart.height = 200;
-                            chart.setXMLFile('<?= $this->webroot ?>getDetailedForecast/<?= $dataSets['stationId']; ?>/temperature/3h');
+                            chart.setXMLFile('<?= $this->webroot ?>getDetailedForecast/<?= $dataSets['station_id']; ?>/temperature/3h');
                             chart.write();
                             //]]>
                         </script>
@@ -177,7 +194,7 @@ echo $this->Html->script(array(
                             var chart = new AnyChart('<?= $this->webroot ?>swf/AnyChart.swf');
                             chart.width = 794;
                             chart.height = 200;
-                            chart.setXMLFile('<?= $this->webroot ?>getDetailedForecast/<?= $dataSets['stationId']; ?>/precip/6h');
+                            chart.setXMLFile('<?= $this->webroot ?>getDetailedForecast/<?= $dataSets['station_id']; ?>/precip/6h');
                             chart.write();
                             //]]>
                         </script>
@@ -191,7 +208,7 @@ echo $this->Html->script(array(
                             var chart = new AnyChart('<?= $this->webroot ?>swf/AnyChart.swf');
                             chart.width = 794;
                             chart.height = 200;
-                            chart.setXMLFile('<?= $this->webroot ?>getDetailedForecast/<?= $dataSets['stationId']; ?>/wind/3h');
+                            chart.setXMLFile('<?= $this->webroot ?>getDetailedForecast/<?= $dataSets['station_id']; ?>/wind/3h');
                             chart.write();
                             //]]>
                         </script>
@@ -204,7 +221,7 @@ echo $this->Html->script(array(
                             var chart = new AnyChart('<?= $this->webroot ?>swf/AnyChart.swf');
                             chart.width = 794;
                             chart.height = 70;
-                            chart.setXMLFile('<?= $this->webroot ?>getDetailedForecast/<?= $dataSets['stationId']; ?>/winddir/6h');
+                            chart.setXMLFile('<?= $this->webroot ?>getDetailedForecast/<?= $dataSets['station_id']; ?>/winddir/6h');
                             chart.write();
                             //]]>
                         </script>
@@ -215,7 +232,7 @@ echo $this->Html->script(array(
                             var chart = new AnyChart('<?= $this->webroot ?>swf/AnyChart.swf');
                             chart.width = 794;
                             chart.height = 200;
-                            chart.setXMLFile('<?= $this->webroot ?>getDetailedForecast/<?= $dataSets['stationId']; ?>/humidity/3h');
+                            chart.setXMLFile('<?= $this->webroot ?>getDetailedForecast/<?= $dataSets['station_id']; ?>/humidity/3h');
                             chart.write();
                             //]]>
                         </script>

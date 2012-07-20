@@ -14,6 +14,7 @@
                     <li><a data-target="data-layer" data-name="temperature" href="#map">Temperature</a></li>
                     <li><a data-target="data-layer" data-name="pressure" href="#map">Pressure</a></li>
                 </ul>
+             
             </div> <!--LAYER SELECTOR-->
             <div id="video-viewport">
 
@@ -143,8 +144,9 @@
                         <li style="background-color: #001E14;">960</li>
                     </ul>
                 </div>
+        <!--Province Selector-->
 
-                <div class="province-select">
+        <div class="province-select">
                     <span>Province:</span>
                     <select name="philippine-regions">
                         <option>Choose one...</option>
@@ -155,8 +157,8 @@
                             <option data-region-id="VisMin">Visayas/Mindanao</option>
                             <option data-region-id="Palawan">Palawan/Sulu Sea</option>
                         </optgroup>
-
-                        <optgroup label="Luzon">
+                        
+                        <optgroup label="Luzon" class="minor-area">
                             <option data-region-id="NCR">NCR</option>
                             <option data-region-id="CAR">CAR</option>
                             <option data-region-id="I">Ilocos</option>
@@ -166,29 +168,35 @@
                             <option data-region-id="IVb">MIMAROPA</option>
                             <option data-region-id="V">Bicol</option>
                         </optgroup>
-
-                        <optgroup label="Visayas">
+                            
+                        <optgroup label="Visayas" class="minor-area">
                             <option data-region-id="VI">Western Visayas</option>
                             <option data-region-id="VII">Central Visayas</option>
                             <option data-region-id="VIII">Eastern Visayas</option>
                         </optgroup>
-
-                        <optgroup label="Mindanao">
+                            
+                        <optgroup label="Mindanao" class="minor-area">
                             <option data-region-id="IX">Zamboanga Peninsula</option>
                             <option data-region-id="X">Northern Mindanao</option>
                             <option data-region-id="XI">Davao</option>
                             <option data-region-id="XII">SOCCSKSARGEN</option>
                             <option data-region-id="XIII">CARAGA</option>
                             <option data-region-id="ARMM">ARMM</option>
-                        </optgroup>
+                        </optgroup>                              
+                        
                     </select>
                 </div> <!--END PROVINCE SELECT-->
-                <div class="station-legend">
-                    <div style="background-color: #4762ff;"></div>
-                    <span>Meteomedia stations</span>
-                    <div style="background-color: #fd7567;"></div>
-                    <span>PAGASA stations</span>
-                </div>
+                
+                
+                <?
+                    //<div class="station-legend">
+                    //<div style="background-color: #4762ff;"></div>
+                    //<span>Weather Philippines stations</span>
+                    //<div style="background-color: #fd7567;"></div>
+                    //<span>PAGASA stations</span>
+                    //</div>
+                ?>
+                
             </div> <!--END LEGEND-->
         </div>
         <div id="info" class="shadow">
@@ -403,7 +411,7 @@
         <h4>Learn More</h4>
         <div class="news">
             <ul>
-                <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail.png"/><p>Breaking News</p></li>
+                <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail.png"/><p><a href="<?= $this->webroot ?>mataNgBagyo">Mata ng Bagyo</a><br><i style="font-size: 10px;">(Eye of the Storm)</i></p></li>
                 <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail.png"/><p><a href="<?= $this->webroot ?>weathertv">Weather TV</a></p></li>
                 <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail.png"/><p><a href="<?= $this->webroot ?>typhoon/preparedness">Typhoon Preparedness</a></p></li>
                 <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail.png"/><p><a href="<?= $this->webroot ?>typhoon/climatology">Typhoon Climatology</a></p></li>
@@ -416,12 +424,7 @@
 
     </section> <!--SECONDARY-->
 </div> <!--CONTENT-->
-<?php
-/**
- * index.js requires the following variable:
- *      - resource - contains an array of (data-layer => (temperature, pressure)) for retreiving the image key.
- */
-?>
+
 <?php
     $movie_location = Configure::read('Data.movies');
 ?>

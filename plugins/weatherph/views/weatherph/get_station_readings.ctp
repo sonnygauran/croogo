@@ -32,10 +32,10 @@
     #measurements-tbl td { padding: 5px 10px; border-bottom: 1px solid; }
 </style>
 
-<h2><?php if(array_key_exists('name', $readings['station_info'])) echo $readings['station_info']['name']; else echo "Station Not Found!"; ?></h2>    
+<h2><?php if(isset($readings['station_info']['name'])) echo $readings['station_info']['name']; else echo "Station Not Found!"; ?></h2>    
 
 <?php
-if(array_key_exists('readings', $readings)){    
+if(key_exists('readings', $readings)){    
 ?>    
 <ul class="tabs-menu">
 <?php
@@ -64,7 +64,8 @@ foreach($readings['readings'] as $day=>$reading){
                 <th>Condition</th>
                 <th>Temperature</th>
                 <th>Dew Point</th>
-                <th>Rain</th>
+                <th>Rain(1H)</th>
+                <th>Rain(6H)</th>
                 <th>Humidity</th>
                 <th>Wind Speed</th>
                 <th>Wind Gust</th>
@@ -82,7 +83,8 @@ foreach($readings['readings'] as $day=>$reading){
                 <td><?= $data['weather_condition']; ?></td>
                 <td><?= $data['temperature']; ?></td>
                 <td><?= $data['dew_point']; ?></td>
-                <td><?= $data['rain']; ?></td>
+                <td><?= $data['rain1h']; ?></td>
+                <td><?= $data['rain6h']; ?></td>
                 <td><?= $data['humidity']; ?></td>
                 <td><?= $data['wind_speed']; ?></td>
                 <td><?= $data['wind_gust']; ?></td>

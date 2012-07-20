@@ -1,29 +1,32 @@
-$(window).load(function() {
-    $(document).on( 'mouseover mouseout', 'div.plot, div.plot-alt', function(event){
-        if (event.type == 'mouseover') {
 
-            var attributes = $(this).attr('class').split(' ');
-            var id = attributes[1];
-            var name ="";
-            var $allStations = $stations.concat($stationsPagasa);
-
-            $info = getObjects($allStations, 'id', id);
-            name = $info[0].name;
-
-            $('.hovered-station')
-            .show()
-            .stop()
-            .css('opacity', '1')
-            .text(name);
-
-        } else {
-            $('.hovered-station')
-            .animate("opacity", '1') //This is to get the delay working
-            .delay(5000)
-            .fadeOut(400);
-        }
-    });
-});
+// Station hover has been disabled by request.
+//
+//$(window).load(function() {
+//    $(document).on( 'mouseover mouseout', 'div.plot, div.plot-alt', function(event){
+//        if (event.type == 'mouseover') {
+//
+//            var attributes = $(this).attr('class').split(' ');
+//            var id = attributes[1];
+//            var name ="";
+//            var $allStations = $stations.concat($stationsPagasa);
+//
+//            $info = getObjects($allStations, 'id', id);
+//            name = $info[0].name;
+//
+//            $('.hovered-station')
+//            .show()
+//            .stop()
+//            .css('opacity', '1')
+//            .text(name);
+//
+//        } else {
+//            $('.hovered-station')
+//            .animate("opacity", '1') //This is to get the delay working
+//            .delay(5000)
+//            .fadeOut(400);
+//        }
+//    });
+//});
 
 $(document).ready(function(){
     window['GEOMAP_SERVICES'] = {
@@ -356,7 +359,22 @@ $(document).ready(function(){
 });
 
 // Show/hide forecasts depending on availability
-
+//function hideDiv() { 
+//    if (document.getElementById) { F
+//            document.getElementById('stations_only').style.visibility = 'hidden'; 
+//    } 
+//} 
+////
+////function showDiv() { 
+////    if (document.getElementById) { 
+////            document.getElementById('stations_only').style.visibility = 'visible'; 
+////        } 
+////}
+function hideSelect(){
+    $('.stations-only').fadeOut(function(){
+       $('.stations-only').fadeIn();     
+    });
+}
 function hideForecast(){
     $('.day-forecast').fadeOut(function(){
         $('.no-forecast').fadeIn();
@@ -551,17 +569,21 @@ function redrawMap(){
                 $('.scale-fahrenheit').hide();
                 $('.scale-temperature').show();
                 $('.scale-pressure').hide();
+                $('.minor-area').attr('disabled','true');
                 removeStations();
                 break;
+          
             case 'pressure':
                 removeStations();
                 $('.scale-temperature').hide();
                 $('.scale-pressure').show();
+                $('.minor-area').attr('disabled','true');
                 serviceName = 'outline';
                 break;
             case 'stations':
                 $('.scale-temperature').hide();
                 $('.scale-pressure').hide();
+                $('.minor-area').removeAttr('disabled');
                 remapStations();
                 break;
             default:
