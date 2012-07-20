@@ -16,7 +16,7 @@
                 </ul>
              
             </div> <!--LAYER SELECTOR-->
-            <div id="video-viewport">
+            <div class="video-viewport">
 
             </div>
             <div class="map-viewport">
