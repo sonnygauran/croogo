@@ -99,8 +99,6 @@ class WeatherphAppModel extends AppModel {
         $siteTimezone = Configure::read('Site.timezone');
         $Date = new DateTime(null, new DateTimeZone($siteTimezone));
         
-        if($symbol != NULL) {
-            
         $symbol = number_format($symbol, 0);
         
         $weather_description = array(
@@ -125,13 +123,13 @@ class WeatherphAppModel extends AppModel {
             'Could not be determined',
             'Could not be determined',
         );
-        
-        if (!key_exists($symbol, $weather_description)) {
-            $this->log("The weather symbol with index {$symbol} does not exist");
-            return NULL;
-        }
-            $utc = date('H', strtotime($utc) + $Date->getOffset());
-
+       
+        if($symbol != NULL && key_exists($symbol, $weather_description)) {
+            
+            $offset = $Date->getOffset() / 3600;
+            
+            $utc = (int)$utc + $offset;
+            
             $sunrise = date('H', strtotime($meridiem['sunrise']));
             $sunset = date('H', strtotime($meridiem['sunset']));
 
@@ -160,6 +158,7 @@ class WeatherphAppModel extends AppModel {
             return $weather_condition;
             
         }else{
+            $this->log("The weather symbol with index {$symbol} does not exist");
             return NULL;
         }
     }
