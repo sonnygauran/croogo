@@ -39,7 +39,7 @@ class WeatherphStationForecast extends WeatherphAppModel {
         );
         
         if($station_info['org'] == 'JRG'){
-            $sql_condition['min'] = '00';
+            $sql_condition['min ='] = '00';
         }
 
         $station_readings = $reading_temp->find('all', array(
@@ -264,7 +264,7 @@ class WeatherphStationForecast extends WeatherphAppModel {
         $Date = new DateTime(null, new DateTimeZone($siteTimezone));
 
         // Get station info based on id
-        $station_info = $this->getStationInfo($station_id, array("name", "lat", "lon"));
+        $station_info = $this->getStationInfo($station_id);
 
         // Get sunrise and sunset using current latituted and longtitude station
         $sunrise = $this->sunInfo($station_info['lat'], $station_info['lon'], 'sunrise');
@@ -273,14 +273,22 @@ class WeatherphStationForecast extends WeatherphAppModel {
         //FROM DATABASE
         App::import('Model', 'Weatherph.Reading');
         $reading_temp = new Reading();
+        
+        $sql_condition = array( 
+                'ort1 LIKE' => "%".$station_id ."%", 
+                'tl !=' => '');
+        
+        if($station_info['org'] == 'JRG'){
+            $sql_condition['min ='] = '00';
+        }
 
         $station_readings = $reading_temp->find('all', array(
-            'conditions' => array( 
-                'ort1 LIKE' => "%".$station_id ."%", 
-                'tl !=' => ''),
+            'conditions' => $sql_condition,
             'order' => 'datum DESC, utc DESC, min DESC',
             'limit' => '1'
                 ));
+        
+        $this->log(print_r($station_readings, TRUE));
         
         $current_readings = array();
 
@@ -758,11 +766,17 @@ class WeatherphStationForecast extends WeatherphAppModel {
         //FROM DATABASE
         App::import('Model', 'Weatherph.Reading');
         $reading_temp = new Reading();
+        
+        $sql_condition = array(
+                'ort1 LIKE' => "%" . $station_id . "%",
+                'tl !=' => '');
+        
+        if($station_info['org'] == 'JRG'){
+            $sql_condition['min ='] = '00';
+        }
 
         $station_readings = $reading_temp->find('all', array(
-            'conditions' => array(
-                'ort1 LIKE' => "%" . $station_id . "%",
-                'tl !=' => ''),
+            'conditions' => $sql_condition,
             'order' => 'datum DESC, utc DESC, min DESC',
             'limit' => 1,
                 ));
