@@ -1075,6 +1075,7 @@ span.sunset { background-position: -60px 5px; }
 .blog-title{
     width: 25%;
     margin: 0px auto;
+    margin-bottom: 5px;
 }
 
 /* Share buttons*/
