@@ -3,9 +3,9 @@
         <div id="map-container">
             <div class="layer-selector cf">
                 <ul class="movies data-layers dropdown">
-                    <li><a href="#" data-target="data-layer" data-name="stations">Weather stations</a></li>
+                    <li><a href="#" data-target="data-layer" data-name="stations" class="active-layer">Weather stations</a></li>
                     <li>
-                        <a href="#">Weather movies &#9663;</a>
+                        <a href="#" id="movie-layer">Weather movies &#9663;</a>
                         <ul>
                             <li><a href="#map" data-type="movie" data-name="wind" data-target="movie-wind">Wind</a></li>
                             <li><a href="#map" data-type="movie" data-name="precipitation" data-target="movie-precip">Rain</a></li>

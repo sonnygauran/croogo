@@ -1,4 +1,3 @@
-
 // Station hover has been disabled by request.
 //
 //$(window).load(function() {
@@ -78,13 +77,14 @@ $(document).ready(function(){
                 + view.tile.row
                 + ".png";
             }
-        }]
+       }]
     }
     window['UNIT_TEMPERATURE'] = 'celsius';
 
     var map = $("#map").geomap({
         center: [123.5, 12.902712695115516], //to fit weather animations, was[ 121.750488, 12.698865 ],
         zoom: 5,
+        mode: "static",
         scroll: 'off',
         cursors: {
             static: "default",
@@ -110,7 +110,7 @@ $(document).ready(function(){
 
     map.geomap({
         //Find mode
-        mode: "find",
+        //mode: "find", // Find mode was turning on double-click to zoom.
         click: function(e, geo) {
             var outputHtml = "";
             result = $('#map').geomap("find", geo, 6);
@@ -123,13 +123,13 @@ $(document).ready(function(){
                 console.error(this.id);
 
                 $stations = new Array();
-                $('#loader').fadeIn();
+//                $('#loader').fadeIn();
                 getForecast(this.id);
                 return;
             });
         }
     });
-
+    
     function getForecast(id) {
         console.error('<?php Router::url($this->webroot) ?>');
         console.error('<?= $this->webroot ?>weatherph/weatherph/getForecast/'+id+'/3/3h');
@@ -170,7 +170,7 @@ $(document).ready(function(){
                     if ($station_readings.reading.weather_symbol) {
                         var weather_symbol = $station_readings.reading.weather_symbol;
 
-//                        console.error(weather_symbol);
+                        //                        console.error(weather_symbol);
 
                         if(weather_symbol.hasOwnProperty('symbol')) $('#info .readings .symbol:eq(0)').addClass(weather_symbol.symbol);
                         $('.current.time').html($station_readings.reading.update);
@@ -199,7 +199,7 @@ $(document).ready(function(){
 
                             var weather_symbol = $station_readings.forecast[key].weather_symbol;
 
-//                            console.error(weather_symbol);
+                            //                            console.error(weather_symbol);
 
                             if(weather_symbol.hasOwnProperty('symbol')) $('.' + key + '-hour .symbol').addClass(weather_symbol.symbol);
 
@@ -218,7 +218,6 @@ $(document).ready(function(){
                 $('.detail-page-link a').attr({
                     href: '<?= $this->webroot ?>view/'+id
                 });
-
             }
         });
     }
@@ -353,7 +352,7 @@ $(document).ready(function(){
             });
         }, 300);
     });
-    
+
     getForecast(984290); //Manila
 //getForecast(980002); //Amanpulo
 });
@@ -372,7 +371,7 @@ $(document).ready(function(){
 ////}
 function hideSelect(){
     $('.stations-only').fadeOut(function(){
-       $('.stations-only').fadeIn();     
+        $('.stations-only').fadeIn();     
     });
 }
 function hideForecast(){
@@ -561,7 +560,10 @@ function redrawMap(){
     var dataLayer = window['DATA_LAYER'];
     var serviceName = 'standard';
 
+    
     if (dataLayer != null) {
+        $('.active-layer').removeClass('active-layer');
+        $('[data-name = "'+dataLayer+'"]').addClass('active-layer');
         switch (dataLayer) {
             case 'temperature':
                 serviceName = 'transparent';
@@ -572,7 +574,7 @@ function redrawMap(){
                 $('.minor-area').attr('disabled','true');
                 removeStations();
                 break;
-          
+
             case 'pressure':
                 removeStations();
                 $('.scale-temperature').hide();
@@ -651,10 +653,12 @@ $(function(){
         // Layer selector toggle
 
         if ($(this).attr('data-type') == 'movie') {
+            $('.active-layer').removeClass('active-layer');
+            $('#movie-layer').addClass('active-layer');
             $('.scale-temperature').hide();
             $('.scale-pressure').hide();
             var $movie = $('#movie-'+_name); // The markup
-            var _content = eval("window['MOVIE_CONTENT']."+_name);
+            var content = eval("window['MOVIE_CONTENT']."+_name);
 
             $map.fadeOut(1000, function(){
                 console.error(eval("window['MOVIE_CONTENT']."+_name));
