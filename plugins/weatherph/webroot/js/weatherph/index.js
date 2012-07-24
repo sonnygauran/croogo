@@ -172,7 +172,11 @@ $(document).ready(function(){
 
 //                        console.error(weather_symbol);
 
-                        if(weather_symbol.hasOwnProperty('symbol')) $('#info .readings .symbol:eq(0)').addClass(weather_symbol.symbol);
+                        if(weather_symbol.hasOwnProperty('symbol') && weather_symbol != '-') {
+                            $('#info .readings .symbol:eq(0)').addClass(weather_symbol.symbol);
+                        }else{
+                            $('#info .readings .symbol:eq(0)').attr('class', 'symbol');
+                        }
                         $('.current.time').html($station_readings.reading.update);
                     }
 
