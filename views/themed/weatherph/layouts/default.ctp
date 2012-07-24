@@ -131,7 +131,9 @@
         </footer>
     </section><!-- #container -->
 
-<!-- Google Analytics script
+<?php
+/*
+Google Analytics script
 
 <script type="text/javascript">
 
@@ -146,9 +148,8 @@
   })();
 
 </script>
+*/
 
--->
-<?php
     echo $this->Html->script('jquery/jquery.min');
 
     if (($this->name == 'Weatherph') && ($this->action == 'index') || ($this->name == 'Search') && ($this->action == 'index')){
