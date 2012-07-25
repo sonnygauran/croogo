@@ -67,7 +67,7 @@
                             <li><a href="<?= $this->webroot ?>dictionaries/filipino">Filipino</a></li>
                         </ul>
                     </li>
-                <li><a href="<?= $this->webroot ?>payongpanahon">Payong Panahon</a></li>
+                <li><a href="<?= $this->webroot ?>news">Payong Panahon</a></li>
                 <li><a href="<?= $this->webroot ?>webcam">Webcams</a></li>
                 <li><a href="<?= $this->webroot ?>about">About</a></li>
             </ul>
@@ -136,7 +136,9 @@
         </footer>
     </section><!-- #container -->
 
-<!-- Google Analytics script
+<?php
+/*
+Google Analytics script
 
 <script type="text/javascript">
 
@@ -151,9 +153,8 @@
   })();
 
 </script>
+*/
 
--->
-<?php
     echo $this->Html->script('jquery/jquery.min');
 
     if (($this->name == 'Weatherph') && ($this->action == 'index') || ($this->name == 'Search') && ($this->action == 'index')){

@@ -189,6 +189,7 @@ $(document).ready(function(){
     var map = $("#map").geomap({
         center: [123.5, 12.902712695115516], //to fit weather animations, was[ 121.750488, 12.698865 ],
         zoom: 5,
+        mode: "static",
         scroll: 'off',
         cursors: {
             static: "default",
@@ -214,7 +215,7 @@ $(document).ready(function(){
 
     map.geomap({
         //Find mode
-        mode: "find",
+        //mode: "find", // Find mode was turning on double-click to zoom.
         click: function(e, geo) {
             var outputHtml = "";
             result = $('#map').geomap("find", geo, 6);
@@ -227,7 +228,7 @@ $(document).ready(function(){
                 console.error(this.id);
 
                 $stations = new Array();
-                $('#loader').fadeIn();
+//                $('#loader').fadeIn();
                 getForecast(this.id);
                 return;
             });
@@ -333,9 +334,13 @@ function getForecast(id) {
                     if ($station_readings.reading.weather_symbol) {
                         var weather_symbol = $station_readings.reading.weather_symbol;
 
-//                        console.error(weather_symbol);
+                        //                        console.error(weather_symbol);
 
-                        if(weather_symbol.hasOwnProperty('symbol')) $('#info .readings .symbol:eq(0)').addClass(weather_symbol.symbol);
+                        if(weather_symbol.hasOwnProperty('symbol') && weather_symbol != '-') {
+                            $('#info .readings .symbol:eq(0)').addClass(weather_symbol.symbol);
+                        }else{
+                            $('#info .readings .symbol:eq(0)').attr('class', 'symbol');
+                        }
                         $('.current.time').html($station_readings.reading.update);
                     }
 
@@ -362,10 +367,13 @@ function getForecast(id) {
 
                             var weather_symbol = $station_readings.forecast[key].weather_symbol;
 
-//                            console.error(weather_symbol);
-
-                            if(weather_symbol.hasOwnProperty('symbol')) $('.' + key + '-hour .symbol').addClass(weather_symbol.symbol);
-
+                            //                            console.error(weather_symbol);
+                             if(weather_symbol.hasOwnProperty('symbol') && weather_symbol != '-') {
+                                $('.' + key + '-hour .symbol').addClass(weather_symbol.symbol);
+                            }else{
+                                $('.' + key + '-hour .symbol').attr('class', 'symbol');
+                            }
+                            
                             $('.' + key + '-hour.time').html($station_readings.forecast[key].localtime_range);
                             $('.' + key + '-hour .temperature span').html(sr_temperature);
                             $('.' + key + '-hour .wind span').html(sr_wind);
@@ -381,7 +389,6 @@ function getForecast(id) {
                 $('.detail-page-link a').attr({
                     href: '<?= $this->webroot ?>view/'+id
                 });
-
             }
         });
     }
@@ -400,7 +407,7 @@ function getForecast(id) {
 ////}
 function hideSelect(){
     $('.stations-only').fadeOut(function(){
-       $('.stations-only').fadeIn();     
+        $('.stations-only').fadeIn();     
     });
 }
 function hideForecast(){
@@ -698,7 +705,7 @@ function redrawMap(){
                 
                 removeStations();
                 break;
-          
+
             case 'pressure':
                 removeStations();
                 $('.scale-temperature').hide();
@@ -786,10 +793,12 @@ $(function(){
         // Layer selector toggle
 
         if ($(this).attr('data-type') == 'movie') {
+            $('.active-layer').removeClass('active-layer');
+            $('#movie-layer').addClass('active-layer');
             $('.scale-temperature').hide();
             $('.scale-pressure').hide();
             var $movie = $('#movie-'+_name); // The markup
-            var _content = eval("window['MOVIE_CONTENT']."+_name);
+            var content = eval("window['MOVIE_CONTENT']."+_name);
 
             $map.fadeOut(1000, function(){
                 console.error(eval("window['MOVIE_CONTENT']."+_name));

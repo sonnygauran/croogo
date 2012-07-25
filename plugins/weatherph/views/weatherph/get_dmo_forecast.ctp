@@ -21,12 +21,12 @@ echo $this->Html->script(array(
 
             <div class="station">
                 <h1><?= $location['Name']['full_name_ro']; ?></h1>
-                <h6>Current readings</h6>
                 <!-- <a href="#">change station</a>-->
                 <div id="nearest-station">Nearest Station: <?= $dataSets['station_name']; ?> (<?= $distance ?>)</div>
             </div> <!--END STATION-->
 
             <?php if ($dataSets['reading']['status'] == 'ok'): ?>
+                <h6>Current readings: <?= date("F d, Y h:iA", strtotime($dataSets['reading']['local_time'])); ?></h6>
                 <div class="current-detail-condition ">
                     <?php if (!empty($dataSets['reading']['weather_symbol']['symbol'])) { ?>
                         <div class="detail-highlight">

@@ -225,7 +225,7 @@ class WeatherphAppModel extends AppModel {
            
             $WeatherphStation = new Station();
 
-            $fields = ($fields == NULL)? array('wmo1', 'lon', 'lat', 'name') : $fields;
+            $fields = ($fields == NULL)? array('wmo1', 'lon', 'lat', 'name', 'org') : $fields;
 
             $station = $WeatherphStation->find('all', array(
                 'conditions' => array('wmo1' => $stationID),

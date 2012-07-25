@@ -1,7 +1,7 @@
 <div class="blog-payong-panahon">
-<!--    <div class="blog-title">-->
-        <h3>Mata ng Bagyo (Eye of the Storm)</h3>
-<!--    </div>-->
+    <div class="blog-title">
+        <h3>Mata ng Bagyo</h3>
+    </div>
     <div class="page">
         <?php foreach ($blogLists as $blog) { ?>
             <?php $createdTime = strtotime($blog['Node']['created']); ?>
