@@ -204,9 +204,12 @@ $(document).ready(function(){
                             var weather_symbol = $station_readings.forecast[key].weather_symbol;
 
                             //                            console.error(weather_symbol);
-
-                            if(weather_symbol.hasOwnProperty('symbol')) $('.' + key + '-hour .symbol').addClass(weather_symbol.symbol);
-
+                             if(weather_symbol.hasOwnProperty('symbol') && weather_symbol != '-') {
+                                $('.' + key + '-hour .symbol').addClass(weather_symbol.symbol);
+                            }else{
+                                $('.' + key + '-hour .symbol').attr('class', 'symbol');
+                            }
+                            
                             $('.' + key + '-hour.time').html($station_readings.forecast[key].localtime_range);
                             $('.' + key + '-hour .temperature span').html(sr_temperature);
                             $('.' + key + '-hour .wind span').html(sr_wind);
