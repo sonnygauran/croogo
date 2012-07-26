@@ -279,9 +279,9 @@ $(document).ready(function(){
 //                                });
 
                                 //console.error($current.box);
-                                /*
+                                
                                 setTimeout(getDataLayer, 1000);
-                                */
+                                
                             }
                         }
                     } // END IF
@@ -590,28 +590,19 @@ function remapStations() {
 
 
 
-function getDataLayer() {
-    var bbox = '';
-    //var url = 'http://alpha.meteomedia-portal.com/services/wetter4.php?api_key=portal-efd339395c80ad957acb695bb9758399&q=meh_ifm&leg=nil&a=image&x=554&y=554&&srs=EPSG:900913&';
-    //var url = 'http://alpha.meteomedia-portal.com/services/wetter4.php?api_key=portal-efd339395c80ad957acb695bb9758399&p=QFF&q=meh_ifm&leg=nil&a=image&x=554&y=554&srs=EPSG:900913&';
-    var coordinates = JSON.parse("["+$('#map').data('map').getBounds().toBBoxString()+"]");
-    console.error(coordinates);
-    console.error(coordinates[0]);
+function getDataLayer(){
     
-    //$actual = eval($actual);
-
-    // x1=111.32714843750325&x2=135.67285156249676&y1=0.8402895756535625&y2=24.41201768480203
-    //        bbox +=  'x1='+$actual[0];
-    //        bbox += '&x2='+$actual[2];
-    //        bbox += '&y2='+$actual[3];
-    //        bbox += '&y1='+$actual[1];
-
-    bbox +=  'lon[0]='+coordinates[0];
-    bbox += '&lon[1]='+coordinates[2];
-    bbox += '&lat[0]='+coordinates[3];
-    bbox += '&lat[1]='+coordinates[1];
-    
-    console.error(bbox);
+    var gemCodeForRegions = '';
+    switch ($("select[name=philippine-regions] option:selected").attr('data-region-id')){
+        case 'Philippines': gemCodeForRegions = 'all'; 
+        break;
+        case 'Luzon': gemCodeForRegions = 'luzon';
+        break;
+        case 'VisMin': gemCodeForRegions = 'visayas_mindanao';
+        break;
+        case 'Palawan': gemCodeForRegions = 'palawan_sulu';
+        break;
+    }
 
     // Available layers
     var dataLayers = window["DATA_LAYERS"];
@@ -620,18 +611,8 @@ function getDataLayer() {
 
     console.error('x~>'+dataLayer);
     if (dataLayer == 'temperature' || dataLayer == 'pressure') {
-        var url = '<?= Router::url('/', true) ?>weatherph/resources/data_layer/'+dataLayer+'/'+eval('dataLayers.'+dataLayer)+'&';
-        url += bbox;
+        var url = '<?= Router::url('/', true) ?>/theme/weatherph/img/layers/'+gemCodeForRegions+'_'+dataLayer+'.png&';
 
-
-    var ph = $boxMap[0].box;
-    var southWest = new L.LatLng(ph[1],ph[0]),
-        northEast = new L.LatLng(ph[3],ph[2]),
-        bounds    = new L.LatLngBounds(southWest, northEast);
-        
-    var image = new L.ImageOverlay(url, bounds);
-    
-        window['IMAGE_DATA_LAYER'] = image;
         console.error(url);
         $('.data-layer').animate({
             opacity: 0
