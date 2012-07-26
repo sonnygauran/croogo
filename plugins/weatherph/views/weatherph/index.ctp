@@ -3,9 +3,9 @@
         <div id="map-container">
             <div class="layer-selector cf">
                 <ul class="movies data-layers dropdown">
-                    <li><a href="#" data-target="data-layer" data-name="stations">Weather stations</a></li>
+                    <li><a href="#" data-target="data-layer" data-name="stations" class="active-layer">Weather stations</a></li>
                     <li>
-                        <a href="#">Weather movies &#9663;</a>
+                        <a href="#" id="movie-layer">Weather movies &#9663;</a>
                         <ul>
                             <li><a href="#map" data-type="movie" data-name="wind" data-target="movie-wind">Wind</a></li>
                             <li><a href="#map" data-type="movie" data-name="precipitation" data-target="movie-precip">Rain</a></li>
@@ -19,15 +19,16 @@
             <div class="video-viewport">
 
             </div>
-            <div class="map-viewport">
-                <div class="data-layer" style="width: 554px; height: 554px; float:left" data-bbox="">
-                </div>
-                <div id="map">
-                    <div id="loader">
-                    </div>
+            <div class="map-viewport" style="position: relative; width: 554px; height: 554px;">
+                
+                <div class="data-layer" style="width: 554px; height: 554px; position:absolute; z-index:1; top: 0; left: 0;" data-bbox=""></div>
+                
+                <div id="map" style="width: 554px; height: 554px; position:absolute; z-index:2; top: 0; left: 0;">
                     <div class="hovered-station">
                     </div>
                 </div>
+                <div id="loader" style="width: 554px; height: 554px; position:absolute; z-index:3; top: 0; left: 0;"></div>
+                
             </div>
             <div id="legend" class="shadow">
                 <div class="scale-temperature">
@@ -411,7 +412,7 @@
         <h4>Learn More</h4>
         <div class="news">
             <ul>
-                <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail.png"/><p><a href="<?= $this->webroot ?>mataNgBagyo">Mata ng Bagyo</a><br><i style="font-size: 10px;">(Eye of the Storm)</i></p></li>
+                <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail.png"/><p><a href="<?= $this->webroot ?>announcements">Mata ng Bagyo</a><br><i style="font-size: 10px;">(Eye of the Storm)</i></p></li>
                 <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail.png"/><p><a href="<?= $this->webroot ?>weathertv">Weather TV</a></p></li>
                 <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail.png"/><p><a href="<?= $this->webroot ?>typhoon/preparedness">Typhoon Preparedness</a></p></li>
                 <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail.png"/><p><a href="<?= $this->webroot ?>typhoon/climatology">Typhoon Climatology</a></p></li>

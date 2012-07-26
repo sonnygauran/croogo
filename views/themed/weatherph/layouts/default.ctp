@@ -22,6 +22,11 @@
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.3.1/leaflet.css" />
+    <!--[if lte IE 8]>
+        <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.3.1/leaflet.ie.css" />
+    <![endif]-->
+    <script src="http://cdn.leafletjs.com/leaflet-0.3.1/leaflet.js"></script>
 </head>
 <body>
     <section id="container">
@@ -62,7 +67,7 @@
                             <li><a href="<?= $this->webroot ?>dictionaries/filipino">Filipino</a></li>
                         </ul>
                     </li>
-                <li><a href="<?= $this->webroot ?>payongpanahon">Payong Panahon</a></li>
+                <li><a href="<?= $this->webroot ?>news">Payong Panahon</a></li>
                 <li><a href="<?= $this->webroot ?>webcam">Webcams</a></li>
                 <li><a href="<?= $this->webroot ?>about">About</a></li>
             </ul>
@@ -131,7 +136,9 @@
         </footer>
     </section><!-- #container -->
 
-<!-- Google Analytics script
+<?php
+/*
+Google Analytics script
 
 <script type="text/javascript">
 
@@ -146,9 +153,8 @@
   })();
 
 </script>
+*/
 
--->
-<?php
     echo $this->Html->script('jquery/jquery.min');
 
     if (($this->name == 'Weatherph') && ($this->action == 'index') || ($this->name == 'Search') && ($this->action == 'index')){

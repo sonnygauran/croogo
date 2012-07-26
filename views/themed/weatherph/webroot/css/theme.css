@@ -271,6 +271,16 @@ label[for="search-field"] {
     z-index: 1 !important;
 }
 
+.plot-alt-hover {
+    width: 24px;
+    height: 24px;
+    background-image: url('<?= $this->webroot ?>theme/weatherph/img/marker-red-smaller-focus.png') !important;
+    position: relative;
+    left: -12px;
+    top: -24px;
+    z-index: 1 !important;
+}
+
 .marker {
     width: 32px;
     height: 32px;
@@ -1075,6 +1085,7 @@ span.sunset { background-position: -60px 5px; }
 .blog-title{
     width: 25%;
     margin: 0px auto;
+    margin-bottom: 5px;
 }
 
 /* Share buttons*/
@@ -1142,6 +1153,11 @@ nav a:hover {
 .layer-selector a:link,
 .layer-selector a:visited {
     color: #fafafa;
+}
+
+.active-layer {
+    background-color: rgba(57,144,189,.75);
+    border-radius: 3px;
 }
 
 /*========================================

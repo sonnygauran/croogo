@@ -26,7 +26,7 @@ echo $this->Html->script(array(
             <?php if ($dataSets['reading']['status'] == 'ok'): ?>
                 <h6>Current readings: <?= date("F d, Y h:iA", strtotime($dataSets['reading']['local_time'])); ?></h6>
                 <div class="current-detail-condition ">
-                    <?php if (!empty($dataSets['reading']['weather_symbol']['symbol'])) { ?>
+                    <?php if (!empty($dataSets['reading']['weather_symbol']['symbol']) && $dataSets['reading']['weather_symbol']['symbol'] !='-') { ?>
                         <div class="detail-highlight">
                             <div class="temp-highlight">
                                 <?= $dataSets['reading']['temperature']; ?>
