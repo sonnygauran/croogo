@@ -588,9 +588,7 @@ function remapStations() {
     }
 }
 
-function removeStations(){
-    $('#map').geomap('empty');
-}
+
 
 function getDataLayer() {
     var bbox = '';
@@ -599,7 +597,7 @@ function getDataLayer() {
     var coordinates = JSON.parse("["+$('#map').data('map').getBounds().toBBoxString()+"]");
     console.error(coordinates);
     console.error(coordinates[0]);
-    var $actual = $('#map').geomap('option','bbox');
+    
     //$actual = eval($actual);
 
     // x1=111.32714843750325&x2=135.67285156249676&y1=0.8402895756535625&y2=24.41201768480203
@@ -703,11 +701,11 @@ function redrawMap(){
                 $('#map').data('map').removeLayer(window['STATIONS_LAYER']);
                 $('#map').data('map').addLayer(window['LEAFLET_TILES'].temperature);
                 
-                removeStations();
+                
                 break;
 
             case 'pressure':
-                removeStations();
+                
                 $('.scale-temperature').hide();
                 $('.scale-pressure').show();
                 $('.minor-area').attr('disabled','true');
@@ -734,6 +732,8 @@ function redrawMap(){
         }
     }
     $('.leaflet-container').css('background','transparent');
+    $('.active-layer').removeClass('active-layer');
+    $('[data-name = "'+dataLayer+'"]').addClass('active-layer');
     
 
 //    $("#map").geomap({
