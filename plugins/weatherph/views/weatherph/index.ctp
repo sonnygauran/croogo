@@ -19,15 +19,16 @@
             <div class="video-viewport">
 
             </div>
-            <div class="map-viewport">
-                <div class="data-layer" style="width: 554px; height: 554px; float:left" data-bbox="">
-                </div>
-                <div id="map">
-                    <div id="loader">
-                    </div>
+            <div class="map-viewport" style="position: relative; width: 554px; height: 554px;">
+                
+                <div class="data-layer" style="width: 554px; height: 554px; position:absolute; z-index:1; top: 0; left: 0;" data-bbox=""></div>
+                
+                <div id="map" style="width: 554px; height: 554px; position:absolute; z-index:2; top: 0; left: 0;">
                     <div class="hovered-station">
                     </div>
                 </div>
+                <div id="loader" style="width: 554px; height: 554px; position:absolute; z-index:3; top: 0; left: 0;"></div>
+                
             </div>
             <div id="legend" class="shadow">
                 <div class="scale-temperature">
