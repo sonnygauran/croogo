@@ -10,7 +10,7 @@ fi
 cd $PATH
 
 # Copy movies
-/usr/bin/scp -r netuser@199.195.193.240:/data/movies/live/* .
+/usr/bin/scp -P 2215 -r netuser@199.195.193.240:/data/movies/live/* .
 cd ../..
 
 # Create symlink
