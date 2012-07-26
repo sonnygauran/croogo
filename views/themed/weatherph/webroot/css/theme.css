@@ -608,6 +608,7 @@ span.temperature {
     vertical-align: middle;
     width: 45%;
     font-weight: normal;
+    padding: 5px;
 }
 
 .current-detail-table td {
