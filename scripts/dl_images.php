@@ -1,4 +1,5 @@
 <?php
+//hello
 $location = "../views/themed/weatherph/webroot/img/layers/layers_history/";
 
 echo "input image resolution: (image resolution; 10(per 10 mins), 1(per hour),3(per 3 hours)\n->";
