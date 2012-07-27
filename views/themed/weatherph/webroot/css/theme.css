@@ -739,9 +739,15 @@ span.temperature {
 .search-results li {
     position: relative;
     text-align: center;
-    padding: 20px;
+    vertical-align: middle;
+    padding: 1em;
     padding-bottom: 24px;
     background: #fafafa;
+    white-space: pre;
+}
+
+.search-results li + li {
+    border-top: 1px solid #d3d3d3;
 }
 
 .search-results li:hover {
@@ -754,6 +760,7 @@ span.temperature {
     left: 0;
     width: 100%;
     height: 100%;
+    text-decoration: none;
 }
 
 .paging {
