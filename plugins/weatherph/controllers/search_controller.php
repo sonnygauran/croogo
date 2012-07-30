@@ -90,6 +90,7 @@ class SearchController extends WeatherphAppController {
             $NimaName = new NimaName();
             $keyword = $this->params['pass'][0];
             $locations = $NimaName->query($query);
+            $this->log($locations);
                         
 //            Cache::write($gum, $locations, 'daily');
 //        } else {

@@ -738,10 +738,17 @@ span.temperature {
 
 .search-results li {
     position: relative;
+    padding: 10px;
     text-align: center;
-    padding: 20px;
-    padding-bottom: 24px;
-    background: #fafafa;
+    vertical-align: middle;
+/*    padding: 1em;
+    padding-bottom: 24px;*/
+/*    background: #fafafa;*/
+/*    white-space: pre;*/
+}
+
+.search-results li + li {
+    border-top: 1px solid #d3d3d3;
 }
 
 .search-results li:hover {
@@ -749,11 +756,12 @@ span.temperature {
 }
 
 .search-results a {
-    position: absolute;
+/*    position: absolute;*/
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    text-decoration: none;
 }
 
 .paging {
@@ -1232,3 +1240,7 @@ nav li,
 }
 
 #nearest-station{ margin-top: 3px; }
+
+.citysearch{
+    background:transparent url('<?= $this->webroot ?>theme/weatherph/img/city.png') 5% 5% no-repeat;
+}

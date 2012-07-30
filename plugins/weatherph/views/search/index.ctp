@@ -4,13 +4,13 @@
             <div class="layer-selector cf">
                 <?php
                 echo $this->Paginator->counter(array(
-                        'format' => __('Showing %count% locations from your search', true)
-                    ));
+                    'format' => __('Showing %count% locations from your search', true)
+                ));
                 ?>
             </div>
             <div class="map-viewport">
                 <div id="map">
-                    <div class="loader">
+                    <div id="loader">
                     </div>
                 </div>
             </div>
@@ -62,8 +62,20 @@
                 <h2><?php __('Search results'); ?></h2>
                 <ul>
                     <?php foreach ($names as $name): ?>
-                        <li class="<?php echo $name['NimaName']['id']; ?>">
-                            <a href ="/<?php echo Inflector::slug($name['NimaName']['full_name_ro'], '_') .'-'.$name['NimaName']['id']; ?>" class="<?php echo $name['NimaName']['id']; ?> location"><br /><?php echo trim($name['NimaName']['full_name_ro']); ?><br /> <span><?= trim($name['FipsCode']['name']);?> <?= trim($name['Region']['code'])?></span><br /><br /></a>
+                        
+                        <?php
+                        $cityClass = '';
+                        if (strstr(strtolower(trim($name['NimaName']['full_name_ro'])), 'city')) {
+                            $cityClass = ' citysearch';
+                        }
+                        if ($cityClass == '' AND $name['NimaName']['dsg'] == 'adm1') {
+                            $cityClass = ' citysearch';
+                        }
+                        ?>
+
+                        <li class="<?php echo $name['NimaName']['id'] . ' ' . $cityClass; ?>">
+                                <!-- <pre><?php echo print_r($name, true);?></pre>-->
+                            <a href ="/<?php echo Inflector::slug($name['NimaName']['full_name_ro'], '_') . '-' . $name['NimaName']['id']; ?>" class="<?php echo $name['NimaName']['id']; ?> location"><?php echo trim($name['NimaName']['full_name_ro']); ?><br /> <span><?= trim($name['FipsCode']['name']); ?> <?= trim($name['Region']['code']) ?></span></a>
                         </li>
                     <?php endforeach; ?>
                 </ul>
