@@ -711,9 +711,9 @@ span.temperature {
 .search-results li {
     position: relative;
     text-align: center;
-    padding: 20px;
-    padding-bottom: 24px;
-    background: #fafafa;
+    padding: 10px;
+/*    padding-bottom: 24px;*/
+/*    background: #fafafa;*/
 }
 
 .search-results li:hover {
@@ -721,7 +721,7 @@ span.temperature {
 }
 
 .search-results a {
-    position: absolute;
+/*    position: absolute;*/
     top: 0;
     left: 0;
     width: 100%;
@@ -1204,3 +1204,7 @@ nav li,
 }
 
 #nearest-station{ margin-top: 3px; }
+
+.citysearch{
+    background:transparent url('<?= $this->webroot ?>theme/weatherph/img/city.png') 5% 5% no-repeat;
+}
