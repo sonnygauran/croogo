@@ -20,14 +20,16 @@
 
             </div>
             <div class="map-viewport">
-                <div class="data-layer" style="width: 554px; height: 554px; float:left" data-bbox="">
-                </div>
+
+                <div class="data-layer" data-bbox=""></div>
+
                 <div id="map">
-                    <div id="loader">
-                    </div>
                     <div class="hovered-station">
                     </div>
                 </div>
+
+                <div id="loader"></div>
+
             </div>
             <div id="legend" class="shadow">
                 <div class="scale-temperature">

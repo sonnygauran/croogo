@@ -22,6 +22,10 @@
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.3.1/leaflet.css" />
+    <!--[if lte IE 8]>
+        <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.3.1/leaflet.ie.css" />
+    <![endif]-->
 </head>
 <body>
     <section id="container">
@@ -153,7 +157,8 @@ Google Analytics script
     echo $this->Html->script('jquery/jquery.min');
 
     if (($this->name == 'Weatherph') && ($this->action == 'index') || ($this->name == 'Search') && ($this->action == 'index')){
-        echo $this->Html->script('libs/jquery.geo-1.0a4.min');
+        echo "<script src='http://cdn.leafletjs.com/leaflet-0.3.1/leaflet.js'></script>";
+        //echo $this->Html->script('libs/jquery.geo-1.0a4.min');
     }
     
     /**
