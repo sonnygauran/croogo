@@ -16,8 +16,8 @@
                     <div class="ribbon-edge-bottomleft"></div>
                 </div>
 
-                <h4><?= $html->link($blog['Node']['title'], $blog['Node']['url'], array('class' => 'link')) ?></h4>
                 <div class="blog-excerpt">
+                    <h4><?= $html->link($blog['Node']['title'], $blog['Node']['url'], array('class' => 'link')) ?></h4>
                     <p><?= $text->excerpt(strip_tags($blog['Node']['body']), 'method', 200, '...' . $html->link('Read More', $blog['Node']['url'])) ?><?= '<hr>'; ?></p>
                 </div>
             <?php } ?>

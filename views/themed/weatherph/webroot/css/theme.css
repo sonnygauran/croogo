@@ -1040,7 +1040,7 @@ span.sunset { background-position: -60px 5px; }
     float: left;
 }
 
-.ribbon-wrapper{
+.ribbon-wrapper.blog-page {
     position: absolute;
     top: .5em;
 }
@@ -1071,7 +1071,7 @@ span.sunset { background-position: -60px 5px; }
     border-width: 0 10px 5px 0;
 }
 
-.ribbon-edge-bottomleft {
+.ribbon-edge-bottomleft.blog-page {
     left: -38px;
 }
 
