@@ -1056,7 +1056,7 @@ span.sunset { background-position: -60px 5px; }
     border-bottom: 1px solid #e1e1e1;
 }
 
-.ribbon-front {
+.ribbon-front.blog-page {
     left:-38px;
 }
 
