@@ -1060,6 +1060,10 @@ span.sunset { background-position: -60px 5px; }
     left:-38px;
 }
 
+.ribbon-front.subblog {
+    left:-35px;
+}
+
 .ribbon-edge-bottomleft {
     position: absolute;
     left: -25px;
@@ -1073,6 +1077,10 @@ span.sunset { background-position: -60px 5px; }
 
 .ribbon-edge-bottomleft.blog-page {
     left: -38px;
+}
+
+.ribbon-edge-bottomleft.subblog {
+    left:-35px;
 }
 
 /* Share buttons*/
