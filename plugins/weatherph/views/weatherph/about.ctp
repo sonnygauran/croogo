@@ -3,6 +3,7 @@
     <section class="main">
         <div class="page">
             <h2>Meteomedia. Weather is Our Focus.</h2>
+            <hr/>
             <p>
                 Meteomedia, established in 1990 by Jörg Kachelmann, is one of the leading weather services in Europe. With about 100 employees, Meteomedia has subsidiaries in Germany, Switzerland, Hong Kong, the Philippines and the USA. The group operates is our extremely extensive private Weather Station Measurement Network. Currently Meteomedia processes the data of more than 17'000 weather stations worldwide. With about 830 proprietary stations in Germany and Switzerland alone, it is one of Europe’s largest measurement networks. Meteomedia uses most available models for the processing and forecast, such as ECMWF, GFS, UKMO-NA and - NX, GEM, JMA, NOGAPS, WRF, MM5 and NAM. Furthermore Meteomedia operates it's proprietary MOS (Model Output Statistics) system. Thanks to the outstanding quality of our forecasts, our extensive experience and our superb customer service, numerous customers of any kind of weather-dependent industry place their trust in us. Those customers include Siemens, Daimler-Mercedes, German and Swiss railways, Bavaria Film, Wincor Nixdorf, Munich Re, Ferrero, ICTSI, Nickel Asia, E-on, Windfinder, the First german TV Network, RTL and many others. Basic and product-oriented research gos hand in hand with our day-to–day work. At the same time, we develop customized products according to our customer's specific needs, e.g. Service Portals. Meteomedia operates severe weather portals throughout Europe and in the Philippines. For further information please visit our sites:
 
@@ -44,6 +45,7 @@
             </ul>
             </p>
             <h2>About Weather Philippines Foundation</h2>
+            <hr/>
             <p>Die Unwetterzentrale warnt in einem mehrstufigen Warnsystem vor den Unwetterarten Sturm/Orkan, Starkregen, Starkschneefall, Glatteisregen, Gewitter (mit Starkregen, Hagel, Sturmböen und ggf. Tornados). Ergänzt werden diese Warnungen um Wetterhinweise zu Extremtemperaturen (Hitzebelastung und Extremfrost) sowie Glättegefahren. Unwetter und deren mögliche Folgeschäden können das öffentliche Leben nachhaltig beeinflussen. Um sich rechtzeitig auf das Eintreten dieser ungewöhnlichen, nicht alltäglichen Wettersituation vorbereiten zu können, ist eine erhöhte Aufmerksamkeit seitens der Öffentlichkeit wichtig.</p>
         </div>
     </section> <!--MAIN CONTENT-->
