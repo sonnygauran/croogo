@@ -25,25 +25,37 @@ class ResourcesController extends WeatherphAppController {
 
             $this->layout = 'image/png';
 
+//
+//        App::import('Model', 'Resource');
+//        $Resource = new Resource();
+//        $resource = $Resource->findByHash($hash);
+//        $validResource = $Resource->obtain(__FUNCTION__, $name, $hash);
+//
+//        $lon = $_GET['lon'];
+//        $lat = $_GET['lat'];
+//
+//        $bbox = array();
+//        $bbox[] = 'x1=' . $lon[0];
+//        $bbox[] = 'x2=' . $lon[1];
+//        $bbox[] = 'y1=' . $lat[1];
+//        $bbox[] = 'y2=' . $lat[0];
+//
+//        $assetLocation = $validResource['Resource']['value'] . implode('&', $bbox);
 
-        App::import('Model', 'Resource');
-        $Resource = new Resource();
-        $resource = $Resource->findByHash($hash);
-        $validResource = $Resource->obtain(__FUNCTION__, $name, $hash);
-
-        $lon = $_GET['lon'];
-        $lat = $_GET['lat'];
-
-        $bbox = array();
-        $bbox[] = 'x1=' . $lon[0];
-        $bbox[] = 'x2=' . $lon[1];
-        $bbox[] = 'y1=' . $lat[1];
-        $bbox[] = 'y2=' . $lat[0];
-
-        $assetLocation = $validResource['Resource']['value'] . implode('&', $bbox);
-
-
-
+//$temperature_url = dirname(dirname(dirname(dirname(__FILE__))))."/data/images/all_tempertature.png";
+//$pressure_url = dirname(dirname(dirname(dirname(__FILE__))))."/data/images/all_pressure.png";
+//error_log($temperature_url);
+//header('Content-type: image/png');
+//
+//switch($name){
+//    case 'pressure':
+//        echo file_get_contents($pressure_url);
+//        break;
+//    case 'temperature':
+//        echo file_get_contents($temperature_url);
+//
+//        break;
+//}
 
         $gum = implode('_', array(__FUNCTION__, $name, sha1($validResource['Resource']['value']), implode('_', array(implode('_', $lon), implode('_', $lat)))));
         $this->log($gum);
