@@ -611,7 +611,7 @@ function getDataLayer(){
 
     console.error('x~>'+dataLayer);
     if (dataLayer == 'temperature' || dataLayer == 'pressure') {
-        var url = '<?= Router::url('/', true) ?>/theme/weatherph/img/layers/'+gemCodeForRegions+'_'+dataLayer+'.png&';
+        var url = '<?= Router::url('/', true); $this->webroot ?>/theme/weatherph/img/layers/'+gemCodeForRegions+'_'+dataLayer+'.png&';
 
         console.error(url);
         $('.data-layer').animate({
