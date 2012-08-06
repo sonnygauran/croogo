@@ -1,13 +1,6 @@
 <div class="content">
     <section class="main">
         <div class="page">
-        <h2>Glossary</h2>
-        <hr/>
-        <dl>
-            <!--A-->
-            <dt>Air Mass</dt>
-            <dd>a widespread body of air, the properties of which can be identified as  (a) having been established while that air was situated over a particular region, and (b) undergoing specific modifications while in transit away from the source region.</dd>
-
             <h2>Glossary</h2>
             <hr/>
             <dl>
