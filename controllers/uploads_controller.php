@@ -25,7 +25,7 @@ class UploadsController extends AppController{
             
             if(move_uploaded_file($tmp_name, $destination)){
                 $this->Session->setFlash("Upload Successful!");
-                $this->redirect(array('action' => 'admin_success'));
+                $this->redirect(array('action' => 'admin_success',$this->data['Upload']['video']['name']));
             }else{
                 $this->Session->setFlash("Something went wrong.");
             }
@@ -33,8 +33,8 @@ class UploadsController extends AppController{
          
    }
    
-   function admin_success(){
-       $url = "http://";
+   function admin_success($file_name = ''){
+       $url = "http://www.weather.com.ph" . Configure::read('Data.weathertv');
        $width = "480px";
        $height = "320px";
        
