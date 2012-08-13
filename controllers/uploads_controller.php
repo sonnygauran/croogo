@@ -18,10 +18,16 @@ class UploadsController extends AppController{
         
         if(!empty($this->data)){            
             $tmp_name = $this->data['Upload']['video']['tmp_name'];
-            $destination = WWW_ROOT . DS . 'uploads' . DS . 'weathertv' . DS . $this->data['Upload']['video']['name'];
+            $directory = WWW_ROOT . DS . 'uploads' . DS . 'weathertv' . DS;
+            $destination =  $directory . $this->data['Upload']['video']['name'];
+            
+            if(!is_dir($directory)) mkdir ($directory); // create directory
+            
             if(move_uploaded_file($tmp_name, $destination)){
                 $this->Session->setFlash("Upload Successful!");
                 $this->redirect(array('action' => 'admin_success'));
+            }else{
+                $this->Session->setFlash("Something went wrong.");
             }
         }
          
