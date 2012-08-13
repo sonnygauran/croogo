@@ -40,7 +40,7 @@
 
                 <li>USA: <a href="www.weather.us">www.weather.us</a></li>
 
-                <li>and also <a href="www.wetterstationen.meteomedia.de">www.wetterstationen-meteomedia.de</a></li>
+                <li>and also <a href="www.wetterstationen-meteomedia.de">www.wetterstationen-meteomedia.de</a></li>
             </ul>
         </div>
     </section>
