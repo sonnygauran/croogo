@@ -14,3 +14,7 @@ tmp/
 config/settings.private.yml
 nbproject/
 views/themed/weatherph/webroot/videos
+
+# Vim tmp files
+*.swp
+*.swo
