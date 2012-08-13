@@ -21,7 +21,10 @@
             </div>
             <div class="map-viewport">
 
-                <div class="data-layer" data-bbox=""></div>
+                <div id="layer-slides" class="data-layer" data-bbox="">
+                    <div class="layer slides_container">
+                    </div>
+                </div>
 
                 <div id="map">
                     <div class="hovered-station">
