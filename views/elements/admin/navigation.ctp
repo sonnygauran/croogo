@@ -30,6 +30,9 @@
 						<li><?php echo $this->Html->link(__('Approval', true), array('plugin' => null, 'controller' => 'comments', 'action' => 'index', 'filter' => 'status:0;')); ?></li>
 					</ul>
 				</li>
+                                <li>
+                                        <?php echo $this->Html->link(__('Upload Video', true), array('controller' => 'uploads', 'action' => 'index')); ?>
+                                </li>
 			</ul>
 		</li>
 
