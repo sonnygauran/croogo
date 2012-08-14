@@ -52,16 +52,16 @@ $file_sizes = array(
 );
 
 $properties = array(
-     'temperature' =>    "http://alpha.meteomedia-portal.com/services/wetter4.php?api_key=portal-efd339395c80ad957acb695bb9758399&q=meh_ifm&leg=nil&a=image&x=554&y=554&srs=EPSG:900913&",
+//     'temperature' =>    "http://alpha.meteomedia-portal.com/services/wetter4.php?api_key=portal-efd339395c80ad957acb695bb9758399&q=meh_ifm&leg=nil&a=image&x=554&y=554&srs=EPSG:900913&",
      'pressure' =>       "http://alpha.meteomedia-portal.com/services/wetter4.php?api_key=portal-efd339395c80ad957acb695bb9758399&q=meh_ifm&leg=nil&a=image&x=554&y=554&srs=EPSG:900913&p=QFF&",
 //	 'satellite' =>       "http://alpha.meteomedia-portal.com/services/wetter4.php?api_key=portal-efd339395c80ad957acb695bb9758399&q=sve&leg=nil&a=image&x=554&y=554&srs=EPSG:900913&"
 );
 
 $coordinates = array(
     'all' => "&x1=111.3134765625&x2=135.6591796875&y2=24.126701958681668&y1=0.5273363048115169",
-    'luzon' => "&x1=119.21264648437499&x2=125.299072265625&y2=19.694314241825747&y1=13.870080100685891",
-    'visayas_mindanao' => "&x1=122.16796875&x2=128.25439453125&y2=12.651058133703483&y1=6.653695352486294",
-    'palawan_sulu' => "&x1=116.54296874999999&x2=122.62939453125001&y2=12.39365886237742&y1=6.391730485481462",
+//    'luzon' => "&x1=119.21264648437499&x2=125.299072265625&y2=19.694314241825747&y1=13.870080100685891",
+//    'visayas_mindanao' => "&x1=122.16796875&x2=128.25439453125&y2=12.651058133703483&y1=6.653695352486294",
+//    'palawan_sulu' => "&x1=116.54296874999999&x2=122.62939453125001&y2=12.39365886237742&y1=6.391730485481462",
 );
 
 function microtime_float() {
