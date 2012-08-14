@@ -1,3 +1,4 @@
+<? $javascript->link('/weatherph/js/weatherph/index', false) ?>
 <div class="content">
     <section class="main cf">
         <div id="map-container">
@@ -457,7 +458,10 @@ ECHO
         </video>    
 ECHO
 ))); ?>';
-
+    window['areas'] = <?= json_encode($areas) ?>;
+    window['types'] = <?= json_encode($types) ?>;
+    window['fileNames'] = <?= json_encode($filenames) ?>;
+    
     window['MOVIE_CONTENT'] = {
         wind         : windContent,
         precipitation: precipContent

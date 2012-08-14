@@ -146,7 +146,7 @@ $(document).ready(function(){
         minZoom: 5,
         zoom: 7,
         layers: [window['STATIONS_LAYER']],
-        zoomControl: false
+        zoomControl: true
     });
     
     
@@ -612,16 +612,30 @@ function getDataLayer(){
     console.error('x~>'+dataLayer);
     if (dataLayer == 'temperature' || dataLayer == 'pressure') {
 
-    var url = '<?= Router::url('/', true); $this->webroot ?>theme/weatherph/img/layers/'/*+layerTime+" "*/+gemCodeForRegions+'_'+dataLayer+'.png&';
-
-        console.error(url);
         $('.data-layer').animate({
             opacity: 0
         }, 600, function(){
-            $('.data-layer').css('background-image', 'url('+url+')');
+            $('.layer.slides_container').html('');
+            for (var key in window['fileNames']) {
+                var c = window['fileNames'][key];
+                var _imageName = ""+c.year+c.month+c.day+c.hour+c.min+'00'+gemCodeForRegions+'_'+dataLayer;
+                $('.layer.slides_container').append('<img src="<?= $this->webroot ?>theme/weatherph/img/layers/'+_imageName+'.png"/>');
+            }
+
             $('.data-layer').animate({
                 opacity: 1
+
             }, 600, function(){
+                    $('#layer-slides').slides({
+                        preload: false,
+                        effect: 'fade',
+                        crossfade: true,
+                        fadeSpeed: 350,
+                        play: 500,
+                        pagination: false,
+                        generatePagination: false,
+                        generateNextPrev: false
+                    });
                 });
         });
     }
@@ -789,6 +803,9 @@ $(function(){
                 $video
                 .fadeIn(1000)
                 .find('video').show();
+//            jwplayer("#window['MOVIE_CONTENT']."+_name).setup({
+//                flashplayer: "<? $this->webroot . 'weatherph/swf/player.swf'?>"
+//            });
             });
 
         } else {

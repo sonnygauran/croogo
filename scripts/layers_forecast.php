@@ -1,11 +1,18 @@
 <?php
-date_default_timezone_set(UTC);
-$location = "../views/themed/weatherph/webroot/img/layers/";
+date_default_timezone_set('UTC');
+$script_location = dirname(__FILE__);
+echo $script_location . "\n";
+$location = "$script_location/../views/themed/weatherph/webroot/img/layers/";
+$location2 = "$script_location/../views/themed/weatherph/webroot/img/layers";
+echo "\n\n";
+echo exec("ls $location2");
+exec("rm -r $location2/*.png");
+echo "\n\n";
 $res = "+3 hour";
 $date = date('Y-m-d');
 $startdate = $date;
 $start = date('YmdHis', strtotime($startdate));
-$enddate = date('YmdHis', strtotime("+3 days", strtotime($start)));
+$enddate = date('YmdHis', strtotime("+22 days", strtotime($start)));
 
 $STATIC = array (
     'start' => date('YmdHis', strtotime($startdate)),
