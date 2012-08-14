@@ -32,7 +32,7 @@ read REMOTE
     git pull $REMOTE development
     git checkout -b alpha/$NEW_VERSION development
     git push $REMOTE alpha/$NEW_VERSION:alpha/$NEW_VERSION
-
+	git checkout development
 
 
 echo "\n`date`:: Script Finished\n"
