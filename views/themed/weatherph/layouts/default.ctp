@@ -51,6 +51,7 @@
         <nav class="shadow cf">
             <ul class="dropdown">
                 <li><a href="<?= $this->webroot ?>">Home</a></li>
+                <?/*
                     <li>
                         <a href="#">Founders &#9663;</a>
                         <ul>
@@ -59,6 +60,7 @@
                             <li><a href="<?= $this->webroot ?>founders/unionbank">UnionBank</a></li>
                         </ul>
                     </li>
+                */?>
                     <li>
                         <a href="#">Dictionary &#9663;</a>
                         <ul>
@@ -67,6 +69,7 @@
                         </ul>
                     </li>
                 <li><a href="<?= $this->webroot ?>news">Payong Panahon</a></li>
+                <li><a href="<?= $this->webroot ?>announcements">Mata ng Bagyo</a></li>
                 <li><a href="<?= $this->webroot ?>webcam">Webcams</a></li>
                 <li><a href="<?= $this->webroot ?>about">About</a></li>
             </ul>
