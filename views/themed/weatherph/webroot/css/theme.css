@@ -213,6 +213,21 @@ label[for="search-field"] {
     z-index:1;
 }
 
+#layer-slides {
+    width: 554px;
+}
+
+#layer-slides .slides_container {
+    width: 554px;
+    display:none;
+}
+
+#layer-slides .slides_container img {
+    width:554px;
+    height:554px;
+    display:block;
+}
+
 #map {
     width: 554px;
     height: 554px;
@@ -825,7 +840,7 @@ span.temperature {
     margin-left: 30px;
 }
 
-.slidesContainer {
+.slides_container {
     width: 240px;
     display: none;
 }
