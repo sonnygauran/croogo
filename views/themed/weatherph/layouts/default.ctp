@@ -17,7 +17,6 @@
     echo $this->Layout->feed();
     echo $this->Html->css('theme');
     echo $this->Layout->js();
-    echo $scripts_for_layout;
     ?>
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -161,19 +160,12 @@ Google Analytics script
 
     if (($this->name == 'Weatherph') && ($this->action == 'index') || ($this->name == 'Search') && ($this->action == 'index')){
         echo "<script src='http://cdn.leafletjs.com/leaflet-0.3.1/leaflet.js'></script>";
-        //echo $this->Html->script('libs/jquery.geo-1.0a4.min');
     }
     
     /**
     * index.js requires the following variable:
     *      - resource - contains an array of (data-layer => (temperature, pressure)) for retreiving the image key.
     */
-    
-    if (($this->name == 'Weatherph') && ($this->action == 'index')){
-        echo "<script type='text/javascript' src='" . $this->webroot . "weatherph/js/weatherph/index.js'></script>";
-    } else if (($this->name == 'Search') && ($this->action == 'index')){           
-        echo "<script type='text/javascript' src='" . $this->webroot . "weatherph/js/weatherph/results.js'></script>";
-    }
     
     echo $this->Html->script('slides.min.jquery');
 ?>
@@ -192,7 +184,8 @@ Google Analytics script
         window.location=$(this).find("a").attr("href"); return false;
         });
     });
+    
 </script>
-
+<?= $scripts_for_layout ?>
 </body>
 </html>

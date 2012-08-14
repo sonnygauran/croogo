@@ -4,7 +4,7 @@ class SearchController extends WeatherphAppController {
     
     public $name = 'Search';
     public $uses = array('Nima.NimaName', 'Nima.FipsCode', 'Nima.Region');
-    public $helpers = array('Cache');
+    public $helpers = array('Cache', 'Javascript');
     var $cacheAction = array(
         'index' => array('duration' => 86400),
         'getResultCoordinates' => array('duration' => 86400),
