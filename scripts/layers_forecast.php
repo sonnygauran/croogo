@@ -1,6 +1,7 @@
 <?php
-$location = "../webroot/img/layers/";
-$res = "+1 hour";
+date_default_timezone_set(UTC);
+$location = "../views/themed/weatherph/webroot/img/layers/";
+$res = "+3 hour";
 $date = date('Y-m-d');
 $startdate = $date;
 $start = date('YmdHis', strtotime($startdate));
