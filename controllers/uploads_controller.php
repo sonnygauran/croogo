@@ -25,7 +25,9 @@ class UploadsController extends AppController{
             
             if(move_uploaded_file($tmp_name, $destination)){
                 $this->Session->setFlash("Upload Successful!");
-                $this->redirect(array('action' => 'admin_success',$this->data['Upload']['video']['name']));
+                $file_name = explode('.', $this->data['Upload']['video']['name']);
+                $file_name = $file_name[0];
+                $this->redirect(array('action' => 'admin_success', $file_name));
             }else{
                 $this->Session->setFlash("Something went wrong.");
             }
