@@ -8,3 +8,12 @@ AddType video/ogg .ogv
 
 RewriteRule    ^$    webroot/    [L]
 RewriteRule    (.*) webroot/$1    [L]
+
+# Turn on Expires and set default to 0
+ExpiresActive On
+ExpiresDefault A0
+
+# Set caching of video files to 20 minutes
+<filesMatch "\.(m4v|mp4|webm)$">
+Header set Cache-Control "max-age=15000"
+</filesMatch>

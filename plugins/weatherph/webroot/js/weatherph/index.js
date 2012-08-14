@@ -452,7 +452,7 @@ var StationIconWeb = L.Icon.extend({
     iconSize: new L.Point(8, 13),
     shadowSize: new L.Point(13, 13),
     iconAnchor: new L.Point(8, 13),
-    popupAnchor: new L.Point(-5, -20)
+    popupAnchor: new L.Point(-4, -15)
 });
 
 var StationIconMobile = L.Icon.extend({
@@ -594,7 +594,7 @@ function getDataLayer(){
     
     var gemCodeForRegions = '';
     switch ($("select[name=philippine-regions] option:selected").attr('data-region-id')){
-        case 'Philippines': gemCodeForRegions = 'all'; 
+        case 'Philippines': gemCodeForRegions = 'all';
         break;
         case 'Luzon': gemCodeForRegions = 'luzon';
         break;
@@ -611,7 +611,8 @@ function getDataLayer(){
 
     console.error('x~>'+dataLayer);
     if (dataLayer == 'temperature' || dataLayer == 'pressure') {
-        var url = '<?= Router::url('/', true); $this->webroot ?>theme/weatherph/img/'+gemCodeForRegions+'_'+dataLayer+'.png&';
+
+    var url = '<?= Router::url('/', true); $this->webroot ?>theme/weatherph/img/layers/'/*+layerTime+" "*/+gemCodeForRegions+'_'+dataLayer+'.png&';
 
         console.error(url);
         $('.data-layer').animate({
@@ -621,7 +622,6 @@ function getDataLayer(){
             $('.data-layer').animate({
                 opacity: 1
             }, 600, function(){
-                //
                 });
         });
     }
