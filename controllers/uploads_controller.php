@@ -34,7 +34,7 @@ class UploadsController extends AppController{
    }
    
    function admin_success($file_name = ''){
-       $url = "http://www.weather.com.ph" . Configure::read('Data.uploaded_videos');
+       $url = "http://www.weather.com.ph" . Configure::read('Data.uploaded_videos') . $file_name;
        $width = "480px";
        $height = "320px";
        
