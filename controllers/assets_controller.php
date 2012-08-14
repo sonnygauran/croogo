@@ -86,8 +86,8 @@ class AssetsController extends AppController {
                     'name' => reset(explode('.', end($parts))),
                     'download' => false,
                     'extension' => $ext,
-                    'mimeType' => array(
-                        'webm' => 'video/'.$ext,
+                    'mimetype' => array(
+                        $ext => 'video/'.$ext,
                     ),
                     'path' => $assetFile
                 );
