@@ -1,6 +1,7 @@
 <?php
 date_default_timezone_set(UTC);
 $location = "../views/themed/weatherph/webroot/img/layers/";
+exec("rm -r '$location'*.png'");
 $res = "+3 hour";
 $date = date('Y-m-d');
 $startdate = $date;
