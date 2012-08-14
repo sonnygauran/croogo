@@ -18,7 +18,7 @@ class UploadsController extends AppController{
         
         if(!empty($this->data)){            
             $tmp_name = $this->data['Upload']['video']['tmp_name'];
-            $directory = WWW_ROOT . DS . 'uploads' . DS . 'uploaded_movies' . DS;
+            $directory = WWW_ROOT . DS . 'uploads' . DS . 'uploaded_videos' . DS;
             $destination =  $directory . $this->data['Upload']['video']['name'];
             
             if(!is_dir($directory)) mkdir ($directory); // create directory
@@ -34,7 +34,7 @@ class UploadsController extends AppController{
    }
    
    function admin_success($file_name = ''){
-       $url = "http://www.weather.com.ph" . Configure::read('Data.uploaded_movies');
+       $url = "http://www.weather.com.ph" . Configure::read('Data.uploaded_videos');
        $width = "480px";
        $height = "320px";
        
