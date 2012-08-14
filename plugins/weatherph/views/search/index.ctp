@@ -1,3 +1,4 @@
+<? $javascript->link('/weatherph/js/weatherph/results', false); ?>
 <div class="content">
     <section class="main">
         <div id="map-container">
