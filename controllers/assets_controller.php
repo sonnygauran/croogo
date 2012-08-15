@@ -1,6 +1,8 @@
 <?php
 
-
+/**
+ * Credit for http://mobiforge.com/developing/story/content-delivery-mobile-devices 
+ */
 class AssetsController extends AppController {
 
     /**
