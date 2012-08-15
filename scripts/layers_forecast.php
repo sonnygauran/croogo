@@ -14,7 +14,7 @@ $res = "+3 hour";
 $date = date('Y-m-d');
 $startdate = $date;
 $start = date('YmdHis', strtotime($startdate));
-$enddate = date('YmdHis', strtotime("+22 days", strtotime($start)));
+$enddate = date('YmdHis', strtotime("+2 days", strtotime($start)));
 
 $STATIC = array (
     'start' => date('YmdHis', strtotime($startdate)),
