@@ -1,3 +1,6 @@
+var _name = "";
+var videoRegion = 'All';
+var currentRegion = 'All';
 var $boxMap = [
 
 //MAJOR AREAS
@@ -179,35 +182,78 @@ $(document).ready(function(){
             $('select[name=philippine-regions]').change(function(){
                 $("select[name=philippine-regions] option:selected").each(function () {
 
-                    if ($(this).attr('selected')) { // Is the current <option> selected?
-                        $region = $(this).attr('data-region-id'); // the region id
+                    if($('.active-layer').text() === 'Weather stations'){
+                        if ($(this).attr('selected')) { // Is the current <option> selected?
+                            $region = $(this).attr('data-region-id'); // the region id
 
-                        for (var key in $boxMap) { // let's traverse the $boxMap
-                            if ($boxMap[key].id == $region) {  // Initially matches 'data-region-id' with 'NCR'
-                                $current = $boxMap[key].box; // the current $boxMap record
-                                console.error($boxMap[key]);
-                                var southWest = new L.LatLng($current[1],$current[0]),
-                                northEast = new L.LatLng($current[3],$current[2]),
-                                bounds    = new L.LatLngBounds(southWest, northEast);
-                                console.error();
-                                
-                                var map = $('#map').data('map');
-                                
-                                var zoom = 7;
-                                if ($boxMap[key].id == 'Philippines') {
-                                    zoom = 4;
+                            for (var key in $boxMap) { // let's traverse the $boxMap
+                                if ($boxMap[key].id == $region) {  // Initially matches 'data-region-id' with 'NCR'
+                                    $current = $boxMap[key].box; // the current $boxMap record
+                                    console.error($boxMap[key]);
+                                    var southWest = new L.LatLng($current[1],$current[0]),
+                                    northEast = new L.LatLng($current[3],$current[2]),
+                                    bounds    = new L.LatLngBounds(southWest, northEast);
+                                    console.error();
+
+                                    var map = $('#map').data('map');
+
+                                    var zoom = 7;
+                                    if ($boxMap[key].id == 'Philippines') {
+                                        zoom = 4;
+                                    }
+                                    if ($(this).parent('optgroup').hasClass('minor-area')) {
+                                        zoom = 8;
+                                    }
+
+                                    map.panTo(bounds.getCenter()).setZoom(zoom);
+                                    //                                console.log($current);                                
+                                    setTimeout(getDataLayer, 1000);
+
                                 }
-                                if ($(this).parent('optgroup').hasClass('minor-area')) {
-                                    zoom = 8;
-                                }
-                                
-                                map.panTo(bounds.getCenter()).setZoom(zoom);
-//                                console.log($current);                                
-                                setTimeout(getDataLayer, 1000);
-                                
                             }
                         }
-                    } // END IF
+                    } else if($('.active-layer').text() === 'Weather movies \u25bf'){
+                        /*
+                        * Video switch
+                        * 
+                        * TODO:
+                        * - Consolidate code (still dependent on code at the bottom)
+                        * - Enable switching of video outside of movie layer
+                        * - Disable unused regions
+                        * - Add easing animations
+                        */
+                       
+                        window["DATA_LAYER"] = _name;
+                        console.error('Set~>'+window["DATA_LAYER"]);     
+
+                        var $movie = $('#movie-'+_name); // The markup
+                        var content = eval("window['MOVIE_CONTENT']."+_name);
+
+                        switch ($(this).val()){
+                            case 'All Philippines':
+                                videoRegion = 'All';
+                                break;
+                            case 'Luzon':
+                                videoRegion = 'LUZON';
+                                break;
+                            case 'Visayas/Mindanao':
+                                videoRegion = 'VISAYAS_MINDANAO';
+                                break;
+                            case 'Palawan/Sulu Sea':
+                                videoRegion = 'PALWAN';
+                                break;
+                        }
+
+                        var src;
+                        $.each($('#movie-'+_name + ' > source'), function(index, value){
+                            src = $(this).attr('src');
+                            new_src = src.replace(currentRegion, videoRegion);
+                            $(this).attr('src', new_src);
+                            console.error(new_src);
+                        });
+                        $('#movie-'+_name).load();
+                        currentRegion = videoRegion;
+                    }
                 });
             });
         }, 300);
@@ -647,6 +693,15 @@ function redrawMap(){
                 $('.scale-temperature').hide();
                 break;
         }
+        currentRegion = 'All';
+        videoRegion = 'All';
+
+//        TODO: Reset station in select box when switching layers
+//        
+//        $('.province-select').find("option:selected").each(function(){
+//            alert($(this).parent().attr("label"));
+//        });
+
     }
     $('.leaflet-container').css('background','transparent');
     $('.active-layer').removeClass('active-layer');
@@ -686,7 +741,8 @@ $(function(){
         var $video = $('.video-viewport');
         var $map = $('.map-viewport');
 
-        var _name = $(this).attr('data-name');
+        _name = $(this).attr('data-name');
+        region_stations = $('.active-layer').text();
 
         window["DATA_LAYER"] = _name;
         console.error('Set~>'+window["DATA_LAYER"]);
