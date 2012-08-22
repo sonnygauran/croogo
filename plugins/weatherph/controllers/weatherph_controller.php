@@ -114,8 +114,9 @@ class WeatherphController extends WeatherphAppController {
          *      - featureBlog - to display the featured blogs
          */
         $this->set(compact('blogEntries', 'resources'));
-        
+
     }
+    
     
     
     //changed $provider ='pagasa' to $provider = 'meteomedia' for filtering of pagasa stations
@@ -140,8 +141,8 @@ class WeatherphController extends WeatherphAppController {
                 'fields' => $fields,
             ));
         }
-        
-        $return = array();
+        $locations = array();
+        $stations_result = array();
         foreach ($stations as $station) {
             $station = $station['Station'];
             $current = array(
@@ -152,13 +153,24 @@ class WeatherphController extends WeatherphAppController {
                     'latitude' => $station['lat'],
                 )
             );
-            $return[] = $current;
+            
+            $currentLocationInString = $station['lat'].','.$station['lon'];
+            if (!in_array($currentLocationInString, $locations)) {
+                $locations[] = $currentLocationInString;
+                $stations_result[] = $current;
+            }
+
+            
+            
         }
-        
+       
         
         Configure::write('debug', 0);
-        $this->set('stations', json_encode($return));
+        $this->set('stations', json_encode($stations_result));
     }
+    
+    
+
 
     public function getReadings($stationID = '920001') {
         $this->layout = 'json/ajax';
