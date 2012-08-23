@@ -133,7 +133,7 @@
         ?>
 
         <footer>
-            <small>&copy; 2012 Meteomedia A.G.</small>
+            <small>&copy; 2012 Meteomedia Philippines</small>
         </footer>
     </section><!-- #container -->
 
