@@ -630,6 +630,7 @@ function redrawMap(){
                 $('#map').data('map').touchZoom.disable();
                 $('#map').data('map').scrollWheelZoom.disable();
                 $('.data-layer').show();
+                $('.leaflet-control-zoom').hide();
                 break;
             default:
                 $('#map').data('map').dragging.enable();
@@ -680,6 +681,7 @@ function redrawMap(){
                 break;
                 
             case 'stations':
+                $('.leaflet-control-zoom').show();
                 $('.scale-temperature').hide();
                 $('.scale-pressure').hide();
                 $('.minor-area').removeAttr('disabled');
