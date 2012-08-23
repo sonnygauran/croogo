@@ -697,10 +697,11 @@ function redrawMap(){
         videoRegion = 'All';
 
 //        TODO: Reset station in select box when switching layers
-//        
-//        $('.province-select').find("option:selected").each(function(){
-//            alert($(this).parent().attr("label"));
-//        });
+        
+        $('.province-select').find("option:selected").each(function(){
+            $('select[name=philippine-regions]').find('option[data-region-id=Philippines]').attr('selected','selected');
+            $('select[name=philippine-regions]').change();
+        });
 
     }
     $('.leaflet-container').css('background','transparent');
@@ -766,6 +767,13 @@ $(function(){
         // Layer selector toggle
 
         if ($(this).attr('data-type') == 'movie') {
+            
+            $('.province-select').find("option:selected").each(function(){
+                $('.province-select').find("option:selected").removeProp('selected');
+                $('select[name=philippine-regions]').find('option[data-region-id=Philippines]').attr('selected','selected');
+                $('select[name=philippine-regions]').change();
+            });
+            
             $('.active-layer').removeClass('active-layer');
             $('#movie-layer').addClass('active-layer');
             $('.scale-temperature').hide();
