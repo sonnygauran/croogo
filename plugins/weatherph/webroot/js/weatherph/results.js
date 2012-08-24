@@ -1,3 +1,4 @@
+globalTest = new Array();
 var $boxMap = [
 
 //MAJOR AREAS
@@ -253,16 +254,16 @@ function mapStations($stationsArray, icon) {
     // This loop maps the stations from the $stations fetched from getStations
     var counter = 0;
     var isiPad = navigator.userAgent.match(/iPad/i) != null;
-            
-    for (var key in $stationsArray) {
-        
-        $currentStation = $stationsArray[key];
+    
+    for (i=0; i<$stationsArray.length; i++) {
+        _icon.options.className = $stationsArray[i].id;
+        $currentStation = $stationsArray[i];
         var markerLocation = new L.LatLng($currentStation.coordinates[1], $currentStation.coordinates[0]);
         var marker = new L.Marker(markerLocation, {
             icon: _icon,
             zIndexOffset: -9999
         });
-        
+
         if(_icon.options.iconUrl == "http://wph/theme/weatherph/img/leaflet/marker-icon-blue-small.png"){
             marker.options.zIndexOffset  = 9999;
         }
@@ -325,3 +326,33 @@ function remapStations() {
         });
     }
 }
+
+// Highlights markers when hovering over search results.
+
+$('.search-results li').on({
+    mouseenter: function(){
+        var attributes = $(this).attr('class').split(' ');
+        var id = attributes[0];
+        
+        $('.leaflet-marker-icon.'+id).click();
+    },
+    
+    mouseleave: function(){
+        $('#map').click();
+    }
+});
+
+// Highlights search results when hovering over markers.
+//
+// TODO: fix this. still not working properly.
+//
+//$('.leaflet-marker-icon').on({
+//    mouseenter: function(){
+//        var attributes = $(this).attr('class').split(' ');
+//        var id = attributes[1];
+//        console.error('.search-results li.' +id);
+//    },
+//    
+//    mouseleave: function(){
+//    }
+//});

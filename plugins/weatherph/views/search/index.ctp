@@ -17,7 +17,7 @@
             </div>
             <div id="legend" class="shadow">
                 <div id="province-select">
-                    <h6>Province:</h6>
+                    <span>Choose an area:</span>
                     <select name="philippine-regions">
                         <option>Choose one...</option>
 
