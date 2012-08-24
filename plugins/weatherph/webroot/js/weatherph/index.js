@@ -335,7 +335,7 @@ function getForecast(id) {
                         var weather_symbol = $station_readings.reading.weather_symbol;
 
                         //                        console.error(weather_symbol);
-
+                        $('#info .readings .symbol').removeAttr('class');
                         if(weather_symbol.hasOwnProperty('symbol') && weather_symbol != '-') {
                             $('#info .readings .symbol:eq(0)').addClass(weather_symbol.symbol);
                         }else{

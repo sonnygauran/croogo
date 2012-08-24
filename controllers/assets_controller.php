@@ -86,7 +86,7 @@ class AssetsController extends AppController {
                     'name' => reset(explode('.', end($parts))),
                     'download' => false,
                     'extension' => $ext,
-                    'mimetype' => array(
+                    'mimeType' => array(
                         'webm' => 'video/'.$ext,
                     ),
                     'path' => $assetFile
@@ -97,6 +97,19 @@ class AssetsController extends AppController {
                 App::import('View', 'Media', false);
                 $controller = $this;
                 $contentType = '';
+                $this->view = 'Media';
+//                
+//                $this->view = 'Media';
+//                $params = array(
+//                    'id' => 'example.docx',
+//                    'name' => 'example',
+//                    'extension' => 'docx',   
+//                    'mimeType' => array('docx' => 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'),   // extends internal list of mimeTypes
+//                    'path' => APP . 'files' . DS  
+//                );
+//                $this->set($params);
+//                
+
 
                 $Media = new MediaView($controller);
                 if (isset($Media->mimeType[$ext])) {

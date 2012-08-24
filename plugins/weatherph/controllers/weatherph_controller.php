@@ -97,6 +97,8 @@ class WeatherphController extends WeatherphAppController {
             ));
         }
         
+        $locations = array();
+        
         $return = array();
         foreach ($stations as $station) {
             $station = $station['Station'];
@@ -108,7 +110,12 @@ class WeatherphController extends WeatherphAppController {
                     'latitude' => $station['lat'],
                 )
             );
-            $return[] = $current;
+            // We check stations if we already have the lat/lon
+            $currentLocationInString = $station['lat'].','.$station['lon'];
+            if (!in_array($currentLocationInString, $locations)) {
+                $locations[] = $currentLocationInString;
+                $return[] = $current;
+            }
         }
         
         
