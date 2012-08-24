@@ -1,3 +1,4 @@
+<? $javascript->link('/weatherph/js/weatherph/results', false); ?>
 <div class="content">
     <section class="main">
         <div id="map-container">
@@ -75,7 +76,7 @@
 
                         <li class="<?php echo $name['NimaName']['id'] . ' ' . $cityClass; ?>">
                                 <!-- <pre><?php echo print_r($name, true);?></pre>-->
-                            <a href ="/<?php echo Inflector::slug($name['NimaName']['full_name_ro'], '_') . '-' . $name['NimaName']['id']; ?>" class="<?php echo $name['NimaName']['id']; ?> location"><?php echo trim($name['NimaName']['full_name_ro']); ?><br /> <span><?= trim($name['FipsCode']['name']); ?> <?= trim($name['Region']['code']) ?></span></a>
+                            <a href ="/<?php echo Inflector::slug($name['NimaName']['full_name_ro'], '_') . '-' . $name['NimaName']['id']; ?>" class="<?php echo $name['NimaName']['id']; ?> location <?php echo ($name['FipsCode']['type'] == 2) ? 'city' : 'province'; ?>"><?php echo trim($name['NimaName']['full_name_ro']); ?><br /> <span><?= trim($name['FipsCode']['name']); ?> <?= trim($name['Region']['code']) ?></span></a>
                         </li>
                     <?php endforeach; ?>
                 </ul>

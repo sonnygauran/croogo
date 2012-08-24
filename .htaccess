@@ -1,10 +1,16 @@
 RewriteEngine on
 AddType application/x-httpd-php .js
 AddType application/x-httpd-php .css
-AddType video/mp4 .mp4
+AddType video/ogg .ogm .ogv .ogg
+AddType video/mp4 .mp4 .f4v
+AddType video/x-m4v .m4v
 AddType video/webm .webm
-AddType video/ogg .ogg
-AddType video/ogg .ogv
+AddType video/x-flv .flv
 
 RewriteRule    ^$    webroot/    [L]
 RewriteRule    (.*) webroot/$1    [L]
+
+# Set caching of video files to 20 minutes
+<filesMatch "\.(m4v|mp4|webm)$">
+Header set Cache-Control "max-age=15000"
+</filesMatch>

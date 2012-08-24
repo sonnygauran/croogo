@@ -1,3 +1,7 @@
+<?php
+    $movie_location = Configure::read('Data.movies');
+?>
+<? $javascript->link('/weatherph/js/weatherph/index', false) ?>
 <div class="content">
     <section class="main cf">
         <div id="map-container">
@@ -13,6 +17,7 @@
                     </li>
                     <li><a data-target="data-layer" data-name="temperature" href="#map">Temperature</a></li>
                     <li><a data-target="data-layer" data-name="pressure" href="#map">Pressure</a></li>
+                    <li><a data-target="data-layer" data-name="satellite" href="#map">Satellite</a></li>
                 </ul>
              
             </div> <!--LAYER SELECTOR-->
@@ -21,7 +26,10 @@
             </div>
             <div class="map-viewport">
 
-                <div class="data-layer" data-bbox=""></div>
+                <div id="layer-slides" class="data-layer" data-bbox="">
+                    <div class="layer slides_container">
+                    </div>
+                </div>
 
                 <div id="map">
                     <div class="hovered-station">
@@ -149,10 +157,8 @@
         <!--Province Selector-->
 
         <div class="province-select">
-                    <span>Province:</span>
+                    <span>Choose an area:</span>
                     <select name="philippine-regions">
-                        <option>Choose one...</option>
-
                         <optgroup label="Major Areas">
                             <option data-region-id="Philippines">All Philippines</option>
                             <option data-region-id="Luzon">Luzon</option>
@@ -387,7 +393,7 @@
     </section> <!--MAIN CONTENT-->
     <section class="secondary">
         <div class="blog">
-            <h4>Blog</h4>
+            <h4>News</h4>
             <div class="page">
                 <?php foreach ($blogEntries as $blog) { ?>
                         <?php $createdTime = strtotime($blog['Node']['created']); ?>
@@ -427,31 +433,33 @@
     </section> <!--SECONDARY-->
 </div> <!--CONTENT-->
 
-<?php
-    $movie_location = Configure::read('Data.movies');
-?>
 <script type="text/javascript">
     window["DATA_LAYER"] = null;
     window["DATA_LAYERS"] = <?= json_encode($resources['data-layers']); ?>;
-
+    console.error('<?= "{$movie_location}Philippines_All_stfi.m4v" ?>');
     var windContent = '<?= addslashes(str_replace("\n", "\\", (<<<ECHO
-        <video id="movie-wind" width="554" height="554" controls="controls">
-        <source src="{$movie_location}Philippines_All_stfi.mp4" type='video/mp4; codecs="avc1.42E01E"'/>
-        <source src="{$movie_location}Philippines_All_stfi.webm" type='video/webm; codecs="vp8"'/>
+        <video id="movie-wind" width="554" height="554" controls autobuffer autoplay>
+        <source src="{$movie_location}Philippines_All_stfi.m4v" type='video/x-m4v;'/>
+        <source src="{$movie_location}Philippines_All_stfi.mp4" type='video/mp4;'/>
+        <source src="{$movie_location}Philippines_All_stfi.webm" type='video/webm;'/>
         Your browser does not support the video tag.
         </video>
 ECHO
-)));
-        ?>';
-            var precipContent = '<?= addslashes(str_replace("\n", "\\", (<<<ECHO
-        <video id="movie-precipitation" width="554" height="554" controls="controls">
-        <source src="{$movie_location}Philippines_All_niwofi.mp4" type='video/mp4; codecs="avc1.42E01E"'/>
-        <source src="{$movie_location}Philippines_All_niwofi.webm" type='video/webm; codecs="vp8"'/>
+))); ?>';
+    
+    var precipContent = '<?= addslashes(str_replace("\n", "\\", (<<<ECHO
+        <video id="movie-precipitation" width="554" height="554" controls autobuffer autoplay>
+        <source src="{$movie_location}Philippines_All_niwofi.m4v" type='video/x-m4v;'/>
+        <source src="{$movie_location}Philippines_All_niwofi.mp4" type='video/mp4;'/>
+        <source src="{$movie_location}Philippines_All_niwofi.webm" type='video/webm;'/>
         Your browser does not support the video tag.
         </video>    
 ECHO
 ))); ?>';
-
+    window['areas'] = <?= json_encode($areas) ?>;
+    window['types'] = <?= json_encode($types) ?>;
+    window['fileNames'] = <?= json_encode($filenames) ?>;
+    
     window['MOVIE_CONTENT'] = {
         wind         : windContent,
         precipitation: precipContent

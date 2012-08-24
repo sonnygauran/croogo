@@ -213,6 +213,21 @@ label[for="search-field"] {
     z-index:1;
 }
 
+#layer-slides {
+    width: 554px;
+}
+
+#layer-slides .slides_container {
+    width: 554px;
+    display:none;
+}
+
+#layer-slides .slides_container img {
+    width:554px;
+    height:554px;
+    display:block;
+}
+
 #map {
     width: 554px;
     height: 554px;
@@ -266,57 +281,6 @@ label[for="search-field"] {
 
 #map-container video {
     display:none;
-}
-
-.hovered-station {
-    float: right;
-    width: 20%;
-    padding: .5em;
-    margin: 5px 5px 0 0;
-    text-align: center;
-    border-radius: 3px;
-    background: #fafafa;
-    display: none;
-}
-
-.plot {
-    width: 16px;
-    height: 16px;
-    background-image: url('<?= $this->webroot ?>theme/weatherph/img/marker-small.png') !important;
-    position: relative;
-    left: -8px;
-    top: -16px;
-    z-index: 1 !important;
-}
-
-.plot-alt {
-    width: 12px;
-    height: 12px;
-    background-image: url('<?= $this->webroot ?>theme/weatherph/img/marker-red-smaller.png') !important;
-    position: relative;
-    left: -6px;
-    top: -12px;
-    z-index: 1 !important;
-}
-
-.plot-alt-hover {
-    width: 24px;
-    height: 24px;
-    background-image: url('<?= $this->webroot ?>theme/weatherph/img/marker-red-smaller-focus.png') !important;
-    position: relative;
-    left: -12px;
-    top: -24px;
-    z-index: 1 !important;
-}
-
-.marker {
-    width: 32px;
-    height: 32px;
-    background-image: url('<?= $this->webroot ?>theme/weatherph/img/marker.png') !important;
-    position: relative;
-    left: -16px;
-    top: -32px;
-    z-index: 1 !important;
 }
 
 #legend {
@@ -825,7 +789,7 @@ span.temperature {
     margin-left: 30px;
 }
 
-.slidesContainer {
+.slides_container {
     width: 240px;
     display: none;
 }
@@ -853,7 +817,7 @@ span.temperature {
 
 .dropdown a {
     display:inline-block;
-    padding:5px;
+    padding: 3px;
     text-decoration: none;
 }
 

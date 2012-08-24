@@ -207,7 +207,7 @@ function isiPhone(){
 }
 
 var StationIconWeb = L.Icon.extend({
-    iconUrl: '<?= Router::url(null, true) ?>theme/weatherph/img/leaflet/marker-icon-red-small-transparent.png',
+    iconUrl: '<?= Router::url(null, true) ?>theme/weatherph/img/leaflet/marker-icon-red.png',
     shadowUrl: '<?= Router::url(null, true) ?>/theme/weatherph/img/leaflet/marker-shadow.png',
     iconSize: new L.Point(8, 13),
     shadowSize: new L.Point(13, 13),
@@ -216,7 +216,7 @@ var StationIconWeb = L.Icon.extend({
 });
 
 var StationIconMobile = L.Icon.extend({
-    iconUrl: '<?= Router::url(null, true) ?>theme/weatherph/img/leaflet/marker-icon-red-small-transparent.png',
+    iconUrl: '<?= Router::url(null, true) ?>theme/weatherph/img/leaflet/marker-icon-red.png',
     shadowUrl: '<?= Router::url(null, true) ?>/theme/weatherph/img/leaflet/marker-shadow.png',
     iconSize: new L.Point(12, 20),
     shadowSize: new L.Point(20, 20),
@@ -226,11 +226,11 @@ var StationIconMobile = L.Icon.extend({
 
 
 var stationIcon    = new StationIconWeb();
-var meteomediaIcon = new StationIconWeb('<?= Router::url(null, true) ?>theme/weatherph/img/leaflet/marker-icon-blue-small.png');
+var meteomediaIcon = new StationIconWeb('<?= Router::url(null, true) ?>theme/weatherph/img/leaflet/marker-icon-blue.png');
 
 if (isiPhone() || (navigator.userAgent.match(/iPad/i) != null)) {
     stationIcon    = new StationIconMobile();
-    meteomediaIcon = new StationIconMobile('<?= Router::url(null, true) ?>theme/weatherph/img/leaflet/marker-icon-blue-small.png');
+    meteomediaIcon = new StationIconMobile('<?= Router::url(null, true) ?>theme/weatherph/img/leaflet/marker-icon-blue.png');
 }
 
 function mapStationsPagasa($stationsArray) {

@@ -17,7 +17,6 @@
     echo $this->Layout->feed();
     echo $this->Html->css('theme');
     echo $this->Layout->js();
-    echo $scripts_for_layout;
     ?>
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -51,6 +50,7 @@
         <nav class="shadow cf">
             <ul class="dropdown">
                 <li><a href="<?= $this->webroot ?>">Home</a></li>
+                <?/*
                     <li>
                         <a href="#">Founders &#9663;</a>
                         <ul>
@@ -59,6 +59,7 @@
                             <li><a href="<?= $this->webroot ?>founders/unionbank">UnionBank</a></li>
                         </ul>
                     </li>
+                */?>
                     <li>
                         <a href="#">Dictionary &#9663;</a>
                         <ul>
@@ -67,6 +68,7 @@
                         </ul>
                     </li>
                 <li><a href="<?= $this->webroot ?>news">Payong Panahon</a></li>
+                <li><a href="<?= $this->webroot ?>announcements">Mata ng Bagyo</a></li>
                 <li><a href="<?= $this->webroot ?>webcam">Webcams</a></li>
                 <li><a href="<?= $this->webroot ?>about">About</a></li>
             </ul>
@@ -131,7 +133,7 @@
         ?>
 
         <footer>
-            <small>&copy; 2012 Meteomedia A.G.</small>
+            <small>&copy; 2012 Meteomedia Philippines</small>
         </footer>
     </section><!-- #container -->
 
@@ -158,19 +160,12 @@ Google Analytics script
 
     if (($this->name == 'Weatherph') && ($this->action == 'index') || ($this->name == 'Search') && ($this->action == 'index')){
         echo "<script src='http://cdn.leafletjs.com/leaflet-0.3.1/leaflet.js'></script>";
-        //echo $this->Html->script('libs/jquery.geo-1.0a4.min');
     }
     
     /**
     * index.js requires the following variable:
     *      - resource - contains an array of (data-layer => (temperature, pressure)) for retreiving the image key.
     */
-    
-    if (($this->name == 'Weatherph') && ($this->action == 'index')){
-        echo "<script type='text/javascript' src='" . $this->webroot . "weatherph/js/weatherph/index.js'></script>";
-    } else if (($this->name == 'Search') && ($this->action == 'index')){           
-        echo "<script type='text/javascript' src='" . $this->webroot . "weatherph/js/weatherph/results.js'></script>";
-    }
     
     echo $this->Html->script('slides.min.jquery');
 ?>
@@ -189,7 +184,8 @@ Google Analytics script
         window.location=$(this).find("a").attr("href"); return false;
         });
     });
+    
 </script>
-
+<?= $scripts_for_layout ?>
 </body>
 </html>

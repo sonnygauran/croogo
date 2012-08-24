@@ -19,6 +19,7 @@ class WeatherphController extends WeatherphAppController {
      */
     public $name = 'Weatherph';
 
+    public $helpers = array('Javascript');
     /**
      * Models used by the Controller
      *
@@ -34,13 +35,56 @@ class WeatherphController extends WeatherphAppController {
     public function index() {
         $this->set('title_for_layout', __('Weatherph', true));
         
+        //echo WWW_ROOT;
+        $layerFiles = scandir(ROOT.DS.APP_DIR.DS.'views'.DS.'themed'.DS.'weatherph'.DS.'webroot'.DS.'img'.DS.'layers');
+        //echo "<pre>";
+        
+        $filenames = array();
+        $areas = array();
+        $types = array();
+        
+        foreach ($layerFiles as $layerFile) {
+            // 20120814030000all_pressure.png
+            $_year = '([0-9]{4})';
+            $_month = '([0-9]{2})';
+            $_day = '([0-9]{2})';
+            $_hour = '([0-9]{2})';
+            $_min = '([0-9]{2})';
+            $_sec = '([0-9]{2})';
+            $_area = '([a-z]+)';
+            $_type = '(satellite|pressure|temperature)';
+            
+            
+            $filePattern = "/{$_year}{$_month}{$_day}{$_hour}{$_min}{$_sec}{$_area}_{$_type}/";
+            $matches = array();
+            if (preg_match($filePattern, $layerFile, $matches)) {
+                array_shift($matches); // removes the actual complete filename
+                //print_r($matches)
+                list($year, $month, $day, $hour, $min, $sec, $area, $type) = $matches;
+                if (!in_array($area, $areas)) {
+                    $areas[] = $area;
+                }
+                if (!in_array($type, $types)) {
+                    $types[] = $type;
+                }
+                
+                $current = compact('year', 'month', 'day', 'hour', 'min');
+                $filenames[] = $current;
+            }
+        }
+        //echo "<pre>";
+        
+        $this->set(compact('filenames', 'areas', 'types'));
+        //print_r($areas);
+        //print_r($types);
+        //print_r($filenames);
+        //exit;
         $blogEntries = $this->Node->find('all', array(
             'order' => 'Node.created DESC',
             'conditions' => array('Node.type' => 'blog'),
             'limit' => 5,
         ));
         
-          
         // $time = date('YmdHis');
         $everyHour = date('YmdH0000');
         
@@ -70,8 +114,9 @@ class WeatherphController extends WeatherphAppController {
          *      - featureBlog - to display the featured blogs
          */
         $this->set(compact('blogEntries', 'resources'));
-        
+
     }
+    
     
     
     //changed $provider ='pagasa' to $provider = 'meteomedia' for filtering of pagasa stations
@@ -96,10 +141,8 @@ class WeatherphController extends WeatherphAppController {
                 'fields' => $fields,
             ));
         }
-        
         $locations = array();
-        
-        $return = array();
+        $stations_result = array();
         foreach ($stations as $station) {
             $station = $station['Station'];
             $current = array(
@@ -110,18 +153,24 @@ class WeatherphController extends WeatherphAppController {
                     'latitude' => $station['lat'],
                 )
             );
-            // We check stations if we already have the lat/lon
+            
             $currentLocationInString = $station['lat'].','.$station['lon'];
             if (!in_array($currentLocationInString, $locations)) {
                 $locations[] = $currentLocationInString;
-                $return[] = $current;
+                $stations_result[] = $current;
             }
+
+            
+            
         }
-        
+       
         
         Configure::write('debug', 0);
-        $this->set('stations', json_encode($return));
+        $this->set('stations', json_encode($stations_result));
     }
+    
+    
+
 
     public function getReadings($stationID = '920001') {
         $this->layout = 'json/ajax';

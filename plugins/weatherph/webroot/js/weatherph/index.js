@@ -1,127 +1,101 @@
+var _name = "";
+var videoRegion = 'All';
+var currentRegion = 'All';
 var $boxMap = [
 
-    //MAJOR AREAS
-    //These values were just taken directly from wetter4. No conversion.
-    {
-        id: 'Philippines', 
-        box: [111.3134765625, 0.8349313860427184, 135.6591796875, 24.407137917727667]
-    },
-    {
-        id: 'Luzon', 
-        box: [115.21875000000186,12.992620600954227,129.28124999999815,20.641882002574366]
-    },
-    {
-        id: 'VisMin', 
-        box: [118.18475000000187,5.729469014423421,132.24724999999813,13.607339308212687]
-    },
-    {
-        id: 'Palawan', 
-        box: [116.54296874999999,6.402648405963896,122.62939453125001,12.404388944669792]
-    },
+//MAJOR AREAS
+{
+    id: 'Philippines', 
+    box: [111.3134765625, 0.8349313860427184, 135.6591796875, 24.407137917727667]
+},
+{
+    id: 'Luzon', 
+    box: [115.21875000000186,12.992620600954227,129.28124999999815,20.641882002574366]
+},
+{
+    id: 'VisMin', 
+    box: [118.18475000000187,5.729469014423421,132.24724999999813,13.607339308212687]
+},
+{
+    id: 'Palawan', 
+    box: [116.54296874999999,6.402648405963896,122.62939453125001,12.404388944669792]
+},
 
-    //LUZON
-    {
-        id: 'NCR', 
-        box: [120.78025838964851, 14.340234924288968, 121.28150961035149, 14.739027102167846]
-    },
-    {
-        id: 'CAR', 
-        box: [119.07531711718802, 15.860957319356404, 123.08532688281198, 19.004996360800135]
-    },
-    {
-        id: 'I', 
-        box: [118.44909711718802, 15.347761824788998, 122.45910688281198, 18.500447360569783]
-    },
-    {
-        id: 'II', 
-        box: [119.61914111718802, 15.538376429558836, 123.62915088281197, 18.687879180851954]
-    },
-    {
-        id: 'III', 
-        box: [119.14123511718803, 14.038008352438528, 123.151244882812, 17.211640744046566]
-    },
-    {
-        id: 'IVa', 
-        box: [119.14123511718803, 14.038008352438528, 123.151244882812, 14.211640744046566]
-    },
-    {
-        id: 'IVb', 
-        box: [115.45532223437608, 7.961317655755968, 123.47534176562394, 14.424040675692801]
-    },
-    {
-        id: 'V', 
-        box: [121.40991211718803, 11.813588529774567, 125.41992188281199, 15.019075443311895]
-    },
+//LUZON
+{
+    id: 'NCR', 
+    box: [120.78025838964851, 14.340234924288968, 121.28150961035149, 14.739027102167846]
+},
+{
+    id: 'CAR', 
+    box: [119.07531711718802, 15.860957319356404, 123.08532688281198, 19.004996360800135]
+},
+{
+    id: 'I', 
+    box: [118.44909711718802, 15.347761824788998, 122.45910688281198, 18.500447360569783]
+},
+{
+    id: 'II', 
+    box: [119.61914111718802, 15.538376429558836, 123.62915088281197, 18.687879180851954]
+},
+{
+    id: 'III', 
+    box: [119.14123511718803, 14.038008352438528, 123.151244882812, 17.211640744046566]
+},
+{
+    id: 'IVa', 
+    box: [119.14123511718803, 14.038008352438528, 123.151244882812, 14.211640744046566]
+},
+{
+    id: 'IVb', 
+    box: [115.45532223437608, 7.961317655755968, 123.47534176562394, 14.424040675692801]
+},
+{
+    id: 'V', 
+    box: [121.40991211718803, 11.813588529774567, 125.41992188281199, 15.019075443311895]
+},
 
-    //VISAYAS
-    {
-        id: 'VI', 
-        box: [120.55847211718805, 9.096672666835465, 124.56848188281197, 12.33463548967992]
-    },
-    {
-        id: 'VII', 
-        box: [121.62963911718803, 8.472372161745135, 125.63964888281197, 11.716788270049275]
-    },
-    {
-        id: 'VIII', 
-        box: [122.86010711718802, 9.871452017038855, 126.87011688281196, 13.100879989039102]
-    },
+//VISAYAS
+{
+    id: 'VI', 
+    box: [120.55847211718805, 9.096672666835465, 124.56848188281197, 12.33463548967992]
+},
+{
+    id: 'VII', 
+    box: [121.62963911718803, 8.472372161745135, 125.63964888281197, 11.716788270049275]
+},
+{
+    id: 'VIII', 
+    box: [122.86010711718802, 9.871452017038855, 126.87011688281196, 13.100879989039102]
+},
 
-    //MINDANAO
-    {
-        id: 'IX', 
-        box: [120.69580111718803, 6.197898567731331, 124.70581088281199, 9.462607734406564]
-    },
-    {
-        id: 'X', 
-        box: [122.68432611718804, 6.680975517225828, 126.69433588281198, 9.941798440553796]
-    },
-    {
-        id: 'XI', 
-        box: [123.72802711718802, 5.4082107972443785, 127.73803688281197, 8.678778561939074]
-    },
-    {
-        id: 'XII', 
-        box: [123.08532711718804, 5.364459981953138, 127.09533688281198, 8.635334367537935]
-    },
-    {
-        id: 'XIII', 
-        box: [123.73352011718801, 7.525873210799716, 127.74352988281196, 10.779348910314807]
-    },
-    {
-        id: 'ARMM', 
-        box: [117.97119123437608, 3.206332652787861, 125.99121076562393, 9.752369809194555]
-    },
+//MINDANAO
+{
+    id: 'IX', 
+    box: [120.69580111718803, 6.197898567731331, 124.70581088281199, 9.462607734406564]
+},
+{
+    id: 'X', 
+    box: [122.68432611718804, 6.680975517225828, 126.69433588281198, 9.941798440553796]
+},
+{
+    id: 'XI', 
+    box: [123.72802711718802, 5.4082107972443785, 127.73803688281197, 8.678778561939074]
+},
+{
+    id: 'XII', 
+    box: [123.08532711718804, 5.364459981953138, 127.09533688281198, 8.635334367537935]
+},
+{
+    id: 'XIII', 
+    box: [123.73352011718801, 7.525873210799716, 127.74352988281196, 10.779348910314807]
+},
+{
+    id: 'ARMM', 
+    box: [117.97119123437608, 3.206332652787861, 125.99121076562393, 9.752369809194555]
+},
 
-    ];
-// Station hover has been disabled by request.
-//
-//$(window).load(function() {
-//    $(document).on( 'mouseover mouseout', 'div.plot, div.plot-alt', function(event){
-//        if (event.type == 'mouseover') {
-//
-//            var attributes = $(this).attr('class').split(' ');
-//            var id = attributes[1];
-//            var name ="";
-//            var $allStations = $stations.concat($stationsPagasa);
-//
-//            $info = getObjects($allStations, 'id', id);
-//            name = $info[0].name;
-//
-//            $('.hovered-station')
-//            .show()
-//            .stop()
-//            .css('opacity', '1')
-//            .text(name);
-//
-//        } else {
-//            $('.hovered-station')
-//            .animate("opacity", '1') //This is to get the delay working
-//            .delay(5000)
-//            .fadeOut(400);
-//        }
-//    });
-//});
+];
 
 $(document).ready(function(){
     window['LEAFLET_TILES_SRC'] = {
@@ -146,26 +120,35 @@ $(document).ready(function(){
         minZoom: 5,
         zoom: 7,
         layers: [window['STATIONS_LAYER']],
-        zoomControl: false
+        zoomControl: true
     });
     
     
     var ph = $boxMap[0].box;
     var southWest = new L.LatLng(ph[1],ph[0]),
-        northEast = new L.LatLng(ph[3],ph[2]),
-        bounds    = new L.LatLngBounds(southWest, northEast);
+    northEast = new L.LatLng(ph[3],ph[2]),
+    bounds    = new L.LatLngBounds(southWest, northEast);
 
     $('#map').data('map', map);
     
     
-    window['LEAFLET_TILES'].stations    = new L.TileLayer(window['LEAFLET_TILES_SRC'].stations,    {maxZoom: 18, attribution: window['ATTRIBUTION']});
-    window['LEAFLET_TILES'].temperature = new L.TileLayer(window['LEAFLET_TILES_SRC'].temperature, {maxZoom: 18, attribution: window['ATTRIBUTION']});
-    window['LEAFLET_TILES'].pressure    = new L.TileLayer(window['LEAFLET_TILES_SRC'].pressure,    {maxZoom: 18, attribution: window['ATTRIBUTION']});
+    window['LEAFLET_TILES'].stations    = new L.TileLayer(window['LEAFLET_TILES_SRC'].stations,    {
+        maxZoom: 18, 
+        attribution: window['ATTRIBUTION']
+    });
+    window['LEAFLET_TILES'].temperature = new L.TileLayer(window['LEAFLET_TILES_SRC'].temperature, {
+        maxZoom: 18, 
+        attribution: window['ATTRIBUTION']
+    });
+    window['LEAFLET_TILES'].pressure    = new L.TileLayer(window['LEAFLET_TILES_SRC'].pressure,    {
+        maxZoom: 18, 
+        attribution: window['ATTRIBUTION']
+    });
     
     map
-        .setView(new L.LatLng(14.5167, 121), 7)
-        .addLayer(window['LEAFLET_TILES'].stations)
-        .setMaxBounds(bounds);
+    .setView(new L.LatLng(14.5167, 121), 7)
+    .addLayer(window['LEAFLET_TILES'].stations)
+    .setMaxBounds(bounds);
     map.panTo(bounds.getCenter()).setZoom(7);
     
     var baseMaps = {
@@ -185,57 +168,7 @@ $(document).ready(function(){
     setTimeout(function(){
         map.setZoom(4);
     }, 1600);
-/*
-    var map = $("#map").geomap({
-        center: [123.5, 12.902712695115516], //to fit weather animations, was[ 121.750488, 12.698865 ],
-        zoom: 5,
-        mode: "static",
-        scroll: 'off',
-        cursors: {
-            static: "default",
-            pan: "default",
-            zoom: "default",
-            drawPoint: "default",
-            drawLineString: "default",
-            drawPolygon: "default",
-            measureLength: "default",
-            measureArea: "default"
-        },
-
-        services: window['GEOMAP_SERVICES'].standard,
-        tilingScheme: {
-            tileWidth: 256,
-            tileHeight: 256,
-            levels: 18,
-            basePixelSize: 156543.03392799936,
-            origin: [-20037508.342787, 20037508.342787]
-        }
-
-    });
-
-    map.geomap({
-        //Find mode
-        //mode: "find", // Find mode was turning on double-click to zoom.
-        click: function(e, geo) {
-            var outputHtml = "";
-            result = $('#map').geomap("find", geo, 6);
-            //    console.log(result);
-            //    console.log(e);
-
-            console.log(JSON.stringify(result));
-            $.each(result, function () {
-                outputHtml += ("<p>Found a " + this.type + " at " + this.coordinates + "</p>");
-                console.error(this.id);
-
-                $stations = new Array();
-//                $('#loader').fadeIn();
-                getForecast(this.id);
-                return;
-            });
-        }
-    });
-*/
-
+ 
     $stationsPagasa = new Array();
     window['STATIONS'] = {
         pagasa: null,
@@ -249,162 +182,184 @@ $(document).ready(function(){
             $('select[name=philippine-regions]').change(function(){
                 $("select[name=philippine-regions] option:selected").each(function () {
 
-                    if ($(this).attr('selected')) { // Is the current <option> selected?
-                        $region = $(this).attr('data-region-id'); // the region id
+                    if($('.active-layer').text() === 'Weather stations'){
+                        if ($(this).attr('selected')) { // Is the current <option> selected?
+                            $region = $(this).attr('data-region-id'); // the region id
 
-                        for (var key in $boxMap) { // let's traverse the $boxMap
-                            if ($boxMap[key].id == $region) {  // Initially matches 'data-region-id' with 'NCR'
-                                $current = $boxMap[key].box; // the current $boxMap record
-                                console.error($boxMap[key]);
-                                var southWest = new L.LatLng($current[1],$current[0]),
+                            for (var key in $boxMap) { // let's traverse the $boxMap
+                                if ($boxMap[key].id == $region) {  // Initially matches 'data-region-id' with 'NCR'
+                                    $current = $boxMap[key].box; // the current $boxMap record
+                                    console.error($boxMap[key]);
+                                    var southWest = new L.LatLng($current[1],$current[0]),
                                     northEast = new L.LatLng($current[3],$current[2]),
                                     bounds    = new L.LatLngBounds(southWest, northEast);
-                                console.error();
-                                
-                                var map = $('#map').data('map');
-                                
-                                var zoom = 7;
-                                if ($boxMap[key].id == 'Philippines') {
-                                    zoom = 4;
-                                }
-                                if ($(this).parent('optgroup').hasClass('minor-area')) {
-                                    zoom = 8;
-                                }
-                                
-                                map.panTo(bounds.getCenter()).setZoom(zoom);
-                                //map.panInsideBounds(bounds);
-                                console.log($current);
-//                                $('#map').geomap({ // Then set the value from the $boxMap
-//                                    bbox: $current.box
-//                                });
+                                    console.error();
 
-                                //console.error($current.box);
-                                
-                                setTimeout(getDataLayer, 1000);
-                                
+                                    var map = $('#map').data('map');
+
+                                    var zoom = 7;
+                                    if ($boxMap[key].id == 'Philippines') {
+                                        zoom = 4;
+                                    }
+                                    if ($(this).parent('optgroup').hasClass('minor-area')) {
+                                        zoom = 8;
+                                    }
+
+                                    map.panTo(bounds.getCenter()).setZoom(zoom);
+                                    //                                console.log($current);                                
+                                    setTimeout(getDataLayer, 1000);
+
+                                }
                             }
                         }
-                    } // END IF
+                    } else if($('.active-layer').text() === 'Weather movies \u25bf'){
+                        /*
+                        * Video switch
+                        * 
+                        * TODO:
+                        * - Consolidate code (still dependent on code at the bottom)
+                        * - Enable switching of video outside of movie layer
+                        * - Disable unused regions
+                        * - Add easing animations
+                        */
+                       
+                        window["DATA_LAYER"] = _name;
+                        console.error('Set~>'+window["DATA_LAYER"]);     
+
+                        var $movie = $('#movie-'+_name); // The markup
+                        var content = eval("window['MOVIE_CONTENT']."+_name);
+
+                        switch ($(this).val()){
+                            case 'All Philippines':
+                                videoRegion = 'All';
+                                break;
+                            case 'Luzon':
+                                videoRegion = 'LUZON';
+                                break;
+                            case 'Visayas/Mindanao':
+                                videoRegion = 'VISAYAS_MINDANAO';
+                                break;
+                            case 'Palawan/Sulu Sea':
+                                videoRegion = 'PALWAN';
+                                break;
+                        }
+
+                        var src;
+                        $.each($('#movie-'+_name + ' > source'), function(index, value){
+                            src = $(this).attr('src');
+                            new_src = src.replace(currentRegion, videoRegion);
+                            $(this).attr('src', new_src);
+                            console.error(new_src);
+                        });
+                        $('#movie-'+_name).load();
+                        currentRegion = videoRegion;
+                    }
                 });
             });
         }, 300);
     });
-    
     getForecast(984290); //Manila
-//getForecast(980002); //Amanpulo
 });
 
 function getForecast(id) {
-        console.error('<?php Router::url($this->webroot) ?>');
-        console.error('<?= $this->webroot ?>weatherph/weatherph/getForecast/'+id+'/3/3h');
+    console.error('<?php Router::url($this->webroot) ?>');
+    console.error('<?= $this->webroot ?>weatherph/weatherph/getForecast/'+id+'/3/3h');
 
-        $.ajax({
-            type   : 'GET',
-            url    : '<?= $this->webroot ?>weatherph/weatherph/getForecast/'+id+'/3/3h',
-            cache  : true,
-            success: function(readings) {
-                //                console.log(readings);
-                var $station_readings = readings; // the complete retrieved stations
-                //                console.log($station_readings);
-                var cr_temperature, cr_wind, cr_precip, cr_humidity, cr_symbol;
-                var sr_temperature, sr_wind, sr_precip, sr_humidity, sr_symbol;
-                var current_readings, cr_precip_hr_range;
+    $.ajax({
+        type   : 'GET',
+        url    : '<?= $this->webroot ?>weatherph/weatherph/getForecast/'+id+'/3/3h',
+        cache  : true,
+        success: function(readings) {
+            //                console.log(readings);
+            var $station_readings = readings; // the complete retrieved stations
+            //                console.log($station_readings);
+            var cr_temperature, cr_wind, cr_precip, cr_humidity, cr_symbol;
+            var sr_temperature, sr_wind, sr_precip, sr_humidity, sr_symbol;
+            var current_readings, cr_precip_hr_range;
 
-                $('#readings-location').html($station_readings.station_name);
+            $('#readings-location').html($station_readings.station_name);
 
-                if($station_readings.reading.status == 'ok'){
+            if($station_readings.reading.status == 'ok'){
 
-                    showReadings();
+                showReadings();
 
-                    current_readings = $station_readings.reading;
-                    $('#last-update').html(current_readings.update);
+                current_readings = $station_readings.reading;
+                $('#last-update').html(current_readings.update);
 
-                    cr_temperature = current_readings.temperature;
-                    cr_wind = current_readings.wind_speed;
-                    cr_precip = current_readings.precipitation;
-                    cr_precip_hr_range = current_readings.precipitation_hr_range;
-                    cr_humidity = current_readings.relative_humidity;
+                cr_temperature = current_readings.temperature;
+                cr_wind = current_readings.wind_speed;
+                cr_precip = current_readings.precipitation;
+                cr_precip_hr_range = current_readings.precipitation_hr_range;
+                cr_humidity = current_readings.relative_humidity;
 
-                    $('.current.temperature span').html(cr_temperature);
-                    $('.current.wind span').html(cr_wind);
-                    $('.current.precipitation span').html(cr_precip);
-                    $('.precipitation_hr_range').html(cr_precip_hr_range);
-                    $('.current.humidity span').html(cr_humidity);
+                $('.current.temperature span').html(cr_temperature);
+                $('.current.wind span').html(cr_wind);
+                $('.current.precipitation span').html(cr_precip);
+                $('.precipitation_hr_range').html(cr_precip_hr_range);
+                $('.current.humidity span').html(cr_humidity);
 
-                    if ($station_readings.reading.weather_symbol) {
-                        var weather_symbol = $station_readings.reading.weather_symbol;
+                if ($station_readings.reading.weather_symbol) {
+                    var weather_symbol = $station_readings.reading.weather_symbol;
 
-                        //                        console.error(weather_symbol);
-                        $('#info .readings .symbol').removeAttr('class');
-                        if(weather_symbol.hasOwnProperty('symbol') && weather_symbol != '-') {
-                            $('#info .readings .symbol:eq(0)').addClass(weather_symbol.symbol);
-                        }else{
-                            $('#info .readings .symbol:eq(0)').attr('class', 'symbol');
-                        }
-                        $('.current.time').html($station_readings.reading.update);
+                    //                        console.error(weather_symbol);
+
+                    if(weather_symbol.hasOwnProperty('symbol') && weather_symbol != '-') {
+                        $('#info .readings .symbol:eq(0)').addClass(weather_symbol.symbol);
+                    }else{
+                        $('#info .readings .symbol:eq(0)').attr('class', 'symbol');
                     }
-
-                }else{
-                    hideReadings();
+                    $('.current.time').html($station_readings.reading.update);
                 }
 
-                if($station_readings.forecast.status == 'ok'){
-
-                    showForecast();
-
-                    //console.error($station_readings.forecast);
-
-                    for (var key in $station_readings.forecast) {
-
-                        if(key != 'status'){
-
-                            sr_temperature = $station_readings.forecast[key].temperature;
-                            sr_wind = $station_readings.forecast[key].wind_speed;
-                            sr_precip = $station_readings.forecast[key].precipitation;
-                            sr_humidity = $station_readings.forecast[key].relative_humidity;
-
-                            //console.error(key);
-
-                            var weather_symbol = $station_readings.forecast[key].weather_symbol;
-
-                            //                            console.error(weather_symbol);
-                             if(weather_symbol.hasOwnProperty('symbol') && weather_symbol != '-') {
-                                $('.' + key + '-hour .symbol').addClass(weather_symbol.symbol);
-                            }else{
-                                $('.' + key + '-hour .symbol').attr('class', 'symbol');
-                            }
-                            
-                            $('.' + key + '-hour.time').html($station_readings.forecast[key].localtime_range);
-                            $('.' + key + '-hour .temperature span').html(sr_temperature);
-                            $('.' + key + '-hour .wind span').html(sr_wind);
-                            $('.' + key + '-hour .precipitation span').html(sr_precip);
-                            $('.' + key + '-hour .humidity span').html(sr_humidity);
-                        }
-                    }
-                }else{
-                    hideForecast();
-                }
-
-                $('#loader').fadeOut();
-                $('.detail-page-link a').attr({
-                    href: '<?= $this->webroot ?>view/'+id
-                });
+            }else{
+                hideReadings();
             }
-        });
-    }
 
-// Show/hide forecasts depending on availability
-//function hideDiv() { 
-//    if (document.getElementById) { F
-//            document.getElementById('stations_only').style.visibility = 'hidden'; 
-//    } 
-//} 
-////
-////function showDiv() { 
-////    if (document.getElementById) { 
-////            document.getElementById('stations_only').style.visibility = 'visible'; 
-////        } 
-////}
+            if($station_readings.forecast.status == 'ok'){
+
+                showForecast();
+
+                //console.error($station_readings.forecast);
+
+                for (var key in $station_readings.forecast) {
+
+                    if(key != 'status'){
+
+                        sr_temperature = $station_readings.forecast[key].temperature;
+                        sr_wind = $station_readings.forecast[key].wind_speed;
+                        sr_precip = $station_readings.forecast[key].precipitation;
+                        sr_humidity = $station_readings.forecast[key].relative_humidity;
+
+                        //console.error(key);
+
+                        weather_symbol = $station_readings.forecast[key].weather_symbol;
+
+                        //                            console.error(weather_symbol);
+                        if(weather_symbol.hasOwnProperty('symbol') && weather_symbol != '-') {
+                            $('.' + key + '-hour .symbol').addClass(weather_symbol.symbol);
+                        }else{
+                            $('.' + key + '-hour .symbol').attr('class', 'symbol');
+                        }
+                            
+                        $('.' + key + '-hour.time').html($station_readings.forecast[key].localtime_range);
+                        $('.' + key + '-hour .temperature span').html(sr_temperature);
+                        $('.' + key + '-hour .wind span').html(sr_wind);
+                        $('.' + key + '-hour .precipitation span').html(sr_precip);
+                        $('.' + key + '-hour .humidity span').html(sr_humidity);
+                    }
+                }
+            }else{
+                hideForecast();
+            }
+
+            $('#loader').fadeOut();
+            $('.detail-page-link a').attr({
+                href: '<?= $this->webroot ?>view/'+id
+            });
+        }
+    });
+}
+
 function hideSelect(){
     $('.stations-only').fadeOut(function(){
         $('.stations-only').fadeIn();     
@@ -434,17 +389,14 @@ function showReadings(){
     });
 }
 
-
-
 function isiPhone(){
     return (
         //Detect iPhone
         (navigator.platform.indexOf("iPhone") != -1) ||
         //Detect iPod
         (navigator.platform.indexOf("iPod") != -1)
-    );
+        );
 }
-
 
 var StationIconWeb = L.Icon.extend({
     iconUrl: '<?= Router::url(null, true) ?>theme/weatherph/img/leaflet/marker-icon-red-small-transparent.png',
@@ -452,7 +404,7 @@ var StationIconWeb = L.Icon.extend({
     iconSize: new L.Point(8, 13),
     shadowSize: new L.Point(13, 13),
     iconAnchor: new L.Point(8, 13),
-    popupAnchor: new L.Point(-5, -20)
+    popupAnchor: new L.Point(-4, -15)
 });
 
 var StationIconMobile = L.Icon.extend({
@@ -475,7 +427,6 @@ if (isiPhone() || (navigator.userAgent.match(/iPad/i) != null)) {
 
 function mapStationsPagasa($stationsArray) {
     mapStations($stationsArray, stationIcon);
-    
 }
 
 function mapStations($stationsArray, icon) {
@@ -494,12 +445,14 @@ function mapStations($stationsArray, icon) {
         
         $currentStation = $stationsArray[key];
         var markerLocation = new L.LatLng($currentStation.coordinates[1], $currentStation.coordinates[0]);
-        var marker = new L.Marker(markerLocation, {icon: _icon});
+        var marker = new L.Marker(markerLocation, {
+            icon: _icon
+        });
         
         var content = "<b>"+$currentStation.name+"</b>";
-//        if (isiPad || isiPhone()) {
-            content += "<br /><a href=\"#\" class=\"marker-popup\" data-id=\""+$currentStation.id+" \">View Details</a>";
-//        }
+        //        if (isiPad || isiPhone()) {
+        content += "<br /><a href=\"#\" class=\"marker-popup\" data-id=\""+$currentStation.id+" \">View Details</a>";
+        //        }
         marker.bindPopup(content);
 
         marker.station = {
@@ -509,17 +462,17 @@ function mapStations($stationsArray, icon) {
         
         marker.on('click', function(e){
             var self = this;
-//            if (isiPhone() || isiPad) {
-                $('.marker-popup').on('click', function(evt){
-                    evt.preventDefault();
+            //            if (isiPhone() || isiPad) {
+            $('.marker-popup').on('click', function(evt){
+                evt.preventDefault();
 
-                    getForecast(self.station.id);
+                getForecast(self.station.id);
 
-                    self.closePopup();
-                });
-//            } else {
-//                getForecast(self.station.id);
-//            }
+                self.closePopup();
+            });
+        //            } else {
+        //                getForecast(self.station.id);
+        //            }
         });
         window['STATIONS_LAYER'].addLayer(marker);
     }
@@ -594,14 +547,18 @@ function getDataLayer(){
     
     var gemCodeForRegions = '';
     switch ($("select[name=philippine-regions] option:selected").attr('data-region-id')){
-        case 'Philippines': gemCodeForRegions = 'all'; 
-        break;
-        case 'Luzon': gemCodeForRegions = 'luzon';
-        break;
-        case 'VisMin': gemCodeForRegions = 'visayas_mindanao';
-        break;
-        case 'Palawan': gemCodeForRegions = 'palawan_sulu';
-        break;
+        case 'Philippines':
+            gemCodeForRegions = 'all';
+            break;
+        case 'Luzon':
+            gemCodeForRegions = 'luzon';
+            break;
+        case 'VisMin':
+            gemCodeForRegions = 'visayas_mindanao';
+            break;
+        case 'Palawan':
+            gemCodeForRegions = 'palawan_sulu';
+            break;
     }
 
     // Available layers
@@ -610,19 +567,33 @@ function getDataLayer(){
     var dataLayer = window["DATA_LAYER"];
 
     console.error('x~>'+dataLayer);
-    if (dataLayer == 'temperature' || dataLayer == 'pressure') {
-        var url = '<?= Router::url('/', true); $this->webroot ?>theme/weatherph/img/'+gemCodeForRegions+'_'+dataLayer+'.png&';
+    if (dataLayer == 'temperature' || dataLayer == 'pressure' || dataLayer == 'satellite') {
 
-        console.error(url);
         $('.data-layer').animate({
             opacity: 0
         }, 600, function(){
-            $('.data-layer').css('background-image', 'url('+url+')');
+            $('.layer.slides_container').html('');
+            for (var key in window['fileNames']) {
+                var c = window['fileNames'][key];
+                var _imageName = ""+c.year+c.month+c.day+c.hour+c.min+'00'+gemCodeForRegions+'_'+dataLayer;
+                $('.layer.slides_container').append('<img src="<?= $this->webroot ?>theme/weatherph/img/layers/'+_imageName+'.png"/>');
+            }
+
             $('.data-layer').animate({
                 opacity: 1
+
             }, 600, function(){
-                //
+                $('#layer-slides').slides({
+                    preload: false,
+                    effect: 'fade',
+                    crossfade: true,
+                    fadeSpeed: 350,
+                    play: 500,
+                    pagination: false,
+                    generatePagination: false,
+                    generateNextPrev: false
                 });
+            });
         });
     }
 }
@@ -648,16 +619,18 @@ function redrawMap(){
     console.error(dataLayer);
     if (dataLayer != null) {
         getDataLayer(); 
-        
+
         switch(dataLayer) {
             case 'temperature':
             case 'pressure':
-//                $('#map').data('map').zoomControl.disable();
+            case 'satellite':
+                //                $('#map').data('map').zoomControl.disable();
                 $('#map').data('map').dragging.disable();
                 $('#map').data('map').doubleClickZoom.disable();
                 $('#map').data('map').touchZoom.disable();
                 $('#map').data('map').scrollWheelZoom.disable();
                 $('.data-layer').show();
+                $('.leaflet-control-zoom').hide();
                 break;
             default:
                 $('#map').data('map').dragging.enable();
@@ -681,12 +654,9 @@ function redrawMap(){
                 $('#map').data('map').removeLayer(window['LEAFLET_TILES'].pressure);
                 $('#map').data('map').removeLayer(window['STATIONS_LAYER']);
                 $('#map').data('map').addLayer(window['LEAFLET_TILES'].temperature);
-                
-                
                 break;
 
             case 'pressure':
-                
                 $('.scale-temperature').hide();
                 $('.scale-pressure').show();
                 $('.minor-area').attr('disabled','true');
@@ -697,7 +667,21 @@ function redrawMap(){
                 $('#map').data('map').removeLayer(window['STATIONS_LAYER']);
                 $('#map').data('map').addLayer(window['LEAFLET_TILES'].pressure);
                 break;
+
+            case 'satellite':
+                $('.scale-temperature').hide();
+                $('.scale-pressure').hide();
+                $('.minor-area').attr('disabled','true');
+                serviceName = 'satellite';
+
+                $('#map').data('map').removeLayer(window['LEAFLET_TILES'].stations);
+                $('#map').data('map').removeLayer(window['LEAFLET_TILES'].temperature);
+                $('#map').data('map').removeLayer(window['STATIONS_LAYER']);
+                $('#map').data('map').addLayer(window['LEAFLET_TILES'].pressure);
+                break;
+                
             case 'stations':
+                $('.leaflet-control-zoom').show();
                 $('.scale-temperature').hide();
                 $('.scale-pressure').hide();
                 $('.minor-area').removeAttr('disabled');
@@ -711,6 +695,16 @@ function redrawMap(){
                 $('.scale-temperature').hide();
                 break;
         }
+        currentRegion = 'All';
+        videoRegion = 'All';
+
+//        TODO: Reset station in select box when switching layers
+        
+        $('.province-select').find("option:selected").each(function(){
+            $('select[name=philippine-regions]').find('option[data-region-id=Philippines]').attr('selected','selected');
+            $('select[name=philippine-regions]').change();
+        });
+
     }
     $('.leaflet-container').css('background','transparent');
     $('.active-layer').removeClass('active-layer');
@@ -750,7 +744,8 @@ $(function(){
         var $video = $('.video-viewport');
         var $map = $('.map-viewport');
 
-        var _name = $(this).attr('data-name');
+        _name = $(this).attr('data-name');
+        region_stations = $('.active-layer').text();
 
         window["DATA_LAYER"] = _name;
         console.error('Set~>'+window["DATA_LAYER"]);
@@ -774,10 +769,19 @@ $(function(){
         // Layer selector toggle
 
         if ($(this).attr('data-type') == 'movie') {
+            
+            $('.province-select').find("option:selected").each(function(){
+                $('.province-select').find("option:selected").removeProp('selected');
+                $('select[name=philippine-regions]').find('option[data-region-id=Philippines]').attr('selected','selected');
+                $('select[name=philippine-regions]').change();
+            });
+            
             $('.active-layer').removeClass('active-layer');
             $('#movie-layer').addClass('active-layer');
             $('.scale-temperature').hide();
             $('.scale-pressure').hide();
+            $('.minor-area').attr('disabled','true');
+
             var $movie = $('#movie-'+_name); // The markup
             var content = eval("window['MOVIE_CONTENT']."+_name);
 
@@ -789,6 +793,9 @@ $(function(){
                 $video
                 .fadeIn(1000)
                 .find('video').show();
+            //            jwplayer("#window['MOVIE_CONTENT']."+_name).setup({
+            //                flashplayer: "<? $this->webroot . 'weatherph/swf/player.swf'?>"
+            //            });
             });
 
         } else {

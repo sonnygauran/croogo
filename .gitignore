@@ -5,6 +5,7 @@ plugins/migrations/
 vendors/simpletest/
 webroot/uploads/
 data/*
+views/themed/weatherph/webroot/img/layers/*
 
 # Cake cache
 tmp/
@@ -14,3 +15,7 @@ tmp/
 config/settings.private.yml
 nbproject/
 views/themed/weatherph/webroot/videos
+
+# Vim tmp files
+*.swp
+*.swo

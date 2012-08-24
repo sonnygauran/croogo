@@ -4,7 +4,7 @@ class SearchController extends WeatherphAppController {
     
     public $name = 'Search';
     public $uses = array('Nima.NimaName', 'Nima.FipsCode', 'Nima.Region');
-    public $helpers = array('Cache');
+    public $helpers = array('Cache', 'Javascript');
     var $cacheAction = array(
         'index' => array('duration' => 86400),
         'getResultCoordinates' => array('duration' => 86400),
@@ -65,6 +65,7 @@ class SearchController extends WeatherphAppController {
                     .'.limit'.$this->paginate['limit']
                     .'.page'.$this->paginate['page'];
                 
+                
                 $names = $this->paginate();
                 
                 
@@ -91,12 +92,22 @@ class SearchController extends WeatherphAppController {
             $keyword = $this->params['pass'][0];
             $locations = $NimaName->query($query);
             $this->log($locations);
-                        
+            $updated_results = array();
+        
+        foreach ($locations as $value) {
+            if($value['FipsCode']['type'] == CITY){
+                $updated_results[] = $value;
+            }
+        }
+        
+        if(empty($updated_results)){
+           $updated_results = $locations; 
+        }
 //            Cache::write($gum, $locations, 'daily');
 //        } else {
 //            $locations = Cache::read($gum, 'daily');
 //        }
         
-        $this->set('locations', json_encode($locations));
+        $this->set('locations', json_encode($updated_results));
     }
 }
