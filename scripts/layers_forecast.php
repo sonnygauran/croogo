@@ -96,7 +96,7 @@ foreach($coordinates as $coordinate_key => $coordinate_value){
 		}
 	}
 echo "Profile: \n\n";
-echo "Total number of downloads: "."$original\n";
+echo "Total number of downloads: "."$original out of:$counter\n";
 echo "Total time accumulated: ";
 
 $time_end = microtime_float();
