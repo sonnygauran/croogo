@@ -10,10 +10,10 @@ echo "\n\n";
 echo exec("ls $location2");
 exec("rm -r $location2/*.png");
 echo "\n\n";
-$res = "+1 hour +45 minutes";
+$res = "+3 hours";
 $date = date('Y-m-d');
 $startdate = $date;
-$start = date('YmdHis', strtotime($startdate));
+$start = date('YmdHis', strtotime("+2 minutes", strtotime($startdate)));
 $enddate = date('YmdHis', strtotime("+2 days", strtotime($start)));
 
 $STATIC = array (
@@ -21,7 +21,7 @@ $STATIC = array (
     'end' => date('YmdHis', strtotime($enddate)),
 );
 
-$start = date('YmdHis', strtotime($startdate));
+//$start = date('YmdHis', strtotime($startdate));
 $end = date('YmdHis', strtotime($enddate));
 $counter =0;
 $filetotal = 0;
@@ -45,7 +45,7 @@ $file_sizes = array(
 
 $properties = array(
      'temperature' =>    "http://alpha.meteomedia-portal.com/services/wetter4.php?api_key=portal-efd339395c80ad957acb695bb9758399&q=meh_ifm&leg=nil&a=image&x=554&y=554&srs=EPSG:900913&",
-     'pressure' =>       "http://alpha.meteomedia-portal.com/services/wetter4.php?api_key=portal-efd339395c80ad957acb695bb9758399&q=meh_ifm&leg=nil&a=image&x=554&y=554&srs=EPSG:900913&p=QFF&",
+   //  'pressure' =>       "http://alpha.meteomedia-portal.com/services/wetter4.php?api_key=portal-efd339395c80ad957acb695bb9758399&q=meh_ifm&leg=nil&a=image&x=554&y=554&srs=EPSG:900913&p=QFF&",
 
 );
 
