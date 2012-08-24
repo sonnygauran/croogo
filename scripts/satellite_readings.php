@@ -14,15 +14,14 @@ echo "\n\n";
 $res = "-1 hour";
 $date = date('Y-m-d');
 $startdate = $date;
-$start = date('YmdHis', strtotime($startdate));
+$start = date('YmdHis', strtotime("+2 minutes", strtotime($startdate)));
 $enddate = date('YmdHis', strtotime("-3 days", strtotime($start)));
 
 $STATIC = array (
-    'start' => date('YmdHis', strtotime($startdate)),
+    'start' => date('YmdHis', strtotime("+2 minutes", strtotime($startdate))),
     'end' => date('YmdHis', strtotime($enddate)),
 );
 
-$start = date('YmdHis', strtotime($startdate));
 $end = date('YmdHis', strtotime($enddate));
 $counter =0;
 $filetotal = 0;
