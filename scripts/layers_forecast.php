@@ -10,7 +10,7 @@ echo "\n\n";
 echo exec("ls $location2");
 exec("rm -r $location2/*.png");
 echo "\n\n";
-$res = "+3 hour";
+$res = "+1 hour +45 minutes";
 $date = date('Y-m-d');
 $startdate = $date;
 $start = date('YmdHis', strtotime($startdate));
@@ -61,27 +61,42 @@ function microtime_float() {
     return ((float) $usec + (float) $sec);
 }
 $time_start = microtime_float();
+$success = false;
 
-
+$original=0;
 foreach($coordinates as $coordinate_key => $coordinate_value){
     foreach($properties as $property_key => $property_value){
 			while (strtotime($start) < strtotime($end)){
+				 $counter++;
 
-            $counter++;
            // $url = "{$property_value}{$coordinate_value}";
-			 $url = "{$property_value}dt={$start}&{$coordinate_value}";
-			 $start = date('YmdHis', strtotime($res, strtotime($start)));
-            echo "\n $url \n";
-            exec("wget -O '$location2/$start{$coordinate_key}_{$property_key}.png' '$url'");
+             $url = "{$property_value}dt={$start}&{$coordinate_value}";
+             $start = date('YmdHis', strtotime($res, strtotime($start)));
+//            echo "\n $url \n";
+  //          exec("wget -O '$location2/$start{$coordinate_key}_{$property_key}.png' '$url'");
             $reg[] = "{$coordinate_key}_{$property_key}.png";
+			 $img = "$location2/$start{$coordinate_key}_{$property_key}.png";
+            $contents = file_get_contents($url);
+ $strlen = strlen($contents);
+                echo "\n------------------------------------------------\n";
+                            echo $url;
+                echo "\n------------------------------------------------\n";
+            if ($strlen <= 239) {
+                echo "\n---------------------EMPTY------------------------\n";
+                }else {
+                     file_put_contents($img, $contents);
+                    $original++;
+                    echo "\n SAVED \n";
+                echo "\n------------------------------------------------\n";
+            }
 
         }
-        $start = $STATIC['start'];
-    }
-}
 
+        $start = $STATIC['start'];
+		}
+	}
 echo "Profile: \n\n";
-echo "Total number of downloads: "."$counter\n";
+echo "Total number of downloads: "."$original\n";
 echo "Total time accumulated: ";
 
 $time_end = microtime_float();

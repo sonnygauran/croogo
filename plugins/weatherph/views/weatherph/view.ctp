@@ -1,19 +1,20 @@
-<?php //echo $this->Html->script('AnyChart.js');         ?>
+<?php 
+echo $this->Html->script('AnyChart.js');         ?>
 
 <?php
-//echo $this->Html->script(array(
-//    $this->webroot.'weatherph/js/weatherph/view',
-//    $this->webroot.'weatherph/js/weatherph/AnyChart',
-//    ));
+echo $this->Html->script(array(
+    $this->webroot.'weatherph/js/weatherph/view',
+    $this->webroot.'weatherph/js/weatherph/AnyChart',
+    ));
 
 echo $this->Html->script(array(
-        //$this->webroot . 'weatherph/js/weatherph/view',
-        //$this->webroot . 'weatherph/js/weatherph/AnyChart',
+        $this->webroot . 'weatherph/js/weatherph/view',
+        $this->webroot . 'weatherph/js/weatherph/AnyChart',
 ));
 ?>
 
-<!--<script type="text/javascript" scr="<?= $this->webroot ?>js/weatherph/view.js"></script>
-<script type="text/javascript" scr="<?= $this->webroot ?>js/weatherph/AnyChart.js"></script>-->
+<script type="text/javascript" scr="<?= $this->webroot ?>js/weatherph/view.js"></script>
+<script type="text/javascript" scr="<?= $this->webroot ?>js/weatherph/AnyChart.js"></script>
 
 <div class="content">
     <section class="main">
@@ -160,7 +161,7 @@ echo $this->Html->script(array(
     </section> <!--MAIN CONTENT-->
 
     <!-- DISABLED DETAILED FORECAST    -->
-    <!--    <section class="secondary">
+        <section class="secondary">
             <div id="charts">
                 <h4>Detailed Forecasts</h4>
                 <ul class="tabs">
@@ -242,7 +243,7 @@ echo $this->Html->script(array(
                     </div>
                 </div>
             </div>
-    </div> END CHARTS
+    </div> 
             <div id="outlook">
                 <h4>15-Day Outlook</h4>
                 <ul class="tabs">
@@ -250,7 +251,7 @@ echo $this->Html->script(array(
                     <li><a href="javascript: void(0);">Precipitation</a></li>
                     <li><a href="javascript: void(0);">Wind</a></li>
                 </ul>
-            </div> END OUTLOOK
-    </section> SECONDARY-->
+            </div>
+    </section>
     <!-- END DISABLED DETAILED FORECAST -->
 </div> <!--CONTENT-->
