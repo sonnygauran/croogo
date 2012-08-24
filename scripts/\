@@ -17,7 +17,7 @@ $start = date('YmdHis', strtotime("+2 minutes", strtotime($startdate)));
 $enddate = date('YmdHis', strtotime("+2 days", strtotime($start)));
 
 $STATIC = array (
-    'start' => date('YmdHis', strtotime("+2 minutes", strtotime($startdate))),
+    'start' => date('YmdHis', strtotime($startdate)),
     'end' => date('YmdHis', strtotime($enddate)),
 );
 
@@ -73,21 +73,17 @@ foreach($coordinates as $coordinate_key => $coordinate_value){
              $url = "{$property_value}dt={$start}&{$coordinate_value}";
              $start = date('YmdHis', strtotime($res, strtotime($start)));
 //            echo "\n $url \n";
-//            exec("wget -O '$location2/$start{$coordinate_key}_{$property_key}.png' '$url'");
+  //          exec("wget -O '$location2/$start{$coordinate_key}_{$property_key}.png' '$url'");
             $reg[] = "{$coordinate_key}_{$property_key}.png";
 			 $img = "$location2/$start{$coordinate_key}_{$property_key}.png";
             $contents = file_get_contents($url);
-       $strlen = strlen($contents);
+ $strlen = strlen($contents);
                 echo "\n------------------------------------------------\n";
-            if ($strlen <= 239) {
-                echo "\n|EMPTY|\n";
-               }else {
                      file_put_contents($img, $contents);
                     $original++;
 					echo $url;
-                    echo "\n|SAVED|\n";
-            }
-
+                    echo "\n SAVED \n";
+                echo "\n------------------------------------------------\n";
 
         }
 
@@ -95,7 +91,7 @@ foreach($coordinates as $coordinate_key => $coordinate_value){
 		}
 	}
 echo "Profile: \n\n";
-echo "Total number of downloads: "."$counter\n";
+echo "Total number of downloads: "."$original out of:$counter\n";
 echo "Total time accumulated: ";
 
 $time_end = microtime_float();
