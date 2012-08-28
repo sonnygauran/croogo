@@ -14,7 +14,7 @@ exec("rm -r $location2/*.png");
 echo "\n\n";
 
 $res = "+3 hours";
-$res2 = "-3 hours";
+$res2 = "-30 minutes";
 
 
 $date = date('Y-m-d');
@@ -123,13 +123,13 @@ foreach ($coordinates as $coordinate_key => $coordinate_value) {
             $contents = file_get_contents($url);
             $strlen = strlen($contents);
             echo "\n------------------------------------------------\n";
-            if ($strlen <= 239) {
+            if ($strlen <= 20000) {
                 echo "\n|EMPTY|\n";
             } else {
                 file_put_contents($img, $contents);
                 $original++;
                 echo $url;
-                echo "\n|SAVED|\n";
+                echo "\n|SAVED|$strlen\n";
             }
         }
         $start2 = $STATIC2['start'];
