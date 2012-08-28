@@ -429,11 +429,6 @@ var meteomediaIcon = new StationIconWeb();
 meteomediaIcon.options.iconUrl = '<?= Router::url(null, true) ?>theme/weatherph/img/leaflet/marker-icon-blue-small.png';
 meteomediaIcon.options.zIndexOffset = 9999;
 
-
-console.error('~> Station Icon');
-console.error(stationIcon);
-console.error('~> Meteomedia Icon');
-console.error(meteomediaIcon);
 if (isiPhone() || (navigator.userAgent.match(/iPad/i) != null)) {
     stationIcon    = new StationIconMobile();
     meteomediaIcon = new StationIconMobile('<?= Router::url(null, true) ?>theme/weatherph/img/leaflet/marker-icon-blue-small.png');
@@ -444,9 +439,6 @@ function mapStationsPagasa($stationsArray) {
 }
 
 function mapStations($stationsArray, icon) {
-    console.error('~> Icon' );
-    console.error(icon);
-    
     var _icon = meteomediaIcon;
     if (icon != null) {
         _icon = icon;
@@ -457,7 +449,7 @@ function mapStations($stationsArray, icon) {
     var isiPad = navigator.userAgent.match(/iPad/i) != null;
             
     for (var key in $stationsArray) {
-        
+
         $currentStation = $stationsArray[key];
         var markerLocation = new L.LatLng($currentStation.coordinates[1], $currentStation.coordinates[0]);
         var marker = new L.Marker(markerLocation, {
