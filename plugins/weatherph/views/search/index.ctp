@@ -17,10 +17,8 @@
             </div>
             <div id="legend" class="shadow">
                 <div id="province-select">
-                    <h6>Province:</h6>
+                    <span>Choose an area:</span>
                     <select name="philippine-regions">
-                        <option>Choose one...</option>
-
                         <optgroup label="Major Areas">
                             <option data-region-id="Philippines">All Philippines</option>
                             <option data-region-id="Luzon">Luzon</option>
@@ -63,20 +61,25 @@
                 <h2><?php __('Search results'); ?></h2>
                 <ul>
                     <?php foreach ($names as $name): ?>
-                        
+                 
                         <?php
                         $cityClass = '';
+                         
                         if (strstr(strtolower(trim($name['NimaName']['full_name_ro'])), 'city')) {
                             $cityClass = ' citysearch';
+                              
                         }
                         if ($cityClass == '' AND $name['NimaName']['dsg'] == 'adm1') {
                             $cityClass = ' citysearch';
+                               
                         }
                         ?>
 
                         <li class="<?php echo $name['NimaName']['id'] . ' ' . $cityClass; ?>">
-                                <!-- <pre><?php echo print_r($name, true);?></pre>-->
-                            <a href ="/<?php echo Inflector::slug($name['NimaName']['full_name_ro'], '_') . '-' . $name['NimaName']['id']; ?>" class="<?php echo $name['NimaName']['id']; ?> location <?php echo ($name['FipsCode']['type'] == 2) ? 'city' : 'province'; ?>"><?php echo trim($name['NimaName']['full_name_ro']); ?><br /> <span><?= trim($name['FipsCode']['name']); ?> <?= trim($name['Region']['code']) ?></span></a>
+                                <!-- <pre<?php echo print_r($name, true);?></pre>-->
+                       
+                            <a href ="/ 
+                                <?php echo Inflector::slug($name['NimaName']['full_name_ro'], '_') . '-' . $name['NimaName']['id']; ?>" class="<?php echo $name['NimaName']['id']; ?> location <?php echo ($name['FipsCode']['type'] == 2) ? 'city' : 'province'; ?>"><?php echo trim($name['NimaName']['full_name_ro']); ?><br /> <span><?= trim($name['FipsCode']['name']); ?> <?= trim($name['Region']['code']) ?></span></a>
                         </li>
                     <?php endforeach; ?>
                 </ul>

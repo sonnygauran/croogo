@@ -399,27 +399,36 @@ function isiPhone(){
         );
 }
 
+console.error('<?= Router::url(null, true) ?>theme/weatherph/img/leaflet/marker-icon-red-small-transparent.png');
 var StationIconWeb = L.Icon.extend({
-    iconUrl: '<?= Router::url(null, true) ?>theme/weatherph/img/leaflet/marker-icon-red-small-transparent.png',
-    shadowUrl: '<?= Router::url(null, true) ?>/theme/weatherph/img/leaflet/marker-shadow.png',
-    iconSize: new L.Point(8, 13),
-    shadowSize: new L.Point(13, 13),
-    iconAnchor: new L.Point(8, 13),
-    popupAnchor: new L.Point(-4, -15)
+    options: {
+        iconUrl: '<?= Router::url(null, true) ?>theme/weatherph/img/leaflet/marker-icon-red-small-transparent.png',
+        shadowUrl: '<?= Router::url(null, true) ?>/theme/weatherph/img/leaflet/marker-shadow.png',
+        iconSize: new L.Point(8, 13),
+        shadowSize: new L.Point(13, 13),
+        iconAnchor: new L.Point(8, 13),
+        popupAnchor: new L.Point(-4, -15),
+        zIndexOffset: -9999
+    }
+    
 });
 
 var StationIconMobile = L.Icon.extend({
-    iconUrl: '<?= Router::url(null, true) ?>theme/weatherph/img/leaflet/marker-icon-red-small-transparent.png',
-    shadowUrl: '<?= Router::url(null, true) ?>/theme/weatherph/img/leaflet/marker-shadow.png',
-    iconSize: new L.Point(12, 20),
-    shadowSize: new L.Point(20, 20),
-    iconAnchor: new L.Point(12, 20),
-    popupAnchor: new L.Point(-5, -20)
+    options: {
+        iconUrl: '<?= Router::url(null, true) ?>theme/weatherph/img/leaflet/marker-icon-red-small-transparent.png',
+        shadowUrl: '<?= Router::url(null, true) ?>/theme/weatherph/img/leaflet/marker-shadow.png',
+        iconSize: new L.Point(12, 20),
+        shadowSize: new L.Point(20, 20),
+        iconAnchor: new L.Point(12, 20),
+        popupAnchor: new L.Point(-5, -20),
+        zIndexOffset: -9999
+    }
 });
 
-
 var stationIcon    = new StationIconWeb();
-var meteomediaIcon = new StationIconWeb('<?= Router::url(null, true) ?>theme/weatherph/img/leaflet/marker-icon-blue-small.png');
+var meteomediaIcon = new StationIconWeb();
+meteomediaIcon.options.iconUrl = '<?= Router::url(null, true) ?>theme/weatherph/img/leaflet/marker-icon-blue-small.png';
+meteomediaIcon.options.zIndexOffset = 9999;
 
 if (isiPhone() || (navigator.userAgent.match(/iPad/i) != null)) {
     stationIcon    = new StationIconMobile();
@@ -431,8 +440,6 @@ function mapStationsPagasa($stationsArray) {
 }
 
 function mapStations($stationsArray, icon) {
-    console.error(icon);
-    
     var _icon = meteomediaIcon;
     if (icon != null) {
         _icon = icon;
@@ -443,12 +450,16 @@ function mapStations($stationsArray, icon) {
     var isiPad = navigator.userAgent.match(/iPad/i) != null;
             
     for (var key in $stationsArray) {
-        
+
         $currentStation = $stationsArray[key];
         var markerLocation = new L.LatLng($currentStation.coordinates[1], $currentStation.coordinates[0]);
         var marker = new L.Marker(markerLocation, {
-            icon: _icon
+            icon: _icon,
+            zIndexOffset: -9999
         });
+        if(_icon.options.iconUrl == "http://wph/theme/weatherph/img/leaflet/marker-icon-blue-small.png"){
+            marker.options.zIndexOffset  = 9999;
+        }
         
         var content = "<b>"+$currentStation.name+"</b>";
         //        if (isiPad || isiPhone()) {
@@ -541,8 +552,6 @@ function remapStations() {
         mapStations(window['STATIONS'].meteomedia, meteomediaIcon);
     }
 }
-
-
 
 function getDataLayer(){
     
@@ -699,7 +708,7 @@ function redrawMap(){
         currentRegion = 'All';
         videoRegion = 'All';
 
-//        TODO: Reset station in select box when switching layers
+        //        TODO: Reset station in select box when switching layers
         
         $('.province-select').find("option:selected").each(function(){
             $('select[name=philippine-regions]').find('option[data-region-id=Philippines]').attr('selected','selected');

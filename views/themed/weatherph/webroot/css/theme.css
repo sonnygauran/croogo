@@ -147,20 +147,7 @@ footer {
 .logo {
     float:left;
     padding: 40px 0 0 10px;
-/*    margin: 60px 10px;
-    font-size: 2.875em;
-    font-weight: 200;
-    text-shadow: #fafafa 0 0 20px;*/
 }
-
-/*.logo a,
-.logo a:link,
-.logo a:visited,
-.logo a:focus,
-.logo a:hover {
-    color:#365283;
-    text-decoration: none;
-}*/
 
 #options {
     float: right;
@@ -492,7 +479,7 @@ span.temperature {
     vertical-align: middle;
 }
 
-/* Detail page */
+/* View page */
 
 .week-forecast,
 #charts,
@@ -652,10 +639,40 @@ span.temperature {
     padding-right: 20px
 }
 
-/*
-.chart-legend { display: block; margin-left: 30px; vertical-align: middle; font-size: 10px; }
-.chart-legend span { display: inline-block; margin: 0 5px 0 0; vertical-align: middle; padding: 0; width: 10px; }
-*/
+.panel {
+    margin: 1em 0;
+}
+
+.panel h5 {
+    margin-bottom: .5em;
+}
+
+.chart-legend {
+    width: 100%;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 10px;
+    padding: .5em 0;
+    border-top: 1px dotted #d3d3d3;
+}
+
+.chart-legend span {
+    display: inline-block;
+    margin: .5em;
+    vertical-align: middle;
+    padding: 0;
+    width: 10px;
+}
+
+.chart-line {
+    height: 2px;
+}
+
+.chart-dot {
+    height: 10px;
+    width: 2px;
+    border-radius: 8px;
+}
 
 /* Sidebar */
 
@@ -699,10 +716,7 @@ span.temperature {
     padding: 10px;
     text-align: center;
     vertical-align: middle;
-/*    padding: 1em;
-    padding-bottom: 24px;*/
-/*    background: #fafafa;*/
-/*    white-space: pre;*/
+    background: #fafafa;
 }
 
 .search-results li + li {
@@ -856,30 +870,29 @@ span.temperature {
     background-color:#3e5e95;
 }
 
-/* Tabs
+/* Tabs */
 
 ul.tabs {
     margin-top: 1em;
-    border-bottom: 15px solid #3e5e95;
+    border-bottom: .5em solid #365283;
 }
 
 .divider{
     position: relative;
     width: 100%;
-    background: #3e5e95;
+    background: #365283
 }
 
 .tabs li {
     display: inline;
-    padding: 10px 30px 0px 30px;
+    padding: 5px 30px 5px 30px;
     cursor: pointer;
-    border-radius: 5px 5px 0 0;
-    box-shadow: 0 -2px 2px #888;
+    border-radius: 3px 3px 0 0;
 }
 
 .tabs li.current-tab {
-    border-top: 4px solid #FFBE00;
-    background-color: #3e5e95;
+    border-top: 1px solid #aa1111;
+    background-color: #3E5E95;
 }
 
 .tabs li > a {
@@ -898,8 +911,6 @@ div.tab{
 div.current-tab {
     display: block;
 }
-
-*/
 
 /* Error/warning block */
 
