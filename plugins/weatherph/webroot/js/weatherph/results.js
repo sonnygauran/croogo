@@ -1,3 +1,4 @@
+stationLayer = new Array();
 globalTest = new Array();
 var $boxMap = [
 
@@ -112,7 +113,7 @@ $(document).ready(function(){
         minZoom: 5,
         zoom: 7,
         layers: [window['STATIONS_LAYER']],
-        zoomControl: false
+        zoomControl: true
     });
 
     var ph = $boxMap[0].box;
@@ -287,8 +288,34 @@ function mapStations($stationsArray, icon) {
                 self.closePopup();
             });
         });
+        
         window['STATIONS_LAYER'].addLayer(marker);
     }
+
+    // Highlights search results when hovering over markers.
+    $(".leaflet-marker-icon").on({
+        mouseenter: function(){
+            var attributes = $(this).attr('class').split(' ');
+            var id = attributes[1];
+            $('.search-results li.' +id).css('background-color', '#e0e6f2');
+        },
+        mouseleave: function(){
+            $('.search-results li').css('background-color', '#fafafa');
+        }
+    });
+
+    // Highlights markers when hovering over search results.
+    $('.search-results li').on({
+        mouseenter: function(){
+            var attributes = $(this).attr('class').split(' ');
+            var id = attributes[0];
+            $('.leaflet-marker-icon.'+id).click();
+        },
+        mouseleave: function(){
+            $('#map').click();
+        }
+    });
+    
     $('#map').data('map').addLayer(window['STATIONS_LAYER']);
 }
 
@@ -326,33 +353,3 @@ function remapStations() {
         });
     }
 }
-
-// Highlights markers when hovering over search results.
-
-$('.search-results li').on({
-    mouseenter: function(){
-        var attributes = $(this).attr('class').split(' ');
-        var id = attributes[0];
-        
-        $('.leaflet-marker-icon.'+id).click();
-    },
-    
-    mouseleave: function(){
-        $('#map').click();
-    }
-});
-
-// Highlights search results when hovering over markers.
-//
-// TODO: fix this. still not working properly.
-//
-//$('.leaflet-marker-icon').on({
-//    mouseenter: function(){
-//        var attributes = $(this).attr('class').split(' ');
-//        var id = attributes[1];
-//        console.error('.search-results li.' +id);
-//    },
-//    
-//    mouseleave: function(){
-//    }
-//});

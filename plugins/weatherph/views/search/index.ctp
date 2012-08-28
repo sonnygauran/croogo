@@ -19,8 +19,6 @@
                 <div id="province-select">
                     <span>Choose an area:</span>
                     <select name="philippine-regions">
-                        <option>Choose one...</option>
-
                         <optgroup label="Major Areas">
                             <option data-region-id="Philippines">All Philippines</option>
                             <option data-region-id="Luzon">Luzon</option>
