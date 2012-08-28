@@ -3,8 +3,8 @@ date_default_timezone_set('UTC');
 $script_location = dirname(__FILE__);
 echo $script_location . "\n";
 $original = 0;
-$location = "$script_location/../views/themed/weatherph/webroot/img/layers/";
-$location2 = "$script_location/../views/themed/weatherph/webroot/img/layers";
+$location = "$script_location/../views/themed/weatherph/webroot/img/layers/satellite";
+$location2 = "$script_location/../views/themed/weatherph/webroot/img/layers/satellite";
 if (!is_dir($location)) mkdir($location);
 
 echo "\n\n";
