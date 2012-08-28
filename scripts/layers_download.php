@@ -123,7 +123,7 @@ foreach ($coordinates as $coordinate_key => $coordinate_value) {
             $contents = file_get_contents($url);
             $strlen = strlen($contents);
             echo "\n------------------------------------------------\n";
-            if ($strlen <= 20000) {
+            if ($strlen <= 555550000) {
                 echo "\n|EMPTY|\n";
             } else {
                 file_put_contents($img, $contents);
