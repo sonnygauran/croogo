@@ -195,7 +195,6 @@
                     </select>
                 </div> <!--END PROVINCE SELECT-->
                 
-                
                 <?
                     //<div class="station-legend">
                     //<div style="background-color: #4762ff;"></div>

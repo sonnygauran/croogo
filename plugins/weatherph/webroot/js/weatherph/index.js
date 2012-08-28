@@ -707,7 +707,7 @@ function redrawMap(){
         currentRegion = 'All';
         videoRegion = 'All';
 
-//        TODO: Reset station in select box when switching layers
+        //        TODO: Reset station in select box when switching layers
         
         $('.province-select').find("option:selected").each(function(){
             $('select[name=philippine-regions]').find('option[data-region-id=Philippines]').attr('selected','selected');

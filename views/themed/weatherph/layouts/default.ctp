@@ -91,7 +91,7 @@
             </div>
             <div class="social">
                 <h6>Follow us on Facebook and Twitter</h6>
-                <a><?php echo $this->Html->image('facebook.png'); ?></a>
+                <a href ="https://www.facebook.com/weather.com.ph"><?php echo $this->Html->image('facebook.png'); ?></a>
                 <a href="http://twitter.com/weatherph"><?php echo $this->Html->image('twitter.png'); ?></a>
             </div>
             <div class="sponsored">
@@ -161,7 +161,7 @@ Google Analytics script
         echo '<script src="http://cdn.leafletjs.com/leaflet-0.4.4/leaflet.js"></script>';
 
     }
-    
+
     /**
     * index.js requires the following variable:
     *      - resource - contains an array of (data-layer => (temperature, pressure)) for retreiving the image key.
