@@ -21,16 +21,15 @@
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.3.1/leaflet.css" />
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.4.4/leaflet.css" />
     <!--[if lte IE 8]>
-        <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.3.1/leaflet.ie.css" />
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.4.4/leaflet.ie.css" />
     <![endif]-->
 </head>
 <body>
     <section id="container">
         <header class="banner shadow">
             <div class="logo"><a href="<?= $this->webroot ?>"><?php echo $this->Html->image('logo.png'); ?></a></div>
-            <!--<h1 class="logo"><a href="<?= $this->webroot ?>">weather | philippines</a></h1>-->
             <div id="slides">
                 <div class="slides_container">
                     <img src="<?= $this->webroot ?>theme/weatherph/img/mm.png" alt="Meteomedia">
@@ -92,7 +91,7 @@
             </div>
             <div class="social">
                 <h6>Follow us on Facebook and Twitter</h6>
-                <a><?php echo $this->Html->image('facebook.png'); ?></a>
+                <a href ="https://www.facebook.com/weather.com.ph"><?php echo $this->Html->image('facebook.png'); ?></a>
                 <a href="http://twitter.com/weatherph"><?php echo $this->Html->image('twitter.png'); ?></a>
             </div>
             <div class="sponsored">
@@ -133,7 +132,7 @@
         ?>
 
         <footer>
-            <small>&copy; 2012 Meteomedia A.G.</small>
+            <small>&copy; 2012 Meteomedia Philippines</small>
         </footer>
     </section><!-- #container -->
 
@@ -159,9 +158,10 @@ Google Analytics script
     echo $this->Html->script('jquery/jquery.min');
 
     if (($this->name == 'Weatherph') && ($this->action == 'index') || ($this->name == 'Search') && ($this->action == 'index')){
-        echo "<script src='http://cdn.leafletjs.com/leaflet-0.3.1/leaflet.js'></script>";
+        echo '<script src="http://cdn.leafletjs.com/leaflet-0.4.4/leaflet.js"></script>';
+
     }
-    
+
     /**
     * index.js requires the following variable:
     *      - resource - contains an array of (data-layer => (temperature, pressure)) for retreiving the image key.

@@ -50,13 +50,13 @@
                 <li>and also <a href="www.wetterstationen-meteomedia.de">www.wetterstationen-meteomedia.de</a></li>
             </ul>
             </p>
-            
+            <?/*
             <h2>Aboitiz</h2>
             <hr/>
             
             <h2>Unionbank</h2>
             <hr/>
-            
+            */?>
         </div>
     </section> <!--MAIN CONTENT-->
 </div> <!--CONTENT-->
