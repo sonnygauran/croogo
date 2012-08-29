@@ -32,7 +32,7 @@ Data.uploaded_videos: /assets/theme/weatherph/webroot/uploaded_videos/
 Abfrage.username: wget
 Abfrage.password: p09tM20
 
-Tile.main.url: http://a.tiles.mapbox.com/v3/meteomedia.WeatherPH-Default-1
+Tile.main.url: http://a.tiles.mapbox.com/v3/meteomedia.map-fq1tuaso
 Tile.main.ext: png
 # Tile.main.url: http://tile.stamen.com/toner
 # Tile.main.ext: jpg

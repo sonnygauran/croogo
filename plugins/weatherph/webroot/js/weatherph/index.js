@@ -213,15 +213,8 @@ $(document).ready(function(){
                             }
                         }
                     } else if($('.active-layer').text() === 'Weather movies \u25bf'){
-                        /*
-                        * Video switch
-                        * 
-                        * TODO:
-                        * - Consolidate code (still dependent on code at the bottom)
-                        * - Enable switching of video outside of movie layer
-                        * - Disable unused regions
-                        * - Add easing animations
-                        */
+
+                        // Video switch
                        
                         window["DATA_LAYER"] = _name;
                         console.error('Set~>'+window["DATA_LAYER"]);     
@@ -707,8 +700,6 @@ function redrawMap(){
         }
         currentRegion = 'All';
         videoRegion = 'All';
-
-        //        TODO: Reset station in select box when switching layers
         
         $('.province-select').find("option:selected").each(function(){
             $('select[name=philippine-regions]').find('option[data-region-id=Philippines]').attr('selected','selected');
