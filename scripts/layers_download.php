@@ -3,7 +3,7 @@
 date_default_timezone_set('UTC');
 $script_location = dirname(__FILE__);
 echo $script_location . "\n";
-$location = "$script_location/../views/themed/weatherph/webroot/img/layers/";
+$location = "$script_location/../views/themed/weatherph/webroot/img/layers";
 $location2 = "$script_location/../views/themed/weatherph/webroot/img/layers";
 if (!is_dir($location))
     mkdir($location);
@@ -15,7 +15,8 @@ echo "\n\n";
 
 $res = "+3 hours";
 $res2 = "-30 minutes";
-
+//s = "+1 day";
+//es2 = "-1 day";
 
 $date = date('Y-m-d');
 $startdate = $date;
