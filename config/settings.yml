@@ -27,6 +27,7 @@ Data.dmo: /data/dmo/temp/
 Data.stations: /data/stations/
 Data.readings: /data/readings/
 Data.movies: /assets/theme/weatherph/webroot/videos/
+Data.uploaded_videos: /assets/theme/weatherph/webroot/uploaded_videos/
 
 Abfrage.username: wget
 Abfrage.password: p09tM20

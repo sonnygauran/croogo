@@ -1,3 +1,5 @@
+stationLayer = new Array();
+globalTest = new Array();
 var $boxMap = [
 
 //MAJOR AREAS
@@ -111,7 +113,7 @@ $(document).ready(function(){
         minZoom: 5,
         zoom: 7,
         layers: [window['STATIONS_LAYER']],
-        zoomControl: false
+        zoomControl: true
     });
 
     var ph = $boxMap[0].box;
@@ -124,7 +126,7 @@ $(document).ready(function(){
     window['LEAFLET_TILES'].stations    = new L.TileLayer(window['LEAFLET_TILES_SRC'].stations,    {
         maxZoom: 18, 
         attribution: window['ATTRIBUTION']
-        });
+    });
 
     map
     .setView(new L.LatLng(14.5167, 121), 7)
@@ -159,41 +161,39 @@ $(document).ready(function(){
     remapStations();
 
     $(window).load(function() {
-        setTimeout(function() {
-            $('select[name=philippine-regions]').change(function(){
-                $("select[name=philippine-regions] option:selected").each(function () {
+        $('select[name=philippine-regions]').change(function(){
+            $("select[name=philippine-regions] option:selected").each(function () {
 
-                    if ($(this).attr('selected')) { // Is the current <option> selected?
-                        $region = $(this).attr('data-region-id'); // the region id
+                if ($(this).attr('selected')) { // Is the current <option> selected?
+                    $region = $(this).attr('data-region-id'); // the region id
 
-                        for (var key in $boxMap) { // let's traverse the $boxMap
-                            if ($boxMap[key].id == $region) {  // Initially matches 'data-region-id' with 'NCR'
-                                $current = $boxMap[key].box; // the current $boxMap record
-                                console.error($boxMap[key]);
-                                var southWest = new L.LatLng($current[1],$current[0]),
-                                northEast = new L.LatLng($current[3],$current[2]),
-                                bounds    = new L.LatLngBounds(southWest, northEast);
-                                console.error();
+                    for (var key in $boxMap) { // let's traverse the $boxMap
+                        if ($boxMap[key].id == $region) {  // Initially matches 'data-region-id' with 'NCR'
+                            $current = $boxMap[key].box; // the current $boxMap record
+                            console.error($boxMap[key]);
+                            var southWest = new L.LatLng($current[1],$current[0]),
+                            northEast = new L.LatLng($current[3],$current[2]),
+                            bounds    = new L.LatLngBounds(southWest, northEast);
+                            console.error();
                                 
-                                var map = $('#map').data('map');
+                            var map = $('#map').data('map');
                                 
-                                var zoom = 7;
-                                if ($boxMap[key].id == 'Philippines') {
-                                    zoom = 4;
-                                }
-                                if ($(this).parent('optgroup').hasClass('minor-area')) {
-                                    zoom = 8;
-                                }
-                                
-                                map.panTo(bounds.getCenter()).setZoom(zoom);
-                                //map.panInsideBounds(bounds);
-                                console.log($current);
+                            var zoom = 7;
+                            if ($boxMap[key].id == 'Philippines') {
+                                zoom = 4;
                             }
+                            if ($(this).parent('optgroup').hasClass('minor-area')) {
+                                zoom = 8;
+                            }
+                                
+                            map.panTo(bounds.getCenter()).setZoom(zoom);
+                            //map.panInsideBounds(bounds);
+                            console.log($current);
                         }
-                    } // END IF
-                });
+                    }
+                } // END IF
             });
-        }, 300);
+        });
     });
 });
 
@@ -207,26 +207,33 @@ function isiPhone(){
 }
 
 var StationIconWeb = L.Icon.extend({
-    iconUrl: '<?= Router::url(null, true) ?>theme/weatherph/img/leaflet/marker-icon-red-small-transparent.png',
-    shadowUrl: '<?= Router::url(null, true) ?>/theme/weatherph/img/leaflet/marker-shadow.png',
-    iconSize: new L.Point(8, 13),
-    shadowSize: new L.Point(13, 13),
-    iconAnchor: new L.Point(8, 13),
-    popupAnchor: new L.Point(-5, -20)
+    options: {
+        iconUrl: '<?= Router::url(null, true) ?>theme/weatherph/img/leaflet/marker-icon-red-small-transparent.png',
+        shadowUrl: '<?= Router::url(null, true) ?>/theme/weatherph/img/leaflet/marker-shadow.png',
+        iconSize: new L.Point(8, 13),
+        shadowSize: new L.Point(13, 13),
+        iconAnchor: new L.Point(8, 13),
+        popupAnchor: new L.Point(-4, -15),
+        zIndexOffset: -9999
+    }
 });
 
 var StationIconMobile = L.Icon.extend({
-    iconUrl: '<?= Router::url(null, true) ?>theme/weatherph/img/leaflet/marker-icon-red-small-transparent.png',
-    shadowUrl: '<?= Router::url(null, true) ?>/theme/weatherph/img/leaflet/marker-shadow.png',
-    iconSize: new L.Point(12, 20),
-    shadowSize: new L.Point(20, 20),
-    iconAnchor: new L.Point(12, 20),
-    popupAnchor: new L.Point(-5, -20)
+    options: {
+        iconUrl: '<?= Router::url(null, true) ?>theme/weatherph/img/leaflet/marker-icon-red-small-transparent.png',
+        shadowUrl: '<?= Router::url(null, true) ?>/theme/weatherph/img/leaflet/marker-shadow.png',
+        iconSize: new L.Point(12, 20),
+        shadowSize: new L.Point(20, 20),
+        iconAnchor: new L.Point(12, 20),
+        popupAnchor: new L.Point(-5, -20),
+        zIndexOffset: -9999
+    }
 });
 
-
 var stationIcon    = new StationIconWeb();
-var meteomediaIcon = new StationIconWeb('<?= Router::url(null, true) ?>theme/weatherph/img/leaflet/marker-icon-blue-small.png');
+var meteomediaIcon = new StationIconWeb();
+meteomediaIcon.options.iconUrl = '<?= Router::url(null, true) ?>theme/weatherph/img/leaflet/marker-icon-blue-small.png';
+meteomediaIcon.options.zIndexOffset = 9999;
 
 if (isiPhone() || (navigator.userAgent.match(/iPad/i) != null)) {
     stationIcon    = new StationIconMobile();
@@ -248,14 +255,19 @@ function mapStations($stationsArray, icon) {
     // This loop maps the stations from the $stations fetched from getStations
     var counter = 0;
     var isiPad = navigator.userAgent.match(/iPad/i) != null;
-            
-    for (var key in $stationsArray) {
-        
-        $currentStation = $stationsArray[key];
+    
+    for (i=0; i<$stationsArray.length; i++) {
+        _icon.options.className = $stationsArray[i].id;
+        $currentStation = $stationsArray[i];
         var markerLocation = new L.LatLng($currentStation.coordinates[1], $currentStation.coordinates[0]);
         var marker = new L.Marker(markerLocation, {
-            icon: _icon
+            icon: _icon,
+            zIndexOffset: -9999
         });
+
+        if(_icon.options.iconUrl == "http://wph/theme/weatherph/img/leaflet/marker-icon-blue-small.png"){
+            marker.options.zIndexOffset  = 9999;
+        }
         
         var content = "<b>"+$currentStation.name+"</b>";
         //        if (isiPad || isiPhone()) {
@@ -268,18 +280,42 @@ function mapStations($stationsArray, icon) {
             name: $currentStation.name
         }
         
-        marker
-        .on('click', function(e){
+        marker.on('click', function(e){
             var self = this;
-//            if (isiPhone() || isiPad) {
+            //            if (isiPhone() || isiPad) {
             $('.marker-popup').on('click', function(evt){
                 evt.preventDefault();
-                window.location = "<?= Router::url(null, true) ?>dmoForecast/" + self.station.id;
                 self.closePopup();
             });
         });
+        
         window['STATIONS_LAYER'].addLayer(marker);
     }
+
+    // Highlights search results when hovering over markers.
+    $(".leaflet-marker-icon").on({
+        mouseenter: function(){
+            var attributes = $(this).attr('class').split(' ');
+            var id = attributes[1];
+            $('.search-results li.' +id).css('background-color', '#e0e6f2');
+        },
+        mouseleave: function(){
+            $('.search-results li').css('background-color', '#fafafa');
+        }
+    });
+
+    // Highlights markers when hovering over search results.
+    $('.search-results li').on({
+        mouseenter: function(){
+            var attributes = $(this).attr('class').split(' ');
+            var id = attributes[0];
+            $('.leaflet-marker-icon.'+id).click();
+        },
+        mouseleave: function(){
+            $('#map').click();
+        }
+    });
+    
     $('#map').data('map').addLayer(window['STATIONS_LAYER']);
 }
 
@@ -315,7 +351,5 @@ function remapStations() {
                 mapStations($stationsPagasa, stationIcon); // now the stations are complete
             }
         });
-    } else {
-        mapStations(window['STATIONS'].pagasa, stationIcon);
     }
 }

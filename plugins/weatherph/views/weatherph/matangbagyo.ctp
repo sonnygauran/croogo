@@ -1,7 +1,7 @@
 <div class="content">
     <section class="main">
         <div class="page">
-            <h2>Payong Panahon</h2>
+            <h2>Mata Ng Bagyo</h2>
             <hr/>
             <?php foreach ($blogLists as $blog) { ?>
                 <?php $createdTime = strtotime($blog['Node']['created']); ?>

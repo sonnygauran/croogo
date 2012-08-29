@@ -1,6 +1,8 @@
 <?php
 
-
+/**
+ * Credit for http://mobiforge.com/developing/story/content-delivery-mobile-devices 
+ */
 class AssetsController extends AppController {
 
     /**
@@ -20,7 +22,7 @@ class AssetsController extends AppController {
     }
     
     public function theme() {
-        $this->view = 'Media';
+        $this->view = 'Streaming';
         
         $url = Router::url();
         
@@ -49,17 +51,10 @@ class AssetsController extends AppController {
             $assetFile = null;
             //print_r($_SERVER);
             $this->log(print_r($parts, true));
-            $isKarten = ($_SERVER['HTTP_HOST'] == 'karten.meteomedia.ch');
             
-            if ($parts[0] === 'theme' OR $isKarten) {
+            if ($parts[0] === 'theme') {
                 $path = array();
-                if ($isKarten) {
-                        $path[] = $parts[3];
-                        $path[] = $parts[4];
-                        $path[] = $parts[5];
-                        $path[] = $parts[6];
-                        $parts = $path;
-                }
+                
                 $themeName = $parts[1];
                 unset($parts[0], $parts[1]);
                 
@@ -74,7 +69,11 @@ class AssetsController extends AppController {
                         $fileFragment[] = $part;
                     }
                 }
+                
+                $assetPath = $fileFragment;
+                array_pop($assetPath);
                 $fileFragment = implode(DS, $fileFragment);
+
                 $path = App::themePath($themeName) . 'webroot' . DS;
 //                $this->log(compact('path','fileFragment'));
                 if (file_exists($path . $fileFragment)) {
@@ -86,45 +85,14 @@ class AssetsController extends AppController {
                     'name' => reset(explode('.', end($parts))),
                     'download' => false,
                     'extension' => $ext,
-                    'mimetype' => array(
-                        'webm' => 'video/'.$ext,
+                    'cache' => false,
+                    'mimeType' => array(
+                        $ext => 'video/'.$ext,
                     ),
-                    'path' => $assetFile
+                    'path' => $path.implode(DS, $assetPath).DS
                 );
 
                 $this->set($options);
-
-                App::import('View', 'Media', false);
-                $controller = $this;
-                $contentType = '';
-
-                $Media = new MediaView($controller);
-                if (isset($Media->mimeType[$ext])) {
-                    $contentType = $Media->mimeType[$ext];
-                } else {
-                    if (in_array($ext, array('webm','mp4'))) {
-                        $contentType = 'video/'.$ext;
-                        header('Accept-Ranges: bytes');
-                        header('Keep-Alive: timeout=3, max=100');
-                    } else {
-                        $contentType = 'application/octet-stream';
-                        $agent = env('HTTP_USER_AGENT');
-                        if (preg_match('%Opera(/| )([0-9].[0-9]{1,2})%', $agent) || preg_match('/MSIE ([0-9].[0-9]{1,2})/', $agent)) {
-                            $contentType = 'application/octetstream';
-                        }
-                    }
-                }
-//                $this->log(compact('contentType','ext'));
-                header("Date: " . date("D, j M Y G:i:s ", filemtime($assetFile)) . 'GMT');
-                header('Content-type: ' . $contentType);
-//                header("Expires: " . gmdate("D, j M Y H:i:s", time() + DAY) . " GMT");
-//                header("Cache-Control: cache");
-//                //header("Cache-Length: ".  filesize($assetFile));
-                header("Content-Length: ". (string) filesize($assetFile));
-//                header("Pragma: cache");
-
-                readfile($assetFile);
-                exit;
             } else {
                 throw new Exception('Cannot download file');
             }
