@@ -272,12 +272,13 @@ function getForecast(id) {
         success: function(readings) {
             //                console.log(readings);
             var $station_readings = readings; // the complete retrieved stations
-            //                console.log($station_readings);
+                            console.log($station_readings);
             var cr_temperature, cr_wind, cr_precip, cr_humidity, cr_symbol;
             var sr_temperature, sr_wind, sr_precip, sr_humidity, sr_symbol;
             var current_readings, cr_precip_hr_range;
 
             $('#readings-location').html($station_readings.station_name);
+            $('#info .readings .symbol').removeAttr('class').addClass('symbol');
 
             if($station_readings.reading.status == 'ok'){
 
@@ -333,7 +334,6 @@ function getForecast(id) {
                         //console.error(key);
 
                         weather_symbol = $station_readings.forecast[key].weather_symbol;
-                        $('#info .readings .symbol').removeAttr('class');
                         
                         //                            console.error(weather_symbol);
                         if(weather_symbol.hasOwnProperty('symbol') && weather_symbol != '-') {
