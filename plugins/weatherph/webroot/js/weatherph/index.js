@@ -333,7 +333,8 @@ function getForecast(id) {
                         //console.error(key);
 
                         weather_symbol = $station_readings.forecast[key].weather_symbol;
-
+                        $('#info .readings .symbol').removeAttr('class');
+                        
                         //                            console.error(weather_symbol);
                         if(weather_symbol.hasOwnProperty('symbol') && weather_symbol != '-') {
                             $('.' + key + '-hour .symbol').addClass(weather_symbol.symbol);
