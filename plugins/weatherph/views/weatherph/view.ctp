@@ -63,7 +63,7 @@ echo $this->Html->script(array(
                             <?php // endif; // dew point ?>
                             <tr>
                                 <th>Wind Speed/Direction</th>
-                                <td><span class="symbolwind <?= $dataSets['reading']['wind_direction']; ?>"></span><?= $dataSets['reading']['wind_speed_direction']; ?></td>
+                                <td><?php if(trim($dataSets['reading']['wind_direction']) != "-"){ ?><span class="symbolwind <?= $dataSets['reading']['wind_direction']; ?>"></span><?php } ?><?= trim($dataSets['reading']['wind_speed_direction']); ?></td>
                             </tr>
                             <?php if (key_exists('precipitation', $dataSets['reading'])): ?>
                                 <tr>
