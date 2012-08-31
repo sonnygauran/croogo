@@ -7,7 +7,9 @@ $location = "$script_location/../views/themed/weatherph/webroot/img/layers";
 $location2 = "$script_location/../views/themed/weatherph/webroot/img/layers/downloads";
 if (!is_dir($location))
     mkdir($location);
-
+if (!is_dir($location2))
+	mkdir($location2);
+	echo "created $location2";
 echo "\n\n";
 echo exec("ls $location2");
 exec("rm -r $location2/*.png");
