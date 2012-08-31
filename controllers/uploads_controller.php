@@ -15,10 +15,15 @@ class UploadsController extends AppController{
     }
     
     function admin_index(){
+        
         if(!empty($this->data)){
+            $date = date('YmdHis'); 
+            $extension = explode('.', $this->data['Upload']['video']['name']);
+            $extension = ($extension[count($extension)-1]);
+            
             $tmp_name = $this->data['Upload']['video']['tmp_name'];
             $directory = WWW_ROOT . 'uploads' . DS . $this->data['Upload']['field'] . DS;
-            $destination =  $directory . $this->data['Upload']['video']['name'];
+            $destination =  $directory . $date.".".$extension;
             
             if(!is_dir($directory)) mkdir ($directory); // create directory
             
