@@ -15,10 +15,9 @@ class UploadsController extends AppController{
     }
     
     function admin_index(){
-        
-        if(!empty($this->data)){            
+        if(!empty($this->data)){
             $tmp_name = $this->data['Upload']['video']['tmp_name'];
-            $directory = WWW_ROOT . DS . 'uploads' . DS . 'uploaded_videos' . DS;
+            $directory = WWW_ROOT . 'uploads' . DS . $this->data['Upload']['field'] . DS;
             $destination =  $directory . $this->data['Upload']['video']['name'];
             
             if(!is_dir($directory)) mkdir ($directory); // create directory
