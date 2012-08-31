@@ -4,10 +4,12 @@ date_default_timezone_set('UTC');
 $script_location = dirname(__FILE__);
 echo $script_location . "\n";
 $location = "$script_location/../views/themed/weatherph/webroot/img/layers";
-$location2 = "$script_location/../views/themed/weatherph/webroot/img/layers";
+$location2 = "$script_location/../views/themed/weatherph/webroot/img/layers/downloads";
 if (!is_dir($location))
     mkdir($location);
-
+if (!is_dir($location2))
+	mkdir($location2);
+	echo "created $location2";
 echo "\n\n";
 echo exec("ls $location2");
 exec("rm -r $location2/*.png");
@@ -15,8 +17,8 @@ echo "\n\n";
 
 $res = "+3 hours";
 $res2 = "-30 minutes";
-//s = "+1 day";
-//es2 = "-1 day";
+//$res = "+1 day";
+//$res2 = "-1 day";
 
 $date = date('Y-m-d');
 $startdate = $date;
@@ -147,4 +149,10 @@ $time_end = microtime_float();
 $time = $time_end - $time_start;
 
 echo "$time seconds\n";
+
+$path = realpath($location);
+$path2 = realpath($location2);
+exec("rm -r $path/*.png");
+exec("cd $path2");
+exec("mv $path2/*.png $path");
 
