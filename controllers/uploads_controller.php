@@ -36,6 +36,10 @@ class UploadsController extends AppController{
    }
    
    function admin_success($file_name = ''){
+       $file_name = explode('.', $file_name);
+       unset($file_name[count($file_name)-1]);
+       $file_name = implode('.', $file_name);
+       
        $url = Configure::read('Data.uploaded_videos') . $file_name;
        $width = "480px";
        $height = "320px";
