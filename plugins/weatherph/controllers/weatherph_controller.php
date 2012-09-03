@@ -540,6 +540,7 @@ class WeatherphController extends WeatherphAppController {
        $files = array_diff(scandir($files_location), array('.', '..', '.DS_Store', 'empty'));
        array_walk($files, 'removeExtension');
        $files= array_unique($files);
+       rsort($files);
        
        $this->set(compact('files'));
    }
