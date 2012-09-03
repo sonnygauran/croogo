@@ -217,15 +217,8 @@ $(document).ready(function(){
                             }
                         }
                     } else if($('.active-layer').text() === 'Weather movies \u25bf'){
-                        /*
-                        * Video switch
-                        * 
-                        * TODO:
-                        * - Consolidate code (still dependent on code at the bottom)
-                        * - Enable switching of video outside of movie layer
-                        * - Disable unused regions
-                        * - Add easing animations
-                        */
+
+                        // Video switch
                        
                         window["DATA_LAYER"] = _name;
                         console.error('Set~>'+window["DATA_LAYER"]);     
@@ -276,12 +269,13 @@ function getForecast(id) {
         success: function(readings) {
             //                console.log(readings);
             var $station_readings = readings; // the complete retrieved stations
-            //                console.log($station_readings);
+                            console.log($station_readings);
             var cr_temperature, cr_wind, cr_precip, cr_humidity, cr_symbol;
             var sr_temperature, sr_wind, sr_precip, sr_humidity, sr_symbol;
             var current_readings, cr_precip_hr_range;
 
             $('#readings-location').html($station_readings.station_name);
+            $('#info .readings .symbol').removeAttr('class').addClass('symbol');
 
             if($station_readings.reading.status == 'ok'){
 
@@ -337,7 +331,6 @@ function getForecast(id) {
                         //console.error(key);
 
                         weather_symbol = $station_readings.forecast[key].weather_symbol;
-                        $('#info .readings .symbol').removeAttr('class');
                         
                         //                            console.error(weather_symbol);
                         if(weather_symbol.hasOwnProperty('symbol') && weather_symbol != '-') {
@@ -640,6 +633,7 @@ function getDataLayer(){
             }); // animation callback
 //        });
     }
+       
 }
 
 function getObjects(obj, key, val) {
@@ -745,8 +739,6 @@ function redrawMap(){
         }
         currentRegion = 'All';
         videoRegion = 'All';
-
-        //        TODO: Reset station in select box when switching layers
         
         $('.province-select').find("option:selected").each(function(){
             $('select[name=philippine-regions]').find('option[data-region-id=Philippines]').attr('selected','selected');

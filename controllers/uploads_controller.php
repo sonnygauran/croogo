@@ -16,16 +16,20 @@ class UploadsController extends AppController{
     
     function admin_index(){
         
-        if(!empty($this->data)){            
+        if(!empty($this->data)){
+            $date = date('YmdHis'); 
+            $extension = explode('.', $this->data['Upload']['video']['name']);
+            $extension = ($extension[count($extension)-1]);
+            
             $tmp_name = $this->data['Upload']['video']['tmp_name'];
-            $directory = WWW_ROOT . DS . 'uploads' . DS . 'uploaded_videos' . DS;
-            $destination =  $directory . $this->data['Upload']['video']['name'];
+            $directory = WWW_ROOT . 'uploads' . DS . $this->data['Upload']['field'] . DS;
+            $destination =  $directory . $date.".".$extension;
             
             if(!is_dir($directory)) mkdir ($directory); // create directory
             
             if(move_uploaded_file($tmp_name, $destination)){
                 $this->Session->setFlash("Upload Successful!");
-                $this->redirect(array('action' => 'admin_success',$this->data['Upload']['video']['name']));
+                $this->redirect(array('action' => 'admin_success', $date));
             }else{
                 $this->Session->setFlash("Something went wrong.");
             }
@@ -34,7 +38,7 @@ class UploadsController extends AppController{
    }
    
    function admin_success($file_name = ''){
-       $url = "http://www.weather.com.ph" . Configure::read('Data.uploaded_videos');
+       $url = Configure::read('Data.uploaded_videos') . $file_name;
        $width = "480px";
        $height = "320px";
        
