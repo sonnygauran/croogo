@@ -303,8 +303,16 @@ class WeatherphController extends WeatherphAppController {
 
     public function view($stationID = '984290') {
         App::import('Model', 'Weatherph.WeatherphStationForecast');
-
+        App::import('Model', 'Weatherph.Station');
+        
         $WeatherphStationForecast = new WeatherphStationForecast();
+        $WeatherphStation = new Station();
+        $station = $WeatherphStation->find('first', array(
+            'conditions' => array('wmo1' => $stationID),
+            'fields' => 'wmo1'
+        ));
+        
+        if(empty($station)) $this->redirect(array('controller' => 'weatherph', 'action' => 'index'));
         $dataSets = $WeatherphStationForecast->getWeeklyForecast('all', array('conditions' => array(
             'id' => $stationID,
         )));
