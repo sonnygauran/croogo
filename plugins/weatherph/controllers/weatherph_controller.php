@@ -541,11 +541,15 @@ class WeatherphController extends WeatherphAppController {
            $string = implode('.', $explode);
        }
        
+       $files = array();
        $files_location = realpath(WWW_ROOT . '/../views/themed/weatherph/webroot/weathertv');
-       $files = array_diff(scandir($files_location), array('.', '..', '.DS_Store', 'empty'));
-       array_walk($files, 'removeExtension');
-       $files= array_unique($files);
-       rsort($files);
+       if(is_dir($files_location)) $files = array_diff(scandir($files_location), array('.', '..', '.DS_Store', 'empty'));
+       
+       if(count($files) != 0){
+           array_walk($files, 'removeExtension');
+           $files= array_unique($files);
+           rsort($files);
+       }
        
        $this->set(compact('files'));
    }
