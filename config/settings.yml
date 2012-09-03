@@ -20,7 +20,7 @@ Site.status: 1
 Site.tagline: A CakePHP powered Content Management System.
 Site.theme: weatherph
 Site.timezone: 8
-Site.title: Weather | Philippines
+Site.title: Weather Philippines Foundation
 Writing.wysiwyg: 1
 Site.timezone: Asia/Manila
 Data.dmo: /data/dmo/temp/
@@ -33,7 +33,10 @@ Data.weathertv: /assets/theme/weatherph/webroot/weathertv/
 Abfrage.username: wget
 Abfrage.password: p09tM20
 
-Tile.main.url: http://a.tiles.mapbox.com/v3/meteomedia.map-fq1tuaso
+Tile.main.url:        http://a.tiles.mapbox.com/v3/meteomedia.WeatherPH-Default-1
+Tile.temperature.url: http://{s}.tiles.mapbox.com/v3/meteomedia.WeatherPH-Temperature-2
+Tile.pressure.url:    http://{s}.tiles.mapbox.com/v3/meteomedia.WeatherPH-Pressure
+
 Tile.main.ext: png
 # Tile.main.url: http://tile.stamen.com/toner
 # Tile.main.ext: jpg
