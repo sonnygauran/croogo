@@ -37,7 +37,6 @@ class WeatherphController extends WeatherphAppController {
         
         //echo WWW_ROOT;
         $layerFiles = scandir(ROOT.DS.APP_DIR.DS.'views'.DS.'themed'.DS.'weatherph'.DS.'webroot'.DS.'img'.DS.'layers');
-        //echo "<pre>";
         
         $filenames = array();
         $areas = array();
@@ -69,10 +68,9 @@ class WeatherphController extends WeatherphAppController {
                 }
                 
                 $current = compact('year', 'month', 'day', 'hour', 'min');
-                $filenames[] = $current;
+                $filenames[$type][] = $current;
             }
         }
-        //echo "<pre>";
         
         $this->set(compact('filenames', 'areas', 'types'));
         //print_r($areas);

@@ -1,6 +1,11 @@
 var _name = "";
 var videoRegion = 'All';
 var currentRegion = 'All';
+var currentDataLayer = {
+    'pressure'   : 0,
+    'temperature': 0,
+    'satellite'  : 0
+};
 var $boxMap = [
 
 //MAJOR AREAS
@@ -100,8 +105,8 @@ var $boxMap = [
 $(document).ready(function(){
     window['LEAFLET_TILES_SRC'] = {
         stations:    "<?= Configure::read('Tile.main.url') ?>/{z}/{x}/{y}.png",
-        temperature: "http://{s}.tiles.mapbox.com/v3/meteomedia.weatherph-temperature/{z}/{x}/{y}.png",
-        pressure:    "http://{s}.tiles.mapbox.com/v3/meteomedia.WeatherPH-Pressure/{z}/{x}/{y}.png"
+        temperature: "<?= Configure::read('Tile.temperature.url') ?>/{z}/{x}/{y}.png",
+        pressure:    "<?= Configure::read('Tile.pressure.url') ?>/{z}/{x}/{y}.png"
     }
     window['LEAFLET_TILES'] = {
         stations:    {},
@@ -110,7 +115,7 @@ $(document).ready(function(){
     }
     
     
-    window['ATTRIBUTION'] = 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery &copy; <a href="http://cloudmade.com">CloudMade</a>';
+    window['ATTRIBUTION'] = 'Weather Philippines Foundation';
     window['UNIT_TEMPERATURE'] = 'celsius';
     window['IMAGE_DATA_LAYER'] = new L.LayerGroup();
     window['STATIONS_LAYER'] = new L.LayerGroup();
@@ -208,7 +213,6 @@ $(document).ready(function(){
                                     map.panTo(bounds.getCenter()).setZoom(zoom);
                                     //                                console.log($current);                                
                                     setTimeout(getDataLayer, 1000);
-
                                 }
                             }
                         }
@@ -492,6 +496,7 @@ function mapStations($stationsArray, icon) {
 }
 
 function remapStations() {
+    $('.data-layer-label').hide();
     if (window['STATIONS'].pagasa == null) {
         $.ajax({
             type   : 'GET',
@@ -578,33 +583,62 @@ function getDataLayer(){
 
     console.error('x~>'+dataLayer);
     if (dataLayer == 'temperature' || dataLayer == 'pressure' || dataLayer == 'satellite') {
-
-        $('.data-layer').animate({
-            opacity: 0
-        }, 600, function(){
+//        $('.data-layer').animate({
+//            opacity: 0
+//        }, 600, function(){
             $('.layer.slides_container').html('');
-            for (var key in window['fileNames']) {
-                var c = window['fileNames'][key];
+            /**
+             * This is responsible for adding the layer images for animation
+             */
+            for (var key in window['fileNames'][dataLayer]) {
+                var c = window['fileNames'][dataLayer][key];
                 var _imageName = ""+c.year+c.month+c.day+c.hour+c.min+'00'+gemCodeForRegions+'_'+dataLayer;
-                $('.layer.slides_container').append('<img src="<?= $this->webroot ?>theme/weatherph/img/layers/'+_imageName+'.png"/>');
+                
+                $('.layer.slides_container').append(
+                    '<img src="<?= $this->webroot ?>theme/weatherph/img/layers/'+_imageName+'.png" '
+                    +'data-year="'   + c.year  + '" '
+                    +'data-month="'  + c.month + '" '
+                    +'data-day="'    + c.day   + '" '
+                    +'data-hour="'   + c.hour  + '" '
+                    +'data-minute="' + c.min   + '" '
+                    +'data-second="00" '
+                    +'style="display: none;"'
+                    +' />'
+                );
             }
 
+            $('.data-layer').css('opacity', 0);
             $('.data-layer').animate({
                 opacity: 1
-
-            }, 600, function(){
+            }, 1000, function(){
+                /**
+                * This is responsible for animating the added layer images
+                */
                 $('#layer-slides').slides({
                     preload: false,
                     effect: 'fade',
                     crossfade: true,
-                    fadeSpeed: 350,
-                    play: 500,
+                    fadeSpeed: 1000,
+                    play: 2000,
                     pagination: false,
                     generatePagination: false,
-                    generateNextPrev: false
+                    generateNextPrev: false,
+                    animationStart: function(){
+                        var $visible = $('.layer.slides_container img:visible');
+
+                        if ($visible.length == 1) {
+                            $('.data-layer-label .timestamp .date .year').html($visible.attr('data-year'));
+                            $('.data-layer-label .timestamp .date .month').html($visible.attr('data-month'));
+                            $('.data-layer-label .timestamp .date .day').html($visible.attr('data-day'));
+
+                            $('.data-layer-label .timestamp .time .hour').html($visible.attr('data-hour'));
+                            $('.data-layer-label .timestamp .time .minute').html($visible.attr('data-minute'));
+                            $('.data-layer-label .timestamp .time .second').html('00');
+                        }
+                    }
                 });
-            });
-        });
+            }); // animation callback
+//        });
     }
 }
 
@@ -634,6 +668,7 @@ function redrawMap(){
             case 'temperature':
             case 'pressure':
             case 'satellite':
+                $('.data-layer-label').show();
                 //                $('#map').data('map').zoomControl.disable();
                 $('#map').data('map').dragging.disable();
                 $('#map').data('map').doubleClickZoom.disable();
@@ -643,6 +678,7 @@ function redrawMap(){
                 $('.leaflet-control-zoom').hide();
                 break;
             default:
+                $('.data-layer-label').hide();
                 $('#map').data('map').dragging.enable();
                 $('#map').data('map').doubleClickZoom.enable();
                 $('#map').data('map').touchZoom.enable();
@@ -691,6 +727,7 @@ function redrawMap(){
                 break;
                 
             case 'stations':
+                $('.data-layer-label').hide();
                 $('.leaflet-control-zoom').show();
                 $('.scale-temperature').hide();
                 $('.scale-pressure').hide();
@@ -703,6 +740,7 @@ function redrawMap(){
                 break;
             default:
                 $('.scale-temperature').hide();
+                $('.data-layer-label').hide();
                 break;
         }
         currentRegion = 'All';

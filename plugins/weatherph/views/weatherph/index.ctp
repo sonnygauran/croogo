@@ -1,5 +1,5 @@
 <?php
-    $movie_location = Configure::read('Data.movies');
+$movie_location = Configure::read('Data.movies');
 ?>
 <? $javascript->link('/weatherph/js/weatherph/index', false) ?>
 <div class="content">
@@ -19,13 +19,12 @@
                     <li><a data-target="data-layer" data-name="pressure" href="#map">Pressure</a></li>
                     <li><a data-target="data-layer" data-name="satellite" href="#map">Satellite</a></li>
                 </ul>
-             
+
             </div> <!--LAYER SELECTOR-->
             <div class="video-viewport">
 
             </div>
             <div class="map-viewport">
-
                 <div id="layer-slides" class="data-layer" data-bbox="">
                     <div class="layer slides_container">
                     </div>
@@ -37,7 +36,25 @@
                 </div>
 
                 <div id="loader"></div>
-
+                <div class="data-layer-label" style="position: absolute; top: 0; right: 0; background: black; color: white; padding: 8px; z-index: 2;">
+                    <span class="timestamp">
+                        <span class="date">
+                            <span class="year">0000</span>
+                            <span class="separator">-</span>
+                            <span class="month">00</span>
+                            <span class="separator">-</span>
+                            <span class="day">00</span>
+                        </span>
+                        <span class="date-time-separator">  </span>
+                        <span class="time">
+                            <span class="hour">00</span>
+                            <span class="separator">:</span>
+                            <span class="minute">00</span>
+                            <span class="separator">:</span>
+                            <span class="second">00</span>
+                        </span>
+                    </span>
+                </div><!-- .timestamp-display -->
             </div>
             <div id="legend" class="shadow">
                 <div class="scale-temperature">
@@ -154,9 +171,9 @@
                         <li style="background-color: #001E14;">960</li>
                     </ul>
                 </div>
-        <!--Province Selector-->
+                <!--Province Selector-->
 
-        <div class="province-select">
+                <div class="province-select">
                     <span>Choose an area:</span>
                     <select name="philippine-regions">
                         <optgroup label="Major Areas">
@@ -165,7 +182,7 @@
                             <option data-region-id="VisMin">Visayas/Mindanao</option>
                             <option data-region-id="Palawan">Palawan/Sulu Sea</option>
                         </optgroup>
-                        
+
                         <optgroup label="Luzon" class="minor-area">
                             <option data-region-id="NCR">NCR</option>
                             <option data-region-id="CAR">CAR</option>
@@ -176,13 +193,13 @@
                             <option data-region-id="IVb">MIMAROPA</option>
                             <option data-region-id="V">Bicol</option>
                         </optgroup>
-                            
+
                         <optgroup label="Visayas" class="minor-area">
                             <option data-region-id="VI">Western Visayas</option>
                             <option data-region-id="VII">Central Visayas</option>
                             <option data-region-id="VIII">Eastern Visayas</option>
                         </optgroup>
-                            
+
                         <optgroup label="Mindanao" class="minor-area">
                             <option data-region-id="IX">Zamboanga Peninsula</option>
                             <option data-region-id="X">Northern Mindanao</option>
@@ -191,20 +208,19 @@
                             <option data-region-id="XIII">CARAGA</option>
                             <option data-region-id="ARMM">ARMM</option>
                         </optgroup>                              
-                        
+
                     </select>
                 </div> <!--END PROVINCE SELECT-->
-                
                 <?
-                    //<div class="station-legend">
-                    //<div style="background-color: #4762ff;"></div>
-                    //<span>Weather Philippines stations</span>
-                    //<div style="background-color: #fd7567;"></div>
-                    //<span>PAGASA stations</span>
-                    //</div>
+                //<div class="station-legend">
+                //<div style="background-color: #4762ff;"></div>
+                //<span>Weather Philippines stations</span>
+                //<div style="background-color: #fd7567;"></div>
+                //<span>PAGASA stations</span>
+                //</div>
                 ?>
-                
-            </div> <!--END LEGEND-->
+
+            </div><!-- .legend -->
         </div>
         <div id="info" class="shadow">
             <div id="current-readings-panel">
@@ -395,22 +411,22 @@
             <h4>News</h4>
             <div class="page">
                 <?php foreach ($blogEntries as $blog) { ?>
-                        <?php $createdTime = strtotime($blog['Node']['created']); ?>
-                        <div class="ribbon-wrapper">
-                            <div class="ribbon-front">
-                                <div class="post-date">
-                                    <div class="month"><?= date('M', $createdTime) ?></div>
-                                    <div class="day"><?= date('d', $createdTime) ?></div>
-                                    <div class="year"><?= date('Y', $createdTime) ?></div>
-                                </div>
+                    <?php $createdTime = strtotime($blog['Node']['created']); ?>
+                    <div class="ribbon-wrapper">
+                        <div class="ribbon-front">
+                            <div class="post-date">
+                                <div class="month"><?= date('M', $createdTime) ?></div>
+                                <div class="day"><?= date('d', $createdTime) ?></div>
+                                <div class="year"><?= date('Y', $createdTime) ?></div>
                             </div>
-                            <div class="ribbon-edge-bottomleft"></div>
                         </div>
+                        <div class="ribbon-edge-bottomleft"></div>
+                    </div>
 
-                        <div class="blog-excerpt">
+                    <div class="blog-excerpt">
                         <h4><?= $html->link($blog['Node']['title'], $blog['Node']['url'], array('class' => 'link')) ?></h4>
                         <p><?= $text->excerpt(strip_tags($blog['Node']['body']), 'method', 200, '...' . $html->link('Read More', $blog['Node']['url'])) ?><?= '<hr>'; ?></p>
-                        </div>
+                    </div>
                 <?php } ?>
             </div>
         </div>
@@ -444,7 +460,8 @@
         Your browser does not support the video tag.
         </video>
 ECHO
-))); ?>';
+                        )));
+                ?>';
     
     var precipContent = '<?= addslashes(str_replace("\n", "\\", (<<<ECHO
         <video id="movie-precipitation" width="554" height="554" controls autobuffer autoplay>
@@ -454,7 +471,8 @@ ECHO
         Your browser does not support the video tag.
         </video>    
 ECHO
-))); ?>';
+                        )));
+                ?>';
     window['areas'] = <?= json_encode($areas) ?>;
     window['types'] = <?= json_encode($types) ?>;
     window['fileNames'] = <?= json_encode($filenames) ?>;

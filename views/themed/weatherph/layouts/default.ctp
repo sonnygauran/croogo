@@ -21,9 +21,9 @@
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.4.4/leaflet.css" />
+    <link rel="stylesheet" href="<?= $this->webroot ?>theme/weatherph/css/leaflet.css" />
     <!--[if lte IE 8]>
-    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.4.4/leaflet.ie.css" />
+        <link rel="stylesheet" href="<?= $this->webroot ?>theme/weatherph/css/leaflet.ie.css" />
     <![endif]-->
 </head>
 <body>
@@ -158,7 +158,7 @@ Google Analytics script
     echo $this->Html->script('jquery/jquery.min');
 
     if (($this->name == 'Weatherph') && ($this->action == 'index') || ($this->name == 'Search') && ($this->action == 'index')){
-        echo '<script src="http://cdn.leafletjs.com/leaflet-0.4.4/leaflet.js"></script>';
+        echo "<script src=\"{$this->webroot}theme/weatherph/js/leaflet.js\"></script>";
 
     }
 
