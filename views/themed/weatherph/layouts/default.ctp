@@ -10,7 +10,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title><?php echo Configure::read('Site.title'); ?></title>
+    <title><?php echo Configure::read('Site.title'); ?>
+        <?php if (strlen($title_for_layout) > 1): ?>
+            &nbsp;|&nbsp;<?= $title_for_layout ?>
+        <?php endif; // comment ?>
+    </title>
     <meta name="viewport" content="width=device-width" />
     <?php
     echo $this->Layout->meta();

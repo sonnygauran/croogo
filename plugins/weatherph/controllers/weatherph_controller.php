@@ -33,7 +33,7 @@ class WeatherphController extends WeatherphAppController {
     }
 
     public function index() {
-        $this->set('title_for_layout', __('Weatherph', true));
+        $this->set('title_for_layout', '');
         
         //echo WWW_ROOT;
         $layerFiles = scandir(ROOT.DS.APP_DIR.DS.'views'.DS.'themed'.DS.'weatherph'.DS.'webroot'.DS.'img'.DS.'layers');
@@ -183,6 +183,9 @@ class WeatherphController extends WeatherphAppController {
         $this->set('readings', json_encode($currentReading));
     }
     
+    /**
+     * ajax
+     */
     public function getForecast($stationID = '984290', $numDays = 1, $utch = '3h') {
         
         //For Index
@@ -278,6 +281,10 @@ class WeatherphController extends WeatherphAppController {
         }
     }
 
+    /**
+     * ajax
+     * 
+     */
     public function detailedReading($stationID = '984290', $startDate = NULL, $endDate = NULL) {
 
         $this->layout = 'plain';
@@ -295,12 +302,11 @@ class WeatherphController extends WeatherphAppController {
     }
 
     public function view($stationID = '984290') {
-        
         App::import('Model', 'Weatherph.WeatherphStationForecast');
 
         $WeatherphStationForecast = new WeatherphStationForecast();
         $dataSets = $WeatherphStationForecast->getWeeklyForecast('all', array('conditions' => array(
-        'id' => $stationID,
+            'id' => $stationID,
         )));
         
         $today = date('Ymd');

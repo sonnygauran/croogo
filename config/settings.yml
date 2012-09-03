@@ -20,7 +20,7 @@ Site.status: 1
 Site.tagline: A CakePHP powered Content Management System.
 Site.theme: weatherph
 Site.timezone: 8
-Site.title: Weather | Philippines
+Site.title: Weather Philippines Foundation
 Writing.wysiwyg: 1
 Site.timezone: Asia/Manila
 Data.dmo: /data/dmo/temp/
