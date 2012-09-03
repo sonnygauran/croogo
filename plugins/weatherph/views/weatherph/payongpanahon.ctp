@@ -1,6 +1,7 @@
 <div class="content">
     <section class="main">
         <div class="page">
+          <?php   $this->set('title_for_layout', 'Payong Panahon'); ?>
             <h2>Payong Panahon</h2>
             <hr/>
             <?php foreach ($blogLists as $blog) { ?>

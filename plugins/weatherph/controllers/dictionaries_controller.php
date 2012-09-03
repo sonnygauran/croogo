@@ -12,11 +12,12 @@ class DictionariesController extends WeatherphAppController {
     }
     
     public function english(){
-        
+         $this->set('title_for_layout', 'English Dictionary');
     }
     
     
     public function filipino() {
+         $this->set('title_for_layout','Filipino Dictionary');
         
     }
 

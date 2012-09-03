@@ -1,6 +1,8 @@
 <?php echo $this->Html->script('AnyChart.js'); ?>
 <p>Detailed Forecast (MOS)</p>
 <p>Temperature</p>
+
+
 <script type="text/javascript" language="javascript">
     //<![CDATA[
         var chart = new AnyChart('<?= $this->webroot ?>swf/AnyChart.swf');

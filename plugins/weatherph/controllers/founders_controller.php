@@ -12,7 +12,7 @@ class FoundersController extends WeatherphAppController {
     }
     
     public function meteomedia() {
-        
+      
     }
 
     public function aboitiz() {

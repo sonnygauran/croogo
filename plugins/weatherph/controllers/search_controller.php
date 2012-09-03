@@ -11,6 +11,8 @@ class SearchController extends WeatherphAppController {
     );
 
     public function index($terms = '') { 
+       $this->set('title_for_layout','Search for ' . ucwords($terms) );
+    
         $this->log('INDEX!!!');
         $termStr = '/^([A-Za-z0-9 ]+)$/';
         

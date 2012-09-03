@@ -1,6 +1,7 @@
 <div class="content">
     <section class="main">
         <div class="page">
+           <?php  $this->set('title_for_layout', 'Webcams'); ?>
         <h2>Webcams</h2>
         <hr/>
         <p>Makati city, facing East</p>
