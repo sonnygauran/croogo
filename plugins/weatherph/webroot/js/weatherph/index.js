@@ -570,7 +570,7 @@ function getDataLayer(){
     var dataLayer = window["DATA_LAYER"];
 
     console.error('x~>'+dataLayer);
-    if (dataLayer == 'temperature' || dataLayer == 'pressure' || dataLayer == 'satellite') {
+    if (dataLayer == 'temperature' || dataLayer == 'pressure') {
 
         $('.data-layer').animate({
             opacity: 0
@@ -598,7 +598,35 @@ function getDataLayer(){
                 });
             });
         });
+    }else if (dataLayer == 'pressure'){
+            $('.data-layer').animate({
+            opacity: 0
+        }, 600, function(){
+            $('.layer.slides_container').html('');
+            for (var key in window['fileNames']) {
+                var c = window['fileNames'][key];
+                var _imageName = ""+c.year+c.month+c.day+c.hour+c.min+'00'+gemCodeForRegions+'_'+dataLayer;
+                $('.layer.slides_container').append('<img src="<?= $this->webroot ?>theme/weatherph/img/layers/'+_imageName+'.png"/>');
+            }
+
+            $('.data-layer').animate({
+                opacity: 1
+
+            }, 600, function(){
+                $('#layer-slides').slides({
+                    preload: false,
+                    effect: 'fade',
+                    crossfade: true,
+                    fadeSpeed: 350,
+                    play: 500,
+                    pagination: false,
+                    generatePagination: false,
+                    generateNextPrev: false
+                });
+            });
+        });
     }
+       
 }
 
 function getObjects(obj, key, val) {

@@ -5,14 +5,26 @@ $script_location = dirname(__FILE__);
 echo $script_location . "\n";
 $location = "$script_location/../views/themed/weatherph/webroot/img/layers";
 $location2 = "$script_location/../views/themed/weatherph/webroot/img/layers/downloads";
+$location3 = "$script_location/../views/themed/weatherph/webroot/img/layers/downloads/satellite";
+$location4 = "$script_location/../views/themed/weatherph/webroot/img/layers/satellite";
+
+if(!is_dir($location4))
+	mkdir($location4);
+
+if (!is_dir($location3))
+	mkdir($location3);
+
 if (!is_dir($location))
     mkdir($location);
+
 if (!is_dir($location2))
 	mkdir($location2);
 	echo "created $location2";
+
 echo "\n\n";
 echo exec("ls $location2");
 exec("rm -r $location2/*.png");
+exec("rm -r $location3/*.png");
 echo "\n\n";
 
 $res = "+3 hours";
@@ -122,7 +134,7 @@ foreach ($coordinates as $coordinate_key => $coordinate_value) {
             $url = "{$property_value}dt={$start2}&{$coordinate_value}";
             $start2 = date('YmdHis', strtotime($res2, strtotime($start2)));
             $reg[] = "{$coordinate_key}_{$property_key}.png";
-            $img = "$location2/$start2{$coordinate_key}_{$property_key}.png";
+            $img = "$location3/$start2{$coordinate_key}_{$property_key}.png";
             $contents = file_get_contents($url);
             $strlen = strlen($contents);
             echo "\n------------------------------------------------\n";
@@ -152,7 +164,9 @@ echo "$time seconds\n";
 
 $path = realpath($location);
 $path2 = realpath($location2);
+$path3 = realpath($location3);
+$path4 = realpath($location4);
 exec("rm -r $path/*.png");
-exec("cd $path2");
+exec("mv $path3/*.png $path4");
 exec("mv $path2/*.png $path");
 
