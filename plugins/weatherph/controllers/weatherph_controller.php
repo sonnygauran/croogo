@@ -9,8 +9,9 @@
  * @author   Sonny Gauran <sgauran@meteomedia.com.ph>
  * @link     http://www.weather.com.ph
  */
-class WeatherphController extends WeatherphAppController {
 
+class WeatherphController extends WeatherphAppController {
+   
     /**
      * Controller name
      *
@@ -29,12 +30,11 @@ class WeatherphController extends WeatherphAppController {
     public $uses = array('Setting');
 
     public function admin_index() {
-        $this->set('title_for_layout', __('Weatherph', true));
+       //$this->set('title_for_layout', __('Weatherph', true));
     }
 
     public function index() {
-        $this->set('title_for_layout', '');
-        
+
         //echo WWW_ROOT;
         $layerFiles = scandir(ROOT.DS.APP_DIR.DS.'views'.DS.'themed'.DS.'weatherph'.DS.'webroot'.DS.'img'.DS.'layers');
         
@@ -320,9 +320,10 @@ class WeatherphController extends WeatherphAppController {
         $today = date('Ymd');
         $enddate = date('Ymd', strtotime('+2 days', strtotime($today)));
         $forecastRange = range($today, $enddate);
+        $title_for_layout = $dataSets['station_name'];
         //$this->log(print_r($forecastRange, true));
         
-        $this->set(compact('forecastRange', 'dataSets'));
+        $this->set(compact('forecastRange', 'dataSets', 'title_for_layout'));
     }
 
     public function about() {

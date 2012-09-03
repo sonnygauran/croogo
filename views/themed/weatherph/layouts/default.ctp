@@ -10,11 +10,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title><?php echo Configure::read('Site.title'); ?>
+<!--    <title><?php echo Configure::read('Site.title'); ?>
         <?php if (strlen($title_for_layout) > 1): ?>
             &nbsp;|&nbsp;<?= $title_for_layout ?>
         <?php endif; // comment ?>
-    </title>
+    </title>-->
+    
+    <title><?php echo ($title_for_layout).' | ' . Configure::read('Site.title'); ?></title>
+    
     <meta name="viewport" content="width=device-width" />
     <?php
     echo $this->Layout->meta();
@@ -25,9 +28,9 @@
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <link rel="stylesheet" href="<?= $this->webroot ?>theme/weatherph/css/leaflet.css" />
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.4.4/leaflet.css" />
     <!--[if lte IE 8]>
-        <link rel="stylesheet" href="<?= $this->webroot ?>theme/weatherph/css/leaflet.ie.css" />
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.4.4/leaflet.ie.css" />
     <![endif]-->
 </head>
 <body>
@@ -72,6 +75,7 @@
                     </li>
                 <li><a href="<?= $this->webroot ?>news">Payong Panahon</a></li>
                 <li><a href="<?= $this->webroot ?>announcements">Mata ng Bagyo</a></li>
+                <li><a href="<?= $this->webroot ?>weathertv">Weather TV</a></li>
                 <li><a href="<?= $this->webroot ?>webcam">Webcams</a></li>
                 <li><a href="<?= $this->webroot ?>about">About</a></li>
             </ul>
@@ -162,7 +166,7 @@ Google Analytics script
     echo $this->Html->script('jquery/jquery.min');
 
     if (($this->name == 'Weatherph') && ($this->action == 'index') || ($this->name == 'Search') && ($this->action == 'index')){
-        echo "<script src=\"{$this->webroot}theme/weatherph/js/leaflet.js\"></script>";
+        echo '<script src="http://cdn.leafletjs.com/leaflet-0.4.4/leaflet.js"></script>';
 
     }
 

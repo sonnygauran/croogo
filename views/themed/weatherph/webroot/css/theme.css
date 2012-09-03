@@ -200,6 +200,18 @@ label[for="search-field"] {
     z-index:1;
 }
 
+.data-layer-label {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+    background: rgba(0,0,0,.5);
+    color: #fafafa;
+    margin: 5px;
+    padding: .5em;
+    border-radius: 5px;
+}
+
 #layer-slides {
     width: 554px;
 }

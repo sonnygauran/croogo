@@ -258,6 +258,9 @@ $(document).ready(function(){
     getForecast(984290); //Manila
 });
 
+/*
+ *Ajax
+ */
 function getForecast(id) {
     console.error('<?php Router::url($this->webroot) ?>');
     console.error('<?= $this->webroot ?>weatherph/weatherph/getForecast/'+id+'/3/3h');
@@ -267,6 +270,8 @@ function getForecast(id) {
         url    : '<?= $this->webroot ?>weatherph/weatherph/getForecast/'+id+'/3/3h',
         cache  : true,
         success: function(readings) {
+            var title = readings.station_name;
+            document.title = title + " | Weather Philippines Foundation";
             //                console.log(readings);
             var $station_readings = readings; // the complete retrieved stations
                             console.log($station_readings);

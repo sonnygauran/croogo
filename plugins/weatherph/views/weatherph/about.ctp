@@ -1,6 +1,7 @@
 <div class="content">
     <section class="main">
         <div class="page">
+            <?php  $this->set('title_for_layout', 'About'); ?>
             <h2>The Weather Philippines Foundation</h2>
             <hr/>
             <p>
