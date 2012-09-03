@@ -36,7 +36,7 @@ $movie_location = Configure::read('Data.movies');
                 </div>
 
                 <div id="loader"></div>
-                <div class="data-layer-label" style="position: absolute; top: 0; right: 0; background: black; color: white; padding: 8px; z-index: 2;">
+                <div class="data-layer-label">
                     <span class="timestamp">
                         <span class="date">
                             <span class="year">0000</span>
