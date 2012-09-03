@@ -529,7 +529,20 @@ class WeatherphController extends WeatherphAppController {
    }
    
    
-   function weathertv(){}
+   function weathertv(){
+       function removeExtension(&$string){
+           $explode = explode('.', $string);
+           unset($explode[count($explode)-1]);
+           $string = implode('.', $explode);
+       }
+       
+       $files_location = realpath(WWW_ROOT . '/../views/themed/weatherph/webroot/weathertv');
+       $files = array_diff(scandir($files_location), array('.', '..', '.DS_Store', 'empty'));
+       array_walk($files, 'removeExtension');
+       $files= array_unique($files);
+       
+       $this->set(compact('files'));
+   }
    function webcam(){}
    
    //JETT
