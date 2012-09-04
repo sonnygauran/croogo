@@ -23,6 +23,7 @@ echo $this->Html->script(array(
               
                 <h1><?= $location['Name']['full_name_ro']; ?></h1>
                  <?php
+                 //
                  $this->set('title_for_layout', $location['Name']['full_name_ro']) ?>
                 <!-- <a href="#">change station</a>-->
                 <h6>Nearest Station: <?= $dataSets['station_name']; ?> (<?= $distance ?>)</h6>
