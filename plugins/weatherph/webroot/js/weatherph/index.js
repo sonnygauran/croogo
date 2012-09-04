@@ -623,14 +623,18 @@ function getDataLayer(){
                     generateNextPrev: false,
                     animationStart: function(){
                         var $visible = $('.layer.slides_container img:visible');
-
+                         
                         if ($visible.length == 1) {
+                            var minutes =  $visible.attr('data-minute');
+                            minutes -= 2;
+                            if(minutes == 0) minutes = '00';
+                            console.error(minutes);
                             $('.data-layer-label .timestamp .date .year').html($visible.attr('data-year'));
                             $('.data-layer-label .timestamp .date .month').html($visible.attr('data-month'));
                             $('.data-layer-label .timestamp .date .day').html($visible.attr('data-day'));
 
                             $('.data-layer-label .timestamp .time .hour').html($visible.attr('data-hour'));
-                            $('.data-layer-label .timestamp .time .minute').html($visible.attr('data-minute'));
+                            $('.data-layer-label .timestamp .time .minute').html(minutes) ;
                             $('.data-layer-label .timestamp .time .second').html('00');
                         }
                     }
