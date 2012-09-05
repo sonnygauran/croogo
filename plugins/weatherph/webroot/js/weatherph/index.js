@@ -98,7 +98,7 @@ var $boxMap = [
 {
     id: 'ARMM',
     box: [117.97119123437608, 3.206332652787861, 125.99121076562393, 9.752369809194555]
-},
+}
 
 ];
 
@@ -107,12 +107,12 @@ $(document).ready(function(){
         stations:    "<?= Configure::read('Tile.main.url') ?>/{z}/{x}/{y}.png",
         temperature: "<?= Configure::read('Tile.temperature.url') ?>/{z}/{x}/{y}.png",
         pressure:    "<?= Configure::read('Tile.pressure.url') ?>/{z}/{x}/{y}.png"
-    }
+    };
     window['LEAFLET_TILES'] = {
         stations:    {},
         temperature: {},
         pressure:    {}
-    }
+    };
 
 
     window['ATTRIBUTION'] = 'Weather Philippines Foundation';
@@ -473,7 +473,7 @@ function mapStations($stationsArray, icon) {
         marker.station = {
             id: $currentStation.id,
             name: $currentStation.name
-        }
+        };
 
         marker.on('click', function(e){
             var self = this;
