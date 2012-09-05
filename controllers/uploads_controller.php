@@ -15,6 +15,7 @@ class UploadsController extends AppController{
     }
     
     function admin_index(){
+        
         if(!empty($this->data)){
             $date = date('YmdHis'); 
             $extension = explode('.', $this->data['Upload']['video']['name']);

@@ -47,11 +47,11 @@ $movie_location = Configure::read('Data.movies');
                         </span>
                         <span class="date-time-separator">  </span>
                         <span class="time">
+                             <span class="separator">&nbsp;</span>
                             <span class="hour">00</span>
                             <span class="separator">:</span>
                             <span class="minute">00</span>
-                            <span class="separator">:</span>
-                            <span class="second">00</span>
+                         <span>PST</span>
                         </span>
                     </span>
                 </div><!-- .timestamp-display -->
@@ -207,7 +207,7 @@ $movie_location = Configure::read('Data.movies');
                             <option data-region-id="XII">SOCCSKSARGEN</option>
                             <option data-region-id="XIII">CARAGA</option>
                             <option data-region-id="ARMM">ARMM</option>
-                        </optgroup>                              
+                        </optgroup>
 
                     </select>
                 </div> <!--END PROVINCE SELECT-->
@@ -462,21 +462,21 @@ $movie_location = Configure::read('Data.movies');
 ECHO
                         )));
                 ?>';
-    
+
     var precipContent = '<?= addslashes(str_replace("\n", "\\", (<<<ECHO
         <video id="movie-precipitation" width="554" height="554" controls autobuffer autoplay>
         <source src="{$movie_location}Philippines_All_niwofi.m4v" type='video/x-m4v;'/>
         <source src="{$movie_location}Philippines_All_niwofi.mp4" type='video/mp4;'/>
         <source src="{$movie_location}Philippines_All_niwofi.webm" type='video/webm;'/>
         Your browser does not support the video tag.
-        </video>    
+        </video>
 ECHO
                         )));
                 ?>';
     window['areas'] = <?= json_encode($areas) ?>;
     window['types'] = <?= json_encode($types) ?>;
     window['fileNames'] = <?= json_encode($filenames) ?>;
-    
+
     window['MOVIE_CONTENT'] = {
         wind         : windContent,
         precipitation: precipContent

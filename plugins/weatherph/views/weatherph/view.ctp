@@ -151,11 +151,12 @@ echo $this->Html->script(array(
         </div><!--END WEEK FORECAST-->
 
     </section> <!--MAIN CONTENT-->
-
+<?
+/*
     <section class="secondary">
         <div id="charts">
             <h4>Detailed Forecasts</h4>
-            <?/*
+
             <ul class="tabs">
                 <li class="temperature flip current-tab"><a href="#charts">Temperature</a></li>
                 <li class="flip"><a href="#charts">Rain</a></li>
@@ -164,7 +165,7 @@ echo $this->Html->script(array(
             </ul>
                 <div class="divider"></div>
             <div class="tab-container">
-             */?>
+
                 <div class="panel">
                     <h5>Temperature</h5>
                     <script type="text/javascript" language="javascript">
@@ -242,7 +243,7 @@ echo $this->Html->script(array(
             </div>
         </div>
 </div>
-<? /*
+
   <div id="outlook">
   <h5>15-Day Outlook</h5>
   <ul class="tabs">
