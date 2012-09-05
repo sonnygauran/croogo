@@ -595,11 +595,11 @@ function getDataLayer(){
 
                 $('.layer.slides_container').append(
                     '<img src="<?= $this->webroot ?>theme/weatherph/img/layers/'+_imageName+'.png" '
-                    +'data-year="'   + c.year  + '" '
-                    +'data-month="'  + c.month + '" '
-                    +'data-day="'    + c.day   + '" '
-                    +'data-hour="'   + c.hour  + '" '
-                    +'data-minute="' + c.min   + '" '
+                    +'data-year="'   + c.pst_year  + '" '
+                    +'data-month="'  + c.pst_month + '" '
+                    +'data-day="'    + c.pst_day   + '" '
+                    +'data-hour="'   + c.pst_hour  + '" '
+                    +'data-minute="' + c.pst_min   + '" '
                     +'data-second="00" '
                     +'style="display: none;"'
                     +' />'
@@ -624,11 +624,10 @@ function getDataLayer(){
                     generateNextPrev: false,
                     animationStart: function(){
                         var $visible = $('.layer.slides_container img:visible');
-
+                       
                         if ($visible.length == 1) {
                             var minutes =  $visible.attr('data-minute');
-                            var hours = $visible.attr('data-hour');
-                            hours + 8;
+
                             minutes -= 2;
                             if(minutes == 0) minutes = '00';
                           
@@ -637,7 +636,7 @@ function getDataLayer(){
                             $('.data-layer-label .timestamp .date .month').html($visible.attr('data-month'));
                             $('.data-layer-label .timestamp .date .day').html($visible.attr('data-day'));
 
-                            $('.data-layer-label .timestamp .time .hour').html(hours);
+                            $('.data-layer-label .timestamp .time .hour').html($visible.attr('data-hour'));
                             $('.data-layer-label .timestamp .time .minute').html(minutes) ;
                             $('.data-layer-label .timestamp .time .second').html('00');
                         }

@@ -60,6 +60,20 @@ class WeatherphController extends WeatherphAppController {
                 array_shift($matches); // removes the actual complete filename
                 //print_r($matches)
                 list($year, $month, $day, $hour, $min, $sec, $area, $type) = $matches;
+                
+                $time = "$year$month$day $hour$min$sec";
+                error_log($time);
+                $time = strtotime('+8 hours', strtotime($time));
+                
+                $pst_year = date('Y', $time);
+                $pst_month = date('m', $time);
+                $pst_day = date('d', $time);
+                $pst_hour = date('H', $time);
+                $pst_min = date('i', $time);
+                
+                
+//                list($year, $month, $day, $hour, $min, $sec, $area, $type)  = date('Ymd ', $time);`  
+                
                 if (!in_array($area, $areas)) {
                     $areas[] = $area;
                 }
@@ -67,7 +81,7 @@ class WeatherphController extends WeatherphAppController {
                     $types[] = $type;
                 }
                 
-                $current = compact('year', 'month', 'day', 'hour', 'min');
+                $current = compact('year', 'month', 'day', 'hour', 'min', 'pst_year', 'pst_month', 'pst_day', 'pst_hour', 'pst_min');
                 $filenames[$type][] = $current;
             }
         }
