@@ -34,8 +34,18 @@ $movie_location = Configure::read('Data.movies');
                     <div class="hovered-station">
                     </div>
                 </div>
+                <?php
+$user_agent = $_SERVER['HTTP_USER_AGENT']; 
 
-                <div id="loader"></div>
+if (preg_match('/MSIE/i', $user_agent)) { 
+   //echo "Internet Explorer";
+   $x = "";
+} else {
+   //echo "Non-IE Browser";
+   $x = "loader";
+} 
+?>
+                <div id=<?php echo "$x";?>></div>
                 <div class="data-layer-label">
                     <span class="timestamp">
                         <span class="date">
