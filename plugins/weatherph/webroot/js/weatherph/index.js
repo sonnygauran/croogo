@@ -271,6 +271,7 @@ function getForecast(id) {
         cache  : true,
         success: function(readings) {
             var title = readings.station_name;
+            title = title.replace('<br />', ' ');
             document.title =  "Weather Philippines Foundation | " +title  ;
             //                console.log(readings);
             var $station_readings = readings; // the complete retrieved stations
