@@ -85,26 +85,41 @@ class SearchController extends WeatherphAppController {
     public function getResultCoordinates($keyword) {
         $this->layout = 'json/ajax';
         
-        $query = "select `Name`.`id`, `Name`.`long`, `Name`.`lat`, `Name`.`full_name_ro`, `FipsCode`.name, `Region`.`name`, `Region`.`code`, `FipsCode`.`type` from `names` as `Name`, `fips_codes` as `FipsCode`, `regions` as `Region`  where ( `Name`.`fips_code_id` = `FipsCode`.`id` ) and ( `FipsCode`.`region_id` = `Region`.`id` ) and ( `Name`.`nt` = 'N' ) and ( `Name`.`dsg` = 'ppl'  or `Name`.`dsg` = 'adm1' or `Name`.`dsg` = 'adm2' ) and ( `Name`.`full_name_ro` = '$keyword' 	or `Name`.`full_name_ro` like '$keyword %'  or `Name`.`full_name_ro` like '% $keyword'  ) order by `FipsCode`.`type` desc, FIELD(`Region`.`code`, 'CAR', 'NCR') desc, `Name`.`id` desc, FIELD(`Name`.`dsg`, 'adm1', 'ppl') desc";
+//        $query = "select `Name`.`id`, `Name`.`long`, `Name`.`lat`, `Name`.`full_name_ro`, `FipsCode`.name, `Region`.`name`, `Region`.`code`, `FipsCode`.`type` from `names` as `Name`, `fips_codes` as `FipsCode`, `regions` as `Region`  where ( `Name`.`fips_code_id` = `FipsCode`.`id` ) and ( `FipsCode`.`region_id` = `Region`.`id` ) and ( `Name`.`nt` = 'N' ) and ( `Name`.`dsg` = 'ppl'  or `Name`.`dsg` = 'adm1' or `Name`.`dsg` = 'adm2' ) and ( `Name`.`full_name_ro` = '$keyword' 	or `Name`.`full_name_ro` like '$keyword %'  or `Name`.`full_name_ro` like '% $keyword'  ) order by `FipsCode`.`type` desc, FIELD(`Region`.`code`, 'CAR', 'NCR') desc, `Name`.`id` desc, FIELD(`Name`.`dsg`, 'adm1', 'ppl') desc";
+        $query = "select `Name`.`id`, `Name`.`long`, `Name`.`lat`, `Name`.`full_name_ro`, `FipsCode`.`type` from `names` as `Name`, `fips_codes` as `FipsCode`, `regions` as `Region`  where ( `Name`.`fips_code_id` = `FipsCode`.`id` ) and ( `FipsCode`.`region_id` = `Region`.`id` ) and ( `Name`.`nt` = 'N' ) and ( `Name`.`dsg` = 'ppl'  or `Name`.`dsg` = 'adm1' or `Name`.`dsg` = 'adm2' ) and ( `Name`.`full_name_ro` = '$keyword' 	or `Name`.`full_name_ro` like '$keyword %'  or `Name`.`full_name_ro` like '% $keyword'  ) order by `FipsCode`.`type` desc, FIELD(`Region`.`code`, 'CAR', 'NCR') desc, `Name`.`id` desc, FIELD(`Name`.`dsg`, 'adm1', 'ppl') desc";
 //        $gum = 'search.nima.name.coordinates';
         $locations = array();
+        $updated_results = array();
 //        if (!Cache::read($gum, 'daily')) {
             
             $NimaName = new NimaName();
             $keyword = $this->params['pass'][0];
             $locations = $NimaName->query($query);
             $this->log($locations);
-            $updated_results = array();
+            $unfiltered_results = array();
         
         foreach ($locations as $value) {
             if($value['FipsCode']['type'] == CITY){
-                $updated_results[] = $value;
+                $unfiltered_results[] = $value;
             }
         }
         
-        if(empty($updated_results)){
-           $updated_results = $locations; 
+        if(empty($unfiltered_results)){
+           $unfiltered_results = $locations; 
         }
+        
+        foreach ($unfiltered_results as $value){
+            if(key_exists('FipsCode', $value)) unset($value['FipsCode']);
+            $updated_results[] = $value;
+        }
+        
+        $NimaName->useDbConfig = 'default';
+        $sql = "select `Name`.`sid` as `id`, `Name`.`name` as `full_name_ro`, `Name`.`lat`, `Name`.`lon` as `long` from `stations` as `Name` where (`Name`.`name` like '%$keyword%')";
+        $stations = $NimaName->query($sql);
+        $updated_results = array_merge($updated_results, $stations);
+//        debug($updated_results);
+//        exit;
+            
 //            Cache::write($gum, $locations, 'daily');
 //        } else {
 //            $locations = Cache::read($gum, 'daily');

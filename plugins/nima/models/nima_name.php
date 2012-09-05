@@ -30,7 +30,8 @@ class NimaName extends NimaAppModel {
         $stations = $this->query($sql);
 
         $updated_results = array_merge($updated_results, $stations);
-
+        
+        $this->useDbConfig = 'nima';
 //        debug($results);
 //        exit;
 //        if (!empty($extra['contain'])) {
