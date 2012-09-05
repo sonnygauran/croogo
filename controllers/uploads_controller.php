@@ -15,13 +15,13 @@ class UploadsController extends AppController{
     }
     
     function admin_index(){
-        
         if(!empty($this->data)){
             $date = date('YmdHis'); 
             $extension = explode('.', $this->data['Upload']['video']['name']);
             $extension = ($extension[count($extension)-1]);
             
             $tmp_name = $this->data['Upload']['video']['tmp_name'];
+            
             $directory = WWW_ROOT . 'uploads' . DS . $this->data['Upload']['field'] . DS;
             $destination =  $directory . $date.".".$extension;
             
@@ -29,7 +29,11 @@ class UploadsController extends AppController{
             
             if(move_uploaded_file($tmp_name, $destination)){
                 $this->Session->setFlash("Upload Successful!");
-                $this->redirect(array('action' => 'admin_success', $date));
+                
+                if($this->data['Upload']['field'] == 'uploaded_videos'){
+                    $this->redirect(array('action' => 'admin_success', $date));
+                }
+                
             }else{
                 $this->Session->setFlash("Something went wrong.");
             }
