@@ -15,9 +15,9 @@
 
     <pre>
     <?= htmlentities("<video height='$height' width='$width'>") . "\n" ?>
-        <?= htmlentities("<source href='$url.webm' />") . "\n"?>
-        <?= htmlentities("<source href='$url.mp4' />") . "\n"?>
-        <?= htmlentities("<source href='$url.m4v' />") . "\n"?>
+        <?= htmlentities("<source href='$url.webm' type='video/x-m4v;' />") . "\n"?>
+        <?= htmlentities("<source href='$url.mp4' type='video/mp4;'/>") . "\n"?>
+        <?= htmlentities("<source href='$url.m4v' type='video/webm;'/>") . "\n"?>
     <?= htmlentities("</video>")?>
 
 </pre>
