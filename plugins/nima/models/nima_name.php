@@ -12,20 +12,24 @@ class NimaName extends NimaAppModel {
         $keyword = $conditions['keyword'];
         $sql = "select `NimaName`.`id`, `NimaName`.`long`, `NimaName`.`lat`, `NimaName`.`full_name_ro`, `NimaName`.`dsg`,  `FipsCode`.name, `Region`.`name`, `Region`.`code`, `FipsCode`.`type` from `names` as `NimaName`, `fips_codes` as `FipsCode`, `regions` as `Region`  where ( `NimaName`.`fips_code_id` = `FipsCode`.`id` ) and ( `FipsCode`.`region_id` = `Region`.`id` ) and ( `NimaName`.`nt` = 'N' ) and ( `NimaName`.`dsg` = 'ppl'  or `NimaName`.`dsg` = 'adm1' or `NimaName`.`dsg` = 'adm2' ) and ( `NimaName`.`full_name_ro` = '$keyword' 	or `NimaName`.`full_name_ro` like '$keyword %'  or `NimaName`.`full_name_ro` like '% $keyword'  ) order by `FipsCode`.`type` desc, FIELD(`Region`.`code`, 'CAR', 'NCR') desc, `NimaName`.`id` desc, FIELD(`NimaName`.`dsg`, 'adm1', 'ppl') desc";
         $this->recursive = $recursive;
-        $results = $this->query($sql);
+        $gns_results = $this->query($sql);
         $updated_results = array();
 
-        foreach ($results as $value) {
+        foreach ($gns_results as $value) {
             if ($value['FipsCode']['type'] == CITY) {
                 $updated_results[] = $value;
             }
         }
 
         if (empty($updated_results)) {
-            $updated_results = $results;
+            $updated_results = $gns_results;
         }
 
+        $this->useDbConfig = 'default';
+        $sql = "select `Station`.`sid`, `Station`.`name`, `Station`.`lat`, `Station`.`lon` from `stations` as `Station` where (`Station`.`name` like '%$keyword%')";
+        $stations = $this->query($sql);
 
+        $updated_results = array_merge($updated_results, $stations);
 
 //        debug($results);
 //        exit;
