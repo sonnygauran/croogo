@@ -26,7 +26,7 @@ class NimaName extends NimaAppModel {
         }
 
         $this->useDbConfig = 'default';
-        $sql = "select `Station`.`sid`, `Station`.`name`, `Station`.`lat`, `Station`.`lon` from `stations` as `Station` where (`Station`.`name` like '%$keyword%')";
+        $sql = "select `Station`.`id`, `Station`.`wmo1`, `Station`.`name`, `Station`.`lat`, `Station`.`lon` from `stations` as `Station` where (`Station`.`name` like '%$keyword%')";
         $stations = $this->query($sql);
 
         $updated_results = array_merge($updated_results, $stations);

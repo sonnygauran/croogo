@@ -114,7 +114,7 @@ class SearchController extends WeatherphAppController {
         }
         
         $NimaName->useDbConfig = 'default';
-        $sql = "select `Name`.`sid` as `id`, `Name`.`name` as `full_name_ro`, `Name`.`lat`, `Name`.`lon` as `long` from `stations` as `Name` where (`Name`.`name` like '%$keyword%')";
+        $sql = "select `Name`.`id`, `Name`.`name` as `full_name_ro`, `Name`.`lat`, `Name`.`lon` as `long` from `stations` as `Name` where (`Name`.`name` like '%$keyword%')";
         $stations = $NimaName->query($sql);
         $updated_results = array_merge($updated_results, $stations);
 //        debug($updated_results);

@@ -71,8 +71,8 @@
                                     <a href ="/<?php echo Inflector::slug($name['NimaName']['full_name_ro'], '_') . '-' . $name['NimaName']['id']; ?>" class="<?php echo $name['NimaName']['id']; ?> location <?php echo ($name['FipsCode']['type'] == 2) ? 'city' : 'province'; ?>"><?php echo trim($name['NimaName']['full_name_ro']); ?><br /> <span><?= trim($name['FipsCode']['name']); ?> <?= trim($name['Region']['code']) ?></span></a>
                                 </li>
                             <?php else: ?> 
-                                <li class="<?php echo $name['Station']['sid'] . ' ' . $cityClass; ?>">
-                                    <a href ="/view/<?php echo $name['Station']['sid']; ?>" class="<?php echo $name['Station']['sid']; ?> station"><?php echo trim($name['Station']['name']); ?></a>
+                                <li class="<?php echo $name['Station']['id'] . ' ' . $cityClass; ?>">
+                                    <a href ="/view/<?php echo $name['Station']['wmo1']; ?>" class="<?php echo $name['Station']['id']; ?> station"><?php echo trim($name['Station']['name']); ?></a>
                                 </li>
                             <?php endif; ?>
                         <?php endforeach; ?>
