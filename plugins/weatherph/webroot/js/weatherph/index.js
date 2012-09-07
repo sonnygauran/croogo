@@ -1,4 +1,5 @@
 var _name = "";
+var $s = '';
 var videoRegion = 'All';
 var currentRegion = 'All';
 var currentDataLayer = {
@@ -225,19 +226,23 @@ $(document).ready(function(){
 
                         var $movie = $('#movie-'+_name); // The markup
                         var content = eval("window['MOVIE_CONTENT']."+_name);
-
+                        
                         switch ($(this).val()){
                             case 'All Philippines':
                                 videoRegion = 'All';
-                                break;
+                                 $s = 'All Philippines';   
+                            break;
                             case 'Luzon':
                                 videoRegion = 'LUZON';
+                                $s = 'Luzon';   
                                 break;
                             case 'Visayas/Mindanao':
                                 videoRegion = 'VISAYAS_MINDANAO';
+                                $s = 'Visayas';   
                                 break;
                             case 'Palawan/Sulu Sea':
                                 videoRegion = 'PALWAN';
+                                $s = 'Sulu';   
                                 break;
                         }
 
@@ -247,6 +252,7 @@ $(document).ready(function(){
                             new_src = src.replace(currentRegion, videoRegion);
                             $(this).attr('src', new_src);
                             console.error(new_src);
+                            console.error('id:',$(this).val());
                         });
                         $('#movie-'+_name).load();
                         currentRegion = videoRegion;
