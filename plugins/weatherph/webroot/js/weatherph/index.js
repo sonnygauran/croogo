@@ -188,7 +188,9 @@ $(document).ready(function(){
             $('select[name=philippine-regions]').change(function(){
                 $("select[name=philippine-regions] option:selected").each(function () {
 
-                    if($('.active-layer').text() === 'Weather stations'){
+                    // TODO: Use an attribute instead of .text(). This function will break as soon as the text changes.
+
+                    if($('.active-layer').text() !== 'Weather movies \u25bf'){
                         if ($(this).attr('selected')) { // Is the current <option> selected?
                             $region = $(this).attr('data-region-id'); // the region id
 
@@ -225,23 +227,23 @@ $(document).ready(function(){
 
                         var $movie = $('#movie-'+_name); // The markup
                         var content = eval("window['MOVIE_CONTENT']."+_name);
-                        
+
                         switch ($(this).val()){
                             case 'All Philippines':
                                 videoRegion = 'All';
-                                 $s = 'All Philippines';   
+                                 $s = 'All Philippines';
                             break;
                             case 'Luzon':
                                 videoRegion = 'LUZON';
-                                $s = 'Luzon';   
+                                $s = 'Luzon';
                                 break;
                             case 'Visayas/Mindanao':
                                 videoRegion = 'VISAYAS_MINDANAO';
-                                $s = 'Visayas';   
+                                $s = 'Visayas';
                                 break;
                             case 'Palawan/Sulu Sea':
                                 videoRegion = 'PALWAN';
-                                $s = 'Sulu';   
+                                $s = 'Sulu';
                                 break;
                         }
 
