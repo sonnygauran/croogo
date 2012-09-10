@@ -1,4 +1,5 @@
 var _name = "";
+var $s = '';
 var videoRegion = 'All';
 var currentRegion = 'All';
 var currentDataLayer = {
@@ -6,8 +7,8 @@ var currentDataLayer = {
     'temperature': 0,
     'satellite'  : 0
 };
-var $boxMap = [
 
+var $boxMap = [
 //MAJOR AREAS
 {
     id: 'Philippines',
@@ -187,18 +188,19 @@ $(document).ready(function(){
             $('select[name=philippine-regions]').change(function(){
                 $("select[name=philippine-regions] option:selected").each(function () {
 
-                    if($('.active-layer').text() === 'Weather stations'){
+                    // TODO: Use an attribute instead of .text(). This function will break as soon as the text changes.
+
+                    if($('.active-layer').text() !== 'Weather movies \u25bf'){
                         if ($(this).attr('selected')) { // Is the current <option> selected?
                             $region = $(this).attr('data-region-id'); // the region id
 
                             for (var key in $boxMap) { // let's traverse the $boxMap
                                 if ($boxMap[key].id == $region) {  // Initially matches 'data-region-id' with 'NCR'
                                     $current = $boxMap[key].box; // the current $boxMap record
-                                    console.error($boxMap[key]);
+                                    // console.error($boxMap[key]);
                                     var southWest = new L.LatLng($current[1],$current[0]),
                                     northEast = new L.LatLng($current[3],$current[2]),
                                     bounds    = new L.LatLngBounds(southWest, northEast);
-                                    console.error();
 
                                     var map = $('#map').data('map');
 
@@ -221,7 +223,7 @@ $(document).ready(function(){
                         // Video switch
 
                         window["DATA_LAYER"] = _name;
-                        console.error('Set~>'+window["DATA_LAYER"]);
+                        // console.error('Set~>'+window["DATA_LAYER"]);
 
                         var $movie = $('#movie-'+_name); // The markup
                         var content = eval("window['MOVIE_CONTENT']."+_name);
@@ -229,15 +231,19 @@ $(document).ready(function(){
                         switch ($(this).val()){
                             case 'All Philippines':
                                 videoRegion = 'All';
-                                break;
+                                 $s = 'All Philippines';
+                            break;
                             case 'Luzon':
                                 videoRegion = 'LUZON';
+                                $s = 'Luzon';
                                 break;
                             case 'Visayas/Mindanao':
                                 videoRegion = 'VISAYAS_MINDANAO';
+                                $s = 'Visayas';
                                 break;
                             case 'Palawan/Sulu Sea':
                                 videoRegion = 'PALWAN';
+                                $s = 'Sulu';
                                 break;
                         }
 
@@ -247,6 +253,7 @@ $(document).ready(function(){
                             new_src = src.replace(currentRegion, videoRegion);
                             $(this).attr('src', new_src);
                             console.error(new_src);
+                            console.error('id:',$(this).val());
                         });
                         $('#movie-'+_name).load();
                         currentRegion = videoRegion;
@@ -262,8 +269,8 @@ $(document).ready(function(){
  *Ajax
  */
 function getForecast(id) {
-    console.error('<?php Router::url($this->webroot) ?>');
-    console.error('<?= $this->webroot ?>weatherph/weatherph/getForecast/'+id+'/3/3h');
+    // console.error('<?php Router::url($this->webroot) ?>');
+    // console.error('<?= $this->webroot ?>weatherph/weatherph/getForecast/'+id+'/3/3h');
 
     $.ajax({
         type   : 'GET',
@@ -275,7 +282,7 @@ function getForecast(id) {
             document.title =  "Weather Philippines Foundation | " +title  ;
             //                console.log(readings);
             var $station_readings = readings; // the complete retrieved stations
-                            console.log($station_readings);
+            // console.log($station_readings);
             var cr_temperature, cr_wind, cr_precip, cr_humidity, cr_symbol;
             var sr_temperature, sr_wind, sr_precip, sr_humidity, sr_symbol;
             var current_readings, cr_precip_hr_range;
@@ -307,7 +314,7 @@ function getForecast(id) {
 
                     //                        console.error(weather_symbol);
 
-                    if(weather_symbol.hasOwnProperty('symbol') && weather_symbol != '-') {
+                    if(weather_symbol.hasOwnProperty('symbol') && weather_symbol !== '-') {
                         $('#info .readings .symbol:eq(0)').addClass(weather_symbol.symbol);
                     }else{
                         $('#info .readings .symbol:eq(0)').attr('class', 'symbol');
@@ -327,7 +334,7 @@ function getForecast(id) {
 
                 for (var key in $station_readings.forecast) {
 
-                    if(key != 'status'){
+                    if(key !== 'status'){
 
                         sr_temperature = $station_readings.forecast[key].temperature;
                         sr_wind = $station_readings.forecast[key].wind_speed;
@@ -339,7 +346,7 @@ function getForecast(id) {
                         weather_symbol = $station_readings.forecast[key].weather_symbol;
 
                         //                            console.error(weather_symbol);
-                        if(weather_symbol.hasOwnProperty('symbol') && weather_symbol != '-') {
+                        if(weather_symbol.hasOwnProperty('symbol') && weather_symbol !== '-') {
                             $('.' + key + '-hour .symbol').addClass(weather_symbol.symbol);
                         }else{
                             $('.' + key + '-hour .symbol').attr('class', 'symbol');
@@ -396,13 +403,13 @@ function showReadings(){
 function isiPhone(){
     return (
         //Detect iPhone
-        (navigator.platform.indexOf("iPhone") != -1) ||
+        (navigator.platform.indexOf("iPhone") !== -1) ||
         //Detect iPod
-        (navigator.platform.indexOf("iPod") != -1)
+        (navigator.platform.indexOf("iPod") !== -1)
         );
 }
 
-console.error('<?= Router::url(null, true) ?>theme/weatherph/img/leaflet/marker-icon-red-small-transparent.png');
+// console.error('<?= Router::url(null, true) ?>theme/weatherph/img/leaflet/marker-icon-red-small-transparent.png');
 var StationIconWeb = L.Icon.extend({
     options: {
         iconUrl: '<?= Router::url(null, true) ?>theme/weatherph/img/leaflet/marker-icon-red-small-transparent.png',
@@ -433,7 +440,7 @@ var meteomediaIcon = new StationIconWeb();
 meteomediaIcon.options.iconUrl = '<?= Router::url(null, true) ?>theme/weatherph/img/leaflet/marker-icon-blue-small.png';
 meteomediaIcon.options.zIndexOffset = 9999;
 
-if (isiPhone() || (navigator.userAgent.match(/iPad/i) != null)) {
+if (isiPhone() || (navigator.userAgent.match(/iPad/i) !== null)) {
     stationIcon    = new StationIconMobile();
     meteomediaIcon = new StationIconMobile('<?= Router::url(null, true) ?>theme/weatherph/img/leaflet/marker-icon-blue-small.png');
 }
@@ -444,13 +451,13 @@ function mapStationsPagasa($stationsArray) {
 
 function mapStations($stationsArray, icon) {
     var _icon = meteomediaIcon;
-    if (icon != null) {
+    if (icon !== null) {
         _icon = icon;
     }
 
     // This loop maps the stations from the $stations fetched from getStations
     var counter = 0;
-    var isiPad = navigator.userAgent.match(/iPad/i) != null;
+    var isiPad = navigator.userAgent.match(/iPad/i) !== null;
 
     for (var key in $stationsArray) {
 
@@ -496,7 +503,7 @@ function mapStations($stationsArray, icon) {
 
 function remapStations() {
     $('.data-layer-label').hide();
-    if (window['STATIONS'].pagasa == null) {
+    if (window['STATIONS'].pagasa === null) {
         $.ajax({
             type   : 'GET',
             url    : '<?= Router::url(null, true) ?>weatherph/weatherph/getStations/pagasa',
@@ -544,8 +551,10 @@ function remapStations() {
 
                         window['STATIONS'].meteomedia = $stations;
                         mapStations($stations, meteomediaIcon); // now the stations are complete
-                        $('select[name=philippine-regions]').find('option[data-region-id=Philippines]').attr('selected','selected');
-                        $('select[name=philippine-regions]').change();
+                        $('select[name=philippine-regions]')
+                            .find('option[data-region-id=Philippines]')
+                            .attr('selected','selected')
+                            .change();
                     }
                 });
 
@@ -580,7 +589,7 @@ function getDataLayer(){
     // The currently-selected layer
     var dataLayer = window["DATA_LAYER"];
 
-    console.error('x~>'+dataLayer);
+    // console.error('x~>'+dataLayer);
     if (dataLayer == 'temperature' || dataLayer == 'pressure' || dataLayer == 'satellite') {
 //        $('.data-layer').animate({
 //            opacity: 0
@@ -624,14 +633,13 @@ function getDataLayer(){
                     generateNextPrev: false,
                     animationStart: function(){
                         var $visible = $('.layer.slides_container img:visible');
-                       
+
                         if ($visible.length == 1) {
                             var minutes =  $visible.attr('data-minute');
 
                             minutes -= 2;
-                            if(minutes == 0) minutes = '00';
-                          
-                            console.error(minutes);
+                            if(minutes === 0) minutes = '00';
+
                             $('.data-layer-label .timestamp .date .year').html($visible.attr('data-year'));
                             $('.data-layer-label .timestamp .date .month').html($visible.attr('data-month'));
                             $('.data-layer-label .timestamp .date .day').html($visible.attr('data-day'));
@@ -643,7 +651,7 @@ function getDataLayer(){
                     }
                 });
             }); // animation callback
-//        });
+       // });
     }
 
 }
@@ -666,8 +674,8 @@ function redrawMap(){
     var serviceName = 'stations';
 
 
-    console.error(dataLayer);
-    if (dataLayer != null) {
+    // console.error(dataLayer);
+    if (dataLayer !== null) {
         getDataLayer();
 
         switch(dataLayer) {
@@ -675,7 +683,6 @@ function redrawMap(){
             case 'pressure':
             case 'satellite':
                 $('.data-layer-label').show();
-                //                $('#map').data('map').zoomControl.disable();
                 $('#map').data('map').dragging.disable();
                 $('#map').data('map').doubleClickZoom.disable();
                 $('#map').data('map').touchZoom.disable();
@@ -753,8 +760,10 @@ function redrawMap(){
         videoRegion = 'All';
 
         $('.province-select').find("option:selected").each(function(){
-            $('select[name=philippine-regions]').find('option[data-region-id=Philippines]').attr('selected','selected');
-            $('select[name=philippine-regions]').change();
+            $('select[name=philippine-regions]')
+                .find('option[data-region-id=Philippines]')
+                .attr('selected','selected')
+                .change();
         });
 
     }
@@ -772,7 +781,7 @@ function onionSkinMap() {
     var mapOpacity = 1;
     var dataLayer = window['DATA_LAYER'];
 
-    if (dataLayer != null) {
+    if (dataLayer !== null) {
         switch (dataLayer) {
             case 'temperature':
                 break;
@@ -788,8 +797,6 @@ function onionSkinMap() {
 
 $(document).ready(function(){
     $('#video-viewport').hide();
-    // Layer selector toggle
-
     $('.data-layers a').on('click', function(evt){
         evt.preventDefault();
 
@@ -800,7 +807,7 @@ $(document).ready(function(){
         region_stations = $('.active-layer').text();
 
         window["DATA_LAYER"] = _name;
-        console.error('Set~>'+window["DATA_LAYER"]);
+        // console.error('Set~>'+window["DATA_LAYER"]);
 
         //Temperature unit toggle
 
@@ -818,14 +825,15 @@ $(document).ready(function(){
             });
         });
 
-        // Layer selector toggle
-
         if ($(this).attr('data-type') == 'movie') {
 
+        // This switches the region back to "All_Philippines" when the movies layer is selected.
             $('.province-select').find("option:selected").each(function(){
                 $('.province-select').find("option:selected").removeProp('selected');
-                $('select[name=philippine-regions]').find('option[data-region-id=Philippines]').attr('selected','selected');
-                $('select[name=philippine-regions]').change();
+                $('select[name=philippine-regions]')
+                    .find('option[data-region-id=Philippines]')
+                    .attr('selected','selected')
+                    .change();
             });
 
             $('.active-layer').removeClass('active-layer');
@@ -838,10 +846,10 @@ $(document).ready(function(){
             var content = eval("window['MOVIE_CONTENT']."+_name);
 
             $map.fadeOut(1000, function(){
-                console.error(eval("window['MOVIE_CONTENT']."+_name));
+                // console.error(eval("window['MOVIE_CONTENT']."+_name));
                 $video
                 .html(eval("window['MOVIE_CONTENT']."+_name));
-                console.error($video);
+                // console.error($video);
                 $video
                 .fadeIn(1000)
                 .find('video').show();
@@ -851,11 +859,11 @@ $(document).ready(function(){
             });
 
         } else {
-            console.error('is not movie');
+            // console.error('is not movie');
             var videoVisible = $video.is(':visible');
             var mapVisible = $map.is(':visible');
             if (videoVisible) {
-                console.error('video visible');
+                // console.error('video visible');
                 $video.fadeOut(1000, function(){
                     $map.fadeIn(1000);
                     redrawMap();
@@ -875,9 +883,9 @@ $(document).ready(function(){
                 });
 
                 if (mapVisible) {
-                    console.error('is visible');
+                    // console.error('is visible');
                 } else {
-                    console.error('is invisible');
+                    // console.error('is invisible');
                 }
             }
         }

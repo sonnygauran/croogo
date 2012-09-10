@@ -82,9 +82,9 @@ $properties2 = array(
 
 $coordinates = array(
     'all' => "&x1=111.3134765625&x2=135.6591796875&y2=24.126701958681668&y1=0.5273363048115169",
-        // 'luzon' =>"&x1=119.21264648437499&x2=125.299072265625&y2=19.694314241825747&y1=13.870080100685891",
-        // 'visayas_mindanao' =>"&x1=122.16796875&x2=128.25439453125&y2=12.651058133703483&y1=6.653695352486294",
-        // 'palawan_sulu' =>"&x1=116.54296874999999&x2=122.62939453125001&y2=12.39365886237742&y1=6.391730485481462",
+        'luzon' =>"&x1=119.21264648437499&x2=125.299072265625&y2=19.694314241825747&y1=13.870080100685891",
+        'visayas_mindanao' =>"&x1=122.16796875&x2=128.25439453125&y2=12.651058133703483&y1=6.653695352486294",
+        'palawan_sulu' =>"&x1=116.54296874999999&x2=122.62939453125001&y2=12.39365886237742&y1=6.391730485481462",
 );
 
 function microtime_float() {
@@ -107,7 +107,7 @@ foreach ($coordinates as $coordinate_key => $coordinate_value) {
             $contents = file_get_contents($url);
             $strlen = strlen($contents);
             echo "\n----------";
-           
+
             if ($strlen <= 239) {
                 echo "|EMPTY|----------\n";
                 echo $url;
@@ -118,7 +118,7 @@ foreach ($coordinates as $coordinate_key => $coordinate_value) {
                 echo "|SAVED|----------\n";
                 echo $url;
                 echo "\n";
-               
+
             }
         }
         $start = $STATIC['start'];
