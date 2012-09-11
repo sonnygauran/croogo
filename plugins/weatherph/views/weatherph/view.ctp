@@ -151,8 +151,6 @@ echo $this->Html->script(array(
         </div><!--END WEEK FORECAST-->
 
     </section> <!--MAIN CONTENT-->
-<?
-/*
     <section class="secondary">
         <div id="charts">
             <h4>Detailed Forecasts</h4>
@@ -252,6 +250,5 @@ echo $this->Html->script(array(
   <li><a href="javascript: void(0);">Wind</a></li>
   </ul>
   </div>
- */ ?>
 </section>
 </div> <!--CONTENT-->
