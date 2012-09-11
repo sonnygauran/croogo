@@ -56,7 +56,7 @@
     CroogoRouter::connect('/batangas', array('plugin' => 'weatherph', 'controller' => 'tourism', 'action' => 'batangas'));
     CroogoRouter::connect('/bayawan', array('plugin' => 'weatherph', 'controller' => 'tourism', 'action' => 'bayawan'));
     CroogoRouter::connect('/cadiz', array('plugin' => 'weatherph', 'controller' => 'tourism', 'action' => 'cadiz'));
-    CroogoRouter::connect('/cagayan_de_oro', array('plugin' => 'weatherph', 'controller' => 'tourism', 'action' => 'cagayan_de_oro'));
+    CroogoRouter::connect('/cagayan-de-oro', array('plugin' => 'weatherph', 'controller' => 'tourism', 'action' => 'cagayan_de_oro'));
     CroogoRouter::connect('/calamba', array('plugin' => 'weatherph', 'controller' => 'tourism', 'action' => 'calamba'));
     CroogoRouter::connect('/caloocan', array('plugin' => 'weatherph', 'controller' => 'tourism', 'action' => 'caloocan'));
     CroogoRouter::connect('/cauayan', array('plugin' => 'weatherph', 'controller' => 'tourism', 'action' => 'cauayan'));
@@ -84,11 +84,11 @@
     CroogoRouter::connect('/muntinlupa', array('plugin' => 'weatherph', 'controller' => 'tourism', 'action' => 'muntinlupa'));
     CroogoRouter::connect('/olongapo', array('plugin' => 'weatherph', 'controller' => 'tourism', 'action' => 'olongapo'));
     CroogoRouter::connect('/pasay', array('plugin' => 'weatherph', 'controller' => 'tourism', 'action' => 'pasay'));
-    CroogoRouter::connect('/puerto_princesa', array('plugin' => 'weatherph', 'controller' => 'tourism', 'action' => 'puerto_princesa'));
+    CroogoRouter::connect('/puerto-princesa', array('plugin' => 'weatherph', 'controller' => 'tourism', 'action' => 'puerto_princesa'));
     CroogoRouter::connect('/samal', array('plugin' => 'weatherph', 'controller' => 'tourism', 'action' => 'samal'));
-    CroogoRouter::connect('/san_fernando', array('plugin' => 'weatherph', 'controller' => 'tourism', 'action' => 'san_fernando'));
-    CroogoRouter::connect('/san_fernando_la_union', array('plugin' => 'weatherph', 'controller' => 'tourism', 'action' => 'san_fernando_la_union'));
-    CroogoRouter::connect('/santa_rosa', array('plugin' => 'weatherph', 'controller' => 'tourism', 'action' => 'santa_rosa'));
+    CroogoRouter::connect('/san-fernando', array('plugin' => 'weatherph', 'controller' => 'tourism', 'action' => 'san_fernando'));
+    CroogoRouter::connect('/san-fernando-la-union', array('plugin' => 'weatherph', 'controller' => 'tourism', 'action' => 'san_fernando_la_union'));
+    CroogoRouter::connect('/santa-rosa', array('plugin' => 'weatherph', 'controller' => 'tourism', 'action' => 'santa_rosa'));
     CroogoRouter::connect('/santiago', array('plugin' => 'weatherph', 'controller' => 'tourism', 'action' => 'santiago'));
     CroogoRouter::connect('/silay', array('plugin' => 'weatherph', 'controller' => 'tourism', 'action' => 'silay'));
     CroogoRouter::connect('/sorsogon', array('plugin' => 'weatherph', 'controller' => 'tourism', 'action' => 'sorsogon'));
