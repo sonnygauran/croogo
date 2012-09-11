@@ -338,7 +338,7 @@ label[for="search-field"] {
 .station-legend > div {
     display: inline-block;
     height: 1em;
-    width: 1em; 
+    width: 1em;
     margin: 0 6px;
 }
 
@@ -584,7 +584,7 @@ span.temperature {
     float: right;
     width: 45%;
     vertical-align: middle;
-    
+
 }
 
 .current-detail-table th {
@@ -782,14 +782,13 @@ span.temperature {
     margin: 1em 0;
 }
 
-.page h2 {
+.page h2, .page h3, .page h4 {
     text-align: center;
     line-height: 1.333333333333333em;
     margin-bottom: .6666666666666667em;
 }
 
 .figure {
-    max-width: 554px;
     margin: 2em auto;
     display:block;
 }
@@ -806,6 +805,30 @@ span.temperature {
 
 .page video {
     margin: .5em 1em .5em 13px;
+}
+
+.page table {
+    max-width: 554px;
+    vertical-align: middle;
+    margin: 1em auto;
+}
+
+.page thead {
+    margin: 0 auto;
+    font-weight: bold;
+}
+
+.page th {
+    background-color: #3990BD;
+    color: #fafafa;
+    font-weight: normal;
+    padding: 5px;
+}
+
+.page td {
+    padding: 5px 8px;
+    vertical-align: middle;
+    border: 1px solid #e9e9e9;
 }
 
 /* Slider */

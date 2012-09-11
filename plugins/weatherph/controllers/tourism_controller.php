@@ -1,6 +1,6 @@
 <?php
 
-class TourismController extends WeatherAppController{
+class TourismController extends WeatherphAppController{
     
     public $name = 'Tourism';
     public $uses = array('Block');
@@ -11,223 +11,224 @@ class TourismController extends WeatherAppController{
     }
     
     
-    public function angelesCity (){
+    public function angeles(){
         
     }
 
-    public function antipoloCity (){
+    public function antipolo (){
         
     }
     
-    public function baguioCity (){
+    public function baguio (){
         
     }
     
-    public function baisCity (){
+    public function bais (){
         
     }
     
-    public function balangaCity (){
+    public function balanga (){
         
     }
     
-    public function batangasCity (){
+    public function batangas (){
         
     }
     
-    public function bayawanCity (){
+    public function bayawan (){
         
     }
     
-    public function cadizCity (){
+    public function cadiz (){
         
     }
     
-    public function cagayanDeOroCity (){
+    public function cagayan_de_oro (){
         
     }
     
-    public function calambaCity (){
+    public function calamba (){
         
     }
     
-    public function caloocanCity (){
+    public function caloocan (){
         
     }
     
-    public function cauayanCity (){
+    public function cauayan (){
         
     }
     
-    public function caviteCity (){
+    public function cavite (){
         
     }
     
-    public function cityOfKoronadal (){
+    public function koronadal (){
         
     }
     
-    public function cityOfAlaminos (){
+    public function alaminos (){
+   
+    }
+    
+    public function masbate (){
         
     }
     
-    public function cityOfMasbate (){
+    public function muntinlupa (){
         
     }
     
-    public function cityOfMuntinlupa (){
+    public function valenzuela (){
         
     }
     
-    public function cityOfSanFernando (){
+    public function dagupan (){
         
     }
     
-    public function cityOfSantaRosa (){
+    public function davao (){
         
     }
     
-    public function cityOfValenzuela (){
+    public function digos (){
         
     }
     
-    public function dagupanCity (){
+    public function dipolog (){
         
     }
     
-    public function davaoCity (){
+    public function gapan (){
         
     }
     
-    public function digosCity (){
+    public function iligan (){
         
     }
     
-    public function dipologCity (){
+    public function iloilo (){
         
     }
     
-    public function gapanCity (){
+    public function iriga (){
         
     }
     
-    public function iliganCity (){
+    public function isabela (){
         
     }
     
-    public function iloiloCity (){
+    
+    public function kabankalan (){
         
     }
     
-    public function irigaCity (){
+    public function kidapawan (){
         
     }
     
-    public function isabelaCity (){
+    public function laoag (){
         
     }
     
-    public function islandGardenCityOfSamal (){
+    public function ligao (){
         
     }
     
-    public function kabankalanCity (){
+    public function lipa (){
         
     }
     
-    public function kidapawanCity (){
+    public function lucena (){
         
     }
     
-    public function laoagCity (){
+    public function makati (){
         
     }
     
-    public function ligaoCity (){
+    public function malaybalay (){
         
     }
     
-    public function lipaCity (){
+    public function mandaue (){
         
     }
     
-    public function lucenaCity (){
+    public function olongapo (){
         
     }
     
-    public function makatiCity (){
+    public function pasay (){
         
     }
     
-    public function malaybalayCity (){
+    public function puerto_princesa (){
         
     }
     
-    public function mandaueCity (){
+    public function san_fernando_la_union (){
         
     }
     
-    public function olongapoCity (){
+    public function san_fernando (){
         
     }
     
-    public function pasayCity (){
+    public function santa_rosa (){
         
     }
     
-    public function puertoPrincesaCity (){
+    public function samal (){
         
     }
     
-    public function sanFernandoCity_LaUnion (){
+    public function santiago (){
         
     }
     
-    public function santiagoCity (){
+    public function silay (){
         
     }
     
-    public function silayCity (){
+    public function sorsogon (){
         
     }
     
-    public function sorsogonCity (){
+    public function tacurong (){
         
     }
     
-    public function tacurongCity (){
+    public function tagum (){
         
     }
     
-    public function tagumCity (){
+    public function tangub (){
         
     }
     
-    public function tangubCity (){
+    public function toledo (){
         
     }
     
-    public function toledoCity (){
+    public function tuguegarao (){
         
     }
     
-    public function tuguegaraoCity (){
+    public function urdaneta (){
         
     }
     
-    public function urdanetaCity (){
+    public function victorias (){
         
     }
     
-    public function victoriasCity (){
+    public function vigan (){
         
     }
     
-    public function viganCity (){
-        
-    }
-    
-    public function zamboangaCity (){
+    public function zamboanga (){
         
     }
     
