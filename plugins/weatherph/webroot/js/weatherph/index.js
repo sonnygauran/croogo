@@ -770,11 +770,6 @@ function redrawMap(){
     $('.leaflet-container').css('background','transparent');
     $('.active-layer').removeClass('active-layer');
     $('[data-name = "'+dataLayer+'"]').addClass('active-layer');
-
-
-//    $("#map").geomap({
-//        services: service
-//    });
 }
 
 function onionSkinMap() {

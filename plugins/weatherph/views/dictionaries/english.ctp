@@ -3,6 +3,275 @@
         <div class="page">
             <h2>Glossary</h2>
             <hr/>
+
+            <h3>Basic Terms</h3>
+            <dl>
+                <dt>Weather</dt>
+                <dd>
+                    is commonly defined as the “day-to-day” conditions of the atmosphere. This includes atmospheric elements such as temperature, sky conditions, wind, precipitation activity, humidity, pressure and among others.
+                </dd>
+
+                <dt>Climate</dt>
+                <dd>
+                    is define as the average atmospheric or weather conditions over a longer periods of time.
+                </dd>
+
+                <dt>Cloud</dt>
+                <dd>
+                    is defined as a visible mass of liquid droplets or frozen crystals made of water or various chemical suspended in the atmosphere above the surface of a planetary body.
+                </dd>
+
+                <dt>Precipitation</dt>
+                <dd>
+                    defined as an all liquid particles that originate in the atmosphere through clouds and fall to the earth's surface. The amount, usually expressed in millimeters or inches of liquid water depth, of the water substance that has fallen at a given point over a specified period of time. Precipitation may come in the form of rain, dew, frost and other liquid particles.
+                </dd>
+
+                <dt>Drizzle</dt>
+                <dd>
+                    is a precipation in the form of liquid water drop that have a diameter less than 0.5 millimeter (mm).
+                </dd>
+
+                <dt>Rain</dt>
+                <dd>
+                    is defined as precipitation in the form of liquid water drop that have a diameter greater than 0.5 millimeter (mm). Rain originates in clouds that precipitate and fall to the ground due to gravity.
+                </dd>
+
+                <dt>Difference between Rain and Drizzle</dt>
+                <dd>
+                    The key difference between rain and drizzle is the size of the drops. By definition, drizzle drops are less than 0.5 mm in diameter and the drops fall close together and float in the air currents like fog, but unlike fog they fall to the ground. Raindrops, as defined, are at least .05 mm in diameter, or if they are smaller, fall far apart. Both rain and drizzle are described as light, moderate, or heavy. For drizzle, it depends on visibility – the distance you can see through the drizzle. For rain, it depends on how much would fall in an hour. Below are charts to differentiate drizzle and rain intensity.
+                </dd>
+
+                <h4>Drizzle Intensity</h4>
+                <table>
+                    <tr>
+                        <th>Light</th>
+                        <td>Visibility more than 800 meters.</td>
+                    </tr>
+
+                    <tr>
+                        <th>Moderate</th>
+                        <td>Visibility from 400 to 800 meters.</td>
+                    </tr>
+
+                    <tr>
+                        <th>Heavy</th>
+                        <td>Visibility less than 400 meters.</td>
+                    </tr>
+                </table>
+
+                <h4>Rain Intensity (based on the amount of rainfall in an hour)</h4>
+                <table>
+                    <tr>
+                        <th>Light</th>
+                        <td>When the precipitation rate is &lt; 2.5 millimeters (mm) per hour; scattered drops do not completely wet a surface, individual drops easily seen.</td>
+                    </tr>
+
+                    <tr>
+                        <th>Moderate</th>
+                        <td>When the precipitation rate is between 2.5 to 7.6 mm per hour; individual drops not clearly seen, spray seen just above hard surfaces.</td>
+                    </tr>
+
+                    <tr>
+                        <th>Heavy</th>
+                        <td>When the precipitation rate is >7.6 mm per hour, or between 10 mm and 50 mm per hour; falls in sheets, individual drops not seen, several inches of spray above hard surfaces.</td>
+                    </tr>
+
+                    <tr>
+                        <th>Violent, Extreme or Very Heavy</th>
+                        <td>When the precipitation rate is >50 mm per hour; falls in very heavy sheets, zero-visibility, flash floods possible.</td>
+                    </tr>
+                </table>
+
+                <dt>Temperature</dt>
+                <dd>
+                    is a physical property of matter that quantitatively expesses the common notions of hot and cold. Objects of low temperature are cold, while degrees of higher temperatures are either warm or hot. Units used in measuring temperatures through a thermometer is either Celsius/Centigrade or Fahrenheit.
+                </dd>
+
+                <dt>Wind</dt>
+                <dd>
+                    is defined as an air in motion relative to the surface of the earth. Generally winds near the surface of the earth moves horizontally, as vertical winds are relatively small. Surface winds are measured by anemometer and wind vane; while winds in the upper-atmosphere uses weather balloons and radiosonde, or aircraft navigational techniques found in advanced airplanes.
+                </dd>
+
+                <dt>Beaufort Wind Scale</dt>
+                <dd>
+                    A system of estimating and reporting wind speeds using numerical scale ranging from 0 (calm) to 12 (typhoon, cyclone or hurricane). This scale was invented in the early nineteenth century by Admiral Beaufort of the British Navy and was originally based on the effects of various wind speeds on the amount of canvas that a full- rigged frigate of the period could carry. It has since been modified and modernized and in its present form for international meteorological use it equates 1) Beaufort force (or Beaufort number), 2) wind speed, 3) descriptive term, and 4) visible effects upon land objects or sea surface.
+
+                <table>
+                    <tr>
+                        <th>Beaufort No.</th>
+                        <th>Description</th>
+                        <th>Wind Speed</th>
+                        <th>Wave Height</th>
+                        <th>Sea Conditions</th>
+                        <th>Sea State Photo</th>
+                        <th>Land Conditions</th>
+                        <th>Associated Warning Flag</th>
+                    </tr>
+                    <tr>
+                        <th>0</th>
+                        <td>Calm</td>
+                        <td>0 - 1.6 kph</td>
+                        <td>0 m</td>
+                        <td>Flat</td>
+                        <td><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Beaufort_scale_0.jpg/120px-Beaufort_scale_0.jpg"></td>
+                        <td>Calm. Smoke rises vertically.</td>
+                        <td></td>
+
+                    </tr>
+                        <th>1</th>
+                        <td>Light Air</td>
+                        <td>1.6 – 4.8 kph</td>
+                        <td>0 – 0.2 m</td>
+                        <td>Ripples without crest.</td>
+                        <td></td>
+                        <td>Smoke drift indicates wind direction and wind vanes cease moving.</td>
+                        <td></td>
+                    <tr>
+
+                    </tr>
+                    <tr>
+                        <th>2</th>
+                        <td>Light Breeze</td>
+                        <td>4.8 – 11.3 kph</td>
+                        <td>0.2 – 0.5 m</td>
+                        <td>Small wavelets. Crests of glassy appearance, not breaking</td>
+                        <td><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Beaufort_scale_2.jpg/120px-Beaufort_scale_2.jpg"></td>
+                        <td>Wind felt on exposed skin. Leaves rustle and wind vanes begin to move.</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>3</th>
+                        <td>Gentle Breeze</td>
+                        <td>11.3 – 19.3 kph</td>
+                        <td>0.5 – 1 m</td>
+                        <td>Large wavelets. Crests begin to break; scattered whitecaps</td>
+                        <td><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Beaufort_scale_3.jpg/120px-Beaufort_scale_3.jpg"></td>
+                        <td>Leaves and small twigs constantly moving, light flags extended.</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>4</th>
+                        <td>Moderate Breeze</td>
+                        <td>19.3 – 29.0 kph</td>
+                        <td>1 – 2 m</td>
+                        <td>Small waves with breaking crests. Fairly frequent whitecaps.</td>
+                        <td><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Beaufort_scale_4.jpg/120px-Beaufort_scale_4.jpg"></td>
+                        <td>Dust and loose paper raised. Small branches begin to move.</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>5</th>
+                        <td>Fresh Breeze</td>
+                        <td>29.0 – 38.6 kph</td>
+                        <td>2 – 3 m</td>
+                        <td>Moderate waves of some length. Many whitecaps. Small amounts of spray.</td>
+                        <td><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Beaufort_scale_5.jpg/120px-Beaufort_scale_5.jpg"></td>
+                        <td>Branches of a moderate size move. Small trees in leaf begin to sway.</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>6</th>
+                        <td>Strong Breeze</td>
+                        <td>38.6 – 49.9 kph</td>
+                        <td>3 – 4 m</td>
+                        <td>Long waves begin to form. White foam crests are very frequent. Some airborne spray is present.</td>
+                        <td><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Beaufort_scale_6.jpg/120px-Beaufort_scale_6.jpg"></td>
+                        <td>Large branches in motion. Whistling heard in overhead wires. Umbrella use becomes difficult. Empty plastic bins tip over.</td>
+                        <td><img src="<?= $this->webroot ?>theme/weatherph/img/flag-gale-pennant.png"></td>
+                    </tr>
+                    <tr>
+                        <th>7</th>
+                        <td>Near Gale</td>
+                        <td>49.9 – 61.2 kph</td>
+                        <td>4 – 5.5 m</td>
+                        <td>Sea heaps up. Some foam from breaking waves is blown into streaks along wind direction. Moderate amounts of airborne spray.</td>
+                        <td><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Beaufort_scale_7.jpg/120px-Beaufort_scale_7.jpg"></td>
+                        <td>Whole trees in motion. Effort needed to walk against the wind.</td>
+                        <td><img src="<?= $this->webroot ?>theme/weatherph/img/flag-gale-pennant.png"></td>
+                    </tr>
+                    <tr>
+                        <th>8</th>
+                        <td>Gale</td>
+                        <td>61.2 – 74.1 kph</td>
+                        <td>5.5 – 7.5 m</td>
+                        <td>Moderately high waves with breaking crests forming spindrift. Well-marked streaks of foam are blown along wind direction. Considerable airborne spray.</td>
+                        <td><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Beaufort_scale_8.jpg/120px-Beaufort_scale_8.jpg"></td>
+                        <td>Some twigs broken from trees. Cars veer on road. Progress on foot is seriously impeded.</td>
+                        <td>
+                            <img src="<?= $this->webroot ?>theme/weatherph/img/flag-gale-pennant2.png">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>9</th>
+                        <td>Strong Gale</td>
+                        <td>74.1 – 86.9 kph</td>
+                        <td>7 – 10 m</td>
+                        <td>High waves whose crests sometimes roll over. Dense foam is blown along wind direction. Large amounts of airborne spray may begin to reduce visibility.</td>
+                        <td><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Beaufort_scale_9.jpg/120px-Beaufort_scale_9.jpg"></td>
+                        <td>Some branches break off trees, and some small trees blow over. Construction/temporary signs and barricades blow over.</td>
+                        <td><img src="<?= $this->webroot ?>theme/weatherph/img/flag-gale-pennant2.png"></td>
+                    </tr>
+                    <tr>
+                        <th>10</th>
+                        <td>Storm</td>
+                        <td>88.5 – 101.4 kph</td>
+                        <td>9 – 12.5 m</td>
+                        <td>Very high waves with overhanging crests. Large patches of foam from wave crests give the sea a white appearance. Considerable tumbling of waves with heavy impact. Large amounts of airborne spray reduce visibility.</td>
+                        <td><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Beaufort_scale_10.jpg/120px-Beaufort_scale_10.jpg
+ "></td>
+                        <td>Trees are broken off or uprooted, saplings bent and deformed. Poorly attached asphalt shingles and shingles in poor condition peel off roofs.</td>
+                        <td><img src="<?= $this->webroot ?>theme/weatherph/img/flag-storm-warning.png"></td>
+                    </tr>
+                    <tr>
+                        <th>11</th>
+                        <td>Violent Storm</td>
+                        <td>103.0 – 117.5 kph</td>
+                        <td>11.5 – 16 m</td>
+                        <td>Exceptionally high waves. Very large patches of foam, driven before the wind, cover much of the sea surface. Very large amounts of airborne spray severely reduce visibility.</td>
+                        <td><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Beaufort_scale_11.jpg/120px-Beaufort_scale_11.jpg
+ "></td>
+                        <td>Widespread damage to vegetation. Many roofing surfaces are damaged; asphalt tiles that have curled up and/or fractured due to age may break away completely.</td>
+                        <td><img src="<?= $this->webroot ?>theme/weatherph/img/flag-storm-warning.png"></td>
+                    </tr>
+                    <tr>
+                        <th>12</th>
+                        <td>Typhoon or Hurricane</td>
+                        <td>118.0 kph or above</td>
+                        <td>14 m or more</td>
+                        <td>Huge waves. Sea is completely white with foam and spray. Air is filled with driving spray, greatly reducing visibility.</td>
+                        <td><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Beaufort_scale_12.jpg/120px-Beaufort_scale_12.jpg
+ "></td>
+                        <td>Very widespread damage to vegetation. Some windows may break; mobile homes and poorly constructed sheds and barns are damaged. Debris may be hurled about.</td>
+                        <td><img src="<?= $this->webroot ?>theme/weatherph/img/flag-storm-warning2.png"></td>
+                    </tr>
+                </table>
+
+                </dd>
+
+                <dt>Humidity</dt>
+                <dd>
+                    is defined as the amount of water vapor in the air.
+                </dd>
+
+                <dt>Wind Chill</dt>
+                <dd>
+                    is defined as how the speed of the wind affects our perception of the air temperature. Our bodies warm the surrounding air molecules by transferring heat from the skin.  If there is no air movement, this insulating layer of warm molecules stays next to the body and offers some protection from the cooler air molecules. However, wind sweeps away that warm air surrounding the body.  The faster the wind blows, the faster heat is carried away and the colder you feel.  Wind has a warming effects at higher temperatures.
+                </dd>
+
+                <dt>Heat Index</dt>
+                <dd>
+                    is the use of temperature and relative humidity in determining how hot the air actually “feels.”  When the humidity is low, the apparent temperature will be lower than the air temperature, since perspiration evaporates rapidly to cool the body.  However, when humidity is high (i.e., the air is more saturated with water vapor) the apparent temperature “feels” higher than the actual air temperature, because perspiration evaporates more slowly.
+                </dd>
+
+                <dt>Dew Point</dt>
+                <dd>
+                    refers to the temperature to which air must be cooled for saturation (100% relative humidity to occur), providing there is no change in the water vapor content.  The dew point is an important measurement  used to predict the formation of dew, frost and fog. If dew point and temperature are close together in the late afternoon when the air begins to turn colder, fog is likely during the night.  Dew point is also a good indicator of the air's actual water vapor content, unlike relative humidity, which takes the air's temperature into account. High dew point indicates high water vapor content; low dew point indicates low water vapor content. In addition, a high dew point indicates a better chance of rain, severe thunderstorms, and tornadoes.  You can also use dew point to predict the minimum overnight temperature. Provided no new weather systems are expected overnight and the afternoon relative humidy are higher is greater than 50%, the afternoon's dew point gives you an idea of what minimum temperature to expect overnight. The higher the humidity is, the more accurate the dew point prediction.
+                </dd>
+            </dl>
+
+            <hr>
+
+            <h3>Technical Terms</h3>
             <dl>
                 <!--A-->
                 <dt>Air Mass</dt>
@@ -131,9 +400,9 @@
                 <dd>a tropical cyclonic vortex characterized by: 1) its large size, the outer-most closed isobar may have a diameter on the order of 1000 km (600 nm); 2) a loosely organized cluster of deep convective elements; 3) a low-level wind distribution which features a 200-km (100-nm) diameter light-wind core which may be partially surrounded by a band of gales; and, 4) a lack of a distinct cloud system center.  Note: most monsoon depressions which form in the western North Pacific eventually acquire persistent central convection and accelerated core winds marking its transition into a conventional tropical cyclone. </dd>
 
                 <dt>Monsoon Gyre</dt>
-                <dd>a mode of the summer monsoon circulation of the western North Pacific characterized by: 1) a very large nearly circular low-level cyclonic vortex that has an outer-most closed isobar with diameter on the order of 2500 km (1350 nm); 2) a cloud band rimming the 
-                    southern through eastern periphery of the vortex/surface low; 3) a relatively long (two week) life span - initially, a subsident regime exists in its core and western and northwestern quadrants 
-                    with light winds and scattered low cumulus clouds; later, the area within the outer closed isobar may fill with deep convective cloud and become a monsoon depression or tropical cyclone; and,  4) the large vortex cannot be the result of the expanding wind field of a pre-existing 
+                <dd>a mode of the summer monsoon circulation of the western North Pacific characterized by: 1) a very large nearly circular low-level cyclonic vortex that has an outer-most closed isobar with diameter on the order of 2500 km (1350 nm); 2) a cloud band rimming the
+                    southern through eastern periphery of the vortex/surface low; 3) a relatively long (two week) life span - initially, a subsident regime exists in its core and western and northwestern quadrants
+                    with light winds and scattered low cumulus clouds; later, the area within the outer closed isobar may fill with deep convective cloud and become a monsoon depression or tropical cyclone; and,  4) the large vortex cannot be the result of the expanding wind field of a pre-existing
                     monsoon depression or tropical cyclone.  Note: a series of small or very small tropical cyclones may emerge from the "head" or leading edge of the peripheral cloud band of a monsoon gyre. (JTWC 1993; Lander 1994a). </dd>
 
                 <!--P-->
@@ -269,6 +538,17 @@
                 <dt>Wind, Second</dt>
                 <dd>the final tropical cyclone winds as observed on the surface from southwest thru south (if the storm just passed north of the locality) or from southeast thru south (if the storm just passed south of the locality).  This means that the tropical cyclone is now leaving or just starting to leave the area.  The term is synonymously used as backing or veering. </dd>
             </dl>
+
+        <hr>
+
+        <h6>References:</h6>
+        <ol>
+            <li><a href="http://www.wikipedia.org">http://www.wikipedia.org</a></li>
+            <li><a href="http://amsglossary.allenpress.com/glossary/">Glossary of Meteorology</a></li>
+            <li>Jack Williams (2009). The AMS Weather Book: The Ultimate Guide to America's Weather.</li>
+            <li>Davis Instruments (2009). Vantage Vue Console Manual (Model #6351).</li>
+        </ol>
+
         </div>
     </section><!--MAIN CONTENT-->
 </div><!--CONTENT-->
