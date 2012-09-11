@@ -11,7 +11,63 @@ class TourismController extends WeatherAppController{
     }
     
     
+    public function angelesCity (){
+        
+    }
+
+    public function antipoloCity (){
+        
+    }
+    
+    public function baguioCity (){
+        
+    }
+    
+    public function baisCity (){
+        
+    }
+    
+    public function balangaCity (){
+        
+    }
+    
+    public function batangasCity (){
+        
+    }
+    
+    public function bayawanCity (){
+        
+    }
+    
+    public function cadizCity (){
+        
+    }
+    
+    public function cagayanDeOroCity (){
+        
+    }
+    
+    public function calambaCity (){
+        
+    }
+    
+    public function caloocanCity (){
+        
+    }
+    
+    public function cauayanCity (){
+        
+    }
+    
+    public function caviteCity (){
+        
+    }
+    
     public function cityOfKoronadal (){
+        
+    }
+    
+    public function cityOfAlaminos (){
         
     }
     
@@ -31,11 +87,19 @@ class TourismController extends WeatherAppController{
         
     }
     
-    public function cityOfSantiago (){
+    public function cityOfValenzuela (){
         
     }
     
-    public function cityOfValenzuela (){
+    public function dagupanCity (){
+        
+    }
+    
+    public function davaoCity (){
+        
+    }
+    
+    public function digosCity (){
         
     }
     
@@ -116,6 +180,10 @@ class TourismController extends WeatherAppController{
     }
     
     public function sanFernandoCity_LaUnion (){
+        
+    }
+    
+    public function santiagoCity (){
         
     }
     
