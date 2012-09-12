@@ -119,16 +119,16 @@
                 </ul>
             </div>
             <div class="promo">
-                <a href="<?= $this->webroot?><?= $city ?>">
-                <h4>Visit <?= $city ?></h4>
-                <img src="<?= $this->webroot ?>theme/weatherph/img/tourism_thumbnails/<?= $city?>.png" alt=""/>
+                <a href=">">
+                <h4>Visit</h4>
+                <img src="" alt=""/>
                 </a>
                 <p class="excerpt">Insert first sentence here</p>
             </div>
             <div class="promo">
-                <a href="<?= $this->webroot?><?= $city ?>">
-                <h4>Places to see: <?= $city ?></h4>
-                <img src="<?= $this->webroot ?>theme/weatherph/img/tourism_thumbnails/<?= $city?>.png" alt=""/>
+                <a href=">">
+                <h4>Visit</h4>
+                <img src="" alt=""/>
                 </a>
                 <p class="excerpt">Insert first sentence here</p>
             </div>
