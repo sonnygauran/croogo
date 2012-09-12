@@ -746,13 +746,14 @@ class WeatherphStationForecast extends WeatherphAppModel {
         return $result;
     }
 
-    public function dmoForecast($condition = NULL, $fields = array()) {
+        public function dmoForecast($condition = NULL, $fields = array()) {
 
         // Get the default timestamp timezone
         $siteTimezone = Configure::read('Site.timezone');
         $Date = new DateTime(null, new DateTimeZone($siteTimezone));
 
         $station_id = $fields['conditions']['id'];
+        $search = $fields['conditions']['coordinates'];
 
         $station_info = $this->getStationInfo($station_id);
 
@@ -760,7 +761,7 @@ class WeatherphStationForecast extends WeatherphAppModel {
         $sunrise = $this->sunInfo($station_info['lat'], $station_info['lon'], 'sunrise');
         $sunset = $this->sunInfo($station_info['lat'], $station_info['lon'], 'sunset');
         
-        $nearestGP = $this->nearestGridPoint($station_info['lon'], $station_info['lat']);
+        $nearestGP = $this->nearestGridPoint($search['lon'], $search['lat']);
         $e = new Exception();
 
         //FROM DATABASE
@@ -954,5 +955,6 @@ class WeatherphStationForecast extends WeatherphAppModel {
 
         return $dmoResults;
     }
+    
 
 }

@@ -397,29 +397,35 @@ class WeatherphController extends WeatherphAppController {
        $result = $NearestStation->find('all', array(
            'conditions' => array(
                'reference' => $id
-           ))
-        );
-        
-       //debug($result);= number_format($distance,1,'.','')
-       $station_id = $result[0]['NearestStation']['station_id'];
-       $distance = $result[0]['NearestStation']['distance'];
-       $distance = number_format($distance,1,'.','').'km';
-       $dataSets = $DmoForecast->dmoForecast('all', array('conditions' => array(
-           'id' => $station_id,
-       )));
+        )));
        
        $location = $search_location->find('all', array(
         'conditions' => array(
             'Name.id =' => $id,
-            )));
+        )));
        
        $location = $location[0];
        
-//       $this->log(print_r($location, TRUE));
+       $this->log('location >> ' . print_r($location, TRUE));
+       
+       //debug($result);= number_format($distance,1,'.','')
+       $station_id = $result[0]['NearestStation']['station_id'];
+       $distance = $result[0]['NearestStation']['distance'];
+       $distance = number_format($distance,1,'.','').'km';
+       
+       $dataSets = $DmoForecast->dmoForecast('all', array('conditions' => array(
+           'id' => $station_id,
+           'coordinates'    => array(
+               'lat' => $location['Name']['lat'],
+               'lon' => $location['Name']['long'],
+               )
+       )));
+       
+//       $this->log(print_r($dataSets, true));
        
        $this->set(compact('dataSets','location', 'distance'));
        
-   }
+    }
    
     public function getStationReadings($station_id = NULL, $time_frame = "10m", $target_date = NULL, $days_range = NULL){
 
