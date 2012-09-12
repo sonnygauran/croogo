@@ -119,11 +119,15 @@
                 </ul>
             </div>
             <div class="promo">
-                <a href="http://en.wikipedia.org/wiki/Boracay">
-                <h4>Visit Boracay!</h4>
-                <img src="<?= $this->webroot ?>theme/weatherph/img/boracay.jpg" alt="Boracay!"/>
+                
+                <a href="<?= $this->webroot?><?= $city ?>">
+                <h4>Visit <?= $city ?>!</h4>
+                <img src="<?= $this->webroot ?>theme/weatherph/img/tourism_thumbnails/<?= $city?>.png" alt=""/>
                 </a>
-                <p>Boracay is an island of the Philippines located approximately 315 km (196 mi) south of Manila. Boracay Island and its beaches have received awards numerous times.</p>
+                <p class="excerpt">Boracay is an island of the Philippines located approximately 315 km (196 mi) south of Manila. Boracay Island and its beaches have received awards numerous times.</p>
+
+
+
             </div>
             <div class="promo">
                 <a href="http://en.wikipedia.org/wiki/Pamalican">
@@ -193,6 +197,7 @@ Google Analytics script
         });
     });
     
+//    $('.excerpt').text();    
 </script>
 <?= $scripts_for_layout ?>
 </body>

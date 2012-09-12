@@ -3,7 +3,7 @@
         <div class="page">
             <h2>City of Muntinlupa</h2>
 
-            <img src="<?= $this->webroot ?>theme/weatherph/img/tourism/cityOfMuntinpula1.png" alt="">
+            <img src="<?= $this->webroot ?>theme/weatherph/img/tourism/cityOfMuntinlupa1.png" alt="">
 
             <p>Once considered as a haven for prisoners, the City of Muntinlupa now proudly stands as a premier business location. Muntin- lupa, which literally means ‘little land’ is small in size but big in business as the City is now one of the fastest growing business centers in the country.</p>
             <p>Muntinlupa City is a Hall of Famer in the annual search for the Most Business Friendly City in the Philippines by the Philippine Chamber of Commerce and Industry, winning the award for three years.</p>
