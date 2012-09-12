@@ -3,7 +3,7 @@
         <div class="page">
             <h2>Santiago City</h2>
             <h3>Investment Hub of the North</h3>
-
+            <hr>
             <img src="<?= $this->webroot ?>theme/weatherph/img/tourism/santiagoCity1.png" alt="">
 
             <p>Santiago City is situated in the Province of Isabela at about 79 kilometers south of Ilagan, the Provincial Capital of Isabela, and is located at about 326 kilometers North of Manila. It ist six hours drive from Manila.</p>

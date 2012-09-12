@@ -3,7 +3,7 @@
         <div class="page">
             <h2>Iligan City</h2>
             <h3>City of Majestic Waterfalls</h3>
-
+            <hr>
             <img src="<?= $this->webroot ?>theme/weatherph/img/tourism/iliganCity1.png" alt="">
 
             <p>Chroniclers say that centuries ago, before Legaspi’s expedition reached the Philippines in 1565, the Tala-andigs and the Banwahons, two peace-loving Higa-onon tribes of Mindanao, had to build an ilihan or iliyan, meaning a “fortress of defense” on the coastal plain to secure them from the frequent attacks of pirates and savage tribes. Hence, the place came to be called as Iligan.</p>

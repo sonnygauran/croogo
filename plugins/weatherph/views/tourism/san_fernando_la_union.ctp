@@ -3,7 +3,7 @@
         <div class="page">
             <h2>San Fernando City, La Union</h2>
             <h3>The Prime Capital of Ilocandia</h3>
-
+            <hr>
             <img src="<?= $this->webroot ?>theme/weatherph/img/tourism/sanFernandoCity_LaUnion1.png" alt="">
 
             <p>San Fernando City is the regional capital of the Ilocos Region and the capital province of the Province of La Union.</p>

@@ -4,7 +4,7 @@
             <h2>Sorsogon City</h2>
             <h3>Sararo, Sarabay sa Progreso
             </h3>
-
+            <hr>
             <img src="<?= $this->webroot ?>theme/weatherph/img/tourism/sorsogonCity1.png" alt="">
 
             <p>Sorsogon is the capital city of the province of Sorsogon, located at the southernmost tip of Luzon. The City was formed by merging the Bacon and Sorsogon municipalities. It is dubbed as a gateway to Southern Philippines and it serves as the transshipment point from the Visayas and Mindanao provinces.</p>

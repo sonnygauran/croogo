@@ -3,7 +3,7 @@
         <div class="page">
             <h2>Silay City</h2>
             <h3>The Sweet Life</h3>
-
+            <hr>
             <img src="<?= $this->webroot ?>theme/weatherph/img/tourism/silayCity1.png" alt="">
 
             <p>The City of Silay is “the Seat of Arts, Culture and Eco-tourism in Western Visayas” with its rich history and heritage, flourishing arts and culture reflected from its ancestral mansions on its mu- sic and dances, breath-taking natural wonders, timeless delica- cies, the endless opportunities for development and of course, the naturally friendly citizenry. Indeed one of the most unique destinations in the region, Silay welcomes everyone seeking either the pleasures of adventure or the mysteries of the past about to unfold.</p>

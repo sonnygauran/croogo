@@ -3,7 +3,7 @@
         <div class="page">
             <h2>Dagupan City</h2>
             <h3>The Bangus Capital of the Philippines</h3>
-
+            <hr>
             <img src="<?= $this->webroot ?>theme/weatherph/img/tourism/dagupanCity1.png" alt="">
 
             <p>After years of aggressive self-advertisement that has billed Dagupan as the emerging metropolis and center of trade and commerce of the North, it turns out that Dagupeños are actually a bit shy about characterizing their city.</p>

@@ -3,7 +3,7 @@
         <div class="page">
             <h2>Island Garden City of Samal</h2>
             <h3>The Urban Center in a Garden Setting</h3>
-
+            <hr>
             <img src="<?= $this->webroot ?>theme/weatherph/img/tourism/islandGardenCityOfSamal1.png" alt="">
 
             <p>An enchanting paradise - an island, a garden, and a city. Located at the heart of Davao Gulf of southern Philippines, the Island Garden City of Samal (IGACOS) teems with rich flora and fauna bedecked in captivating waterfalls, challenging ridges, fascinating cave systems, and picturesque underwater gardens.</p>

@@ -15,7 +15,7 @@
             &nbsp;|&nbsp;<?= $title_for_layout ?>
         <?php endif; // comment ?>
     </title>
-    
+
 <!--    <title><?php echo ($title_for_layout).' | ' . Configure::read('Site.title'); ?></title>
     -->
     <meta name="viewport" content="width=device-width" />
@@ -119,22 +119,18 @@
                 </ul>
             </div>
             <div class="promo">
-                
                 <a href="<?= $this->webroot?><?= $city ?>">
-                <h4>Visit <?= $city ?>!</h4>
+                <h4>Visit <?= $city ?></h4>
                 <img src="<?= $this->webroot ?>theme/weatherph/img/tourism_thumbnails/<?= $city?>.png" alt=""/>
                 </a>
-                <p class="excerpt">Boracay is an island of the Philippines located approximately 315 km (196 mi) south of Manila. Boracay Island and its beaches have received awards numerous times.</p>
-
-
-
+                <p class="excerpt">Insert first sentence here</p>
             </div>
             <div class="promo">
-                <a href="http://en.wikipedia.org/wiki/Pamalican">
-                <h4>Discover Pamalican.</h4>
-                <img src="<?= $this->webroot ?>theme/weatherph/img/pamalican.jpg" alt="Pamalican!"/>
+                <a href="<?= $this->webroot?><?= $city ?>">
+                <h4>Places to see: <?= $city ?></h4>
+                <img src="<?= $this->webroot ?>theme/weatherph/img/tourism_thumbnails/<?= $city?>.png" alt=""/>
                 </a>
-                <p>Pamalican Island is a small island of the Cuyo Islands in the Sulu Sea.</p>
+                <p class="excerpt">Insert first sentence here</p>
             </div>
         </div><!--END SIDEBAR-->
 
@@ -178,7 +174,7 @@ Google Analytics script
     * index.js requires the following variable:
     *      - resource - contains an array of (data-layer => (temperature, pressure)) for retreiving the image key.
     */
-    
+
     echo $this->Html->script('slides.min.jquery');
 ?>
 
@@ -196,8 +192,8 @@ Google Analytics script
         window.location=$(this).find("a").attr("href"); return false;
         });
     });
-    
-//    $('.excerpt').text();    
+
+//    $('.excerpt').text();
 </script>
 <?= $scripts_for_layout ?>
 </body>

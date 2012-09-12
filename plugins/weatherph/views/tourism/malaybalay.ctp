@@ -3,7 +3,7 @@
         <div class="page">
             <h2>Malaybalay City</h2>
             <h3>Cool Place, Warm People</h3>
-
+            <hr>
             <img src="<?= $this->webroot ?>theme/weatherph/img/tourism/malaybalayCity1.png" alt="">
 
             <h4>Best time to visit</h4>

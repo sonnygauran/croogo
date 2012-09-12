@@ -2,7 +2,7 @@
     <section class="main">
         <div class="page">
             <h2>Balanga City</h2>
-
+            <hr>
             <img src="<?= $this->webroot ?>theme/weatherph/img/tourism/balangaCity1.png" alt="Balanga City">
 
             <p>The City of Balanga, capital of Bataan province, was formerly

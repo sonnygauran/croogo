@@ -3,7 +3,7 @@
         <div class="page">
             <h2>City of Alaminos</h2>
             <h3>Home of the Hundred Islands</h3>
-
+            <hr>
             <img src="<?= $this->webroot ?>theme/weatherph/img/tourism/alaminos1.png" alt="">
             <p>
                 Alaminos City is the heart of Western Pangasinan. It is rich in natural and man-made attractions like the world famous Hun- dred Islands National Park, making tourism a flourishing indus- try. The Hundred Islands boasts of pristine beauty, white sand beaches and cool, clear waters. Other spots in the City are the Baleyadaan Ruins — the seat of Alaminos during the Spanish era, now the site of church ruins - and the Pag-Asinan, featuring the salt-making industry which Pangasinan is known for.
@@ -12,7 +12,7 @@
                 The City of Alaminos lies along the shore of the historical Lingayen Gulf. It is bounded on the north by the Lingayen Gulf where the Hundred Islands can be found; on the east by the Municipality of Sual; on the south by the Municipality of Mabini; and on the west by the Municipality of Bani.
             </p>
             <p>
-                Some highly sought foods in the City include the boneless ban- gus (milkfish), goat meat, parad (spareribs) and longganisa (sau- sage).
+                Some highly sought foods in the City include the boneless bangus (milkfish), goat meat, parad (spareribs) and longganisa (sau- sage).
             </p>
             <p>
                 Alaminians pay homage to its patron saint, St. Joseph, every third week of March through a colorful celebration called Gali-La Hundred Islands Festival.

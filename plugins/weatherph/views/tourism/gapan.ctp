@@ -2,7 +2,7 @@
     <section class="main">
         <div class="page">
             <h2>Gapan City</h2>
-
+            <hr>
             <img src="<?= $this->webroot ?>theme/weatherph/img/tourism/gapanCity1.png" alt="">
 
             <p>Gapan City is a fourth class component city in the southern part of Nueva Ecija province. It became a city through Republic Act 9022 which was approved in a plebiscite on August 25, 2001.</p>

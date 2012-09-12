@@ -2,6 +2,7 @@
     <section class="main">
         <div class="page">
             <h2>City of Masbate</h2>
+            <hr>
             <img src="<?= $this->webroot ?>theme/weatherph/img/tourism/cityOfMasbate1.png" alt="">
 
             <p>From the chronicles of the early years of Spanish colonization, reports about Masbate first appeared in July 1569 when Fray Martin de Rada wrote to the Viceroy of New Spain (Mexico), Marquis de Falces. He mentioned that in a place called Masbat there were plenty of gold and mines. Other later documents such as those of Artieda’s Ralacion (1573) and Andres de Mirandaola’s letter (1574) reported of a place called Masbat or Masbad.</p>

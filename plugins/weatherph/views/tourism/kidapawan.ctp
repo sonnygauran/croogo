@@ -3,7 +3,7 @@
         <div class="page">
             <h2>Kidapawan City</h2>
             <h3>City of Fruits and Highland Springs</h3>
-
+            <hr>
             <img src="<?= $this->webroot ?>theme/weatherph/img/tourism/kidapawanCity1.png" alt="">
 
 

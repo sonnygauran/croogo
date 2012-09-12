@@ -3,7 +3,7 @@
         <div class="page">
             <h2>Batangas City</h2>
             <h3>Industrial Port City of Calabarzon</h3>
-
+            <hr>
             <img src="<?= $this->webroot ?>theme/weatherph/img/tourism/batangasCity1.png" alt="Batangas City">
 
             <p>Batangas City is discovered by Spanish missionaries in 1572. It was named Batangan due to numerous big logs or batang that abound the Calumpang River. Located 112 kilometers south of Manila, it has a total land area of 28,541 hectares divided into 105 barangays. It was proclaimed a City on July 23, 1969. From the day of its found- ing, the City has transformed from a budding city to a booming metropolis. It is now one of the major centers of commerce and industry south of Manila.</p>

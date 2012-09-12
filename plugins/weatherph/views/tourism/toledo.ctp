@@ -4,7 +4,7 @@
             <h2>Toledo City</h2>
             <h3>The Premier and Liveable City in the West Coast of Cebu
             </h3>
-
+            <hr>
             <img src="<?= $this->webroot ?>theme/weatherph/img/tourism/toledoCity1.png" alt="">
 
             <p>Toledo City lies on Tañon strait across Negros Island and the City of San Carlos, Negros Occidental. It is home to the Philippines’ largest copper mine, owned by Atlas Consolidated Mining and Development Corporation.</p>

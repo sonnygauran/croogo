@@ -3,7 +3,7 @@
         <div class="page">
             <h2>Cadiz City</h2>
             <h3>City of Whales</h3>
-
+            <hr>
             <img src="<?= $this->webroot ?>theme/weatherph/img/tourism/cadizCity1.png" alt="">
 
             <p>Cadiz City traces its beginning to a trading settlement in a place near the bank of a river called Hitalon. History tells that in 1861, the Spaniards came and named the settlement Cadiz because they were reminded of a seaport named Cadiz in Spain.</p>

@@ -2,7 +2,7 @@
     <section class="main">
         <div class="page">
             <h2>Bayawan City</h2>
-
+            <hr>
             <img src="<?= $this->webroot ?>theme/weatherph/img/tourism/bayawanCity1.png" alt="">
 
             <p>On December 23, 2000, Bayawan City became a Component City in the third district of Negros Oriental. It has 28 barangays with a total land area of 69,908 hectares, the largest in the Prov- ince. It has a population growth rate of 2.59%. Bayawan City

@@ -3,7 +3,7 @@
         <div class="page">
             <h2>Cagayan De Oro City</h2>
             <h3>City of Golden Friendship</h3>
-
+            <hr>
             <img src="<?= $this->webroot ?>theme/weatherph/img/tourism/cagayanDeOroCity1.png" alt="">
 
             <p>Cagayan de Oro City is the gateway to Northern Mindanao.</p>

@@ -3,7 +3,7 @@
         <div class="page">
             <h2>Lipa City</h2>
             <h3>The Little Rome of the Philippines</h3>
-
+            <hr>
             <img src="<?= $this->webroot ?>theme/weatherph/img/tourism/lipaCity1.png" alt="">
 
             <p>Lipa City is a pilgrim’s paradise and an ideal tourist destination. Many years back, the City has welcomed busloads of people who are mostly pilgrims. Almost always, they visit the Carmelite Monastery Chapel, the site of the 1948 apparition of Mary Mediatrix of All Grace.</p>

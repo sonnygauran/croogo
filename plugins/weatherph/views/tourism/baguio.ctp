@@ -2,7 +2,7 @@
     <section class="main">
         <div class="page">
             <h2>Baguio City</h2>
-
+            <hr>
             <img src="<?= $this->webroot ?>theme/weatherph/img/tourism/baguioCity1.png" alt="Baguio City">
 
             <p>Baguio City remains a prime tourist destination area in North Luzon because of its cool climate, fresh, green and peaceful envi- ronment. This makes it a favorite destination especially for those who like to relax and stay away from the excessive heat of the lowlands and also a favorite venue of seminars and conferences.</p>

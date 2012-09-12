@@ -2,7 +2,7 @@
     <section class="main">
         <div class="page">
             <h2>Mandaue City</h2>
-
+            <hr>
             <img src="<?= $this->webroot ?>theme/weatherph/img/tourism/mandaueCity1.png" alt="">
 
             <p>One of only two highly urbanized cities in the Central Visayas Region, Mandaue City has a long history of commerce. During the time of Magellan, people were trading vigorousy their goods with the other villages. One Spanish ruler also mentioned in his communication to Spain that Mandawe, the old City’s name, was famous for its artistic carpentry and skilled carpenters.</p>

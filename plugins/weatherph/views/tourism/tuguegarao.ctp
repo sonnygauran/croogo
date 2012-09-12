@@ -3,7 +3,7 @@
         <div class="page">
             <h2>Tuguegarao City</h2>
             <h3>The Premier Ybanag City</h3>
-
+            <hr>
             <img src="<?= $this->webroot ?>theme/weatherph/img/tourism/tuguegaraoCity1.png" alt="">
 
             <p>Tuguegarao City is the main entry to the Province of Cagayan.</p>

@@ -3,7 +3,7 @@
         <div class="page">
             <h2>Cauayan City</h2>
             <h3>Mushroom Basket of the North</h3>
-
+            <hr>
             <img src="<?= $this->webroot ?>theme/weatherph/img/tourism/cauayanCity1.png" alt="">
 
             <p>Cauayan City has a lot to offer: good roads, abundant raw materials, skilled workers and above all, a business-friendly environment. The City is focused on the vision to become the Agro-Industrial Zone of the Region II. Improvements are con- tinuing. Infrastructures are being built for businesses to flourish. Being united in this purpose, The City is confident that the local economy will achieve its rapid growth.</p>

@@ -3,7 +3,7 @@
         <div class="page">
             <h2>Caloocan City</h2>
             <h3>Makasaysayang Lungsod ng Caloocan</h3>
-
+            <hr>
             <img src="<?= $this->webroot ?>theme/weatherph/img/tourism/caloocanCity1.png" alt="">
 
             <p>Philippine history will never be complete without mentioning the name of Caloocan. It is rich with cultural and historical heritage. Once a sitio, the City had an important role during the outbreak of the Philippine Revolution, events of which were summarily captured and highlighted in a bronze monument, which serves as the City’s most famous landmark and what is now commonly known as the Andres Bonifacio Monument.</p>

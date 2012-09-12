@@ -2,7 +2,7 @@
     <section class="main">
         <div class="page">
             <h2>Victorias City</h2>
-
+            <hr>
             <img src="<?= $this->webroot ?>theme/weatherph/img/tourism/victoriasCity1.png" alt="">
 
             <p>Victorias had been a settlement even before the coming of the Spaniards. The earliest inhabitants were Negritos, the aborigines of the place. When the Spaniards came, they called the place Malihaw because of the abundance of Malihaw trees situated at the mouth of the Malihaw River. It was in 1880 when the place was again renamed Victorias after a mysterious lady appeared who was believed to have repulsed marauders. The lady was known as Nuestra Señora de las Victorias. Literally, Victorias means victories.</p>

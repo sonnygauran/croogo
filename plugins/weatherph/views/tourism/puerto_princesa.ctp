@@ -3,7 +3,7 @@
         <div class="page">
             <h2>Puerto Princesa City</h2>
             <h3>The City in a Forest</h3>
-
+            <hr>
             <img src="<?= $this->webroot ?>theme/weatherph/img/tourism/puertoPrincesaCity1.png" alt="">
 
             <p>Exotic islands, unspoiled beaches, world-class dive sites, lush virgin forests, endemic flora and fauna, waterfalls, hot springs and rivers and many more abound in this place we call the City in a Forest, Puerto Princesa&#46; It lies in the center of the island province of Palawan&#46; Considered as the largest city in the country, it sprawls across 253,982 hectares of land and stretches 106 kilometers long.</p>

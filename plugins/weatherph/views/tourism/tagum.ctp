@@ -5,7 +5,7 @@
 
             <h3>The Palm City of the Philippines, A Destination for Learning
             </h3>
-
+            <hr>
             <img src="<?= $this->webroot ?>theme/weatherph/img/tourism/tagumCity1.png" alt="">
 
             <p>The socio-economic dynamics of Tagum City is atypical com- pared with other medium-sized cities in Mindanao, or for that matter, the rest of the country. The City has been accorded as one of the Most Competitive Medium-Sized Cities in the Philip- pines and one of the Seven Most Viable and Most Competitive Business Sites in the country.</p>

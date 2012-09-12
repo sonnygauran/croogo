@@ -3,7 +3,7 @@
         <div class="page">
             <h2>Iriga City</h2>
             <h3>City of Crystal Clear Springs</h3>
-
+            <hr>
             <img src="<?= $this->webroot ?>theme/weatherph/img/tourism/irigaCity1.png" alt="">
 
             <p>Iriga City is the economic, educational and cultural center of the 5th District of Camarines Sur. Its most prominent natural land- mark, Mt. Asog, with its volcanic soil, made it one of the biggest abaca producing areas in Bicol during the Spanish and American occupation. During pre-colonial times, the mountain was the center of a first-harvest offering ritual, celebrated today as the Tinagba festival.</p>

@@ -3,7 +3,7 @@
         <div class="page">
             <h2>Zamboanga City</h2>
             <h3>Asia’s Latin City</h3>
-
+            <hr>
             <img src="<?= $this->webroot ?>theme/weatherph/img/tourism/zamboangaCity1.png" alt="">
 
             <p>Located at the southernmost tip of the Zamboanga Peninsula, Zamboanga City is bounded in the north by the provinces of Zamboanga Sibugay and Zamboanga del Norte, in the west by the Sulu Sea, in the east by Sibugay Bay, and in the south by the Basilan Strait.

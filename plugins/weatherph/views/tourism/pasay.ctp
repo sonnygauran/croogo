@@ -3,7 +3,7 @@
         <div class="page">
             <h2>Pasay City</h2>
             <h3>The International Gateway</h3>
-
+            <hr>
             <img src="<?= $this->webroot ?>theme/weatherph/img/tourism/pasayCity1.png" alt="">
 
             <p>After four decades of rapid urbanization in Metropolitan Manila, Pasay City has transformed into an important local corridor between major urban centers. Its southwestern portion provides access between the City of Manila in the north with cities and municipalities like Parañaque, Las Piñas as well as the nearby municipalities of Cavite in the south. Likewise, its southeastern portion links Parañaque, Muntinlupa and Laguna with the cities of Manila, Makati, Mandaluyong as well as Quezon City.</p>

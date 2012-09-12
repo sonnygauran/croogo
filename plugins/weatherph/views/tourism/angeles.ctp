@@ -2,7 +2,7 @@
     <section class="main">
         <div class="page">
             <h2>Angeles City</h2>
-
+            <hr>
             <img src="<?= $this->webroot ?>theme/weatherph/img/tourism/angelesCity1.png" alt="Angeles City">
 
             <p>Angeles City is a highly urbanized city located in the province of Pampanga. Economic growth for this City was initially perceived as an offshoot of the presence of the adjacent Clark Air Base but the eruption of Mt. Pinatubo in 1991 and the subsequent evacuation of the Americans proved this wrong. The resilience of the Angelenos, however, rose above this tragedy.</p>

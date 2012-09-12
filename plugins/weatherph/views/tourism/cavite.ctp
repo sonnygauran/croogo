@@ -3,7 +3,7 @@
         <div class="page">
             <h2>Cavite City</h2>
             <h3>The Historic and Cultural City By The Bay</h3>
-
+            <hr>
             <img src="<?= $this->webroot ?>theme/weatherph/img/tourism/caviteCity1.png" alt="">
 
             <p>Cavite City today is a melting pot of various cultures, a City that has evolved its own distinct brand of culture showing the resilience and adaptability of its inhabitants. It is a City with a rich heritage.</p>

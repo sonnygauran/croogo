@@ -3,7 +3,7 @@
         <div class="page">
             <h2>Isabela City</h2>
             <h3>Promising City of the South</h3>
-
+            <hr>
             <img src="<?= $this->webroot ?>theme/weatherph/img/tourism/isabelaCity1.png" alt="">
 
             <p>Isabela City is the commercial center and capital of the island province of Basilan. The City is located in the northern part of Basilan.</p>

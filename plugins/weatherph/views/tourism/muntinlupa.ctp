@@ -2,7 +2,7 @@
     <section class="main">
         <div class="page">
             <h2>City of Muntinlupa</h2>
-
+            <hr>
             <img src="<?= $this->webroot ?>theme/weatherph/img/tourism/cityOfMuntinlupa1.png" alt="">
 
             <p>Once considered as a haven for prisoners, the City of Muntinlupa now proudly stands as a premier business location. Muntin- lupa, which literally means ‘little land’ is small in size but big in business as the City is now one of the fastest growing business centers in the country.</p>

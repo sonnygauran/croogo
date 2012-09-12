@@ -2,7 +2,7 @@
     <section class="main">
         <div class="page">
             <h2>Davao City</h2>
-
+            <hr>
             <img src="<?= $this->webroot ?>theme/weatherph/img/tourism/davaoCity1.png" alt="">
 
             <p>Davao City is among the largest cities in the world with a sprawl- ing land area of 244,000 hectares. It is situated at the southern part of the country.</p>

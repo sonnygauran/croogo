@@ -3,7 +3,7 @@
         <div class="page">
             <h2>Laoag City</h2>
             <h3>The Sunshine City</h3>
-
+            <hr>
             <img src="<?= $this->webroot ?>theme/weatherph/img/tourism/laoagCity1.png" alt="">
 
             <p>Laoag City, the Northern Gateway to the Philippines, is located at the west-central side of Ilocos Norte in Northern Philippines. It is the capital of Ilocos Norte province.</p>

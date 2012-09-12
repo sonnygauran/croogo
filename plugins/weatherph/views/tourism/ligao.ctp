@@ -3,7 +3,7 @@
         <div class="page">
             <h2>Ligao City</h2>
             <h3>Where Good Things Happen</h3>
-
+            <hr>
             <img src="<?= $this->webroot ?>theme/weatherph/img/tourism/ligaoCity1.png" alt="">
 
             <p>The City of Ligao, located at the heart of the third district of Albay just below the majestic Mayon Volcano, holds a great potential for tourism and investments. It is naturally gifted with caves, hills, lakes, and coastal areas perfect for nature lovers and trekking enthusiasts.</p>

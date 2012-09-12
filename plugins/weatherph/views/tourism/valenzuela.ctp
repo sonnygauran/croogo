@@ -2,7 +2,7 @@
     <section class="main">
         <div class="page">
             <h2>City of Valenzuela</h2>
-
+            <hr>
             <img src="<?= $this->webroot ?>theme/weatherph/img/tourism/cityOfValenzuela1.png" alt="">
 
             <p>The City traces its long colorful history to the old town of Polo, then part of the province of Bulacan, which dated back from 1620s. It began as a tiny settlement of small fishermen along the coast of Manila Bay. Polo was later renamed Valenzuela, in honor of its most famous son, Dr. Pio Valenzuela, one of the triumvirates of the Katipunan.</p>

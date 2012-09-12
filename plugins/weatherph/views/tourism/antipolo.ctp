@@ -3,7 +3,7 @@
         <div class="page">
             <h2>Antipolo City</h2>
             <h3>The Pilgrimage City</h3>
-
+            <hr>
             <img src="<?= $this->webroot ?>theme/weatherph/img/tourism/antipoloCity1.png" alt="Antipolo City">
 
             <p>Antipolo is an urban area in a rural setting. It is the home of the famed Our Lady of Peace and Good Voyage which is declared a National Shrine. All throughout the year, thousands of devotees from all walks of life visit this famed Patroness because of the numerous miracles believed she has performed for the City.</p>

@@ -4,7 +4,7 @@
             <h2>Tangub City</h2>
             <h3>Christmas Symbols Capitals of the Philippines
             </h3>
-
+            <hr>
             <img src="<?= $this->webroot ?>theme/weatherph/img/tourism/tangubCity1.png"alt="">
 
             <p>Tangub City is hidden within at the southern curve of the D- shaped province of Misamis Occidental. It is bounded on the north by Mt. Malindang Range, on the south by Panguil Bay, on the east by Ozamiz City and on the west by the municipality of Bonifacio. It is composed of 55 barangays, 23 are urban and 32 are rural.

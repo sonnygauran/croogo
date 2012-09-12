@@ -3,7 +3,7 @@
         <div class="page">
             <h2>Calamba City</h2>
             <h3>The Premiere City of Growth, of Leisure and of National Pride</h3>
-
+            <hr>
             <img src="<?= $this->webroot ?>theme/weatherph/img/tourism/calambaCity1.png" alt="">
 
             <p>In Calamba, there is the Rizal Shrine, the ancestral home of the country’s national hero and the city’s greatest son, Dr. Jose Rizal. It serves as a museum of the family memorabilias. Adja- cent to it are the famous big earthen jar or banga symbolizing the origin of the town’s name and the equally historic St. John the Baptist Church where Rizal was baptized.</p>

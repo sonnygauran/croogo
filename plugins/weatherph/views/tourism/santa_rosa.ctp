@@ -1,10 +1,10 @@
 <div class="content">
     <section class="main">
-        <div class="page"><h2>City of Santa Rosa</h2>
-
-            <img src="<?= $this->webroot ?>theme/weatherph/img/tourism/cityOfSantaRosa1.png" alt="">
-
+        <div class="page">
+            <h2>City of Santa Rosa</h2>
             <h3>The Lion City of South Luzon</h3>
+            <hr>
+            <img src="<?= $this->webroot ?>theme/weatherph/img/tourism/cityOfSantaRosa1.png" alt="">
             <p>Santa Rosa is named from the first patron saint of South America, Santa Rosa de Lima of Peru. It became a municipality on January 18, 1792 from a mere barrio of Biñan called Barrio Bukol. During the revolutionary period, Santa Rosa signed the Act of Independence from Spain on June 12, 1898. The local leaders fought alongside General Emilio Aguinaldo during the Filipino-American War. After a brief occupation by the Japanese forces during the Second World War, the town was liberated on February 5, 1945.</p>
             <p>During the post war era, Santa Rosa’s local economy was depen- dent on farming, fishing, livestock and small backyard industry. Industrialization came in the 1980’s with the entry of foreign multinational companies in economic zones and industrial estates.</p>
             <p>From a fourth-class municipality in 1986, Santa Rosa became a first-class town in 1993, and officially became the 101st city in the Philippines on July 10, 2004.</p>

@@ -2,7 +2,7 @@
     <section class="main">
         <div class="page">
             <h2>Kabankalan City</h2>
-
+            <hr>
             <img src="<?= $this->webroot ?>theme/weatherph/img/tourism/kabankalanCity1.png" alt="">
 
 

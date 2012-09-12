@@ -3,7 +3,7 @@
         <div class="page">
             <h2>Iloilo City</h2>
             <h3>City of Love, My City, My Pride</h3>
-
+            <hr>
             <img src="<?= $this->webroot ?>theme/weatherph/img/tourism/iloiloCity1.png" alt="">
 
             <p>The name Iloilo was derived from the Hiligaynon word Ilong- Ilong meaning ‘noselike’ that specifically referred to an islet in the Batiano River.

@@ -3,7 +3,7 @@
         <div class="page">
             <h2>Lucena City</h2>
             <h3>The Gateway to the South / The Coco Palm City of the South</h3>
-
+            <hr>
             <img src="<?= $this->webroot ?>theme/weatherph/img/tourism/lucenaCity1.png" alt="">
 
             <p>Lucena City is the capital of Quezon Province. Though compris- ing only one percen of the province’s big total area, Lucena is a bustling urbanized city that is wedged between the majestic and mystic Mt. Banahaw in the northwest and the placid waters of Tayabas Bay in the south. The City is a vibrant community with a mixed culture as large number of migrants comes and goes either to permanently settle or do business.</p>

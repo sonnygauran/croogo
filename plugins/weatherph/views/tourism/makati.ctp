@@ -3,7 +3,7 @@
         <div class="page">
             <h2>Makati City</h2>
             <h3>The Financial Center of the Philippines</h3>
-
+            <hr>
             <img src="<?= $this->webroot ?>theme/weatherph/img/tourism/makatiCity1.png" alt="">
 
             <p>Even before this once vast swampland was discovered and dismissed by Juan Miguel de Legazpi as ‘worthless’, Makati had been a part of the Kingdom of Namayan, a territory that stretched from Manila Bay to Laguna de Bay.</p>

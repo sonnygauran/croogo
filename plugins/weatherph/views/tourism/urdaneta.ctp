@@ -3,7 +3,7 @@
         <div class="page">
             <h2>Urdaneta City</h2>
             <h3>The Gateway to the North</h3>
-
+            <hr>
             <img src="<?= $this->webroot ?>theme/weatherph/img/tourism/urdanetaCity1.png" alt="">
 
             <p>The City of Urdaneta is known as the Gateway to the North ow- ing to its strategic location. All roads lead to the City when trav- elling to the cool pines of Baguio City, the historic sites of the Ilocos provinces, the beaches of Dagupan City, and the religious center that is Manaoag.</p>

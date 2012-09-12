@@ -3,7 +3,7 @@
         <div class="page">
             <h2>Olongapo City</h2>
             <h3>The Freeport City</h3>
-
+            <hr>
             <img src="<?= $this->webroot ?>theme/weatherph/img/tourism/olongapoCity1.png" alt="">
 
             <p>Olongapo City is a highly urbanized city located in the province of Zambales. Other than the City proper which is located on tidal flatland, it is characterized by rugged and mountainous terrain.</p>

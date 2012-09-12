@@ -3,7 +3,7 @@
         <div class="page">
             <h2>Tacurong City</h2>
             <h3>The City of Goodwill</h3>
-
+            <hr>
             <img src="<?= $this->webroot ?>theme/weatherph/img/tourism/tacurongCity1.png" alt="">
 
             <p>Situated at the crossroads of Central Mindanao, the City of Tacurong serves as the gateway to four major cities: General Santos, Cotabato, Davao and Cagayan de Oro.

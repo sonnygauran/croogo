@@ -2,7 +2,7 @@
     <section class="main">
         <div class="page">
             <h2>Bais City</h2>
-
+            <hr>
             <img src="<?= $this->webroot ?>theme/weatherph/img/tourism/baisCity1.png" alt="Bais City">
 
             <p>Bais got its name from an elongated eel-like fish that used to abound in the locality’s streams and rivers. Legend has it that when a group of Spanish engineers and surveyors asked the natives of the name of the place, they answered Bais, thinking that then foreigners were asking the name of the fish they were catching.</p>

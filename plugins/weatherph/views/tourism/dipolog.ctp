@@ -1,9 +1,9 @@
 <div class="content">
     <section class="main">
         <div class="page">
-                        <h2>Dipolog City</h2>
+            <h2>Dipolog City</h2>
             <h3>Gateway to Western Mindanao</h3>
-
+            <hr>
             <img src="<?= $this->webroot ?>theme/weatherph/img/tourism/dipologCity1.png" alt="">
 
             <p>Dipolog City is the Capital City of Zamboanga del Norte and the center of trade in the peninsula. It has gained worldwide promi- nence through its bottled sardines which has become one of the major industries City’s major industries.

@@ -3,7 +3,7 @@
         <div class="page">
             <h2>City of San Fernando:</h2>
             <h3>Christmas Capital of the Philippines</h3>
-
+            <hr>
             <img src="<?= $this->webroot ?>theme/weatherph/img/tourism/cityOfSanFernando1.png" alt="">
 
             <p>Fernandinos (natives of the city) are known for their creativity and craftsmanship especially in lantern making hence San Fer- nando is referred to as the Christmas Capital of the Philippines.</p>

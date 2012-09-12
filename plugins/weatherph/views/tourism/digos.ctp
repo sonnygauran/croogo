@@ -2,7 +2,7 @@
     <section class="main">
         <div class="page">
             <h2>Digos City</h2>
-
+            <hr>
             <img src="<?= $this->webroot ?>theme/weatherph/img/tourism/digosCity1.png" alt="">
 
             <p>In the early days, Digos was a watercourse that served as a meeting place of the inhabitants belonging to the Indonesian Malay tribes who settled along the southern foothills of Mt. Apo. During the Spanish era, a group of natives carrying bows and ar- rows were approached by Spaniards traversing the fertile tracks of land in Davao and inquired about the name of the place. Believing that the Spaniards were asking where they were bound to, the natives answered, padigos which means to take a bath. Since then, the place was identified as Digos.</p>

@@ -2,7 +2,7 @@
     <section class="main">
         <div class="page">
             <h2>Vigan City</h2>
-
+            <hr>
             <img src="<?= $this->webroot ?>theme/weatherph/img/tourism/viganCity1.png" alt="">
 
             <p>Vigan is an island which used to be detached from the mainland by three rivers - the great Abra River, the Mestizo River and the Govantes River. It is unique among the Philippine towns because it is the country’s most extensive and only surviving historic city that dates back to the 16th century Spanish colonial period.</p>
