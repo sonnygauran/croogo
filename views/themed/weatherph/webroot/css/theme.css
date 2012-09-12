@@ -788,9 +788,10 @@ span.temperature {
     margin-bottom: .6666666666666667em;
 }
 
-.figure {
+.page img {
     margin: 2em auto;
     display:block;
+    border: 2px solid #3990BD;
 }
 
 .page dt {
@@ -811,11 +812,6 @@ span.temperature {
     max-width: 554px;
     vertical-align: middle;
     margin: 1em auto;
-}
-
-.page thead {
-    margin: 0 auto;
-    font-weight: bold;
 }
 
 .page th {

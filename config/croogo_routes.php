@@ -25,6 +25,12 @@
 	CroogoRouter::connect('/node/:slug', array('controller' => 'nodes', 'action' => 'view', 'type' => 'node'));
 	CroogoRouter::connect('/node/term/:slug/*', array('controller' => 'nodes', 'action' => 'term', 'type' => 'node'));
 
+	// visit
+	CroogoRouter::connect('/visit', array('controller' => 'nodes', 'action' => 'index', 'type' => 'visit'));
+	CroogoRouter::connect('/visit/archives/*', array('controller' => 'nodes', 'action' => 'index', 'type' => 'visit'));
+	CroogoRouter::connect('/visit/:slug', array('controller' => 'nodes', 'action' => 'view', 'type' => 'visit'));
+	CroogoRouter::connect('/visit/term/:slug/*', array('controller' => 'nodes', 'action' => 'term', 'type' => 'visit'));
+
 	// Page
 	CroogoRouter::connect('/about', array('plugin' => 'weatherph', 'controller' => 'weatherph', 'action' => 'about'));
 	CroogoRouter::connect('/page/:slug', array('controller' => 'nodes', 'action' => 'view', 'type' => 'page'));
@@ -37,6 +43,6 @@
 	CroogoRouter::connect('/contact', array('controller' => 'contacts', 'action' => 'view', 'contact'));
         CroogoRouter::connect('/uploads', array('controller' => 'uploads', 'action' => 'index'));
         CroogoRouter::connect('/uploads/video', array('controller' => 'uploads', 'action' => 'video'));
-        
+
         CroogoRouter::connect('/getStationReadings/*', array('plugin' => 'weatherph', 'controller' => 'weatherph', 'action' => 'getStationReadings'));
 
