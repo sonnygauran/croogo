@@ -146,7 +146,7 @@ footer {
 
 .logo {
     float:left;
-    padding: 40px 0 0 10px;
+    margin: 40px 0 0 10px;
 }
 
 #options {
@@ -154,7 +154,7 @@ footer {
     margin: 85px 10px 10px 10px;
 }
 
-#options > img,
+#options > div,
 #options > form {
     float: right;
     display: inline;
@@ -167,12 +167,13 @@ label[for="search-field"] {
     text-transform: uppercase;
 }
 
-#options > img {
+.flag {
     margin-right: 20px;
 }
 
-#options > form > img {
+.search-icon {
     vertical-align: middle;
+    display: inline-block;
 }
 
 /* Map */
@@ -697,6 +698,10 @@ span.temperature {
     box-shadow: inset 0 2px 2px #aaa;
 }
 
+.sponsored li {
+    margin: .5em auto;
+}
+
 .promo {
     padding: .5em;
     margin-bottom: 1em;
@@ -969,6 +974,21 @@ div.current-tab {
 
 /* Spritemap */
 
+.logo { background: url('<?= $this->webroot ?>theme/weatherph/img/default-sprite.png') no-repeat 0 0; width: 350px; height: 86px; }
+
+.flag { background: url('<?= $this->webroot ?>theme/weatherph/img/default-sprite.png') no-repeat -167px -244px; width: 43px; height: 30px; }
+.search-icon { background: url('<?= $this->webroot ?>theme/weatherph/img/default-sprite.png') no-repeat -216px -246px; width: 14px; height: 14px; }
+
+.sponsor-icts { background: url('<?= $this->webroot ?>theme/weatherph/img/default-sprite.png') no-repeat 0 -87px; width: 150px; height: 33px; }
+.sponsor-tyk { background: url('<?= $this->webroot ?>theme/weatherph/img/default-sprite.png') no-repeat -154px -87px; width: 150px; height: 50px; }
+.sponsor-vistaland { background: url('<?= $this->webroot ?>theme/weatherph/img/default-sprite.png') no-repeat 0 -140px; width: 144px; height: 65px; }
+.sponsor-nac { background: url('<?= $this->webroot ?>theme/weatherph/img/default-sprite.png') no-repeat -154px -140px; width: 131px; height: 46px; }
+.sponsor-ngcp { background: url('<?= $this->webroot ?>theme/weatherph/img/default-sprite.png') no-repeat 0 -210px; width: 80px; height: 80px; }
+.sponsor-sm { background: url('<?= $this->webroot ?>theme/weatherph/img/default-sprite.png') no-repeat -85px -210px; width: 75px; height: 72px; }
+
+.fb { background: url('<?= $this->webroot ?>theme/weatherph/img/default-sprite.png') no-repeat -165px -209px; width: 32px; height: 31px; }
+.twitter { background: url('<?= $this->webroot ?>theme/weatherph/img/default-sprite.png') no-repeat -198px -209px; width: 32px; height: 31px; }
+
 span.symbol { background: url('<?= $this->webroot ?>theme/weatherph/img/warning-sprites.png') -5px -65px no-repeat; height: 30px; width: 40px; display: block; margin: auto; cursor: pointer;}
 span.symbolwind { background: url('<?= $this->webroot ?>theme/weatherph/img/warning-sprites.png') -5px -65px no-repeat; height: 30px; width: 40px; display: block; margin: auto; cursor: pointer; float: left;}
 
@@ -1102,6 +1122,10 @@ span.sunset { background-position: -60px 5px; }
 
 .social h6 {
     margin-bottom: .5em;
+}
+
+.social a {
+    display: inline-block;
 }
 
 /*========================================

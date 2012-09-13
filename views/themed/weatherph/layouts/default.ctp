@@ -36,7 +36,7 @@
 <body>
     <section id="container">
         <header class="banner shadow">
-            <div class="logo"><a href="<?= $this->webroot ?>"><?php echo $this->Html->image('logo.png'); ?></a></div>
+            <div class="logo"><a href="<?= $this->webroot ?>"></a></div>
             <div id="slides">
                 <div class="slides_container">
                     <img src="<?= $this->webroot ?>theme/weatherph/img/mm.png" alt="Meteomedia">
@@ -45,10 +45,10 @@
                 </div>
             </div>
             <div id="options">
-                <img src="<?= $this->webroot ?>theme/weatherph/img/flag.png" alt="Philippines" />
+                <div class="flag"></div>
                 <form class="search" action="/search" method="POST">
                     <label for="search-field">Search:&nbsp;</label><input id="search-field" type="text" name="terms" size="12" />
-                    <img src="<?= $this->webroot ?>theme/weatherph/img/search.png" alt="" />
+                    <div class="search-icon"></div>
                 </form>
             </div>
         </header> <!--BANNER-->
@@ -89,18 +89,18 @@
             <div class="sponsored">
                 <h6>Platinum sponsors:</h6>
                 <ul>
-                    <li><?php echo $this->Html->image('sponsor-nac.png'); ?></li>
-                    <li><?php echo $this->Html->image('sponsor-icts.jpg'); ?></li>
-                    <li><?php echo $this->Html->image('sponsor-ngcp.png'); ?></li>
-                    <li><?php echo $this->Html->image('sponsor-vistaland.png'); ?></li>
-                    <li><?php echo $this->Html->image('sponsor-tyk-mod.png'); ?></li>
-                    <li><?php echo $this->Html->image('sponsor-sm.gif'); ?></li>
+                    <li class="sponsor-nac"></li>
+                    <li class="sponsor-icts"></li>
+                    <li class="sponsor-ngcp"></li>
+                    <li class="sponsor-vistaland"></li>
+                    <li class="sponsor-tyk"></li>
+                    <li class="sponsor-sm"></li>
                 </ul>
             </div>
             <div class="social">
                 <h6>Follow us on Facebook and Twitter</h6>
-                <a href ="https://www.facebook.com/weather.com.ph"><?php echo $this->Html->image('facebook.png'); ?></a>
-                <a href="http://twitter.com/weatherph"><?php echo $this->Html->image('twitter.png'); ?></a>
+                <a href ="https://www.facebook.com/weather.com.ph"><div class="fb"></div></a>
+                <a href="http://twitter.com/weatherph"><div class="twitter"></div></a>
             </div>
             <div class="sponsored">
                 <?php
@@ -119,14 +119,21 @@
                 </ul>
             </div>
             <div class="promo">
-                <a href=">">
+                <?php
+                $cities = array(
+                    // la pa
+                );
+
+                $city = rand(1, count($cities)) - 1;
+                ?>
+                <a href="<?= $this->webroot ?>visit/<?=$city?>">
                 <h4>Visit</h4>
                 <img src="" alt=""/>
                 </a>
                 <p class="excerpt">Insert first sentence here</p>
             </div>
             <div class="promo">
-                <a href=">">
+                <a href="<?= $this->webroot ?>visit/<?=$city?>">
                 <h4>Visit</h4>
                 <img src="" alt=""/>
                 </a>
