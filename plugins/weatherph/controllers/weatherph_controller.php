@@ -157,6 +157,9 @@ class WeatherphController extends WeatherphAppController {
         $stations_result = array();
         foreach ($stations as $station) {
             $station = $station['Station'];
+            if ($station['webaktiv'] != 2) {
+                break;
+            }
             $current = array(
                 'id' => $station['wmo1'],
                 'name' => $station['name'],
