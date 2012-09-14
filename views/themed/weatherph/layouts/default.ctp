@@ -175,11 +175,6 @@ Google Analytics script
 
     }
 
-    /**
-    * index.js requires the following variable:
-    *      - resource - contains an array of (data-layer => (temperature, pressure)) for retreiving the image key.
-    */
-
     echo $this->Html->script('slides.min.jquery');
 ?>
 
