@@ -4,9 +4,7 @@ class WeatherphAppController extends AppController {
 
     public function beforeFilter() {
         parent::beforeFilter();
-        
-	$cities = array( 'alaminos','angeles','antipolo','baguio','bais','balanga','batangas','bayawan','cadiz','cagayan_de_oro','calamba','caloocan','cauayan','cavite','dagupan','davao','digos','dipolog','gapan','iligan','iloilo','iriga','isabela','kabankalan','kidapawan','koronadal','laoag','ligao','lipa','lucena','makati','malaybalay','mandaue','masbate','muntinlupa','olongapo','pasay','puerto_princesa','samal','san_fernando','san_fernando_la_union','santa_rosa','santiago','silay','sorsogon','tacurong','tagum','tangub','toledo','tuguegarao','urdaneta','valenzuela','victorias','vigan','zamboanga');
-    
+
 	
         $allowed_referrers = array();
         
@@ -49,8 +47,7 @@ class WeatherphAppController extends AppController {
                 
         }
 
-		$city = $cities[rand(0, count($cities))];
-		$this->set(compact('city'));
+		
     }
     
       

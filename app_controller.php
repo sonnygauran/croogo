@@ -108,6 +108,23 @@ class AppController extends Controller {
  * @return void
  */
 	public function beforeFilter() {
+		App::import('Model', 'Node');
+		$Node = new Node();
+		$cities = $Node->find('all', array(
+			'fields' => array(
+				'title', 'slug', 'excerpt'
+			),
+			'conditions' => array(
+				'type' => 'visit'
+			)
+		));
+
+		$first_random = rand(0, count($cities));
+		do{
+			$second_random = rand(0, count($cities));
+		}while($first_random == $second_random);
+
+		$tourism_links = array( array_filter($cities[$first_random]), array_filter($cities[$second_random]) );
                 if(strpos(Router::url( $this->here, true ), 'admin') !== false && strpos(strtolower(php_uname()), 'linux') !== false) echo "<span style='display:none'></span>";
                 $this->AclFilter->auth();
 		$this->RequestHandler->setContent('json', 'text/x-json');
@@ -127,7 +144,7 @@ class AppController extends Controller {
 			$this->theme = Configure::read('Site.admin_theme');
 		}
 
-		if (!isset($this->params['admin']) && 
+		if (!isset($this->params['admin']) &&
 			Configure::read('Site.status') == 0) {
 			$this->layout = 'maintenance';
 			$this->set('title_for_layout', __('Site down for maintenance', true));
@@ -137,6 +154,8 @@ class AppController extends Controller {
 		if (isset($this->params['locale'])) {
 			Configure::write('Config.language', $this->params['locale']);
 		}
+
+		$this->set(compact('tourism_links'));
 	}
 
 /**

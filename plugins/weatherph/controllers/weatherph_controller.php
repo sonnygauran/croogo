@@ -11,7 +11,7 @@
  */
 
 class WeatherphController extends WeatherphAppController {
-   
+
     /**
      * Controller name
      *
@@ -37,11 +37,11 @@ class WeatherphController extends WeatherphAppController {
 
         //echo WWW_ROOT;
         $layerFiles = scandir(ROOT.DS.APP_DIR.DS.'views'.DS.'themed'.DS.'weatherph'.DS.'webroot'.DS.'img'.DS.'layers');
-        
+
         $filenames = array();
         $areas = array();
         $types = array();
-        
+
         foreach ($layerFiles as $layerFile) {
             // 20120814030000all_pressure.png
             $_year = '([0-9]{4})';
@@ -52,40 +52,40 @@ class WeatherphController extends WeatherphAppController {
             $_sec = '([0-9]{2})';
             $_area = '([a-z]+)';
             $_type = '(satellite|pressure|temperature)';
-            
-            
+
+
             $filePattern = "/{$_year}{$_month}{$_day}{$_hour}{$_min}{$_sec}{$_area}_{$_type}/";
             $matches = array();
             if (preg_match($filePattern, $layerFile, $matches)) {
                 array_shift($matches); // removes the actual complete filename
                 //print_r($matches)
                 list($year, $month, $day, $hour, $min, $sec, $area, $type) = $matches;
-                
+
                 $time = "$year$month$day $hour$min$sec";
                 error_log($time);
                 $time = strtotime('+8 hours', strtotime($time));
-                
+
                 $pst_year = date('Y', $time);
                 $pst_month = date('m', $time);
                 $pst_day = date('d', $time);
                 $pst_hour = date('H', $time);
                 $pst_min = date('i', $time);
-                
-                
-//                list($year, $month, $day, $hour, $min, $sec, $area, $type)  = date('Ymd ', $time);`  
-                
+
+
+//                list($year, $month, $day, $hour, $min, $sec, $area, $type)  = date('Ymd ', $time);`
+
                 if (!in_array($area, $areas)) {
                     $areas[] = $area;
                 }
                 if (!in_array($type, $types)) {
                     $types[] = $type;
                 }
-                
+
                 $current = compact('year', 'month', 'day', 'hour', 'min', 'pst_year', 'pst_month', 'pst_day', 'pst_hour', 'pst_min');
                 $filenames[$type][] = $current;
             }
         }
-        
+
         $this->set(compact('filenames', 'areas', 'types'));
         //print_r($areas);
         //print_r($types);
@@ -96,22 +96,22 @@ class WeatherphController extends WeatherphAppController {
             'conditions' => array('Node.type' => 'blog'),
             'limit' => 5,
         ));
-        
+
         // $time = date('YmdHis');
         $everyHour = date('YmdH0000');
-        
+
         $wetter4 = 'http://alpha.meteomedia-portal.com/services/wetter4.php?dt='.$everyHour.'&';
         $temperature = 'api_key=portal-efd339395c80ad957acb695bb9758399&q=meh_ifm&leg=nil&a=image&x=554&y=554&srs=EPSG:900913&';
         $pressure    = $temperature.'p=QFF&';
-        
+
         // x1=111.32714843750325&x2=135.67285156249676&y2=24.41201768480203&y1=0.8402895756535625
-        
+
         App::import('Model', 'Weatherph.Resource');
         $Resource = new Resource();
-        
+
         $keyTemperature = $Resource->generateKey('data-layer', 'temperature', $wetter4.$temperature);
         $keyPressure    = $Resource->generateKey('data-layer', 'pressure', $wetter4.$pressure);
-        
+
         $resources = array(
             'data-layers' => array(
                 'temperature' => $keyTemperature,
@@ -120,17 +120,17 @@ class WeatherphController extends WeatherphAppController {
         );
         /**
          * Note:
-         * 
+         *
          * index.js requires the following variable:
-         *      - resource - contains an array of (data-layer => (temperature, pressure)) for retreiving the image key. 
+         *      - resource - contains an array of (data-layer => (temperature, pressure)) for retreiving the image key.
          *      - featureBlog - to display the featured blogs
          */
         $this->set(compact('blogEntries', 'resources'));
 
     }
-    
-    
-    
+
+
+
     //changed $provider ='pagasa' to $provider = 'meteomedia' for filtering of pagasa stations
     public function getStations($provider = 'meteomedia') {
         $this->layout = 'json/ajax';
@@ -140,7 +140,7 @@ class WeatherphController extends WeatherphAppController {
         App::import('Model', 'Weatherph.Station');
 
         $WeatherphStation = new Station();
-        
+
         $fields = array('wmo1', 'lon', 'lat', 'name','webaktiv');
         if ($provider == 'pagasa') {
             $stations = $WeatherphStation->find('all', array(
@@ -174,13 +174,13 @@ class WeatherphController extends WeatherphAppController {
                 }
             }
         }
-       
-        
+
+
         Configure::write('debug', 0);
         $this->set('stations', json_encode($stations_result));
     }
-    
-    
+
+
 
 
     public function getReadings($stationID = '920001') {
@@ -195,12 +195,12 @@ class WeatherphController extends WeatherphAppController {
         //       Configure::write('debug', 0);
         $this->set('readings', json_encode($currentReading));
     }
-    
+
     /**
      * ajax
      */
     public function getForecast($stationID = '984290', $numDays = 1, $utch = '3h') {
-        
+
         //For Index
 
         $this->layout = 'json/ajax';
@@ -232,7 +232,7 @@ class WeatherphController extends WeatherphAppController {
     }
 
     public function getDetailedForecast($stationID = '984290', $type = NULL, $timeRes = '1h', $startDatum = NULL) {
-        
+
 //        if($this->referer() != '/swf/AnyChart.swf') return; // limits the access of the XML for anychart usage
         App::import('Model', 'Weatherph.WeatherphStationForecast');
 
@@ -296,7 +296,7 @@ class WeatherphController extends WeatherphAppController {
 
     /**
      * ajax
-     * 
+     *
      */
     public function detailedReading($stationID = '984290', $startDate = NULL, $endDate = NULL) {
 
@@ -317,66 +317,67 @@ class WeatherphController extends WeatherphAppController {
     public function view($stationID = '984290') {
         App::import('Model', 'Weatherph.WeatherphStationForecast');
         App::import('Model', 'Weatherph.Station');
-        
+
         $WeatherphStationForecast = new WeatherphStationForecast();
         $WeatherphStation = new Station();
         $station = $WeatherphStation->find('first', array(
             'conditions' => array('wmo1' => $stationID),
             'fields' => 'wmo1'
         ));
-        
+
         if(empty($station)) $this->redirect(array('controller' => 'weatherph', 'action' => 'index'));
         $dataSets = $WeatherphStationForecast->getWeeklyForecast('all', array('conditions' => array(
             'id' => $stationID,
         )));
-        
+
         $today = date('Ymd');
         $enddate = date('Ymd', strtotime('+2 days', strtotime($today)));
         $forecastRange = range($today, $enddate);
         $title_for_layout = $dataSets['station_name'];
         //$this->log(print_r($forecastRange, true));
-        
+
         $this->set(compact('forecastRange', 'dataSets', 'title_for_layout'));
     }
 
     public function about() {
         $this->layout = 'default';
     }
-    
+
     public function payongpanahon() {
         $this->set('title_for_layout',__('Weatherph',true));
-        
+
         //$this->layout = 'default';
-        
+
         $blogLists = $this->Node->find('all', array(
            'order' => 'Node.created DESC',
            'conditions' => array(
                'Node.type' => 'blog',
-               'Node.terms' => json_encode(array('4'=>'payong-panahon')),
+               'Node.terms' => json_encode(array('1'=>'news')),
                ),
         ));
-        
+
     //debug($blogLists);
-        
-        $this->set(compact('blogLists'));        
+
+        $this->set(compact('blogLists'));
     }
-    
+
     public function mataNgBagyo(){
         $this->layout = 'default';
-        
+
+
         $blogLists = $this->Node->find('all', array(
            'order' => 'Node.created DESC',
            'conditions' => array(
                'Node.type' => 'blog',
-               'Node.terms' => json_encode(array('5'=>'mata-ng-bagyo-eye-of-the-storm')),
+               'Node.terms' => json_encode(array('2'=>'announcements')),
                ),
         ));
-        
+
     //debug($blogLists);
-        
-        $this->set(compact('blogLists'));        
-        
-        
+
+        $this->set(compact('blogLists'));
+
+
     }
 
     public function impressum() {
@@ -388,30 +389,30 @@ class WeatherphController extends WeatherphAppController {
        App::import('Model', 'Weatherph.WeatherphStationForecast');
        App::import('Model', 'Weatherph.NearestStation');
        App::import('Model','Nima.NimaName');
-       
+
        $NearestStation = new NearestStation();
        $DmoForecast = new WeatherphStationForecast();
        $search_location = new NimaName();
-       
+
        $result = $NearestStation->find('all', array(
            'conditions' => array(
                'reference' => $id
         )));
-       
+
        $location = $search_location->find('all', array(
         'conditions' => array(
             'Name.id =' => $id,
         )));
-       
+
        $location = $location[0];
-       
+
        $this->log('location >> ' . print_r($location, TRUE));
-       
+
        //debug($result);= number_format($distance,1,'.','')
        $station_id = $result[0]['NearestStation']['station_id'];
        $distance = $result[0]['NearestStation']['distance'];
        $distance = number_format($distance,1,'.','').'km';
-       
+
        $dataSets = $DmoForecast->dmoForecast('all', array('conditions' => array(
            'id' => $station_id,
            'coordinates'    => array(
@@ -419,13 +420,13 @@ class WeatherphController extends WeatherphAppController {
                'lon' => $location['Name']['long'],
                )
        )));
-       
+
 //       $this->log(print_r($dataSets, true));
-       
+
        $this->set(compact('dataSets','location', 'distance'));
-       
+
     }
-   
+
     public function getStationReadings($station_id = NULL, $time_frame = "10m", $target_date = NULL, $days_range = NULL){
 
         $this->layout = "plain";
@@ -441,29 +442,29 @@ class WeatherphController extends WeatherphAppController {
         )));
 
        // $this->log($readings);
-        
+
         $this->set(compact('readings'));
 
     }
-   
+
    public function getAllStation($provider = 'pagasa'){
-       
+
         $this->layout = 'plain';
-       
+
         App::import('Model', 'Weatherph.WeatherphStation');
         App::import('Lib', 'Meteomedia.Abfrage');
         App::import('Lib', 'Meteomedia.Curl');
-        
+
         $WeatherphStation = new WeatherphStation();
         $stations = $WeatherphStation->find('all', array('conditions' => array(
         'provider' => $provider,
         )));
-       
+
         $stationsId = Set::extract($stations, '{n}.id');
-       
+
         $Abfrage = new Abfrage($stationsId);
-        
-        //Grab stations readings  
+
+        //Grab stations readings
         $url = $Abfrage->generateURL($WeatherphStation->generateDate('reading', '10m'), array(
         'Temperature' => array(
             'low'
@@ -487,16 +488,16 @@ class WeatherphController extends WeatherphAppController {
 
         $curlResults = NULL;
         $curlResults = Curl::getData($url, 60);
-        
+
         //$curlResults = file_get_contents(Configure::read('Data.readings').'/readings.csv');
-        
+
         $rows = explode("\n", $curlResults);
         $headers = explode(';', $rows[0]);
-        
+
         //$this->log(print_r($rows, TRUE));exit;
 
         unset($rows[0]);
-        
+
         ini_set('memory_limit', '512M');
 
         $arrayResults = array();
@@ -513,13 +514,13 @@ class WeatherphController extends WeatherphAppController {
                 }
             }
         }
-        
+
         //exit;
         //$this->log(print_r($arrayResults, TRUE));exit;
-        
+
         App::import('Model', 'Weatherph.Reading');
         $Reading = new Reading();
-        
+
         foreach($arrayResults as $result){
             $Reading->create();
             $data = array(
@@ -540,11 +541,11 @@ class WeatherphController extends WeatherphAppController {
                 'g6h' => '',
             );
             $Reading->save($data);
-            
+
         }
-        
+
 //        foreach ($curlReadingsAsArray as $curlArray) {
-//            
+//
 //            $Reading->create();
 //
 //            $data = array(
@@ -557,39 +558,39 @@ class WeatherphController extends WeatherphAppController {
 
         //debug($curlResults); exit;
         exit;
-        
+
    }
-   
-   
+
+
    function weathertv(){
        function removeExtension(&$string){
            $explode = explode('.', $string);
            unset($explode[count($explode)-1]);
            $string = implode('.', $explode);
        }
-       
+
        $files = array();
        $files_location = realpath(WWW_ROOT . '/../views/themed/weatherph/webroot/weathertv');
        if(is_dir($files_location)) $files = array_diff(scandir($files_location), array('.', '..', '.DS_Store', 'empty'));
-       
+
        if(count($files) != 0){
            array_walk($files, 'removeExtension');
            $files= array_unique($files);
            rsort($files);
        }
-       
+
        $this->set(compact('files'));
    }
    function webcam(){}
-   
+
    //JETT
-   
+
     public function measurements($startdate = NULL, $enddate = NULL, $stationID = '984290', $timeinterval = '10m') {
-        
+
         $this->layout = 'plain';
-        
+
         App::import('Model', 'Weatherph.WeatherphStationReading');
-        
+
         $startdate = ($startdate == NULL)? date('Y-m-d') : date('Y-m-d', strtotime($startdate));
         $enddate = ($enddate == NULL)? date('Y-m-d', strtotime('-1 day')) : date('Y-m-d', strtotime($startdate));
 
@@ -600,11 +601,11 @@ class WeatherphController extends WeatherphAppController {
         'enddate' => $enddate,
         'timeinterval' =>$timeinterval,
         )));
-        
+
         $this->set(compact('dataSets'));
     }
-    
-    
+
+
     public function getMeasurements($stationID = '920001') {
         $this->layout = 'json/ajax';
 
@@ -617,7 +618,7 @@ class WeatherphController extends WeatherphAppController {
         //       Configure::write('debug', 0);
         $this->set('measurements', json_encode($currentMeasurement));
     }
-    
+
     public function getDetailedMeasurement($stationID = '984290', $type = NULL, $timeRes = '3h', $startDatum = NULL, $endDatum = NULL) {
         App::import('Model', 'Weatherph.WeatherphStationMeasurement');
 
@@ -660,10 +661,10 @@ class WeatherphController extends WeatherphAppController {
 
         $this->set('set', $set);
     }
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
 }

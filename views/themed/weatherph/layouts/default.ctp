@@ -118,27 +118,25 @@
                     <li><?php echo $this->Html->image($images[$hat], array('width' => '120px')); ?></li>
                 </ul>
             </div>
-            <div class="promo">
-                <?php
-                $cities = array(
-                    // la pa
-                );
 
-                $city = rand(1, count($cities)) - 1;
-                ?>
-                <a href="<?= $this->webroot ?>visit/<?=$city?>">
-                <h4>Visit</h4>
-                <img src="" alt=""/>
-                </a>
-                <p class="excerpt">Insert first sentence here</p>
-            </div>
             <div class="promo">
-                <a href="<?= $this->webroot ?>visit/<?=$city?>">
-                <h4>Visit</h4>
-                <img src="" alt=""/>
+                <a href="<?= $this->webroot ?>visit/<?= $tourism_links[0]['Node']['slug'] ?>">
+                <h4>Places to see: <?= $tourism_links[0]['Node']['title'] ?></h4>
+                <img src="<?= $this->webroot ?>theme/weatherph/img/tourism_thumbnails/<?= $tourism_links[0]['Node']['slug'] ?>.png" alt="<?= $tourism_links[0]['Node']['title'] ?>">
                 </a>
-                <p class="excerpt">Insert first sentence here</p>
+                <p><?= $tourism_links[0]['Node']['excerpt'] ?></p>
+                <p><a href="<?= $this->webroot ?>visit/<?= $tourism_links[0]['Node']['slug'] ?>">See more...</a></p>
             </div>
+
+            <div class="promo">
+                <a href="<?= $this->webroot ?>visit/<?= $tourism_links[1]['Node']['slug'] ?>">
+                <h4>Discover <?= $tourism_links[1]['Node']['title'] ?>.</h4>
+                <img src="<?= $this->webroot ?>theme/weatherph/img/tourism_thumbnails/<?= $tourism_links[1]['Node']['slug'] ?>.png" alt="<?= $tourism_links[1]['Node']['title'] ?>">
+                </a>
+                <p><?= $tourism_links[1]['Node']['excerpt'] ?></p>
+                <p><a href="<?= $this->webroot ?>visit/<?= $tourism_links[1]['Node']['slug'] ?>">See more...</a></p>
+            </div>
+
         </div><!--END SIDEBAR-->
 
         <?php
@@ -176,11 +174,6 @@ Google Analytics script
         echo '<script src="http://cdn.leafletjs.com/leaflet-0.4.4/leaflet.js"></script>';
 
     }
-
-    /**
-    * index.js requires the following variable:
-    *      - resource - contains an array of (data-layer => (temperature, pressure)) for retreiving the image key.
-    */
 
     echo $this->Html->script('slides.min.jquery');
 ?>
