@@ -125,6 +125,7 @@
                 <img src="<?= $this->webroot ?>theme/weatherph/img/tourism_thumbnails/<?= $tourism_links[0]['Node']['slug'] ?>.png" alt="<?= $tourism_links[0]['Node']['title'] ?>">
                 </a>
                 <p><?= $tourism_links[0]['Node']['excerpt'] ?></p>
+                <p><a href="<?= $this->webroot ?>visit/<?= $tourism_links[0]['Node']['slug'] ?>">See more...</a></p>
             </div>
 
             <div class="promo">
@@ -133,6 +134,7 @@
                 <img src="<?= $this->webroot ?>theme/weatherph/img/tourism_thumbnails/<?= $tourism_links[1]['Node']['slug'] ?>.png" alt="<?= $tourism_links[1]['Node']['title'] ?>">
                 </a>
                 <p><?= $tourism_links[1]['Node']['excerpt'] ?></p>
+                <p><a href="<?= $this->webroot ?>visit/<?= $tourism_links[1]['Node']['slug'] ?>">See more...</a></p>
             </div>
 
         </div><!--END SIDEBAR-->
