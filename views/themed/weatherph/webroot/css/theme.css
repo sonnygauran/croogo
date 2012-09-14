@@ -713,6 +713,10 @@ span.temperature {
     text-decoration: none;
 }
 
+.promo img {
+    margin: .5em auto;
+}
+
 /* Search Results */
 
 .names.index {
