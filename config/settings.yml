@@ -29,7 +29,7 @@ Data.readings: /data/readings/
 Data.movies: /assets/theme/weatherph/webroot/videos/
 Data.uploaded_videos: /assets/theme/weatherph/webroot/uploaded_videos/
 Data.uploaded_images_folder: /home/netuser/uploaded_images/
-Data.uploaded_images: /assets/uploads/uploaded_images/
+Data.uploaded_images: /uploads/uploaded_images/
 Data.weathertv: /assets/theme/weatherph/webroot/weathertv/
 
 Abfrage.username: wget
