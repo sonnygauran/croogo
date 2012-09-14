@@ -41,6 +41,33 @@ class UploadsController extends AppController{
         }
          
    }
+
+   function admin_image(){
+        if(!empty($this->data)){
+            $date = date('YmdHis'); 
+            $extension = explode('.', $this->data['Upload']['image']['name']);
+            $extension = ($extension[count($extension)-1]);
+            
+            $tmp_name = $this->data['Upload']['image']['tmp_name'];
+            
+            
+            $directory = Configure::read('Data.uploaded_images_folder');
+            $link = WWW_ROOT . 'uploads' . DS . 'uploaded_images';
+            $destination =  $directory . $date.".".$extension;
+            
+            if(!is_dir($directory)) mkdir ($directory); // create directory
+            if(!file_exists($link)) symlink($directory, $link); // create symlink
+            
+            if(move_uploaded_file($tmp_name, $destination)){
+                $this->Session->setFlash("Upload Successful!");
+                $image = Configure::read('Data.uploaded_images') . "$date.$extension";
+                $this->set(compact('image'));
+            }else{
+                $this->Session->setFlash("Something went wrong.");
+            }
+        }
+         
+   }
    
    function admin_success($file_name = ''){
        $url = Configure::read('Data.uploaded_videos') . $file_name;
