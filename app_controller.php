@@ -119,9 +119,9 @@ class AppController extends Controller {
 			)
 		));
 
-		$first_random = rand(0, count($cities));
+		$first_random = rand(0, count($cities)-1);
 		do{
-			$second_random = rand(0, count($cities));
+			$second_random = rand(0, count($cities)-1);
 		}while($first_random == $second_random);
 
 		$tourism_links = array( array_filter($cities[$first_random]), array_filter($cities[$second_random]) );
