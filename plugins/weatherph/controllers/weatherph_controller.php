@@ -141,7 +141,7 @@ class WeatherphController extends WeatherphAppController {
 
         $WeatherphStation = new Station();
         
-        $fields = array('wmo1', 'lon', 'lat', 'name');
+        $fields = array('wmo1', 'lon', 'lat', 'name','webaktiv');
         if ($provider == 'pagasa') {
             $stations = $WeatherphStation->find('all', array(
                 'conditions' => array('NOT' => array('org' => 'JRG')),
@@ -157,23 +157,22 @@ class WeatherphController extends WeatherphAppController {
         $stations_result = array();
         foreach ($stations as $station) {
             $station = $station['Station'];
-            $current = array(
-                'id' => $station['wmo1'],
-                'name' => $station['name'],
-                'coordinates' => array(
-                    'longitude' => $station['lon'],
-                    'latitude' => $station['lat'],
-                )
-            );
-            
-            $currentLocationInString = $station['lat'].','.$station['lon'];
-            if (!in_array($currentLocationInString, $locations)) {
-                $locations[] = $currentLocationInString;
-                $stations_result[] = $current;
-            }
+            if ($station['webaktiv'] != 2) {
+                $current = array(
+                    'id' => $station['wmo1'],
+                    'name' => $station['name'],
+                    'coordinates' => array(
+                        'longitude' => $station['lon'],
+                        'latitude' => $station['lat'],
+                    )
+                );
 
-            
-            
+                $currentLocationInString = $station['lat'].','.$station['lon'];
+                if (!in_array($currentLocationInString, $locations)) {
+                    $locations[] = $currentLocationInString;
+                    $stations_result[] = $current;
+                }
+            }
         }
        
         

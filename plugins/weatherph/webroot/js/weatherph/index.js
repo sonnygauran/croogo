@@ -418,7 +418,7 @@ var StationIconWeb = L.Icon.extend({
         shadowSize: new L.Point(13, 13),
         iconAnchor: new L.Point(8, 13),
         popupAnchor: new L.Point(-4, -15),
-        zIndexOffset: -9999
+        zIndexOffset: 2
     }
 
 });
@@ -431,14 +431,14 @@ var StationIconMobile = L.Icon.extend({
         shadowSize: new L.Point(20, 20),
         iconAnchor: new L.Point(12, 20),
         popupAnchor: new L.Point(-5, -20),
-        zIndexOffset: -9999
+        zIndexOffset: 2
     }
 });
 
 var stationIcon    = new StationIconWeb();
 var meteomediaIcon = new StationIconWeb();
 meteomediaIcon.options.iconUrl = '<?= Router::url(null, true) ?>theme/weatherph/img/leaflet/marker-icon-blue-small.png';
-meteomediaIcon.options.zIndexOffset = 9999;
+meteomediaIcon.options.zIndexOffset = 1;
 
 if (isiPhone() || (navigator.userAgent.match(/iPad/i) !== null)) {
     stationIcon    = new StationIconMobile();
@@ -464,12 +464,8 @@ function mapStations($stationsArray, icon) {
         $currentStation = $stationsArray[key];
         var markerLocation = new L.LatLng($currentStation.coordinates[1], $currentStation.coordinates[0]);
         var marker = new L.Marker(markerLocation, {
-            icon: _icon,
-            zIndexOffset: -9999
+            icon: _icon
         });
-        if(_icon.options.iconUrl == "http://wph/theme/weatherph/img/leaflet/marker-icon-blue-small.png"){
-            marker.options.zIndexOffset  = 9999;
-        }
 
         var content = "<b>"+$currentStation.name+"</b>";
         //        if (isiPad || isiPhone()) {
@@ -484,7 +480,6 @@ function mapStations($stationsArray, icon) {
 
         marker.on('click', function(e){
             var self = this;
-            //            if (isiPhone() || isiPad) {
             $('.marker-popup').on('click', function(evt){
                 evt.preventDefault();
 
@@ -492,9 +487,6 @@ function mapStations($stationsArray, icon) {
 
                 self.closePopup();
             });
-        //            } else {
-        //                getForecast(self.station.id);
-        //            }
         });
         window['STATIONS_LAYER'].addLayer(marker);
     }
@@ -526,8 +518,6 @@ function remapStations() {
                 // Temporary Hidden
                 window['STATIONS'].pagasa = $stationsPagasa;
 
-                //Gets all the stations from pagasa
-                mapStations($stationsPagasa, stationIcon); // now the stations are complete
 
                 $stations = new Array();
                 $.ajax({
@@ -549,8 +539,14 @@ function remapStations() {
                             });
                         }
 
+                        //Gets all the stations from pagasa
+                        mapStations($stationsPagasa, stationIcon); // now the stations are complete
+                        
                         window['STATIONS'].meteomedia = $stations;
-                        mapStations($stations, meteomediaIcon); // now the stations are complete
+                        setTimeout(function(){
+                            mapStations($stations, meteomediaIcon); // now the stations are complete
+                        }, 1000);
+                        
                         $('select[name=philippine-regions]')
                             .find('option[data-region-id=Philippines]')
                             .attr('selected','selected')
@@ -562,7 +558,9 @@ function remapStations() {
         });
     } else {
         mapStations(window['STATIONS'].pagasa, stationIcon);
-        mapStations(window['STATIONS'].meteomedia, meteomediaIcon);
+        setTimeout(function(){
+            mapStations(window['STATIONS'].meteomedia, meteomediaIcon);
+        }, 1000);
     }
 }
 
