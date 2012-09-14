@@ -14,7 +14,7 @@ class UploadsController extends AppController{
         
     }
     
-    function admin_index(){
+    function admin_video(){
         
         if(!empty($this->data)){
             $date = date('YmdHis'); 

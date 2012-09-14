@@ -41,8 +41,7 @@
 
 	// Contact
 	CroogoRouter::connect('/contact', array('controller' => 'contacts', 'action' => 'view', 'contact'));
-        CroogoRouter::connect('/uploads', array('controller' => 'uploads', 'action' => 'index'));
-        CroogoRouter::connect('/uploads/video', array('controller' => 'uploads', 'action' => 'video'));
 
-        CroogoRouter::connect('/getStationReadings/*', array('plugin' => 'weatherph', 'controller' => 'weatherph', 'action' => 'getStationReadings'));
+
+    CroogoRouter::connect('/getStationReadings/*', array('plugin' => 'weatherph', 'controller' => 'weatherph', 'action' => 'getStationReadings'));
 
