@@ -117,12 +117,13 @@ class AppController extends Controller {
 			'conditions' => array(
 				'type' => 'visit'
 			)
-		));
-
+		)); 
         $tourism_links = array();
         if (count($cities) > 1) {
             // Select random when there are cities available
             $first_random = rand(0, count($cities)-1);
+            $second_random = $first_random;
+            
             while ($first_random == $second_random) {
                 $second_random = rand(0, count($cities)-1);
             };
