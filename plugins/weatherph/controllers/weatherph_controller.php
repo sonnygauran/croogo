@@ -83,15 +83,22 @@ class WeatherphController extends WeatherphAppController {
 
                 $file_date = "$pst_year$pst_month$pst_day $pst_hour$pst_min"; //Ymd Hi
                 $current_time = date('Ymd Hi', strtotime('+8 hours'));
+                $current_time2 = date('Ymd Hi', strtotime('+5 hours'));
                 $current = compact('year', 'month', 'day', 'hour', 'min', 'pst_year', 'pst_month', 'pst_day', 'pst_hour', 'pst_min');
                 if($type=='temperature' || $type=='pressure'){
                     if($current_time < $file_date){
                         $filenames[$type][] = $current;
+                     
                     }else{
                         continue;
                     }
                 }else{
-                    $filenames[$type][] = $current;
+                    if ($current_time2 < $file_date){
+                        $filenames[$type][] = $current;    
+                    }else {
+                        continue;
+                    }
+                    
                 }
                 
             }

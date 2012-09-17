@@ -34,16 +34,20 @@ $res2 = "-30 minutes";
 $date = date('Y-m-d');
 $startdate = $date;
 $start = date('YmdHis', strtotime("+2 minutes", strtotime($startdate)));
-$start2 = date('YmdHis', strtotime("+2 minutes", strtotime($startdate)));
+$start2 = date('YmdHis', strtotime("1 day +2 minutes", strtotime($startdate)));
 $enddate = date('YmdHis', strtotime("+2 days", strtotime($start)));
-$enddate2 = date('YmdHis', strtotime("-2 days", strtotime($start)));
+$enddate2 = date('YmdHis', strtotime("-3 hours", strtotime($start)));
 $end = date('YmdHis', strtotime($enddate));
 $end2 = date('YmdHis', strtotime($enddate2));
 $counter = 0;
 $filetotal = 0;
 $success = false;
 $original = 0;
-
+echo "_-----------------------------------_";
+echo $start2;
+echo "\n";
+echo $enddate2;
+echo "_-----------------------------------_";
 
 $STATIC = array(
     'start' => date('YmdHis', strtotime("+2 minutes", strtotime($startdate))),
