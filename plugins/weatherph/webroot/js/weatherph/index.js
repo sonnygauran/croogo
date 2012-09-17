@@ -175,9 +175,9 @@ $(document).ready(function(){
         map.setZoom(4);
     }, 1600);
 
-    $stationsPagasa = new Array();
+    $stationsOthers = new Array();
     window['STATIONS'] = {
-        pagasa: null,
+        others: null,
         meteomedia: null
     };
 
@@ -418,7 +418,7 @@ var StationIconWeb = L.Icon.extend({
         shadowSize: new L.Point(13, 13),
         iconAnchor: new L.Point(8, 13),
         popupAnchor: new L.Point(-4, -15),
-        zIndexOffset: 2
+        zIndexOffset: 1000
     }
 
 });
@@ -431,14 +431,13 @@ var StationIconMobile = L.Icon.extend({
         shadowSize: new L.Point(20, 20),
         iconAnchor: new L.Point(12, 20),
         popupAnchor: new L.Point(-5, -20),
-        zIndexOffset: 2
+        zIndexOffset: 1000
     }
 });
 
 var stationIcon    = new StationIconWeb();
 var meteomediaIcon = new StationIconWeb();
 meteomediaIcon.options.iconUrl = '<?= Router::url(null, true) ?>theme/weatherph/img/leaflet/marker-icon-blue-small.png';
-meteomediaIcon.options.zIndexOffset = 1;
 
 if (isiPhone() || (navigator.userAgent.match(/iPad/i) !== null)) {
     stationIcon    = new StationIconMobile();
@@ -449,7 +448,7 @@ function mapStationsPagasa($stationsArray) {
     mapStations($stationsArray, stationIcon);
 }
 
-function mapStations($stationsArray, icon) {
+function mapStations($stationsArray, icon, stationName) {
     var _icon = meteomediaIcon;
     if (icon !== null) {
         _icon = icon;
@@ -467,6 +466,17 @@ function mapStations($stationsArray, icon) {
             icon: _icon
         });
 
+        /**
+         * This would make MM stations on top of others
+         */
+        if (stationName != null) {
+            if (stationName == 'meteomedia') {
+                marker.setZIndexOffset(1);
+            } else {
+                marker.setZIndexOffset(0);
+            }
+        }
+        
         var content = "<b>"+$currentStation.name+"</b>";
         //        if (isiPad || isiPhone()) {
         content += "<br /><a href=\"#\" class=\"marker-popup\" data-id=\""+$currentStation.id+" \">View Details</a>";
@@ -495,17 +505,17 @@ function mapStations($stationsArray, icon) {
 
 function remapStations() {
     $('.data-layer-label').hide();
-    if (window['STATIONS'].pagasa === null) {
+    if (window['STATIONS'].others === null) {
         $.ajax({
             type   : 'GET',
-            url    : '<?= Router::url(null, true) ?>weatherph/weatherph/getStations/pagasa',
+            url    : '<?= Router::url(null, true) ?>weatherph/weatherph/getStations/others',
             cache  : false,
             success: function(data) {
                 var $retrievedStations = data; // the complete retrieved stations
                 for (var key in $retrievedStations) {
                     var $currentRetrievedStation = $retrievedStations[key]; // current station on the loop
                     //console.log($currentRetrievedStation);
-                    $stationsPagasa.push({ // create a json object, and then save it to stations array
+                    $stationsOthers.push({ // create a json object, and then save it to stations array
                         id: $currentRetrievedStation.id,
                         name: $currentRetrievedStation.name,
                         type:'Point',
@@ -516,7 +526,7 @@ function remapStations() {
                     });
                 }
                 // Temporary Hidden
-                window['STATIONS'].pagasa = $stationsPagasa;
+                window['STATIONS'].others = $stationsOthers;
 
 
                 $stations = new Array();
@@ -539,13 +549,12 @@ function remapStations() {
                             });
                         }
 
-                        //Gets all the stations from pagasa
-                        mapStations($stationsPagasa, stationIcon); // now the stations are complete
+                        
+                        //Gets other stations
+                        mapStations($stationsOthers, stationIcon, 'others'); // now the stations are complete
+                        mapStations($stations, meteomediaIcon, 'meteomedia'); // now the stations are complete
                         
                         window['STATIONS'].meteomedia = $stations;
-                        setTimeout(function(){
-                            mapStations($stations, meteomediaIcon); // now the stations are complete
-                        }, 1000);
                         
                         $('select[name=philippine-regions]')
                             .find('option[data-region-id=Philippines]')
@@ -557,10 +566,8 @@ function remapStations() {
             }
         });
     } else {
-        mapStations(window['STATIONS'].pagasa, stationIcon);
-        setTimeout(function(){
-            mapStations(window['STATIONS'].meteomedia, meteomediaIcon);
-        }, 1000);
+        mapStations(window['STATIONS'].meteomedia, meteomediaIcon, 'meteomedia');
+        mapStations(window['STATIONS'].others, stationIcon, 'others');
     }
 }
 

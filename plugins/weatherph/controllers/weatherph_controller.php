@@ -160,7 +160,7 @@ class WeatherphController extends WeatherphAppController {
         $WeatherphStation = new Station();
 
         $fields = array('wmo1', 'lon', 'lat', 'name','webaktiv');
-        if ($provider == 'pagasa') {
+        if ($provider == 'others') {
             $stations = $WeatherphStation->find('all', array(
                 'conditions' => array('NOT' => array('org' => 'JRG')),
                 'fields' => $fields,
