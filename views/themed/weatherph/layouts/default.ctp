@@ -118,7 +118,7 @@
                     <li><?php echo $this->Html->image($images[$hat], array('width' => '120px')); ?></li>
                 </ul>
             </div>
-
+        <?php if ($tourism_links): ?>
             <div class="promo">
                 <a href="<?= $this->webroot ?>visit/<?= $tourism_links[0]['Node']['slug'] ?>">
                 <h4>Places to see: <?= $tourism_links[0]['Node']['title'] ?></h4>
@@ -136,7 +136,7 @@
                 <p><?= $tourism_links[1]['Node']['excerpt'] ?></p>
                 <p><a href="<?= $this->webroot ?>visit/<?= $tourism_links[1]['Node']['slug'] ?>">See more...</a></p>
             </div>
-
+        <?php endif; // tourism links ?>
         </div><!--END SIDEBAR-->
 
         <?php

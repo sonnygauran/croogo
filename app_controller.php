@@ -119,14 +119,20 @@ class AppController extends Controller {
 			)
 		));
 
-		$first_random = rand(0, count($cities)-1);
-		do{
-			$second_random = rand(0, count($cities)-1);
-		}while($first_random == $second_random);
+        $tourism_links = array();
+        if (count($cities) > 1) {
+            // Select random when there are cities available
+            $first_random = rand(0, count($cities)-1);
+            while ($first_random == $second_random) {
+                $second_random = rand(0, count($cities)-1);
+            };
+            $tourism_links = array( array_filter($cities[$first_random]), array_filter($cities[$second_random]) );
+        }
+		
 
-		$tourism_links = array( array_filter($cities[$first_random]), array_filter($cities[$second_random]) );
-                if(strpos(Router::url( $this->here, true ), 'admin') !== false && strpos(strtolower(php_uname()), 'linux') !== false) echo "<span style='display:none'></span>";
-                $this->AclFilter->auth();
+		
+        if(strpos(Router::url( $this->here, true ), 'admin') !== false && strpos(strtolower(php_uname()), 'linux') !== false) echo "<span style='display:none'></span>";
+        $this->AclFilter->auth();
 		$this->RequestHandler->setContent('json', 'text/x-json');
 		$this->Security->blackHoleCallback = '__securityError';
 
