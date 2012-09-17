@@ -20,7 +20,7 @@ var $boxMap = [
 },
 {
     id: 'VisMin',
-    box: [118.18475000000187,5.729469014423421,132.24724999999813,13.607339308212687]
+    box: [120.16796875,4.653695352486294,128.25439453125,12.551058133703483]
 },
 {
     id: 'Palawan',
@@ -476,7 +476,7 @@ function mapStations($stationsArray, icon, stationName) {
                 marker.setZIndexOffset(0);
             }
         }
-        
+
         var content = "<b>"+$currentStation.name+"</b>";
         //        if (isiPad || isiPhone()) {
         content += "<br /><a href=\"#\" class=\"marker-popup\" data-id=\""+$currentStation.id+" \">View Details</a>";
@@ -549,13 +549,13 @@ function remapStations() {
                             });
                         }
 
-                        
+
                         //Gets other stations
                         mapStations($stationsOthers, stationIcon, 'others'); // now the stations are complete
                         mapStations($stations, meteomediaIcon, 'meteomedia'); // now the stations are complete
-                        
+
                         window['STATIONS'].meteomedia = $stations;
-                        
+
                         $('select[name=philippine-regions]')
                             .find('option[data-region-id=Philippines]')
                             .attr('selected','selected')
