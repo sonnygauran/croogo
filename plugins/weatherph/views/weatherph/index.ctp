@@ -453,7 +453,7 @@ $movie_location = Configure::read('Data.movies');
     window["DATA_LAYERS"] = <?= json_encode($resources['data-layers']); ?>;
     console.error('<?= "{$movie_location}Philippines_All_stfi.m4v" ?>');
     var windContent = '<?= addslashes(str_replace("\n", "\\", (<<<ECHO
-        <video id="movie-wind" width="554" height="554" controls autobuffer autoplay>
+        <video id="movie-wind" poster="{$movie_location}Philippines_All_stfi.jpg" width="554" height="554" controls autobuffer autoplay>
         <source src="{$movie_location}Philippines_All_stfi.m4v" type='video/x-m4v;'/>
         <source src="{$movie_location}Philippines_All_stfi.mp4" type='video/mp4;'/>
         <source src="{$movie_location}Philippines_All_stfi.webm" type='video/webm;'/>
@@ -464,7 +464,7 @@ ECHO
                 ?>';
 
     var precipContent = '<?= addslashes(str_replace("\n", "\\", (<<<ECHO
-        <video id="movie-precipitation" width="554" height="554" controls autobuffer autoplay>
+        <video id="movie-precipitation" poster="{$movie_location}Philippines_All_niwofi.jpg" width="554" height="554" controls autobuffer autoplay>
         <source src="{$movie_location}Philippines_All_niwofi.m4v" type='video/x-m4v;'/>
         <source src="{$movie_location}Philippines_All_niwofi.mp4" type='video/mp4;'/>
         <source src="{$movie_location}Philippines_All_niwofi.webm" type='video/webm;'/>

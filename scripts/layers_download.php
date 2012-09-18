@@ -28,15 +28,17 @@ echo "\n\n";
 
 $res = "+3 hours";
 $res2 = "-30 minutes";
-//es = "+1 day";
-//es2 = "-1 day";
+//$res = "+1 day";
+//$res2 = "-1 day";
 
-$date = date('Y-m-d');
+$date = date('Ymd');
+$date2 = date('YmdH0000');
 $startdate = $date;
-$start = date('YmdHis', strtotime("+2 minutes", strtotime($startdate)));
-$start2 = date('YmdHis', strtotime("1 day +2 minutes", strtotime($startdate)));
+$startdate2 = $date2;
+$start = date('YmdHis', strtotime($startdate));
+$start2 = date('YmdHis', strtotime($startdate2));
 $enddate = date('YmdHis', strtotime("+2 days", strtotime($start)));
-$enddate2 = date('YmdHis', strtotime("-3 hours", strtotime($start)));
+$enddate2 = date('YmdHis', strtotime("-3 hours", strtotime($start2)));
 $end = date('YmdHis', strtotime($enddate));
 $end2 = date('YmdHis', strtotime($enddate2));
 $counter = 0;
@@ -46,16 +48,20 @@ $original = 0;
 echo "_-----------------------------------_";
 echo $start2;
 echo "\n";
+echo $date2;
+echo "\n";
+echo $date;
+echo "\n";
 echo $enddate2;
 echo "_-----------------------------------_";
 
 $STATIC = array(
-    'start' => date('YmdHis', strtotime("+2 minutes", strtotime($startdate))),
+    'start' => date('YmdHis', strtotime($startdate)),
     'end' => date('YmdHis', strtotime($enddate)),
 );
 
 $STATIC2 = array(
-    'start' => date('YmdHis', strtotime("+2 minutes", strtotime($startdate))),
+    'start' => date('YmdHis', strtotime($startdate)),
     'end' => date('YmdHis', strtotime($enddate2)),
 );
 
@@ -87,9 +93,10 @@ $properties2 = array(
 $coordinates = array(
    	    'all' => "&x1=111.3134765625&x2=135.6591796875&y2=24.126701958681668&y1=0.5273363048115169",
         'luzon' =>"&x1=119.21264648437499&x2=125.299072265625&y2=19.694314241825747&y1=13.870080100685891",
-        'visayas_mindanao' =>"&x1=120.16796875&x2=128.25439453125&y2=12.551058133703483&y1=4.653695352486294",
+       'visayas_mindanao' =>"&x1=120.16796875&x2=128.25439453125&y2=12.551058133703483&y1=4.653695352486294",
 		'palawan_sulu' =>"&x1=116.54296874999999&x2=122.62939453125001&y2=12.39365886237742&y1=6.391730485481462",
 );
+
 
 function microtime_float() {
     list($usec, $sec) = explode(" ", microtime());

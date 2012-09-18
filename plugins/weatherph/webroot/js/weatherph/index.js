@@ -642,7 +642,7 @@ function getDataLayer(){
                         if ($visible.length == 1) {
                             var minutes =  $visible.attr('data-minute');
 
-                            minutes -= 2;
+                            minutes -= 00;
                             if(minutes === 0) minutes = '00';
 
                             $('.data-layer-label .timestamp .date .year').html($visible.attr('data-year'));

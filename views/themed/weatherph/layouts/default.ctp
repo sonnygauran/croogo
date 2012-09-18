@@ -124,8 +124,10 @@
                 <h4>Places to see: <?= $tourism_links[0]['Node']['title'] ?></h4>
                 <img src="<?= $this->webroot ?>theme/weatherph/img/tourism_thumbnails/<?= $tourism_links[0]['Node']['slug'] ?>.png" alt="<?= $tourism_links[0]['Node']['title'] ?>">
                 </a>
-                <p><?= $tourism_links[0]['Node']['excerpt'] ?></p>
-                <strong><a href="<?= $this->webroot ?>visit/<?= $tourism_links[0]['Node']['slug'] ?>">See more...</a></strong>
+                <p><?= $tourism_links[0]['Node']['excerpt'] ?>&#8230;</p>
+                <a href="<?= $this->webroot ?>visit/<?= $tourism_links[0]['Node']['slug'] ?>">
+                    <div class="tourism-btn"><strong>See more</strong></div>
+                </a>
             </div>
 
             <div class="promo">
@@ -133,8 +135,10 @@
                 <h4>Discover <?= $tourism_links[1]['Node']['title'] ?>.</h4>
                 <img src="<?= $this->webroot ?>theme/weatherph/img/tourism_thumbnails/<?= $tourism_links[1]['Node']['slug'] ?>.png" alt="<?= $tourism_links[1]['Node']['title'] ?>">
                 </a>
-                <p><?= $tourism_links[1]['Node']['excerpt'] ?></p>
-                <strong><a href="<?= $this->webroot ?>visit/<?= $tourism_links[1]['Node']['slug'] ?>">See more...</a></strong>
+                <p><?= $tourism_links[1]['Node']['excerpt'] ?>&#8230;</p>
+                <a href="<?= $this->webroot ?>visit/<?= $tourism_links[1]['Node']['slug'] ?>">
+                    <div class="tourism-btn"><strong>See more</strong></div>
+                </a>
             </div>
         <?php endif; // tourism links ?>
         </div><!--END SIDEBAR-->
