@@ -28,8 +28,8 @@ echo "\n\n";
 
 $res = "+3 hours";
 $res2 = "-30 minutes";
-//es = "+1 day";
-//es2 = "-1 day";
+//$res = "+1 day";
+//$res2 = "-1 day";
 
 $date = date('Ymd');
 $date2 = date('YmdH0000');
@@ -96,6 +96,7 @@ $coordinates = array(
        'visayas_mindanao' =>"&x1=120.16796875&x2=128.25439453125&y2=12.551058133703483&y1=4.653695352486294",
 		'palawan_sulu' =>"&x1=116.54296874999999&x2=122.62939453125001&y2=12.39365886237742&y1=6.391730485481462",
 );
+
 
 function microtime_float() {
     list($usec, $sec) = explode(" ", microtime());
