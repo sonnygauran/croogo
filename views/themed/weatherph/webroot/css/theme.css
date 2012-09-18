@@ -715,6 +715,7 @@ span.temperature {
 
 .promo img {
     margin: .5em auto;
+    border: 2px solid #3990BD;
 }
 
 /* Search Results */
@@ -1199,6 +1200,7 @@ nav a:hover {
 Main blue: #365283
 Lighter blue: #3e5e95
 Darker blue: #20304d
+Highlight blue : #3990BD
 Off-white: #fafafa
 Warning red: #aa1111
 

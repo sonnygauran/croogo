@@ -36,7 +36,7 @@
 <body>
     <section id="container">
         <header class="banner shadow">
-            <div class="logo"><a href="<?= $this->webroot ?>"></a></div>
+            <a href="<?= $this->webroot ?>"><div class="logo"></div></a>
             <div id="slides">
                 <div class="slides_container">
                     <img src="<?= $this->webroot ?>theme/weatherph/img/mm.png" alt="Meteomedia">
@@ -118,14 +118,14 @@
                     <li><?php echo $this->Html->image($images[$hat], array('width' => '120px')); ?></li>
                 </ul>
             </div>
-
+        <?php if ($tourism_links): ?>
             <div class="promo">
                 <a href="<?= $this->webroot ?>visit/<?= $tourism_links[0]['Node']['slug'] ?>">
                 <h4>Places to see: <?= $tourism_links[0]['Node']['title'] ?></h4>
                 <img src="<?= $this->webroot ?>theme/weatherph/img/tourism_thumbnails/<?= $tourism_links[0]['Node']['slug'] ?>.png" alt="<?= $tourism_links[0]['Node']['title'] ?>">
                 </a>
                 <p><?= $tourism_links[0]['Node']['excerpt'] ?></p>
-                <p><a href="<?= $this->webroot ?>visit/<?= $tourism_links[0]['Node']['slug'] ?>">See more...</a></p>
+                <strong><a href="<?= $this->webroot ?>visit/<?= $tourism_links[0]['Node']['slug'] ?>">See more...</a></strong>
             </div>
 
             <div class="promo">
@@ -134,9 +134,9 @@
                 <img src="<?= $this->webroot ?>theme/weatherph/img/tourism_thumbnails/<?= $tourism_links[1]['Node']['slug'] ?>.png" alt="<?= $tourism_links[1]['Node']['title'] ?>">
                 </a>
                 <p><?= $tourism_links[1]['Node']['excerpt'] ?></p>
-                <p><a href="<?= $this->webroot ?>visit/<?= $tourism_links[1]['Node']['slug'] ?>">See more...</a></p>
+                <strong><a href="<?= $this->webroot ?>visit/<?= $tourism_links[1]['Node']['slug'] ?>">See more...</a></strong>
             </div>
-
+        <?php endif; // tourism links ?>
         </div><!--END SIDEBAR-->
 
         <?php
