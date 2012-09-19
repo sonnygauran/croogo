@@ -132,12 +132,18 @@ class WeatherphAppModel extends AppModel {
             
             $sunrise = date('H', strtotime($meridiem['sunrise']));
             $sunset = date('H', strtotime($meridiem['sunset']));
-
+    
             if ($utc > $sunrise && $utc < $sunset) {
                 $dayOrNight = 'day';
-            } else {
+                }else if ($utc == 17){
+                    $dayOrNight ='day';
+                }
+          
+            else {
                 $dayOrNight = 'night';
             }
+           
+            error_log('this->'.$utc.$dayOrNight);
             
             $description = '';
             
@@ -565,5 +571,5 @@ class WeatherphAppModel extends AppModel {
        
         return array_unique($station_match);
     }
-
+    
 }
