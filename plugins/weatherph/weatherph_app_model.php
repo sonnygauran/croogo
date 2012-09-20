@@ -143,7 +143,7 @@ class WeatherphAppModel extends AppModel {
                 $dayOrNight = 'night';
             }
            
-            error_log('this->'.$utc.$dayOrNight);
+//            error_log('this->'.$utc.$dayOrNight);
             
             $description = '';
             
