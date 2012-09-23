@@ -1,5 +1,6 @@
 <?php
 $movie_location = Configure::read('Data.movies');
+$movie_location = 'http://199.195.193.129:7777/';
 ?>
 <? $javascript->link('/weatherph/js/weatherph/index', false) ?>
 <div class="content">
