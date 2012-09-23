@@ -89,6 +89,7 @@ class AssetsController extends AppController {
                     'mimeType' => array(
                         $ext => 'video/'.$ext,
                     ),
+                    'modified' => date ("F d Y H:i:s.", filemtime($path . $fileFragment)),
                     'path' => $path.implode(DS, $assetPath).DS
                 );
 
