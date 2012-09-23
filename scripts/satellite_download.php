@@ -5,8 +5,6 @@ $script_location = dirname(__FILE__);
 echo $script_location . "\n";
 $location = "$script_location/../views/themed/weatherph/webroot/img/layers";
 $location2 = "$script_location/../views/themed/weatherph/webroot/img/layers/downloads";
-//$location3 = "$script_location/../views/themed/weatherph/webroot/img/layers/downloads/satellite";
-//$location4 = "$script_location/../views/themed/weatherph/webroot/img/layers/satellite";
 
 //if(!is_dir($location4))
 //	mkdir($location4);
@@ -26,20 +24,13 @@ echo exec("ls $location2");
 exec("rm -r $location2/*.png");
 echo "\n\n";
 
-$res = "+3 hours";
 $res2 = "-30 minutes";
-//$res = "+1 day";
-//$res2 = "-1 day";
 
 $date = date('Ymd');
 $date2 = date('YmdH0000');
-$startdate = $date;
 $startdate2 = $date2;
-$start = date('YmdHis', strtotime($startdate));
 $start2 = date('YmdHis', strtotime($startdate2));
-$enddate = date('YmdHis', strtotime("+2 days", strtotime($start)));
 $enddate2 = date('YmdHis', strtotime("-3 hours", strtotime($start2)));
-$end = date('YmdHis', strtotime($enddate));
 $end2 = date('YmdHis', strtotime($enddate2));
 $counter = 0;
 $filetotal = 0;
@@ -56,14 +47,10 @@ echo $enddate2;
 echo "_-----------------------------------_";
 
 $STATIC = array(
-    'start' => date('YmdHis', strtotime($startdate)),
-    'end' => date('YmdHis', strtotime($enddate)),
-);
-
-$STATIC2 = array(
     'start' => date('YmdHis', strtotime($startdate2)),
     'end' => date('YmdHis', strtotime($enddate2)),
 );
+
 
 $file_sizes = array(
     'luzon' => array(
@@ -82,12 +69,7 @@ $file_sizes = array(
 );
 
 $properties = array(
-    'temperature' => "http://alpha.meteomedia-portal.com/services/wetter4.php?api_key=portal-efd339395c80ad957acb695bb9758399&q=meh_ifm&leg=nil&a=image&x=554&y=554&srs=EPSG:900913&",
-    'pressure' => "http://alpha.meteomedia-portal.com/services/wetter4.php?api_key=portal-efd339395c80ad957acb695bb9758399&q=meh_ifm&leg=nil&a=image&x=554&y=554&srs=EPSG:900913&p=QFF&",
-);
-
-$properties2 = array(
-    'satellite' => "http://alpha.meteomedia-portal.com/services/wetter4.php?api_key=portal-efd339395c80ad957acb695bb9758399&q=sve&leg=nil&a=image&x=554&y=554&srs=EPSG:900913&"
+	 'satellite' => "http://alpha.meteomedia-portal.com/services/wetter4.php?api_key=portal-efd339395c80ad957acb695bb9758399&q=sve&leg=nil&a=image&x=554&y=554&srs=EPSG:900913&"
 );
 
 $coordinates = array(
@@ -104,40 +86,8 @@ function microtime_float() {
 }
 
 $time_start = microtime_float();
-
-
 foreach ($coordinates as $coordinate_key => $coordinate_value) {
     foreach ($properties as $property_key => $property_value) {
-        while (strtotime($start) < strtotime($end)) {
-            $counter++;
-
-            $url = "{$property_value}dt={$start}&{$coordinate_value}";
-            $start = date('YmdHis', strtotime($res, strtotime($start)));
-            $reg[] = "{$coordinate_key}_{$property_key}.png";
-            $img = "$location2/$start{$coordinate_key}_{$property_key}.png";
-            $contents = file_get_contents($url);
-            $strlen = strlen($contents);
-            echo "\n----------";
-
-            if ($strlen <= 239) {
-                echo "|EMPTY|----------\n";
-                echo $url;
-                echo "\n";
-            } else {
-                file_put_contents($img, $contents);
-                $original++;
-                echo "|SAVED|----------\n";
-                echo $url;
-                echo "\n";
-
-            }
-        }
-        $start = $STATIC['start'];
-    }
-}
-
-foreach ($coordinates as $coordinate_key => $coordinate_value) {
-    foreach ($properties2 as $property_key => $property_value) {
         while (strtotime($start2) > strtotime($end2)) {
             $counter++;
 
@@ -157,7 +107,7 @@ foreach ($coordinates as $coordinate_key => $coordinate_value) {
                 echo "\n|SAVED|$strlen\n";
             }
         }
-        $start2 = $STATIC2['start'];
+        $start2 = $STATIC['start'];
     }
 }
 

@@ -353,8 +353,11 @@ class WeatherphController extends WeatherphAppController {
         $enddate = date('Ymd', strtotime('+2 days', strtotime($today)));
         $forecastRange = range($today, $enddate);
         $title_for_layout = $dataSets['station_name'];
+
         //$this->log(print_r($forecastRange, true));
 
+      
+        
         $this->set(compact('forecastRange', 'dataSets', 'title_for_layout'));
     }
 

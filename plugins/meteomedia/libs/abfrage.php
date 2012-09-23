@@ -30,6 +30,7 @@ class Abfrage{
      * 
      * @param type $stationId 
      */
+    
     public function __construct($stationId) {
         if (is_array($stationId) AND !empty($stationId)) {
             $this->stationIds = $stationId;
@@ -38,7 +39,7 @@ class Abfrage{
         }
         
         CakeLog::write('abfrage', 'Station ID: ' . $this->stationId);
-        
+   
     }
 
     /**

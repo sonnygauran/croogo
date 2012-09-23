@@ -889,6 +889,7 @@ class WeatherphStationForecast extends WeatherphAppModel {
                         'min' => $forecast['min'],
                         'weather_symbol' => '-',
                         'precipitation' => '-',
+                        'precipitation_hr_range' => '-',
                         'relative_humidity' => '-',
                         'wind_speed' => '-',
                         'wind_gust' => '-',
@@ -904,6 +905,11 @@ class WeatherphStationForecast extends WeatherphAppModel {
                     
                     if(key_exists('rain3', $forecast) && trim($forecast['rain3']) != ''){
                         $current_forecast['precipitation'] = ((int)$forecast['rain3'] <= 0)? "0mm" : round($forecast['rain3']) . "mm";
+                        $current_forecast['precipitation_hr_range'] = "3h";
+                    }
+                    if(key_exists('rain6', $forecast) && trim($forecast['rain6']) != ''){
+                        $current_forecast['precipitation'] = ((int)$forecast['rain6'] <= 0)? "0mm" : round($forecast['rain6']) . "mm";
+                        $current_forecast['precipitation_hr_range'] = "6h";
                     }
                     
                     if(key_exists('rh', $forecast) && trim($forecast['rh']) != ''){
@@ -937,7 +943,7 @@ class WeatherphStationForecast extends WeatherphAppModel {
 
                     $current_forecast['localtime_range_start'] = date('Ymd H:i:s', strtotime('-3 hours', $thierTime) + $Date->getOffset());
                     $current_forecast['localtime_range_end'] = date('Ymd H:i:s', $thierTime + $Date->getOffset());
-
+                    if($current_forecast['precipitation_hr_range'] === '6h') $current_forecast['localtime_range_end'] = date('Ymd H:i:s', strtotime('+3 hours', strtotime($current_forecast['localtime_range_end'])));
                     $current_forecast['localtime_range'] = date('hA', strtotime($current_forecast['localtime_range_start'])) . '-' . date('hA', strtotime($current_forecast['localtime_range_end']));
 
                     $readingTime = date('Ymd H:i:s', strtotime(date('Ymd H:i:s')) + $Date->getOffset());
