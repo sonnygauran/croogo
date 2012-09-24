@@ -371,11 +371,9 @@ class WeatherphController extends WeatherphAppController {
         //$this->layout = 'default';
 
         $blogLists = $this->Node->find('all', array(
-           'order' => 'Node.created DESC',
-           'conditions' => array(
-               'Node.type' => 'blog',
-               'Node.terms' => json_encode(array('1'=>'news')),
-               ),
+            'order' => 'Node.created DESC',
+            'conditions' => array('Node.type' => 'news'),
+            'limit' => 5,
         ));
 
     //debug($blogLists);
@@ -388,11 +386,9 @@ class WeatherphController extends WeatherphAppController {
 
 
         $blogLists = $this->Node->find('all', array(
-           'order' => 'Node.created DESC',
-           'conditions' => array(
-               'Node.type' => 'blog',
-               'Node.terms' => json_encode(array('2'=>'announcements')),
-               ),
+            'order' => 'Node.created DESC',
+            'conditions' => array('Node.type' => 'announcements'),
+            'limit' => 5,
         ));
 
     //debug($blogLists);

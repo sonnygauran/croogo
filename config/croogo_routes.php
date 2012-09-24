@@ -18,6 +18,7 @@
 	CroogoRouter::connect('/blog/archives/*', array('controller' => 'nodes', 'action' => 'index', 'type' => 'blog'));
 	CroogoRouter::connect('/blog/:slug', array('controller' => 'nodes', 'action' => 'view', 'type' => 'blog'));
 	CroogoRouter::connect('/blog/term/:slug/*', array('controller' => 'nodes', 'action' => 'term', 'type' => 'blog'));
+	CroogoRouter::connect('/mata-ng-bagyo/:slug/*', array('controller' => 'nodes', 'action' => 'term', 'type' => ':slug'));
 
 	// Node
 	CroogoRouter::connect('/node', array('controller' => 'nodes', 'action' => 'index', 'type' => 'node'));
@@ -30,6 +31,15 @@
 	CroogoRouter::connect('/visit/archives/*', array('controller' => 'nodes', 'action' => 'index', 'type' => 'visit'));
 	CroogoRouter::connect('/visit/:slug', array('controller' => 'nodes', 'action' => 'view', 'type' => 'visit'));
 	CroogoRouter::connect('/visit/term/:slug/*', array('controller' => 'nodes', 'action' => 'term', 'type' => 'visit'));
+
+	//News
+	CroogoRouter::connect('/news/:slug', array('controller' => 'nodes', 'action' => 'view', 'type' => 'news'));
+
+	//Announcements
+	CroogoRouter::connect('/announcements/:slug', array('controller' => 'nodes', 'action' => 'view', 'type' => 'announcements'));
+
+
+
 
 	// Page
 	CroogoRouter::connect('/about', array('plugin' => 'weatherph', 'controller' => 'weatherph', 'action' => 'about'));
