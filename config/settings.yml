@@ -26,12 +26,12 @@ Site.timezone: Asia/Manila
 Data.dmo: /data/dmo/temp/
 Data.stations: /data/stations/
 Data.readings: /data/readings/
-Data.movies: /assets/theme/weatherph/webroot/videos/
-Data.uploaded_videos: /assets/theme/weatherph/webroot/uploaded_videos/
+Data.movies: /theme/weatherph/videos/
+Data.uploaded_videos: /theme/weatherph/uploaded_videos/
 Data.uploaded_images_folder: /home/netuser/uploaded_images/
 Data.uploaded_images: /uploads/uploaded_images/
-Data.weathertv: /assets/theme/weatherph/webroot/weathertv/
-Data.layers: /theme/weatherph/webroot/img/layers/
+Data.weathertv: /theme/weatherph/weathertv/
+Data.layers: /theme/weatherph/img/layers/
 
 Abfrage.username: wget
 Abfrage.password: p09tM20
