@@ -1,10 +1,12 @@
 #!/bin/bash
 
-#cp -r -P 2215 -r netuser@199.195.193.240:/data/layers/live/* .
 cd ..
 base="$(pwd)"
 path="$base/data/layers"
 output="$base/views/themed/weatherph/webroot/img/layers"
+	rm $output
+echo "path $path";
+echo "output $output";
 
 if [ ! -d $path ]; then
 	mkdir $path;
