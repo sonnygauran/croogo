@@ -188,9 +188,7 @@ $(document).ready(function(){
             $('select[name=philippine-regions]').change(function(){
                 $("select[name=philippine-regions] option:selected").each(function () {
 
-                    // TODO: Use an attribute instead of .text(). This function will break as soon as the text changes.
-
-                    if($('.active-layer').text() !== 'Weather movies \u25bf'){
+                    if($('.active-layer').attr('id') !== 'movie-layer'){
                         if ($(this).attr('selected')) { // Is the current <option> selected?
                             $region = $(this).attr('data-region-id'); // the region id
 
@@ -218,7 +216,7 @@ $(document).ready(function(){
                                 }
                             }
                         }
-                    } else if($('.active-layer').text() === 'Weather movies \u25bf'){
+                    } else if($('.active-layer').attr('id') === 'movie-layer'){
 
                         // Video switch
 

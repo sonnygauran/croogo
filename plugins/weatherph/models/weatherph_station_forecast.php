@@ -445,7 +445,7 @@ class WeatherphStationForecast extends WeatherphAppModel {
                     $current_forecast['localtime'] = date('Ymd H:i:s', $thierTime + $Date->getOffset());
                     $current_forecast['localtime_range_start'] = date('Ymd H:i:s', strtotime('-3 hours', $thierTime) + $Date->getOffset()); 
                     $current_forecast['localtime_range_end'] = date('Ymd H:i:s', $thierTime + $Date->getOffset());
-                    if($current_forecast['precipitation_hr_range'] === '6h') $current_forecast['localtime_range_end'] = date('Ymd H:i:s', strtotime('+3 hours', strtotime($current_forecast['localtime_range_end'])));
+                    if($current_forecast['precipitation_hr_range'] === '6h') $current_forecast['localtime_range_start'] = date('Ymd H:i:s', strtotime('-3 hours', strtotime($current_forecast['localtime_range_start'])));
                     $current_forecast['localtime_range'] = date('hA', strtotime($current_forecast['localtime_range_start'])) . '-' . date('hA', strtotime($current_forecast['localtime_range_end']));
 
                     $readingTime = date('Ymd H:i:s', strtotime(date('Ymd H:i:s')) + $Date->getOffset());
@@ -943,7 +943,7 @@ class WeatherphStationForecast extends WeatherphAppModel {
 
                     $current_forecast['localtime_range_start'] = date('Ymd H:i:s', strtotime('-3 hours', $thierTime) + $Date->getOffset());
                     $current_forecast['localtime_range_end'] = date('Ymd H:i:s', $thierTime + $Date->getOffset());
-                    if($current_forecast['precipitation_hr_range'] === '6h') $current_forecast['localtime_range_end'] = date('Ymd H:i:s', strtotime('+3 hours', strtotime($current_forecast['localtime_range_end'])));
+                    if($current_forecast['precipitation_hr_range'] === '6h') $current_forecast['localtime_range_start'] = date('Ymd H:i:s', strtotime('-3 hours', strtotime($current_forecast['localtime_range_start'])));
                     $current_forecast['localtime_range'] = date('hA', strtotime($current_forecast['localtime_range_start'])) . '-' . date('hA', strtotime($current_forecast['localtime_range_end']));
 
                     $readingTime = date('Ymd H:i:s', strtotime(date('Ymd H:i:s')) + $Date->getOffset());
