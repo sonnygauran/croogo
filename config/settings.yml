@@ -31,6 +31,7 @@ Data.uploaded_videos: /assets/theme/weatherph/webroot/uploaded_videos/
 Data.uploaded_images_folder: /home/netuser/uploaded_images/
 Data.uploaded_images: /uploads/uploaded_images/
 Data.weathertv: /assets/theme/weatherph/webroot/weathertv/
+Data.layers: /theme/weatherph/webroot/img/layers/
 
 Abfrage.username: wget
 Abfrage.password: p09tM20
