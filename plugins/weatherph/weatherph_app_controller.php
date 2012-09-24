@@ -19,7 +19,7 @@ class WeatherphAppController extends AppController {
                 
                 $this->log('Referer: ' . $this->referer());
                 if(!in_array($this->referer(), $allowed_referrers)){
-                    $this->log('Client: '. $_SERVER['REMOTE_ADDR'] . ' tried to access ' . $_SERVER[ 'REQUEST_URI' ] . '', 'forbidden');
+                    $this->log('Client: '. $_SERVER['REMOTE_ADDR'] . ' tried to access ' . $_SERVER[ 'REQUEST_URI' ] . '', 'FORBIDDEN');
                     exit;
                 }else{
                     $this->log('allowed');
@@ -31,7 +31,7 @@ class WeatherphAppController extends AppController {
                 );
 //                
                 if(!in_array($this->referer(), $allowed_referrers)){
-                    $this->log('Client: '. $_SERVER['REMOTE_ADDR'] . ' tried to access ' . $_SERVER[ 'REQUEST_URI' ] . '', 'forbidden');
+                    $this->log('Client: '. $_SERVER['REMOTE_ADDR'] . ' tried to access ' . $_SERVER[ 'REQUEST_URI' ] . '', 'FORBIDDEN');
 //                    $this->redirect(array('plugin' => 'weatherph', 'controller' => 'weatherph', 'action' => 'index'));
                     $this->layout = 'default';
                 }
@@ -39,7 +39,7 @@ class WeatherphAppController extends AppController {
             case 'getResultCoordinates':
                 error_log("REFERERERER: " . $this->referer());
                 if(!strstr($this->referer(), 'results')){
-                    $this->log('Client: '. $_SERVER['REMOTE_ADDR'] . ' tried to access ' . $_SERVER[ 'REQUEST_URI' ] . '', 'forbidden');
+                    $this->log('Client: '. $_SERVER['REMOTE_ADDR'] . ' tried to access ' . $_SERVER[ 'REQUEST_URI' ] . '', 'FORBIDDEN');
                     exit;
                 }
                 break;
