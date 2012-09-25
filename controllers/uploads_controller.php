@@ -55,8 +55,8 @@ class UploadsController extends AppController{
             $link = WWW_ROOT . 'uploads' . DS . 'uploaded_images';
             $destination =  $directory . $date.".".$extension;
             
-            if(!is_dir($directory)) mkdir ($directory); // create directory
-            if(!file_exists($link)) symlink($directory, $link); // create symlink
+//            if(!is_dir($directory)) mkdir ($directory); // create directory
+//            if(!file_exists($link)) symlink($directory, $link); // create symlink
             
             if(move_uploaded_file($tmp_name, $destination)){
                 $this->Session->setFlash("Upload Successful!");
