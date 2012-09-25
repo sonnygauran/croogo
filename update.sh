@@ -11,6 +11,7 @@ clear
     echo "\treadings  \tUpdate readings";
     echo "\tdmo \t\tUpdates dmo";
     echo "\tmovies \t\tGet the latest movies for your local copy";
+    echo "\tlayers \t\tDownload the latest layers from TXN2";
     echo "\tall \t\tUpdates all";
     echo "\n"
 
@@ -54,6 +55,12 @@ elif [ "$type" = 'all' ]; then
 
 	echo "`date`:: Script Finished."
 
+elif [ "$type" = 'layers' ]; then
+
+	echo "`date`:: Scrpt Started."
+	./scripts/layers.sh
+	echo "`date`:: Scrpt FInished."
+
 elif [ $type = "help" ]; then
 	
 	clear
@@ -63,6 +70,7 @@ elif [ $type = "help" ]; then
     echo "\treadings  \tUpdate readings";
     echo "\tdmo \t\tUpdates dmo";
     echo "\tmovies \t\tGet the latest movies for your local copy";
+    echo "\tlayers \t\tDownload the latest layers from TXN2";
     echo "\tall \t\tUpdates all";
 
 	echo "\n"
@@ -75,6 +83,7 @@ clear
     echo "\treadings  \tUpdate readings";
     echo "\tdmo \t\tUpdates dmo";
     echo "\tmovies \t\tGet the latest movies for your local copy";
+    echo "\tlayers \t\tDownload the latest layers from TXN2";
     echo "\tall \t\tUpdates all";    
 	echo "\n"
 

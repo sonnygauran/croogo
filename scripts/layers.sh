@@ -1,7 +1,13 @@
 #!/bin/bash
 
-cd ..
 base="$(pwd)"
+
+clear
+if [[ $base == *scripts* ]]; then
+	echo "Update your layers through the ./update script"
+	exit
+fi
+
 path="$base/data/layers"
 output="$base/views/themed/weatherph/webroot/img/layers"
 	rm $output
@@ -14,7 +20,7 @@ else
 	echo "existing directory: $path";
 fi
 	echo "\n scp on txn2; layer images";
-	scp -r -P 2215 -r netuser@199.195.193.240:/data/layers/live/* $path
+	scp -r -P 2215 netuser@199.195.193.240:/data/layers/live/* $path
 
 if [ ! -h $output ]; then
 	ln -s $path $output
