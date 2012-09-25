@@ -3,14 +3,14 @@
 class SearchController extends WeatherphAppController {
     
     public $name = 'Search';
-    public $uses = array('Nima.NimaName', 'Nima.FipsCode', 'Nima.Region');
+    public $uses = array('Nima.NimaName', 'Nima.FipsCode', 'Nima.Area');
     public $helpers = array('Cache', 'Javascript');
     var $cacheAction = array(
         'index' => array('duration' => 86400),
         'getResultCoordinates' => array('duration' => 86400),
     );
 
-    public function index($terms = '') { 
+    public function index($terms = '') {
        $this->set('title_for_layout','Search for ' . ucwords($terms) );
     
         $this->log('INDEX!!!');
@@ -40,29 +40,78 @@ class SearchController extends WeatherphAppController {
 
                 $gum = 'search.nima.name';
                 $names = array();
-                if (!Cache::read($gum, 'daily')) {
-                    $names = $this->NimaName->find('all', array(
-                        'conditions' => array(
-                            'full_name_ro LIKE' => "%city%"
-                        ),
-                    ));
-                    
-                    Cache::write($gum, $names, 'daily');
-                } else {
-                    $names = Cache::read($gum, 'daily');
-                }
                 
+                $this->NimaName->Behaviors->attach('Containable');
                 $nameIds   = Set::extract($names, '{n}.NimaName.id');
                 $idStrings = implode(', ', $nameIds);
 
+                $names = $this->NimaName->find('all', array(
+                    'fields'=> 'NimaName.id',
+                    'conditions' => array(
+                        'AND' => array(
+                            array(
+                                'OR'=> array(
+                                    array('full_name_ro Like' => "$keyword%"),
+                                    array('full_name_ro Like' => "% $keyword"),
+                                )
+                            ),
+                            array(
+                                'OR' => array(
+                                    array('dsg' => 'ppl'),
+                                    array('dsg' => 'adm1'),
+                                    array('dsg' => 'adm2'),
+                                )
+                            ),
+                            array(
+                                'nt' => 'N'
+                            ),
+                            array(
+                                'type' => 2
+                            )
+                        ),
+                        
+                    ),
+                ));
+                
+                $type = (count($names) > 0) ? 2 : 1;
                 
                 $this->paginate['NimaName'] = array(
-                    'limit' => 15,
-                    'fields' => array('id', 'full_name_ro'),
                     'conditions' => array(
-                        'keyword' => $keyword,
+                        'AND' => array(
+                            array(
+                                'OR'=> array(
+                                    array('full_name_ro Like' => "$keyword%"),
+                                    array('full_name_ro Like' => "% $keyword"),
+                                )
+                            ),
+                            array(
+                                'OR' => array(
+                                    array('dsg' => 'ppl'),
+                                    array('dsg' => 'adm1'),
+                                    array('dsg' => 'adm2'),
+                                )
+                            ),
+                            array(
+                                'nt' => 'N'
+                            ),
+                            array(
+                                'type' => $type
                             )
+                        ),
+                        
+                    ),
+                    'contain' => array(
+                        'FipsCode' => 'Area'
+                    ),
+                    'order' => array(
+                        'FipsCode.type' => 'desc',
+                        'NimaName.id' => 'desc',
+                        "FIELD(NimaName.dsg, 'adm1', 'ppl')" => 'desc'
+                    ),
+                    'limit' => 11
+                    
                 );
+                
                 $gum = 'search.'.rawurlencode($keyword)
                     .'.limit'.$this->paginate['limit']
                     .'.page'.$this->paginate['page'];
@@ -85,15 +134,22 @@ class SearchController extends WeatherphAppController {
     public function getResultCoordinates($keyword) {
         $this->layout = 'json/ajax';
         
+        if($keyword){
+            error_log("KEYOWRD: $keyword");
+        }else{
+            $url = $_SERVER['REQUEST_URI'];
+            error_log("USL: $url");
+            error_log(print_r($keyword, true));
+        }
 //        $query = "select `Name`.`id`, `Name`.`long`, `Name`.`lat`, `Name`.`full_name_ro`, `FipsCode`.name, `Region`.`name`, `Region`.`code`, `FipsCode`.`type` from `names` as `Name`, `fips_codes` as `FipsCode`, `regions` as `Region`  where ( `Name`.`fips_code_id` = `FipsCode`.`id` ) and ( `FipsCode`.`region_id` = `Region`.`id` ) and ( `Name`.`nt` = 'N' ) and ( `Name`.`dsg` = 'ppl'  or `Name`.`dsg` = 'adm1' or `Name`.`dsg` = 'adm2' ) and ( `Name`.`full_name_ro` = '$keyword' 	or `Name`.`full_name_ro` like '$keyword %'  or `Name`.`full_name_ro` like '% $keyword'  ) order by `FipsCode`.`type` desc, FIELD(`Region`.`code`, 'CAR', 'NCR') desc, `Name`.`id` desc, FIELD(`Name`.`dsg`, 'adm1', 'ppl') desc";
-        $query = "select `Name`.`id`, `Name`.`long`, `Name`.`lat`, `Name`.`full_name_ro`, `FipsCode`.`type` from `names` as `Name`, `fips_codes` as `FipsCode`, `regions` as `Region`  where ( `Name`.`fips_code_id` = `FipsCode`.`id` ) and ( `FipsCode`.`region_id` = `Region`.`id` ) and ( `Name`.`nt` = 'N' ) and ( `Name`.`dsg` = 'ppl'  or `Name`.`dsg` = 'adm1' or `Name`.`dsg` = 'adm2' ) and ( `Name`.`full_name_ro` = '$keyword' 	or `Name`.`full_name_ro` like '$keyword %'  or `Name`.`full_name_ro` like '% $keyword'  ) order by `FipsCode`.`type` desc, FIELD(`Region`.`code`, 'CAR', 'NCR') desc, `Name`.`id` desc, FIELD(`Name`.`dsg`, 'adm1', 'ppl') desc";
+        $query = "select `Name`.`id`, `Name`.`long`, `Name`.`lat`, `Name`.`full_name_ro`, `FipsCode`.`type` from `names` as `Name`, `fips_codes` as `FipsCode`, `areas` as `Region`  where ( `Name`.`fips_code_id` = `FipsCode`.`id` ) and ( `FipsCode`.`area_id` = `Region`.`id` ) and ( `Name`.`nt` = 'N' ) and ( `Name`.`dsg` = 'ppl'  or `Name`.`dsg` = 'adm1' or `Name`.`dsg` = 'adm2' ) and ( `Name`.`full_name_ro` = '$keyword' 	or `Name`.`full_name_ro` like '$keyword %'  or `Name`.`full_name_ro` like '% $keyword'  ) order by `FipsCode`.`type` desc, FIELD(`Region`.`code`, 'CAR', 'NCR') desc, `Name`.`id` desc, FIELD(`Name`.`dsg`, 'adm1', 'ppl') desc";
 //        $gum = 'search.nima.name.coordinates';
         $locations = array();
         $updated_results = array();
 //        if (!Cache::read($gum, 'daily')) {
             
             $NimaName = new NimaName();
-            $keyword = $this->params['pass'][0];
+            
             $locations = $NimaName->query($query);
             $this->log($locations);
             $unfiltered_results = array();
@@ -117,6 +173,7 @@ class SearchController extends WeatherphAppController {
         $sql = "select `Name`.`id`, `Name`.`name` as `full_name_ro`, `Name`.`lat`, `Name`.`lon` as `long` from `stations` as `Name` where (`Name`.`name` like '%$keyword%')";
         $stations = $NimaName->query($sql);
         $updated_results = array_merge($updated_results, $stations);
+        
 //        debug($updated_results);
 //        exit;
             

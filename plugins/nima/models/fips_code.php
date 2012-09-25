@@ -3,9 +3,9 @@ class FipsCode extends NimaAppModel {
 	public $name = 'FipsCode';
         public $useDbConfig = 'nima';
 	public $belongsTo = array(
-		'Region' => array(
-			'className' => 'Nima.Region',
-			'foreignKey' => 'region_id',
+		'Area' => array(
+			'className' => 'Nima.Area',
+			'foreignKey' => 'area_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''

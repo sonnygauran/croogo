@@ -1,11 +1,11 @@
 <?php
-class Region extends NimaAppModel {
-	public $name = 'Region';
+class Area extends NimaAppModel {
+	public $name = 'Area';
         public $useDbConfig = 'nima';
 	public $hasMany = array(
 		'FipsCode' => array(
 			'className' => 'Nima.FipsCode',
-			'foreignKey' => 'region_id',
+			'foreignKey' => 'area_id',
 			'dependent' => false,
 			'conditions' => '',
 			'fields' => '',
