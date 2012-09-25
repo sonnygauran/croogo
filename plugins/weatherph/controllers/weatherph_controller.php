@@ -112,7 +112,7 @@ class WeatherphController extends WeatherphAppController {
         //exit;
         $blogEntries = $this->Node->find('all', array(
             'order' => 'Node.created DESC',
-            'conditions' => array('Node.type' => 'blog'),
+            'conditions' => array('Node.type' => array('news', 'announcements')),
             'limit' => 5,
         ));
 
@@ -220,7 +220,8 @@ class WeatherphController extends WeatherphAppController {
      */
     public function getForecast($stationID = '984290', $numDays = 1, $utch = '3h') {
 
-        //For Index
+        //For 
+        
 
         $this->layout = 'json/ajax';
         App::import('Model', 'Weatherph.WeatherphStationForecast');
@@ -344,7 +345,8 @@ class WeatherphController extends WeatherphAppController {
             'fields' => 'wmo1'
         ));
 
-        if(empty($station)) $this->redirect(array('controller' => 'weatherph', 'action' => 'index'));
+        if(empty($station)) $this->redirect(array('controller' => 'weatherph', 'action' => '
+'));
         $dataSets = $WeatherphStationForecast->getWeeklyForecast('all', array('conditions' => array(
             'id' => $stationID,
         )));

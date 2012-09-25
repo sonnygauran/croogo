@@ -19,7 +19,7 @@
 
                 <div class="blog-excerpt">
                     <h4><?= $html->link($blog['Node']['title'], $blog['Node']['url'], array('class' => 'link')) ?></h4>
-                    <p><?= $blog['Node']['body']; ?></p>
+                    <p><?= $blog['Node']['excerpt']; ?></p>
                 </div>
             <?php } ?>
         </div>
