@@ -37,12 +37,18 @@
     <section id="container">
         <header class="banner shadow">
             <a href="<?= $this->webroot ?>"><div class="logo"></div></a>
-            <div id="slides">
-                <div class="slides_container">
-                    <img src="<?= $this->webroot ?>theme/weatherph/img/mm.png" alt="Meteomedia">
-                    <img src="<?= $this->webroot ?>theme/weatherph/img/az.png" alt="Aboitiz Power" style="display: none;">
-                    <img src="<?= $this->webroot ?>theme/weatherph/img/ub.png" alt="Union Bank" style="display: none;">
-                </div>
+            <div id="logo-slider" class="flexslider">
+                <ul class="slides">
+                    <li>
+                        <img src="<?= $this->webroot ?>theme/weatherph/img/mm.png" alt="Meteomedia">
+                    </li>
+                    <li>
+                        <img src="<?= $this->webroot ?>theme/weatherph/img/az.png" alt="Aboitiz Power">
+                    </li>
+                    <li>
+                        <img src="<?= $this->webroot ?>theme/weatherph/img/ub.png" alt="Union Bank">
+                    </li>
+                </ul>
             </div>
             <div id="options">
                 <div class="flag"></div>
@@ -176,22 +182,21 @@ Google Analytics script
 
     if (($this->name == 'Weatherph') && ($this->action == 'index') || ($this->name == 'Search') && ($this->action == 'index')){
         echo '<script src="http://cdn.leafletjs.com/leaflet-0.4.4/leaflet.js"></script>';
-
     }
 
-    echo $this->Html->script('slides.min.jquery');
+    echo $this->Html->script('jquery.flexslider-min');
 ?>
 
 <script type="text/javascript">
     $(window).load(function(){
-        $('#slides').slides({
-            preload: false,
-            effect: 'fade',
-            play: 5000,
-            pagination: false,
-            generatePagination: false,
-            generateNextPrev: false
+        $('#logo-slider').flexslider({
+            controlNav: false,
+            directionNav: false,
+            initDelay: 2000,
+            slideshowSpeed: 4500,
+            animationSpeed: 800
         });
+
         $("nav li").click(function(){
         window.location=$(this).find("a").attr("href"); return false;
         });

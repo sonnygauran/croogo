@@ -440,6 +440,7 @@ meteomediaIcon.options.iconUrl = '<?= Router::url(null, true) ?>theme/weatherph/
 if (isiPhone() || (navigator.userAgent.match(/iPad/i) !== null)) {
     stationIcon    = new StationIconMobile();
     meteomediaIcon.options.iconUrl = '<?= Router::url(null, true) ?>theme/weatherph/img/leaflet/marker-icon-blue.png';
+    meteomediaIcon.options.iconSize = new L.Point(12, 20);
 }
 
 function mapStationsPagasa($stationsArray) {
@@ -467,7 +468,7 @@ function mapStations($stationsArray, icon, stationName) {
         /**
          * This would make MM stations on top of others
          */
-        if (stationName != null) {
+        if (stationName !== null) {
             if (stationName == 'meteomedia') {
                 marker.setZIndexOffset(1);
             } else {
@@ -555,9 +556,9 @@ function remapStations() {
                         window['STATIONS'].meteomedia = $stations;
 
                         $('select[name=philippine-regions]')
-                            .find('option[data-region-id=Philippines]')
-                            .attr('selected','selected')
-                            .change();
+                        .find('option[data-region-id=Philippines]')
+                        .attr('selected','selected')
+                        .change();
                     }
                 });
 
@@ -592,71 +593,52 @@ function getDataLayer(){
     // The currently-selected layer
     var dataLayer = window["DATA_LAYER"];
 
-    // console.error('x~>'+dataLayer);
     if (dataLayer == 'temperature' || dataLayer == 'pressure' || dataLayer == 'satellite') {
-//        $('.data-layer').animate({
-//            opacity: 0
-//        }, 600, function(){
-            $('.layer.slides_container').html('');
-            /**
-             * This is responsible for adding the layer images for animation
-             */
-            for (var key in window['fileNames'][dataLayer]) {
-                var c = window['fileNames'][dataLayer][key];
-                var _imageName = ""+c.year+c.month+c.day+c.hour+c.min+'00'+gemCodeForRegions+'_'+dataLayer;
+        $('.layer.slides_container').html('');
 
-                $('.layer.slides_container').append(
-                    '<img src="<?= $this->webroot ?>theme/weatherph/img/layers/'+_imageName+'.png" '
-                    +'data-year="'   + c.pst_year  + '" '
-                    +'data-month="'  + c.pst_month + '" '
-                    +'data-day="'    + c.pst_day   + '" '
-                    +'data-hour="'   + c.pst_hour  + '" '
-                    +'data-minute="' + c.pst_min   + '" '
-                    +'data-second="00" '
-                    +'style="display: none;"'
-                    +' />'
-                );
-            }
+        // Adds the layer images
+        for (var key in window['fileNames'][dataLayer]) {
+            var c = window['fileNames'][dataLayer][key];
+            var _imageName = ""+c.year+c.month+c.day+c.hour+c.min+'00'+gemCodeForRegions+'_'+dataLayer;
 
-            $('.data-layer').css('opacity', 0);
-            $('.data-layer').animate({
-                opacity: 1
-            }, 1000, function(){
-                /**
-                * This is responsible for animating the added layer images
-                */
-                $('#layer-slides').slides({
-                    preload: false,
-                    effect: 'fade',
-                    crossfade: true,
-                    fadeSpeed: 1000,
-                    play: 2000,
-                    pagination: false,
-                    generatePagination: false,
-                    generateNextPrev: false,
-                    animationStart: function(){
-                        var $visible = $('.layer.slides_container img:visible');
+            $('#layer-slides > .slides').append(
+                '<li>' +
+                    '<img src="<?= $this->webroot ?>theme/weatherph/img/layers/'+_imageName+'.png" ' +
+                        'data-year="'   + c.pst_year  + '" ' +
+                        'data-month="'  + c.pst_month + '" ' +
+                        'data-day="'    + c.pst_day   + '" ' +
+                        'data-hour="'   + c.pst_hour  + '" ' +
+                        'data-minute="' + c.pst_min   + '" ' +
+                    ' />' +
+                '</li>'
+            );
+        }
 
-                        if ($visible.length == 1) {
-                            var minutes =  $visible.attr('data-minute');
+        $('.data-layer').css('opacity', 0);
+        $('.data-layer').animate({
+            opacity: 1
+        }, 1000, function(){
 
-                            minutes -= 00;
-                            if(minutes === 0) minutes = '00';
-
-                            $('.data-layer-label .timestamp .date .year').html($visible.attr('data-year'));
-                            $('.data-layer-label .timestamp .date .month').html($visible.attr('data-month'));
-                            $('.data-layer-label .timestamp .date .day').html($visible.attr('data-day'));
-
-                            $('.data-layer-label .timestamp .time .hour').html($visible.attr('data-hour'));
-                            $('.data-layer-label .timestamp .time .minute').html(minutes) ;
-                            $('.data-layer-label .timestamp .time .second').html('00');
-                        }
-                    }
-                });
-            }); // animation callback
-       // });
+            // Animates the layer images
+            $('#layer-slides').flexslider({
+                controlsContainer: "layer-controls",
+                controlNav: false,
+                prevText: "Prev",
+                pausePlay: true,
+                initDelay: 2000,
+                slideshowSpeed: 2000,
+                animationSpeed: 500,
+                after: function(){
+                    var $visible = $('#layer-slides img:visible');
+                    $('.data-layer-label .timestamp .date .year').html($visible.attr('data-year'));
+                    $('.data-layer-label .timestamp .date .month').html($visible.attr('data-month'));
+                    $('.data-layer-label .timestamp .date .day').html($visible.attr('data-day'));
+                    $('.data-layer-label .timestamp .time .hour').html($visible.attr('data-hour'));
+                    $('.data-layer-label .timestamp .time .minute').html('00');
+                }
+            });
+        }); // animation callback
     }
-
 }
 
 function getObjects(obj, key, val) {
@@ -692,6 +674,7 @@ function redrawMap(){
                 $('#map').data('map').scrollWheelZoom.disable();
                 $('.data-layer').show();
                 $('.leaflet-control-zoom').hide();
+                $('#legend').css('padding-top', '3em');
                 break;
             default:
                 $('.data-layer-label').hide();
@@ -748,6 +731,7 @@ function redrawMap(){
                 $('.scale-temperature').hide();
                 $('.scale-pressure').hide();
                 $('.minor-area').removeAttr('disabled');
+                $('#legend').css('padding-top', '.5em');
                 remapStations();
                 $('#map').data('map').removeLayer(window['LEAFLET_TILES'].temperature);
                 $('#map').data('map').removeLayer(window['LEAFLET_TILES'].pressure);
@@ -851,9 +835,6 @@ $(document).ready(function(){
                 $video
                 .fadeIn(1000)
                 .find('video').show();
-            //            jwplayer("#window['MOVIE_CONTENT']."+_name).setup({
-            //                flashplayer: "<? $this->webroot . 'weatherph/swf/player.swf'?>"
-            //            });
             });
 
         } else {
