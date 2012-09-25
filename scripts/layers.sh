@@ -10,7 +10,6 @@ fi
 
 path="$base/data/layers"
 output="$base/views/themed/weatherph/webroot/img/layers"
-	rm $output
 echo "path $path";
 echo "output $output";
 
@@ -22,6 +21,7 @@ fi
 	echo "\n scp on txn2; layer images";
 	scp -r -P 2215 netuser@199.195.193.240:/data/layers/live/* $path
 
+	rm $output
 if [ ! -h $output ]; then
 	ln -s $path $output
 else
