@@ -439,7 +439,7 @@ meteomediaIcon.options.iconUrl = '<?= Router::url(null, true) ?>theme/weatherph/
 
 if (isiPhone() || (navigator.userAgent.match(/iPad/i) !== null)) {
     stationIcon    = new StationIconMobile();
-    meteomediaIcon = new StationIconMobile('<?= Router::url(null, true) ?>theme/weatherph/img/leaflet/marker-icon-blue-small.png');
+    meteomediaIcon.options.iconUrl = '<?= Router::url(null, true) ?>theme/weatherph/img/leaflet/marker-icon-blue.png';
 }
 
 function mapStationsPagasa($stationsArray) {

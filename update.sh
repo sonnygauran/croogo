@@ -52,6 +52,7 @@ elif [ "$type" = 'all' ]; then
 	./Vendor/cake/cake/console/cake -app `pwd` meteomedia readings_import
 	./scripts/getMovies.sh
 	./scripts/dmoDownload.sh
+	./scripts/layers.sh
 
 	echo "`date`:: Script Finished."
 
