@@ -6,6 +6,7 @@ vendors/simpletest/
 webroot/uploads/
 data/*
 views/themed/weatherph/webroot/img/layers/*
+views/themed/weatherph/webroot/img/layers
 
 # Cake cache
 tmp/
