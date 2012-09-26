@@ -322,8 +322,8 @@ function mapStations($stationsArray, icon) {
 function remapStations() {
     var url = window.location.pathname;
     url = url.split('/');
-    var keyword = url[url.length - 1];
-
+    var keyword = url[2];
+    
     if (window['STATIONS'].pagasa == null) {
         $.ajax({
             type   : 'GET',
