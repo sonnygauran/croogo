@@ -80,7 +80,8 @@ class SearchController extends WeatherphAppController {
                         'AND' => array(
                             array(
                                 'OR'=> array(
-                                    array('full_name_ro Like' => "$keyword%"),
+                                    array('full_name_ro' => "$keyword"),
+                                    array('full_name_ro Like' => "$keyword %"),
                                     array('full_name_ro Like' => "% $keyword"),
                                 )
                             ),
