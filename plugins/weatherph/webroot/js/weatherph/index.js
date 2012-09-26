@@ -246,6 +246,11 @@ $(document).ready(function(){
                         }
 
                         var src;
+                        var poster = $('#movie-'+_name ).attr('poster')
+                        var new_poster = poster.replace(currentRegion, videoRegion)
+                        $('#movie-'+_name ).attr('poster', new_poster)
+                        
+//                        $('#movie-'+_name ).attr('poster', name)
                         $.each($('#movie-'+_name + ' > source'), function(index, value){
                             src = $(this).attr('src');
                             new_src = src.replace(currentRegion, videoRegion);
@@ -594,8 +599,10 @@ function getDataLayer(){
     var dataLayer = window["DATA_LAYER"];
 
     if (dataLayer == 'temperature' || dataLayer == 'pressure' || dataLayer == 'satellite') {
-        $('.layer.slides_container').html('');
-
+        console.error($('#layer-slides > .slides'))
+        $('#layer-slides > .slides').html('');
+        console.error($('#layer-slides > .slides'))
+        
         // Adds the layer images
         for (var key in window['fileNames'][dataLayer]) {
             var c = window['fileNames'][dataLayer][key];
