@@ -26,9 +26,9 @@ $movie_location = Configure::read('Data.movies');
 
             </div>
             <div class="map-viewport">
-                <div id="layer-slides" class="data-layer flexslider" data-bbox="">
-                    <ul class="slides">
-                    </ul>
+                <div id="layer-slides" class="data-layer" data-bbox="">
+                    <div class="layer slides_container">
+                    </div>
                 </div>
 
                 <div id="map">
