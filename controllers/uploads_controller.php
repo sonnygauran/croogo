@@ -17,9 +17,24 @@ class UploadsController extends AppController{
     function admin_video(){
         
         if(!empty($this->data)){
+            $allowed_extensions = array('mp4', 'mov', 'wma', 'webm', 'm4v', 'avi');
+            
+            
+            
             $date = date('YmdHis'); 
             $extension = explode('.', $this->data['Upload']['video']['name']);
             $extension = ($extension[count($extension)-1]);
+            
+            if(!in_array($extension, $allowed_extensions)){
+                $this->Session->setflash('Invalid Extension');
+                $this->redirect(array(
+                        'plugin'=> null,
+                        'controller' => 'uploads',
+                        'action' => 'video'
+                    
+                ));
+           
+            }
             
             $tmp_name = $this->data['Upload']['video']['tmp_name'];
             
