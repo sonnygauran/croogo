@@ -4,7 +4,7 @@ date_default_timezone_set('UTC');
 $script_location = dirname(__FILE__);
 echo $script_location . "\n";
 $location = "$script_location/../views/themed/weatherph/webroot/img/layers";
-$location2 = "$script_location/../views/themed/weatherph/webroot/img/layers/downloads";
+$location2 = "$script_location/../views/themed/weatherph/webroot/img/layers/downloads_satellite";
 //$location3 = "$script_location/../views/themed/weatherph/webroot/img/layers/downloads/satellite";
 //$location4 = "$script_location/../views/themed/weatherph/webroot/img/layers/satellite";
 
@@ -81,9 +81,8 @@ $file_sizes = array(
     'satellite' => 0,
 );
 
-$properties = array(
-    'temperature' => "http://alpha.meteomedia-portal.com/services/wetter4.php?api_key=portal-efd339395c80ad957acb695bb9758399&q=meh_ifm&leg=nil&a=image&x=554&y=554&srs=EPSG:900913&",
-    'pressure' => "http://alpha.meteomedia-portal.com/services/wetter4.php?api_key=portal-efd339395c80ad957acb695bb9758399&q=meh_ifm&leg=nil&a=image&x=554&y=554&srs=EPSG:900913&p=QFF&",
+$properties2 = array(
+    'satellite' => "http://alpha.meteomedia-portal.com/services/wetter4.php?api_key=portal-efd339395c80ad957acb695bb9758399&q=sve&leg=nil&a=image&x=554&y=554&srs=EPSG:900913&"
 );
 
 $coordinates = array(
@@ -101,36 +100,31 @@ function microtime_float() {
 
 $time_start = microtime_float();
 
-
 foreach ($coordinates as $coordinate_key => $coordinate_value) {
-    foreach ($properties as $property_key => $property_value) {
-        while (strtotime($start) < strtotime($end)) {
+    foreach ($properties2 as $property_key => $property_value) {
+        while (strtotime($start2) > strtotime($end2)) {
             $counter++;
 
-            $url = "{$property_value}dt={$start}&{$coordinate_value}";
-            $start = date('YmdHis', strtotime($res, strtotime($start)));
+            $url = "{$property_value}dt={$start2}&{$coordinate_value}";
+            $start2 = date('YmdHis', strtotime($res2, strtotime($start2)));
             $reg[] = "{$coordinate_key}_{$property_key}.png";
-            $img = "$location2/$start{$coordinate_key}_{$property_key}.png";
+            $img = "$location2/$start2{$coordinate_key}_{$property_key}.png";
             $contents = file_get_contents($url);
             $strlen = strlen($contents);
-            echo "\n----------";
-
-            if ($strlen <= 239) {
-                echo "|EMPTY|----------\n";
-                echo $url;
-                echo "\n";
+            echo "\n------------------------------------------------\n";
+            if ($strlen <= 50000) {
+                echo "\n|EMPTY|\n";
             } else {
                 file_put_contents($img, $contents);
                 $original++;
-                echo "|SAVED|----------\n";
                 echo $url;
-                echo "\n";
-
+                echo "\n|SAVED|$strlen\n";
             }
         }
-        $start = $STATIC['start'];
+        $start2 = $STATIC2['start'];
     }
 }
+
 
 
 echo "Profile: \n\n";
@@ -146,8 +140,8 @@ $path = realpath($location);
 $path2 = realpath($location2);
 //$path3 = realpath($location3);
 //$path4 = realpath($location4);
-exec("rm -r $path/*pressure*");
-exec("rm -r $path/*temperature*");
+exec("rm -r $path/*satellite*");
 //exec("mv $path3/*.png $path4");
-exec("mv $path2/*.png $path");
+exec("mv $path2/*satellite* $path");
+
 
