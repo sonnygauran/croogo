@@ -82,7 +82,7 @@ class UploadsController extends AppController{
            }else{
                 $this->Session->setFlash('Something went wrong');
            }
-       }
+       } 
 //       if (! empty ){
            
 //       }
@@ -91,6 +91,25 @@ class UploadsController extends AppController{
       $this->set(compact('files'));
    }
    
+   function admin_weathertv($file ='') {
+           $location = WWW_ROOT . DS . 'uploads' . DS . 'weathertv';
+             $files = scandir ($location);
+       $excludes = array ('.', '..'); 
+       $files = array_values(array_diff($files,$excludes));
+      if(!empty($file)){
+           if(unlink("$location/$file")){
+                $this->Session->setFlash('File Successfully delted');
+                $this->redirect(array(
+                        'plugin' => null,
+                        'controller' =>'uploads',
+                        'action' => 'weathertv'
+                    ));
+           }else{
+                $this->Session->setFlash('Something went wrong');
+           }
+       }
+         $this->set(compact('files'));     
+   }
    function admin_success($file_name = ''){
        $url = Configure::read('Data.uploaded_videos') . $file_name;
        $width = "480px";
