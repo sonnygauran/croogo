@@ -59,9 +59,24 @@ class UploadsController extends AppController{
 
    function admin_image(){
         if(!empty($this->data)){
+            
+            $allowed_extensions = array('jpg', 'gif', 'jpeg', 'png', 'bmp', 'svg');
+            
+            
             $date = date('YmdHis'); 
             $extension = explode('.', $this->data['Upload']['image']['name']);
             $extension = ($extension[count($extension)-1]);
+            
+            if (!in_array(strtolower($extension), $allowed_extensions)){
+                $this->Session->setFlash('Invalid Extension');
+                   $this->redirect(array(
+                        'plugin'=> null,
+                        'controller' => 'uploads',
+                        'action' => 'image'
+                    
+                ));
+                   
+            }
             
             $tmp_name = $this->data['Upload']['image']['tmp_name'];
             
