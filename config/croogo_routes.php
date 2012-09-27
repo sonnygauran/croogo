@@ -5,7 +5,7 @@
 	// Installer
 	if (!file_exists(CONFIGS.'settings.yml')) {
 		CroogoRouter::connect('/', array('plugin' => 'install' ,'controller' => 'install'));
-	}
+	} 
 
 	// Basic
 	CroogoRouter::connect('/', array('controller' => 'nodes', 'action' => 'promoted'));

@@ -69,6 +69,32 @@ class UploadsController extends AppController{
          
    }
    
+   function admin_view($file = ''){
+       $location = WWW_ROOT . DS . 'uploads' . DS . 'uploaded_images';
+       $files = scandir ($location);
+       $excludes = array ('.', '..'); 
+       $files = array_values(array_diff($files,$excludes));
+       
+       if(!empty($file)){
+           if(unlink("$location/$file")){
+                $this->Session->setFlash('File Successfully delted');
+                $this->redirect(array(
+                        'plugin' => null,
+                        'controller' =>'uploads',
+                        'action' => 'view'
+                    ));
+           }else{
+                $this->Session->setFlash('Something went wrong');
+           }
+       }
+//       if (! empty ){
+           
+//       }
+//       debug($files);
+       
+      $this->set(compact('files'));
+   }
+   
    function admin_success($file_name = ''){
        $url = Configure::read('Data.uploaded_videos') . $file_name;
        $width = "480px";
