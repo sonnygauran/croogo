@@ -119,12 +119,14 @@
                 </ul>
             </div>
         <?php if ($tourism_links): ?>
+            <?php $excerpt1 = substr ($tourism_links[0]['Node']['excerpt'], 0, 100)?>
+            <?php $excerpt2 = substr ($tourism_links[1]['Node']['excerpt'], 0, 100)?>
             <div class="promo">
                 <a href="<?= $this->webroot ?>visit/<?= $tourism_links[0]['Node']['slug'] ?>">
                 <h4>Places to see: <?= $tourism_links[0]['Node']['title'] ?></h4>
                 <img src="<?= $this->webroot ?>theme/weatherph/img/tourism_thumbnails/<?= $tourism_links[0]['Node']['slug'] ?>.png" alt="<?= $tourism_links[0]['Node']['title'] ?>">
                 </a>
-                <p><?= $tourism_links[0]['Node']['excerpt'] ?>&#8230;</p>
+                <p><?= $excerpt1 ?>&#8230;</p>
                 <a href="<?= $this->webroot ?>visit/<?= $tourism_links[0]['Node']['slug'] ?>">
                     <div class="tourism-btn"><strong>See more</strong></div>
                 </a>
@@ -135,7 +137,7 @@
                 <h4>Discover <?= $tourism_links[1]['Node']['title'] ?>.</h4>
                 <img src="<?= $this->webroot ?>theme/weatherph/img/tourism_thumbnails/<?= $tourism_links[1]['Node']['slug'] ?>.png" alt="<?= $tourism_links[1]['Node']['title'] ?>">
                 </a>
-                <p><?= $tourism_links[1]['Node']['excerpt'] ?>&#8230;</p>
+                <p><?= $excerpt2 ?>&#8230;</p>
                 <a href="<?= $this->webroot ?>visit/<?= $tourism_links[1]['Node']['slug'] ?>">
                     <div class="tourism-btn"><strong>See more</strong></div>
                 </a>
