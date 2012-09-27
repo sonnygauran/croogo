@@ -52,11 +52,7 @@ class UploadsController extends AppController{
             
             
             $directory = Configure::read('Data.uploaded_images_folder');
-            $link = WWW_ROOT . 'uploads' . DS . 'uploaded_images';
             $destination =  $directory . $date.".".$extension;
-            
-//            if(!is_dir($directory)) mkdir ($directory); // create directory
-//            if(!file_exists($link)) symlink($directory, $link); // create symlink
             
             if(move_uploaded_file($tmp_name, $destination)){
                 $this->Session->setFlash("Upload Successful!");

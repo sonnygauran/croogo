@@ -28,7 +28,7 @@ Data.stations: /data/stations/
 Data.readings: /data/readings/
 Data.movies: http://199.195.193.129:7777/
 Data.uploaded_videos: http://199.195.193.129:7777/
-Data.uploaded_images_folder: /home/netuser/uploaded_images/
+Data.uploaded_images_folder: /var/www/uploaded_images/
 Data.uploaded_images: /uploads/uploaded_images/
 Data.weathertv: http://199.195.193.129:7777/
 Data.layers: /theme/weatherph/img/layers/
