@@ -406,6 +406,7 @@ $movie_location = Configure::read('Data.movies');
                     <p>Sorry, there's no forecast available for this station right now.</p>
                 </div>
             </div> <!--INFO-->
+        </div>
     </section> <!--MAIN CONTENT-->
     <section class="secondary">
         <div class="blog">
