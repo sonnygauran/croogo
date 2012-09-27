@@ -25,7 +25,11 @@
                     <?= $file ?>
                 </td>
                 <td>
-                    <a href="/uploads/weathertv/<?= $file ?>" > /uploads/weatherTv/<?= $file ?></a>
+                    <video controls="">
+                        <source src="http://199.195.193.129:7777/<?= $file ?>.m4v" type="video/x-m4v"/>
+                        <source src="http://199.195.193.129:7777/<?= $file ?>.mp4" type="video/mp4"/>
+                        <source src="http://199.195.193.129:7777/<?= $file ?>.webm" type="video/webm"/>
+                    </video>
                 </td>
                 <td>
                     <?php

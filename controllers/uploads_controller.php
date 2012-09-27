@@ -13,23 +13,43 @@ class UploadsController extends AppController {
     }
 
     function admin_video($file="") {
-        $location = WWW_ROOT . DS . 'uploads' . DS . 'weathertv';
-        $files = scandir($location);
+        $location = WWW_ROOT . '..' . DS . 'views' . DS . 'themed' . DS . 'weatherph' . DS . 'webroot' . DS . 'weathertv';
+        $results = scandir($location);
+        $files = array();
+        
+        
         $excludes = array('.', '..');
-        $files = array_values(array_diff($files, $excludes));
-        if (!empty($file)) {
-            if (unlink("$location/$file")) {
-                $this->Session->setFlash('File Successfully delted');
-                $this->redirect(array(
-                    'plugin' => null,
-                    'controller' => 'uploads',
-                    'action' => 'video'
-                ));
-            } else {
-                $this->Session->setFlash('Something went wrong');
+        $results = array_values(array_diff($results, $excludes));
+        foreach($results as $result){
+            $extension = explode('.', $result);
+            $name = $extension[0];
+            
+            if(!in_array($name, $files) && !empty($name)){
+                $files[] = $name;
             }
-        }
+        };
+
         $this->set(compact('files'));
+
+        if (!empty($file)) {
+            $files = DS . 'data' . DS . 'weathertv' . DS . 'live' . DS . $file . '.*';
+            $command = "rm $files";
+            
+            // Setup connection string
+            $connectionString = "netuser@199.195.193.240";
+
+            // Execute script
+            $cmd = "ssh -p2215 $connectionString \"$command\" 2>&1";
+            $output['command'] = $cmd;
+            exec($cmd, $output, $error);
+            
+            $this->Session->setFlash('File Successfully delted');
+            $this->redirect(array(
+                'plugin' => null,
+                'controller' => 'uploads',
+                'action' => 'video'
+            ));
+        }
         if (!empty($this->data)) {
             $allowed_extensions = array('mp4', 'mov', 'wma', 'webm', 'm4v', 'avi');
 
