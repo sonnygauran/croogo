@@ -43,9 +43,7 @@
                         </ul>
                 </li
                 	<li>
-					<?php echo $this->Html->link(__('Images', true), array('plugin' => null, 'controller' => 'uploads', 'action' => 'view')); ?>
 					
-				</li>
 			</ul>
 		</li>
 
