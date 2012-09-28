@@ -817,7 +817,8 @@ span.temperature {
 .page img {
     margin: 2em auto;
     display:block;
-    border: 2px solid #3990BD;
+    max-width: 716px;
+	border: 2px solid #3990BD;
 }
 
 .page dt {
