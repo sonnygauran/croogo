@@ -211,7 +211,6 @@ $(document).ready(function(){
                                     }
 
                                     map.panTo(bounds.getCenter()).setZoom(zoom);
-                                    //                                console.log($current);
                                     setTimeout(getDataLayer, 1000);
                                 }
                             }
@@ -246,9 +245,9 @@ $(document).ready(function(){
                         }
 
                         var src;
-                        var poster = $('#movie-'+_name ).attr('poster')
-                        var new_poster = poster.replace(currentRegion, videoRegion)
-                        $('#movie-'+_name ).attr('poster', new_poster)
+                        var poster = $('#movie-'+_name ).attr('poster');
+                        var new_poster = poster.replace(currentRegion, videoRegion);
+                        $('#movie-'+_name ).attr('poster', new_poster);
 
 //                        $('#movie-'+_name ).attr('poster', name)
                         $.each($('#movie-'+_name + ' > source'), function(index, value){
@@ -600,7 +599,7 @@ function getDataLayer(){
 
     // console.error('x~>'+dataLayer);
     if (dataLayer == 'temperature' || dataLayer == 'pressure' || dataLayer == 'satellite') {
-        $('.layer.slides_container').html('');
+        $('#layer-slides .slides_container').html('');
         /**
          * This is responsible for adding the layer images for animation
          */
@@ -608,7 +607,7 @@ function getDataLayer(){
             var c = window['fileNames'][dataLayer][key];
             var _imageName = ""+c.year+c.month+c.day+c.hour+c.min+'00'+gemCodeForRegions+'_'+dataLayer;
 
-            $('.layer.slides_container').append(
+            $('#layer-slides .slides_container').append(
                 '<img src="<?= $this->webroot ?>theme/weatherph/img/layers/'+_imageName+'.png" '
                 +'data-year="'   + c.pst_year  + '" '
                 +'data-month="'  + c.pst_month + '" '
@@ -638,7 +637,7 @@ function getDataLayer(){
                 generatePagination: false,
                 generateNextPrev: false,
                 animationStart: function(){
-                    var $visible = $('.layer.slides_container img:visible');
+                    var $visible = $('#layer-slides .slides_container img:visible');
 
                     if ($visible.length == 1) {
                         var minutes =  $visible.attr('data-minute');

@@ -454,7 +454,7 @@ $movie_location = Configure::read('Data.movies');
                 </div>
                 <div class="slide">
                     <a href="<?= $this->webroot ?>weathertv">
-                        <img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail.png"/>
+                        <img src="<?= $this->webroot ?>theme/weatherph/img/weather-tv.png"/>
                         <div class="slide-caption">
                             <p>Weather TV</p>
                         </div>
@@ -462,7 +462,7 @@ $movie_location = Configure::read('Data.movies');
                 </div>
                 <div class="slide">
                     <a href="<?= $this->webroot ?>typhoon/preparedness">
-                        <img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail.png"/>
+                        <img src="<?= $this->webroot ?>theme/weatherph/img/typhoon-preparedness.jpg"/>
                         <div class="slide-caption">
                             <p>Typhoon Preparedness</p>
                         </div>
@@ -470,7 +470,7 @@ $movie_location = Configure::read('Data.movies');
                 </div>
                 <div class="slide">
                     <a href="<?= $this->webroot ?>typhoon/climatology">
-                        <img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail.png"/>
+                        <img src="<?= $this->webroot ?>theme/weatherph/img/typhoon-climatology.jpg"/>
                         <div class="slide-caption">
                             <p>Typhoon Climatology</p>
                         </div>
@@ -478,7 +478,7 @@ $movie_location = Configure::read('Data.movies');
                 </div>
                 <div class="slide">
                     <a href="<?= $this->webroot ?>dictionaries/english">
-                        <img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail.png"/>
+                        <img src="<?= $this->webroot ?>theme/weatherph/img/dictionary.jpg"/>
                         <div class="slide-caption">
                             <p>Dictionary: English</p>
                         </div>
@@ -486,7 +486,7 @@ $movie_location = Configure::read('Data.movies');
                 </div>
                 <div class="slide">
                     <a href="<?= $this->webroot ?>dictionaries/filipino">
-                        <img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail.png"/>
+                        <img src="<?= $this->webroot ?>theme/weatherph/img/dictionary-filipino.jpg"/>
                         <div class="slide-caption">
                             <p>Dictionary: Filipino</p>
                         </div>
@@ -494,7 +494,7 @@ $movie_location = Configure::read('Data.movies');
                 </div>
                 <div class="slide">
                     <a href="<?= $this->webroot ?>webcam">
-                        <img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail.png"/>
+                        <img src="<?= $this->webroot ?>theme/weatherph/img/webcams.jpg"/>
                         <div class="slide-caption">
                             <p>Webcams</p>
                         </div>
