@@ -3,7 +3,7 @@
 class SearchController extends WeatherphAppController {
     
     public $name = 'Search';
-    public $uses = array('Nima.NimaName', 'Nima.FipsCode', 'Nima.Area');
+    public $uses = array('Nima.NimaName', 'Nima.FipsCode', 'Nima.Area', 'Station');
     public $helpers = array('Cache', 'Javascript');
     var $cacheAction = array(
         'index' => array('duration' => 86400),
@@ -75,6 +75,46 @@ class SearchController extends WeatherphAppController {
                 
                 $type = (count($names) > 0) ? 2 : 1;
                 
+                $names = $this->NimaName->find('all', array(
+                    'conditions' => array(
+                        'AND' => array(
+                            array(
+                                'OR'=> array(
+                                    array('full_name_ro' => "$keyword"),
+                                    array('full_name_ro Like' => "$keyword %"),
+                                    array('full_name_ro Like' => "% $keyword"),
+                                )
+                            ),
+                            array(
+                                'OR' => array(
+                                    array('dsg' => 'ppl'),
+                                    array('dsg' => 'adm1'),
+                                    array('dsg' => 'adm2'),
+                                )
+                            ),
+                            array(
+                                'nt' => 'N'
+                            ),
+                            array(
+                                'type' => $type
+                            )
+                        ),
+                        
+                    ),
+                    'contain' => array(
+                        'FipsCode' => 'Area'
+                    ),
+                    'order' => array(
+                        'FipsCode.type' => 'desc',
+                        'NimaName.id' => 'desc',
+                        "FIELD(NimaName.dsg, 'adm1', 'ppl')" => 'desc'
+                    ),
+                    'limit' => 11
+                    
+                )
+                        
+                );
+                
                 $this->paginate['NimaName'] = array(
                     'conditions' => array(
                         'AND' => array(
@@ -112,16 +152,40 @@ class SearchController extends WeatherphAppController {
                     'limit' => 11
                     
                 );
+                $this->paginate['Station'] = array(
+                    'conditions' => array(
+                        'AND' => array(
+                            array('name Like' => "%$keyword%"),
+                            array('webaktiv !=' => 2),
+                            array('webaktiv !=' => 0),
+                            
+                        ),
+                            
+                    ),
+                );
+                
+//                $stations = $this->Station->find('all', array(
+//                    'conditions' => array(
+////                        'AND' => array(
+////                            array(
+//                                'name Like' => "%$keyword%",
+////                                ),
+////                            array('webaktiv !=' => 2),
+////                            array('webaktiv !=' => 0),
+//                        )
+////                    )
+//                ));
+                
+                
                 
                 $gum = 'search.'.rawurlencode($keyword)
                     .'.limit'.$this->paginate['limit']
                     .'.page'.$this->paginate['page'];
+                $names = $this->paginate('NimaName');
+                $stations = $this->paginate('Station');
                 
                 
-                $names = $this->paginate();
-                
-                
-                $this->set(compact('names'));
+                $this->set(compact('names', 'stations'));
             } else {
                 $this->log('NO MATCH!');
                 $this->Session->setFlash(__('Invalid search term provided. Please check your search. You entered "'.$terms.'"', true), 'default', array('class' => 'error'));
@@ -171,7 +235,7 @@ class SearchController extends WeatherphAppController {
         }
         
         $NimaName->useDbConfig = 'default';
-        $sql = "select `Name`.`id`, `Name`.`name` as `full_name_ro`, `Name`.`lat`, `Name`.`lon` as `long` from `stations` as `Name` where (`Name`.`name` like '%$keyword%')";
+        $sql = "select `Name`.`id`, `Name`.`name` as `full_name_ro`, `Name`.`lat`, `Name`.`lon` as `long`, `webaktiv` from `stations` as `Name` where (`Name`.`name` like '%$keyword%') and (webaktiv != 0 and webaktiv != 2)";
         $stations = $NimaName->query($sql);
         $updated_results = array_merge($updated_results, $stations);
         
