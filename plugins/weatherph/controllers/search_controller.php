@@ -75,46 +75,6 @@ class SearchController extends WeatherphAppController {
                 
                 $type = (count($names) > 0) ? 2 : 1;
                 
-                $names = $this->NimaName->find('all', array(
-                    'conditions' => array(
-                        'AND' => array(
-                            array(
-                                'OR'=> array(
-                                    array('full_name_ro' => "$keyword"),
-                                    array('full_name_ro Like' => "$keyword %"),
-                                    array('full_name_ro Like' => "% $keyword"),
-                                )
-                            ),
-                            array(
-                                'OR' => array(
-                                    array('dsg' => 'ppl'),
-                                    array('dsg' => 'adm1'),
-                                    array('dsg' => 'adm2'),
-                                )
-                            ),
-                            array(
-                                'nt' => 'N'
-                            ),
-                            array(
-                                'type' => $type
-                            )
-                        ),
-                        
-                    ),
-                    'contain' => array(
-                        'FipsCode' => 'Area'
-                    ),
-                    'order' => array(
-                        'FipsCode.type' => 'desc',
-                        'NimaName.id' => 'desc',
-                        "FIELD(NimaName.dsg, 'adm1', 'ppl')" => 'desc'
-                    ),
-                    'limit' => 11
-                    
-                )
-                        
-                );
-                
                 $this->paginate['NimaName'] = array(
                     'conditions' => array(
                         'AND' => array(
@@ -163,20 +123,6 @@ class SearchController extends WeatherphAppController {
                             
                     ),
                 );
-                
-//                $stations = $this->Station->find('all', array(
-//                    'conditions' => array(
-////                        'AND' => array(
-////                            array(
-//                                'name Like' => "%$keyword%",
-////                                ),
-////                            array('webaktiv !=' => 2),
-////                            array('webaktiv !=' => 0),
-//                        )
-////                    )
-//                ));
-                
-                
                 
                 $gum = 'search.'.rawurlencode($keyword)
                     .'.limit'.$this->paginate['limit']
