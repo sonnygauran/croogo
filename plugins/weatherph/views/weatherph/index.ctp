@@ -27,7 +27,7 @@ $movie_location = Configure::read('Data.movies');
             </div>
             <div class="map-viewport">
                 <div id="layer-slides" class="data-layer" data-bbox="">
-                    <div class="layer slides_container">
+                    <div class="slides_container">
                     </div>
                 </div>
 
@@ -434,17 +434,73 @@ $movie_location = Configure::read('Data.movies');
         </div>
 
         <h4>Learn More</h4>
-        <div class="news">
-            <ul>
-                <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail.png"/><p><a href="<?= $this->webroot ?>announcements">Mata ng Bagyo</a><br><i style="font-size: 10px;">(Eye of the Storm)</i></p></li>
-                <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail.png"/><p><a href="<?= $this->webroot ?>weathertv">Weather TV</a></p></li>
-                <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail.png"/><p><a href="<?= $this->webroot ?>typhoon/preparedness">Typhoon Preparedness</a></p></li>
-                <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail.png"/><p><a href="<?= $this->webroot ?>typhoon/climatology">Typhoon Climatology</a></p></li>
-<!--                <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail3.png"/><p>Payong Panahon</p></li>-->
-                <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail.png"/><p><a href="<?= $this->webroot ?>dictionaries/english">Dictionary: English</a></p></li>
-                <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail.png"/><p><a href="<?= $this->webroot ?>dictionaries/filipino">Dictionary: Filipino</a></p></li>
-                <li><img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail.png"/><p><a href="<?= $this->webroot ?>webcam">Webcams</a></p></li>
-            </ul>
+        <div id="nav-slides">
+            <div class="slides_container">
+                <div class="slide">
+                    <a href="<?= $this->webroot ?>announcements">
+                        <img src="<?= $this->webroot ?>theme/weatherph/img/mata-ng-bagyo.gif"/>
+                        <div class="slide-caption">
+                            <p> Mata ng Bagyo (Eye of the Storm)</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="slide">
+                    <a href="<?= $this->webroot ?>news">
+                        <img src="<?= $this->webroot ?>theme/weatherph/img/payong-panahon.gif"/>
+                        <div class="slide-caption">
+                            <p> Payong Panahon (Weather Advice)</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="slide">
+                    <a href="<?= $this->webroot ?>weathertv">
+                        <img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail.png"/>
+                        <div class="slide-caption">
+                            <p>Weather TV</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="slide">
+                    <a href="<?= $this->webroot ?>typhoon/preparedness">
+                        <img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail.png"/>
+                        <div class="slide-caption">
+                            <p>Typhoon Preparedness</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="slide">
+                    <a href="<?= $this->webroot ?>typhoon/climatology">
+                        <img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail.png"/>
+                        <div class="slide-caption">
+                            <p>Typhoon Climatology</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="slide">
+                    <a href="<?= $this->webroot ?>dictionaries/english">
+                        <img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail.png"/>
+                        <div class="slide-caption">
+                            <p>Dictionary: English</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="slide">
+                    <a href="<?= $this->webroot ?>dictionaries/filipino">
+                        <img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail.png"/>
+                        <div class="slide-caption">
+                            <p>Dictionary: Filipino</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="slide">
+                    <a href="<?= $this->webroot ?>webcam">
+                        <img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail.png"/>
+                        <div class="slide-caption">
+                            <p>Webcams</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
         </div>
 
     </section> <!--SECONDARY-->
