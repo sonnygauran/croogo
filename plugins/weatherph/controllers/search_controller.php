@@ -183,9 +183,10 @@ class SearchController extends WeatherphAppController {
                     .'.page'.$this->paginate['page'];
                 $names = $this->paginate('NimaName');
                 $stations = $this->paginate('Station');
+                $count = count($names) + count($stations);
                 
                 
-                $this->set(compact('names', 'stations'));
+                $this->set(compact('names', 'stations', 'count'));
             } else {
                 $this->log('NO MATCH!');
                 $this->Session->setFlash(__('Invalid search term provided. Please check your search. You entered "'.$terms.'"', true), 'default', array('class' => 'error'));

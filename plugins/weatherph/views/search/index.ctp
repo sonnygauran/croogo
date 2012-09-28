@@ -1,13 +1,10 @@
-<?php // debug($names)?>
 <? $javascript->link('/weatherph/js/weatherph/results', false); ?>
 <div class="content">
     <section class="main">
         <div id="map-container">
             <div class="layer-selector cf">
                 <?php
-                echo $this->Paginator->counter(array(
-                    'format' => __('Showing %count% locations from your search', true)
-                ));
+                echo "Showing $count locations from your search";
                 ?>
             </div>
             <div class="map-viewport">
@@ -62,21 +59,19 @@
                 <h2><?php __('Search results'); ?></h2>
                 <ul>
                     <?php foreach ($names as $name): ?>
-
-                            <?php if(key_exists('NimaName', $name)): ?>
-                                <?php
-                                    $cityClass = '';
-                                    if ($name['FipsCode']['type'] == 2) $cityClass = ' citysearch';
-                                ?>
-                                <li class="<?php echo $name['NimaName']['id'] . ' ' . $cityClass; ?>">
-                                    <a href ="/<?php echo Inflector::slug($name['NimaName']['full_name_ro'], '_') . '-' . $name['NimaName']['id']; ?>" class="<?php echo $name['NimaName']['id']; ?> location <?php echo ($name['FipsCode']['type'] == 2) ? 'city' : 'province'; ?>"><?php echo trim($name['NimaName']['full_name_ro']); ?><br /> <span><?= trim($name['FipsCode']['name']); ?> <?= trim($name['FipsCode']['Area']['code']) ?></span></a>
-                                </li>
-                            <?php else: ?> 
-                                <li class="<?php echo $name['Station']['id'] . ' ' . $cityClass; ?>">
-                                    <a href ="/view/<?php echo $name['Station']['wmo1']; ?>" class="<?php echo $name['Station']['id']; ?> station"><?php echo trim($name['Station']['name']); ?></a>
-                                </li>
-                            <?php endif; ?>
-                        <?php endforeach; ?>
+                        <?php
+                            $cityClass = '';
+                            if ($name['FipsCode']['type'] == 2) $cityClass = ' citysearch';
+                        ?>
+                        <li class="<?php echo $name['NimaName']['id'] . ' ' . $cityClass; ?>">
+                            <a href ="/<?php echo Inflector::slug($name['NimaName']['full_name_ro'], '_') . '-' . $name['NimaName']['id']; ?>" class="<?php echo $name['NimaName']['id']; ?> location <?php echo ($name['FipsCode']['type'] == 2) ? 'city' : 'province'; ?>"><?php echo trim($name['NimaName']['full_name_ro']); ?><br /> <span><?= trim($name['FipsCode']['name']); ?> <?= trim($name['FipsCode']['Area']['code']) ?></span></a>
+                        </li>
+                    <?php endforeach; ?>
+                    <?php foreach ($stations as $station): ?>
+                        <li class="<?echo $station['Station']['id'];?>">
+                            <a href="/view/<?= $station['Station']['wmo1']; ?>"><?= $station['Station']['name']; ?></a>
+                        </li>
+                    <?php endforeach; ?>
                 </ul>
             </div>
             <br/>
