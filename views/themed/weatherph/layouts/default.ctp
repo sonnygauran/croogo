@@ -48,7 +48,7 @@
                 <div class="flag"></div>
                 <form class="search" action="/search" method="POST">
                     <label for="search-field">Search:&nbsp;</label><input id="search-field" type="text" name="terms" size="12" />
-                    <div class="search-icon"></div>
+                    <input type="submit" value="Search" class="search-icon"></div>
                 </form>
             </div>
         </header> <!--BANNER-->
@@ -56,23 +56,13 @@
         <nav class="shadow cf">
             <ul class="dropdown">
                 <li><a href="<?= $this->webroot ?>">Home</a></li>
-                <?/*
-                    <li>
-                        <a href="#">Founders &#9663;</a>
-                        <ul>
-                            <li><a href="<?= $this->webroot ?>founders/meteomedia">MeteoMedia</a></li>
-                            <li><a href="<?= $this->webroot ?>founders/aboitiz">Aboitiz</a></li>
-                            <li><a href="<?= $this->webroot ?>founders/unionbank">UnionBank</a></li>
-                        </ul>
-                    </li>
-                */?>
-                    <li>
-                        <a href="#">Dictionary &#9663;</a>
-                        <ul>
-                            <li><a href="<?= $this->webroot ?>dictionaries/english">English</a></li>
-                            <li><a href="<?= $this->webroot ?>dictionaries/filipino">Filipino</a></li>
-                        </ul>
-                    </li>
+                <li>
+                    <a href="#">Dictionary &#9663;</a>
+                    <ul>
+                        <li><a href="<?= $this->webroot ?>dictionaries/english">English</a></li>
+                        <li><a href="<?= $this->webroot ?>dictionaries/filipino">Filipino</a></li>
+                    </ul>
+                </li>
                 <li><a href="<?= $this->webroot ?>news">Payong Panahon</a></li>
                 <li><a href="<?= $this->webroot ?>announcements">Mata ng Bagyo</a></li>
                 <li><a href="<?= $this->webroot ?>weathertv">Weather TV</a></li>
@@ -198,8 +188,6 @@ Google Analytics script
         window.location=$(this).find("a").attr("href"); return false;
         });
     });
-
-//    $('.excerpt').text();
 </script>
 <?= $scripts_for_layout ?>
 </body>

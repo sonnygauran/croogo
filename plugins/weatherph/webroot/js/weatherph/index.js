@@ -880,13 +880,16 @@ $(document).ready(function(){
                         onionSkinMap();
                     });
                 });
-
-                if (mapVisible) {
-                    // console.error('is visible');
-                } else {
-                    // console.error('is invisible');
-                }
             }
         }
+    });
+});
+
+$(function(){
+    $('#nav-slides').slides({
+        preload: false,
+        play: 7000,
+        hoverPause: true,
+        generateNextPrev: true
     });
 });
