@@ -94,12 +94,12 @@ class WeatherphController extends WeatherphAppController {
                     }
                    
                 }else{  
-               //  if ($current_time2 < $file_date){
+                 if ($current_time2 < $file_date){
                   $filenames[$type][] = $current;
                        
-                 //}else {
-                 //    continue;
-                   // }
+                 }else {
+                     continue;
+                    }
                 }
                 
             }

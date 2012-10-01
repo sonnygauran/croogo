@@ -64,11 +64,13 @@
                             if ($name['FipsCode']['type'] == 2) $cityClass = ' citysearch';
                         ?>
                         <li class="<?php echo $name['NimaName']['id'] . ' ' . $cityClass; ?>">
+                             <?php echo $this->Html->image('places.png', array('alt' => 'CakePHP'))?>
                             <a href ="/<?php echo Inflector::slug($name['NimaName']['full_name_ro'], '_') . '-' . $name['NimaName']['id']; ?>" class="<?php echo $name['NimaName']['id']; ?> location <?php echo ($name['FipsCode']['type'] == 2) ? 'city' : 'province'; ?>"><?php echo trim($name['NimaName']['full_name_ro']); ?><br /> <span><?= trim($name['FipsCode']['name']); ?> <?= trim($name['FipsCode']['Area']['code']) ?></span></a>
                         </li>
                     <?php endforeach; ?>
                     <?php foreach ($stations as $station): ?>
                         <li class="<?echo $station['Station']['id'];?>">
+                            <?php echo $this->Html->image('satellite.png', array('alt' => 'CakePHP'))?>
                             <a href="/view/<?= $station['Station']['wmo1']; ?>"><?= $station['Station']['name']; ?></a>
                         </li>
                     <?php endforeach; ?>
