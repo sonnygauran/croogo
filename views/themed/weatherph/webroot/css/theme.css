@@ -135,7 +135,7 @@ footer {
     float: left;
     clear: both;
     width: 100%;
-    margin-top: 15em;
+    margin-top: 10em;
     padding: 10px;
     font-size: .75em;
     background-color: #f3f3f3;
@@ -408,12 +408,13 @@ span.temperature {
 }
 
 .readings > span {
-    margin: auto 2px;
+    margin: 8px auto;
     float: left;
 }
 
 .readings > table {
     float: left;
+    margin-left: 8px;
 }
 
 .readings >table td {
@@ -1044,8 +1045,10 @@ div.current-tab {
 
 #close-warning{
     position: absolute;
-    top: 8px;
+    top: 6px;
     right: 8px;
+    text-decoration: none;
+    font: bold 16px/14px Tahoma,Verdana,sans-serif;
 }
 
 .no-readings, .no-forecast {
@@ -1073,7 +1076,7 @@ div.current-tab {
 .fb { background: url('<?= $this->webroot ?>theme/weatherph/img/default-sprite.png') no-repeat -165px -209px; width: 32px; height: 31px; }
 .twitter { background: url('<?= $this->webroot ?>theme/weatherph/img/default-sprite.png') no-repeat -198px -209px; width: 32px; height: 31px; }
 
-span.symbol { background: url('<?= $this->webroot ?>theme/weatherph/img/warning-sprites.png') -5px -65px no-repeat; height: 30px; width: 40px; display: block; margin: auto;}
+span.symbol { background: url('<?= $this->webroot ?>theme/weatherph/img/warning-sprites.png') -5px -65px no-repeat; height: 30px; width: 40px; display: block; margin: auto auto auto 10px;}
 span.symbolwind { background: url('<?= $this->webroot ?>theme/weatherph/img/warning-sprites.png') -5px -65px no-repeat; height: 30px; width: 40px; display: block; margin: auto; float: left;}
 
 

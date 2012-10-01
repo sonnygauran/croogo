@@ -77,7 +77,7 @@
         ?>
         <div class="severe-warning shadow">
             <strong>Announcement:</strong> <?= $severe_warning['Node']['excerpt'] ?> <a href="/announcements/<?= $severe_warning['Node']['slug']?>">Read More</a> </p>
-            <a id="close-warning" href="#">Close</a>
+            <a id="close-warning" href="#">x</a>
         </div>
         <?php
         endif;
