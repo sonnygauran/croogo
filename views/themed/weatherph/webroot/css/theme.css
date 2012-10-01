@@ -820,7 +820,9 @@ span.temperature {
 .search-results li:hover {
     background-color: #e0e6f2;
 }
-
+.search-results img {
+    float:left;
+}
 .search-results a {
 /*    position: absolute;*/
     top: 0;
