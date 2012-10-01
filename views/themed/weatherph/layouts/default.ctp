@@ -71,9 +71,17 @@
             </ul>
         </nav>
 
+        <?php
+        // If there is a "Mata ng Bagyo" post within the last 24 hours, show the following warning:
+        if(isset($show_alert) && $show_alert):
+        ?>
         <div class="severe-warning shadow">
-            <p><strong>Alert:</strong> Typhoon Dador is approaching the NCR. No classes in all levels. Stay at home!</p>
+            <strong>Announcement:</strong> <?= $severe_warning['Node']['excerpt'] ?> <a href="/announcements/<?= $severe_warning['Node']['slug']?>">Read More</a> </p>
+            <a id="close-warning" href="#">Close</a>
         </div>
+        <?php
+        endif;
+        ?>
 
         <div id="sidebar">
             <div class="sponsored">
@@ -185,7 +193,11 @@ Google Analytics script
         });
 
         $("nav li").click(function(){
-        window.location=$(this).find("a").attr("href"); return false;
+            window.location=$(this).find("a").attr("href"); return false;
+        });
+
+        $("#close-warning").click(function(){
+            $('.severe-warning').fadeOut();
         });
     });
 </script>

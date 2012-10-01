@@ -1027,18 +1027,23 @@ div.current-tab {
 }
 
 /* Error/warning block */
-
 .severe-warning {
-    display: none;
+    position: relative;
     width: 75%;
-    padding: 8px;
-    margin: -15px auto 15px;
-    border-top: 1px solid #333;
+    padding: .5em 1em;
+    margin: -15px auto 1em;
+    border-top: 1px solid #555;
     text-align: center;
     background-color: #aa1111;
     color: #f1f1f1;
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
+}
+
+#close-warning{
+    position: absolute;
+    top: 8px;
+    right: 8px;
 }
 
 .no-readings, .no-forecast {
