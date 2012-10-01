@@ -446,8 +446,8 @@ span.temperature {
 
 .blog-excerpt {
     position: relative;
-    margin-top: 2em;
-    padding-left: 69px;
+    overflow: hidden;
+    word-wrap:break-word;
 }
 
 .post-date {
@@ -859,6 +859,8 @@ span.temperature {
 
 .page p {
     margin-bottom: 1em;
+    overflow: hidden;
+    word-wrap:break-word;
 }
 
 .page li {
