@@ -1,8 +1,8 @@
 <div class="content">
     <section class="main">
         <div class="page">
-            <?php $this->set('title_for_layout', 'Payong Panahon'); ?>
-            <h2>Payong Panahon</h2>
+            <?php $this->set('title_for_layout', 'News'); ?>
+            <h2>News</h2>
             <hr/>
             <?php foreach ($blogLists as $blog) { ?>
                 <?php $createdTime = strtotime($blog['Node']['created']); ?>
@@ -13,6 +13,15 @@
                             <div class="day"><?= date('d', $createdTime) ?></div>
                             <div class="year"><?= date('Y', $createdTime) ?></div>
                         </div>
+                        <?php
+                        if ($blog['Node']['type'] == 'news'){
+                             ?><a href="<?= $this->webroot ?>news/payong-panahon">Payong Panahon</a><?php
+                        }elseif($blog['Node']['type'] == 'announcements'){
+                            ?><a href="<?= $this->webroot ?>news/mata-ng-bagyo">Mata ng Bagyo</a><?php
+                        }
+                        ?>
+                        
+                        
                     </div>
                     <div class="ribbon-edge-bottomleft subblog"></div>
                 </div>

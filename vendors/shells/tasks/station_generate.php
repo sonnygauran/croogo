@@ -5,7 +5,7 @@ class StationGenerateTask extends Shell{
     
     public function execute(){
         $file_name = Configure::read('Data.stations'). date('Ydm') . '.csv';
-        $url = "http://192.168.20.89/manila.php?land=PHL&ortsinfo=ja&output=csv2&ortoutput=wmo6,name&aufruf=auto";
+        $url = "http://db.meteomedia.ch/abfrage.php?land=PHL&ortsinfo=ja&output=csv2&ortoutput=wmo6,name&aufruf=auto";
         
         $result = NULL;
         $result = Curl::getData($url);

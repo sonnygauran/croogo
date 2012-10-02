@@ -421,6 +421,13 @@ $movie_location = Configure::read('Data.movies');
                                 <div class="day"><?= date('d', $createdTime) ?></div>
                                 <div class="year"><?= date('Y', $createdTime) ?></div>
                             </div>
+                            <?php
+                        if ($blog['Node']['type'] == 'news'){
+                             ?><a href="<?= $this->webroot ?>news/payong-panahon">Payong Panahon</a><?php
+                        }elseif($blog['Node']['type'] == 'announcements'){
+                            ?><a href="<?= $this->webroot ?>news/mata-ng-bagyo">Mata ng Bagyo</a><?php
+                        }
+                        ?>
                         </div>
                         <div class="ribbon-edge-bottomleft"></div>
                     </div>
@@ -436,14 +443,49 @@ $movie_location = Configure::read('Data.movies');
         <h4>Learn More</h4>
         <div class="news">
             <ul>
-                <li><img src="<?= $this->webroot ?>theme/weatherph/img/learn-more/mata-ng-bagyo.gif"/><p><a href="<?= $this->webroot ?>announcements">Mata ng Bagyo</a><br><i style="font-size: 10px;">(Eye of the Storm)</i></p></li>
-                <li><img src="<?= $this->webroot ?>theme/weatherph/img/learn-more/payong-panahon.gif"/><p>Payong Panahon</p></li>
-                <li><img src="<?= $this->webroot ?>theme/weatherph/img/learn-more/weather-tv.png"/><p><a href="<?= $this->webroot ?>weathertv">Weather TV</a></p></li>
-                <li><img src="<?= $this->webroot ?>theme/weatherph/img/learn-more/webcams.jpg"/><p><a href="<?= $this->webroot ?>webcam">Webcams</a></p></li>
-                <li><img src="<?= $this->webroot ?>theme/weatherph/img/learn-more/typhoon-preparedness.jpg"/><p><a href="<?= $this->webroot ?>typhoon/preparedness">Typhoon Preparedness</a></p></li>
-                <li><img src="<?= $this->webroot ?>theme/weatherph/img/learn-more/typhoon-climatology.jpg"/><p><a href="<?= $this->webroot ?>typhoon/climatology">Typhoon Climatology</a></p></li>
-                <li><img src="<?= $this->webroot ?>theme/weatherph/img/learn-more/dictionary.jpg"/><p><a href="<?= $this->webroot ?>dictionaries/english">Dictionary: English</a></p></li>
-                <li><img src="<?= $this->webroot ?>theme/weatherph/img/learn-more/dictionary-filipino.jpg"/><p><a href="<?= $this->webroot ?>dictionaries/filipino">Dictionary: Filipino</a></p></li>
+                <!-- <li><img src="<?= $this->webroot ?>theme/weatherph/img/learn-more/mata-ng-bagyo.gif"/><p><a href="<?= $this->webroot ?>announcements">Mata ng Bagyo</a><br><i style="font-size: 10px;">(Eye of the Storm)</i></p></li> -->
+                <li>
+                    <a href="<?= $this->webroot ?>news">
+                        <img src="<?= $this->webroot ?>theme/weatherph/img/learn-more/payong-panahon.gif"/>
+                        <p>News</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="<?= $this->webroot ?>weathertv">
+                        <img src="<?= $this->webroot ?>theme/weatherph/img/learn-more/weather-tv.png"/>
+                        <p>Weather TV</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="<?= $this->webroot ?>webcam">
+                        <img src="<?= $this->webroot ?>theme/weatherph/img/learn-more/webcams.jpg"/>
+                        <p>Webcams</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="<?= $this->webroot ?>typhoon/preparedness">
+                        <img src="<?= $this->webroot ?>theme/weatherph/img/learn-more/typhoon-preparedness.jpg"/>
+                        <p>Typhoon Preparedness</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="<?= $this->webroot ?>typhoon/climatology">
+                        <img src="<?= $this->webroot ?>theme/weatherph/img/learn-more/typhoon-climatology.jpg"/>
+                        <p>Typhoon Climatology</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="<?= $this->webroot ?>dictionaries/english">
+                        <img src="<?= $this->webroot ?>theme/weatherph/img/learn-more/dictionary.jpg"/>
+                        <p>Dictionary: English</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="<?= $this->webroot ?>dictionaries/filipino">
+                        <img src="<?= $this->webroot ?>theme/weatherph/img/learn-more/dictionary-filipino.jpg"/>
+                        <p>Dictionary: Filipino</p>
+                    </a>
+                </li>
             </ul>
         </div>
 
