@@ -882,12 +882,3 @@ $(document).ready(function(){
         }
     });
 });
-
-$(function(){
-    $('#nav-slides').slides({
-        preload: false,
-        play: 7000,
-        hoverPause: true,
-        generateNextPrev: true
-    });
-});
