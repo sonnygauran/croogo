@@ -383,6 +383,22 @@ class WeatherphController extends WeatherphAppController {
         $this->set(compact('blogLists'));
     }
 
+    public function payongpanahon() {
+        $this->set('title_for_layout',__('Weatherph',true));
+
+        //$this->layout = 'default';
+
+        $blogLists = $this->Node->find('all', array(
+            'order' => 'Node.created DESC',
+            'conditions' => array('Node.type' => 'news'),
+            'limit' => 5,
+        ));
+
+    //debug($blogLists);
+
+        $this->set(compact('blogLists'));
+    }
+
     public function mataNgBagyo(){
         $this->layout = 'default';
 
