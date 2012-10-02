@@ -436,8 +436,11 @@ $movie_location = Configure::read('Data.movies');
         <h4>Learn More</h4>
         <div class="news">
             <ul>
-                <li><img src="<?= $this->webroot ?>theme/weatherph/img/learn-more/mata-ng-bagyo.gif"/><p><a href="<?= $this->webroot ?>announcements">Mata ng Bagyo</a><br><i style="font-size: 10px;">(Eye of the Storm)</i></p></li>
-                <li><img src="<?= $this->webroot ?>theme/weatherph/img/learn-more/payong-panahon.gif"/><p>Payong Panahon</p></li>
+                <!-- <li><img src="<?= $this->webroot ?>theme/weatherph/img/learn-more/mata-ng-bagyo.gif"/><p><a href="<?= $this->webroot ?>announcements">Mata ng Bagyo</a><br><i style="font-size: 10px;">(Eye of the Storm)</i></p></li> -->
+                <li><a href="<?= $this->webroot ?>news">
+                    <img src="<?= $this->webroot ?>theme/weatherph/img/learn-more/payong-panahon.gif"/>
+                    <p>News</p>
+                </a></li>
                 <li><img src="<?= $this->webroot ?>theme/weatherph/img/learn-more/weather-tv.png"/><p><a href="<?= $this->webroot ?>weathertv">Weather TV</a></p></li>
                 <li><img src="<?= $this->webroot ?>theme/weatherph/img/learn-more/webcams.jpg"/><p><a href="<?= $this->webroot ?>webcam">Webcams</a></p></li>
                 <li><img src="<?= $this->webroot ?>theme/weatherph/img/learn-more/typhoon-preparedness.jpg"/><p><a href="<?= $this->webroot ?>typhoon/preparedness">Typhoon Preparedness</a></p></li>

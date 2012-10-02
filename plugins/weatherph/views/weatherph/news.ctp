@@ -1,7 +1,7 @@
 <div class="content">
     <section class="main">
         <div class="page">
-          <?php   $this->set('title_for_layout', 'Payong Panahon'); ?>
+            <?php $this->set('title_for_layout', 'News'); ?>
             <h2>Payong Panahon</h2>
             <hr/>
             <?php foreach ($blogLists as $blog) { ?>
