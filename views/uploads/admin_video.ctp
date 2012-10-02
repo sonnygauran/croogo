@@ -11,6 +11,7 @@
 
     <?php echo $this->Form->input('video', array('type' => 'file', 'label' => false)); ?>
     <?php echo $this->Form->end('Upload'); ?>
+    
     <br />
     <h2>WeatherTV Videos</h2>
     <table>
@@ -19,10 +20,12 @@
             <th>Url</th>
             <th>Action</th>
         </tr>
+        
         <?php foreach ($files as $file) { ?>
             <tr>
                 <td>
                     <?= $file ?>
+                    
                 </td>
                 <td>
                     <video controls="">
