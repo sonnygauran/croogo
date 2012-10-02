@@ -421,19 +421,17 @@ $movie_location = Configure::read('Data.movies');
                                 <div class="day"><?= date('d', $createdTime) ?></div>
                                 <div class="year"><?= date('Y', $createdTime) ?></div>
                             </div>
-                            <?php
-                        if ($blog['Node']['type'] == 'news'){
-                             ?><a href="<?= $this->webroot ?>news/payong-panahon">Payong Panahon</a><?php
-                        }elseif($blog['Node']['type'] == 'announcements'){
-                            ?><a href="<?= $this->webroot ?>news/mata-ng-bagyo">Mata ng Bagyo</a><?php
-                        }
-                        ?>
                         </div>
                         <div class="ribbon-edge-bottomleft"></div>
                     </div>
 
                     <div class="blog-excerpt">
                         <h4><?= $html->link($blog['Node']['title'], $blog['Node']['url'], array('class' => 'link')) ?></h4>
+                        <?php if ($blog['Node']['type'] == 'news'){?>
+                            <h6><a class="post-category" href="<?= $this->webroot ?>news/payong-panahon">Payong Panahon</a></h6>
+                        <?php }elseif($blog['Node']['type'] == 'announcements'){?>
+                            <h6><a class="post-category" href="<?= $this->webroot ?>news/mata-ng-bagyo">Mata ng Bagyo</a></h6>
+                        <?php } ?>
                         <p><?= $text->excerpt(strip_tags($blog['Node']['body']), 'method', 200, '...' . $html->link('Read More', $blog['Node']['url'])) ?><?= '<hr>'; ?></p>
                     </div>
                 <?php } ?>
@@ -443,7 +441,6 @@ $movie_location = Configure::read('Data.movies');
         <h4>Learn More</h4>
         <div class="news">
             <ul>
-                <!-- <li><img src="<?= $this->webroot ?>theme/weatherph/img/learn-more/mata-ng-bagyo.gif"/><p><a href="<?= $this->webroot ?>announcements">Mata ng Bagyo</a><br><i style="font-size: 10px;">(Eye of the Storm)</i></p></li> -->
                 <li>
                     <a href="<?= $this->webroot ?>news">
                         <img src="<?= $this->webroot ?>theme/weatherph/img/learn-more/payong-panahon.gif"/>

@@ -13,21 +13,17 @@
                             <div class="day"><?= date('d', $createdTime) ?></div>
                             <div class="year"><?= date('Y', $createdTime) ?></div>
                         </div>
-                        <?php
-                        if ($blog['Node']['type'] == 'news'){
-                             ?><a href="<?= $this->webroot ?>news/payong-panahon">Payong Panahon</a><?php
-                        }elseif($blog['Node']['type'] == 'announcements'){
-                            ?><a href="<?= $this->webroot ?>news/mata-ng-bagyo">Mata ng Bagyo</a><?php
-                        }
-                        ?>
-                        
-                        
                     </div>
                     <div class="ribbon-edge-bottomleft subblog"></div>
                 </div>
 
                 <div class="blog-excerpt">
                     <h4><?= $html->link($blog['Node']['title'], $blog['Node']['url'], array('class' => 'link')) ?></h4>
+                    <?php if ($blog['Node']['type'] == 'news'){?>
+                        <h6><a class="post-category" href="<?= $this->webroot ?>news/payong-panahon">Payong Panahon</a></h6>
+                    <?php }elseif($blog['Node']['type'] == 'announcements'){?>
+                        <h6><a class="post-category" href="<?= $this->webroot ?>news/mata-ng-bagyo">Mata ng Bagyo</a></h6>
+                    <?php } ?>
                     <p><?= $blog['Node']['excerpt']; ?></p>
                 </div>
                 <hr>
