@@ -37,24 +37,18 @@
     <section id="container">
         <header class="banner shadow">
             <a href="<?= $this->webroot ?>"><div class="logo"></div></a>
-            <div id="logo-slider" class="flexslider">
-                <ul class="slides">
-                    <li>
-                        <img src="<?= $this->webroot ?>theme/weatherph/img/mm.png" alt="Meteomedia">
-                    </li>
-                    <li>
-                        <img src="<?= $this->webroot ?>theme/weatherph/img/az.png" alt="Aboitiz Power">
-                    </li>
-                    <li>
-                        <img src="<?= $this->webroot ?>theme/weatherph/img/ub.png" alt="Union Bank">
-                    </li>
-                </ul>
+            <div id="slides">
+                <div class="slides_container">
+                    <img src="<?= $this->webroot ?>theme/weatherph/img/mm.png" alt="Meteomedia">
+                    <img src="<?= $this->webroot ?>theme/weatherph/img/az.png" alt="Aboitiz Power" style="display: none;">
+                    <img src="<?= $this->webroot ?>theme/weatherph/img/ub.png" alt="Union Bank" style="display: none;">
+                </div>
             </div>
             <div id="options">
                 <div class="flag"></div>
                 <form class="search" action="/search" method="POST">
                     <label for="search-field">Search:&nbsp;</label><input id="search-field" type="text" name="terms" size="12" />
-                    <div class="search-icon"></div>
+                    <input type="submit" value="Search" class="search-icon"></div>
                 </form>
             </div>
         </header> <!--BANNER-->
@@ -62,34 +56,32 @@
         <nav class="shadow cf">
             <ul class="dropdown">
                 <li><a href="<?= $this->webroot ?>">Home</a></li>
-                <?/*
-                    <li>
-                        <a href="#">Founders &#9663;</a>
-                        <ul>
-                            <li><a href="<?= $this->webroot ?>founders/meteomedia">MeteoMedia</a></li>
-                            <li><a href="<?= $this->webroot ?>founders/aboitiz">Aboitiz</a></li>
-                            <li><a href="<?= $this->webroot ?>founders/unionbank">UnionBank</a></li>
-                        </ul>
-                    </li>
-                */?>
-                    <li>
-                        <a href="#">Dictionary &#9663;</a>
-                        <ul>
-                            <li><a href="<?= $this->webroot ?>dictionaries/english">English</a></li>
-                            <li><a href="<?= $this->webroot ?>dictionaries/filipino">Filipino</a></li>
-                        </ul>
-                    </li>
-                <li><a href="<?= $this->webroot ?>news">Payong Panahon</a></li>
-                <li><a href="<?= $this->webroot ?>announcements">Mata ng Bagyo</a></li>
+                <li>
+                    <a href="#">Dictionary &#9663;</a>
+                    <ul>
+                        <li><a href="<?= $this->webroot ?>dictionaries/english">English</a></li>
+                        <li><a href="<?= $this->webroot ?>dictionaries/filipino">Filipino</a></li>
+                    </ul>
+                </li>
+                <li><a href="<?= $this->webroot ?>news">News</a></li>
+                <!-- <li><a href="<?= $this->webroot ?>announcements">Mata ng Bagyo</a></li> -->
                 <li><a href="<?= $this->webroot ?>weathertv">Weather TV</a></li>
                 <li><a href="<?= $this->webroot ?>webcam">Webcams</a></li>
                 <li><a href="<?= $this->webroot ?>about">About</a></li>
             </ul>
         </nav>
 
+        <?php
+        // If there is a "Mata ng Bagyo" post within the last 24 hours, show the following warning:
+        if(isset($show_alert) && $show_alert):
+        ?>
         <div class="severe-warning shadow">
-            <p><strong>Alert:</strong> Typhoon Dador is approaching the NCR. No classes in all levels. Stay at home!</p>
+            <strong>Announcement:</strong> <?= $severe_warning['Node']['excerpt'] ?> <a href="/announcements/<?= $severe_warning['Node']['slug']?>">Read More</a> </p>
+            <a id="close-warning" href="#">x</a>
         </div>
+        <?php
+        endif;
+        ?>
 
         <div id="sidebar">
             <div class="sponsored">
@@ -125,12 +117,14 @@
                 </ul>
             </div>
         <?php if ($tourism_links): ?>
+            <?php $excerpt1 = substr ($tourism_links[0]['Node']['excerpt'], 0, 100)?>
+            <?php $excerpt2 = substr ($tourism_links[1]['Node']['excerpt'], 0, 100)?>
             <div class="promo">
                 <a href="<?= $this->webroot ?>visit/<?= $tourism_links[0]['Node']['slug'] ?>">
                 <h4>Places to see: <?= $tourism_links[0]['Node']['title'] ?></h4>
                 <img src="<?= $this->webroot ?>theme/weatherph/img/tourism_thumbnails/<?= $tourism_links[0]['Node']['slug'] ?>.png" alt="<?= $tourism_links[0]['Node']['title'] ?>">
                 </a>
-                <p><?= $tourism_links[0]['Node']['excerpt'] ?>&#8230;</p>
+                <p><?= $excerpt1 ?>&#8230;</p>
                 <a href="<?= $this->webroot ?>visit/<?= $tourism_links[0]['Node']['slug'] ?>">
                     <div class="tourism-btn"><strong>See more</strong></div>
                 </a>
@@ -141,7 +135,7 @@
                 <h4>Discover <?= $tourism_links[1]['Node']['title'] ?>.</h4>
                 <img src="<?= $this->webroot ?>theme/weatherph/img/tourism_thumbnails/<?= $tourism_links[1]['Node']['slug'] ?>.png" alt="<?= $tourism_links[1]['Node']['title'] ?>">
                 </a>
-                <p><?= $tourism_links[1]['Node']['excerpt'] ?>&#8230;</p>
+                <p><?= $excerpt2 ?>&#8230;</p>
                 <a href="<?= $this->webroot ?>visit/<?= $tourism_links[1]['Node']['slug'] ?>">
                     <div class="tourism-btn"><strong>See more</strong></div>
                 </a>
@@ -184,25 +178,28 @@ Google Analytics script
         echo '<script src="http://cdn.leafletjs.com/leaflet-0.4.4/leaflet.js"></script>';
     }
 
-    echo $this->Html->script('jquery.flexslider-min');
+    echo $this->Html->script('slides.min.jquery');
 ?>
 
 <script type="text/javascript">
     $(window).load(function(){
-        $('#logo-slider').flexslider({
-            controlNav: false,
-            directionNav: false,
-            initDelay: 2000,
-            slideshowSpeed: 4500,
-            animationSpeed: 800
+        $('#slides').slides({
+            preload: false,
+            effect: 'fade',
+            play: 5000,
+            pagination: false,
+            generatePagination: false,
+            generateNextPrev: false
         });
 
         $("nav li").click(function(){
-        window.location=$(this).find("a").attr("href"); return false;
+            window.location=$(this).find("a").attr("href"); return false;
+        });
+
+        $("#close-warning").click(function(){
+            $('.severe-warning').fadeOut();
         });
     });
-
-//    $('.excerpt').text();
 </script>
 <?= $scripts_for_layout ?>
 </body>

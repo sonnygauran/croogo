@@ -30,6 +30,7 @@
 						<li><?php echo $this->Html->link(__('Approval', true), array('plugin' => null, 'controller' => 'comments', 'action' => 'index', 'filter' => 'status:0;')); ?></li>
 					</ul>
 				</li>
+                               
                 <li>
                         <?php echo $this->Html->link(__('Upload', true), array('plugin' => null, 'controller' => 'uploads', 'action' => 'index')); ?>
                         <ul>
@@ -40,7 +41,9 @@
                         		<?php echo $this->Html->link(__('Image', true), array('plugin' => null, 'controller' => 'uploads', 'action' => 'image')); ?>
                         	</li>
                         </ul>
-                </li>
+                </li
+                	<li>
+					
 			</ul>
 		</li>
 

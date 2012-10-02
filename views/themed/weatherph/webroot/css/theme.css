@@ -135,7 +135,7 @@ footer {
     float: left;
     clear: both;
     width: 100%;
-    margin-top: 15em;
+    margin-top: 10em;
     padding: 10px;
     font-size: .75em;
     background-color: #f3f3f3;
@@ -172,6 +172,9 @@ label[for="search-field"] {
 }
 
 .search-icon {
+    cursor: pointer;
+    text-indent: -9999em;
+    border: none;
     vertical-align: middle;
     display: inline-block;
 }
@@ -211,6 +214,21 @@ label[for="search-field"] {
     margin: 5px;
     padding: .5em;
     border-radius: 5px;
+}
+
+#layer-slides {
+    width: 554px;
+}
+
+#layer-slides .slides_container {
+    width: 554px;
+    display:none;
+}
+
+#layer-slides .slides_container img {
+    width:554px;
+    height:554px;
+    display:block;
 }
 
 #map {
@@ -275,7 +293,6 @@ label[for="search-field"] {
     padding: 5px;
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
-    border-top: 1px dashed #d3d3d3;
 }
 
 .scale-temperature,
@@ -391,12 +408,13 @@ span.temperature {
 }
 
 .readings > span {
-    margin: auto 2px;
+    margin: 8px auto;
     float: left;
 }
 
 .readings > table {
     float: left;
+    margin-left: 8px;
 }
 
 .readings >table td {
@@ -428,8 +446,9 @@ span.temperature {
 
 .blog-excerpt {
     position: relative;
-    margin-bottom: 3em;
-    padding-left: 69px;
+    overflow: hidden;
+    word-wrap:break-word;
+    margin-bottom: 2em;
 }
 
 .post-date {
@@ -751,7 +770,9 @@ span.temperature {
 .search-results li:hover {
     background-color: #e0e6f2;
 }
-
+.search-results img {
+    float:left;
+}
 .search-results a {
 /*    position: absolute;*/
     top: 0;
@@ -787,6 +808,8 @@ span.temperature {
 
 .page p {
     margin-bottom: 1em;
+    overflow: hidden;
+    word-wrap:break-word;
 }
 
 .page li {
@@ -803,7 +826,8 @@ span.temperature {
 .page img {
     margin: 2em auto;
     display:block;
-    border: 2px solid #3990BD;
+    max-width: 716px;
+	border: 2px solid #3990BD;
 }
 
 .page dt {
@@ -841,59 +865,21 @@ span.temperature {
 
 /* Slider */
 
-/* Flexslider */
-/* Browser Resets */
-.slides, .flex-control-nav, .flex-direction-nav {margin: 0; padding: 0; list-style: none;}
-/* Necessary Styles */
-.flexslider .slides > li {display: none; -webkit-backface-visibility: hidden;}
-/* Clearfix */
-.slides:after {content: "."; display: block; clear: both; visibility: hidden; line-height: 0; height: 0;}
-html[xmlns] .slides {display: block;}
-* html .slides {height: 1%;}
-
-#logo-slider {
-    float: left;
+#slides {
     width: 240px;
+    float: left;
     margin-left: 30px;
 }
 
-.flex-direction-nav {
-    position: absolute;
-    bottom: -40px;
-    width: 554px;
-    margin: .5em 0;
-    background: #fafafa;
+.slides_container {
+    width: 240px;
+    display: none;
 }
 
-.flex-prev:link, .flex-prev:visited,
-.flex-next:link, .flex-next:visited {
-    padding: .5em 8em;
-    text-decoration: none;
-    color: #333;
-    border: 1px solid #d3d3d3;
-}
-
-.flex-prev {
-    float: left;
-}
-
-.flex-next {
-    float: right;
-}
-
-.flex-pauseplay {
-    position: absolute;
-    bottom: -34px;
-    right: 35%;
-    padding: .5em 5em;
-    background: #3990BD;
-    color: #fafafa;
-    border: 1px solid #777;
-    cursor: pointer;
-}
-
-.flex-play {
-    padding: 0 6px;
+.slides_container img {
+    width:240px;
+    height:150px;
+    display:block;
 }
 
 /* Dropdown menu */
@@ -995,18 +981,25 @@ div.current-tab {
 }
 
 /* Error/warning block */
-
 .severe-warning {
-    display: none;
+    position: relative;
     width: 75%;
-    padding: 8px;
-    margin: -15px auto 15px;
-    border-top: 1px solid #333;
+    padding: .5em 1em;
+    margin: -15px auto 1em;
+    border-top: 1px solid #555;
     text-align: center;
     background-color: #aa1111;
     color: #f1f1f1;
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
+}
+
+#close-warning{
+    position: absolute;
+    top: 6px;
+    right: 8px;
+    text-decoration: none;
+    font: bold 16px/14px Tahoma,Verdana,sans-serif;
 }
 
 .no-readings, .no-forecast {
@@ -1034,8 +1027,8 @@ div.current-tab {
 .fb { background: url('<?= $this->webroot ?>theme/weatherph/img/default-sprite.png') no-repeat -165px -209px; width: 32px; height: 31px; }
 .twitter { background: url('<?= $this->webroot ?>theme/weatherph/img/default-sprite.png') no-repeat -198px -209px; width: 32px; height: 31px; }
 
-span.symbol { background: url('<?= $this->webroot ?>theme/weatherph/img/warning-sprites.png') -5px -65px no-repeat; height: 30px; width: 40px; display: block; margin: auto; cursor: pointer;}
-span.symbolwind { background: url('<?= $this->webroot ?>theme/weatherph/img/warning-sprites.png') -5px -65px no-repeat; height: 30px; width: 40px; display: block; margin: auto; cursor: pointer; float: left;}
+span.symbol { background: url('<?= $this->webroot ?>theme/weatherph/img/warning-sprites.png') -5px -65px no-repeat; height: 30px; width: 40px; display: block; margin: auto auto auto 10px;}
+span.symbolwind { background: url('<?= $this->webroot ?>theme/weatherph/img/warning-sprites.png') -5px -65px no-repeat; height: 30px; width: 40px; display: block; margin: auto; float: left;}
 
 
 span.day_1 { background-position: -70px -180px; }

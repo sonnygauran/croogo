@@ -211,7 +211,6 @@ $(document).ready(function(){
                                     }
 
                                     map.panTo(bounds.getCenter()).setZoom(zoom);
-                                    //                                console.log($current);
                                     setTimeout(getDataLayer, 1000);
                                 }
                             }
@@ -246,6 +245,11 @@ $(document).ready(function(){
                         }
 
                         var src;
+                        var poster = $('#movie-'+_name ).attr('poster');
+                        var new_poster = poster.replace(currentRegion, videoRegion);
+                        $('#movie-'+_name ).attr('poster', new_poster);
+
+//                        $('#movie-'+_name ).attr('poster', name)
                         $.each($('#movie-'+_name + ' > source'), function(index, value){
                             src = $(this).attr('src');
                             new_src = src.replace(currentRegion, videoRegion);
@@ -278,7 +282,6 @@ function getForecast(id) {
             var title = readings.station_name;
             title = title.replace('<br />', ' ');
             document.title =  "Weather Philippines Foundation | " +title  ;
-            //                console.log(readings);
             var $station_readings = readings; // the complete retrieved stations
             // console.log($station_readings);
             var cr_temperature, cr_wind, cr_precip, cr_humidity, cr_symbol;
@@ -468,7 +471,7 @@ function mapStations($stationsArray, icon, stationName) {
         /**
          * This would make MM stations on top of others
          */
-        if (stationName !== null) {
+        if (stationName != null) {
             if (stationName == 'meteomedia') {
                 marker.setZIndexOffset(1);
             } else {
@@ -556,9 +559,9 @@ function remapStations() {
                         window['STATIONS'].meteomedia = $stations;
 
                         $('select[name=philippine-regions]')
-                        .find('option[data-region-id=Philippines]')
-                        .attr('selected','selected')
-                        .change();
+                            .find('option[data-region-id=Philippines]')
+                            .attr('selected','selected')
+                            .change();
                     }
                 });
 
@@ -593,24 +596,26 @@ function getDataLayer(){
     // The currently-selected layer
     var dataLayer = window["DATA_LAYER"];
 
+    // console.error('x~>'+dataLayer);
     if (dataLayer == 'temperature' || dataLayer == 'pressure' || dataLayer == 'satellite') {
-        $('.layer.slides_container').html('');
-
-        // Adds the layer images
+        $('#layer-slides .slides_container').html('');
+        /**
+         * This is responsible for adding the layer images for animation
+         */
         for (var key in window['fileNames'][dataLayer]) {
             var c = window['fileNames'][dataLayer][key];
             var _imageName = ""+c.year+c.month+c.day+c.hour+c.min+'00'+gemCodeForRegions+'_'+dataLayer;
 
-            $('#layer-slides > .slides').append(
-                '<li>' +
-                    '<img src="<?= $this->webroot ?>theme/weatherph/img/layers/'+_imageName+'.png" ' +
-                        'data-year="'   + c.pst_year  + '" ' +
-                        'data-month="'  + c.pst_month + '" ' +
-                        'data-day="'    + c.pst_day   + '" ' +
-                        'data-hour="'   + c.pst_hour  + '" ' +
-                        'data-minute="' + c.pst_min   + '" ' +
-                    ' />' +
-                '</li>'
+            $('#layer-slides .slides_container').append(
+                '<img src="<?= $this->webroot ?>theme/weatherph/img/layers/'+_imageName+'.png" '
+                +'data-year="'   + c.pst_year  + '" '
+                +'data-month="'  + c.pst_month + '" '
+                +'data-day="'    + c.pst_day   + '" '
+                +'data-hour="'   + c.pst_hour  + '" '
+                +'data-minute="' + c.pst_min   + '" '
+                +'data-second="00" '
+                +'style="display: none;"'
+                +' />'
             );
         }
 
@@ -618,23 +623,35 @@ function getDataLayer(){
         $('.data-layer').animate({
             opacity: 1
         }, 1000, function(){
+            /**
+            * This is responsible for animating the added layer images
+            */
+            $('#layer-slides').slides({
+                preload: false,
+                effect: 'fade',
+                crossfade: true,
+                fadeSpeed: 1000,
+                play: 2000,
+                pagination: false,
+                generatePagination: false,
+                generateNextPrev: false,
+                animationStart: function(){
+                    var $visible = $('#layer-slides .slides_container img:visible');
 
-            // Animates the layer images
-            $('#layer-slides').flexslider({
-                controlsContainer: "layer-controls",
-                controlNav: false,
-                prevText: "Prev",
-                pausePlay: true,
-                initDelay: 2000,
-                slideshowSpeed: 2000,
-                animationSpeed: 500,
-                after: function(){
-                    var $visible = $('#layer-slides img:visible');
-                    $('.data-layer-label .timestamp .date .year').html($visible.attr('data-year'));
-                    $('.data-layer-label .timestamp .date .month').html($visible.attr('data-month'));
-                    $('.data-layer-label .timestamp .date .day').html($visible.attr('data-day'));
-                    $('.data-layer-label .timestamp .time .hour').html($visible.attr('data-hour'));
-                    $('.data-layer-label .timestamp .time .minute').html('00');
+                    if ($visible.length == 1) {
+                        var minutes =  $visible.attr('data-minute');
+
+                        minutes -= 00;
+                        if(minutes === 0) minutes = '00';
+
+                        $('.data-layer-label .timestamp .date .year').html($visible.attr('data-year'));
+                        $('.data-layer-label .timestamp .date .month').html($visible.attr('data-month'));
+                        $('.data-layer-label .timestamp .date .day').html($visible.attr('data-day'));
+
+                        $('.data-layer-label .timestamp .time .hour').html($visible.attr('data-hour'));
+                        $('.data-layer-label .timestamp .time .minute').html(minutes) ;
+                        $('.data-layer-label .timestamp .time .second').html('00');
+                    }
                 }
             });
         }); // animation callback
@@ -674,7 +691,6 @@ function redrawMap(){
                 $('#map').data('map').scrollWheelZoom.disable();
                 $('.data-layer').show();
                 $('.leaflet-control-zoom').hide();
-                $('#legend').css('padding-top', '3em');
                 break;
             default:
                 $('.data-layer-label').hide();
@@ -731,7 +747,6 @@ function redrawMap(){
                 $('.scale-temperature').hide();
                 $('.scale-pressure').hide();
                 $('.minor-area').removeAttr('disabled');
-                $('#legend').css('padding-top', '.5em');
                 remapStations();
                 $('#map').data('map').removeLayer(window['LEAFLET_TILES'].temperature);
                 $('#map').data('map').removeLayer(window['LEAFLET_TILES'].pressure);
@@ -835,6 +850,9 @@ $(document).ready(function(){
                 $video
                 .fadeIn(1000)
                 .find('video').show();
+            //            jwplayer("#window['MOVIE_CONTENT']."+_name).setup({
+            //                flashplayer: "<? $this->webroot . 'weatherph/swf/player.swf'?>"
+            //            });
             });
 
         } else {
@@ -860,12 +878,6 @@ $(document).ready(function(){
                         onionSkinMap();
                     });
                 });
-
-                if (mapVisible) {
-                    // console.error('is visible');
-                } else {
-                    // console.error('is invisible');
-                }
             }
         }
     });

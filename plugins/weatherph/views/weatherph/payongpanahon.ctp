@@ -1,7 +1,7 @@
 <div class="content">
     <section class="main">
         <div class="page">
-          <?php   $this->set('title_for_layout', 'Payong Panahon'); ?>
+            <?php $this->set('title_for_layout', 'Payong Panahon'); ?>
             <h2>Payong Panahon</h2>
             <hr/>
             <?php foreach ($blogLists as $blog) { ?>
@@ -21,6 +21,7 @@
                     <h4><?= $html->link($blog['Node']['title'], $blog['Node']['url'], array('class' => 'link')) ?></h4>
                     <p><?= $blog['Node']['excerpt']; ?></p>
                 </div>
+                <hr>
             <?php } ?>
         </div>
     </section>

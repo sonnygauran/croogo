@@ -88,20 +88,20 @@ class WeatherphController extends WeatherphAppController {
                 if($type=='temperature' || $type=='pressure'){
                     if($current_time < $file_date){
                         $filenames[$type][] = $current;
-                     
+
                     }else{
                         continue;
                     }
-                   
-                }else{  
+
+                }else{
                  if ($current_time2 < $file_date){
                   $filenames[$type][] = $current;
-                       
+
                  }else {
                      continue;
                     }
                 }
-                
+
             }
         }
 
@@ -220,8 +220,8 @@ class WeatherphController extends WeatherphAppController {
      */
     public function getForecast($stationID = '984290', $numDays = 1, $utch = '3h') {
 
-        //For 
-        
+        //For
+
 
         $this->layout = 'json/ajax';
         App::import('Model', 'Weatherph.WeatherphStationForecast');
@@ -358,13 +358,29 @@ class WeatherphController extends WeatherphAppController {
 
         //$this->log(print_r($forecastRange, true));
 
-      
-        
+
+
         $this->set(compact('forecastRange', 'dataSets', 'title_for_layout'));
     }
 
     public function about() {
         $this->layout = 'default';
+    }
+
+    public function news() {
+        $this->set('title_for_layout',__('Weatherph',true));
+
+        //$this->layout = 'default';
+
+        $blogLists = $this->Node->find('all', array(
+            'order' => 'Node.created DESC',
+            'conditions' => array('Node.type' => array('news', 'announcements')),
+            'limit' => 5,
+        ));
+
+    //debug($blogLists);
+
+        $this->set(compact('blogLists'));
     }
 
     public function payongpanahon() {

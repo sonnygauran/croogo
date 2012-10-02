@@ -1,8 +1,8 @@
 <div class="content">
     <section class="main">
         <div class="page">
-            <?php $this->set('title_for_layout', 'Mata ng Bagyo'); ?>
-            <h2>Mata Ng Bagyo</h2>
+            <?php $this->set('title_for_layout', 'News'); ?>
+            <h2>News</h2>
             <hr/>
             <?php foreach ($blogLists as $blog) { ?>
                 <?php $createdTime = strtotime($blog['Node']['created']); ?>
