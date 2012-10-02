@@ -421,6 +421,13 @@ $movie_location = Configure::read('Data.movies');
                                 <div class="day"><?= date('d', $createdTime) ?></div>
                                 <div class="year"><?= date('Y', $createdTime) ?></div>
                             </div>
+                            <?php
+                        if ($blog['Node']['type'] == 'news'){
+                             ?><a href="<?= $this->webroot ?>news/payong-panahon">Payong Panahon</a><?php
+                        }elseif($blog['Node']['type'] == 'announcements'){
+                            ?><a href="<?= $this->webroot ?>news/mata-ng-bagyo">Mata ng Bagyo</a><?php
+                        }
+                        ?>
                         </div>
                         <div class="ribbon-edge-bottomleft"></div>
                     </div>
