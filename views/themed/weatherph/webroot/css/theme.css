@@ -448,6 +448,7 @@ span.temperature {
     position: relative;
     overflow: hidden;
     word-wrap:break-word;
+    margin-bottom: 2em;
 }
 
 .post-date {

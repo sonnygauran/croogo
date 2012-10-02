@@ -21,6 +21,7 @@
                     <h4><?= $html->link($blog['Node']['title'], $blog['Node']['url'], array('class' => 'link')) ?></h4>
                     <p><?= $blog['Node']['excerpt']; ?></p>
                 </div>
+                <hr>
             <?php } ?>
         </div>
     </section>
