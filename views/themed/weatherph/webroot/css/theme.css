@@ -119,7 +119,7 @@ nav {
 }
 
 .secondary{
-    width: 794px;
+    width: 804px;
     margin-top: 1em;
     float: left;
 }
@@ -440,56 +440,38 @@ span.temperature {
     margin-right: 10px;
 }
 
+.blog > .page h2 a {
+    text-align: left;
+}
+
+.blog h2 a {
+    text-decoration: none;
+}
+
 .blog > .page {
-    padding: 1.5em 1em;
-}
-
-.blog h4 {
-    margin-bottom: 0;
-    padding-bottom: 0;
-}
-
-.blog p {
-    width: 450px;
-    margin-left: 36px;
+    padding: 2em;
 }
 
 .blog-excerpt {
     position: relative;
     overflow: hidden;
     margin-bottom: 0 auto 2em auto;
+}
+
+.post-meta {
     text-align: center;
-}
-
-.post-category {
-    font-size: 10px;
-    text-decoration: none;
-    font-weight: 500;
-}
-
-.post-date {
-    color:#3990BD;
-    padding: 0.3em;
-    text-align: center;
-}
-
-.post-date .day {
-    font-size: 1.75em;
-    font-weight: 700;
-}
-
-.post-date .month,
-.post-date .year {
-    font-size: 1.2em;
-    text-transform: uppercase;
+    margin-top: 1em;
+    padding: .5em;
+    font-size: 12px;
+    background-color: #f1f1f1;
+    color: #3990BD
 }
 
 .news {
-    width: 228px;
+    width: 240px;
     float: left;
     overflow: hidden;
     background-color: #fafafa;
-    border: 1px solid #dddddd;
     box-shadow: 0 4px 3px -3px black;
 }
 
@@ -844,7 +826,6 @@ span.temperature {
     margin: 2em auto;
     display:block;
     max-width: 716px;
-	border: 2px solid #3990BD;
 }
 
 .page dt {
@@ -1114,55 +1095,6 @@ span.sunset { background-position: -60px 5px; }
 
 .shadow {
     box-shadow: 0 4px 3px -3px black;
-}
-
-/* RIBBON  STYLE CSS */
-.ribbon-wrapper {
-    position: relative;
-    float: left;
-    width: 0;
-}
-
-.ribbon-front.blog-page,
-.ribbon-front.subblog {
-    left:-40px;
-}
-
-.blog-page .ribbon-wrapper {
-    position: absolute;
-    top: .5em;
-    width: 0;
-}
-
-.ribbon-front {
-    background-color: #ffffff;
-    height: 80px;
-    width: 70px;
-    position: relative;
-    left:-25px;
-    z-index: 2;
-    border-top: 5px solid #3990BD;
-    border-bottom: 1px solid #e1e1e1;
-}
-
-.blog .ribbon-front {
-    width: 60px;
-}
-
-.ribbon-edge-bottomleft {
-    position: absolute;
-    left: -25px;
-    border-color: transparent #9393A4 transparent transparent;
-    z-index: 1;
-    border-style:solid;
-    height:0px;
-    width:0px;
-    border-width: 0 10px 5px 0;
-}
-
-.ribbon-edge-bottomleft.blog-page,
-.ribbon-edge-bottomleft.subblog {
-    left:-38px;
 }
 
 /* Share buttons*/
