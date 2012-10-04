@@ -7,7 +7,7 @@
             <p>
                 The Weather Philippines Foundation (WPF) aims to deliver critical and accurate weather forecasts to the Filipino community, with the hope of improving nationwide disaster preparedness, and timely response to variable weather conditions. By bringing together the <a href="http://aboitiz.com">Aboitiz Group's</a> resources and network, and Swiss company <a href="http://www.meteomedia.ch/">Meteomedia's<a/> technical expertise, WPF is poised to be the country's premiere private weather information/content provider. WPF plans to have roughly 1,000 automated weather station/devices installed across the Philippines before the end of 2013.
             </p>
-            
+
             <h2>Meteomedia</h2>
             <hr/>
             <p>Meteomedia. Weather is Our Focus.</p>
@@ -54,10 +54,14 @@
             <?/*
             <h2>Aboitiz</h2>
             <hr/>
-            
+
             <h2>Unionbank</h2>
             <hr/>
             */?>
+
+           <h4>Disclaimer:</h4>
+           <p>Disclaimer: Information based on data collected by Weather Philippines Foundation, Inc. shall not be taken as official data.  Weather information broadcasted and distributed by PAGASA remains as official data.  Weather Philippines shall not be responsible for the private use and reliance of its weather information.
+            </p>
         </div>
     </section> <!--MAIN CONTENT-->
 </div> <!--CONTENT-->
