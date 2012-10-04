@@ -17,7 +17,6 @@
     <table>
         <tr>
             <th>File</th>
-            <th>Video</th>
             <th>Url</th>
             <th>Action</th>
         </tr>
@@ -29,23 +28,12 @@
                     
                 </td>
                 <td>
-                    <video height='250' width='250'controls>
+                    <video controls="">
                         <source src="http://199.195.193.129:7777/<?= $file ?>.m4v" type="video/x-m4v"/>
                         <source src="http://199.195.193.129:7777/<?= $file ?>.mp4" type="video/mp4"/>
                         <source src="http://199.195.193.129:7777/<?= $file ?>.webm" type="video/webm"/>
                     </video>
                 </td>
-                <td>
-                     
-    <?= htmlentities("<video controls>") . "\n" ?><br/>
-        <?= htmlentities("<source src='")?>http://199.195.193.129:7777/<?= $file ?> <?= htmlentities(".m4v' type='video/x-m4v;' />") . "\n"?>
-       <br/> <?= htmlentities("<source src='")?>http://199.195.193.129:7777/<?= $file ?> <?= htmlentities(".mp4' type='video/m4v;' />") . "\n"?>
-        <br/><?= htmlentities("<source src='")?>http://199.195.193.129:7777/<?= $file ?> <?= htmlentities(".webm' type='video/x-webm;' />") . "\n"?>
-       <br/>
-    <?= htmlentities("</video>")?>
-
-                </td>
-                
                 <td>
                     <?php
                     echo $this->Html->link("delete", array(
