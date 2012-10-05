@@ -43,6 +43,14 @@
                         $file
                     ));
                     ?>
+                     <?php
+                    echo $this->Html->link("reuse", array(
+                        'plugin' => null,
+                        'controller' => 'uploads',
+                        'action' => 'success',
+                        $file
+                    ));
+                    ?>
                 </td>
 
             </tr>
