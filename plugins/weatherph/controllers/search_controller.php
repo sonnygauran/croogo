@@ -184,9 +184,11 @@ class SearchController extends WeatherphAppController {
                 $names = $this->paginate('NimaName');
                 $stations = $this->paginate('Station');
                 $count = count($names) + count($stations);
+                $meta_for_description = $this->description('description', 'WeatherPhilippines');
+        $meta_for_keywords = $this->keywords('keywords', 'WeatherPhilippines, 
+            weather, philippines, weather philippines');
                 
-                
-                $this->set(compact('names', 'stations', 'count'));
+                $this->set(compact('names', 'stations', 'count', 'meta_for_description','meta_for_keywords'));
             } else {
                 $this->log('NO MATCH!');
                 $this->Session->setFlash(__('Invalid search term provided. Please check your search. You entered "'.$terms.'"', true), 'default', array('class' => 'error'));
@@ -247,7 +249,10 @@ class SearchController extends WeatherphAppController {
 //        } else {
 //            $locations = Cache::read($gum, 'daily');
 //        }
-        
+        $meta_for_description = $this->description('description', 'WeatherPhilippines');
+        $meta_for_keywords = $this->keywords('keywords', 'WeatherPhilippines, 
+            weather, philippines, weather philippines');
+        $this->set(compact('meta_for_description','meta_for_description'));
         $this->set('locations', json_encode($updated_results));
     }
 }

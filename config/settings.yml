@@ -3,9 +3,9 @@ Comment.date_time_format: M d, Y
 Comment.feed_limit: 10
 Comment.level: 1
 Hook.bootstraps: weatherph
-Meta.description: 'Croogo - A CakePHP powered Content Management System'
+#Meta.description: 'Croogo - A CakePHP powered Content Management System'
 Meta.generator: 'Croogo - Content Management System'
-Meta.keywords: croogo, Croogo
+#Meta.keywords: croogo, Croogo
 Meta.robots: index, follow
 Reading.date_time_format: D, M d Y H:i:s
 Reading.nodes_per_page: 5

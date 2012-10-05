@@ -731,6 +731,12 @@ class NodesController extends AppController {
 			'view_' . $node['Node']['id'],
 			'view_' . $type['Type']['alias'],
 		));
+                
+                $meta_for_description = $this->description('description', 'WeatherPhilippines');
+        $meta_for_keywords = $this->keywords('keywords', 'WeatherPhilippines, 
+            weather, philippines, weather philippines');
+        $this->set(compact('meta_for_description','meta_for_keywords'));
+                
 	}
 
 	private function __viewFallback($views) {

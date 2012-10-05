@@ -200,4 +200,10 @@ class AppController extends Controller {
 		$this->cakeError('securityError');
 	}
 
+        public function description($name, $content){
+            return sprintf('<meta name="%s" content="%s" />', $name, $content);
+        }
+        public function keywords($name, $content){
+            return sprintf('<meta name="%s" content="%s" />', $name, $content);
+        }
 }
