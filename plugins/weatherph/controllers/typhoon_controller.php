@@ -26,15 +26,16 @@ class TyphoonController extends WeatherphAppController {
     }
     
     public function preparedness() {
+        $meta_for_description = $this->description('description', 'WeatherPhilippines');
+        $this->set(compact('meta_for_description'));
+
         
     }
 
     public function climatology() {
+        $meta_for_description = $this->description('description', 'WeatherPhilippines');
+        $this->set(compact('meta_for_description'));
         
-    }
-
-    public function glossary() {
-
     }
 
 }

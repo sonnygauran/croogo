@@ -5,7 +5,7 @@ Comment.level: 1
 Hook.bootstraps: weatherph
 #Meta.description: 'Croogo - A CakePHP powered Content Management System'
 Meta.generator: 'Croogo - Content Management System'
-Meta.keywords: weather, WeatherPhilippines, Philippines, weather philippines, weather tv, dictionary, tagalog, english, news, webcam, payong panahon, mata ng bagyo, typhoon, pressure, satellite, temperature, meteomedia philippines, meteomedia, aboitiz power, union bank, weather movies
+Meta.keywords: weather,Philippines, weather philippines, weather tv, dictionary, news, webcam, payong panahon, mata ng bagyo, typhoon, typhoon preparedness, typhoon climatology, pressure, satellite, temperature, meteomedia philippines, meteomedia, aboitiz power, union bank, weather movies
 Meta.robots: index, follow
 Reading.date_time_format: D, M d Y H:i:s
 Reading.nodes_per_page: 5
