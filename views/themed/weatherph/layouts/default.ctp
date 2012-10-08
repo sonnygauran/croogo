@@ -19,6 +19,7 @@
 <!--    <title><?php echo ($title_for_layout).' | ' . Configure::read('Site.title'); ?></title>
     -->
     <meta name="viewport" content="width=device-width" />
+    
     <?php
     echo $meta_for_description;
     echo $this->Layout->meta();
@@ -76,8 +77,11 @@
         // If there is a "Mata ng Bagyo" post within the last 24 hours, show the following warning:
         if(isset($show_alert) && $show_alert):
         ?>
+          
         <div class="severe-warning shadow">
-            <strong>Announcement:</strong> <?= $severe_warning['Node']['excerpt'] ?> <a href="/announcements/<?= $severe_warning['Node']['slug']?>">Read More</a> </p>
+            <strong>Announcement:</strong> <?= $severe_warning['Node']['excerpt'] ?> 
+             
+            <a href="/announcements/<?= $severe_warning['Node']['slug']?>">Read More</a> </p>
             <a id="close-warning" href="#">x</a>
         </div>
         <?php

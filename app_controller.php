@@ -165,7 +165,7 @@ class AppController extends Controller {
 		$severe_warning = $this->Node->find('first', array(
             'fields' => array('created', 'excerpt', 'slug'),
             'order' => 'Node.created DESC',
-            'conditions' => array('Node.type' => 'announcements'),
+            'conditions' => array('Node.type' => 'announcements', 'alert' => '1'),
             'contain' => false
         ));
 

@@ -21,6 +21,18 @@
 					echo $this->Form->input('slug', array('class' => 'slug'));
 					echo $this->Form->input('excerpt');
                                         ?>
+                                 <?php
+                                        if (($type['Type']['title']) == 'Mata ng Bagyo'){
+                                            echo $this->Form->input('alert', array('value' => '1', 'type' => 'checkbox'));
+                                            echo " Check to add Alert in frontpage";
+                                            
+                                        }else{
+                                            
+                                        }
+                                        
+                                       
+                                 ?>
+                                    <br/>
                                         <input name="Upload Video"  value="Upload Video" onclick=window.open("/admin/uploads/video","Homepage","resizable=no,status=yes,scrollbars=yes,height=970,width=945,menubar=yes,addressbar=no") type="button" />
                                         <input name="Upload Image"  value="Upload Image" onclick=window.open("/admin/uploads/image","Homepage","resizable=no,status=yes,scrollbars=yes,height=970,width=945,menubar=yes,addressbar=no") type="button" />
 				<?php

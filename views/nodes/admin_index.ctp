@@ -3,7 +3,7 @@
 ?>
 <div class="nodes index">
 	<h2><?php echo $title_for_layout; ?></h2>
-
+	
 	<div class="actions">
 		<ul>
 			<li><?php echo $this->Html->link(__('Create content', true), array('action'=>'create')); ?></li>
@@ -30,7 +30,9 @@
 			$paginator->sort('type'),
 			$paginator->sort('user_id'),
 			$paginator->sort('status'),
+                       
 			$paginator->sort('promote'),
+                        $paginator->sort('alert'),
 			//$paginator->sort('created'),
 			__('Actions', true),
 		));
@@ -60,6 +62,7 @@
 				$node['User']['username'],
 				$this->Layout->status($node['Node']['status']),
 				$this->Layout->status($node['Node']['promote']),
+                                $this->Layout->status($node['Node']['alert']),
 				//$node['Node']['created'],
 				$actions,
 			);
