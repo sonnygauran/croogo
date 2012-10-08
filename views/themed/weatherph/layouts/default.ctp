@@ -20,6 +20,7 @@
     -->
     <meta name="viewport" content="width=device-width" />
     <?php
+    echo $meta_for_description;
     echo $this->Layout->meta();
     echo $this->Layout->feed();
     echo $this->Html->css('theme');

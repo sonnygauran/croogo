@@ -12,12 +12,16 @@ class DictionariesController extends WeatherphAppController {
     }
     
     public function english(){
-         $this->set('title_for_layout', 'English Dictionary');
+        $meta_for_description = $this->description('description', 'WeatherPhilippines');
+        $this->set(compact('meta_for_description'));
+        $this->set('title_for_layout', 'English Dictionary');
     }
     
     
     public function filipino() {
-         $this->set('title_for_layout','Filipino Dictionary');
+        $meta_for_description = $this->description('description', 'WeatherPhilippines');
+        $this->set(compact('meta_for_description'));
+        $this->set('title_for_layout','Filipino Dictionary');
         
     }
 

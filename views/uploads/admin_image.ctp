@@ -23,6 +23,7 @@
 <table>
     <tr>
         <th>File</th>
+        <th>Image</th>
         <th>Url</th>
         <th>Action</th>
     </tr>
@@ -32,7 +33,12 @@
                 <?= $file ?>
             </td>
             <td>
-                <a href="/uploads/uploaded_images/<?= $file ?>" > /uploads/uploaded_images/<?= $file ?></a>
+                <a href="/uploads/uploaded_images/<?= $file ?>" > <img src="/uploads/uploaded_images/<?= $file ?>" width="75" length="75" alt="" /></a>
+            </td>
+            <td>
+               <?= htmlspecialchars('<img src="/uploads/uploaded_images/')?><?=$file?><?= htmlspecialchars('" alt=" " />')?>
+                   
+                
             </td>
             <td>
                 <?php

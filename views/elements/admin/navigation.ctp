@@ -32,7 +32,7 @@
 				</li>
                                
                 <li>
-                        <?php echo $this->Html->link(__('Upload', true), array('plugin' => null, 'controller' => 'uploads', 'action' => 'index')); ?>
+                        <?php echo $this->Html->link(__('Upload', true), array('plugin' => null, 'controller' => 'uploads', 'action' => 'video')); ?>
                         <ul>
                         	<li>
                         		<?php echo $this->Html->link(__('Video', true), array('plugin' => null, 'controller' => 'uploads', 'action' => 'video')); ?>

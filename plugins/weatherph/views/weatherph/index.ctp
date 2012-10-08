@@ -413,22 +413,20 @@ $movie_location = Configure::read('Data.movies');
             <h4>News</h4>
             <div class="page">
                 <?php foreach ($blogEntries as $blog) { ?>
-                    <?php $createdTime = strtotime($blog['Node']['created']); ?>
-                    <div class="ribbon-wrapper">
-                        <div class="ribbon-front">
-                            <div class="post-date">
-                                <div class="month"><?= date('M', $createdTime) ?></div>
-                                <div class="day"><?= date('d', $createdTime) ?></div>
-                                <div class="year"><?= date('Y', $createdTime) ?></div>
-                            </div>
-                        </div>
-                        <div class="ribbon-edge-bottomleft"></div>
-                    </div>
-
                     <div class="blog-excerpt">
-                        <h4><?= $html->link($blog['Node']['title'], $blog['Node']['url'], array('class' => 'link')) ?></h4>
-                        <p><?= $text->excerpt(strip_tags($blog['Node']['body']), 'method', 200, '...' . $html->link('Read More', $blog['Node']['url'])) ?><?= '<hr>'; ?></p>
+                        <h3><?= $html->link($blog['Node']['title'], $blog['Node']['url'], array('class' => 'link')) ?></h3>
+                        <p><?= $text->excerpt(strip_tags($blog['Node']['body']), 'method', 200, '...' . $html->link('Read More', $blog['Node']['url'])) ?></p>
+                        <p class="post-meta">
+                            <?php $createdTime = strtotime($blog['Node']['created']); ?>
+                            Posted on <?= date('M', $createdTime) ?> <?= date('d', $createdTime) ?>, <?= date('Y', $createdTime) ?> under
+                                <?php if ($blog['Node']['type'] == 'news'){?>
+                                    <a class="post-category" href="<?= $this->webroot ?>news/payong-panahon">Payong Panahon</a>
+                                <?php }elseif($blog['Node']['type'] == 'announcements'){?>
+                                    <a class="post-category" href="<?= $this->webroot ?>news/mata-ng-bagyo">Mata ng Bagyo</a>
+                                <?php } ?>
+                        </p>
                     </div>
+                    <hr>
                 <?php } ?>
             </div>
         </div>
@@ -436,7 +434,6 @@ $movie_location = Configure::read('Data.movies');
         <h4>Learn More</h4>
         <div class="news">
             <ul>
-                <!-- <li><img src="<?= $this->webroot ?>theme/weatherph/img/learn-more/mata-ng-bagyo.gif"/><p><a href="<?= $this->webroot ?>announcements">Mata ng Bagyo</a><br><i style="font-size: 10px;">(Eye of the Storm)</i></p></li> -->
                 <li>
                     <a href="<?= $this->webroot ?>news">
                         <img src="<?= $this->webroot ?>theme/weatherph/img/learn-more/payong-panahon.gif"/>

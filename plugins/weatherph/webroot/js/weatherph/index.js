@@ -218,9 +218,8 @@ $(document).ready(function(){
                     } else if($('.active-layer').attr('id') === 'movie-layer'){
 
                         // Video switch
-
                         window["DATA_LAYER"] = _name;
-                        // console.error('Set~>'+window["DATA_LAYER"]);
+                        console.error('Set~>'+window["DATA_LAYER"]);
 
                         var $movie = $('#movie-'+_name); // The markup
                         var content = eval("window['MOVIE_CONTENT']."+_name);
@@ -246,10 +245,10 @@ $(document).ready(function(){
 
                         var src;
                         var poster = $('#movie-'+_name ).attr('poster');
-                        var new_poster = poster.replace(currentRegion, videoRegion);
-                        $('#movie-'+_name ).attr('poster', new_poster);
+                        // var new_poster = poster.replace(currentRegion, videoRegion);
+                        $('#movie-'+_name ).attr('poster' /*, new_poster*/);
 
-//                        $('#movie-'+_name ).attr('poster', name)
+                       $('#movie-'+_name ).attr('poster', name);
                         $.each($('#movie-'+_name + ' > source'), function(index, value){
                             src = $(this).attr('src');
                             new_src = src.replace(currentRegion, videoRegion);
@@ -413,7 +412,7 @@ function isiPhone(){
 // console.error('<?= Router::url(null, true) ?>theme/weatherph/img/leaflet/marker-icon-red-small-transparent.png');
 var StationIconWeb = L.Icon.extend({
     options: {
-        iconUrl: '<?= Router::url(null, true) ?>theme/weatherph/img/leaflet/marker-icon-red-small-transparent.png',
+        iconUrl: '<?= Router::url(null, true) ?>theme/weatherph/img/leaflet/marker-icon-red-small.png',
         shadowUrl: '<?= Router::url(null, true) ?>/theme/weatherph/img/leaflet/marker-shadow.png',
         iconSize: new L.Point(8, 13),
         shadowSize: new L.Point(13, 13),
@@ -426,7 +425,7 @@ var StationIconWeb = L.Icon.extend({
 
 var StationIconMobile = L.Icon.extend({
     options: {
-        iconUrl: '<?= Router::url(null, true) ?>theme/weatherph/img/leaflet/marker-icon-red-small-transparent.png',
+        iconUrl: '<?= Router::url(null, true) ?>theme/weatherph/img/leaflet/marker-icon-red-small.png',
         shadowUrl: '<?= Router::url(null, true) ?>/theme/weatherph/img/leaflet/marker-shadow.png',
         iconSize: new L.Point(12, 20),
         shadowSize: new L.Point(20, 20),

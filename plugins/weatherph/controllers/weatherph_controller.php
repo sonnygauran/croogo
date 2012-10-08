@@ -144,7 +144,8 @@ class WeatherphController extends WeatherphAppController {
          *      - resource - contains an array of (data-layer => (temperature, pressure)) for retreiving the image key.
          *      - featureBlog - to display the featured blogs
          */
-        $this->set(compact('blogEntries', 'resources'));
+        $meta_for_description = $this->description('description', 'The Weather Philippines Foundation (WPF) aims to deliver critical and accurate weather forecasts to the Filipino community, with the hope of improving nationwide disaster preparedness, and timely response to variable weather conditions.');
+        $this->set(compact('blogEntries', 'resources', 'meta_for_description'));
 
     }
 
@@ -298,7 +299,7 @@ class WeatherphController extends WeatherphAppController {
         'startDatum' => $startDatum,
         'endDatum' => $endDatum,
         )));
-
+        
         if ($type != NULL) {
             $WeatherphStationReading = new WeatherphStationReading();
             $anyChartXML = $WeatherphStationReading->arrayToAnyChartXML('all', array('conditions' => array(
@@ -359,12 +360,15 @@ class WeatherphController extends WeatherphAppController {
         //$this->log(print_r($forecastRange, true));
 
 
+        $meta_for_description = $this->description('description', 'WeatherPhilippines');
+        $this->set(compact('forecastRange', 'dataSets', 'title_for_layout','meta_for_description'));
 
-        $this->set(compact('forecastRange', 'dataSets', 'title_for_layout'));
     }
 
     public function about() {
         $this->layout = 'default';
+        $meta_for_description = $this->description('description', 'WeatherPhilippines');
+        $this->set(compact('meta_for_description'));
     }
 
     public function news() {
@@ -379,8 +383,8 @@ class WeatherphController extends WeatherphAppController {
         ));
 
     //debug($blogLists);
-
-        $this->set(compact('blogLists'));
+        $meta_for_description = $this->description('description', 'WeatherPhilippines');
+        $this->set(compact('blogLists','meta_for_description'));
     }
 
     public function payongpanahon() {
@@ -395,8 +399,8 @@ class WeatherphController extends WeatherphAppController {
         ));
 
     //debug($blogLists);
-
-        $this->set(compact('blogLists'));
+        $meta_for_description = $this->description('description', 'WeatherPhilippines');
+        $this->set(compact('blogLists','meta_for_description'));
     }
 
     public function mataNgBagyo(){
@@ -410,8 +414,8 @@ class WeatherphController extends WeatherphAppController {
         ));
 
     //debug($blogLists);
-
-        $this->set(compact('blogLists'));
+        $meta_for_description = $this->description('description', 'WeatherPhilippines');
+        $this->set(compact('blogLists','meta_for_description'));
 
 
     }
@@ -459,9 +463,9 @@ class WeatherphController extends WeatherphAppController {
 
 //       $this->log(print_r($dataSets, true));
 
-       $this->set(compact('dataSets','location', 'distance'));
-
-    }
+               $meta_for_description = $this->description('description', 'WeatherPhilippines');
+        $this->set(compact('dataSets','location', 'distance','meta_for_description'));
+   }
 
     public function getStationReadings($station_id = NULL, $time_frame = "10m", $target_date = NULL, $days_range = NULL){
 
@@ -478,7 +482,7 @@ class WeatherphController extends WeatherphAppController {
         )));
 
        // $this->log($readings);
-
+        
         $this->set(compact('readings'));
 
     }
@@ -614,10 +618,17 @@ class WeatherphController extends WeatherphAppController {
            $files= array_unique($files);
            rsort($files);
        }
-
-       $this->set(compact('files'));
+       
+       $meta_for_description = $this->description('description', 'WeatherPhilippines');
+       $this->set(compact('files', 'meta_for_description'));
    }
-   function webcam(){}
+   function webcam(){
+       
+        $meta_for_description = $this->description('description', 'WeatherPhilippines');
+        $this->set(compact('meta_for_description'));
+       
+       
+   }
 
    //JETT
 
@@ -637,7 +648,7 @@ class WeatherphController extends WeatherphAppController {
         'enddate' => $enddate,
         'timeinterval' =>$timeinterval,
         )));
-
+        
         $this->set(compact('dataSets'));
     }
 
