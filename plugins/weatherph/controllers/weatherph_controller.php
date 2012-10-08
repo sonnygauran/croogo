@@ -145,8 +145,7 @@ class WeatherphController extends WeatherphAppController {
          *      - featureBlog - to display the featured blogs
          */
         $meta_for_description = $this->description('description', 'WeatherPhilippines');
-        $meta_for_keywords = $this->keywords('keywords', 'WeatherPhilippines, weather, philippines, weather philippines');
-        $this->set(compact('blogEntries', 'resources', 'meta_for_description', 'meta_for_keywords'));
+        $this->set(compact('blogEntries', 'resources', 'meta_for_description'));
 
     }
 
@@ -362,17 +361,14 @@ class WeatherphController extends WeatherphAppController {
 
 
         $meta_for_description = $this->description('description', 'WeatherPhilippines');
-        $meta_for_keywords = $this->keywords('keywords', 'WeatherPhilippines, 
-            weather, philippines, weather philippines, dictionary, english');
-        $this->set(compact('forecastRange', 'dataSets', 'title_for_layout','meta_for_description','meta_for_keywords'));
+        $this->set(compact('forecastRange', 'dataSets', 'title_for_layout','meta_for_description'));
 
     }
 
     public function about() {
         $this->layout = 'default';
         $meta_for_description = $this->description('description', 'WeatherPhilippines');
-        $meta_for_keywords = $this->keywords('keywords', 'WeatherPhilippines, weather, philippines, weather philippines');
-        $this->set(compact('meta_for_description','meta_for_keywords'));
+        $this->set(compact('meta_for_description'));
     }
 
     public function news() {
@@ -388,8 +384,7 @@ class WeatherphController extends WeatherphAppController {
 
     //debug($blogLists);
         $meta_for_description = $this->description('description', 'WeatherPhilippines');
-        $meta_for_keywords = $this->keywords('keywords', 'WeatherPhilippines, weather, philippines, weather philippines');
-        $this->set(compact('blogLists','meta_for_description','meta_for_keywords'));
+        $this->set(compact('blogLists','meta_for_description'));
     }
 
     public function payongpanahon() {
@@ -405,8 +400,7 @@ class WeatherphController extends WeatherphAppController {
 
     //debug($blogLists);
         $meta_for_description = $this->description('description', 'WeatherPhilippines');
-        $meta_for_keywords = $this->keywords('keywords', 'WeatherPhilippines, weather, philippines, weather philippines');
-        $this->set(compact('blogLists','meta_for_description','meta_for_keywords'));
+        $this->set(compact('blogLists','meta_for_description'));
     }
 
     public function mataNgBagyo(){
@@ -421,8 +415,7 @@ class WeatherphController extends WeatherphAppController {
 
     //debug($blogLists);
         $meta_for_description = $this->description('description', 'WeatherPhilippines');
-        $meta_for_keywords = $this->keywords('keywords', 'WeatherPhilippines, weather, philippines, weather philippines');
-        $this->set(compact('blogLists','meta_for_description','meta_for_keywords'));
+        $this->set(compact('blogLists','meta_for_description'));
 
 
     }
@@ -471,9 +464,7 @@ class WeatherphController extends WeatherphAppController {
 //       $this->log(print_r($dataSets, true));
 
                $meta_for_description = $this->description('description', 'WeatherPhilippines');
-        $meta_for_keywords = $this->keywords('keywords', 'WeatherPhilippines, 
-            weather, philippines, weather philippines');
-        $this->set(compact('dataSets','location', 'distance','meta_for_description','meta_for_keywords'));
+        $this->set(compact('dataSets','location', 'distance','meta_for_description'));
    }
 
     public function getStationReadings($station_id = NULL, $time_frame = "10m", $target_date = NULL, $days_range = NULL){
@@ -629,15 +620,12 @@ class WeatherphController extends WeatherphAppController {
        }
        
        $meta_for_description = $this->description('description', 'WeatherPhilippines');
-        $meta_for_keywords = $this->keywords('keywords', 'WeatherPhilippines, weather, philippines, weather philippines');
-
-       $this->set(compact('files', 'meta_for_description','meta_for_keywords'));
+       $this->set(compact('files', 'meta_for_description'));
    }
    function webcam(){
        
         $meta_for_description = $this->description('description', 'WeatherPhilippines');
-        $meta_for_keywords = $this->keywords('keywords', 'WeatherPhilippines, weather, philippines, weather philippines');
-        $this->set(compact('meta_for_description','meta_for_keywords'));
+        $this->set(compact('meta_for_description'));
        
        
    }
