@@ -144,7 +144,7 @@ class WeatherphController extends WeatherphAppController {
          *      - resource - contains an array of (data-layer => (temperature, pressure)) for retreiving the image key.
          *      - featureBlog - to display the featured blogs
          */
-        $meta_for_description = $this->description('description', 'WeatherPhilippines');
+        $meta_for_description = $this->description('description', 'The Weather Philippines Foundation (WPF) aims to deliver critical and accurate weather forecasts to the Filipino community, with the hope of improving nationwide disaster preparedness, and timely response to variable weather conditions.');
         $this->set(compact('blogEntries', 'resources', 'meta_for_description'));
 
     }
