@@ -440,11 +440,11 @@ span.temperature {
     margin-right: 10px;
 }
 
-.blog > .page h2 a {
+.blog > .page h3 a {
     text-align: left;
 }
 
-.blog h2 a {
+.blog h3 a {
     text-decoration: none;
 }
 

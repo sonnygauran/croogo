@@ -412,7 +412,7 @@ function isiPhone(){
 // console.error('<?= Router::url(null, true) ?>theme/weatherph/img/leaflet/marker-icon-red-small-transparent.png');
 var StationIconWeb = L.Icon.extend({
     options: {
-        iconUrl: '<?= Router::url(null, true) ?>theme/weatherph/img/leaflet/marker-icon-red-small-transparent.png',
+        iconUrl: '<?= Router::url(null, true) ?>theme/weatherph/img/leaflet/marker-icon-red-small.png',
         shadowUrl: '<?= Router::url(null, true) ?>/theme/weatherph/img/leaflet/marker-shadow.png',
         iconSize: new L.Point(8, 13),
         shadowSize: new L.Point(13, 13),
@@ -425,7 +425,7 @@ var StationIconWeb = L.Icon.extend({
 
 var StationIconMobile = L.Icon.extend({
     options: {
-        iconUrl: '<?= Router::url(null, true) ?>theme/weatherph/img/leaflet/marker-icon-red-small-transparent.png',
+        iconUrl: '<?= Router::url(null, true) ?>theme/weatherph/img/leaflet/marker-icon-red-small.png',
         shadowUrl: '<?= Router::url(null, true) ?>/theme/weatherph/img/leaflet/marker-shadow.png',
         iconSize: new L.Point(12, 20),
         shadowSize: new L.Point(20, 20),
