@@ -72,6 +72,7 @@ class UsersController extends AppController {
 
 		$this->User->recursive = 0;
 		$this->set('users', $this->paginate());
+                
 	}
 
 	public function admin_add() {
@@ -153,6 +154,7 @@ class UsersController extends AppController {
 	public function admin_login() {
 		$this->set('title_for_layout', __('Admin Login', true));
 		$this->layout = "admin_login";
+                
 	}
 
 	public function admin_logout() {
@@ -162,6 +164,7 @@ class UsersController extends AppController {
 
 	public function index() {
 		$this->set('title_for_layout', __('Users', true));
+                
 	}
 
 	public function add() {
@@ -281,6 +284,8 @@ class UsersController extends AppController {
 
 	public function login() {
 		$this->set('title_for_layout', __('Log in', true));
+                $meta_for_description = $this->description('description', 'WeatherPhilippines');
+                $this->set(compact('meta_for_description'));
 	}
 
 	public function logout() {
