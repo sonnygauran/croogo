@@ -414,7 +414,7 @@ $movie_location = Configure::read('Data.movies');
             <div class="page">
                 <?php foreach ($blogEntries as $blog) { ?>
                     <div class="blog-excerpt">
-                        <h2><?= $html->link($blog['Node']['title'], $blog['Node']['url'], array('class' => 'link')) ?></h2>
+                        <h3><?= $html->link($blog['Node']['title'], $blog['Node']['url'], array('class' => 'link')) ?></h3>
                         <p><?= $text->excerpt(strip_tags($blog['Node']['body']), 'method', 200, '...' . $html->link('Read More', $blog['Node']['url'])) ?></p>
                         <p class="post-meta">
                             <?php $createdTime = strtotime($blog['Node']['created']); ?>
