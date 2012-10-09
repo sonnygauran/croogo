@@ -79,10 +79,29 @@
         ?>
           
         <div class="severe-warning shadow">
-            <strong>Announcement:</strong> <?= $severe_warning['Node']['excerpt'] ?> 
+            <strong>Announcement:</strong> <?php
+            
+           
+            if ($severe_warning['Node']['excerpt'] == ''){
+                    echo substr($severe_warning['Node']['body'], 0, 99);
+                    echo "...";
+                    echo "<a href='/announcements/.$severe_warning.['Node']['slug']'> Read More</a> </p>";
+                    echo "  <a id='close-warning' href='#'>x</a>";
+                ?> 
+         
+           <?php } 
+                else {
+                   echo $severe_warning['Node']['excerpt']; 
+                    echo "<a href='/announcements/.$severe_warning.['Node']['slug']'> Read More</a> </p>";
+                    echo "  <a id='close-warning' href='#'>x</a>";
+                }
+                   ?>
+            
+          
+                
+           
              
-            <a href="/announcements/<?= $severe_warning['Node']['slug']?>">Read More</a> </p>
-            <a id="close-warning" href="#">x</a>
+             
         </div>
         <?php
         endif;
