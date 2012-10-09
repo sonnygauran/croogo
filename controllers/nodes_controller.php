@@ -118,7 +118,10 @@ class NodesController extends AppController {
 
 		$this->set('title_for_layout', sprintf(__('Create content: %s', true), $type['Type']['title']));
 		$this->Node->type = $type['Type']['alias'];
-		$this->Node->Behaviors->attach('Tree', array(
+               
+        
+		
+                $this->Node->Behaviors->attach('Tree', array(
 			'scope' => array(
 				'Node.type' => $this->Node->type,
 			),

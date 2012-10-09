@@ -22,6 +22,18 @@
 					echo $this->Form->input('title');
 					echo $this->Form->input('slug');
 					echo $this->Form->input('excerpt');
+                               ?>
+                                <?php
+                                        if (($type['Type']['title']) == 'Mata ng Bagyo'){
+                                            echo $this->Form->input('alert', array('value' => '1', 'type' => 'checkbox'));
+                                            echo " Check to add Alert in frontpage";
+                                            
+                                        }else{
+                                            
+                                        }
+                                        
+                                       
+                                 ?><?php
 					echo $this->Form->input('body', array('class' => 'content'));
 				?>
 				</div>
