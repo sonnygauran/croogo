@@ -83,7 +83,7 @@ HEADER
 .preferences #header h1 a
 {
 	text-indent: -9999px;
-	background: url(../images/logo.gif) top left no-repeat;
+	background: url('/mint/styles/vanilla_mint/images/logo.gif') top left no-repeat;
 	display: block;
 	width: 52px;
 	height: 20px;
