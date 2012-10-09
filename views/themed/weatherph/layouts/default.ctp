@@ -19,7 +19,9 @@
 <!--    <title><?php echo ($title_for_layout).' | ' . Configure::read('Site.title'); ?></title>
     -->
     <meta name="viewport" content="width=device-width" />
+    
     <?php
+    echo $meta_for_description;
     echo $this->Layout->meta();
     echo $this->Layout->feed();
     echo $this->Html->css('theme');
@@ -63,17 +65,28 @@
                         <li><a href="<?= $this->webroot ?>dictionaries/filipino">Filipino</a></li>
                     </ul>
                 </li>
-                <li><a href="<?= $this->webroot ?>news">Payong Panahon</a></li>
-                <li><a href="<?= $this->webroot ?>announcements">Mata ng Bagyo</a></li>
+                <li><a href="<?= $this->webroot ?>news">News</a></li>
+                <!-- <li><a href="<?= $this->webroot ?>announcements">Mata ng Bagyo</a></li> -->
                 <li><a href="<?= $this->webroot ?>weathertv">Weather TV</a></li>
                 <li><a href="<?= $this->webroot ?>webcam">Webcams</a></li>
                 <li><a href="<?= $this->webroot ?>about">About</a></li>
             </ul>
         </nav>
 
+        <?php
+        // If there is a "Mata ng Bagyo" post within the last 24 hours, show the following warning:
+        if(isset($show_alert) && $show_alert):
+        ?>
+          
         <div class="severe-warning shadow">
-            <p><strong>Alert:</strong> Typhoon Dador is approaching the NCR. No classes in all levels. Stay at home!</p>
+            <strong>Announcement:</strong> <?= $severe_warning['Node']['excerpt'] ?> 
+             
+            <a href="/announcements/<?= $severe_warning['Node']['slug']?>">Read More</a> </p>
+            <a id="close-warning" href="#">x</a>
         </div>
+        <?php
+        endif;
+        ?>
 
         <div id="sidebar">
             <div class="sponsored">
@@ -185,7 +198,11 @@ Google Analytics script
         });
 
         $("nav li").click(function(){
-        window.location=$(this).find("a").attr("href"); return false;
+            window.location=$(this).find("a").attr("href"); return false;
+        });
+
+        $("#close-warning").click(function(){
+            $('.severe-warning').fadeOut();
         });
     });
 </script>

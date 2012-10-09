@@ -413,94 +413,70 @@ $movie_location = Configure::read('Data.movies');
             <h4>News</h4>
             <div class="page">
                 <?php foreach ($blogEntries as $blog) { ?>
-                    <?php $createdTime = strtotime($blog['Node']['created']); ?>
-                    <div class="ribbon-wrapper">
-                        <div class="ribbon-front">
-                            <div class="post-date">
-                                <div class="month"><?= date('M', $createdTime) ?></div>
-                                <div class="day"><?= date('d', $createdTime) ?></div>
-                                <div class="year"><?= date('Y', $createdTime) ?></div>
-                            </div>
-                        </div>
-                        <div class="ribbon-edge-bottomleft"></div>
-                    </div>
-
                     <div class="blog-excerpt">
-                        <h4><?= $html->link($blog['Node']['title'], $blog['Node']['url'], array('class' => 'link')) ?></h4>
-                        <p><?= $text->excerpt(strip_tags($blog['Node']['body']), 'method', 200, '...' . $html->link('Read More', $blog['Node']['url'])) ?><?= '<hr>'; ?></p>
+                        <h3><?= $html->link($blog['Node']['title'], $blog['Node']['url'], array('class' => 'link')) ?></h3>
+                        <p><?= $text->excerpt(strip_tags($blog['Node']['body']), 'method', 200, '...' . $html->link('Read More', $blog['Node']['url'])) ?></p>
+                        <p class="post-meta">
+                            <?php $createdTime = strtotime($blog['Node']['created']); ?>
+                            Posted on <?= date('M', $createdTime) ?> <?= date('d', $createdTime) ?>, <?= date('Y', $createdTime) ?> under
+                                <?php if ($blog['Node']['type'] == 'news'){?>
+                                    <a class="post-category" href="<?= $this->webroot ?>news/payong-panahon">Payong Panahon</a>
+                                <?php }elseif($blog['Node']['type'] == 'announcements'){?>
+                                    <a class="post-category" href="<?= $this->webroot ?>news/mata-ng-bagyo">Mata ng Bagyo</a>
+                                <?php } ?>
+                        </p>
                     </div>
+                    <hr>
                 <?php } ?>
             </div>
         </div>
 
         <h4>Learn More</h4>
-        <div id="nav-slides">
-            <div class="slides_container">
-                <div class="slide">
-                    <a href="<?= $this->webroot ?>announcements">
-                        <img src="<?= $this->webroot ?>theme/weatherph/img/mata-ng-bagyo.gif"/>
-                        <div class="slide-caption">
-                            <p> Mata ng Bagyo (Eye of the Storm)</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="slide">
+        <div class="news">
+            <ul>
+                <li>
                     <a href="<?= $this->webroot ?>news">
-                        <img src="<?= $this->webroot ?>theme/weatherph/img/payong-panahon.gif"/>
-                        <div class="slide-caption">
-                            <p> Payong Panahon (Weather Advice)</p>
-                        </div>
+                        <img src="<?= $this->webroot ?>theme/weatherph/img/learn-more/payong-panahon.gif"/>
+                        <p>News</p>
                     </a>
-                </div>
-                <div class="slide">
+                </li>
+                <li>
                     <a href="<?= $this->webroot ?>weathertv">
-                        <img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail.png"/>
-                        <div class="slide-caption">
-                            <p>Weather TV</p>
-                        </div>
+                        <img src="<?= $this->webroot ?>theme/weatherph/img/learn-more/weather-tv.png"/>
+                        <p>Weather TV</p>
                     </a>
-                </div>
-                <div class="slide">
-                    <a href="<?= $this->webroot ?>typhoon/preparedness">
-                        <img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail.png"/>
-                        <div class="slide-caption">
-                            <p>Typhoon Preparedness</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="slide">
-                    <a href="<?= $this->webroot ?>typhoon/climatology">
-                        <img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail.png"/>
-                        <div class="slide-caption">
-                            <p>Typhoon Climatology</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="slide">
-                    <a href="<?= $this->webroot ?>dictionaries/english">
-                        <img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail.png"/>
-                        <div class="slide-caption">
-                            <p>Dictionary: English</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="slide">
-                    <a href="<?= $this->webroot ?>dictionaries/filipino">
-                        <img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail.png"/>
-                        <div class="slide-caption">
-                            <p>Dictionary: Filipino</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="slide">
+                </li>
+                <li>
                     <a href="<?= $this->webroot ?>webcam">
-                        <img src="<?= $this->webroot ?>theme/weatherph/img/thumbnail.png"/>
-                        <div class="slide-caption">
-                            <p>Webcams</p>
-                        </div>
+                        <img src="<?= $this->webroot ?>theme/weatherph/img/learn-more/webcams.jpg"/>
+                        <p>Webcams</p>
                     </a>
-                </div>
-            </div>
+                </li>
+                <li>
+                    <a href="<?= $this->webroot ?>typhoon/preparedness">
+                        <img src="<?= $this->webroot ?>theme/weatherph/img/learn-more/typhoon-preparedness.jpg"/>
+                        <p>Typhoon Preparedness</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="<?= $this->webroot ?>typhoon/climatology">
+                        <img src="<?= $this->webroot ?>theme/weatherph/img/learn-more/typhoon-climatology.jpg"/>
+                        <p>Typhoon Climatology</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="<?= $this->webroot ?>dictionaries/english">
+                        <img src="<?= $this->webroot ?>theme/weatherph/img/learn-more/dictionary.jpg"/>
+                        <p>Dictionary: English</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="<?= $this->webroot ?>dictionaries/filipino">
+                        <img src="<?= $this->webroot ?>theme/weatherph/img/learn-more/dictionary-filipino.jpg"/>
+                        <p>Dictionary: Filipino</p>
+                    </a>
+                </li>
+            </ul>
         </div>
 
     </section> <!--SECONDARY-->

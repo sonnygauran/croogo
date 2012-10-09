@@ -54,8 +54,8 @@
             </div>
         </div>
 
-        <div class="names index">
-            <div class="search-results shadow">
+        <div class="names index ">
+            <div class="search-results shadow ">
                 <h2><?php __('Search results'); ?></h2>
                 <ul>
                     <?php foreach ($names as $name): ?>
@@ -64,11 +64,14 @@
                             if ($name['FipsCode']['type'] == 2) $cityClass = ' citysearch';
                         ?>
                         <li class="<?php echo $name['NimaName']['id'] . ' ' . $cityClass; ?>">
-                            <a href ="/<?php echo Inflector::slug($name['NimaName']['full_name_ro'], '_') . '-' . $name['NimaName']['id']; ?>" class="<?php echo $name['NimaName']['id']; ?> location <?php echo ($name['FipsCode']['type'] == 2) ? 'city' : 'province'; ?>"><?php echo trim($name['NimaName']['full_name_ro']); ?><br /> <span><?= trim($name['FipsCode']['name']); ?> <?= trim($name['FipsCode']['Area']['code']) ?></span></a>
+                                  <?php echo $this->Html->image('office.png', array('alt' => 'CakePHP'))?>
+                                 <a href ="/<?php echo Inflector::slug($name['NimaName']['full_name_ro'], '_') . '-' . $name['NimaName']['id']; ?>" class="<?php echo $name['NimaName']['id']; ?> location <?php echo ($name['FipsCode']['type'] == 2) ? 'city' : 'province'; ?>"><?php echo trim($name['NimaName']['full_name_ro']); ?><br /> <span><?= trim($name['FipsCode']['name']); ?> <?= trim($name['FipsCode']['Area']['code']) ?></span></a>
+                            
                         </li>
                     <?php endforeach; ?>
                     <?php foreach ($stations as $station): ?>
                         <li class="<?echo $station['Station']['id'];?>">
+                            <?php echo $this->Html->image('broadcast.png', array('alt' => 'CakePHP'))?>
                             <a href="/view/<?= $station['Station']['wmo1']; ?>"><?= $station['Station']['name']; ?></a>
                         </li>
                     <?php endforeach; ?>

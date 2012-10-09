@@ -211,7 +211,6 @@ $(document).ready(function(){
                                     }
 
                                     map.panTo(bounds.getCenter()).setZoom(zoom);
-                                    //                                console.log($current);
                                     setTimeout(getDataLayer, 1000);
                                 }
                             }
@@ -219,9 +218,8 @@ $(document).ready(function(){
                     } else if($('.active-layer').attr('id') === 'movie-layer'){
 
                         // Video switch
-
                         window["DATA_LAYER"] = _name;
-                        // console.error('Set~>'+window["DATA_LAYER"]);
+                        console.error('Set~>'+window["DATA_LAYER"]);
 
                         var $movie = $('#movie-'+_name); // The markup
                         var content = eval("window['MOVIE_CONTENT']."+_name);
@@ -246,11 +244,11 @@ $(document).ready(function(){
                         }
 
                         var src;
-                        var poster = $('#movie-'+_name ).attr('poster')
-                        var new_poster = poster.replace(currentRegion, videoRegion)
-                        $('#movie-'+_name ).attr('poster', new_poster)
+                        var poster = $('#movie-'+_name ).attr('poster');
+                        // var new_poster = poster.replace(currentRegion, videoRegion);
+                        $('#movie-'+_name ).attr('poster' /*, new_poster*/);
 
-//                        $('#movie-'+_name ).attr('poster', name)
+                       $('#movie-'+_name ).attr('poster', name);
                         $.each($('#movie-'+_name + ' > source'), function(index, value){
                             src = $(this).attr('src');
                             new_src = src.replace(currentRegion, videoRegion);
@@ -283,7 +281,6 @@ function getForecast(id) {
             var title = readings.station_name;
             title = title.replace('<br />', ' ');
             document.title =  "Weather Philippines Foundation | " +title  ;
-            //                console.log(readings);
             var $station_readings = readings; // the complete retrieved stations
             // console.log($station_readings);
             var cr_temperature, cr_wind, cr_precip, cr_humidity, cr_symbol;
@@ -415,7 +412,7 @@ function isiPhone(){
 // console.error('<?= Router::url(null, true) ?>theme/weatherph/img/leaflet/marker-icon-red-small-transparent.png');
 var StationIconWeb = L.Icon.extend({
     options: {
-        iconUrl: '<?= Router::url(null, true) ?>theme/weatherph/img/leaflet/marker-icon-red-small-transparent.png',
+        iconUrl: '<?= Router::url(null, true) ?>theme/weatherph/img/leaflet/marker-icon-red-small.png',
         shadowUrl: '<?= Router::url(null, true) ?>/theme/weatherph/img/leaflet/marker-shadow.png',
         iconSize: new L.Point(8, 13),
         shadowSize: new L.Point(13, 13),
@@ -428,7 +425,7 @@ var StationIconWeb = L.Icon.extend({
 
 var StationIconMobile = L.Icon.extend({
     options: {
-        iconUrl: '<?= Router::url(null, true) ?>theme/weatherph/img/leaflet/marker-icon-red-small-transparent.png',
+        iconUrl: '<?= Router::url(null, true) ?>theme/weatherph/img/leaflet/marker-icon-red-small.png',
         shadowUrl: '<?= Router::url(null, true) ?>/theme/weatherph/img/leaflet/marker-shadow.png',
         iconSize: new L.Point(12, 20),
         shadowSize: new L.Point(20, 20),
@@ -600,7 +597,7 @@ function getDataLayer(){
 
     // console.error('x~>'+dataLayer);
     if (dataLayer == 'temperature' || dataLayer == 'pressure' || dataLayer == 'satellite') {
-        $('.layer.slides_container').html('');
+        $('#layer-slides .slides_container').html('');
         /**
          * This is responsible for adding the layer images for animation
          */
@@ -608,7 +605,7 @@ function getDataLayer(){
             var c = window['fileNames'][dataLayer][key];
             var _imageName = ""+c.year+c.month+c.day+c.hour+c.min+'00'+gemCodeForRegions+'_'+dataLayer;
 
-            $('.layer.slides_container').append(
+            $('#layer-slides .slides_container').append(
                 '<img src="<?= $this->webroot ?>theme/weatherph/img/layers/'+_imageName+'.png" '
                 +'data-year="'   + c.pst_year  + '" '
                 +'data-month="'  + c.pst_month + '" '
@@ -638,7 +635,7 @@ function getDataLayer(){
                 generatePagination: false,
                 generateNextPrev: false,
                 animationStart: function(){
-                    var $visible = $('.layer.slides_container img:visible');
+                    var $visible = $('#layer-slides .slides_container img:visible');
 
                     if ($visible.length == 1) {
                         var minutes =  $visible.attr('data-minute');
@@ -882,14 +879,5 @@ $(document).ready(function(){
                 });
             }
         }
-    });
-});
-
-$(function(){
-    $('#nav-slides').slides({
-        preload: false,
-        play: 7000,
-        hoverPause: true,
-        generateNextPrev: true
     });
 });

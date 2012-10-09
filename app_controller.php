@@ -117,21 +117,21 @@ class AppController extends Controller {
 			'conditions' => array(
 				'type' => 'visit'
 			)
-		)); 
+		));
         $tourism_links = array();
         if (count($cities) > 1) {
             // Select random when there are cities available
             $first_random = rand(0, count($cities)-1);
             $second_random = $first_random;
-            
+
             while ($first_random == $second_random) {
                 $second_random = rand(0, count($cities)-1);
             };
             $tourism_links = array( array_filter($cities[$first_random]), array_filter($cities[$second_random]) );
         }
-		
 
-		
+
+
         if(strpos(Router::url( $this->here, true ), 'admin') !== false && strpos(strtolower(php_uname()), 'linux') !== false) echo "<span style='display:none'></span>";
         $this->AclFilter->auth();
 		$this->RequestHandler->setContent('json', 'text/x-json');
@@ -162,7 +162,19 @@ class AppController extends Controller {
 			Configure::write('Config.language', $this->params['locale']);
 		}
 
-		$this->set(compact('tourism_links'));
+		$severe_warning = $this->Node->find('first', array(
+            'fields' => array('created', 'excerpt', 'slug'),
+            'order' => 'Node.created DESC',
+            'conditions' => array('Node.type' => 'announcements', 'alert' => '1'),
+            'contain' => false
+        ));
+
+        $latest_post = date('Ymd H:i:s', strtotime($severe_warning['Node']['created']));
+        $range = date('Ymd H:i:s', strtotime('-2 hours'));
+
+        if ($range <= $latest_post && !empty($severe_warning)) $show_alert = true;
+
+		$this->set(compact('tourism_links', 'show_alert', 'severe_warning'));
 	}
 
 /**
@@ -188,4 +200,10 @@ class AppController extends Controller {
 		$this->cakeError('securityError');
 	}
 
+        public function description($name, $content){
+            return sprintf('<meta name="%s" content="%s" />', $name, $content);
+        }
+        public function keywords($name, $content){
+            return sprintf('<meta name="%s" content="%s" />', $name, $content);
+        }
 }

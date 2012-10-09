@@ -118,7 +118,10 @@ class NodesController extends AppController {
 
 		$this->set('title_for_layout', sprintf(__('Create content: %s', true), $type['Type']['title']));
 		$this->Node->type = $type['Type']['alias'];
-		$this->Node->Behaviors->attach('Tree', array(
+               
+        
+		
+                $this->Node->Behaviors->attach('Tree', array(
 			'scope' => array(
 				'Node.type' => $this->Node->type,
 			),
@@ -731,6 +734,12 @@ class NodesController extends AppController {
 			'view_' . $node['Node']['id'],
 			'view_' . $type['Type']['alias'],
 		));
+                
+                $meta_for_description = $this->description('description', 'WeatherPhilippines');
+        $meta_for_keywords = $this->keywords('keywords', 'WeatherPhilippines, 
+            weather, philippines, weather philippines');
+        $this->set(compact('meta_for_description','meta_for_keywords'));
+                
 	}
 
 	private function __viewFallback($views) {

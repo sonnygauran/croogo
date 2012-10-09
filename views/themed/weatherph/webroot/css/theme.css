@@ -119,7 +119,7 @@ nav {
 }
 
 .secondary{
-    width: 794px;
+    width: 804px;
     margin-top: 1em;
     float: left;
 }
@@ -135,7 +135,7 @@ footer {
     float: left;
     clear: both;
     width: 100%;
-    margin-top: 15em;
+    margin-top: 10em;
     padding: 10px;
     font-size: .75em;
     background-color: #f3f3f3;
@@ -408,12 +408,13 @@ span.temperature {
 }
 
 .readings > span {
-    margin: auto 2px;
+    margin: 8px auto;
     float: left;
 }
 
 .readings > table {
     float: left;
+    margin-left: 8px;
 }
 
 .readings >table td {
@@ -439,110 +440,59 @@ span.temperature {
     margin-right: 10px;
 }
 
+.blog > .page h3 a {
+    text-align: left;
+}
+
+.blog h3 a {
+    text-decoration: none;
+}
+
 .blog > .page {
-    padding: 1.5em 1em;
+    padding: 2em;
 }
 
 .blog-excerpt {
     position: relative;
-    margin-top: 2em;
-    padding-left: 69px;
+    overflow: hidden;
+    margin-bottom: 0 auto 2em auto;
 }
 
-.post-date {
-    color:#3990BD;
-    padding: 0.3em;
+.post-meta {
     text-align: center;
+    margin-top: 1em;
+    padding: .5em;
+    font-size: 12px;
+    background-color: #f1f1f1;
+    color: #3990BD
 }
 
-.post-date .day {
-    font-size: 1.75em;
-    font-weight: 700;
-}
-
-.post-date .month,
-.post-date .year {
-    font-size: 1.2em;
-    text-transform: uppercase;
-}
-
-#nav-slides {
-    width: 230px;
-    position: relative;
+.news {
+    width: 240px;
     float: left;
+    overflow: hidden;
+    background-color: #fafafa;
+    box-shadow: 0 4px 3px -3px black;
 }
 
-#nav-slides .slides_container {
-    width: 230px;
-    display:none;
+.news li {
+    float:left;
+    width: 97%;
+    padding: 3%;
 }
 
-#nav-slides .slides_container div {
-    width: 230px;
-    height: 150px;
-    display:block;
+.news li:nth-child(odd) {
+    background-color: #e1e6f3;
 }
 
-.slide-caption {
-    position: absolute;
-    bottom: -135px;
-    z-index: 500;
-    height: 1em;
-    padding: .5em 1em;
-    font-size: 12px;
-    background: #333;
-    background: rgba(0,0,0,.5);
-    color: #fafafa;
-    border-top: 1px solid #000;
-    text-shadow: none;
+.news img {
+    float:left;
+    margin-right: 5px;
 }
 
-.pagination {
-    position: relative;
-    top: -20px;
-    text-align: center;
-    padding: 3px;
-    border-bottom-left-radius: 3px;
-    border-bottom-right-radius: 3px;
-    box-shadow: 0 4px 3px -3px black
-}
-
-.pagination li {
-    display: inline;
-}
-
-.pagination a:link {
-    padding: 0 5px;
-    margin: 1px;
-    color: #fafafa;
-    background: #365283;
-    text-decoration: none;
-    border-radius: 3px;
-    font-size: 12px;
-}
-
-.pagination .current a:link {
-    background: #3990BD;
-}
-
-#nav-slides .next,
-#nav-slides .prev {
-    display: inline-block;
-    position: relative;
-    z-index: 100;
-    width:21px;
-    height:21px;
-    text-indent:-9999em;
-    color: transparent;
-}
-
-#nav-slides .prev {
-    background-image:url('<?= $this->webroot ?>theme/weatherph/img/arrow-prev.png');
-}
-
-#nav-slides .next {
-    left: 188px;
-    background-image:url('<?= $this->webroot ?>theme/weatherph/img/arrow-next.png');
+.news p {
+    padding: 1em;
+    vertical-align: middle;
 }
 
 /* View page */
@@ -818,7 +768,9 @@ span.temperature {
 .search-results li:hover {
     background-color: #e0e6f2;
 }
-
+.search-results img {
+    float:left;
+}
 .search-results a {
 /*    position: absolute;*/
     top: 0;
@@ -850,10 +802,13 @@ span.temperature {
     background-color: #fafafa;
     border: 1px solid #e1e1e1;
     box-shadow: 0 4px 3px -3px black;
+    word-wrap: break-word;
 }
 
 .page p {
     margin-bottom: 1em;
+    overflow: hidden;
+    word-wrap:break-word;
 }
 
 .page li {
@@ -871,7 +826,6 @@ span.temperature {
     margin: 2em auto;
     display:block;
     max-width: 716px;
-	border: 2px solid #3990BD;
 }
 
 .page dt {
@@ -1025,18 +979,25 @@ div.current-tab {
 }
 
 /* Error/warning block */
-
 .severe-warning {
-    display: none;
+    position: relative;
     width: 75%;
-    padding: 8px;
-    margin: -15px auto 15px;
-    border-top: 1px solid #333;
+    padding: .5em 1em;
+    margin: -15px auto 1em;
+    border-top: 1px solid #555;
     text-align: center;
     background-color: #aa1111;
     color: #f1f1f1;
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
+}
+
+#close-warning{
+    position: absolute;
+    top: 6px;
+    right: 8px;
+    text-decoration: none;
+    font: bold 16px/14px Tahoma,Verdana,sans-serif;
 }
 
 .no-readings, .no-forecast {
@@ -1064,8 +1025,8 @@ div.current-tab {
 .fb { background: url('<?= $this->webroot ?>theme/weatherph/img/default-sprite.png') no-repeat -165px -209px; width: 32px; height: 31px; }
 .twitter { background: url('<?= $this->webroot ?>theme/weatherph/img/default-sprite.png') no-repeat -198px -209px; width: 32px; height: 31px; }
 
-span.symbol { background: url('<?= $this->webroot ?>theme/weatherph/img/warning-sprites.png') -5px -65px no-repeat; height: 30px; width: 40px; display: block; margin: auto; cursor: pointer;}
-span.symbolwind { background: url('<?= $this->webroot ?>theme/weatherph/img/warning-sprites.png') -5px -65px no-repeat; height: 30px; width: 40px; display: block; margin: auto; cursor: pointer; float: left;}
+span.symbol { background: url('<?= $this->webroot ?>theme/weatherph/img/warning-sprites.png') -5px -65px no-repeat; height: 30px; width: 40px; display: block; margin: auto auto auto 10px;}
+span.symbolwind { background: url('<?= $this->webroot ?>theme/weatherph/img/warning-sprites.png') -5px -65px no-repeat; height: 30px; width: 40px; display: block; margin: auto; float: left;}
 
 
 span.day_1 { background-position: -70px -180px; }
@@ -1134,55 +1095,6 @@ span.sunset { background-position: -60px 5px; }
 
 .shadow {
     box-shadow: 0 4px 3px -3px black;
-}
-
-/* RIBBON  STYLE CSS */
-.ribbon-wrapper {
-    position: relative;
-    float: left;
-}
-
-.ribbon-wrapper.blog-page {
-    position: absolute;
-    top: .5em;
-}
-
-.ribbon-front {
-    background-color: #ffffff;
-    height: 80px;
-    width: 70px;
-    position: relative;
-    left:-25px;
-    z-index: 2;
-    border-top: 5px solid #3990BD;
-    border-bottom: 1px solid #e1e1e1;
-}
-
-.ribbon-front.blog-page {
-    left:-38px;
-}
-
-.ribbon-front.subblog {
-    left:-35px;
-}
-
-.ribbon-edge-bottomleft {
-    position: absolute;
-    left: -25px;
-    border-color: transparent #9393A4 transparent transparent;
-    z-index: 1;
-    border-style:solid;
-    height:0px;
-    width:0px;
-    border-width: 0 10px 5px 0;
-}
-
-.ribbon-edge-bottomleft.blog-page {
-    left: -38px;
-}
-
-.ribbon-edge-bottomleft.subblog {
-    left:-35px;
 }
 
 /* Share buttons*/
