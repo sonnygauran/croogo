@@ -51,17 +51,21 @@
                 <li>and also <a href="www.wetterstationen-meteomedia.de">www.wetterstationen-meteomedia.de</a></li>
             </ul>
             </p>
-            <?/*
-            <h2>Aboitiz</h2>
-            <hr/>
-
-            <h2>Unionbank</h2>
-            <hr/>
-            */?>
 
            <h4>Disclaimer:</h4>
-           <p>Disclaimer: Information based on data collected by Weather Philippines Foundation, Inc. shall not be taken as official data.  Weather information broadcasted and distributed by PAGASA remains as official data.  Weather Philippines shall not be responsible for the private use and reliance of its weather information.
+           <p>Information based on data collected by Weather Philippines Foundation, Inc. shall not be taken as official data.  Weather information broadcasted and distributed by PAGASA remains as official data.  Weather Philippines shall not be responsible for the private use and reliance of its weather information.
             </p>
+
+            <h4>Impressum</h4>
+            <p>
+                Weather Philippines Foundation <br>
+                4/F Aboitiz Corporate Office <br>
+                110 Legazpi St., Legaspi Village, Makati City <br>
+                Manila, Philippines
+            </p>
+
+            <p>Tel#: +63 2 7932653</p>
+            <p>Fax#: +63 2 8125893</p>
         </div>
     </section> <!--MAIN CONTENT-->
 </div> <!--CONTENT-->
