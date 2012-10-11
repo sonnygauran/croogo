@@ -2,7 +2,7 @@
 ----------------------------------------------------------------------------- 
 DEFAULT POSITIONING
 -----------------------------------------------------------------------------*/
-@import url("../../app/styles/base.css");
+@import url("/mint/app/styles/base.css");
 
 /* 
 ----------------------------------------------------------------------------- 
@@ -39,7 +39,7 @@ HEADER
 .display #header h1 a,
 .preferences #header h1 a
 {
-	background: url(images/logo.gif) top left no-repeat;
+	background: url(/mint/styles/vanilla_mint/images/logo.gif) top left no-repeat;
 }
 
 #header a
@@ -55,13 +55,13 @@ HEADER
 .display #header,
 .preferences #header
 {
-	background: #2E2E2E url(images/bg-round-bottom-right.gif) bottom right no-repeat;
+	background: #2E2E2E url(/mint/styles/vanilla_mint/images/bg-round-bottom-right.gif) bottom right no-repeat;
 }
 
 .display #header h1,
 .preferences #header h1
 {
-	background: #2E2E2E url(images/bg-round-bottom-left.gif) bottom right no-repeat;
+	background: #2E2E2E url(/mint/styles/vanilla_mint/images/bg-round-bottom-left.gif) bottom right no-repeat;
 }
 
 /*
@@ -71,12 +71,12 @@ UPDATES AVAILABLE BUTTON
 #header a.update-btn
 {
 	color: #FFF;
-	background: url(images/bg-update-right.gif) top right no-repeat;
+	background: url(/mint/styles/vanilla_mint/images/bg-update-right.gif) top right no-repeat;
 }
 
 #header a.update-btn span
 {
-	background: url(images/bg-update-left.gif) top left no-repeat;
+	background: url(/mint/styles/vanilla_mint/images/bg-update-left.gif) top left no-repeat;
 }
 
 /* 
@@ -85,7 +85,7 @@ PANES ROW
 -----------------------------------------------------------------------------*/
 #header .panes
 {
-	background: #3C3C3C url(images/bg-panes-left.gif) top left no-repeat;
+	background: #3C3C3C url(/mint/styles/vanilla_mint/images/bg-panes-left.gif) top left no-repeat;
 	color: #999;
 }
 
@@ -96,7 +96,7 @@ PANES ROW
 
 #header-container
 {
-	background: url(images/bg-fog.png) bottom left repeat-x;
+	background: url(/mint/styles/vanilla_mint/images/bg-fog.png) bottom left repeat-x;
 }
 
 /* 
@@ -105,12 +105,12 @@ PAGE BUTTONS
 -----------------------------------------------------------------------------*/
 #header .pages
 {
-	background: #3C3C3C url(images/bg-pages-right.gif) top right no-repeat;
+	background: #3C3C3C url(/mint/styles/vanilla_mint/images/bg-pages-right.gif) top right no-repeat;
 }
 
 #header .pages li
 {
-	background: url(images/bg-pages-divider.gif) top left no-repeat;
+	background: url(/mint/styles/vanilla_mint/images/bg-pages-divider.gif) top left no-repeat;
 }
 
 #header .pages li a,
@@ -122,7 +122,7 @@ PAGE BUTTONS
 #header .pages li.first-child,
 #header .pages li.only-child
 {
-	background-image: url(images/bg-pages-left.gif);
+	background-image: url(/mint/styles/vanilla_mint/images/bg-pages-left.gif);
 }
 
 /* 
@@ -145,7 +145,7 @@ MINI
 -----------------------------------------------------------------------------*/
 .mini #header
 {
-	background: #2E2E2E url(images/bg-mini-bottom.gif) bottom left no-repeat;
+	background: #2E2E2E url(/mint/styles/vanilla_mint/images/bg-mini-bottom.gif) bottom left no-repeat;
 }
 
 /* 
@@ -155,12 +155,12 @@ MINI PANE
 .mini .pane
 {
 	color: #CCC;
-	background: #2E2E2E url(images/bg-mini-top.gif) top left no-repeat;
+	background: #2E2E2E url(/mint/styles/vanilla_mint/images/bg-mini-top.gif) top left no-repeat;
 }
 
 .mini .pane .footer
 {
-	background: url(images/bg-mini-bottom.gif) bottom left no-repeat;
+	background: url(/mint/styles/vanilla_mint/images/bg-mini-bottom.gif) bottom left no-repeat;
 }
 
 .pane h1,
@@ -173,20 +173,20 @@ MINI PANE
 .mini .pane form
 {
 	color: #999;
-	background: #3C3C3C url(images/bg-mini-form-well-top.gif) top left no-repeat;
+	background: #3C3C3C url(/mint/styles/vanilla_mint/images/bg-mini-form-well-top.gif) top left no-repeat;
 }
 
 .mini .pane form h2,
 #preferences h5
 {
-	background: #2E2E2E url(images/bg-mini-form-well-top.gif) bottom left no-repeat;
+	background: #2E2E2E url(/mint/styles/vanilla_mint/images/bg-mini-form-well-top.gif) bottom left no-repeat;
 }
 
 .mini .pane form fieldset,
 #preferences fieldset
 {
 	color: #FFF;
-	background: url(images/bg-mini-form-well-bottom.gif) bottom left no-repeat;
+	background: url(/mint/styles/vanilla_mint/images/bg-mini-form-well-bottom.gif) bottom left no-repeat;
 }
 
 .mini .pane form strong
@@ -196,32 +196,32 @@ MINI PANE
 
 .display .pane
 {
-	background: #2E2E2E url(images/bg-round-top-left.gif) top left no-repeat;
+	background: #2E2E2E url(/mint/styles/vanilla_mint/images/bg-round-top-left.gif) top left no-repeat;
 }
 
 .display .pane h1
 {
-	background: url(images/bg-round-top-right.gif) top right no-repeat;
+	background: url(/mint/styles/vanilla_mint/images/bg-round-top-right.gif) top right no-repeat;
 }
 
 .display .pane .footer
 {
-	background: url(images/bg-pane-bottom-left.gif) bottom left no-repeat;
+	background: url(/mint/styles/vanilla_mint/images/bg-pane-bottom-left.gif) bottom left no-repeat;
 }
 
 .display .pane .footer div
 {
-	background: url(images/bg-pane-bottom-right.gif) bottom right no-repeat;
+	background: url(/mint/styles/vanilla_mint/images/bg-pane-bottom-right.gif) bottom right no-repeat;
 }
 
 .display .pane .content
 {
-	background: #FFF url(images/bg-pane-right.gif) top right repeat-y;
+	background: #FFF url(/mint/styles/vanilla_mint/images/bg-pane-right.gif) top right repeat-y;
 }
 
 .content .content-container
 {
-	background: url(images/bg-pane-top-left.gif) top left no-repeat;
+	background: url(/mint/styles/vanilla_mint/images/bg-pane-top-left.gif) top left no-repeat;
 }
 
 .display table th
@@ -234,13 +234,13 @@ MINI PANE
 
 .display table th.first-child
 {
-	background-image: url(images/bg-th-left.gif);
+	background-image: url(/mint/styles/vanilla_mint/images/bg-th-left.gif);
 	background-position: top left;
 }
 
 .display table th.last-child
 {
-	background-image: url(images/bg-th-right.gif);
+	background-image: url(/mint/styles/vanilla_mint/images/bg-th-right.gif);
 	background-position: top right;
 }
 
@@ -302,12 +302,12 @@ FEED BUTTON
 a.feed-btn
 {
 	color: #FFF;
-	background: url(images/bg-feed-right.gif) top right no-repeat;
+	background: url(/mint/styles/vanilla_mint/images/bg-feed-right.gif) top right no-repeat;
 }
 
 a.feed-btn span
 {
-	background: url(images/bg-feed-left.gif) top left no-repeat;
+	background: url(/mint/styles/vanilla_mint/images/bg-feed-left.gif) top left no-repeat;
 }
 
 /*
@@ -344,7 +344,7 @@ GRAPH TABLE
 
 .content div.graph table tr td.accent
 {
-	background: url(images/bg-graph-accent.gif) 0 100% repeat;
+	background: url(/mint/styles/vanilla_mint/images/bg-graph-accent.gif) 0 100% repeat;
 }
 
 .graph .label
@@ -366,17 +366,17 @@ GRAPH TABLE
 
 .content div.graph table tr td
 {
-	background: url(images/bg-graph.gif) 0 100% repeat;
+	background: url(/mint/styles/vanilla_mint/images/bg-graph.gif) 0 100% repeat;
 }
 
 .graph .bar .total
 {
-	background: url(images/bg-graph-total.gif) 0 100% repeat;
+	background: url(/mint/styles/vanilla_mint/images/bg-graph-total.gif) 0 100% repeat;
 }
 
 .graph .bar .unique
 {
-	background: url(images/bg-graph-unique.gif) 0 100% repeat;
+	background: url(/mint/styles/vanilla_mint/images/bg-graph-unique.gif) 0 100% repeat;
 }
 
 .graph .key
@@ -391,39 +391,39 @@ GRAPH TABLE
 
 .graph .bar .total span
 {
-	background: url(images/bg-graph-total-top.gif) 0 0 no-repeat;
+	background: url(/mint/styles/vanilla_mint/images/bg-graph-total-top.gif) 0 0 no-repeat;
 }
 
 .graph .bar .unique span
 {
 	height: 2px;
-	background: url(images/bg-graph-unique-top.gif) 0 0 no-repeat;
+	background: url(/mint/styles/vanilla_mint/images/bg-graph-unique-top.gif) 0 0 no-repeat;
 }
 
 .graph .bar .unique span.equal
 {
 	height: 1px;
-	background: url(images/bg-graph-unique-top.gif) 0 100% no-repeat;
+	background: url(/mint/styles/vanilla_mint/images/bg-graph-unique-top.gif) 0 100% no-repeat;
 }
 
 .graph .accent .bar .total
 {
-	background-image: url(images/bg-graph-total-accent.gif);
+	background-image: url(/mint/styles/vanilla_mint/images/bg-graph-total-accent.gif);
 }
 
 .graph .accent .bar .unique
 {
-	background-image: url(images/bg-graph-unique-accent.gif);
+	background-image: url(/mint/styles/vanilla_mint/images/bg-graph-unique-accent.gif);
 }
 
 .graph .accent  .bar .total span
 {
-	background-image: url(images/bg-graph-total-accent-top.gif);
+	background-image: url(/mint/styles/vanilla_mint/images/bg-graph-total-accent-top.gif);
 }
 
 .graph .accent  .bar .unique span
 {
-	background-image: url(images/bg-graph-unique-accent-top.gif);
+	background-image: url(/mint/styles/vanilla_mint/images/bg-graph-unique-accent-top.gif);
 }
 
 .graph li
@@ -451,32 +451,32 @@ COMPARISON GRAPH
 -----------------------------------------------------------------------------*/
 .compare .increase
 {
-	background-image: url(images/bg-graph-total.gif);
+	background-image: url(/mint/styles/vanilla_mint/images/bg-graph-total.gif);
 }
 
 .compare .increase span
 {
-	background-image: url(images/bg-graph-total-top.gif);
+	background-image: url(/mint/styles/vanilla_mint/images/bg-graph-total-top.gif);
 }
 
 .compare .decrease
 {
-	background-image: url(images/bg-graph-unique.gif);
+	background-image: url(/mint/styles/vanilla_mint/images/bg-graph-unique.gif);
 }
 
 .accent .increase
 {
-	background-image: url(images/bg-graph-total-accent.gif);
+	background-image: url(/mint/styles/vanilla_mint/images/bg-graph-total-accent.gif);
 }
 
 .accent .decrease
 {
-	background-image: url(images/bg-graph-unique-accent.gif);
+	background-image: url(/mint/styles/vanilla_mint/images/bg-graph-unique-accent.gif);
 }
 
 .accent .increase span
 {
-	background-image: url(images/bg-graph-total-accent-top.gif);
+	background-image: url(/mint/styles/vanilla_mint/images/bg-graph-total-accent-top.gif);
 }
 
 /*
@@ -486,7 +486,7 @@ FOLDER-RELATED
 .display table tr.folder td.focus,
 .display table tr.folder-open td.focus
 {
-	background-image: url(images/bg-arrow.gif);
+	background-image: url(/mint/styles/vanilla_mint/images/bg-arrow.gif);
 	background-position: 0 2px;
 	background-repeat: no-repeat;
 }
@@ -494,7 +494,7 @@ FOLDER-RELATED
 .display table tr.insig.folder td.focus,
 .display table tr.insig.folder-open td.focus
 {
-	background-image: url(images/bg-arrow-insig.gif);
+	background-image: url(/mint/styles/vanilla_mint/images/bg-arrow-insig.gif);
 }
 
 .display table tr.first-child.folder td.focus
@@ -515,7 +515,7 @@ FOLDER-RELATED
 .display table tr.loading td.focus,
 .display table tr.insig.loading td.focus
 {
-	background-image: url(images/spinner-w.gif);
+	background-image: url(/mint/styles/vanilla_mint/images/spinner-w.gif);
 	background-position: 0 4px;
 	background-repeat: no-repeat;
 }
@@ -533,12 +533,12 @@ FOLDER-RELATED
 .display table .folder-contents-open tr.first-child td,
 .display table .folder-contents-open tr.only-child td
 {
-	background: #E6F4D3 url(images/bg-folder-content-top.gif) top left repeat-x;
+	background: #E6F4D3 url(/mint/styles/vanilla_mint/images/bg-folder-content-top.gif) top left repeat-x;
 }
 
 .display table .folder-contents-open tr.last-child td
 {
-	background: #E6F4D3 url(images/bg-folder-content-bottom.gif) bottom left repeat-x;
+	background: #E6F4D3 url(/mint/styles/vanilla_mint/images/bg-folder-content-bottom.gif) bottom left repeat-x;
 }
 
 .display table .folder-contents-open tr.alt td
@@ -586,30 +586,30 @@ PREFERENCES
 -----------------------------------------------------------------------------*/
 #preferences
 {
-	background: #2E2E2E url(images/bg-prefs-top.gif) top left no-repeat;
+	background: #2E2E2E url(/mint/styles/vanilla_mint/images/bg-prefs-top.gif) top left no-repeat;
 	color: #CCC;
 }
 
 #preferences form
 {
-	background: url(images/bg-prefs-form.gif) top left repeat-y;
+	background: url(/mint/styles/vanilla_mint/images/bg-prefs-form.gif) top left repeat-y;
 }
 
 #preferences .footer
 {
-	background: url(images/bg-prefs-form-divider.gif) top left repeat-x;
+	background: url(/mint/styles/vanilla_mint/images/bg-prefs-form-divider.gif) top left repeat-x;
 }
 
 #preferences .footer div
 {
-	background: #2E2E2E url(images/bg-prefs-bottom.gif) bottom left no-repeat;
+	background: #2E2E2E url(/mint/styles/vanilla_mint/images/bg-prefs-bottom.gif) bottom left no-repeat;
 }
 
 #preferences .mint-column,
 #preferences .pane-column,
 #preferences .pepper-column
 {
-	background: url(images/bg-prefs-form-divider.gif) top left repeat-x;
+	background: url(/mint/styles/vanilla_mint/images/bg-prefs-form-divider.gif) top left repeat-x;
 }
 
 .pane-column p
@@ -619,7 +619,7 @@ PREFERENCES
 
 #preferences h2
 {
-	background: #ABDB6C url(images/bg-prefs-head.gif) right top repeat-y;
+	background: #ABDB6C url(/mint/styles/vanilla_mint/images/bg-prefs-head.gif) right top repeat-y;
 	border-bottom: 1px solid #292929;
 	color: #333;
 }
@@ -636,7 +636,7 @@ PREFERENCES
 
 #preferences fieldset p.loading
 {
-	background: url(images/spinner-prefs.gif) 0 0 no-repeat;
+	background: url(/mint/styles/vanilla_mint/images/spinner-prefs.gif) 0 0 no-repeat;
 }
 
 .pepper-column h3
@@ -646,7 +646,7 @@ PREFERENCES
 
 .pepper-prefs li
 {
-	background: url(images/bg-prefs-form-divider.gif) top left repeat-x;
+	background: url(/mint/styles/vanilla_mint/images/bg-prefs-form-divider.gif) top left repeat-x;
 }
 
 .pepper-prefs li.first-child
@@ -684,19 +684,19 @@ MINI TABS
 
 .mini ul.tabs li.active
 {
-	background: #3C3C3C url(images/bg-form-tab-left.gif) top left no-repeat;
+	background: #3C3C3C url(/mint/styles/vanilla_mint/images/bg-form-tab-left.gif) top left no-repeat;
 }
 
 .mini ul.tabs li.active a,
 .mini ul.tabs li.active a:hover
 {
 	color: #FFF;
-	background: url(images/bg-form-tab-right.gif) top right no-repeat;
+	background: url(/mint/styles/vanilla_mint/images/bg-form-tab-right.gif) top right no-repeat;
 }
 
 .mini ul.tabs li.last-child.active a
 {
-	background: url(images/bg-form-tab-last.gif) top right no-repeat;
+	background: url(/mint/styles/vanilla_mint/images/bg-form-tab-last.gif) top right no-repeat;
 }
 
 /* 
@@ -705,7 +705,7 @@ DISPLAY TABS
 -----------------------------------------------------------------------------*/
 .display ul.tabs
 {
-	background: url(images/bg-pane-top-right.gif) bottom right no-repeat;
+	background: url(/mint/styles/vanilla_mint/images/bg-pane-top-right.gif) bottom right no-repeat;
 }
 
 .display ul.tabs li a
@@ -716,7 +716,7 @@ DISPLAY TABS
 .display ul.tabs li a.loading,
 .display ul.tabs li a.loading:hover
 {
-	background: url(images/spinner.gif) 0 4px no-repeat;
+	background: url(/mint/styles/vanilla_mint/images/spinner.gif) 0 4px no-repeat;
 	color: #999;
 }
 
@@ -727,20 +727,20 @@ DISPLAY TABS
 
 .display ul.tabs li.active
 {
-	background: #FFF url(images/bg-tab-left.gif) top left no-repeat;
+	background: #FFF url(/mint/styles/vanilla_mint/images/bg-tab-left.gif) top left no-repeat;
 }
 
 .display ul.tabs li.active a,
 .display ul.tabs li.active a:hover
 {
 	color: #484848;
-	background: url(images/bg-tab-right.gif) top right no-repeat;
+	background: url(/mint/styles/vanilla_mint/images/bg-tab-right.gif) top right no-repeat;
 }
 
 .display ul.tabs li.last-child.active a,
 .display ul.tabs li.only-child.active a
 {
-	background: url(images/bg-tab-last.gif) top right no-repeat;
+	background: url(/mint/styles/vanilla_mint/images/bg-tab-last.gif) top right no-repeat;
 }
 
 /* 
@@ -760,7 +760,7 @@ PEPPER PREFERENCE TABS
 
 .pepper-prefs
 {
-	background: url(images/bg-prefs-pepper-top.gif) top left repeat-x;
+	background: url(/mint/styles/vanilla_mint/images/bg-prefs-pepper-top.gif) top left repeat-x;
 }
 
 .pepper-column ul.tabs li a
@@ -775,14 +775,14 @@ PEPPER PREFERENCE TABS
 
 .pepper-column ul.tabs li.active
 {
-	background: url(images/bg-prefs-tab-left.gif) top left no-repeat;
+	background: url(/mint/styles/vanilla_mint/images/bg-prefs-tab-left.gif) top left no-repeat;
 }
 
 .pepper-column ul.tabs li.active a,
 .pepper-column ul.tabs li.active a:hover
 {
 	color: #FFF;
-	background: url(images/bg-prefs-tab-right.gif) top right no-repeat;
+	background: url(/mint/styles/vanilla_mint/images/bg-prefs-tab-right.gif) top right no-repeat;
 }
 
 #preferences h3 a
@@ -811,19 +811,19 @@ ul.filters li a:hover
 
 ul.filters li.active
 {
-	background: url(images/bg-filter-left.gif) top left no-repeat;
+	background: url(/mint/styles/vanilla_mint/images/bg-filter-left.gif) top left no-repeat;
 }
 
 ul.filters li.active a,
 ul.filters li.active a:hover
 {
 	color: #FFF;
-	background: url(images/bg-filter-right.gif) top right no-repeat;
+	background: url(/mint/styles/vanilla_mint/images/bg-filter-right.gif) top right no-repeat;
 }
 
 ul.filters li a.loading
 {
-	background: url(images/spinner-w.gif) 6px 0 no-repeat;
+	background: url(/mint/styles/vanilla_mint/images/spinner-w.gif) 6px 0 no-repeat;
 	color: #666;
 }
 
@@ -834,7 +834,7 @@ ul.filters li a.loading
 
 a.image-search
 {
-	background: url(images/icon-image-search.png) 100% 3px no-repeat;
+	background: url(/mint/styles/vanilla_mint/images/icon-image-search.png) 100% 3px no-repeat;
 }
 
 span a.image-search
@@ -844,7 +844,7 @@ span a.image-search
 
 a.clicked
 {
-	background: url(images/icon-clicked.png) 100% 0 no-repeat;
+	background: url(/mint/styles/vanilla_mint/images/icon-clicked.png) 100% 0 no-repeat;
 }
 
 /* 
@@ -863,7 +863,7 @@ dl.sortable dt span
 
 dl.sortable dd
 {
-	background: url(images/bg-drag.gif) top left no-repeat;
+	background: url(/mint/styles/vanilla_mint/images/bg-drag.gif) top left no-repeat;
 }
 
 dl.sortable dd:hover,
@@ -898,11 +898,11 @@ PROGRESS BAR
 -----------------------------------------------------------------------------*/
 .progress
 {
-	background: url(images/bg-progress.gif) left top no-repeat;
+	background: url(/mint/styles/vanilla_mint/images/bg-progress.gif) left top no-repeat;
 }
 .progress .bar
 {
-	background: url(images/bg-progress-bar.gif) right top no-repeat;
+	background: url(/mint/styles/vanilla_mint/images/bg-progress-bar.gif) right top no-repeat;
 }
 
 /* 
