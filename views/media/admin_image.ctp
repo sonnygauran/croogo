@@ -13,7 +13,7 @@
 <div class="form">
 
     <?php echo $this->Form->create('Media', array('type' => 'file')); ?>
-	<?php echo $this->Form->input('name', array('label' => 'Description')); ?>
+	<?php echo $this->Form->input('description'); ?>
     <?php echo $this->Form->input('image', array('type' => 'file', 'label' => false)); ?>
     <?php echo $this->Form->end('Media'); ?>
     <?php if (isset($image)): ?>

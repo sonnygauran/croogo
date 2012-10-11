@@ -7,9 +7,7 @@
         'options' => array('weathertv' => 'WeatherTV', 'uploaded_videos' => 'Blog'),
         'type' => 'radio'
     ));
-	echo $this->Form->input('name', array(
-		'label' => 'Description',
-	));
+	echo $this->Form->input('description');
     ?>
 
     <?php echo $this->Form->input('video', array('type' => 'file', 'label' => false)); ?>
