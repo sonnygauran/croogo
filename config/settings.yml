@@ -23,7 +23,7 @@ Site.timezone: 8
 Site.title: Weather Philippines Foundation
 Writing.wysiwyg: 1
 Site.timezone: Asia/Manila
-Data.dmo: /data/dmo/temp/
+Data.dmo: /data/dmo/live/
 Data.stations: /data/stations/
 Data.readings: /data/readings/
 Data.movies: http://199.195.193.129:7777/
