@@ -85,9 +85,7 @@
 
             <?php
             if ($severe_warning['Node']['excerpt'] == ''){
-                    echo substr($severe_warning['Node']['body'], 0, 99);
-                    echo "...";
-                    echo "<a href='/announcements/.$severe_warning.['Node']['slug']'> Read More</a> </p>";
+                    echo $text->excerpt(strip_tags(ucwords(strtolower($severe_warning['Node']['body']))), 'method', 80, '...' . $html->link('Read More', "/announcements/{$severe_warning['Node']['slug']}"));
                     echo "  <a id='close-warning' href='#'>x</a>";
             ?>
             <?php }
