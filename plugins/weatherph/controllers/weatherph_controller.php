@@ -383,7 +383,7 @@ class WeatherphController extends WeatherphAppController {
         ));
 
     //debug($blogLists);
-        $meta_for_description = $this->description('description', 'WeatherPhilippines');
+        $meta_for_description = $this->description('description', 'See regular and severe weather updates in the Philippines');
         $this->set(compact('blogLists','meta_for_description'));
     }
 
@@ -399,7 +399,7 @@ class WeatherphController extends WeatherphAppController {
         ));
 
     //debug($blogLists);
-        $meta_for_description = $this->description('description', 'WeatherPhilippines');
+        $meta_for_description = $this->description('description', 'Regular-weather updates about weather conditions in the Philippines');
         $this->set(compact('blogLists','meta_for_description'));
     }
 
@@ -414,7 +414,7 @@ class WeatherphController extends WeatherphAppController {
         ));
 
     //debug($blogLists);
-        $meta_for_description = $this->description('description', 'WeatherPhilippines');
+        $meta_for_description = $this->description('description', 'Severe-weather updates about weather conditions in the Philippines');
         $this->set(compact('blogLists','meta_for_description'));
 
 
@@ -619,7 +619,7 @@ class WeatherphController extends WeatherphAppController {
            rsort($files);
        }
        
-       $meta_for_description = $this->description('description', 'WeatherPhilippines');
+       $meta_for_description = $this->description('description', 'Vlogs (Video logs) regarding the weather condition of the Philippines');
        $this->set(compact('files', 'meta_for_description'));
    }
    function webcam(){

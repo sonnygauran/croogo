@@ -70,6 +70,7 @@
                 <li><a href="<?= $this->webroot ?>weathertv">Weather TV</a></li>
                 <li><a href="<?= $this->webroot ?>webcam">Webcams</a></li>
                 <li><a href="<?= $this->webroot ?>about">About</a></li>
+                <li><a href="<?= $this->webroot ?>contact">Contact Us</a></li>
             </ul>
         </nav>
 

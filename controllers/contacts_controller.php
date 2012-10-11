@@ -138,9 +138,10 @@ class ContactsController extends AppController {
 				echo $this->flash(__('Your message has been received...', true), '/');
 			}
 		}
-
+                
+                $meta_for_description = $this->description('description', 'Contact Us');
 		$this->set('title_for_layout', $contact['Contact']['title']);
-		$this->set(compact('continue'));
+		$this->set(compact('continue','meta_for_description'));
 	}
 
 	private function __validation($continue, $contact) {
@@ -195,7 +196,9 @@ class ContactsController extends AppController {
 
 			$this->set('contact', $contact);
 			$this->set('message', $this->data);
-			if (!$this->Email->send()) {
+			if ($this->Email->send()) {
+                            $continue = true;
+                        }else{
 				$continue = false;
 			}
 		}
