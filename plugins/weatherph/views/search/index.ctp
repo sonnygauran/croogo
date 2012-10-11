@@ -70,7 +70,7 @@
                         </li>
                     <?php endforeach; ?>
                     <?php foreach ($stations as $station): ?>
-                        <li class="<?echo $station['Station']['id'];?>">
+                        <li class="<?echo $station['Station']['wmo1'];?>">
                             <?php echo $this->Html->image('broadcast.png', array('alt' => 'CakePHP'))?>
                             <a href="/view/<?= $station['Station']['wmo1']; ?>"><?= $station['Station']['name']; ?></a>
                         </li>

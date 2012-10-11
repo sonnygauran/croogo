@@ -19,7 +19,7 @@
 <!--    <title><?php echo ($title_for_layout).' | ' . Configure::read('Site.title'); ?></title>
     -->
     <meta name="viewport" content="width=device-width" />
-    
+
     <?php
     echo $meta_for_description;
     echo $this->Layout->meta();
@@ -30,6 +30,7 @@
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+    <script src="/mint/?js" type="text/javascript"></script>
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.4.4/leaflet.css" />
     <!--[if lte IE 8]>
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.4.4/leaflet.ie.css" />
@@ -39,7 +40,7 @@
     <section id="container">
         <header class="banner shadow">
             <a href="<?= $this->webroot ?>"><div class="logo"></div></a>
-            <div id="slides">
+            <div id="sponsor-slides">
                 <div class="slides_container">
                     <img src="<?= $this->webroot ?>theme/weatherph/img/mm.png" alt="Meteomedia">
                     <img src="<?= $this->webroot ?>theme/weatherph/img/az.png" alt="Aboitiz Power" style="display: none;">
@@ -70,6 +71,7 @@
                 <li><a href="<?= $this->webroot ?>weathertv">Weather TV</a></li>
                 <li><a href="<?= $this->webroot ?>webcam">Webcams</a></li>
                 <li><a href="<?= $this->webroot ?>about">About</a></li>
+                <li><a href="<?= $this->webroot ?>contact">Contact Us</a></li>
             </ul>
         </nav>
 
@@ -77,15 +79,32 @@
         // If there is a "Mata ng Bagyo" post within the last 24 hours, show the following warning:
         if(isset($show_alert) && $show_alert):
         ?>
-          
+
         <div class="severe-warning shadow">
-            <strong>Announcement:</strong> <?= $severe_warning['Node']['excerpt'] ?> 
-             
-            <a href="/announcements/<?= $severe_warning['Node']['slug']?>">Read More</a> </p>
-            <a id="close-warning" href="#">x</a>
+            <strong>Announcement:</strong>
+
+            <?php
+            if ($severe_warning['Node']['excerpt'] == ''){
+                    echo substr($severe_warning['Node']['body'], 0, 99);
+                    echo "...";
+                    echo "<a href='/announcements/.$severe_warning.['Node']['slug']'> Read More</a> </p>";
+                    echo "  <a id='close-warning' href='#'>x</a>";
+            ?>
+            <?php }
+                else {
+                   echo $severe_warning['Node']['excerpt'];
+                    echo "<a href='/announcements/.$severe_warning.['Node']['slug']'> Read More</a> </p>";
+                    echo "  <a id='close-warning' href='#'>x</a>";
+                }
+            ?>
         </div>
         <?php
         endif;
+        ?>
+
+        <?php
+        echo $this->Layout->sessionFlash();
+        echo $content_for_layout;
         ?>
 
         <div id="sidebar">
@@ -106,22 +125,29 @@
                 <a href="http://twitter.com/weatherph"><div class="twitter"></div></a>
             </div>
             <div class="sponsored">
-                <?php
-                $images = array(
-                    'quasha.jpeg',
-                    'ocean_adventure.png',
-                    'syngenta.png',
-                );
-
-                $hat = rand(1, count($images)) - 1;
-
-                ?>
                 <h6>Gold sponsors:</h6>
-                <ul>
-                    <li><?php echo $this->Html->image($images[$hat], array('width' => '120px')); ?></li>
-                </ul>
+
+                <?php
+                $images = array('quasha', 'ocean_adventure', 'syngenta', 'veco', 'snap', 'hedcor', 'dlpc');
+                $hat = array_rand($images, 4);
+                ?>
+
+                <div class="gold-sponsor-slides">
+                    <div class="slides_container">
+                        <img src="<?= $this->webroot ?>theme/weatherph/img/gold/<?= $images[$hat[0]] ?>.png">
+                        <img src="<?= $this->webroot ?>theme/weatherph/img/gold/<?= $images[$hat[1]] ?>.png" style="display:none;">
+                    </div>
+                </div>
+
+                <div class="gold-sponsor-slides">
+                    <div class="slides_container">
+                        <img src="<?= $this->webroot ?>theme/weatherph/img/gold/<?= $images[$hat[2]] ?>.png">
+                        <img src="<?= $this->webroot ?>theme/weatherph/img/gold/<?= $images[$hat[3]] ?>.png" style="display:none;">
+                    </div>
+                </div>
             </div>
-        <?php if ($tourism_links): ?>
+
+            <?php if ($tourism_links): ?>
             <?php $excerpt1 = substr ($tourism_links[0]['Node']['excerpt'], 0, 100)?>
             <?php $excerpt2 = substr ($tourism_links[1]['Node']['excerpt'], 0, 100)?>
             <div class="promo">
@@ -147,11 +173,6 @@
             </div>
         <?php endif; // tourism links ?>
         </div><!--END SIDEBAR-->
-
-        <?php
-        echo $this->Layout->sessionFlash();
-        echo $content_for_layout;
-        ?>
 
         <footer>
             <small>&copy; 2012 Meteomedia Philippines</small>
@@ -188,7 +209,7 @@ Google Analytics script
 
 <script type="text/javascript">
     $(window).load(function(){
-        $('#slides').slides({
+        $('#sponsor-slides, .gold-sponsor-slides').slides({
             preload: false,
             effect: 'fade',
             play: 5000,

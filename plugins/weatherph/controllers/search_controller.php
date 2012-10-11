@@ -183,9 +183,17 @@ class SearchController extends WeatherphAppController {
             $updated_results[] = $value;
         }
         
+        for($i =0; $i < count($updated_results); $i++){
+            $updated_results[$i]['Name']['marker_type'] = 'location';
+        }
+        
         $NimaName->useDbConfig = 'default';
-        $sql = "select `Name`.`id`, `Name`.`name` as `full_name_ro`, `Name`.`lat`, `Name`.`lon` as `long`, `webaktiv` from `stations` as `Name` where (`Name`.`name` like '%$keyword%') and (webaktiv != 0 and webaktiv != 2) and (typ != 'METAR')";
+        $sql = "select `Name`.`wmo1` as `id`, `Name`.`name` as `full_name_ro`, `Name`.`lat`, `Name`.`lon` as `long`, `webaktiv` from `stations` as `Name` where (`Name`.`name` like '%$keyword%') and (webaktiv != 0 and webaktiv != 2) and (typ != 'METAR')";
         $stations = $NimaName->query($sql);
+        for($i = 0; $i < count($stations); $i++){
+            $stations[$i]['Name']['marker_type'] = 'station';
+        }
+        
         $updated_results = array_merge($updated_results, $stations);
         
 //        debug($updated_results);
@@ -194,11 +202,6 @@ class SearchController extends WeatherphAppController {
 //            Cache::write($gum, $locations, 'daily');
 //        } else {
 //            $locations = Cache::read($gum, 'daily');
-//        }
-        $meta_for_description = $this->description('description', 'WeatherPhilippines');
-        $meta_for_keywords = $this->keywords('keywords', 'WeatherPhilippines, 
-            weather, philippines, weather philippines');
-        $this->set(compact('meta_for_description','meta_for_description'));
         $this->set('locations', json_encode($updated_results));
     }
 }

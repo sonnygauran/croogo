@@ -271,7 +271,16 @@ function mapStations($stationsArray, icon) {
         
         var content = "<b>"+$currentStation.name+"</b>";
         //        if (isiPad || isiPhone()) {
-        content += "<br /><a href=\"#\" class=\"marker-popup\" data-id=\""+$currentStation.id+" \">View Details</a>";
+        
+        city_name = $currentStation['name'].replace(/\ /g, '_');
+        
+        if ($currentStation.marker == "station"){
+            url = "/view/" +$currentStation.id;
+        }else {
+            url = "/" + city_name +"-"+$currentStation.id;
+        }
+        content += "<br /><a href=\"" + url +"\" class=\"marker-popup\">View Details</a>";
+
         //        }
         marker.bindPopup(content);
 
@@ -284,7 +293,8 @@ function mapStations($stationsArray, icon) {
             var self = this;
             //            if (isiPhone() || isiPad) {
             $('.marker-popup').on('click', function(evt){
-                evt.preventDefault();
+//                evt.preventDefault();
+//                var url = $(this).attr('data-id');
                 self.closePopup();
             });
         });
@@ -341,7 +351,8 @@ function remapStations() {
                         coordinates: [
                         $currentRetrievedStation.Name.long,
                         $currentRetrievedStation.Name.lat
-                        ]
+                        ],
+                        marker: $currentRetrievedStation.Name.marker_type
                     });
                 }
                 // Temporary Hidden
