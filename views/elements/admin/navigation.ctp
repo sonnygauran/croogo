@@ -32,13 +32,16 @@
 				</li>
                                
                 <li>
-                        <?php echo $this->Html->link(__('Upload', true), array('plugin' => null, 'controller' => 'uploads', 'action' => 'video')); ?>
+                        <?php echo $this->Html->link(__('Upload', true), array('plugin' => null, 'controller' => 'media', 'action' => 'manage')); ?>
                         <ul>
-                        	<li>
-                        		<?php echo $this->Html->link(__('Video', true), array('plugin' => null, 'controller' => 'uploads', 'action' => 'video')); ?>
+                               <li>
+                        		<?php echo $this->Html->link(__('Manage Media', true), array('plugin' => null, 'controller' => 'media', 'action' => 'manage')); ?>
                         	</li>
                         	<li>
-                        		<?php echo $this->Html->link(__('Image', true), array('plugin' => null, 'controller' => 'uploads', 'action' => 'image')); ?>
+                        		<?php echo $this->Html->link(__('Video', true), array('plugin' => null, 'controller' => 'media', 'action' => 'video')); ?>
+                        	</li>
+                        	<li>
+                        		<?php echo $this->Html->link(__('Image', true), array('plugin' => null, 'controller' => 'media', 'action' => 'image')); ?>
                         	</li>
                         </ul>
                 </li

@@ -15,7 +15,7 @@
     <?php echo $this->Form->create('Media', array('type' => 'file')); ?>
 	<?php echo $this->Form->input('description'); ?>
     <?php echo $this->Form->input('image', array('type' => 'file', 'label' => false)); ?>
-    <?php echo $this->Form->end('Media'); ?>
+    <?php echo $this->Form->end('Upload'); ?>
     <?php if (isset($image)): ?>
         <pre><?php echo htmlentities('<img src="' . $image . '" alt="" />') ?></pre>
     <?php endif; ?>
