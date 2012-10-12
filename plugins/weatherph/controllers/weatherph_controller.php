@@ -603,24 +603,20 @@ class WeatherphController extends WeatherphAppController {
 
 
    function weathertv(){
-       function removeExtension(&$string){
-           $explode = explode('.', $string);
-           unset($explode[count($explode)-1]);
-           $string = implode('.', $explode);
-       }
-
-       $files = array();
-       $files_location = realpath(WWW_ROOT . '/../views/themed/weatherph/webroot/weathertv');
-       if(is_dir($files_location)) $files = array_diff(scandir($files_location), array('.', '..', '.DS_Store', 'empty'));
-
-       if(count($files) != 0){
-           array_walk($files, 'removeExtension');
-           $files= array_unique($files);
-           rsort($files);
-       }
-       
+       App::import('Model', 'Media');
        $meta_for_description = $this->description('description', 'Vlogs (Video logs) regarding the weather condition of the Philippines');
        $this->set(compact('files', 'meta_for_description'));
+       $Media = new Media();
+       $files = $Media->find('all', array(
+           'conditions' => array(
+               'type' => 'weathertv'
+           ),
+           'order' => array(
+               'created DESC'
+           )
+       ));
+       
+       $this->set(compact('files'));
    }
    function webcam(){
        
