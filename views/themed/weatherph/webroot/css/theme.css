@@ -162,11 +162,6 @@ footer {
     margin-bottom: 10px;
 }
 
-label[for="search-field"] {
-    font-size: 8pt;
-    text-transform: uppercase;
-}
-
 .flag {
     margin-right: 20px;
 }
