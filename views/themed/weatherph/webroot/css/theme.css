@@ -732,6 +732,18 @@ span.temperature {
     text-decoration: none;
 }
 
+/* Contact Form */
+
+.contact-form {
+    width: 300px;
+    text-align: right;
+    margin: 0 auto;
+}
+
+.input label {
+    float: left;
+}
+
 /* Search Results */
 
 .names.index {
