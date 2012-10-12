@@ -18,7 +18,7 @@
 
 <!--    <title><?php echo ($title_for_layout).' | ' . Configure::read('Site.title'); ?></title>
     -->
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=1000" />
 
     <?php
     echo $meta_for_description;
@@ -50,7 +50,7 @@
             <div id="options">
                 <div class="flag"></div>
                 <form class="search" action="/search" method="POST">
-                    <label for="search-field">Search:&nbsp;</label><input id="search-field" type="text" name="terms" size="12" />
+                    <input id="search-field" placeholder="Search town/province" type="text" name="terms" size="20" />
                     <input type="submit" value="Search" class="search-icon"></div>
                 </form>
             </div>
@@ -127,20 +127,24 @@
 
                 <?php
                 $images = array('quasha', 'ocean_adventure', 'syngenta', 'veco', 'snap', 'hedcor', 'dlpc');
-                $hat = array_rand($images, 4);
+                shuffle($images);
+                $hat = array_rand($images, 7);
                 ?>
 
                 <div class="gold-sponsor-slides">
                     <div class="slides_container">
                         <img src="<?= $this->webroot ?>theme/weatherph/img/gold/<?= $images[$hat[0]] ?>.png">
                         <img src="<?= $this->webroot ?>theme/weatherph/img/gold/<?= $images[$hat[1]] ?>.png" style="display:none;">
+                        <img src="<?= $this->webroot ?>theme/weatherph/img/gold/<?= $images[$hat[2]] ?>.png" style="display:none;">
                     </div>
                 </div>
 
                 <div class="gold-sponsor-slides">
                     <div class="slides_container">
-                        <img src="<?= $this->webroot ?>theme/weatherph/img/gold/<?= $images[$hat[2]] ?>.png">
-                        <img src="<?= $this->webroot ?>theme/weatherph/img/gold/<?= $images[$hat[3]] ?>.png" style="display:none;">
+                        <img src="<?= $this->webroot ?>theme/weatherph/img/gold/<?= $images[$hat[3]] ?>.png">
+                        <img src="<?= $this->webroot ?>theme/weatherph/img/gold/<?= $images[$hat[4]] ?>.png" style="display:none;">
+                        <img src="<?= $this->webroot ?>theme/weatherph/img/gold/<?= $images[$hat[5]] ?>.png" style="display:none;">
+                        <img src="<?= $this->webroot ?>theme/weatherph/img/gold/<?= $images[$hat[6]] ?>.png" style="display:none;">
                     </div>
                 </div>
             </div>
