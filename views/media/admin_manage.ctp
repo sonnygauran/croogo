@@ -12,7 +12,7 @@
 				<td>
 					<video height='240ppx' width='360px' controls>
 						<? foreach(array('m4v', 'mp4', 'webm') as $codec){ ?>
-							<source src="/uploads/uploaded_images/<?= "{$video['Media']['name']}.{$codec}" ?>" type='video/x-m4v;' />
+							<source src="http://199.197.193.129:7777/<?= "{$video['Media']['name']}.{$codec}" ?>" type='video/x-m4v;' />
 						<? }?>
 					</video>
 				</td>
@@ -78,7 +78,7 @@
 		<?php foreach($images as $image){ ?>
 			<tr>
 				<td>
-					<img src="http://199.195.193.129:7777/<?= $image['Media']['name']?>">
+					<img src="/uploads/uploaded_images/<?= $image['Media']['name']?>" width="360px">
 				</td>
 				<td><?= $image['Media']['description'] ?></td>
 				<td><?= $image['Media']['created'] ?></td>
