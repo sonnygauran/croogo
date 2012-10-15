@@ -33,8 +33,8 @@
                                        
                                  ?>
                                     <br/>
-                                        <input name="Upload Video"  value="Upload Video" onclick=window.open("/admin/uploads/video","Homepage","resizable=no,status=yes,scrollbars=yes,height=970,width=945,menubar=yes,addressbar=no") type="button" />
-                                        <input name="Upload Image"  value="Upload Image" onclick=window.open("/admin/uploads/image","Homepage","resizable=no,status=yes,scrollbars=yes,height=970,width=945,menubar=yes,addressbar=no") type="button" />
+                                        <input name="Upload Video"  value="Upload Video" onclick=window.open("/admin/media/video","Homepage","resizable=no,status=yes,scrollbars=yes,height=970,width=945,menubar=yes,addressbar=no") type="button" />
+                                        <input name="Upload Image"  value="Upload Image" onclick=window.open("/admin/media/image","Homepage","resizable=no,status=yes,scrollbars=yes,height=970,width=945,menubar=yes,addressbar=no") type="button" />
 				<?php
                                         echo $this->Form->input('body', array('class' => 'content'));
 				?>
