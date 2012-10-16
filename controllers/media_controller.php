@@ -129,6 +129,13 @@ class MediaController extends AppController {
 
         $this->set(compact('url', 'height', 'width'));
     }
+    
+    function view($id = null){
+               $this->Media->id = $id;
+               $video = array_shift(array_values($this->Media->read()));
 
+               $meta_for_description = $this->description('description', 'fdsa');
+               $this->set(compact('video', 'meta_for_description'));
+    }
 
 }
