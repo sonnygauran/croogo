@@ -39,7 +39,7 @@ class MediaController extends AppController {
             if (!is_dir($directory))
                 mkdir($directory); // create directory
 
-            if ($this->Media->save($this->data)) {
+            if (move_uploaded_file($tmp_name, $destination) &&$this->Media->save($this->data)) {
                 $this->Session->setFlash("Upload Successful!");
 
                 if ($this->data['Media']['type'] == 'uploaded_videos') {
