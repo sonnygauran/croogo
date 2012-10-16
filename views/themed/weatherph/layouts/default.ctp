@@ -85,19 +85,18 @@
 
             <?php
             if ($severe_warning['Node']['excerpt'] == ''){
-                    echo $text->excerpt(strip_tags(ucwords(strtolower($severe_warning['Node']['body']))), 'method', 80, '...' . $html->link('Read More', "/announcements/{$severe_warning['Node']['slug']}"));
+                    echo $text->excerpt(strip_tags(ucwords(strtolower($severe_warning['Node']['body']))), 'method', 100, '...' . $html->link('Read More', "/announcements/{$severe_warning['Node']['slug']}"));
                     echo "  <a id='close-warning' href='#'>x</a>";
             ?>
             <?php }
                 else {
-                   echo $severe_warning['Node']['excerpt'];
-                    echo "<a href='/announcements/{$severe_warning['Node']['slug']}'> Read More</a> </p>";
+                    echo $text->excerpt(strip_tags(ucwords(strtolower($severe_warning['Node']['excerpt']))), 'method', 100, '...' . $html->link('Read More', "/announcements/{$severe_warning['Node']['slug']}"));
                     echo "  <a id='close-warning' href='#'>x</a>";
                 }
             ?>
         </div>
         <?php
-        endif;
+        endif;  
         ?>
 
         <?php
