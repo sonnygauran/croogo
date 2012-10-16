@@ -91,7 +91,7 @@
             <?php }
                 else {
                    echo $severe_warning['Node']['excerpt'];
-                    echo "<a href='/announcements/.$severe_warning.['Node']['slug']'> Read More</a> </p>";
+                    echo "<a href='/announcements/{$severe_warning['Node']['slug']}'> Read More</a> </p>";
                     echo "  <a id='close-warning' href='#'>x</a>";
                 }
             ?>
