@@ -381,7 +381,7 @@ class NodesController extends AppController {
 					'Type.alias' => $this->params['named']['type'],
 				),
 				'cache' => array(
-					'name' => 'type_'.$this->params['named']['type'],
+					'name' => 'type_'.$this->params['named']['type'],   
 					'config' => 'nodes_index',
 				),
 			));
@@ -423,6 +423,10 @@ class NodesController extends AppController {
 		$this->__viewFallback(array(
 			'index_' . $type['Type']['alias'],
 		));
+                
+                $meta_for_description = $this->description('description', 'asdadad');
+                $this->set(compact('meta_for_description'));
+                
 	}
 
 	public function term() {
@@ -735,10 +739,10 @@ class NodesController extends AppController {
 			'view_' . $type['Type']['alias'],
 		));
                 
-                $meta_for_description = $this->description('description', 'WeatherPhilippines');
-        $meta_for_keywords = $this->keywords('keywords', 'WeatherPhilippines, 
-            weather, philippines, weather philippines');
-        $this->set(compact('meta_for_description','meta_for_keywords'));
+                
+                $meta_for_description = $this->description('description', "Visit {$node['Node']['title']} and enjoy the views around the {$node['Node']['title']}. ");
+                $this->set(compact('meta_for_description'));
+               
                 
 	}
 
