@@ -410,6 +410,9 @@ $movie_location = Configure::read('Data.movies');
     </section> <!--MAIN CONTENT-->
     <section class="secondary">
         <div class="blog">
+            <h4 class="latest_video"><?php 
+            if(!empty($latest_video)) echo $this->Html->link("New Video Uploaded", array( 'plugin' => null, 'controller' => 'media', 'action' => 'view', $latest_video['Media']['id'] ));
+            ?></h4>
             <h4>News</h4>
             <div class="page">
                 <?php foreach ($blogEntries as $blog) { ?>

@@ -27,7 +27,7 @@ class WeatherphController extends WeatherphAppController {
      * @var array
      * @access public
      */
-    public $uses = array('Setting');
+    public $uses = array('Setting','Media');
 
     public function admin_index() {
        //$this->set('title_for_layout', __('Weatherph', true));
@@ -144,8 +144,14 @@ class WeatherphController extends WeatherphAppController {
          *      - resource - contains an array of (data-layer => (temperature, pressure)) for retreiving the image key.
          *      - featureBlog - to display the featured blogs
          */
+        
+        $latest_video = $this->Media->find('first', array(
+            'order' => 'created desc'
+        ));
+        
+        
         $meta_for_description = $this->description('description', 'The Weather Philippines Foundation (WPF) aims to deliver critical and accurate weather forecasts to the Filipino community, with the hope of improving nationwide disaster preparedness, and timely response to variable weather conditions.');
-        $this->set(compact('blogEntries', 'resources', 'meta_for_description'));
+        $this->set(compact('blogEntries', 'resources', 'meta_for_description', 'latest_video'));
 
     }
 
