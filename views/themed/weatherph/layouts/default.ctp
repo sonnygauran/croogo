@@ -1,38 +1,19 @@
-<?php
-/**
- * Weatherph Frontpage
- *
- * @author Martin de Lima <mdelima@meteomedia.com.ph>
- * @link http://www.weather.com.ph
- */
-?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title><?= $title_for_layout ?>        
-        <?php if (strlen($title_for_layout) > 1): ?>
-            &nbsp;|&nbsp;<?php echo Configure::read('Site.title'); ?>
-        <?php endif; // comment ?>
-    </title>
-    
-
-<!--    <title><?php echo Configure::read('Site.title').' | ' .($title_for_layout) ; ?></title>
-    -->
+    <title><?= $title_for_layout ?><?php if (strlen($title_for_layout) > 1): ?> | <?php echo Configure::read('Site.title'); ?><?php endif; // comment ?></title>
     <meta name="viewport" content="width=1000" />
-
     <?php
-   echo $this->Html->meta($og_image);
-   echo $this->Html->meta($og_title);
-   echo $this->Html->meta($og_description);
-    echo $meta_for_description;
-    echo $this->Layout->meta();
-    echo $this->Layout->feed();
-    echo $this->Html->css('theme');
-    echo $this->Layout->js();
+        echo $this->Html->meta($og_image);
+        echo $this->Html->meta($og_title);
+        echo $this->Html->meta($og_description);
+        echo $meta_for_description;
+        echo $this->Layout->meta();
+        echo $this->Layout->feed();
+        echo $this->Html->css('theme');
+        echo $this->Layout->js();
     ?>
-
-
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -213,7 +194,6 @@ Google Analytics script
 
     echo $this->Html->script('slides.min.jquery');
 ?>
-
 <script type="text/javascript">
     $(window).load(function(){
         $('#sponsor-slides, .gold-sponsor-slides').slides({
