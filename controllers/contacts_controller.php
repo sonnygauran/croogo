@@ -139,11 +139,12 @@ class ContactsController extends AppController {
             }
         }
 
-        $meta_for_description = $this->description('description', 'Contact Us');
+        $meta_for_description = $this->description('description', 'For general inquiries - contact WeatherPH via E-mail, Tel#:+6327932653  & Fax#:+6328125893');
         $og_image = array('property'=>'og:image','content'=>'http://alpha.weather.com.ph/theme/weatherph/img/logo.png');
         $og_title = array('property'=>'og:title','content'=>'Weather Philippines Foundation');
+        $og_description=array('property'=>'og:description','content'=>"For general inquiries - contact WeatherPH via E-mail, Tel#:+6327932653 & Fax#:+6328125893");
         $this->set('title_for_layout', $contact['Contact']['title']);
-        $this->set(compact('continue', 'meta_for_description','og_image','og_title'));
+        $this->set(compact('continue', 'meta_for_description','og_image','og_title','og_description'));
     }
 
     private function __validation($continue, $contact) {

@@ -151,9 +151,11 @@ class WeatherphController extends WeatherphAppController {
         
          $og_image = array('property'=>'og:image','content'=>'http://alpha.weather.com.ph/theme/weatherph/img/logo.png');
          $og_title = array('property'=>'og:title','content'=>'Weather Philippines Foundation');
+         $og_description = array('property'=>'og:description','content'=>'The Weather Philippines Foundation (WPF) aims to deliver critical and accurate weather forecasts to the Filipino community, with the hope of improving nationwide disaster preparedness, and timely response to variable weather conditions.');
+         
 
         $meta_for_description = $this->description('description', 'The Weather Philippines Foundation (WPF) aims to deliver critical and accurate weather forecasts to the Filipino community, with the hope of improving nationwide disaster preparedness, and timely response to variable weather conditions.');
-        $this->set(compact('blogEntries', 'resources', 'meta_for_description', 'latest_video','og_image','og_title'));
+        $this->set(compact('blogEntries', 'resources', 'meta_for_description', 'latest_video','og_image','og_title','og_description'));
 
     }
 
@@ -366,14 +368,13 @@ class WeatherphController extends WeatherphAppController {
 
         //$this->log(print_r($forecastRange, true));
 
-        $today2 = strftime("%V,%G,%Y", strtotime(date('Y-m-d')));
         $x = strftime("(%a)%b %d");  
         $y = strftime("(%a)%b %d, %Y", strtotime('+4 days', strtotime($today)));
-        $enddate2 = date('Y-m-d', strtotime('+4 days', strtotime($today)));
-        $meta_for_description = $this->description('description', 'WeatherPhilippines');
+       
         $og_image = array('property'=>'og:image','content'=>'http://alpha.weather.com.ph/theme/weatherph/img/logo.png');
         $og_title = array('property'=>'og:title','content'=>'Weather Philippines Foundation');
         $description = "Latest weather update for $title_for_layout Philippines. Five (5) days forecast from $x to $y";
+        $meta_for_description = $this->description('description', $description);
         $og_description = array('property'=>'og:description','content'=> $description);
         $this->set(compact('forecastRange', 'dataSets', 'title_for_layout','meta_for_description','og_image','og_title','og_description'));
 
@@ -382,9 +383,10 @@ class WeatherphController extends WeatherphAppController {
     public function about() {
         $this->layout = 'default';
            $og_image = array('property'=>'og:image','content'=>'http://alpha.weather.com.ph/theme/weatherph/img/logo.png');
-        $og_title = array('property'=>'og:title','content'=>'Weather Philippines Foundation');
+        $og_title = array('property'=>'og:title','content'=>"Learn more about Weather Philippines Foundation and its founders.");
         $meta_for_description = $this->description('description', 'WeatherPhilippines');
-        $this->set(compact('meta_for_description','og_image','og_title'));
+        $og_description = array('property'=>'og:description','content'=>"Learn more about Weather Philippines Foundation and its founders. ");
+        $this->set(compact('meta_for_description','og_image','og_title','og_description'));
     }
 
     public function news() {
@@ -399,10 +401,11 @@ class WeatherphController extends WeatherphAppController {
         ));
 
     //debug($blogLists);
-        $meta_for_description = $this->description('description', 'See regular and severe weather updates in the Philippines');
+        $meta_for_description = $this->description('description', "WeatherPH provides comprehensive up-to-date news about the Philippines' current weather condition.");
          $og_image = array('property'=>'og:image','content'=>'http://alpha.weather.com.ph/theme/weatherph/img/logo.png');
+         $og_description = array('property'=>'og:description','content'=>"WeatherPH provides comprehensive up-to-date news about the Philippines' current weather condition.");
          $og_title = array('property'=>'og:title','content'=>' News | Weather Philippines Foundation');
-        $this->set(compact('blogLists','meta_for_description','og_image','og_title'));
+         $this->set(compact('blogLists','meta_for_description','og_image','og_title','og_description'));
     }
 
     public function payongpanahon() {
@@ -438,7 +441,8 @@ class WeatherphController extends WeatherphAppController {
         $meta_for_description = $this->description('description', 'Severe-weather updates about weather conditions in the Philippines');
            $og_image = array('property'=>'og:image','content'=>'http://alpha.weather.com.ph/theme/weatherph/img/logo.png');
         $og_title = array('property'=>'og:title','content'=>'Weather Philippines Foundation');
-        $this->set(compact('blogLists','meta_for_description','og_iamge','og_title'));
+        $og_description = array('property'=>'og:description','content'=>'dasda');
+        $this->set(compact('blogLists','meta_for_description','og_iamge','og_title','og_description'));
 
 
     }
@@ -629,10 +633,11 @@ class WeatherphController extends WeatherphAppController {
 
    function weathertv(){
        App::import('Model', 'Media');
-       $meta_for_description = $this->description('description', 'Vlogs (Video logs) regarding the weather condition of the Philippines');
-          $og_image = array('property'=>'og:image','content'=>'http://alpha.weather.com.ph/theme/weatherph/img/logo.png');
-        $og_title = array('property'=>'og:title','content'=>'Weather Philippines Foundation');
-       $this->set(compact('files', 'meta_for_description','og_image','og_title'));
+       $meta_for_description = $this->description('description', 'Vlogs (Video Blogs) regarding the weather condition of the Philippines');
+       $og_image = array('property'=>'og:image','content'=>'http://alpha.weather.com.ph/theme/weatherph/img/logo.png');
+       $og_title = array('property'=>'og:title','content'=>'Weather Philippines Foundation');
+       $og_description = array('property'=>'og:description','content'=>'Vlogs (Video Blogs) regarding the weather condition of the Philippines');
+       $this->set(compact('files', 'meta_for_description','og_image','og_title','og_description'));
        $Media = new Media();
        $files = $Media->find('all', array(
            'conditions' => array(
@@ -649,8 +654,9 @@ class WeatherphController extends WeatherphAppController {
    function webcam(){
         $og_image = array('property'=>'og:image','content'=>'http://alpha.weather.com.ph/theme/weatherph/img/logo.png');
         $og_title = array('property'=>'og:title','content'=>'Weather Philippines Foundation');
-        $meta_for_description = $this->description('description', 'WeatherPhilippines');
-        $this->set(compact('meta_for_description','og_image','og_title'));
+        $meta_for_description = $this->description('description', 'View current weather conditions across the Philippines');
+        $og_description = array('property'=>'og:desccription','content'=>'View current weather conditions across the Philippines');
+        $this->set(compact('meta_for_description','og_image','og_title','og_description'));
        
        
    }
