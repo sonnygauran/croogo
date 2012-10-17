@@ -745,23 +745,53 @@ class NodesController extends AppController {
                 
                 
                 if ($node['Node']['type']=='visit'){                
-                $meta_for_description = $this->description('description', "Visit {$node['Node']['title']} and enjoy the views around the {$node['Node']['title']}. ");
-                $og_title= array('property'=>'og:title','content'=>"{$node['Node']['title']} | Weather Philippines Foundation");
+               
+                 $og_title= array('property'=>'og:title','content'=>"{$node['Node']['title']} | Weather Philippines Foundation");
                 $og_image= array('property'=>'og:image','content'=>'http://alpha.weather.com.ph/theme/weatherph/img/logo.png');
-                $og_description=array('property'=>'og:description','content'=>"");
+                $x = strip_tags(substr ($node['Node']['body'], 0, 300));
+                $first = trim($x);
+                if ($first < 150){
+                    $y = strip_tags(substr ($node['Node']['body'], 0, 400));
+                    $second = trim($y);
+                }
+       
+                
+                $og_description=array('property'=>'og:description','content'=>"$second...");
+                $meta_for_description = $this->description('description', "$second...");
+                
                 $this->set(compact('meta_for_description','og_title','og_image','og_description'));
+               
+                
                } elseif ($node['Node']['type']=='announcements'){
-                $meta_for_description = $this->description('description', "{$node['Node']['title']} is a severe-weather blog post that updates the weather condition in the Philippines. ");
-                $og_title= array('property'=>'og:title','content'=>'asdsadsdsad');
+            
+                $og_title= array('property'=>'og:title','content'=>"{$node['Node']['title']} - WeatherPH weather announcements");
                 $og_image= array('property'=>'og:image','content'=>'http://alpha.weather.com.ph/theme/weatherph/img/logo.png');
-                $og_description = array('property'=>'og:description','content'=>"{$node['Node']['title']}");
+             
+                  $x = strip_tags(substr ($node['Node']['body'], 0, 300));
+                $first = trim($x);
+                if ($first < 150){
+                    $y = strip_tags(substr ($node['Node']['body'], 0, 400));
+                    $second = trim($y);
+                }
+                $og_description = array('property'=>'og:description','content'=>"$second...");
+                $meta_for_description = $this->description('description', "$second...");
+             
                 $this->set(compact('meta_for_description','og_title','og_image','og_description'));
+               
+                
                } elseif ($node['Node']['type']=='news'){
-                $meta_for_description = $this->description('description', "{$node['Node']['title']} is a regular-weather blog post that updates the weather condition in the Philippines. ");
-                $og_title= array('property'=>'og:title','content'=>'');
+                
+                $og_title= array('property'=>'og:title','content'=>"{$node['Node']['title']} - WeatherPH weather news");
                 $og_image= array('property'=>'og:image','content'=>'http://alpha.weather.com.ph/theme/weatherph/img/logo.png');
-                $og_description=array('property'=>'og:description','content'=>"");
-                $this->set(compact('meta_for_description','og_title','og_image','og_description'));
+                 $x = strip_tags(substr ($node['Node']['body'], 0, 300));
+                $first = trim($x);
+                if ($first < 150){
+                    $y = strip_tags(substr ($node['Node']['body'], 0, 400));
+                    $second = trim($y);
+                }
+                $meta_for_description = $this->description('description', "$second...");
+                $og_description=array('property'=>'og:description','content'=>"$second...");
+                                $this->set(compact('meta_for_description','og_title','og_image','og_description'));
                    
                }
                 
