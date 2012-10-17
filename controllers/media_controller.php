@@ -131,6 +131,10 @@ class MediaController extends AppController {
     }
     
     function view($id = null){
+        
+                if(!$id)
+                    $this->redirect ('/weathertv');
+                    
                $this->Media->id = $id;
                $video = array_shift(array_values($this->Media->read()));
 
