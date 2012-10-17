@@ -490,10 +490,11 @@ class WeatherphController extends WeatherphAppController {
 
 //       $this->log(print_r($dataSets, true));
 
-               $meta_for_description = $this->description('description', 'WeatherPhilippines');
+               $meta_for_description = $this->description('description', "{$dataSets['station_name']} Detailed forecast");
                   $og_image = array('property'=>'og:image','content'=>'http://alpha.weather.com.ph/theme/weatherph/img/logo.png');
         $og_title = array('property'=>'og:title','content'=>'Weather Philippines Foundation');
-        $this->set(compact('dataSets','location', 'distance','meta_for_description','og_image','og_title'));
+        $og_description = array('property'=>'og:description', 'content'=> "{$dataSets['station_name']} Detailed forecast");
+        $this->set(compact('dataSets','location', 'distance','meta_for_description','og_image','og_title','og_description'));
    }
 
     public function getStationReadings($station_id = NULL, $time_frame = "10m", $target_date = NULL, $days_range = NULL){
