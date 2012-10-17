@@ -130,13 +130,13 @@ class SearchController extends WeatherphAppController {
                 $names = $this->paginate('NimaName');
                 $stations = $this->paginate('Station');
                 $count = count($names) + count($stations);
-                $meta_for_description = $this->description('description', 'WeatherPhilippines');
-                 $meta_for_keywords = $this->keywords('keywords', 'WeatherPhilippines, s
+                $meta_for_description = $this->description('description',' Search Result | Weather Philippines Foundation');
+                $meta_for_keywords = $this->keywords('keywords', 'WeatherPhilippines, s
             weather, philippines, weather philippines');
-                    $og_image = array('property'=>'og:image','content'=>'http://alpha.weather.com.ph/theme/weatherph/img/logo.png');
-        $og_title = array('property'=>'og:title','content'=>'Weather Philippines Foundation');
-                
-                $this->set(compact('names', 'stations', 'count', 'meta_for_description','meta_for_keywords','og_image','og_title'));
+                $og_image = array('property'=>'og:image','content'=>'http://alpha.weather.com.ph/theme/weatherph/img/logo.png');
+                $og_title = array('property'=>'og:title','content'=>'Search result| Weather Philippines Foundation');
+                $og_description = array('property'=>'og:description', 'content'=>'Search results');
+                $this->set(compact('names', 'stations', 'count', 'meta_for_description','meta_for_keywords','og_image','og_title','og_description'));
             } else {
                 $this->log('NO MATCH!');
                 $this->Session->setFlash(__('Invalid search term provided. Please check your search. You entered "'.$terms.'"', true), 'default', array('class' => 'error'));

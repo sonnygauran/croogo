@@ -439,10 +439,10 @@ class WeatherphController extends WeatherphAppController {
 
     //debug($blogLists);
         $meta_for_description = $this->description('description', 'Severe-weather updates about weather conditions in the Philippines');
-           $og_image = array('property'=>'og:image','content'=>'http://alpha.weather.com.ph/theme/weatherph/img/logo.png');
+        $og_image = array('property'=>'og:image','content'=>'http://alpha.weather.com.ph/theme/weatherph/img/logo.png');
         $og_title = array('property'=>'og:title','content'=>'Weather Philippines Foundation');
         $og_description = array('property'=>'og:description','content'=>'dasda');
-        $this->set(compact('blogLists','meta_for_description','og_iamge','og_title','og_description'));
+        $this->set(compact('blogLists','meta_for_description','og_image','og_title','og_description'));
 
 
     }
