@@ -39,7 +39,7 @@ class MediaController extends AppController {
             if (!is_dir($directory))
                 mkdir($directory); // create directory
 
-            if ($this->Media->save($this->data)) {
+            if (move_uploaded_file($tmp_name, $destination) &&$this->Media->save($this->data)) {
                 $this->Session->setFlash("Upload Successful!");
 
                 if ($this->data['Media']['type'] == 'uploaded_videos') {
@@ -129,6 +129,13 @@ class MediaController extends AppController {
 
         $this->set(compact('url', 'height', 'width'));
     }
+    
+    function view($id = null){
+               $this->Media->id = $id;
+               $video = array_shift(array_values($this->Media->read()));
 
+               $meta_for_description = $this->description('description', 'fdsa');
+               $this->set(compact('video', 'meta_for_description'));
+    }
 
 }

@@ -11,8 +11,8 @@
 			<tr>
 				<td>
 					<video height='240ppx' width='360px' controls>
-						<? foreach(array('m4v', 'mp4', 'webm') as $codec){ ?>
-							<source src="http://199.197.193.129:7777/<?= "{$video['Media']['name']}.{$codec}" ?>" type='video/x-m4v;' />
+						<? foreach(array('m4v' => 'video/x-m4v;', 'mp4' => 'video/mp4;', 'webm' => 'video/webm;') as $codec => $type) { ?>
+							<source src="http://199.197.193.129:7777/<?= "{$video['Media']['name']}.{$codec}" ?>" type='<?= $type?>;' />
 						<? }?>
 					</video>
 				</td>
