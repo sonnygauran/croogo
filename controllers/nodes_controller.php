@@ -740,9 +740,17 @@ class NodesController extends AppController {
 		));
                 
                 
+                if ($node['Node']['type']=='visit'){                
                 $meta_for_description = $this->description('description', "Visit {$node['Node']['title']} and enjoy the views around the {$node['Node']['title']}. ");
                 $this->set(compact('meta_for_description'));
-               
+               } elseif ($node['Node']['type']=='announcements'){
+                $meta_for_description = $this->description('description', "{$node['Node']['title']} is a severe-weather blog post that updates the weather condition in the Philippines. ");
+                $this->set(compact('meta_for_description'));
+               } elseif ($node['Node']['type']=='news'){
+                $meta_for_description = $this->description('description', "{$node['Node']['title']} is a regular-weather blog post that updates the weather condition in the Philippines. ");
+                $this->set(compact('meta_for_description'));
+                   
+               }
                 
 	}
 
