@@ -140,8 +140,10 @@ class ContactsController extends AppController {
         }
 
         $meta_for_description = $this->description('description', 'Contact Us');
+        $og_image = array('property'=>'og:image','content'=>'http://alpha.weather.com.ph/theme/weatherph/img/logo.png');
+        $og_title = array('property'=>'og:title','content'=>'Weather Philippines Foundation');
         $this->set('title_for_layout', $contact['Contact']['title']);
-        $this->set(compact('continue', 'meta_for_description'));
+        $this->set(compact('continue', 'meta_for_description','og_image','og_title'));
     }
 
     private function __validation($continue, $contact) {

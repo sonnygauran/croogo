@@ -22,6 +22,9 @@
     <meta name="viewport" content="width=1000" />
 
     <?php
+   echo $this->Html->meta($og_image);
+   echo $this->Html->meta($og_title);
+   echo $this->Html->meta($og_description);
     echo $meta_for_description;
     echo $this->Layout->meta();
     echo $this->Layout->feed();

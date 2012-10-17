@@ -27,14 +27,18 @@ class TyphoonController extends WeatherphAppController {
     
     public function preparedness() {
         $meta_for_description = $this->description('description', 'WeatherPhilippines');
-        $this->set(compact('meta_for_description'));
+           $og_image = array('property'=>'og:image','content'=>'http://alpha.weather.com.ph/theme/weatherph/img/logo.png');
+        $og_title = array('property'=>'og:title','content'=>'Weather Philippines Foundation');
+        $this->set(compact('meta_for_description','og_image','og_title'));
 
         
     }
 
     public function climatology() {
         $meta_for_description = $this->description('description', 'WeatherPhilippines');
-        $this->set(compact('meta_for_description'));
+           $og_image = array('property'=>'og:image','content'=>'http://alpha.weather.com.ph/theme/weatherph/img/logo.png');
+        $og_title = array('property'=>'og:title','content'=>'Weather Philippines Foundation');
+        $this->set(compact('meta_for_description','og_image','og_title'));
         
     }
 

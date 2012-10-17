@@ -425,7 +425,9 @@ class NodesController extends AppController {
 		));
                 
                 $meta_for_description = $this->description('description', 'asdadad');
-                $this->set(compact('meta_for_description'));
+                   $og_image = array('property'=>'og:image','content'=>'http://alpha.weather.com.ph/theme/weatherph/img/logo.png');
+        $og_title = array('property'=>'og:title','content'=>'Weather Philippines Foundation');
+                $this->set(compact('meta_for_description','og_title','og_image'));
                 
 	}
 
@@ -742,13 +744,19 @@ class NodesController extends AppController {
                 
                 if ($node['Node']['type']=='visit'){                
                 $meta_for_description = $this->description('description', "Visit {$node['Node']['title']} and enjoy the views around the {$node['Node']['title']}. ");
-                $this->set(compact('meta_for_description'));
+                   $og_image = array('property'=>'og:image','content'=>'http://alpha.weather.com.ph/theme/weatherph/img/logo.png');
+        $og_title = array('property'=>'og:title','content'=>'Weather Philippines Foundation');
+                $this->set(compact('meta_for_description','og_title','og_image'));
                } elseif ($node['Node']['type']=='announcements'){
                 $meta_for_description = $this->description('description', "{$node['Node']['title']} is a severe-weather blog post that updates the weather condition in the Philippines. ");
+                   $og_image = array('property'=>'og:image','content'=>'http://alpha.weather.com.ph/theme/weatherph/img/logo.png');
+        $og_title = array('property'=>'og:title','content'=>'Weather Philippines Foundation','og_image','og_title');
                 $this->set(compact('meta_for_description'));
                } elseif ($node['Node']['type']=='news'){
+                       $og_image = array('property'=>'og:image','content'=>'http://alpha.weather.com.ph/theme/weatherph/img/logo.png');
+        $og_title = array('property'=>'og:title','content'=>'Weather Philippines Foundation','og_image','og_title');
                 $meta_for_description = $this->description('description', "{$node['Node']['title']} is a regular-weather blog post that updates the weather condition in the Philippines. ");
-                $this->set(compact('meta_for_description'));
+                $this->set(compact('meta_for_description','og_title','og_image'));
                    
                }
                 
