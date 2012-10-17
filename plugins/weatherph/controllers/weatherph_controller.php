@@ -422,9 +422,9 @@ class WeatherphController extends WeatherphAppController {
     //debug($blogLists);
         $og_image = array('property'=>'og:image','content'=>'http://alpha.weather.com.ph/theme/weatherph/img/logo.png');
         $og_title = array('property'=>'og:title','content'=>'Weather Philippines Foundation');
-        
+        $og_description =array ('property'=> 'og:title','content'=>'Regular-weather updates about weather conditions in the Philippines');
         $meta_for_description = $this->description('description', 'Regular-weather updates about weather conditions in the Philippines');
-        $this->set(compact('blogLists','meta_for_description','og_image','og_title'));
+        $this->set(compact('blogLists','meta_for_description','og_image','og_title','og_description'));
     }
 
     public function mataNgBagyo(){
