@@ -316,7 +316,7 @@ class WeatherphStationForecast extends WeatherphAppModel {
             }
             
             if(key_exists('tl', $current_reading) && trim($current_reading['tl']) != ''){
-                $current_readings['temperature'] = number_format($current_reading['tl'],0). "&deg;C";
+                $current_readings['temperature'] = number_format($current_reading['tl'],1). "&deg;C";
             }
             
             if(key_exists('td', $current_reading) && trim($current_reading['td']) != ''){
@@ -325,11 +325,11 @@ class WeatherphStationForecast extends WeatherphAppModel {
             
             if(key_exists('rr1h', $current_reading) && key_exists('rain6', $current_reading)){
                 if(trim($current_reading['rr1h']) != ''){
-                    $current_readings['precipitation'] = ((int)$current_reading['rr1h'] <= 0)? "0mm" : round($current_reading['rr1h']) . "mm";    
+                    $current_readings['precipitation'] = ((int)$current_reading['rr1h'] <= 0)? "0 mm" : number_format($current_reading['rr1h'],2) . " mm";    
                     $current_readings['precipitation_hr_range'] = "(1H)";
                 }else{
                     if(trim($current_reading['rain6']) != ''){
-                        $current_readings['precipitation'] = ((int)$current_reading['rain6'] <= 0)? "0mm" : round($current_reading['rain6']) . "mm"; 
+                        $current_readings['precipitation'] = ((int)$current_reading['rain6'] <= 0)? "0 mm" : number_format($current_reading['rain6'], 2) . " mm"; 
                         $current_readings['precipitation_hr_range'] = "(6H)"; 
                     }
                 }
@@ -340,11 +340,11 @@ class WeatherphStationForecast extends WeatherphAppModel {
             }
             
             if(key_exists('ff', $current_reading) && trim($current_reading['ff']) != ''){
-                $current_readings['wind_speed'] = floor($current_reading['ff'] * 1.852 + 0.5) . "km/h";
+                $current_readings['wind_speed'] = floor($current_reading['ff'] * 1.852 + 0.5) . " km/h";
             }
             
             if(key_exists('g1h', $current_reading) && trim($current_reading['g1h']) != ''){
-                $current_readings['wind_gust'] = floor($current_reading['g1h'] * 1.852 + 0.5) . "km/h";
+                $current_readings['wind_gust'] = floor($current_reading['g1h'] * 1.852 + 0.5) . " km/h";
             }
             
             if(key_exists('dir', $current_reading)){
@@ -420,11 +420,11 @@ class WeatherphStationForecast extends WeatherphAppModel {
                     }
                     
                     if(key_exists('ff', $forecast) && trim($forecast['ff']) != ''){
-                        $current_forecast['wind_speed'] = floor($forecast['ff'] * 1.852 + 0.5) . "km/h";
+                        $current_forecast['wind_speed'] = floor($forecast['ff'] * 1.852 + 0.5) . " km/h";
                     }
                     
                     if(key_exists('g6h', $forecast) && trim($forecast['g6h']) != ''){
-                        $current_forecast['wind_gust'] = floor($forecast['g6h'] * 1.852 + 0.5) . "km/h";
+                        $current_forecast['wind_gust'] = floor($forecast['g6h'] * 1.852 + 0.5) . " km/h";
                     }
                     
                     if(key_exists('tl', $forecast) && trim($forecast['tl']) != ''){
@@ -468,7 +468,8 @@ class WeatherphStationForecast extends WeatherphAppModel {
 
         $abfrageResults['station_id'] = $station_id;
         $abfrageResults['station_name'] = $station_info['name'];
-        
+        $abfrageResults['altitude'] = $station_info['alt'];
+                
 //        $this->log(print_r($abfrageResults, TRUE));
         
         return $abfrageResults;

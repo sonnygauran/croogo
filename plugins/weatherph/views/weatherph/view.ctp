@@ -13,7 +13,7 @@ echo $this->Html->script(array(
         <div class="current-detail-panel shadow">
 
             <div class="station">
-                <h1><?= $dataSets['station_name']; ?></h1>
+                <h1><?= $dataSets['station_name']; ?></h1><span class="altitude">(Altitude: <?= $dataSets['altitude']; ?>m)</span>
             </div> <!--END STATION-->
 
             <?php if ($dataSets['reading']['status'] == 'ok'): ?>
