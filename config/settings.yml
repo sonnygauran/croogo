@@ -4,7 +4,7 @@ Comment.feed_limit: 10
 Comment.level: 1
 Hook.bootstraps: weatherph
 #Meta.description: 'Croogo - A CakePHP powered Content Management System'
-Meta.generator: 'Croogo - Content Management System'
+Meta.generator: 'Weather Philippines'
 Meta.keywords: weather,Philippines, weather philippines, weather tv, dictionary, news, webcam, payong panahon, mata ng bagyo, typhoon, typhoon preparedness, typhoon climatology, pressure, satellite, temperature, meteomedia philippines, meteomedia, aboitiz power, union bank, weather movies
 Meta.robots: index, follow
 Reading.date_time_format: D, M d Y H:i:s
@@ -20,7 +20,7 @@ Site.status: 1
 Site.tagline: A CakePHP powered Content Management System.
 Site.theme: weatherph
 Site.timezone: 8
-Site.title: Weather Philippines Foundation
+Site.title: Weather Philippines
 Writing.wysiwyg: 1
 Site.timezone: Asia/Manila
 Data.dmo: /data/dmo/live/
