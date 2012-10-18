@@ -285,7 +285,10 @@ class UsersController extends AppController {
 	public function login() {
 		$this->set('title_for_layout', __('Log in', true));
                 $meta_for_description = $this->description('description', 'WeatherPhilippines');
-                $this->set(compact('meta_for_description'));
+                        $og_image = array('property'=>'og:image','content'=>'http://alpha.weather.com.ph/theme/weatherph/img/logo.png');
+        $og_title = array('property'=>'og:title','content'=>'Weather Philippines Foundation');
+        $og_description = array('property'=>'og:description', 'content'=> "");
+                $this->set(compact('meta_for_description','og_image','og_title','og_description'));
 	}
 
 	public function logout() {
