@@ -137,9 +137,13 @@ class MediaController extends AppController {
                     
                $this->Media->id = $id;
                $video = array_shift(array_values($this->Media->read()));
-
-               $meta_for_description = $this->description('description', 'fdsa');
-               $this->set(compact('video', 'meta_for_description'));
+               
+               
+               $og_title= array('property'=>'og:title','content'=>"weatherTV");
+               $og_image= array('property'=>'og:image','content'=>'http://alpha.weather.com.ph/theme/weatherph/img/logo.png');
+               $og_description=array('property'=>'og:description','content'=>"Latest video uploaded for weatherTV");
+               $meta_for_description = $this->description('description', 'Latest video uploaded for weatherTV');
+               $this->set(compact('video', 'meta_for_description', 'og_title', 'og_image', 'og_description'));
     }
 
 }
