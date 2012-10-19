@@ -48,7 +48,7 @@
 
                 <li>USA: <a href="http://www.weather.us">www.weather.us</a></li>
 
-                <li>and also <a href="http://www.wetterstationen-meteomedia.de">www.wetterstationen-meteomedia.de</a></li>
+                <li>and also <a href="http://wetterstationen.meteomedia.de">wetterstationen.meteomedia.de</a></li>
             </ul>
             </p>
 
