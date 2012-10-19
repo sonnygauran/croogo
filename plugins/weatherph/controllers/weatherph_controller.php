@@ -629,24 +629,19 @@ class WeatherphController extends WeatherphAppController {
 
 
    function weathertv(){
-       App::import('Model', 'Media');
+       
        $meta_for_description = $this->description('description', 'Vlogs (Video Blogs) regarding the weather condition of the Philippines');
        $og_image = array('property'=>'og:image','content'=>'http://alpha.weather.com.ph/theme/weatherph/img/logo.png');
        $og_title = array('property'=>'og:title','content'=>'Weather Philippines Foundation');
        $og_description = array('property'=>'og:description','content'=>'Vlogs (Video Blogs) regarding the weather condition of the Philippines');
-       $this->set(compact('files', 'meta_for_description','og_image','og_title','og_description'));
-       $Media = new Media();
-       $files = $Media->find('all', array(
-           'conditions' => array(
-               'type' => 'weathertv'
-           ),
-           'order' => array(
-               'created DESC'
-           )
-       ));
-        $og_image = array('property'=>'og:image','content'=>'http://alpha.weather.com.ph/theme/weatherph/img/logo.png');
-        $og_title = array('property'=>'og:title','content'=>'Weather Philippines Foundation');
-       $this->set(compact('files','og_image','og_title'));
+       
+       $blogLists = $this->Node->find('all', array(
+            'order' => 'Node.created DESC',
+            'conditions' => array('Node.type' => 'weathertv'),
+            'limit' => 5,
+        ));
+       
+        $this->set(compact('blogLists', 'meta_for_description','og_image','og_title','og_description'));
    }
    function webcam(){
         $og_image = array('property'=>'og:image','content'=>'http://alpha.weather.com.ph/theme/weatherph/img/logo.png');

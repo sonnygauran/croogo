@@ -1,18 +1,20 @@
 <div class="content">
     <section class="main">
         <div class="page">
-            <?php  $this->set('title_for_layout', 'WeatherTV'); ?>
-        <h2>Weather TV</h2>
-        <hr/>
-<!--        <iframe width="720" height="405" src="http://www.youtube.com/embed/o4m5ijjas7Q" frameborder="0" allowfullscreen></iframe>-->
-        <?php foreach($files as $file){ ?>
-            <video controls="" style="display: inline; ">
-                <source src="<?= Configure::read('Data.weathertv')?><?= $file['Media']['name'] ?>.m4v" type="video/x-m4v;">
-                <source src="<?= Configure::read('Data.weathertv')?><?= $file['Media']['name'] ?>.mp4" type="video/mp4;">
-                <source src="<?= Configure::read('Data.weathertv')?><?= $file['Media']['name'] ?>.webm" type="video/webm;">
-                Your browser does not support the video tag.
-            </video>
-        <?php } ?>
+            <?php $this->set('title_for_layout', 'Weather TV'); ?>
+            <h2>Weather TV</h2>
+            <hr/>
+            <?php foreach ($blogLists as $blog) { ?>
+                <?php $createdTime = strtotime($blog['Node']['created']); ?>
+                <div class="blog-excerpt">
+                    <h2><?= $html->link($blog['Node']['title'], $blog['Node']['url'], array('class' => 'link')) ?></h2>
+                    <p><?= $text->excerpt(strip_tags($blog['Node']['body']), 'method', 200, '...' . $html->link('Read More', $blog['Node']['url'])) ?></p>
+                    <p class="post-meta">
+                        Posted on <?= date('M', $createdTime) ?> <?= date('d', $createdTime) ?>, <?= date('Y', $createdTime) ?>
+                    </p>
+                </div>
+                <hr>
+            <?php } ?>
         </div>
-    </section><!--MAIN CONTENT-->
-</div><!--CONTENT-->
+    </section>
+</div>
