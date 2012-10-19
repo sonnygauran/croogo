@@ -5,10 +5,10 @@
     <title><?= $title_for_layout ?><?php if (strlen($title_for_layout) > 1): ?> | <?php echo Configure::read('Site.title'); ?><?php endif; // comment ?></title>
     <meta name="viewport" content="width=1000" />
     <?php
-        echo $this->Html->meta($og_image);
-        echo $this->Html->meta($og_title);
-        echo $this->Html->meta($og_description);
-        echo $meta_for_description;
+        echo (isset($og_image)) ? $this->Html->meta($og_image) :'';
+        echo (isset($og_title)) ? $this->Html->meta($og_title) :'';
+        echo (isset($og_description)) ? $this->Html->meta($og_description) :'';
+        echo (isset($meta_for_description)) ? $meta_for_description :'';
         echo $this->Layout->meta();
         echo $this->Layout->feed();
         echo $this->Html->css('theme');
