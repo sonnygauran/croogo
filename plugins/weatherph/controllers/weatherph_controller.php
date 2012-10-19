@@ -635,13 +635,22 @@ class WeatherphController extends WeatherphAppController {
        $og_title = array('property'=>'og:title','content'=>'Weather Philippines Foundation');
        $og_description = array('property'=>'og:description','content'=>'Vlogs (Video Blogs) regarding the weather condition of the Philippines');
        
-       $blogLists = $this->Node->find('all', array(
+       $latest_video = $this->Node->find('first', array(
             'order' => 'Node.created DESC',
-            'conditions' => array('Node.type' => 'weathertv'),
-            'limit' => 5,
+            'conditions' => array('Node.type' => 'weathertv')
         ));
        
-        $this->set(compact('blogLists', 'meta_for_description','og_image','og_title','og_description'));
+       $videos = $this->Node->find('all', array(
+            'order' => 'Node.created DESC',
+            'conditions' => array(
+                'AND' => array(
+                    array('Node.type' => 'weathertv'),
+                    array('Node.id != ' => $latest_video['Node']['id'])
+                )
+            ),
+        ));
+       
+        $this->set(compact('latest_video', 'videos', 'meta_for_description','og_image','og_title','og_description'));
    }
    function webcam(){
         $og_image = array('property'=>'og:image','content'=>'http://alpha.weather.com.ph/theme/weatherph/img/logo.png');

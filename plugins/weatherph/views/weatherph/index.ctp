@@ -415,7 +415,14 @@ $movie_location = Configure::read('Data.movies');
                 <?php foreach ($blogEntries as $blog) { ?>
                     <div class="blog-excerpt">
                         <h3><?= $html->link($blog['Node']['title'], $blog['Node']['url'], array('class' => 'link')) ?></h3>
-                        <p><?= strip_tags($blog['Node']['excerpt']) . $html->link('Read More', $blog['Node']['url']) ?></p>
+                        <p>
+                            <?php if ($blog['Node']['type'] == 'weathertv'){?>
+                                <p><?= $text->excerpt(strip_tags($blog['Node']['body']), 'method', 100, '...' . $html->link('Read More', $blog['Node']['url'])) ?></p>
+                            <?php } else{?>
+                                <p><?= strip_tags($blog['Node']['excerpt']) . $html->link('Read More', $blog['Node']['url']) ?></p>
+                            <?php } ?>
+                        </p>
+                        
                         <p class="post-meta">
                             <?php $createdTime = strtotime($blog['Node']['created']); ?>
                             Posted on <?= date('M', $createdTime) ?> <?= date('d', $createdTime) ?>, <?= date('Y', $createdTime) ?> under

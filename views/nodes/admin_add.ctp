@@ -19,7 +19,9 @@
 					echo $this->Form->input('parent_id', array('type' => 'select', 'options' => $nodes, 'empty' => true));
 					echo $this->Form->input('title');
 					echo $this->Form->input('slug', array('class' => 'slug'));
-					echo $this->Form->input('excerpt');
+                                        if (($type['Type']['title']) !== 'Weather TV'){
+                                            echo $this->Form->input('excerpt');
+                                        }
                                         ?>
                                  <?php
                                         if (($type['Type']['title']) == 'Mata ng Bagyo'){

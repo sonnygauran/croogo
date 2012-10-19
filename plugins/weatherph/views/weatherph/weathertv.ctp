@@ -4,14 +4,15 @@
             <?php $this->set('title_for_layout', 'Weather TV'); ?>
             <h2>Weather TV</h2>
             <hr/>
-            <?php foreach ($blogLists as $blog) { ?>
-                <?php $createdTime = strtotime($blog['Node']['created']); ?>
-                <div class="blog-excerpt">
-                    <h2><?= $html->link($blog['Node']['title'], $blog['Node']['url'], array('class' => 'link')) ?></h2>
-                    <p><?= $text->excerpt(strip_tags($blog['Node']['body']), 'method', 200, '...' . $html->link('Read More', $blog['Node']['url'])) ?></p>
-                    <p class="post-meta">
-                        Posted on <?= date('M', $createdTime) ?> <?= date('d', $createdTime) ?>, <?= date('Y', $createdTime) ?>
-                    </p>
+            <?php
+                echo "<h2>{$latest_video['Node']['title']}</h2>";
+                echo $latest_video['Node']['body'];
+            ?>
+            <?php foreach ($videos as $video) { ?>
+                <?php $createdTime = strtotime($video['Node']['created']); ?>
+                <div class="video-excerpt">
+                    <?= $video['Node']['title']; ?>
+                    <?= $video['Node']['excerpt']; ?>
                 </div>
                 <hr>
             <?php } ?>

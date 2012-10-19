@@ -189,7 +189,9 @@ class NodesController extends AppController {
                             $video .= "<source src='http://199.197.193.129:7777/{$date}.mp4' type='video/mp4;' />";
                             $video .= "<source src='http://199.197.193.129:7777/{$date}.webm' type='video/webm;' />";
                             $video .= "</video>\n";
+                            $excerpt = "<img class='video-thumbnail' src= 'http://199.197.193.129:7777/{$date}.jpg' alt='{$date}' />";
                             $this->data['Node']['body'] = $video . $body;
+                            $this->data['Node']['excerpt'] = $excerpt;
                         }
 			if ($this->Node->saveWithMeta($this->data)) {
 				$this->Session->setFlash(sprintf(__('%s has been saved', true), $type['Type']['title']), 'default', array('class' => 'success'));
