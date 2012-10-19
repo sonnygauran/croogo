@@ -1,7 +1,7 @@
 <?php $this->Html->script(array('nodes'), false); ?>
 <div class="nodes form">
 	<h2><?php echo $title_for_layout; ?></h2>
-	<?php echo $this->Form->create('Node', array('url' => array('action' => 'add', $typeAlias)));?>
+	<?php echo $this->Form->create('Node', array('url' => array('action' => 'add', $typeAlias), 'type' => 'file'));?>
 		<fieldset>
 			<div class="tabs">
 				<ul>
@@ -25,16 +25,15 @@
                                         if (($type['Type']['title']) == 'Mata ng Bagyo'){
                                             echo $this->Form->input('alert', array('value' => '1', 'type' => 'checkbox'));
                                             echo " Check to add Alert in frontpage";
-                                            
-                                        }else{
-                                            
                                         }
-                                        
-                                       
                                  ?>
                                     <br/>
+                                    <?php if($type['Type']['title'] !== 'Weather TV'):?>
                                         <input name="Upload Video"  value="Upload Video" onclick=window.open("/admin/media/video","Homepage","resizable=no,status=yes,scrollbars=yes,height=970,width=945,menubar=yes,addressbar=no") type="button" />
                                         <input name="Upload Image"  value="Upload Image" onclick=window.open("/admin/media/image","Homepage","resizable=no,status=yes,scrollbars=yes,height=970,width=945,menubar=yes,addressbar=no") type="button" />
+                                    <? else: ?>
+                                        <?php echo $this->Form->input('video', array('type' => 'file'));?>
+                                    <?php endif;?>
 				<?php
                                         echo $this->Form->input('body', array('class' => 'content'));
 				?>

@@ -128,6 +128,7 @@ class NodesController extends AppController {
 		));
 
 		if (!empty($this->data)) {
+                    
 			// CSRF Protection
 			if ($this->params['_Token']['key'] != $this->data['Node']['token_key']) {
 				$blackHoleCallback = $this->Security->blackHoleCallback;
@@ -153,6 +154,43 @@ class NodesController extends AppController {
 				'slug' => $this->data['Node']['slug'],
 			));
 			$this->data['Node']['visibility_roles'] = $this->Node->encodeData($this->data['Role']['Role']);
+                        if (key_exists('video',$this->data['Node'])) {
+                            $allowed_extensions = array('mp4', 'mov', 'wma', 'webm', 'm4v', 'avi');
+
+                            $date = date('YmdHis');
+                            $extension = explode('.', $this->data['Node']['video']['name']);
+                            $extension = ($extension[count($extension) - 1]);
+
+                            if (!in_array($extension, $allowed_extensions)) {
+                                $this->Session->setflash('Invalid Extension');
+                                $this->redirect(array(
+                                    'plugin' => null,
+                                    'controller' => 'nodes',
+                                    'action' => 'add',
+                                    'admin' => true
+                                ));
+                            }
+
+                            $tmp_name = $this->data['Node']['video']['tmp_name'];
+
+                            $directory = WWW_ROOT . 'uploads' . DS . 'weathertv' . DS;
+                            $destination = $directory . $date . "." . $extension;
+
+                            if (!is_dir($directory))
+                                mkdir($directory); // create directory
+
+                            if (!move_uploaded_file($tmp_name, $destination)) {
+                                $this->Session->setFlash("Something went wrong.");
+                            }
+                            
+                            $body = $this->data['Node']['body'];
+                            $video = "<video height='405px' width='720px' controls>";
+                            $video .= "<source src='http://199.197.193.129:7777/{$date}.m4v' type='video/x-m4v;' />";
+                            $video .= "<source src='http://199.197.193.129:7777/{$date}.mp4' type='video/mp4;' />";
+                            $video .= "<source src='http://199.197.193.129:7777/{$date}.webm' type='video/webm;' />";
+                            $video .= "</video>\n";
+                            $this->data['Node']['body'] = $video . $body;
+                        }
 			if ($this->Node->saveWithMeta($this->data)) {
 				$this->Session->setFlash(sprintf(__('%s has been saved', true), $type['Type']['title']), 'default', array('class' => 'success'));
 				if (isset($this->params['form']['apply'])) {

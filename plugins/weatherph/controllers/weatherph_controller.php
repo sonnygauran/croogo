@@ -112,7 +112,7 @@ class WeatherphController extends WeatherphAppController {
         //exit;
         $blogEntries = $this->Node->find('all', array(
             'order' => 'Node.created DESC',
-            'conditions' => array('Node.type' => array('news', 'announcements')),
+            'conditions' => array('Node.type' => array('news', 'announcements', 'weathertv')),
             'limit' => 5,
         ));
 
@@ -145,17 +145,13 @@ class WeatherphController extends WeatherphAppController {
          *      - featureBlog - to display the featured blogs
          */
         
-        $latest_video = $this->Media->find('first', array(
-            'order' => 'created desc'
-        ));
-        
          $og_image = array('property'=>'og:image','content'=>'http://alpha.weather.com.ph/theme/weatherph/img/logo.png');
          $og_title = array('property'=>'og:title','content'=>'Weather Philippines Foundation');
          $og_description = array('property'=>'og:description','content'=>'The Weather Philippines Foundation (WPF) aims to deliver critical and accurate weather forecasts to the Filipino community, with the hope of improving nationwide disaster preparedness, and timely response to variable weather conditions.');
          
 
         $meta_for_description = $this->description('description', 'The Weather Philippines Foundation (WPF) aims to deliver critical and accurate weather forecasts to the Filipino community, with the hope of improving nationwide disaster preparedness, and timely response to variable weather conditions.');
-        $this->set(compact('blogEntries', 'resources', 'meta_for_description', 'latest_video','og_image','og_title','og_description'));
+        $this->set(compact('blogEntries', 'resources', 'meta_for_description','og_image','og_title','og_description'));
 
     }
 
