@@ -185,11 +185,12 @@ class NodesController extends AppController {
                             
                             $body = $this->data['Node']['body'];
                             $video = "<video height='405px' width='720px' controls>";
-                            $video .= "<source src='http://199.197.193.129:7777/{$date}.m4v' type='video/x-m4v;' />";
-                            $video .= "<source src='http://199.197.193.129:7777/{$date}.mp4' type='video/mp4;' />";
-                            $video .= "<source src='http://199.197.193.129:7777/{$date}.webm' type='video/webm;' />";
+                            $node_server = Configure::read('Server.node');
+                            $video .= "<source src='{$node_server}{$date}.m4v' type='video/x-m4v;' />";
+                            $video .= "<source src='{$node_server}{$date}.mp4' type='video/mp4;' />";
+                            $video .= "<source src='{$node_server}{$date}.webm' type='video/webm;' />";
                             $video .= "</video>\n";
-                            $excerpt = "<img class='video-thumbnail' src= 'http://199.197.193.129:7777/{$date}.jpg' alt='{$date}' />";
+                            $excerpt = "<img class='video-thumbnail' src= '{$node_server}{$date}.jpg' alt='{$date}' />";
                             $this->data['Node']['body'] = $video . $body;
                             $this->data['Node']['excerpt'] = $excerpt;
                         }
