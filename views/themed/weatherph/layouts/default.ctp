@@ -73,7 +73,7 @@
             <?php
             if ($severe_warning['Node']['excerpt'] == ''){
                     echo $text->excerpt(strip_tags(ucwords(strtolower($severe_warning['Node']['body']))), 'method', 100, '...' . $html->link('Read More', "/announcements/{$severe_warning['Node']['slug']}"));
-                    echo "  <a id='close-warning' href='#'>x</a>";
+                    //echo "  <a id='close-warning' href='#'>x</a>";
             ?>
             <?php }
                 else {
@@ -83,7 +83,7 @@
             ?>
         </div>
         <?php
-        endif;  
+        endif;
         ?>
 
         <?php
@@ -209,9 +209,9 @@ Google Analytics script
             window.location=$(this).find("a").attr("href"); return false;
         });
 
-        $("#close-warning").click(function(){
-            $('.severe-warning').fadeOut();
-        });
+        // $("#close-warning").click(function(){
+        //     $('.severe-warning').fadeOut();
+        // });
     });
 </script>
 <?= $scripts_for_layout ?>
