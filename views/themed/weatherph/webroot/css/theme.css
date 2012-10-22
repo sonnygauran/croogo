@@ -988,13 +988,13 @@ div.current-tab {
     border-bottom-left-radius: 5px;
 }
 
-#close-warning{
+/*#close-warning{
     position: absolute;
     top: 6px;
     right: 8px;
     text-decoration: none;
     font: bold 16px/14px Tahoma,Verdana,sans-serif;
-}
+}*/
 
 .no-readings, .no-forecast {
     display: none;

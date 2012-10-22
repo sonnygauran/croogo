@@ -422,7 +422,7 @@ $movie_location = Configure::read('Data.movies');
                                 <p><?= strip_tags($blog['Node']['excerpt']) . $html->link('Read More', $blog['Node']['url']) ?></p>
                             <?php } ?>
                         </p>
-                        
+
                         <p class="post-meta">
                             <?php $createdTime = strtotime($blog['Node']['created']); ?>
                             Posted on <?= date('M', $createdTime) ?> <?= date('d', $createdTime) ?>, <?= date('Y', $createdTime) ?> under
