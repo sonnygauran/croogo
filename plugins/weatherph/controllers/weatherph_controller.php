@@ -628,17 +628,32 @@ class WeatherphController extends WeatherphAppController {
    }
 
 
-   function weathertv(){
+   function weathertv($slug = ''){
        
        $meta_for_description = $this->description('description', 'Vlogs (Video Blogs) regarding the weather condition of the Philippines');
        $og_image = array('property'=>'og:image','content'=>'http://alpha.weather.com.ph/theme/weatherph/img/logo.png');
        $og_title = array('property'=>'og:title','content'=>'Weather Philippines Foundation');
        $og_description = array('property'=>'og:description','content'=>'Vlogs (Video Blogs) regarding the weather condition of the Philippines');
        
+       if (!$slug){
        $latest_video = $this->Node->find('first', array(
             'order' => 'Node.created DESC',
             'conditions' => array('Node.type' => 'weathertv')
         ));
+       }else {
+       $latest_video = $this->Node->find('first', array(
+            'order' => 'Node.created DESC',
+            'conditions' => array('Node.slug' => 'slug')
+        ));
+       }
+       if (empty($latest_video)){
+           $this->Session->setFlash('video not available');
+           $this-->redirect(array(
+               'controller' => 'weatherph',
+               'action' => 'weathertv',
+               ''
+           ));
+       }
        
        $videos = $this->Node->find('all', array(
             'order' => 'Node.created DESC',

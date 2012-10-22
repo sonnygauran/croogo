@@ -184,8 +184,8 @@ class NodesController extends AppController {
                             }
                             
                             $body = $this->data['Node']['body'];
-                            $video = "<video height='405px' width='720px' controls>";
                             $node_server = Configure::read('Server.node');
+                            $video = "<video height='405px' width='720px' poster='{$node_server}{$date}.jpg' controls>";
                             $video .= "<source src='{$node_server}{$date}.m4v' type='video/x-m4v;' />";
                             $video .= "<source src='{$node_server}{$date}.mp4' type='video/mp4;' />";
                             $video .= "<source src='{$node_server}{$date}.webm' type='video/webm;' />";

@@ -8,13 +8,17 @@
                 echo "<h2>{$latest_video['Node']['title']}</h2>";
                 echo $latest_video['Node']['body'];
             ?>
+            <br/>
+            <hr>
             <?php foreach ($videos as $video) { ?>
                 <?php $createdTime = strtotime($video['Node']['created']); ?>
-                <div class="video-excerpt">
-                    <?= $video['Node']['title']; ?>
-                    <?= $video['Node']['excerpt']; ?>
+                <div class="video-excerpt box">
+                    <a href="/weather/<? $video['Node']['slug']?>">
+                     <?= $video['Node']['excerpt']; ?>
+                     <?= $video['Node']['title']; ?>
+                    </a>
                 </div>
-                <hr>
+                
             <?php } ?>
         </div>
     </section>

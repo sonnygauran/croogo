@@ -41,7 +41,7 @@
     CroogoRouter::connect('/detailedReading/*', array('plugin' => 'weatherph', 'controller' => 'weatherph', 'action' => 'detailedReading'));
     CroogoRouter::connect('/dmoForecast/*', array('plugin' => 'weatherph', 'controller' => 'weatherph', 'action' => 'getDmoForecast'));
 
-    CroogoRouter::connect('/weathertv', array('plugin' => 'weatherph', 'controller' => 'weatherph', 'action' => 'weathertv'));
+    CroogoRouter::connect('/weathertv/*', array('plugin' => 'weatherph', 'controller' => 'weatherph', 'action' => 'weathertv'));
     CroogoRouter::connect('/webcam', array('plugin' => 'weatherph', 'controller' => 'weatherph', 'action' => 'webcam'));
     CroogoRouter::connect('/news', array('plugin' => 'weatherph', 'controller' => 'weatherph', 'action' => 'news'));
     CroogoRouter::connect('/news/payong-panahon', array('plugin' => 'weatherph', 'controller' => 'weatherph', 'action' => 'payongpanahon'));

@@ -37,7 +37,7 @@
 
 	//Announcements
 	CroogoRouter::connect('/announcements/:slug', array('controller' => 'nodes', 'action' => 'view', 'type' => 'announcements'));
-	CroogoRouter::connect('/weathertv/:slug', array('controller' => 'nodes', 'action' => 'view', 'type' => 'weathertv'));
+
 
 
 
