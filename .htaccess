@@ -10,7 +10,3 @@ AddType video/x-flv .flv
 RewriteRule    ^$    webroot/    [L]
 RewriteRule    (.*) webroot/$1    [L]
 
-# Set caching of video files to 20 minutes
-<filesMatch "\.(m4v|mp4|webm)$">
-Header set Cache-Control "max-age=15000"
-</filesMatch>
