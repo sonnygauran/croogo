@@ -414,10 +414,14 @@ $movie_location = Configure::read('Data.movies');
             <div class="page">
                 <?php foreach ($blogEntries as $blog) { ?>
                     <div class="blog-excerpt">
+                        <?php  if($blog['Node']['type']== 'weathertv'){?>
+                        <h3><?= $html->link($blog['Node']['title'], "/weathertv/{$blog['Node']['slug']}", array('class' => 'link')) ?></h3>
+                      <?php  }else { ?>
                         <h3><?= $html->link($blog['Node']['title'], $blog['Node']['url'], array('class' => 'link')) ?></h3>
+                        <?php } ?>
                         <p>
                             <?php if ($blog['Node']['type'] == 'weathertv'){?>
-                                <p><?= $text->excerpt(strip_tags($blog['Node']['body']), 'method', 100, '...' . $html->link('Read More', $blog['Node']['url'])) ?></p>
+                                <p><?= $blog['Node']['excerpt'] ?></p>
                             <?php } else{?>
                                 <p><?= strip_tags($blog['Node']['excerpt']) . $html->link('Read More', $blog['Node']['url']) ?></p>
                             <?php } ?>
