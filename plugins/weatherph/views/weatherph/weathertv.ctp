@@ -5,7 +5,7 @@
             <h2>Weather TV</h2>
             <hr/>
             <?php
-                echo "<h2>{$latest_video['Node']['title']}</h2>";
+                echo "<h2><a href='/weathertv/{$latest_video['Node']['slug']}'>{$latest_video['Node']['title']}</a></h2>";
                 echo $latest_video['Node']['body'];
             ?>
             <br/>
