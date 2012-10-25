@@ -3,8 +3,14 @@
         <div class="page">
             <h2>Glossary</h2>
             <hr/>
-
-            <dl>
+            
+                        <dl>
+            <?php foreach ($tagalog_definitions as $tagalog_definition) {?>
+                <dt><?php echo $tagalog_definition['Dictionary']['term'] ?></dt>
+                <dd><?php echo $tagalog_definition['Dictionary']['definition'] ?></dd>            
+            <?php } ?>
+            </dl>            
+<!--            <dl>
                 <dt>Panahon</dt>
                 <dd>
                     ito ay ang “pang-araw-araw” na kalagayan ng kalawakan. Kasama dito ang mga elemento gaya ng temperatura, kalagayan ng himpapawid, hangin, ulan, halumigmigan, pressure, at iba pa.
@@ -268,7 +274,7 @@
                     ito ay ang temperatura na kung saan ang ere ay kailangang lumamig para sa saturasyon, subalit ipaglaan dapat na walang pagbabago sa laman ng tubig singaw.  Ang puntong hamog ay isang importanteng panukat ginagamit sa pag-hula ng pagbuo ng hamog, hamog na nagyelo, at ulop. Kung ang puntong hamog at ang temperatura ay malapit sa isa't-isa bago lumubog ang araw at ang ere ay nagsimula nang lumamig, ang ulop ay maaring mangyari sa gabi.  Ang puntong hamog ay maganda din sa pagsukat ng aktual na tubig singaw, hindi gaya ng halumigmig, na kumukuha ng temperatura ng ere.  Ang mataas na puntong hamog ay nagpapahiwatig ng mataas na tsansa ng pag-ulan, pag-kulog at pag-kidlat, at mga mahinang ipo-ipo o subasko. Habang ang mababa na puntong hamog ay nagpapahiwatig ng mababang tsansa ng pag-ulan o mabuting panahon.  Pwede mo rin gamitin ang puntong hamog para hula-in ang mababang gabing temperatura. Kung walang sama ng panahon ang inaasahan sa buong magdamag at ang halumigmig ay mas mataas pa sa 50%, ang pang-hapong puntong hamog ay pwede makita ang posibleng mababang temperatura sa darating na gabi.  Ang mataas na halumigmig ay nagpapahiwatig na mas tama ang hula sa puntong hamog.
                 </dd>
             </dl>
-
+-->
         <hr>
 
         <h6>References:</h6>
