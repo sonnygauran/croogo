@@ -104,8 +104,8 @@ class WeatherphAppModel extends AppModel {
         $weather_description = array(
             'Could not be determined',
             'Sunny', // Clear Sky(Night)
-            'Light Cloudy',
-            'Partly Cloudy',
+            'Scattered Clouds',
+            'Scattered Clouds',
             'Cloudy',
             'Rain',
             'Rain and Snow, Sleet',
