@@ -149,10 +149,11 @@ class WeatherphController extends WeatherphAppController {
          $og_title = array('property'=>'og:title','content'=>'Weather Philippines Foundation');
          $og_description = array('property'=>'og:description','content'=>'The Weather Philippines Foundation (WPF) aims to deliver critical and accurate weather forecasts to the Filipino community, with the hope of improving nationwide disaster preparedness, and timely response to variable weather conditions.');
          
+        
 
         $meta_for_description = $this->description('description', 'The Weather Philippines Foundation (WPF) aims to deliver critical and accurate weather forecasts to the Filipino community, with the hope of improving nationwide disaster preparedness, and timely response to variable weather conditions.');
         $this->set(compact('blogEntries', 'resources', 'meta_for_description','og_image','og_title','og_description'));
-
+        $this->set('title_for_layout','Home');
     }
 
 

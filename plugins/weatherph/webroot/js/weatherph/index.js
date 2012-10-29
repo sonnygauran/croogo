@@ -278,9 +278,7 @@ function getForecast(id) {
         url    : '<?= $this->webroot ?>weatherph/weatherph/getForecast/'+id+'/3/3h',
         cache  : true,
         success: function(readings) {
-            var title = readings.station_name;
-            title = title.replace('<br />', ' ');
-            document.title =  "Weather Philippines Foundation | " +title  ;
+
             var $station_readings = readings; // the complete retrieved stations
             // console.log($station_readings);
             var cr_temperature, cr_wind, cr_precip, cr_humidity, cr_symbol;
