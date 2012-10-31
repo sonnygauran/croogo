@@ -644,7 +644,7 @@ class WeatherphController extends WeatherphAppController {
        }else {
        $latest_video = $this->Node->find('first', array(
             'order' => 'Node.created DESC',
-            'conditions' => array('Node.slug' => 'slug')
+            'conditions' => array('Node.slug' => $slug)
         ));
        }
        if (empty($latest_video)){
