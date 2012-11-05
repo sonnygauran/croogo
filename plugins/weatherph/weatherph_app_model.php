@@ -412,7 +412,7 @@ class WeatherphAppModel extends AppModel {
         
         if ($windSpeed < 1 and $windSpeed >= 0) {
             $windDirDesc = $beaufort[0];
-        } elseif ($windSpeed <= 5.5 and $windSpeed >= 1.1){
+        } elseif ($windSpeed <= 5.5 and $windSpeed >= 1){
             $windDirDesc = $beaufort[1];
         } elseif ($windSpeed <= 11 and $windSpeed >= 5.6){
             $windDirDesc = $beaufort[2];
