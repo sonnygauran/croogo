@@ -94,17 +94,13 @@ class WeatherphController extends WeatherphAppController {
                     }
 
                 }else{
-                 if ($current_time2 < $file_date){
+                  if(key_exists('satellite', $filenames) && in_array($current, $filenames[$type])) continue;
                   $filenames[$type][] = $current;
-
-                 }else {
-                     continue;
-                    }
                 }
 
             }
         }
-
+        
         $this->set(compact('filenames', 'areas', 'types'));
         //print_r($areas);
         //print_r($types);
