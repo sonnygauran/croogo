@@ -98,6 +98,7 @@ hr {
     height: 155px;
     margin-top: 10px;
     border-radius: 8px;
+    position: relative;
 }
 
 nav {
@@ -147,6 +148,12 @@ footer {
 .logo {
     float:left;
     margin: 40px 0 0 10px;
+}
+
+.beta-tag {
+    position: absolute;
+    right: .5em;
+    top: .5em;
 }
 
 #options {
@@ -324,11 +331,16 @@ footer {
     float: left;
 }
 
-.station-legend > div {
-    display: inline-block;
-    height: 1em;
-    width: 1em;
-    margin: 0 6px;
+.station-legend > * {
+    vertical-align: middle;
+}
+
+.station-legend span {
+    font-size: .875em;
+}
+
+.station-legend img {
+    margin-left: 1em;
 }
 
 /* Info pane */
@@ -1233,7 +1245,7 @@ span.measurements{
 
 tr.precipitation {
     text-align: center;
-    
+
 }
 th.precipitation {
     width: 51px;

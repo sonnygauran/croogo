@@ -34,6 +34,7 @@
                     <img src="<?= $this->webroot ?>theme/weatherph/img/ub.png" alt="Union Bank" style="display: none;">
                 </div>
             </div>
+            <span class="beta-tag">Beta</span>
             <div id="options">
                 <div class="flag"></div>
                 <form class="search" action="/search" method="POST">

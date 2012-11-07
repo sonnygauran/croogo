@@ -212,14 +212,13 @@ $movie_location = Configure::read('Data.movies');
 
                     </select>
                 </div> <!--END PROVINCE SELECT-->
-                <?
-                //<div class="station-legend">
-                //<div style="background-color: #4762ff;"></div>
-                //<span>Weather Philippines stations</span>
-                //<div style="background-color: #fd7567;"></div>
-                //<span>PAGASA stations</span>
-                //</div>
-                ?>
+
+                <div class="station-legend">
+                <img src="<?= $this->webroot ?>theme/weatherph/img/leaflet/logo-marker-dark.png" alt="Weather Philippines stations" width="10px" height="18px">
+                <span>Weather Philippines stations</span>
+                <img src="<?= $this->webroot ?>theme/weatherph/img/leaflet/marker-icon-darkblue-small.png" alt="PAGASA stations" width="10px" height="18px">
+                <span>PAGASA stations</span>
+                </div>
 
             </div><!-- .legend -->
         </div>
