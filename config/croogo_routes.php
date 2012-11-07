@@ -38,11 +38,8 @@
 	//Announcements
 	CroogoRouter::connect('/announcements/:slug', array('controller' => 'nodes', 'action' => 'view', 'type' => 'announcements'));
 
-
-
-
-
 	// Page
+	CroogoRouter::connect('/archives', array('plugin' => 'weatherph', 'controller' => 'weatherph', 'action' => 'archives'));
 	CroogoRouter::connect('/about', array('plugin' => 'weatherph', 'controller' => 'weatherph', 'action' => 'about'));
 	CroogoRouter::connect('/page/:slug', array('controller' => 'nodes', 'action' => 'view', 'type' => 'page'));
 

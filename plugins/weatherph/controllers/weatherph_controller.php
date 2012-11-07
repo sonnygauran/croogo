@@ -754,9 +754,20 @@ class WeatherphController extends WeatherphAppController {
         $this->set('set', $set);
     }
 
-
-
-
-
-
+    
+    public function archives(){
+        
+        $this->paginate = array(
+            'fields' => array('title', 'excerpt', 'type', 'slug'),
+            'limit' => 10,
+            'conditions' => array(
+                'Node.type' => array('news', 'announcements', 'weathertv')
+            )
+        );
+        $archives = $this->paginate('Node');
+        
+        
+        $this->set(compact('archive','archives'));
+        
+    }
 }

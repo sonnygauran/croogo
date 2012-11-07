@@ -439,6 +439,9 @@ $movie_location = Configure::read('Data.movies');
                     </div>
                     <hr>
                 <?php } ?>
+                    <div class ="archives">
+                        <a href="<?= $this->webroot?>archives">See More</a>
+                    </div>
             </div>
         </div>
 
