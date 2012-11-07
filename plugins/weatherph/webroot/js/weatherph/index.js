@@ -116,7 +116,7 @@ $(document).ready(function(){
     };
 
 
-    window['ATTRIBUTION'] = 'Weather Philippines Foundation';
+    window['ATTRIBUTION'] = 'Powered by Meteomedia/Weather Philippines Foundation';
     window['UNIT_TEMPERATURE'] = 'celsius';
     window['IMAGE_DATA_LAYER'] = new L.LayerGroup();
     window['STATIONS_LAYER'] = new L.LayerGroup();
@@ -128,7 +128,6 @@ $(document).ready(function(){
         layers: [window['STATIONS_LAYER']],
         zoomControl: true
     });
-
 
     var ph = $boxMap[0].box;
     var southWest = new L.LatLng(ph[1],ph[0]),
@@ -407,10 +406,9 @@ function isiPhone(){
         );
 }
 
-// console.error('<?= Router::url(null, true) ?>theme/weatherph/img/leaflet/marker-icon-red-small-transparent.png');
 var StationIconWeb = L.Icon.extend({
     options: {
-        iconUrl: '<?= Router::url(null, true) ?>theme/weatherph/img/leaflet/marker-icon-red-small.png',
+        iconUrl: '<?= Router::url(null, true) ?>theme/weatherph/img/leaflet/marker-icon-darkblue-small.png',
         shadowUrl: '<?= Router::url(null, true) ?>/theme/weatherph/img/leaflet/marker-shadow.png',
         iconSize: new L.Point(8, 13),
         shadowSize: new L.Point(13, 13),
@@ -423,7 +421,7 @@ var StationIconWeb = L.Icon.extend({
 
 var StationIconMobile = L.Icon.extend({
     options: {
-        iconUrl: '<?= Router::url(null, true) ?>theme/weatherph/img/leaflet/marker-icon-red-small.png',
+        iconUrl: '<?= Router::url(null, true) ?>theme/weatherph/img/leaflet/marker-icon-darkblue-small.png',
         shadowUrl: '<?= Router::url(null, true) ?>/theme/weatherph/img/leaflet/marker-shadow.png',
         iconSize: new L.Point(12, 20),
         shadowSize: new L.Point(20, 20),
@@ -435,11 +433,12 @@ var StationIconMobile = L.Icon.extend({
 
 var stationIcon    = new StationIconWeb();
 var meteomediaIcon = new StationIconWeb();
-meteomediaIcon.options.iconUrl = '<?= Router::url(null, true) ?>theme/weatherph/img/leaflet/marker-icon-blue-small.png';
+meteomediaIcon.options.iconUrl = '<?= Router::url(null, true) ?>theme/weatherph/img/leaflet/logo-marker-dark.png';
+meteomediaIcon.options.iconSize = new L.Point(12, 18);
 
 if (isiPhone() || (navigator.userAgent.match(/iPad/i) !== null)) {
     stationIcon    = new StationIconMobile();
-    meteomediaIcon.options.iconUrl = '<?= Router::url(null, true) ?>theme/weatherph/img/leaflet/marker-icon-blue.png';
+    meteomediaIcon.options.iconUrl = '<?= Router::url(null, true) ?>theme/weatherph/img/leaflet/logo-marker-dark.png';
     meteomediaIcon.options.iconSize = new L.Point(12, 20);
 }
 
@@ -790,6 +789,10 @@ function onionSkinMap() {
 }
 
 $(document).ready(function(){
+    $('div.leaflet-control-attribution.leaflet-control')
+    .empty()
+    .text('Powered by Meteomedia/Weather Philippines Foundation');
+
     $('#video-viewport').hide();
     $('.data-layers a').on('click', function(evt){
         evt.preventDefault();
