@@ -44,7 +44,7 @@
 
                 <li>United Kingdom: <a href="http://www.severe-weather-centre.co.uk">www.severe-weather-centre.co.uk</a></li>
 
-                <li>Philippines: <a href="http://www.weather.com.ph">www.weather.com.ph</a></li>
+                <li>Philippines: <a href="http://weather.com.ph">weather.com.ph</a></li>
 
                 <li>USA: <a href="http://www.weather.us">www.weather.us</a></li>
 
