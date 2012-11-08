@@ -766,8 +766,10 @@ class WeatherphController extends WeatherphAppController {
         );
         $archives = $this->paginate('Node');
         
-        
-        $this->set(compact('archive','archives'));
-        
+        $og_image = array('property'=>'og:image','content'=>'http://alpha.weather.com.ph/theme/weatherph/img/logo.png');
+        $og_title = array('property'=>'og:title','content'=>'Weather Philippines Foundation');
+        $meta_for_description = $this->description('description', 'List of latest news and announcements for the weather conditions across the Philippines');
+        $og_description = array('property'=>'og:desccription','content'=>'List of latest news and announcements for the weather conditions across the Philippines');
+        $this->set(compact('meta_for_description','og_image','og_title','og_description','archive','archives'));
     }
 }
