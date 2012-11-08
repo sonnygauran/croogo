@@ -56,6 +56,9 @@ $movie_location = Configure::read('Data.movies');
                         </span>
                     </span>
                 </div><!-- .timestamp-display -->
+                <div class="attribution">
+                    Powered by Meteomedia/Weather Philippines Foundation
+                </div>
             </div>
             <div id="legend" class="shadow">
                 <div class="scale-temperature">

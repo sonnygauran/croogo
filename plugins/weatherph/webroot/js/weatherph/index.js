@@ -115,8 +115,7 @@ $(document).ready(function(){
         pressure:    {}
     };
 
-
-    window['ATTRIBUTION'] = 'Powered by Meteomedia/Weather Philippines Foundation';
+    // window['ATTRIBUTION'] = 'Powered by Meteomedia/Weather Philippines Foundation';
     window['UNIT_TEMPERATURE'] = 'celsius';
     window['IMAGE_DATA_LAYER'] = new L.LayerGroup();
     window['STATIONS_LAYER'] = new L.LayerGroup();
@@ -126,7 +125,8 @@ $(document).ready(function(){
         minZoom: 5,
         zoom: 7,
         layers: [window['STATIONS_LAYER']],
-        zoomControl: true
+        zoomControl: true,
+        attributionControl: false
     });
 
     var ph = $boxMap[0].box;
@@ -138,16 +138,16 @@ $(document).ready(function(){
 
 
     window['LEAFLET_TILES'].stations    = new L.TileLayer(window['LEAFLET_TILES_SRC'].stations,    {
-        maxZoom: 18,
-        attribution: window['ATTRIBUTION']
+        maxZoom: 18
+        // attribution: window['ATTRIBUTION']
     });
     window['LEAFLET_TILES'].temperature = new L.TileLayer(window['LEAFLET_TILES_SRC'].temperature, {
-        maxZoom: 18,
-        attribution: window['ATTRIBUTION']
+        maxZoom: 18
+        // attribution: window['ATTRIBUTION']
     });
     window['LEAFLET_TILES'].pressure    = new L.TileLayer(window['LEAFLET_TILES_SRC'].pressure,    {
-        maxZoom: 18,
-        attribution: window['ATTRIBUTION']
+        maxZoom: 18
+        // attribution: window['ATTRIBUTION']
     });
 
     map
@@ -789,10 +789,6 @@ function onionSkinMap() {
 }
 
 $(document).ready(function(){
-    $('div.leaflet-control-attribution.leaflet-control')
-    .empty()
-    .text('Powered by Meteomedia/Weather Philippines Foundation');
-
     $('#video-viewport').hide();
     $('.data-layers a').on('click', function(evt){
         evt.preventDefault();
