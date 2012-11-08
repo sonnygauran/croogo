@@ -427,14 +427,14 @@ class WeatherphStationForecast extends WeatherphAppModel {
                         $current_forecast['precipitation_hr_range'] = '6h';
                         
                         
-                        if($forecast['rain3'] < 1){
+                        if($forecast['rain6'] < 1){
                             $current_forecast['precipitation_severity'] = "No Rain";
-                        }else if ($forecast['rain3'] >= 1 && $forecast['rain3'] < 3) {
+                        }else if ($forecast['rain6'] >= 1 && $forecast['rain6'] < 3) {
                             $current_forecast['precipitation_severity'] = "Slight Rain";                            
                         }
-                        else if ($forecast['rain3'] >= 3 && $forecast['rain3'] < 24) {
+                        else if ($forecast['rain6'] >= 3 && $forecast['rain6'] < 24) {
                             $current_forecast['precipitation_severity'] = "Moderate Rain";
-                        }else if ($forecast['rain3'] >= 24) {
+                        }else if ($forecast['rain6'] >= 24) {
                             $current_forecast['precipitation_severity'] = "Severe Rain";
                         }
                     }
