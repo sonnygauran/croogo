@@ -13,7 +13,7 @@
             <?php foreach ($videos as $video) { ?>
                 <?php $createdTime = strtotime($video['Node']['created']); ?>
                 <div class="video-excerpt box">
-                    <a href="/weather/<?= $video['Node']['slug']?>">
+                    <a href="/weathertv/<?= $video['Node']['slug']?>">
                      <?= $video['Node']['excerpt']; ?>
                      <?= $video['Node']['title']; ?>
                     </a>
