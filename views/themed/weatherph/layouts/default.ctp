@@ -96,11 +96,11 @@
             <div class="sponsored">
                 <h6>Platinum sponsors:</h6>
                 <ul>
-                    <li class="sponsor-nac"></li>
-                    <li class="sponsor-icts"></li>
-                    <li class="sponsor-ngcp"></li>
+                    <li class="sponsor-nac-sumitomo"></li>
+                    <li class="sponsor-icts" style="margin: 20px auto;"></li>
+                    <li class="sponsor-ngcp" style="margin: 0 auto;"></li>
                     <li class="sponsor-vistaland"></li>
-                    <li class="sponsor-tyk"></li>
+                    <li class="sponsor-tyk" style="margin: 10px auto;"></li>
                     <li class="sponsor-sm"></li>
                 </ul>
             </div>
@@ -134,6 +134,19 @@
                         <img src="<?= $this->webroot ?>theme/weatherph/img/gold/<?= $images[$hat[6]] ?>.png" style="display:none;">
                     </div>
                 </div>
+            </div>
+
+            <div class="sponsored">
+                <a href="http://www.meteosphere.com/en/index.html">
+                <h6>Download the app:</h6>
+                <?php
+                $img = array('meteosphere1', 'meteosphere2');
+                shuffle($img);
+                $random = array_rand($img, 2);
+                ?>
+
+                <div class="<?= $img[$random[0]] ?>"></div>
+                </a>
             </div>
 
             <?php if ($tourism_links): ?>
