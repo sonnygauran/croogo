@@ -721,6 +721,10 @@ span.temperature {
     margin: .5em auto;
 }
 
+.sponsored h6 {
+    margin-bottom: 1em;
+}
+
 .gold-sponsor-slides .slides_container{
     width: 120px;
     margin: 1em auto;
@@ -1030,20 +1034,24 @@ div.current-tab {
 
 /* Spritemap */
 
-.logo { background: url('<?= $this->webroot ?>theme/weatherph/img/default-sprite.png') no-repeat 0 0; width: 350px; height: 86px; }
+/*Platinum sponsors*/
+.sponsor-nac-sumitomo { background: url('<?= $this->webroot ?>theme/weatherph/img/default-sprite.png') no-repeat 0 -90px; width: 135px; height: 68px; display: inline-block;}
+.sponsor-icts { background: url('<?= $this->webroot ?>theme/weatherph/img/default-sprite.png') no-repeat -140px -90px; width: 150px; height: 33px; display: inline-block;}
+.sponsor-tyk { background: url('<?= $this->webroot ?>theme/weatherph/img/default-sprite.png') no-repeat -140px -127px; width: 150px; height: 50px; display: inline-block;}
+.sponsor-sm { background: url('<?= $this->webroot ?>theme/weatherph/img/default-sprite.png') no-repeat -295px -90px; width: 75px; height: 72px; display: inline-block;}
+.sponsor-ngcp { background: url('<?= $this->webroot ?>theme/weatherph/img/default-sprite.png') no-repeat 0 -177px; width: 80px; height: 80px; display: inline-block;}
+.sponsor-vistaland { background: url('<?= $this->webroot ?>theme/weatherph/img/default-sprite.png') no-repeat -86px -181px; width: 144px; height: 65px; display: inline-block;}
 
-.flag { background: url('<?= $this->webroot ?>theme/weatherph/img/default-sprite.png') no-repeat -167px -244px; width: 43px; height: 30px; }
-.search-icon { background: url('<?= $this->webroot ?>theme/weatherph/img/default-sprite.png') no-repeat -216px -246px; width: 14px; height: 14px; }
+/*Meteosphere*/
+.meteosphere1 { background: url('<?= $this->webroot ?>theme/weatherph/img/default-sprite.png') no-repeat -160px -263px; width: 150px; height: 155px; display: inline-block;}
+.meteosphere2 { background: url('<?= $this->webroot ?>theme/weatherph/img/default-sprite.png') no-repeat 0 -263px; width: 150px; height: 273px; display: inline-block;}
 
-.sponsor-icts { background: url('<?= $this->webroot ?>theme/weatherph/img/default-sprite.png') no-repeat 0 -87px; width: 150px; height: 33px; }
-.sponsor-tyk { background: url('<?= $this->webroot ?>theme/weatherph/img/default-sprite.png') no-repeat -154px -87px; width: 150px; height: 50px; }
-.sponsor-vistaland { background: url('<?= $this->webroot ?>theme/weatherph/img/default-sprite.png') no-repeat 0 -140px; width: 144px; height: 65px; }
-.sponsor-nac { background: url('<?= $this->webroot ?>theme/weatherph/img/default-sprite.png') no-repeat -154px -140px; width: 131px; height: 46px; }
-.sponsor-ngcp { background: url('<?= $this->webroot ?>theme/weatherph/img/default-sprite.png') no-repeat 0 -210px; width: 80px; height: 80px; }
-.sponsor-sm { background: url('<?= $this->webroot ?>theme/weatherph/img/default-sprite.png') no-repeat -85px -210px; width: 75px; height: 72px; }
-
-.fb { background: url('<?= $this->webroot ?>theme/weatherph/img/default-sprite.png') no-repeat -165px -209px; width: 32px; height: 31px; }
-.twitter { background: url('<?= $this->webroot ?>theme/weatherph/img/default-sprite.png') no-repeat -198px -209px; width: 32px; height: 31px; }
+/*Other*/
+.logo { background: url('<?= $this->webroot ?>theme/weatherph/img/default-sprite.png') no-repeat 0 0; width: 350px; height: 86px; display: inline-block;}
+.fb { background: url('<?= $this->webroot ?>theme/weatherph/img/default-sprite.png') no-repeat -240px -180px; width: 30px; height: 30px; display: inline-block;}
+.twitter { background: url('<?= $this->webroot ?>theme/weatherph/img/default-sprite.png') no-repeat -276px -180px; width: 30px; height: 30px; display: inline-block;}
+.flag { background: url('<?= $this->webroot ?>theme/weatherph/img/default-sprite.png') no-repeat -312px -180px; width: 43px; height: 30px; display: inline-block;}
+.search-icon { background: url('<?= $this->webroot ?>theme/weatherph/img/default-sprite.png') no-repeat -244px -219px; width: 14px; height: 14px; display: inline-block;}
 
 span.symbol { background: url('<?= $this->webroot ?>theme/weatherph/img/warning-sprites.png') -5px -65px no-repeat; height: 30px; width: 40px; display: block; margin: auto auto auto 10px;}
 span.symbolwind { background: url('<?= $this->webroot ?>theme/weatherph/img/warning-sprites.png') -5px -65px no-repeat; height: 30px; width: 40px; display: block; margin: auto; float: left;}
