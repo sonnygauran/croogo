@@ -140,7 +140,7 @@ echo $this->Html->script(array(
                                 <td><?= $forecasts2['localtime_range']; ?></td>
                                 <td><span class="symbol <?= $forecasts2['weather_symbol']['symbol']; ?>" title="<?= $forecasts2['weather_symbol']['description']; ?>"></span></td>
                                 <td><?= $forecasts2['temperature']; ?></td>
-                                <td><?= $forecasts2['precipitation']; ?></td>
+                                <td class="precipitation"><span><?= $forecasts2['precipitation_severity']; ?><br /><span class="measurements"><?= $forecasts2['precipitation']; ?></span></span></td>
                                 <td><?= $forecasts2['relative_humidity']; ?></td>
                                 <td><?= $forecasts2['dew_point']; ?></td>
                                 <td><?php if (trim($forecasts2['wind_direction']) != '') { ?><span class="symbol <?= $forecasts2['wind_direction']; ?>"></span><?php } ?><span class="wind-description"><?= $forecasts2['wind_description']; ?></span></td>
