@@ -81,11 +81,11 @@ class WeatherphStationForecast extends WeatherphAppModel {
             
             if(key_exists('rr1h', $current_reading) && key_exists('rain6', $current_reading)){
                 if(trim($current_reading['rr1h']) != ''){
-                    $current_readings['precipitation'] = ((int)$current_reading['rr1h'] <= 0)? "0mm" : round($current_reading['rr1h']) . "mm";    
+                    $current_readings['precipitation'] = ($current_reading['rr1h'] < 0.5)? "0mm" : round($current_reading['rr1h']) . "mm";    
                     $current_readings['precipitation_hr_range'] = "(1H)";
                 }else{
                     if(trim($current_reading['rain6']) != ''){
-                        $current_readings['precipitation'] = ((int)$current_reading['rain6'] <= 0)? "0mm" : round($current_reading['rain6']) . "mm";  
+                        $current_readings['precipitation'] = ($current_reading['rain6'] < 0.5)? "0mm" : round($current_reading['rain6']) . "mm";  
                         $current_readings['precipitation_hr_range'] = "(6H)"; 
                     }
                 }
@@ -148,7 +148,7 @@ class WeatherphStationForecast extends WeatherphAppModel {
                 }
 
                 if(key_exists('rain3', $forecast) && trim($forecast['rain3']) != ''){
-                    $current_forecast['precipitation'] = ((int)$forecast['rain3'] <= 0)? "0mm" : round($forecast['rain3']) . "mm";
+                    $current_forecast['precipitation'] = ($forecast['rain3'] < 0.5)? "0mm" : round($forecast['rain3']) . "mm";
                 }
 
                 if(key_exists('rh', $forecast) && trim($forecast['rh']) != ''){
@@ -325,11 +325,11 @@ class WeatherphStationForecast extends WeatherphAppModel {
             
             if(key_exists('rr1h', $current_reading) && key_exists('rain6', $current_reading)){
                 if(trim($current_reading['rr1h']) != ''){
-                    $current_readings['precipitation'] = ($current_reading['rr1h'] <= 0)? "0 mm" : round($current_reading['rr1h'], 1, PHP_ROUND_HALF_UP) . " mm";    
+                    $current_readings['precipitation'] = ($current_reading['rr1h'] < 0.5)? "0 mm" : round($current_reading['rr1h'], 1, PHP_ROUND_HALF_UP) . " mm";    
                     $current_readings['precipitation_hr_range'] = "(1H)";
                 }else{
                     if(trim($current_reading['rain6']) != ''){
-                        $current_readings['precipitation'] = ($current_reading['rain6'] <= 0)? "0 mm" : round($current_reading['rain6'], 1, PHP_ROUND_HALF_UP) . " mm"; 
+                        $current_readings['precipitation'] = ($current_reading['rain6'] < 0.5)? "0 mm" : round($current_reading['rain6'], 1, PHP_ROUND_HALF_UP) . " mm"; 
                         $current_readings['precipitation_hr_range'] = "(6H)"; 
                     }
                 }
@@ -407,12 +407,12 @@ class WeatherphStationForecast extends WeatherphAppModel {
                     }
                     
                     if(key_exists('rain3', $forecast) && trim($forecast['rain3']) != ''){
-                        $current_forecast['precipitation'] = ((int)$forecast['rain3'] <= 0)? "0mm" : round($forecast['rain3']) . "mm";
+                        $current_forecast['precipitation'] = ($forecast['rain3'] < 0.5)? "0mm" : round($forecast['rain3']) . "mm";
                         $current_forecast['precipitation_hr_range'] = '3h';
                         
-                        if($forecast['rain3'] < 1){
+                        if($forecast['rain3'] < 0.5){
                             $current_forecast['precipitation_severity'] = "No Rain";
-                        }else if ($forecast['rain3'] >= 1 && $forecast['rain3'] < 1.5) {
+                        }else if ($forecast['rain3'] >= 0.5 && $forecast['rain3'] < 1.5) {
                             $current_forecast['precipitation_severity'] = "Slight Rain";                            
                         }
                         else if ($forecast['rain3'] >= 1.5 && $forecast['rain3'] < 12) {
@@ -423,13 +423,13 @@ class WeatherphStationForecast extends WeatherphAppModel {
                     }
                     
                     if(key_exists('rain6', $forecast) && trim($forecast['rain6']) != ''){
-                        $current_forecast['precipitation'] = ((int)$forecast['rain6'] <= 0)? "0mm" : round($forecast['rain6']) . "mm";
+                        $current_forecast['precipitation'] = ($forecast['rain6'] < 0.5)? "0mm" : round($forecast['rain6']) . "mm";
                         $current_forecast['precipitation_hr_range'] = '6h';
                         
                         
-                        if($forecast['rain6'] < 1){
+                        if($forecast['rain6'] < 0.5){
                             $current_forecast['precipitation_severity'] = "No Rain";
-                        }else if ($forecast['rain6'] >= 1 && $forecast['rain6'] < 3) {
+                        }else if ($forecast['rain6'] >= 0.5 && $forecast['rain6'] < 3) {
                             $current_forecast['precipitation_severity'] = "Slight Rain";                            
                         }
                         else if ($forecast['rain6'] >= 3 && $forecast['rain6'] < 24) {
@@ -849,11 +849,11 @@ class WeatherphStationForecast extends WeatherphAppModel {
             
             if(key_exists('rr1h', $current_reading) && key_exists('rain6', $current_reading)){
                 if(trim($current_reading['rr1h']) != ''){
-                    $current_readings['precipitation'] = ((int)$current_reading['rr1h'] <= 0)? "0mm" : round($current_reading['rr1h']) . "mm";    
+                    $current_readings['precipitation'] = ($current_reading['rr1h'] < 0.5)? "0mm" : round($current_reading['rr1h']) . "mm";    
                     $current_readings['precipitation_hr_range'] = "(1H)";
                 }else{
                     if(trim($current_reading['rain6']) != ''){
-                        $current_readings['precipitation'] = ((int)$current_reading['rain6'] <= 0)? "0mm" : round($current_reading['rain6']) . "mm";
+                        $current_readings['precipitation'] = ($current_reading['rain6'] < 0.5)? "0mm" : round($current_reading['rain6']) . "mm";
                         $current_readings['precipitation_hr_range'] = "(6H)"; 
                     }
                 }
@@ -930,12 +930,12 @@ class WeatherphStationForecast extends WeatherphAppModel {
                     }
                     
                     if(key_exists('rain3', $forecast) && trim($forecast['rain3']) != ''){
-                        $current_forecast['precipitation'] = ($forecast['rain3'] <= 0)? "0mm" : round($forecast['rain3']) . "mm";
+                        $current_forecast['precipitation'] = ($forecast['rain3'] < 0.5)? "0mm" : round($forecast['rain3']) . "mm";
                         $current_forecast['precipitation_hr_range'] = "3h";
                         
-                        if($forecast['rain3'] < 1){
+                        if($forecast['rain3'] < 0.5){
                             $current_forecast['precipitation_severity'] = "No Rain";
-                        }else if ($forecast['rain3'] >= 1 && $forecast['rain3'] < 1.5) {
+                        }else if ($forecast['rain3'] >= 0.5 && $forecast['rain3'] < 1.5) {
                             $current_forecast['precipitation_severity'] = "Slight Rain";                            
                         }
                         else if ($forecast['rain3'] >= 1.5 && $forecast['rain3'] < 12) {
@@ -945,12 +945,12 @@ class WeatherphStationForecast extends WeatherphAppModel {
                         }
                     }
                     if(key_exists('rain6', $forecast) && trim($forecast['rain6']) != ''){
-                        $current_forecast['precipitation'] = ($forecast['rain6'] <= 0)? "0mm" : round($forecast['rain6']) . "mm";
+                        $current_forecast['precipitation'] = ($forecast['rain6'] < 0.5)? "0mm" : round($forecast['rain6']) . "mm";
                         $current_forecast['precipitation_hr_range'] = "6h";
                         
-                        if($forecast['rain6'] < 1){
+                        if($forecast['rain6'] < 0.5){
                             $current_forecast['precipitation_severity'] = "No Rain";
-                        }else if ($forecast['rain6'] >= 1 && $forecast['rain6'] < 3) {
+                        }else if ($forecast['rain6'] >= 0.5 && $forecast['rain6'] < 3) {
                             $current_forecast['precipitation_severity'] = "Slight Rain";                            
                         }
                         else if ($forecast['rain6'] >= 3 && $forecast['rain6'] < 24) {
