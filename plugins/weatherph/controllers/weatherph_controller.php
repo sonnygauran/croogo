@@ -10,6 +10,7 @@
  * @link     http://www.weather.com.ph
  */
 
+App::uses('Browser', 'Meteomedia.Lib');
 class WeatherphController extends WeatherphAppController {
 
     /**
