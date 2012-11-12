@@ -97,8 +97,8 @@
                 <h6>Platinum sponsors:</h6>
                 <ul>
                     <li class="sponsor-nac-sumitomo"></li>
-                    <li class="sponsor-icts" style="margin: 20px auto;"></li>
-                    <li class="sponsor-ngcp" style="margin: 0 auto;"></li>
+                    <li class="sponsor-icts" style="margin: 15px 0 10px 0;"></li>
+                    <!-- <li class="sponsor-ngcp" style="margin: 0 auto;"></li> -->
                     <li class="sponsor-vistaland"></li>
                     <li class="sponsor-tyk" style="margin: 10px auto;"></li>
                     <li class="sponsor-sm"></li>
