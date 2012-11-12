@@ -10,7 +10,7 @@
  * @link     http://www.weather.com.ph
  */
 
-App::uses('Browser', 'Meteomedia.Lib');
+App::import('Lib', 'Meteomedia.Browser');
 class WeatherphController extends WeatherphAppController {
 
     /**
@@ -673,7 +673,13 @@ class WeatherphController extends WeatherphAppController {
         $og_description = array('property'=>'og:desccription','content'=>'View current weather conditions across the Philippines');
         $this->set(compact('meta_for_description','og_image','og_title','og_description'));
        
-       
+        $video = array(
+             'server' => Configure::read('Server.node'),
+             'extension' => Browser::getInstance()->extension(),
+             'codec' => Browser::getInstance()->codec()
+         );
+
+         $this->set(compact('video'));
    }
 
    //JETT
