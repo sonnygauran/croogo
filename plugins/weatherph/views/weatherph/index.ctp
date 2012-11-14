@@ -436,6 +436,8 @@ $movie_location = Configure::read('Data.movies');
                                     <a class="post-category" href="<?= $this->webroot ?>news/payong-panahon">Payong Panahon</a>
                                 <?php }elseif($blog['Node']['type'] == 'announcements'){?>
                                     <a class="post-category" href="<?= $this->webroot ?>news/mata-ng-bagyo">Mata ng Bagyo</a>
+                                <?php }elseif($blog['Node']['type'] == 'weathertv'){?>
+                                    <a class="post-category" href="<?= $this->webroot ?>weathertv">Weather TV</a>
                                 <?php } ?>
                         </p>
                     </div>
