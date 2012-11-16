@@ -874,6 +874,7 @@ class WeatherphStationForecast extends WeatherphAppModel {
             if(key_exists('dir', $current_reading)){
                 $current_readings['wind_direction'] = $this->showWindDirection($current_reading['dir']);
                 $current_readings['wind_description'] = $this->WindDirection($current_reading['dir']);
+                $current_readings['wind_speed_direction'] = (trim($current_reading['dir']) == '')? '-' : $current_readings['wind_speed'] . ', ' . $current_readings['wind_description']['eng'];
             }
             
             $theirTime = strtotime($current_reading['datum'] . $current_reading['utc'] . ':' . $current_reading['min']);
