@@ -67,7 +67,7 @@ echo $this->Html->script(array(
                             </tr>
                             <?php if (key_exists('precipitation', $dataSets['reading'])): ?>
                                 <tr>
-                                    <th>Rain</th>
+                                    <th>Rain 1h</th>
                                     <td><?= $dataSets['reading']['precipitation']; ?></td>
                                 </tr>
                             <?php endif; // dew point ?>

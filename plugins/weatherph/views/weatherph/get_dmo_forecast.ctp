@@ -73,7 +73,7 @@ echo $this->Html->script(array(
                                 <td><?php if(trim($dataSets['reading']['wind_direction']) != "-"){ ?><span class="symbolwind <?= $dataSets['reading']['wind_direction']; ?>" title="<?= $dataSets['reading']['wind_speed']; ?>, <?= $dataSets['reading']['wind_description']['eng']; ?>"></span><?php } ?><?= trim($dataSets['reading']['wind_speed_direction']); ?></td>
                             </tr>
                             <tr>
-                                <th>Rain</th>
+                                <th>Rain 1h</th>
                                 <td><?= $dataSets['reading']['precipitation']; ?></td>
                             </tr>
                             <tr>
