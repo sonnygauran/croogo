@@ -844,16 +844,16 @@ class WeatherphStationForecast extends WeatherphAppModel {
             }
 
             if(key_exists('tl', $current_reading) && trim($current_reading['tl']) != ''){
-                $current_readings['temperature'] = number_format($current_reading['tl'], 0) . "&deg;C";
+                $current_readings['temperature'] = number_format($current_reading['tl'], 1) . "&deg;C";
             }
             
             if(key_exists('rr1h', $current_reading) && key_exists('rain6', $current_reading)){
                 if(trim($current_reading['rr1h']) != ''){
-                    $current_readings['precipitation'] = ($current_reading['rr1h'] < 0.5)? "0mm" : round($current_reading['rr1h']) . "mm";    
+                    $current_readings['precipitation'] = ($current_reading['rr1h'] < 0.1)? "0mm" : number_format($current_reading['rr1h'], 1) . "mm";    
                     $current_readings['precipitation_hr_range'] = "(1H)";
                 }else{
                     if(trim($current_reading['rain6']) != ''){
-                        $current_readings['precipitation'] = ($current_reading['rain6'] < 0.5)? "0mm" : round($current_reading['rain6']) . "mm";
+                        $current_readings['precipitation'] = ($current_reading['rain6'] < 0.1)? "0mm" : number_forecast($current_reading['rain6'], 1) . "mm";
                         $current_readings['precipitation_hr_range'] = "(6H)"; 
                     }
                 }
