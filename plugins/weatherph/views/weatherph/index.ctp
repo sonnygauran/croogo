@@ -276,8 +276,7 @@ $movie_location = Configure::read('Data.movies');
                                             <td class="3-hour wind"><span>&nbsp;</span></td>
                                         </tr>
                                         <tr>
-                                            <td>Rain</td>
-                                            <td class="precipitation"><span>&nbsp;</span></td>
+                                            <td colspan="2"  class="precipitation"><span>&nbsp;</span></td>
                                         </tr>
                                         <tr>
                                             <td>Humidity</td>
@@ -299,8 +298,7 @@ $movie_location = Configure::read('Data.movies');
                                             <td class="wind"><span>&nbsp;</span></td>
                                         </tr>
                                         <tr>
-                                            <td>Rain</td>
-                                            <td class="precipitation"><span>&nbsp;</span></td>
+                                            <td colspan="2"  class="precipitation"><span>&nbsp;</span></td>
                                         </tr>
                                         <tr>
                                             <td>Humidity</td>
@@ -322,8 +320,7 @@ $movie_location = Configure::read('Data.movies');
                                             <td class="wind"><span>&nbsp;</span></td>
                                         </tr>
                                         <tr>
-                                            <td>Rain</td>
-                                            <td class="precipitation"><span>&nbsp;</span></td>
+                                            <td colspan="2"  class="precipitation"><span>&nbsp;</span></td>
                                         </tr>
                                         <tr>
                                             <td>Humidity</td>
@@ -345,8 +342,7 @@ $movie_location = Configure::read('Data.movies');
                                             <td class="wind"><span>&nbsp;</span></td>
                                         </tr>
                                         <tr>
-                                            <td>Rain</td>
-                                            <td class="precipitation"><span>&nbsp;</span></td>
+                                            <td colspan="2"  class="precipitation"><span>&nbsp;</span></td>
                                         </tr>
                                         <tr>
                                             <td>Humidity</td>
@@ -368,8 +364,7 @@ $movie_location = Configure::read('Data.movies');
                                             <td class="wind"><span>&nbsp;</span></td>
                                         </tr>
                                         <tr>
-                                            <td>Rain</td>
-                                            <td class="precipitation"><span>&nbsp;</span></td>
+                                            <td colspan="2"  class="precipitation"><span>&nbsp;</span></td>
                                         </tr>
                                         <tr>
                                             <td>Humidity</td>
@@ -391,8 +386,7 @@ $movie_location = Configure::read('Data.movies');
                                             <td class="wind"><span>&nbsp;</span></td>
                                         </tr>
                                         <tr>
-                                            <td>Rain</td>
-                                            <td class="precipitation"><span>&nbsp;</span></td>
+                                            <td colspan="2"  class="precipitation"><span>&nbsp;</span></td>
                                         </tr>
                                         <tr>
                                             <td>Humidity</td>

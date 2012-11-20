@@ -335,7 +335,7 @@ function getForecast(id) {
 
                         sr_temperature = $station_readings.forecast[key].temperature;
                         sr_wind = $station_readings.forecast[key].wind_speed;
-                        sr_precip = $station_readings.forecast[key].precipitation;
+                        sr_precip = $station_readings.forecast[key].precipitation_severity;
                         sr_humidity = $station_readings.forecast[key].relative_humidity;
 
                         //console.error(key);

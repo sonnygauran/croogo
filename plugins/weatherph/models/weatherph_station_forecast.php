@@ -135,6 +135,7 @@ class WeatherphStationForecast extends WeatherphAppModel {
                     'min' => $forecast['min'],
                     'weather_symbol' => '-',
                     'precipitation' => '-',
+                    'precipitation_severity' => '-',
                     'relative_humidity' => '-',
                     'wind_speed' => '-',
                     'wind_gust' => '-',
@@ -149,6 +150,19 @@ class WeatherphStationForecast extends WeatherphAppModel {
 
                 if(key_exists('rain3', $forecast) && trim($forecast['rain3']) != ''){
                     $current_forecast['precipitation'] = ($forecast['rain3'] < 0.5)? "0mm" : round($forecast['rain3']) . "mm";
+                    if($forecast['rain3'] < 0.1){
+                        $current_forecast['precipitation_severity'] = "No Rain";
+                    }else if($forecast['rain3'] < 0.5){
+                        $current_forecast['precipitation_severity'] = "Chance of Shower";
+                        $current_forecast['precipitation'] = '';
+                    }else if ($forecast['rain3'] >= 0.5 && $forecast['rain3'] < 1.5) {
+                        $current_forecast['precipitation_severity'] = "Slight Rain";                            
+                    }
+                    else if ($forecast['rain3'] >= 1.5 && $forecast['rain3'] < 12) {
+                        $current_forecast['precipitation_severity'] = "Moderate Rain";
+                    }else if ($forecast['rain3'] >= 12) {
+                        $current_forecast['precipitation_severity'] = "Severe Rain";
+                    }
                 }
 
                 if(key_exists('rh', $forecast) && trim($forecast['rh']) != ''){
