@@ -4,32 +4,34 @@ App::import('Lib', 'Meteomedia.Xml');
 App::import('Lib', 'Meteomedia.AnyChart');
 
 class WeatherphAppModel extends AppModel {
-        
-    public function generateDate($type, $time_resolution = '1h', $hasUTC = true){
+
+    public function generateDate($type, $time_resolution = '1h', $hasUTC = true) {
 
         // Adjust our time so that the data we get can match theirs
-        $theirTime = strtotime(($type == 'charts' || $type == 'forecast') ? '-16 hours' : '-8 hours', strtotime(date('Ymd'))); 
+        $theirTime = strtotime(($type == 'charts' || $type == 'forecast') ? '-16 hours' : '-8 hours', strtotime(date('Ymd')));
         $format = array();
-        
+
         $format['start_date'] = date('Ymd', $theirTime);
         $format['time_resolution'] = $time_resolution;
-        
-        if($hasUTC){
+
+        if ($hasUTC) {
             $format['start_hour'] = date('H', $theirTime);
             $format['end_hour'] = '16';
         }
-        switch($type){
+        switch ($type) {
             case 'reading':
                 $format['end_date'] = date('Ymd', strtotime('+2 days', $theirTime));
                 break;
             case 'forecast':
-                $theirTime = strtotime(date('Ymd')); 
-                $format['start_date'] = date('Ymd', $theirTime);    
+                $theirTime = strtotime(date('Ymd'));
+                $format['start_date'] = date('Ymd', $theirTime);
                 $format['start_hour'] = date('H', $theirTime);
-                $format['end_date'] = date('Ymd', strtotime("+3 Days", $theirTime));;
+                $format['end_date'] = date('Ymd', strtotime("+3 Days", $theirTime));
+                ;
                 break;
             case 'chart':
-                $format['end_date'] = date('Ymd', strtotime("+5 Days", $theirTime));;
+                $format['end_date'] = date('Ymd', strtotime("+5 Days", $theirTime));
+                ;
                 break;
         }
 
@@ -94,13 +96,13 @@ class WeatherphAppModel extends AppModel {
     }
 
     protected function dayOrNightSymbol($symbol = NULL, $utc = NULL, $meridiem = array()) {
-        
+
         // Get the default timestamp timezone
         $siteTimezone = Configure::read('Site.timezone');
         $Date = new DateTime(null, new DateTimeZone($siteTimezone));
-        
+
         $symbol = number_format($symbol, 0);
-        
+
         $weather_description = array(
             'Could not be determined',
             'Sunny', // Clear Sky(Night)
@@ -123,55 +125,52 @@ class WeatherphAppModel extends AppModel {
             'Could not be determined',
             'Could not be determined',
         );
-       
-        if($symbol != NULL && key_exists($symbol, $weather_description)) {
-            
+
+        if ($symbol != NULL && key_exists($symbol, $weather_description)) {
+
             $offset = $Date->getOffset() / 3600;
-            
-            $utc = (int)$utc + $offset;
-            
+
+            $utc = (int) $utc + $offset;
+
             $sunrise = date('H', strtotime($meridiem['sunrise']));
             $sunset = date('H', strtotime($meridiem['sunset']));
-    
+
             if ($utc > $sunrise && $utc < $sunset) {
                 $dayOrNight = 'day';
-                }else if ($utc == 17){
-                    $dayOrNight ='day';
-                }
-          
-            else {
+            } else if ($utc == 17) {
+                $dayOrNight = 'day';
+            } else {
                 $dayOrNight = 'night';
             }
-           
+
 //            error_log('this->'.$utc.$dayOrNight);
-            
+
             $description = '';
-            
-            switch($dayOrNight){
+
+            switch ($dayOrNight) {
                 case 'day':
                     $description = $weather_description[$symbol];
                     break;
                 case 'night':
-                    $description = ( $symbol == 1 )? 'Clear Sky' : $weather_description[$symbol]; 
+                    $description = ( $symbol == 1 ) ? 'Clear Sky' : $weather_description[$symbol];
                     break;
             }
-            
+
             $weather_condition = array(
                 'symbol' => $dayOrNight . '_' . $symbol,
                 'description' => $description
             );
 
             return $weather_condition;
-            
-        }else{
+        } else {
             $this->log("The weather symbol with index {$symbol} does not exist");
             return NULL;
         }
     }
 
     protected function csvToArray($csv) {
-        
-        ini_set('memory_limit','128M');
+
+        ini_set('memory_limit', '128M');
 
         $rows = explode("\n", $csv);
         $headers = explode(';', $rows[0]);
@@ -194,57 +193,55 @@ class WeatherphAppModel extends AppModel {
 
         return $arrayResults;
     }
-    
+
     protected function cleanDmoReadings($arrays) {
 
-        if(!is_array($arrays)){
+        if (!is_array($arrays)) {
             $this->log('Error: Parameter must be an array.');
             return FALSE;
-        }else{
-            
+        } else {
+
             $new_array = array();
-            foreach($arrays as $array){
-                if($array['tl'] != 'tl'){
-                    if(trim($array['tl'])!=''){
+            foreach ($arrays as $array) {
+                if ($array['tl'] != 'tl') {
+                    if (trim($array['tl']) != '') {
                         $station_ort = explode('/', $array['ort1']);
                         $array['station_id'] = $station_ort[0];
                         $array['station_id'] = $station_ort[0];
                         $array['station_id'] = $station_ort[0];
-                        $new_array[] = $array; 
+                        $new_array[] = $array;
                     }
                 }
             }
         }
-        
+
         return $new_array;
     }
 
     public function getStationInfo($stationID = NULL, $fields = NULL) {
-        
+
         App::import('Model', 'Weatherph.Station');
-        
+
         if ($stationID == NULL) {
             $error = 'Station ID is required';
             $this->log($error);
             return NULL;
         } else {
-           
+
             $WeatherphStation = new Station();
 
-            $fields = ($fields == NULL)? array('wmo1', 'lon', 'lat', 'name', 'org', 'alt') : $fields;
+            $fields = ($fields == NULL) ? array('wmo1', 'lon', 'lat', 'name', 'org', 'alt') : $fields;
 
             $station = $WeatherphStation->find('all', array(
                 'conditions' => array('wmo1' => $stationID),
                 'fields' => $fields,
-            ));
-            
-            if(count($station)>0){
+                    ));
+
+            if (count($station) > 0) {
                 $station = $station[0]['Station'];
-            }else{
+            } else {
                 $station = array();
             }
-            
-             
         }
         return $station;
     }
@@ -253,123 +250,80 @@ class WeatherphAppModel extends AppModel {
         foreach ($array as $key => $arr) {
             foreach ($arr as $ar) {
                 $arrSet[] = array(
-                'x' => (trim($xdata) != NULL) ? $xdata : strtotime($ar['Datum'] . ' ' . $ar['utc'] . ':' . $ar['min']),
-                'y' => (trim($ydata) != NULL) ? $ydata : $ar[$val],
-                'data' => $ar[$val],
+                    'x' => (trim($xdata) != NULL) ? $xdata : strtotime($ar['Datum'] . ' ' . $ar['utc'] . ':' . $ar['min']),
+                    'y' => (trim($ydata) != NULL) ? $ydata : $ar[$val],
+                    'data' => $ar[$val],
                 );
             }
         }
         return $arrSet;
     }
-    
-    protected function windDirection($wd = NULL){
-        
-         $lowest_value = 1000;
-         
-         $value = array();
 
-            if ($wd == (-99) || $wd == (-999)) {
-                $value = "-99";
-            } else {
+    protected function windDirection($dir = 360) {
 
-                if ($wd == 999) {
-                    $value = 9;
-                } else {
+        $value = array();
 
-                    $wd_loc = $wd;
+        $direction = $dir % 360;
 
-                    # 360
-                    $diff = abs($wd_loc - 360);
-                    if ($diff < $lowest_value) {
-                        $lowest_value = $diff;
-                        $value = array(
-                            'numeric' => 7,
-                            'eng' => 'North',
-                            'symbol' => 'N'
-                        );
-                    }
+        if ($direction <= 22.5 || $direction >= 337.5) {
+// North
+            $value = array(
+                'numeric' => 7,
+                'eng' => 'North',
+                'symbol' => 'N'
+            );
+        } elseif ($direction < 67.5) {
+// North East
+            $value = array(
+                'numeric' => 8,
+                'eng' => 'North East',
+                'symbol' => 'NE'
+            );
+        } elseif ($direction <= 112.5) {
+// East
+            $value = array(
+                'numeric' => 1,
+                'eng' => 'East',
+                'symbol' => 'E'
+            );
+        } elseif ($direction < 157.5) {
+// South East
+            $value = array(
+                'numeric' => 2,
+                'eng' => 'South East',
+                'symbol' => 'SE'
+            );
+        } elseif ($direction <= 202.5) {
+// South
+            $value = array(
+                'numeric' => 3,
+                'eng' => 'South',
+                'symbol' => 'S'
+            );
+        } elseif ($direction < 247.5) {
+// South West
+            $value = array(
+                'numeric' => 4,
+                'eng' => 'South West',
+                'symbol' => 'SW'
+            );
+        } elseif ($direction <= 292.5) {
+// West
+            $value = array(
+                'numeric' => 5,
+                'eng' => 'West',
+                'symbol' => 'W'
+            );
+        } elseif ($direction < 337.5) {
+// North West
+            $value = array(
+                'numeric' => 6,
+                'eng' => 'North West',
+                'symbol' => 'NW'
+            );
+        }
 
-                    # 45
-                    $diff = abs($wd_loc - 45);
-                    if ($diff < $lowest_value) {
-                        $lowest_value = $diff;
-                        $value = array(
-                            'numeric' => 8,
-                            'eng' => 'North East',
-                            'symbol' => 'NE'
-                        );
-                    }
-
-                    # 90 
-                    $diff = abs($wd_loc - 90);
-                    if ($diff < $lowest_value) {
-                        $lowest_value = $diff;
-                        $value = array(
-                            'numeric' => 1,
-                            'eng' => 'East',
-                            'symbol' => 'E'
-                        );
-                    }
-
-                    # 135
-                    $diff = abs($wd_loc - 135);
-                    if ($diff < $lowest_value) {
-                        $lowest_value = $diff;
-                        $value = array(
-                            'numeric' => 2,
-                            'eng' => 'South East',
-                            'symbol' => 'SE'
-                        );
-                    }
-
-                    # 180
-                    $diff = abs($wd_loc - 180);
-                    if ($diff < $lowest_value) {
-                        $lowest_value = $diff;
-                        $value = array(
-                            'numeric' => 3,
-                            'eng' => 'South',
-                            'symbol' => 'S'
-                        );
-                    }
-
-                    # 225
-                    $diff = abs($wd_loc - 225);
-                    if ($diff < $lowest_value) {
-                        $lowest_value = $diff;
-                        $value = array(
-                            'numeric' => 4,
-                            'eng' => 'South West',
-                            'symbol' => 'SW'
-                        );
-                    }
-
-                    # 270
-                    $diff = abs($wd_loc - 270);
-                    if ($diff < $lowest_value) {
-                        $lowest_value = $diff;
-                        $value = array(
-                            'numeric' => 5,
-                            'eng' => 'West',
-                            'symbol' => 'W'
-                        );
-                    }
-
-                    # 315
-                    $diff = abs($wd_loc - 315);
-                    if ($diff < $lowest_value) {
-                        $lowest_value = $diff;
-                        $value = array(
-                            'numeric' => 6,
-                            'eng' => 'North West',
-                            'symbol' => 'NW'
-                        );
-                    }
-                }
-            }
-            
         return $value;
-        
     }
 
     protected function showWindDirection($wd = NULL) {
@@ -402,63 +356,63 @@ class WeatherphAppModel extends AppModel {
             "violent storm",
             "hurricane force",
         );
-        
-        if($windDirRaw != NULL){
+
+        if ($windDirRaw != NULL) {
             $windDir = $this->windDirection($windDirRaw);
-        }else{
+        } else {
             $windDir = '';
         }
-        
-        
+
+
         if ($windSpeed < 1 and $windSpeed >= 0) {
             $windDirDesc = $beaufort[0];
-        } elseif ($windSpeed <= 5.5 and $windSpeed >= 1){
+        } elseif ($windSpeed <= 5.5 and $windSpeed >= 1) {
             $windDirDesc = $beaufort[1];
-        } elseif ($windSpeed <= 11 and $windSpeed >= 5.6){
+        } elseif ($windSpeed <= 11 and $windSpeed >= 5.6) {
             $windDirDesc = $beaufort[2];
-        } elseif ($windSpeed <= 19 and $windSpeed >= 12){
+        } elseif ($windSpeed <= 19 and $windSpeed >= 12) {
             $windDirDesc = $beaufort[3];
-        } elseif ($windSpeed <= 28 and $windSpeed >= 20){
+        } elseif ($windSpeed <= 28 and $windSpeed >= 20) {
             $windDirDesc = $beaufort[4];
-        } elseif ($windSpeed <= 38 and $windSpeed >= 29){
+        } elseif ($windSpeed <= 38 and $windSpeed >= 29) {
             $windDirDesc = $beaufort[5];
-        } elseif ($windSpeed <= 49 and $windSpeed >= 39){
+        } elseif ($windSpeed <= 49 and $windSpeed >= 39) {
             $windDirDesc = $beaufort[6];
-        } elseif ($windSpeed <= 61 and $windSpeed >= 50){
+        } elseif ($windSpeed <= 61 and $windSpeed >= 50) {
             $windDirDesc = $beaufort[7];
-        } elseif ($windSpeed <= 74 and $windSpeed >= 62){
+        } elseif ($windSpeed <= 74 and $windSpeed >= 62) {
             $windDirDesc = $beaufort[8];
-        } elseif ($windSpeed <= 88 and $windSpeed >= 75){
+        } elseif ($windSpeed <= 88 and $windSpeed >= 75) {
             $windDirDesc = $beaufort[9];
-        } elseif ($windSpeed <= 102 and $windSpeed >= 89){
+        } elseif ($windSpeed <= 102 and $windSpeed >= 89) {
             $windDirDesc = $beaufort[10];
-        } elseif ($windSpeed <= 117 and $windSpeed >= 103){
+        } elseif ($windSpeed <= 117 and $windSpeed >= 103) {
             $windDirDesc = $beaufort[11];
-        } elseif ($windSpeed >= 118){
+        } elseif ($windSpeed >= 118) {
             $windDirDesc = $beaufort[12];
         } else {
             $windDirDesc = '-';
         }
-        
+
         $windGustTxt = $windDirTxt = $windSpeedTxt = '';
-        
-        if((int)$windGust > 0) $windGustTxt = ', gusting up to ' . $windGust . ' ';
-        
-        $windSpeedTxt = ($windSpeed != NULL)? $windSpeed . ', '. $windDirDesc : '-';
-        
-        if(is_array($windDir)) $windDirTxt = ' from ' . $windDir['eng']; 
-         
+
+        if ((int) $windGust > 0)
+            $windGustTxt = ', gusting up to ' . $windGust . ' ';
+
+        $windSpeedTxt = ($windSpeed != NULL) ? $windSpeed . ', ' . $windDirDesc : '-';
+
+        if (is_array($windDir))
+            $windDirTxt = ' from ' . $windDir['eng'];
+
         return $windSpeedTxt . $windGustTxt . $windDirTxt;
-        
-        
     }
-    
+
     public function arrayToAnyChartXML($conditions = null, $fields = array(), $order = null, $recursive = null) {
 
         $arrData = $fields['conditions']['arrData'];
         $type = strtolower($fields['conditions']['type']);
 
-        
+
         $xml_string = '<?xml version="1.0" encoding="ISO-8859-1"?>';
         $xml_string = Xml::dumpsterDive(AnyChart::createChart($type, $arrData));
 
@@ -476,9 +430,9 @@ class WeatherphAppModel extends AppModel {
                 if (!isset($arrmaxmin[$key])) {
                     if (trim($ar[$val]) != '') {
                         $arrmaxmin[$key] = array(
-                        'x' => strtotime($ar['Datum'] . ' ' . $ar['utc'] . ':' . $ar['min']),
-                        'y' => $ar[$val],
-                        'data' => $ar[$val],
+                            'x' => strtotime($ar['Datum'] . ' ' . $ar['utc'] . ':' . $ar['min']),
+                            'y' => $ar[$val],
+                            'data' => $ar[$val],
                         );
                         break;
                     }
@@ -490,15 +444,15 @@ class WeatherphAppModel extends AppModel {
                 if (trim($ar[$val]) != '') {
                     if ($arg == 'max' && $ar[$val] >= $arrmaxmin[$key]['y']) {
                         $arrmaxmin[$key] = array(
-                        'x' => strtotime($ar['Datum'] . ' ' . $ar['utc'] . ':' . $ar['min']),
-                        'y' => trim($ar[$val]),
-                        'data' => $ar[$val],
+                            'x' => strtotime($ar['Datum'] . ' ' . $ar['utc'] . ':' . $ar['min']),
+                            'y' => trim($ar[$val]),
+                            'data' => $ar[$val],
                         );
                     } elseif ($arg == 'min' && $ar[$val] <= $arrmaxmin[$key]['y']) {
                         $arrmaxmin[$key] = array(
-                        'x' => strtotime($ar['Datum'] . ' ' . $ar['utc'] . ':' . $ar['min']),
-                        'y' => trim($ar[$val]),
-                        'data' => $ar[$val],
+                            'x' => strtotime($ar['Datum'] . ' ' . $ar['utc'] . ':' . $ar['min']),
+                            'y' => trim($ar[$val]),
+                            'data' => $ar[$val],
                         );
                     }
                 }
@@ -512,64 +466,62 @@ class WeatherphAppModel extends AppModel {
 
         return $arrData;
     }
-    
+
     //Determine sunrise and sunset for every location using latituted and longtitude
-    protected function sunInfo($lat = NULL, $lon = NULL, $type = NULL){
-        
+    protected function sunInfo($lat = NULL, $lon = NULL, $type = NULL) {
+
         $siteTimezone = Configure::read('Site.timezone');
         $Date = new DateTime(null, new DateTimeZone($siteTimezone));
-        
+
         $sunInfo = date_sun_info(time(), $lat, $lon);
-        
-        if($type == 'sunrise'){
+
+        if ($type == 'sunrise') {
             return date("H:i:s", $sunInfo['sunrise'] + $Date->getOffset());
-        }elseif($type == 'sunset'){
+        } elseif ($type == 'sunset') {
             return date("H:i:s", $sunInfo['sunset'] + $Date->getOffset());
-        }else{
+        } else {
             return $sunInfo;
         }
-        
     }
-    
-    public function nearestGridPoint($lon, $lat){
-        
+
+    public function nearestGridPoint($lon, $lat) {
+
         $schrittx = 0.125;
         $schritty = 0.125;
-        
-        $nearest_lon = round($lon/$schrittx)*$schrittx;
-        $nearest_lat = round($lat/$schritty)*$schritty;
-        
+
+        $nearest_lon = round($lon / $schrittx) * $schrittx;
+        $nearest_lat = round($lat / $schritty) * $schritty;
+
         return array(
             'lon' => $nearest_lon,
             'lat' => $nearest_lat
         );
-        
     }
-    
-    public function findStationByGP($lon = NULL, $lat = NULL){
-        
+
+    public function findStationByGP($lon = NULL, $lat = NULL) {
+
         App::import('Model', 'Weatherph.Station');
 
         $WeatherphStation = new Station();
-        $stations = $WeatherphStation->find('all', array( 'fields' => array('lat', 'lon', 'wmo1', 'name')));
-        
+        $stations = $WeatherphStation->find('all', array('fields' => array('lat', 'lon', 'wmo1', 'name')));
+
         //$this->log($lon . $lat);
-        
+
         $station_match = array();
-        foreach($stations as $station){
+        foreach ($stations as $station) {
             $ngp = $this->nearestGridPoint($station['Station']['lon'], $station['Station']['lat']);
-            
+
             //$this->log(print_r($ngp, TRUE));
-            
-            if($ngp['lat'] == $lat && $ngp['lon'] == $lon){
+
+            if ($ngp['lat'] == $lat && $ngp['lon'] == $lon) {
                 $station_match[] = array(
                     'station_id' => $station['Station']['wmo1'],
                     'name' => $station['Station']['name']
-                    ); 
+                );
             }
         }
-       
+
         return array_unique($station_match);
     }
-    
+
 }
