@@ -1,5 +1,6 @@
 <?php
     CroogoRouter::connect('/admin/stations', array('plugin' => 'weatherph', 'controller' => 'stations', 'action' => 'index', 'admin' => true));
+    CroogoRouter::connect('/admin/stations/update', array('plugin' => 'weatherph', 'controller' => 'stations', 'action' => 'update', 'admin' => true));
     CroogoRouter::connect('/', array('plugin' => 'weatherph', 'controller' => 'weatherph', 'action' => 'index'));
     CroogoRouter::connect('/getStations', array('plugin' => 'weatherph', 'controller' => 'weatherph', 'action' => 'getStations'));
     CroogoRouter::connect('/view', array('plugin' => 'weatherph', 'controller' => 'weatherph', 'action' => 'view'));

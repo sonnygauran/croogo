@@ -15,6 +15,17 @@ class StationsController extends WeatherphAppController {
         $stations = $this->paginate('Station');
         $this->set(compact('stations', 'fields'));
     }
+    
+    public function admin_update(){
+        
+        $insertions = $this->Station->generate();
+        $insertions = $this->Station->read();
+        $insertions = $this->Station->import();
+        $message = ($insertions) ? "Inserted {$insertions} new Stations!" : "Stations up to date!";
+        $this->Session->setFlash($message);
+        $this->redirect(array('plugin' => 'weatherph','controller' => 'stations', 'action' => 'index', 'admin' => true));
+        
+    }
 
 }
 

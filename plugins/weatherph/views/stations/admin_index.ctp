@@ -7,6 +7,7 @@
         </ul>
     </div>
 
+<a href="/admin/stations/update">Update</a>
 
     <?php echo $this->Form->create('Station', array('url' => array('controller' => 'stations', 'action' => 'process'))); ?>
     <table cellpadding="0" cellspacing="0">
