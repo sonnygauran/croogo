@@ -11,7 +11,6 @@ class StationReadingsTask extends Shell{
         
         $execution_time_start = microtime(TRUE);
         
-        $csv = "";
         $counter = 1;
         $file_name = Configure::read('Data.readings'). date('Ymd') . '.csv';
         $date = date('Ymd');
@@ -40,39 +39,37 @@ class StationReadingsTask extends Shell{
         $this->out("Generating Station Readings CSV");
         $ids = $this->Station->find('all', array( 'fields' => 'sid' ));
         
+        $stations = array();
         foreach($ids as $id){
-            $stationId = $id['Station']['sid'];
-            $Abfrage = new Abfrage($stationId);
-            
-            $url = $Abfrage->generateURL($time_format, array(
-                'Temperature' => array(
-                    'dew point', 'low', 'min', 'max'
-                ),
-                'Wind' => array(
-                    'speed', 'direction'
-                ),
-                'Gust' => array(
-                    '1 hour'
-                ),
-                'Rainfall' => array(
-                    '1 hour', '6 hours'
-                ),
-                'Weather Symbols' => array(
-                    'Set 1','Set 2'
-                ),
-                'Global Radiation' => array(
-                    '1 hour'
-                ),
-                'Humidity'
-            ), false);
-            $curlResults = NULL;
-            $curlResults = Curl::getData($url);
-            
-            $csv .= $curlResults; 
-            echo "Done $counter\n";
-            $counter++;
+            $stations[] = $id['Station']['sid'];
         }
+        
+        $Abfrage = new Abfrage($stations);
 
+        $url = $Abfrage->generateURL($time_format, array(
+            'Temperature' => array(
+                'dew point', 'low', 'min', 'max'
+            ),
+            'Wind' => array(
+                'speed', 'direction'
+            ),
+            'Gust' => array(
+                '1 hour'
+            ),
+            'Rainfall' => array(
+                '1 hour', '6 hours'
+            ),
+            'Weather Symbols' => array(
+                'Set 1','Set 2'
+            ),
+            'Global Radiation' => array(
+                '1 hour'
+            ),
+            'Humidity'
+        ), false);
+        
+        $csv = Curl::getData($url, 200);
+        
         fopen($file_name, 'w');
         $file = fopen($file_name, 'w') or die("can't open file");
         fwrite($file, $csv);
