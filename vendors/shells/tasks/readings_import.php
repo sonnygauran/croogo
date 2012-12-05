@@ -7,8 +7,10 @@ class ReadingsImportTask extends Shell {
         
         App::import('Model', 'Weatherph.Reading');
         App::import('Model', 'Weatherph.Warning');
+        App::import('Model', 'Weatherph.Station');
         $Reading = new Reading();
         $Warning = new Warning();
+        $Station = new Station();
         
         //$csv_filename = date('Ydm');
         $csv_filename = date('Ymd') . ".csv";
@@ -37,6 +39,20 @@ class ReadingsImportTask extends Shell {
                     $data = explode(';', $row);
                     
                     if(trim($data[7]) != '' && trim($data[5]) != '' && trim(strtolower($data[0])) != 'datum'){ //Check data if not NULL/EMPTY
+                        $ort1 = explode('/', $data[3]);
+                        unset($ort1[0]);
+                        $station_name = implode('/', $ort1);
+
+                        $station = $Station->find('first', array(
+                            'conditions' => array(
+                                'name' => $station_name,
+                                'typ != ' => 'METAR' 
+                            ),
+                            'fields' => array('id'),
+                        ));
+
+                        $station_id = $station['Station']['id'];
+                        if(!$station_id) continue;
                         
                         // Check database if this readings already exist
                         $readings = $Reading->find('all', array(
@@ -62,7 +78,7 @@ class ReadingsImportTask extends Shell {
                                 )
                             ));
                             
-                            $thresholds = $this->checkThresholds($wind,  $rain, $readings[0]['Reading']['id']);
+                            $thresholds = $this->checkThresholds($wind,  $rain, $station_id, $readings[0]['Reading']['id']);
                             // If exist overwrite to update
                             $Reading->id = $readings[0]['Reading']['id'];
                             $Warning->id = $warning['Warning']['id'];
@@ -86,6 +102,7 @@ class ReadingsImportTask extends Shell {
                                     'rain6' => $data[14],
                                     'rh' =>$data[15],
                                     'sy2' => $data[16],
+                                    'station_id' => $station_id
                                 ),
                             );
                             
@@ -127,11 +144,12 @@ class ReadingsImportTask extends Shell {
                                     'rain6' => $data[14],
                                     'rh' =>$data[15],
                                     'sy2' => $data[16],
+                                    'station_id' => $station_id
                                 ),
                             );
                             
                             
-                            $thresholds = $this->checkThresholds($wind,  $rain);
+                            $thresholds = $this->checkThresholds($wind,  $rain, $station_id);
 
                             if($thresholds['rain'] || $thresholds['wind']){
                                 echo "New Warning on {$data['Reading']['ort1']}\n";
@@ -164,7 +182,7 @@ class ReadingsImportTask extends Shell {
         
     }
    
-    public function checkThresholds($wind, $rain, $reading_id = ''){
+    public function checkThresholds($wind, $rain, $station_id, $reading_id = ''){
         $wind_severity = null;
         $rain_severity = null;
         
@@ -176,15 +194,15 @@ class ReadingsImportTask extends Shell {
             $wind_severity = "violet";
         }
         
-        if($rain >= 10 && $rain < 20){
+        if($rain >= 3 && $rain < 5){
             $rain_severity = "orange";
-        }else if($rain >= 20 && $rain < 60){
+        }else if($rain >= 5 && $rain < 10){
             $rain_severity = "red";
-        }else if($rain >= 60){
+        }else if($rain >= 10){
             $rain_severity = "violet";
         }
 
-        $thresholds = array('wind' => $wind_severity, 'rain' => $rain_severity);
+        $thresholds = array('wind' => $wind_severity, 'rain' => $rain_severity, 'station_id' => $station_id);
         if(!empty($reading_id)){
             $thresholds['reading_id'] = $reading_id;
         }
