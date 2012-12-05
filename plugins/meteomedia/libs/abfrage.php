@@ -67,6 +67,7 @@ class Abfrage{
                 '1 hour' => 'rr1h',
                 '3 hours' => 'rain3',
                 '6 hours' => 'rain6',
+                '10 minutes' => 'rr10m'
             ),
             'Wind' => array(
                 'speed' => 'ff',
@@ -75,6 +76,7 @@ class Abfrage{
             'Gust' => array(
                 '1 hour' => 'g1h',
                 '3 hours' => 'g3h',
+                '10 minutes' => 'g10'
             ),
             'Weather Symbols' => array(
                 'Set 1' => 'sy',

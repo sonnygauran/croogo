@@ -11,4 +11,10 @@ class Reading extends WeatherphAppModel {
         )
     );
 
+    public $belongsTo = array(
+        'Station' => array(
+            'className'    => 'Station',
+            'foreignKey'    => 'station_id'
+        )
+   );
 }

@@ -54,10 +54,10 @@ class StationReadingsTask extends Shell{
                 'speed', 'direction'
             ),
             'Gust' => array(
-                '1 hour'
+                '1 hour', '10 minutes'
             ),
             'Rainfall' => array(
-                '1 hour', '6 hours'
+                '1 hour', '6 hours', '10 minutes'
             ),
             'Weather Symbols' => array(
                 'Set 1','Set 2'

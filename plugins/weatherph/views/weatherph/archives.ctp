@@ -16,7 +16,7 @@
                         <td>
                             <?= $html->link($archive['Node']['title'], $archive['Node']['url']) ?>
                         </td>
-                        <td><?php echo $archive_excerpt; ?></td>
+                        <td></td>
                         <td>
                         <?php
                         

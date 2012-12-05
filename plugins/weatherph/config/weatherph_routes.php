@@ -50,4 +50,4 @@
     CroogoRouter::connect('/news/mata-ng-bagyo', array('plugin' => 'weatherph', 'controller' => 'weatherph', 'action' => 'matangbagyo'));
    
     CroogoRouter::connect('/media/view/*', array( 'controller' => 'media', 'action' => 'view'));
-   
+    CroogoRouter::connect('/json/warnings/plot', array('plugin' => 'weatherph', 'controller' => 'warnings', 'action' => 'plot'));

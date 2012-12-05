@@ -8,7 +8,11 @@ class Warning extends WeatherphAppModel {
         'Reading' => array(
             'className'    => 'Reading',
             'foreignKey'    => 'reading_id'
-        )
+        ),
+        'Station' => array(
+            'className'    => 'Station',
+            'foreignKey'    => 'station_id'
+        ),
    );
     
 }

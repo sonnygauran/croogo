@@ -5,6 +5,17 @@ class Station extends WeatherphAppModel {
 
     public $name = 'Station';
     
+    public $hasMany = array(
+        'Reading' => array(
+            'className'  => 'Reading',
+            'foreignKey' => 'station_id',
+        ),
+        'Warning' => array(
+            'className'  => 'Warning',
+            'foreignKey' => 'station_id',
+        )
+    );
+    
     public function generate(){
         $url = "http://db.meteomedia.ch/abfrage.php?land=PHL&ortsinfo=ja&output=csv2&ortoutput=wmo6,name&aufruf=auto";
         $result = Curl::getData($url);

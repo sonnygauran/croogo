@@ -28,7 +28,7 @@ class WeatherphController extends WeatherphAppController {
      * @var array
      * @access public
      */
-    public $uses = array('Setting','Media');
+    public $uses = array('Setting','Media', 'Warning');
 
     public function admin_index() {
        //$this->set('title_for_layout', __('Weatherph', true));
@@ -769,7 +769,8 @@ class WeatherphController extends WeatherphAppController {
             'limit' => 10,
             'conditions' => array(
                 'Node.type' => array('news', 'announcements', 'weathertv')
-            )
+            ),
+            'order' => array('Node.created DESC')
         );
         $archives = $this->paginate('Node');
         

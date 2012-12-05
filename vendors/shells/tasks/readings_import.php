@@ -70,19 +70,19 @@ class ReadingsImportTask extends Shell {
                         if(count($readings)>0){
                             
                             $cntr_updated++;
-                            $wind = $data[5] * 1.852;
-                            $rain =  $data[11];
+                            $gust = $data[14] * 1.852;
+                            $rain =  $data[18];
                             $warning = $Warning->find('first', array(
                                 'conditions' => array(
                                     'reading_id' => $readings[0]['Reading']['id']
                                 )
                             ));
                             
-                            $thresholds = $this->checkThresholds($wind,  $rain, $station_id, $readings[0]['Reading']['id']);
+                            
+                            $thresholds = $this->checkThresholds($gust,  $rain, $station_id, $readings[0]['Reading']['id']);
                             // If exist overwrite to update
                             $Reading->id = $readings[0]['Reading']['id'];
-                            $Warning->id = $warning['Warning']['id'];
-                           
+                            
                             $data = array(
                                 'Reading' => array(
                                     'datum' => date('Ymd', strtotime($data[0])),
@@ -96,22 +96,27 @@ class ReadingsImportTask extends Shell {
                                     'td' => $data[8],
                                     'tx' => $data[9],
                                     'tn' => $data[10],
-                                    'rr1h' => $data[11],
-                                    'gl1h' => $data[12],
-                                    'sy' => $data[13],
-                                    'rain6' => $data[14],
-                                    'rh' =>$data[15],
-                                    'sy2' => $data[16],
+                                    'rr10m' => $data[11],
+                                    'rr1h' => $data[12],
+                                    'gl1h' => $data[13],
+                                    'g10' => $data[14],
+                                    'sy' => $data[15],
+                                    'rain6' => $data[16],
+                                    'rh' =>$data[17],
+                                    'sy2' => $data[18],
                                     'station_id' => $station_id
                                 ),
                             );
                             
-                            if($thresholds['rain'] || $thresholds['wind']){
+                            if($thresholds['rain'] || $thresholds['gust']){
+                                $Warning->id = $warning['Warning']['id'];
+                                echo print_r($warning, true);
+                                echo "{$readings[0]['Reading']['id']}\n";
                                 echo "Updating Warning on {$data['Reading']['ort1']}\n";
-                                $data['Warning'] = $thresholds;
+                                $Warning->save($thresholds);
                             }
                             
-                            $Reading->saveAll($data);
+                            $Reading->save($data);
                            
                         }else{
                             
@@ -119,13 +124,13 @@ class ReadingsImportTask extends Shell {
                             $cntr_inserted++;
                             
                             if(key_exists(5, $data)){
-                                $wind = $data[5] * 1.852;
+                                $gust = $data[5] * 1.852;
                             }
                             if(key_exists(11, $data)){
                                 $rain =  $data[11];
                             }
                             
-                            $data = array(
+                             $data = array(
                                 'Reading' => array(
                                     'datum' => date('Ymd', strtotime($data[0])),
                                     'utc' => $data[1],
@@ -138,20 +143,22 @@ class ReadingsImportTask extends Shell {
                                     'td' => $data[8],
                                     'tx' => $data[9],
                                     'tn' => $data[10],
-                                    'rr1h' => $data[11],
-                                    'gl1h' => $data[12],
-                                    'sy' => $data[13],
-                                    'rain6' => $data[14],
-                                    'rh' =>$data[15],
-                                    'sy2' => $data[16],
+                                    'rr10m' => $data[11],
+                                    'rr1h' => $data[12],
+                                    'gl1h' => $data[13],
+                                    'g10' => $data[14],
+                                    'sy' => $data[15],
+                                    'rain6' => $data[16],
+                                    'rh' =>$data[17],
+                                    'sy2' => $data[18],
                                     'station_id' => $station_id
                                 ),
                             );
                             
                             
-                            $thresholds = $this->checkThresholds($wind,  $rain, $station_id);
+                            $thresholds = $this->checkThresholds($gust,  $rain, $station_id);
 
-                            if($thresholds['rain'] || $thresholds['wind']){
+                            if($thresholds['rain'] || $thresholds['gust']){
                                 echo "New Warning on {$data['Reading']['ort1']}\n";
                                 $data['Warning'] = $thresholds;
                             }
@@ -182,16 +189,16 @@ class ReadingsImportTask extends Shell {
         
     }
    
-    public function checkThresholds($wind, $rain, $station_id, $reading_id = ''){
-        $wind_severity = null;
+    public function checkThresholds($gust, $rain, $station_id, $reading_id = ''){
+        $gust_severity = null;
         $rain_severity = null;
         
-        if($wind >= 56 && $wind < 75){
-            $wind_severity = "orange";
-        }else if($wind >= 75 && $wind < 100){
-            $wind_severity = "red";
-        }else if($wind >= 100){
-            $wind_severity = "violet";
+        if($gust >= 56 && $gust < 75){
+            $gust_severity = "orange";
+        }else if($gust >= 75 && $gust < 100){
+            $gust_severity = "red";
+        }else if($gust >= 100){
+            $gust_severity = "violet";
         }
         
         if($rain >= 3 && $rain < 5){
@@ -202,7 +209,7 @@ class ReadingsImportTask extends Shell {
             $rain_severity = "violet";
         }
 
-        $thresholds = array('wind' => $wind_severity, 'rain' => $rain_severity, 'station_id' => $station_id);
+        $thresholds = array('gust' => $gust_severity, 'rain' => $rain_severity, 'station_id' => $station_id);
         if(!empty($reading_id)){
             $thresholds['reading_id'] = $reading_id;
         }
