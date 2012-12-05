@@ -44,13 +44,20 @@ class WeatherphStationForecast extends WeatherphAppModel {
 
         $station_readings = $reading_temp->find('all', array(
             'conditions' => $sql_condition,
-            'order' => 'datum DESC, utc DESC, min DESC',
+            'order' => 'datum DESC',
             'limit' => 1
-                ));
+        ));
         
         $current_readings = array();
         
-        if (count($station_readings) > 0) {
+        if(count($station_readings) > 0 && key_exists(0, $station_readings)){
+            $now = new DateTime(date('Y-m-d'));
+            $datum = new DateTime($station_readings[0]['Reading']['datum']);
+            $diff = $now->diff($datum);
+            
+        }
+        
+        if (count($station_readings) > 0 && ($diff->d < 1 && $diff->h < 2)) {
             
             $current_readings = array(
                 'weather_symbol' => '-',
@@ -108,7 +115,7 @@ class WeatherphStationForecast extends WeatherphAppModel {
             $current_readings['update'] = date('h:iA', $theirTime + $Date->getOffset());
         }
 
-        if (count($current_readings) > 0) {
+        if (count($current_readings) > 0 && ($diff->d < 1 && $diff->h < 2)) {
             $abfrageResults['reading'] = $current_readings;
             $abfrageResults['reading']['status'] = 'ok';
         } else {
