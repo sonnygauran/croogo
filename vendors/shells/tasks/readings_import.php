@@ -209,7 +209,6 @@ class ReadingsImportTask extends Shell {
         }
 
         $thresholds = array('gust' => $gust_severity, 'rain' => $rain_severity, 'station_id' => $station_id, 'date' => $date);
-        debug($thresholds);
         if(!empty($reading_id)){
             $thresholds['reading_id'] = $reading_id;
         }
