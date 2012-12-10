@@ -9,10 +9,6 @@ class Station extends WeatherphAppModel {
         'Reading' => array(
             'className'  => 'Reading',
             'foreignKey' => 'station_id',
-        ),
-        'Warning' => array(
-            'className'  => 'Warning',
-            'foreignKey' => 'station_id',
         )
     );
     
