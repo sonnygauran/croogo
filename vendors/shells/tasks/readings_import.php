@@ -97,11 +97,6 @@ class ReadingsImportTask extends Shell {
                                 ),
                             );
                             
-                            if($thresholds['rain'] || $thresholds['gust']){
-                                $Warning->id = $warning['Warning']['id'];
-                                echo "Updating Warning on {$data['Reading']['ort1']}\n";
-                                $Warning->save($thresholds);
-                            }
                             
                             $Reading->save($data);
                            
