@@ -28,7 +28,7 @@ class WeatherphController extends WeatherphAppController {
      * @var array
      * @access public
      */
-    public $uses = array('Setting','Media', 'Warning');
+    public $uses = array('Setting','Media');
 
     public function admin_index() {
        //$this->set('title_for_layout', __('Weatherph', true));
