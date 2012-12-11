@@ -26,7 +26,7 @@ Site.timezone: Asia/Manila
 Data.dmo: /data/dmo/live/
 Data.stations: /data/stations/
 Data.readings: /data/readings/
-Data.movies: http://alpha.weather.com.ph:7777/
+Data.movies: http://weather.com.ph:7777/
 Data.uploaded_videos: http://alpha.weather.com.ph:7777/
 Data.uploaded_images_folder: /data/images/uploads/
 Data.uploaded_images: /images/
