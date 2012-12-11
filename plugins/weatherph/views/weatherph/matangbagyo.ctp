@@ -4,7 +4,7 @@
             <?php $this->set('title_for_layout', 'Mata ng Bagyo'); ?>
             <h2>Mata Ng Bagyo</h2>
             <hr/>
-            <?php foreach ($blogLists as $blog) { ?>
+            <?php foreach ($archives as $blog) { ?>
                 <?php $createdTime = strtotime($blog['Node']['created']); ?>
                 <div class="blog-excerpt">
                     <h2><?= $html->link($blog['Node']['title'], $blog['Node']['url'], array('class' => 'link')) ?></h2>

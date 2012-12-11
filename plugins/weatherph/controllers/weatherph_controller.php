@@ -386,15 +386,15 @@ class WeatherphController extends WeatherphAppController {
     public function news() {
         $this->set('title_for_layout',__('Weatherph',true));
 
-        //$this->layout = 'default';
-
-        $blogLists = $this->Node->find('all', array(
+        $this->paginate = array(
+            'fields' => array('title', 'excerpt', 'body', 'created', 'type'),
             'order' => 'Node.created DESC',
             'conditions' => array('Node.type' => array('news', 'announcements')),
             'limit' => 5,
-        ));
+        );
+        
+        $blogLists = $this->paginate('Node');
 
-    //debug($blogLists);
         $meta_for_description = $this->description('description', "WeatherPH provides comprehensive up-to-date news about the Philippines' current weather condition.");
          $og_image = array('property'=>'og:image','content'=>'http://weather.com.ph/theme/weatherph/img/logo.png');
          $og_description = array('property'=>'og:description','content'=>"WeatherPH provides comprehensive up-to-date news about the Philippines' current weather condition.");
@@ -653,7 +653,8 @@ class WeatherphController extends WeatherphAppController {
            ));
        }
        
-       $videos = $this->Node->find('all', array(
+       $this->paginate =  array(
+           'limit' => 9,
             'order' => 'Node.created DESC',
             'conditions' => array(
                 'AND' => array(
@@ -661,7 +662,10 @@ class WeatherphController extends WeatherphAppController {
                     array('Node.id != ' => $latest_video['Node']['id'])
                 )
             ),
-        ));
+        );
+       
+       $videos = $this->paginate('Node');
+       
               $og_description = array('property'=>'og:description','content'=> "WeatherTv: {$latest_video['Node']['title']}");
        
         $this->set(compact('latest_video', 'videos', 'meta_for_description','og_image','og_title','og_description'));
@@ -765,12 +769,10 @@ class WeatherphController extends WeatherphAppController {
     public function archives(){
         
         $this->paginate = array(
-            'fields' => array('title', 'excerpt', 'type', 'slug'),
-            'limit' => 10,
-            'conditions' => array(
-                'Node.type' => array('news', 'announcements', 'weathertv')
-            ),
-            'order' => array('Node.created DESC')
+            'fields' => array('title', 'excerpt', 'body', 'created', 'type'),
+            'order' => 'Node.created DESC',
+            'conditions' => array('Node.type' => array('news', 'announcements', 'weathertv')),
+            'limit' => 5,
         );
         $archives = $this->paginate('Node');
         

@@ -20,6 +20,7 @@
                 </div>
                 
             <?php } ?>
+            <div class="paging"><?php echo $paginator->numbers(); ?></div>
         </div>
     </section>
 </div>
