@@ -32,7 +32,7 @@ Data.uploaded_images_folder: /data/images/uploads/
 Data.uploaded_images: /images/
 Data.weathertv: http://alpha.weather.com.ph:7777/
 Data.layers: /theme/weatherph/img/layers/
-Server.node: http://alpha.weather.com.ph:7777/
+Server.node: http://weather.com.ph:7777/
 
 Abfrage.username: wget
 Abfrage.password: p09tM20
