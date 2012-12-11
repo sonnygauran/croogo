@@ -387,7 +387,7 @@ class WeatherphController extends WeatherphAppController {
         $this->set('title_for_layout',__('Weatherph',true));
 
         $this->paginate = array(
-            'fields' => array('title', 'excerpt', 'body', 'created', 'type'),
+            'fields' => array('title', 'excerpt', 'body', 'created', 'type', 'path'),
             'order' => 'Node.created DESC',
             'conditions' => array('Node.type' => array('news', 'announcements')),
             'limit' => 5,
@@ -769,7 +769,7 @@ class WeatherphController extends WeatherphAppController {
     public function archives(){
         
         $this->paginate = array(
-            'fields' => array('title', 'excerpt', 'body', 'created', 'type'),
+            'fields' => array('title', 'excerpt', 'body', 'created', 'type', 'path'),
             'order' => 'Node.created DESC',
             'conditions' => array('Node.type' => array('news', 'announcements', 'weathertv')),
             'limit' => 5,
