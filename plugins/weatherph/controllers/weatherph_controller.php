@@ -628,7 +628,7 @@ class WeatherphController extends WeatherphAppController {
 
    function weathertv($slug = ''){
        
-       $meta_for_description = $this->description('description', 'Vlogs (Video Blogs) regarding the weather condition of the Philippines');
+       $meta_for_description = $this->description('description', 'Latest video logs of Mr. Typhoon(Mike Padua) regarding the current weather condition of the Philippines');
        $og_image = array('property'=>'og:image','content'=>'http://weather.com.ph/theme/weatherph/img/logo.png');
        $og_title = array('property'=>'og:title','content'=>'Weather Philippines Foundation');
 
@@ -666,9 +666,9 @@ class WeatherphController extends WeatherphAppController {
        
        $videos = $this->paginate('Node');
        
-              $og_description = array('property'=>'og:description','content'=> "WeatherTv: {$latest_video['Node']['title']}");
+       $og_description = array('property'=>'og:description','content'=> "WeatherTv: {$latest_video['Node']['title']}");
        
-        $this->set(compact('latest_video', 'videos', 'meta_for_description','og_image','og_title','og_description'));
+       $this->set(compact('latest_video', 'videos', 'meta_for_description','og_image','og_title','og_description'));
    }
    function webcam(){
         $og_image = array('property'=>'og:image','content'=>'http://weather.com.ph/theme/weatherph/img/logo.png');
