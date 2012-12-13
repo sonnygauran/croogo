@@ -44,7 +44,7 @@ class WeatherphStationForecast extends WeatherphAppModel {
 
         $station_readings = $reading_temp->find('all', array(
             'conditions' => $sql_condition,
-            'order' => 'datum DESC',
+            'order' => 'datum DESC, utc desc, min desc',
             'limit' => 1
         ));
         
