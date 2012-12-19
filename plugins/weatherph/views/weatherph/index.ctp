@@ -63,8 +63,8 @@ $movie_location = Configure::read('Data.movies');
             <div id="legend" class="shadow">
                 <div class="scale-temperature">
                     <div class="unit-buttons">
-                        <button type="button" id="celsius-switch">C</button>
-                        <button type="button" id="fahrenheit-switch">F</button>
+                        <button type="button">C</button>
+                        <button type="button">F</button>
                     </div>
                     <div class="scale-celsius">
                         <ul>
