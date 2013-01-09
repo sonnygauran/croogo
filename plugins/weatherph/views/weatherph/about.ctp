@@ -56,6 +56,14 @@
            <p>Information based on data collected by Weather Philippines Foundation, Inc. shall not be taken as official data.  Weather information broadcasted and distributed by PAGASA remains as official data.  Weather Philippines shall not be responsible for the private use and reliance of its weather information.
             </p>
 
+            <p>
+                This website uses Google Analytics, a Web analysis service of Google Inc. (“Google”). Google Analytics uses so-called “cookies”, text files which are stored on your computer, and which enable an analysis of your use of the website. The information created by the cookie relating to your use if this website (including your IP address) is transferred by Google to a server in the USA and stored there. Google will use this information in order to evaluate your use of the website, to create reports on the website activities for the website operator, and to provide further services related to use of the website and of the Internet. Google will sometimes transfer this information to third parties if this is legally required, or if third parties process this data on behalf of Google. Under no circumstances will Google connect your IP address to other data from Google. Through setting your Internet software accordingly, you can prevent the installation of cookies. However, we advise you that in this case you may not be able to use all the functions of this website to their full extent. By using this website, you declare yourself to be in agreement with the processing of the data relating to you and collected by Google in the manner and for the purpose described above.
+            </p>
+
+            <p>
+                <a href="https://tools.google.com/dlpage/gaoptout?hl=en">Google Analytics Opt-out Browser Add-on</a>
+            </p>
+
             <h4>Impressum</h4>
             <p>
                 Weather Philippines Foundation <br>
