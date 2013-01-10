@@ -181,7 +181,7 @@
         </footer>
     </section><!-- #container -->
 
-    // Google Analytics script
+    <!-- Google Analytics script -->
     <script type="text/javascript">
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-8697204-41']);

@@ -878,3 +878,19 @@ $(document).ready(function(){
         }
     });
 });
+
+$(window).load(function(){
+    // Preload first three layer images
+    setTimeout(function () {
+        var i = 0;
+        console.error('Preloading layer images...');
+        while (i < 6) { // Put in twice the amount you want, you'll see why later
+            var c = window['fileNames']['temperature'][i];
+            var imageName = ""+c.year+c.month+c.day+c.hour+c.min+'00'+'all'+'_'+'temperature';
+            var imageSource = '<?= $this->webroot ?>theme/weatherph/img/layers/'+imageName+'.png';
+            $('<img/>')[0].src = imageSource;
+            i = i + 2; // why + 2? Because the images repeat. So we skip them.
+        }
+        console.error('Preloaded!');
+    }, 3000);
+});
