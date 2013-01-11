@@ -878,3 +878,18 @@ $(document).ready(function(){
         }
     });
 });
+
+$(window).bind("load", function(){ // this makes sure that it only loads the images after *everything has loaded*
+    setTimeout(function () {
+        console.error('Preloading layer images...');
+        var layer = ['temperature', 'pressure', 'satellite'];
+        for (var i = 0; i < 15; i += 1) {
+            var c = window['fileNames'][layer[0]][i];
+            var imageName = ""+c.year+c.month+c.day+c.hour+c.min+'00'+'all'+'_'+'temperature';
+            var imageSource = '<?= $this->webroot ?>theme/weatherph/img/layers/'+imageName+'.png';
+            $('<img/>')[0].src = imageSource;
+            console.error('Loaded ' + imageSource);
+        }
+        console.error('Preloaded!');
+    }, 3000);
+});

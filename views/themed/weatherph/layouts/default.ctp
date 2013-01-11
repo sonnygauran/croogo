@@ -26,22 +26,15 @@
 <body>
     <section id="container">
         <header class="banner shadow">
-            <a href="<?= $this->webroot ?>"><div class="logo"></div></a>
-            <div id="sponsor-slides">
-                <div class="slides_container">
-                    <img src="<?= $this->webroot ?>theme/weatherph/img/mm.png" alt="Meteomedia">
-                    <img src="<?= $this->webroot ?>theme/weatherph/img/az.png" alt="Aboitiz Power" style="display: none;">
-                    <img src="<?= $this->webroot ?>theme/weatherph/img/ub.png" alt="Union Bank" style="display: none;">
-                </div>
+            <a href="<?= $this->webroot ?>">
+                <img src="<?= $this->webroot ?>theme/weatherph/img/logo-wph.png" alt="Weather Philippines Foundation" class="logo">
+            </a>
+            <div class="founders">
+                <img src="<?= $this->webroot ?>theme/weatherph/img/logo-meteomedia.png" alt="Meteomedia">
+                <img src="<?= $this->webroot ?>theme/weatherph/img/logo-unionbank.png" alt="Union Bank">
+                <img src="<?= $this->webroot ?>theme/weatherph/img/logo-aboitiz.png" alt="Aboitiz Power">
             </div>
             <span class="beta-tag">Beta</span>
-            <div id="options">
-                <div class="flag"></div>
-                <form class="search" action="/search" method="POST">
-                    <input id="search-field" placeholder="Search town/province" type="text" name="terms" size="20" />
-                    <input type="submit" value="Search" class="search-icon"></div>
-                </form>
-            </div>
         </header> <!--BANNER-->
 
         <nav class="shadow cf">
@@ -55,11 +48,17 @@
                     </ul>
                 </li>
                 <li><a href="<?= $this->webroot ?>news">News</a></li>
-                <!-- <li><a href="<?= $this->webroot ?>announcements">Mata ng Bagyo</a></li> -->
                 <li><a href="<?= $this->webroot ?>weathertv">Weather TV</a></li>
                 <li><a href="<?= $this->webroot ?>webcam">Webcams</a></li>
                 <li><a href="<?= $this->webroot ?>about">About</a></li>
                 <li><a href="<?= $this->webroot ?>contact">Contact Us</a></li>
+                <li>
+                    <form class="search" action="/search" method="POST">
+                        <!-- <input id="search-field" placeholder="Enter town/province name" type="text" name="terms" size="20" /> -->
+                        <input type="text" id="search-field" placeholder="Enter city or province name..." id="LocationKeyword" name="terms" size="20" />
+                        <input type="submit" value="Search"/>
+                    </form>
+                </li>
             </ul>
         </nav>
 
@@ -181,7 +180,7 @@
         </footer>
     </section><!-- #container -->
 
-    // Google Analytics script
+    <!-- Google Analytics script -->
     <script type="text/javascript">
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-8697204-41']);
@@ -204,7 +203,7 @@
 ?>
 <script type="text/javascript">
     $(window).load(function(){
-        $('#sponsor-slides, .gold-sponsor-slides').slides({
+        $('.gold-sponsor-slides').slides({
             preload: false,
             effect: 'fade',
             play: 5000,
