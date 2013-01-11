@@ -212,10 +212,6 @@
             generateNextPrev: false
         });
 
-        $("nav li").click(function(){
-            window.location=$(this).find("a").attr("href"); return false;
-        });
-
         // $("#close-warning").click(function(){
         //     $('.severe-warning').fadeOut();
         // });
