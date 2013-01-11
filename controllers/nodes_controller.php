@@ -467,7 +467,7 @@ class NodesController extends AppController {
                 
                 $meta_for_description = $this->description('description','sample');
                 $og_title= array('property'=>'og:title','content'=>"sdasd");
-                $og_image= array('property'=>'og:image','content'=>'http://alpha.weather.com.ph/theme/weatherph/img/logo.png');
+                $og_image= array('property'=>'og:image','content'=>'http://weather.com.ph/theme/weatherph/img/logo.png');
                 $og_description=array('property'=>'og:description','content'=>"sdfs");
                 $this->set(compact('meta_for_description','og_title','og_image','og_description'));
                 
@@ -787,13 +787,13 @@ class NodesController extends AppController {
                 
                 if ($node['Node']['type']=='visit'){                
                
-                 $og_title= array('property'=>'og:title','content'=>"{$node['Node']['title']} | Weather Philippines Foundation");
-                $og_image= array('property'=>'og:image','content'=>'http://alpha.weather.com.ph/theme/weatherph/img/logo.png');
+                $og_title= array('property'=>'og:title','content'=>"{$node['Node']['title']} | Weather Philippines Foundation");
+                $og_image= array('property'=>'og:image','content'=>'http://weather.com.ph/theme/weatherph/img/logo.png');
                 $x = strip_tags(substr ($node['Node']['body'], 0, 300));
                 $first = trim($x);
                 if ($first < 150){
-                    $y = strip_tags(substr ($node['Node']['body'], 0, 400));
-                    $second = trim($y);
+                $y = strip_tags(substr ($node['Node']['body'], 0, 400));
+                $second = trim($y);
                 }
        
                 
@@ -806,7 +806,7 @@ class NodesController extends AppController {
                } elseif ($node['Node']['type']=='announcements'){
             
                 $og_title= array('property'=>'og:title','content'=>"{$node['Node']['title']} - WeatherPH weather announcements");
-                $og_image= array('property'=>'og:image','content'=>'http://alpha.weather.com.ph/theme/weatherph/img/logo.png');
+                $og_image= array('property'=>'og:image','content'=>'http://weather.com.ph/theme/weatherph/img/logo.png');
              
                   $x = strip_tags(substr ($node['Node']['body'], 0, 300));
                 $first = trim($x);
@@ -823,7 +823,7 @@ class NodesController extends AppController {
                } elseif ($node['Node']['type']=='news'){
                 
                 $og_title= array('property'=>'og:title','content'=>"{$node['Node']['title']} - WeatherPH weather news");
-                $og_image= array('property'=>'og:image','content'=>'http://alpha.weather.com.ph/theme/weatherph/img/logo.png');
+                $og_image= array('property'=>'og:image','content'=>'http://weather.com.ph/theme/weatherph/img/logo.png');
                  $x = strip_tags(substr ($node['Node']['body'], 0, 300));
                 $first = trim($x);
                 if ($first < 150){

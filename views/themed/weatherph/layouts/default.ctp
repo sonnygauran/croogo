@@ -181,8 +181,6 @@
         </footer>
     </section><!-- #container -->
 
-
-
     // Google Analytics script
     <script type="text/javascript">
       var _gaq = _gaq || [];

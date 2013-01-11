@@ -26,13 +26,13 @@ Site.timezone: Asia/Manila
 Data.dmo: /data/dmo/live/
 Data.stations: /data/stations/
 Data.readings: /data/readings/
-Data.movies: http://alpha.weather.com.ph:7777/
-Data.uploaded_videos: http://alpha.weather.com.ph:7777/
+Data.movies: http://weather.com.ph:7777/
+Data.uploaded_videos: http://weather.com.ph:7777/
 Data.uploaded_images_folder: /data/images/uploads/
 Data.uploaded_images: /images/
-Data.weathertv: http://alpha.weather.com.ph:7777/
+Data.weathertv: http://weather.com.ph:7777/
 Data.layers: /theme/weatherph/img/layers/
-Server.node: http://alpha.weather.com.ph:7777/
+Server.node: http://weather.com.ph:7777/
 
 Abfrage.username: wget
 Abfrage.password: p09tM20
