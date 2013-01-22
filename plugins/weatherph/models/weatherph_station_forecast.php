@@ -215,6 +215,8 @@ class WeatherphStationForecast extends WeatherphAppModel {
             $abfrageResults['forecast']['status'] = 'none';
         }
         
+        $abfrageResults['station_name'] = $station_info['name'];
+        
         return $abfrageResults;
     }
 
