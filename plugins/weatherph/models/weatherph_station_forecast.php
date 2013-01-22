@@ -19,24 +19,20 @@ class WeatherphStationForecast extends WeatherphAppModel {
         $siteTimezone = Configure::read('Site.timezone');
         $Date = new DateTime(null, new DateTimeZone($siteTimezone));
 
+        // Get station info based on id
         $station_info = $this->getStationInfo($station_id);
-        
-        $this->log(print_r($station_info, TRUE));
 
         // Get sunrise and sunset using current latituted and longtitude station
         $sunrise = $this->sunInfo($station_info['lat'], $station_info['lon'], 'sunrise');
         $sunset = $this->sunInfo($station_info['lat'], $station_info['lon'], 'sunset');
 
-        $abfrageResults['station_name'] = str_replace('/', '<br />', $station_info['name']);
-
         //FROM DATABASE
         App::import('Model', 'Weatherph.Reading');
         $reading_temp = new Reading();
         
-        $sql_condition = array(
-            'ort1 LIKE' => "%" . $station_id . "%",
-            'tl != ' => '',
-        );
+        $sql_condition = array( 
+                'ort1 LIKE' => "%".$station_id ."%", 
+                'tl !=' => '');
         
         if($station_info['org'] == 'JRG'){
             $sql_condition['min ='] = '00';
@@ -44,9 +40,18 @@ class WeatherphStationForecast extends WeatherphAppModel {
 
         $station_readings = $reading_temp->find('all', array(
             'conditions' => $sql_condition,
-            'order' => 'datum DESC, utc desc, min desc',
-            'limit' => 1
-        ));
+            'order' => 'datum DESC, utc DESC, min DESC',
+            'limit' => '1'
+                ));
+        
+        $this->log(print_r($station_readings, TRUE));
+        
+        if(count($station_readings) > 0 && key_exists(0, $station_readings)){
+            $now = new DateTime(date('Y-m-d'));
+            $datum = new DateTime($station_readings[0]['Reading']['datum']);
+            $diff = $now->diff($datum);
+            
+        }
         
         $current_readings = array();
         
