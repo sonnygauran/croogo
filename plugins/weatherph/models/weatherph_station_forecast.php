@@ -38,31 +38,29 @@ class WeatherphStationForecast extends WeatherphAppModel {
             $sql_condition['min ='] = '00';
         }
 
+        date_default_timezone_set('UTC');
+        $date = date('Y-m-d', strtotime('-2 hours'));
+        $hour = date('H', strtotime('-2 hours'));
+        date_default_timezone_set(Configure::read('Site.timezone'));
+        
+        
         $station_readings = $reading_temp->find('all', array(
-            'conditions' => $sql_condition,
+            'conditions' => array(
+                'ort1 LIKE'     => "{$station_id}%",
+                'datum >='      => $date,
+                'utc >'         => $hour
+            ),
             'order' => 'datum DESC, utc DESC, min DESC',
             'limit' => '1'
-                ));
+       ));
         
-        $this->log(print_r($station_readings, TRUE));
+	   
         
-        if(count($station_readings) > 0 && key_exists(0, $station_readings)){
-            $now = new DateTime(date('Y-m-d'));
-            $datum = new DateTime($station_readings[0]['Reading']['datum']);
-            $diff = $now->diff($datum);
-            
-        }
         
         $current_readings = array();
+
         
-        if(count($station_readings) > 0 && key_exists(0, $station_readings)){
-            $now = new DateTime(date('Y-m-d'));
-            $datum = new DateTime($station_readings[0]['Reading']['datum']);
-            $diff = $now->diff($datum);
-            
-        }
-        
-        if (count($station_readings) > 0 && ($diff->d < 1 && $diff->h < 2)) {
+        if (count($station_readings) > 0) {
             
             $current_readings = array(
                 'weather_symbol' => '-',
@@ -120,7 +118,7 @@ class WeatherphStationForecast extends WeatherphAppModel {
             $current_readings['update'] = date('h:iA', $theirTime + $Date->getOffset());
         }
 
-        if (count($current_readings) > 0 && ($diff->d < 1 && $diff->h < 2)) {
+        if (count($current_readings) > 0) {
             $abfrageResults['reading'] = $current_readings;
             $abfrageResults['reading']['status'] = 'ok';
         } else {
@@ -310,24 +308,25 @@ class WeatherphStationForecast extends WeatherphAppModel {
             $sql_condition['min ='] = '00';
         }
 
+        date_default_timezone_set('UTC');
+        $date = date('Y-m-d', strtotime('-2 hours'));
+        $hour = date('H', strtotime('-2 hours'));
+        date_default_timezone_set(Configure::read('Site.timezone'));
+        
+        
         $station_readings = $reading_temp->find('all', array(
-            'conditions' => $sql_condition,
+            'conditions' => array(
+                'ort1 LIKE'     => "{$station_id}%",
+                'datum >='      => $date,
+                'utc >'         => $hour
+            ),
             'order' => 'datum DESC, utc DESC, min DESC',
             'limit' => '1'
-                ));
-        
-        $this->log(print_r($station_readings, TRUE));
-        
-        if(count($station_readings) > 0 && key_exists(0, $station_readings)){
-            $now = new DateTime(date('Y-m-d'));
-            $datum = new DateTime($station_readings[0]['Reading']['datum']);
-            $diff = $now->diff($datum);
-            
-        }
-        
+       ));     
+                
         $current_readings = array();
-
-        if (count($station_readings) > 0 && ($diff->d < 1 && $diff->h < 2)) {
+        
+        if (count($station_readings) > 0) {
             
             $current_readings = array(
                 'weather_symbol' => '-',
@@ -381,7 +380,7 @@ class WeatherphStationForecast extends WeatherphAppModel {
             if(key_exists('g1h', $current_reading) && trim($current_reading['g1h']) != ''){
                 $current_readings['wind_gust'] = floor($current_reading['g1h'] * 1.852 + 0.5) . " km/h";
             }
-            
+
             if(key_exists('dir', $current_reading)){
                 $current_readings['wind_direction'] = (trim($current_reading['dir']) == '')? '-' : $this->showWindDirection($current_reading['dir']);
                 $current_readings['wind_description'] = (trim($current_reading['dir']) == '')? '-' : $this->WindDirection($current_reading['dir']);
@@ -392,11 +391,11 @@ class WeatherphStationForecast extends WeatherphAppModel {
             $current_readings['local_time'] = date('Ymd H:i:s', $theirTime + $Date->getOffset());
             $current_readings['update'] = date('h:iA', $theirTime + $Date->getOffset());
         }
-        
-        if(count($current_readings)>0 && ($diff->d < 1 && $diff->h < 2)){
+
+        if (count($current_readings) > 0) {
             $abfrageResults['reading'] = $current_readings;
             $abfrageResults['reading']['status'] = 'ok';
-        }else{
+        } else {
             $abfrageResults['reading']['status'] = 'none';
         }
         
