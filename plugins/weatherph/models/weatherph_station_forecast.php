@@ -41,7 +41,6 @@ class WeatherphStationForecast extends WeatherphAppModel {
         date_default_timezone_set('UTC');
         $date = date('Y-m-d', strtotime('-2 hours'));
         $hour = date('H', strtotime('-2 hours'));
-        date_default_timezone_set(Configure::read('Site.timezone'));
         
         
         $station_readings = $reading_temp->find('all', array(
@@ -311,7 +310,6 @@ class WeatherphStationForecast extends WeatherphAppModel {
         date_default_timezone_set('UTC');
         $date = date('Y-m-d', strtotime('-2 hours'));
         $hour = date('H', strtotime('-2 hours'));
-        date_default_timezone_set(Configure::read('Site.timezone'));
         
         
         $station_readings = $reading_temp->find('all', array(
