@@ -47,7 +47,8 @@ class WeatherphStationForecast extends WeatherphAppModel {
             'conditions' => array(
                 'ort1 LIKE'     => "{$station_id}%",
                 'datum >='      => $date,
-                'utc >'         => $hour
+                'utc >'         => $hour,
+                'min'           => '00'
             ),
             'order' => 'datum DESC, utc DESC, min DESC',
             'limit' => '1'
@@ -316,7 +317,8 @@ class WeatherphStationForecast extends WeatherphAppModel {
             'conditions' => array(
                 'ort1 LIKE'     => "{$station_id}%",
                 'datum >='      => $date,
-                'utc >'         => $hour
+                'utc >'         => $hour,
+                'min'           => '00'
             ),
             'order' => 'datum DESC, utc DESC, min DESC',
             'limit' => '1'

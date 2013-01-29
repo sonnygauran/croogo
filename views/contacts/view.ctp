@@ -21,9 +21,7 @@
 					echo $this->Form->input('Message.email', array('label' => __('Your email', true)));
 					echo $this->Form->input('Message.title', array('label' => __('Subject', true)));
 					echo $this->Form->input('Message.body', array('label' => __('Message', true)));
-					if ($contact['Contact']['message_captcha']) {
-						echo $this->Recaptcha->display_form();
-					}
+                                        echo $this->Recaptcha->display_form();
 					echo $this->Form->end(__('Send', true));
 				?>
 				</div>

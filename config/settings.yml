@@ -11,8 +11,8 @@ Reading.date_time_format: D, M d Y H:i:s
 Reading.nodes_per_page: 5
 Service.akismet_key: your-key
 Service.akismet_url: http://your-blog.com
-Service.recaptcha_private_key: your-private-key
-Service.recaptcha_public_key: your-public-key
+Service.recaptcha_private_key: 6LcD_toSAAAAAAjyz0vX25aiqpU6ij6CrdkZosSS
+Service.recaptcha_public_key: 6LcD_toSAAAAALoNg2FHQgZCN0vPwCJAQ4ELSXSh
 Site.email: sgauran@meteomedia.com.ph
 Site.feed_url:
 Site.locale: eng
