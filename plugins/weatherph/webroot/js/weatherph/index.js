@@ -194,7 +194,7 @@ $(document).ready(function(){
                             for (var key in $boxMap) { // let's traverse the $boxMap
                                 if ($boxMap[key].id == $region) {  // Initially matches 'data-region-id' with 'NCR'
                                     $current = $boxMap[key].box; // the current $boxMap record
-                                    // //console.error($boxMap[key]);
+                                    // ////console.error($boxMap[key]);
                                     var southWest = new L.LatLng($current[1],$current[0]),
                                     northEast = new L.LatLng($current[3],$current[2]),
                                     bounds    = new L.LatLngBounds(southWest, northEast);
@@ -218,7 +218,7 @@ $(document).ready(function(){
 
                         // Video switch
                         window["DATA_LAYER"] = _name;
-                        //console.error('Set~>'+window["DATA_LAYER"]);
+                        ////console.error('Set~>'+window["DATA_LAYER"]);
 
                         var $movie = $('#movie-'+_name); // The markup
                         var content = eval("window['MOVIE_CONTENT']."+_name);
@@ -252,8 +252,8 @@ $(document).ready(function(){
                             src = $(this).attr('src');
                             new_src = src.replace(currentRegion, videoRegion);
                             $(this).attr('src', new_src);
-                           // //console.error(new_src);
-                           // //console.error('id:',$(this).val());
+                           // ////console.error(new_src);
+                           // ////console.error('id:',$(this).val());
                         });
                         $('#movie-'+_name).load();
                         currentRegion = videoRegion;
@@ -269,8 +269,8 @@ $(document).ready(function(){
  *Ajax
  */
 function getForecast(id) {
-    // //console.error('<?php Router::url($this->webroot) ?>');
-    // //console.error('<?= $this->webroot ?>weatherph/weatherph/getForecast/'+id+'/3/3h');
+    // ////console.error('<?php Router::url($this->webroot) ?>');
+    // ////console.error('<?= $this->webroot ?>weatherph/weatherph/getForecast/'+id+'/3/3h');
 
     $.ajax({
         type   : 'GET',
@@ -309,7 +309,7 @@ function getForecast(id) {
                 if ($station_readings.reading.weather_symbol) {
                     var weather_symbol = $station_readings.reading.weather_symbol;
 
-                    //                        //console.error(weather_symbol);
+                    //                        ////console.error(weather_symbol);
 
                     if(weather_symbol.hasOwnProperty('symbol') && weather_symbol !== '-') {
                         $('#info .readings .symbol:eq(0)').addClass(weather_symbol.symbol);
@@ -327,7 +327,7 @@ function getForecast(id) {
 
                 showForecast();
 
-                ////console.error($station_readings.forecast);
+                //////console.error($station_readings.forecast);
 
                 for (var key in $station_readings.forecast) {
 
@@ -338,11 +338,11 @@ function getForecast(id) {
                         sr_precip = $station_readings.forecast[key].precipitation_severity;
                         sr_humidity = $station_readings.forecast[key].relative_humidity;
 
-                        ////console.error(key);
+                        //////console.error(key);
 
                         weather_symbol = $station_readings.forecast[key].weather_symbol;
 
-                        //                            //console.error(weather_symbol);
+                        //                            ////console.error(weather_symbol);
                         if(weather_symbol.hasOwnProperty('symbol') && weather_symbol !== '-') {
                             $('.' + key + '-hour .symbol').addClass(weather_symbol.symbol);
                         }else{
@@ -592,7 +592,7 @@ function getDataLayer(){
     // The currently-selected layer
     var dataLayer = window["DATA_LAYER"];
 
-    // //console.error('x~>'+dataLayer);
+    // ////console.error('x~>'+dataLayer);
     if (dataLayer == 'temperature' || dataLayer == 'pressure' || dataLayer == 'satellite') {
         $('#layer-slides .slides_container').html('');
         /**
@@ -672,7 +672,7 @@ function redrawMap(){
     var serviceName = 'stations';
 
 
-    // //console.error(dataLayer);
+    // ////console.error(dataLayer);
     if (dataLayer !== null) {
         getDataLayer();
 
@@ -800,7 +800,7 @@ $(document).ready(function(){
         region_stations = $('.active-layer').text();
 
         window["DATA_LAYER"] = _name;
-        // //console.error('Set~>'+window["DATA_LAYER"]);
+        // ////console.error('Set~>'+window["DATA_LAYER"]);
 
         //Temperature unit toggle
 
@@ -839,10 +839,10 @@ $(document).ready(function(){
             var content = eval("window['MOVIE_CONTENT']."+_name);
 
             $map.fadeOut(1000, function(){
-                // //console.error(eval("window['MOVIE_CONTENT']."+_name));
+                // ////console.error(eval("window['MOVIE_CONTENT']."+_name));
                 $video
                 .html(eval("window['MOVIE_CONTENT']."+_name));
-                // //console.error($video);
+                // ////console.error($video);
                 $video
                 .fadeIn(1000)
                 .find('video').show();
@@ -852,11 +852,11 @@ $(document).ready(function(){
             });
 
         } else {
-            // //console.error('is not movie');
+            // ////console.error('is not movie');
             var videoVisible = $video.is(':visible');
             var mapVisible = $map.is(':visible');
             if (videoVisible) {
-                // //console.error('video visible');
+                // ////console.error('video visible');
                 $video.fadeOut(1000, function(){
                     $map.fadeIn(1000);
                     redrawMap();
@@ -879,17 +879,17 @@ $(document).ready(function(){
     });
 });
 
-$(window).bind("load", function(){ // this makes sure that it only loads the images after *everything has loaded*
-    setTimeout(function () {
-        //console.error('Preloading layer images...');
-        var layer = ['temperature', 'pressure', 'satellite'];
-        for (var i = 0; i < 15; i += 1) {
-            var c = window['fileNames'][layer[0]][i];
-            var imageName = ""+c.year+c.month+c.day+c.hour+c.min+'00'+'all'+'_'+'temperature';
-            var imageSource = '<?= $this->webroot ?>theme/weatherph/img/layers/'+imageName+'.png';
-            $('<img/>')[0].src = imageSource;
-            //console.error('Loaded ' + imageSource);
-        }
-        //console.error('Preloaded!');
-    }, 3000);
-});
+//$(window).bind("load", function(){ // this makes sure that it only loads the images after *everything has loaded*
+//    setTimeout(function () {
+//        ////console.error('Preloading layer images...');
+//        var layer = ['temperature', 'pressure', 'satellite'];
+//        for (var i = 0; i < 15; i += 1) {
+//            var c = window['fileNames'][layer[0]][i];
+//            var imageName = ""+c.year+c.month+c.day+c.hour+c.min+'00'+'all'+'_'+'temperature';
+//            var imageSource = '<?= $this->webroot ?>theme/weatherph/img/layers/'+imageName+'.png';
+//            $('<img/>')[0].src = imageSource;
+//            ////console.error('Loaded ' + imageSource);
+//        }
+//        ////console.error('Preloaded!');
+//    }, 3000);
+//});

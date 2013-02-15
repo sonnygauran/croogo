@@ -25,6 +25,21 @@
 </head>
 <body>
     <section id="container">
+        
+        <!-- Google ads -->
+        <div style="padding-left: 150px">
+            <script type="text/javascript"><!--
+                google_ad_client = "ca-pub-5206585059849058";
+                google_ad_slot = "3893361342";
+                google_ad_width = 728;
+                google_ad_height = 90;
+                //-->
+            </script>
+            <script type="text/javascript"
+            src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+            </script>
+        </div>
+        <!-- End Google ads -->
         <header class="banner shadow">
             <a href="<?= $this->webroot ?>">
                 <img src="<?= $this->webroot ?>theme/weatherph/img/logo-wph.png" alt="Weather Philippines Foundation" class="logo">
@@ -174,6 +189,19 @@
             </div>
         <?php endif; // tourism links ?>
         </div><!--END SIDEBAR-->
+        <!-- Google ads -->
+            <div style="position: absolute; left: 1180px">
+                <script type="text/javascript"><!--
+                google_ad_client = "ca-pub-5206585059849058";
+                google_ad_slot = "5370094546";
+                google_ad_width = 160;
+                google_ad_height = 600;
+                </script>
+                <script type="text/javascript"
+                src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+                </script>
+            </div>
+            <!-- End Google ads -->
 
         <footer>
             <small>&copy; 2012 Meteomedia Philippines</small>
