@@ -211,7 +211,7 @@
         </footer>
     </section><!-- #container -->
 
-    <div style="float: right; margin-top: 22em">
+    <div style="float: left; margin-top: 22em">
         <script type="text/javascript"><!--
         google_ad_client = "ca-pub-5206585059849058";
         google_ad_slot = "5370094546";
