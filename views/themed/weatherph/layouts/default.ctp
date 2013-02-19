@@ -24,8 +24,8 @@
     <![endif]-->
 </head>
 <body>
+<div class="wrap">
     <section id="container">
-
         <!-- Google ads -->
         <div style="padding-left: 150px">
             <script type="text/javascript"><!--
@@ -211,7 +211,7 @@
         </footer>
     </section><!-- #container -->
 
-    <div style="float: left; margin-top: 22em">
+    <div class="google-ad">
         <script type="text/javascript"><!--
         google_ad_client = "ca-pub-5206585059849058";
         google_ad_slot = "5370094546";
@@ -222,6 +222,7 @@
         src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
         </script>
     </div>
+</div>
 
     <!-- Google Analytics script -->
     <script type="text/javascript">

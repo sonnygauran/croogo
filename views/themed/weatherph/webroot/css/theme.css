@@ -89,10 +89,20 @@ hr {
 
 /* Containers */
 
+.wrap {
+    width: 1200px;
+    margin-left: 8%;
+}
+
 #container {
     width: 1000px;
     float: left;
-    margin: 0 auto auto 8em; /*Ads*/
+}
+
+.google-ad {
+    float: left;
+    width: 160px;
+    margin-top: 22em;
 }
 
 .banner {
