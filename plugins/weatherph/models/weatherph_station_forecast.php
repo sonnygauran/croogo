@@ -18,7 +18,7 @@ class WeatherphStationForecast extends WeatherphAppModel {
         // Get the default timestamp timezone
         $siteTimezone = Configure::read('Site.timezone');
         $Date = new DateTime(null, new DateTimeZone($siteTimezone));
-
+        
         $station_info = $this->getStationInfo($station_id);
         
         $this->log(print_r($station_info, TRUE));
@@ -44,7 +44,10 @@ class WeatherphStationForecast extends WeatherphAppModel {
 
         $station_readings = $reading_temp->find('all', array(
             'conditions' => $sql_condition,
-            'order' => 'datum DESC',
+            /*
+             * Note that utc:min is required, to sort the abfrage-inserted data
+             */
+            'order' => 'datum DESC, utc DESC, min DESC',
             'limit' => 1
         ));
         
