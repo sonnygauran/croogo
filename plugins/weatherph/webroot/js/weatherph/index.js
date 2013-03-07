@@ -262,7 +262,7 @@ $(document).ready(function(){
             });
         }, 300);
     });
-    getForecast(984290); //Manila
+    getForecast(980043); //Manila
 });
 
 /*

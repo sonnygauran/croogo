@@ -222,7 +222,7 @@ class WeatherphController extends WeatherphAppController {
     /**
      * ajax
      */
-    public function getForecast($stationID = '984290', $numDays = 1, $utch = '3h') {
+    public function getForecast($stationID = '980043', $numDays = 1, $utch = '3h') {
 
         //For
 
