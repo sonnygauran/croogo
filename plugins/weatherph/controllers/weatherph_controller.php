@@ -239,7 +239,7 @@ class WeatherphController extends WeatherphAppController {
         $this->set('forecasts', json_encode($forecasts));
     }
 
-    public function admin_getDetailedForecast($stationID = '984290', $timeRes = '1h', $startDatum = NULL) {
+    public function admin_getDetailedForecast($stationID = '980043', $timeRes = '1h', $startDatum = NULL) {
 
         $this->layout = 'plain';
         App::import('Model', 'Weatherph.WeatherphStationForecast');
@@ -255,7 +255,7 @@ class WeatherphController extends WeatherphAppController {
         $this->set('detailedForecast', $detailedForecast);
     }
 
-    public function getDetailedForecast($stationID = '984290', $type = NULL, $timeRes = '1h', $startDatum = NULL) {
+    public function getDetailedForecast($stationID = '980043', $type = NULL, $timeRes = '1h', $startDatum = NULL) {
 
 //        if($this->referer() != '/swf/AnyChart.swf') return; // limits the access of the XML for anychart usage
         App::import('Model', 'Weatherph.WeatherphStationForecast');
@@ -285,13 +285,13 @@ class WeatherphController extends WeatherphAppController {
         }
     }
 
-    public function detailedForecast($stationID = '984290') {
+    public function detailedForecast($stationID = '980043') {
 
         $this->layout = 'plain';
         $this->set('stationID', $stationID);
     }
 
-    public function getDetailedReading($stationID = '984290', $type = NULL, $timeRes = '3h', $startDatum = NULL, $endDatum = NULL) {
+    public function getDetailedReading($stationID = '980043', $type = NULL, $timeRes = '3h', $startDatum = NULL, $endDatum = NULL) {
         App::import('Model', 'Weatherph.WeatherphStationReading');
 
         $WeatherphStationReading = new WeatherphStationReading();
@@ -322,7 +322,7 @@ class WeatherphController extends WeatherphAppController {
      * ajax
      *
      */
-    public function detailedReading($stationID = '984290', $startDate = NULL, $endDate = NULL) {
+    public function detailedReading($stationID = '980043', $startDate = NULL, $endDate = NULL) {
 
         $this->layout = 'plain';
 
@@ -338,7 +338,7 @@ class WeatherphController extends WeatherphAppController {
         $this->set('set', $set);
     }
 
-    public function view($stationID = '984290') {
+    public function view($stationID = '980043') {
         App::import('Model', 'Weatherph.WeatherphStationForecast');
         App::import('Model', 'Weatherph.Station');
 
@@ -688,7 +688,7 @@ class WeatherphController extends WeatherphAppController {
 
    //JETT
 
-    public function measurements($startdate = NULL, $enddate = NULL, $stationID = '984290', $timeinterval = '10m') {
+    public function measurements($startdate = NULL, $enddate = NULL, $stationID = '980043', $timeinterval = '10m') {
 
         $this->layout = 'plain';
 
@@ -722,7 +722,7 @@ class WeatherphController extends WeatherphAppController {
         $this->set('measurements', json_encode($currentMeasurement));
     }
 
-    public function getDetailedMeasurement($stationID = '984290', $type = NULL, $timeRes = '3h', $startDatum = NULL, $endDatum = NULL) {
+    public function getDetailedMeasurement($stationID = '980043', $type = NULL, $timeRes = '3h', $startDatum = NULL, $endDatum = NULL) {
         App::import('Model', 'Weatherph.WeatherphStationMeasurement');
 
         $WeatherphStationMeasurement = new WeatherphStationMeasurement();
@@ -749,7 +749,7 @@ class WeatherphController extends WeatherphAppController {
         }
     }
 
-    public function detailedMeasurement($stationID = '984290', $startDate = NULL, $endDate = NULL) {
+    public function detailedMeasurement($stationID = '980043', $startDate = NULL, $endDate = NULL) {
 
         $this->layout = 'plain';
 
