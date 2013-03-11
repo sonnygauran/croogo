@@ -29,8 +29,8 @@
         <!-- Google ads -->
         <div style="padding-left: 150px">
             <script type="text/javascript"><!--
-                google_ad_client = "ca-pub-5206585059849058";
-                google_ad_slot = "3893361342";
+                google_ad_client = "ca-pub-7940334239860902";
+                google_ad_slot = "1369584876";
                 google_ad_width = 728;
                 google_ad_height = 90;
                 //-->
@@ -193,9 +193,9 @@
         <!-- Google ads -->
         <div>
             <script type="text/javascript"><!--
-            google_ad_client = "ca-pub-5206585059849058";
+            google_ad_client = "ca-pub-7940334239860902";
             /* Weather Philippines footer */
-            google_ad_slot = "9088722945";
+            google_ad_slot = "7276517679";
             google_ad_width = 336;
             google_ad_height = 280;
             //-->
@@ -213,9 +213,9 @@
 
     <div class="google-ad">
         <script type="text/javascript"><!--
-        google_ad_client = "ca-pub-5206585059849058";
-        google_ad_slot = "5370094546";
-        google_ad_width = 160;
+        google_ad_client = "ca-pub-7940334239860902";
+        google_ad_slot = "5799784472";
+        google_ad_width = 120;
         google_ad_height = 600;
         </script>
         <script type="text/javascript"
