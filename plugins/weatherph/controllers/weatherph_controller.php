@@ -206,7 +206,7 @@ class WeatherphController extends WeatherphAppController {
 
 
 
-    public function getReadings($stationID = '920001') {
+    public function getReadings($stationID = '980043') {
         $this->layout = 'json/ajax';
 
         App::import('Model', 'Weatherph.Reading');
@@ -709,7 +709,7 @@ class WeatherphController extends WeatherphAppController {
     }
 
 
-    public function getMeasurements($stationID = '920001') {
+    public function getMeasurements($stationID = '980043') {
         $this->layout = 'json/ajax';
 
         App::import('Model', 'Weatherph.Measurement');

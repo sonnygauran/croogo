@@ -387,13 +387,15 @@ function showForecast(){
 
 function hideReadings(){
     $('.readings.shadow').fadeOut(function(){
-        $('.no-readings').fadeIn();
+        //$('.no-readings').fadeIn();
+        $('#current-readings-panel .readings-label').hide();
     });
 }
 
 function showReadings(){
     $('.readings.shadow').fadeIn(function(){
-        $('.no-readings').fadeOut();
+        //$('.no-readings').fadeOut();
+        $('#current-readings-panel .readings-label').show();
     });
 }
 

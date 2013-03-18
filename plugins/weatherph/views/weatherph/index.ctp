@@ -228,7 +228,7 @@ $movie_location = Configure::read('Data.movies');
         <div id="info" class="shadow">
             <div id="current-readings-panel">
                 <h2 id="readings-location">&nbsp;</h2>
-                <p>Current Readings:</p>
+                <p class="readings-label">Current Readings:</p>
             </div>
             <div id="current-readings-box">
                 <div class="readings shadow">

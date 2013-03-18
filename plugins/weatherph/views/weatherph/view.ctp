@@ -97,7 +97,7 @@ echo $this->Html->script(array(
                         </tbody>
                     </table>
                 </div>
-                <div class="no-readings" style="display: block;">
+                <div class="no-readings" style="display: none;">
                     <p>Sorry, there are no readings available for this station.</p>
                 </div>
             <?php endif; ?>
