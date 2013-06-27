@@ -1039,7 +1039,7 @@ div.current-tab {
 .sponsor-nac-sumitomo { background: url('<?= $this->webroot ?>theme/weatherph/img/default-sprite.png') no-repeat 0 -90px; width: 135px; height: 68px; display: inline-block;}
 .sponsor-icts { background: url('<?= $this->webroot ?>theme/weatherph/img/default-sprite.png') no-repeat -140px -90px; width: 150px; height: 33px; display: inline-block;}
 .sponsor-tyk { background: url('<?= $this->webroot ?>theme/weatherph/img/default-sprite.png') no-repeat -140px -127px; width: 150px; height: 50px; display: inline-block;}
-.sponsor-sm { background: url('<?= $this->webroot ?>theme/weatherph/img/default-sprite.png') no-repeat -295px -90px; width: 75px; height: 72px; display: inline-block;}
+.sponsor-sm { background: url('<?= $this->webroot ?>theme/weatherph/img/sm_logo_2_wph.png') no-repeat 0 0; width: 166px; height: 166px; display: inline-block;}
 .sponsor-ngcp { background: url('<?= $this->webroot ?>theme/weatherph/img/default-sprite.png') no-repeat 0 -177px; width: 80px; height: 80px; display: inline-block;}
 .sponsor-vistaland { background: url('<?= $this->webroot ?>theme/weatherph/img/default-sprite.png') no-repeat -86px -181px; width: 144px; height: 65px; display: inline-block;}
 
