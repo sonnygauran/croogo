@@ -50,3 +50,7 @@
     App::import('Lib', 'Meteomedia.Curl');
 
     Curl::setAuth(Configure::read('Abfrage.username'), Configure::read('Abfrage.password'));
+    
+    $nextYear = strtotime(date('Y', strtotime('+1 year')).'-01-01 00:00:00') - time();
+    $nextWeek = strtotime('next week wednesday') - time();
+    $nextHour = strtotime('+1 hour') - time();

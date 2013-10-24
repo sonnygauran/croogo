@@ -319,3 +319,20 @@
         'path' => CACHE.DS.'models',  
         'prefix' => 'daily_'
     ));
+
+    $nextYear = strtotime(date('Y', strtotime('+1 year')).'-01-01 00:00:00') - time();
+    $nextWeek = strtotime('next week wednesday') - time();
+    $nextHour = strtotime('+1 hour') - time();
+    $next5min = strtotime('+5 minutes') - time();
+
+    define('CACHE_CONFIG_YEAR', "+{$nextYear} seconds");
+    define('CACHE_CONFIG_WEEK', "+{$nextWeek} seconds");
+    define('CACHE_CONFIG_HOUR', "+{$nextHour} seconds");
+    define('CACHE_CONFIG_MINS', "+{$next5min} seconds");
+
+    Cache::config('hour', array(
+        'engine' => 'File',
+        'duration' => CACHE_CONFIG_MINS,
+        'path' => CACHE,
+        'prefix' => 'weatherph_'
+    ));

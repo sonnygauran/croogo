@@ -108,7 +108,7 @@ class WeatherphController extends WeatherphAppController {
         //print_r($filenames);
         //exit;
         $blogEntries = $this->Node->find('all', array(
-            'order' => 'Node.created DESC',
+            'order' => 'Node.updated DESC',
             'conditions' => array('Node.type' => array('news', 'announcements', 'weathertv')),
             'limit' => 5,
         ));
@@ -164,17 +164,23 @@ class WeatherphController extends WeatherphAppController {
 
         $WeatherphStation = new Station();
 
+        $stations = Cache::read('stations_'.$provider, 'hour');
+        if (!$stations) {
         $fields = array('wmo1', 'lon', 'lat', 'name','webaktiv');
-        if ($provider == 'others') {
-            $stations = $WeatherphStation->find('all', array(
-                'conditions' => array('NOT' => array('org' => 'JRG')),
-                'fields' => $fields,
-            ));
-        } else {
-            $stations = $WeatherphStation->find('all', array(
-                'conditions' => array('org' => 'JRG'),
-                'fields' => $fields,
-            ));
+            if ($provider === 'others') {
+            
+            
+                $stations = $WeatherphStation->find('all', array(
+                    'conditions' => array('NOT' => array('org' => 'JRG')),
+                    'fields' => $fields,
+                ));
+            } else {
+                $stations = $WeatherphStation->find('all', array(
+                    'conditions' => array('org' => 'JRG'),
+                    'fields' => $fields,
+                ));
+            }
+            Cache::write('stations_'.$provider, $stations, 'hour');
         }
         $locations = array();
         $stations_result = array();
@@ -425,7 +431,7 @@ class WeatherphController extends WeatherphAppController {
         $this->layout = 'default';
 
 
-        $blogLists = $this->Node->find('all', array(
+        $archives = $this->Node->find('all', array(
             'order' => 'Node.created DESC',
             'conditions' => array('Node.type' => 'announcements'),
             'limit' => 5,
@@ -436,7 +442,7 @@ class WeatherphController extends WeatherphAppController {
         $og_image = array('property'=>'og:image','content'=>'http://weather.com.ph/theme/weatherph/img/logo.png');
         $og_title = array('property'=>'og:title','content'=>'Weather Philippines Foundation');
         $og_description = array('property'=>'og:description','content'=>'dasda');
-        $this->set(compact('blogLists','meta_for_description','og_image','og_title','og_description'));
+        $this->set(compact('archives','meta_for_description','og_image','og_title','og_description'));
 
 
     }
