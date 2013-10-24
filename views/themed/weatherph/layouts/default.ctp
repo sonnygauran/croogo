@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title><?= $title_for_layout ?><?php if (strlen($title_for_layout) > 1): ?> | <?php echo Configure::read('Site.title'); ?><?php endif; // comment ?></title>
-    <meta name="viewport" content="width=1000" />
+    <meta name="viewport" content="width=1300" />
     <?php
         echo (isset($og_image)) ? $this->Html->meta($og_image) :'';
         echo (isset($og_title)) ? $this->Html->meta($og_title) :'';
@@ -210,7 +210,6 @@
             <small>&copy; 2012 Meteomedia Philippines</small>
         </footer>
     </section><!-- #container -->
-
     <div class="google-ad">
         <script type="text/javascript"><!--
         google_ad_client = "ca-pub-7940334239860902";
