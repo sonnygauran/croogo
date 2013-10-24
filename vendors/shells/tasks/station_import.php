@@ -3,6 +3,7 @@
 class StationImportTask extends Shell{
     
     function execute(){
+        $this->out('Importing Station Data');
         App::import('Model', 'Weatherph.WeatherphStation');
         App::import('Model', 'Weatherph.Station');
         $WStation = new WeatherphStation();
@@ -16,7 +17,7 @@ class StationImportTask extends Shell{
         $logs = '';
         
         foreach ($stations as $station) {
-            
+            $this->out('Processing '.reset($station));
             if (!empty($station)) {
                 
                 $query = "SELECT `id` FROM `stations` WHERE `sid` = " . $station[0];

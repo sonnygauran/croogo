@@ -2,7 +2,7 @@
 class ReadingsImportTask extends Shell {
     
     function execute(){
-        
+        $this->out('Importing readings');
         $execution_time_start = microtime(TRUE);
         
         App::import('Model', 'Weatherph.Reading');
@@ -65,6 +65,7 @@ class ReadingsImportTask extends Shell {
                         
                         $station_id = $station['Station']['id'];
                         if(!$station_id) continue;
+                        $this->out('Processing '.$station_id);
                         
                         if(count($readings)>0){
                             
